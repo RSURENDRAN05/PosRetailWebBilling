@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <BankNameStatement>
+    <Id>71</Id>
+    <BankName>CIMB BANK</BankName>
+    <PayeeName>**NATHANS CORNER HOLDINGS SDN BHD**</PayeeName>
+    <PayeeDate>2    0    2    4    -    0    6    -    1    3   </PayeeDate>
+    <PayeeAmount>**1.00**</PayeeAmount>
+    <PayeeWords>**One Ringgit  Only**</PayeeWords>
+  </BankNameStatement>
+</DocumentElement>

@@ -1,0 +1,109 @@
+C:\Users\user\AppData\Local\Temporary Projects\MyposMgmt\bin\Debug\MyposMgmt.exe.config
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe.config
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Resources.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.vbproj.GenerateResource.Cache
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe.licenses
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.MainForm.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe.config
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.vbprojResolveAssemblyReference.cache
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.MainForm.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Resources.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.vbproj.GenerateResource.Cache
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe.licenses
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Login.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmLocation.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmTaxMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCompany.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmMainGroup.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmNewUser.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCateMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmItemMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmNewClient.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCreateComp.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmUnitMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmSupplier.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmPurchase.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe.manifest
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.application
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe.manifest
+D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.application
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe.config
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe.manifest
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.application
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.vbprojResolveAssemblyReference.cache
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmGroup.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmLedgerCreate.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmLedgerEntry.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmLedgerLoad.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmLedgerReport.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmParent.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmAbout.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmBankList.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmBankStatement.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmChequeprint.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmCompanyCheque.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmpayeelist.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmstatusoption.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmTodayCheque.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmcreatemonth.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmEmployee.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmEmployeeSalaryHis.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmEmployeeView.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmFinalProcess.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmGenerateMonth.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FRMPAYSLIP.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.MainMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmNewCustomer.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmpaymentgateway.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmreportdesign.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Billing_rpt.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmPrintProfile.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Ledgerreport.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmPurchaseView.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCateMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCompany.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmCreateComp.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmItemMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmLocation.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmMainGroup.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmNewClient.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmPurchase.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmSupplier.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmTaxMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmNewUser.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.FrmUnitMaster.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Login.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.MainForm.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.Resources.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmDiscount.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmPaymore.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.frmSelectBill.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.PosSales.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.vbproj.GenerateResource.Cache
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe.licenses
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe.manifest
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.application
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\obj\Debug\MyposMgmt.pdb
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\System.Memory.dll
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\MyposMgmt\MyposMgmt\bin\Debug\System.Numerics.Vectors.dll
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\MyposMgmt.exe.config
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\MyposMgmt.exe
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\MyposMgmt.xml
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\MyposMgmt.pdb

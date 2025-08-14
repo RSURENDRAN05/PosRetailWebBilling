@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <FinalMonth>
+    <EmpTrId>0</EmpTrId>
+    <EmpRefId>1</EmpRefId>
+    <EmpName>SAIT</EmpName>
+    <EmpMonth>Oct-2024</EmpMonth>
+    <EmpComId>1</EmpComId>
+    <EmpComName>DI NAINAS SDN BHD</EmpComName>
+    <EmpLocId>5</EmpLocId>
+    <EmpLocName>A2B BRICK FIELED</EmpLocName>
+    <EmpBasic>2500</EmpBasic>
+    <EmpNoOfDays>30</EmpNoOfDays>
+    <EmpWages>2500</EmpWages>
+    <EmpExtraDays>1</EmpExtraDays>
+    <EmpExtraDayAmt>83</EmpExtraDayAmt>
+    <EmpExtraOtHrs>2</EmpExtraOtHrs>
+    <EmpExtraOtAmt>14</EmpExtraOtAmt>
+    <EmpAllowance>100</EmpAllowance>
+    <EmpGrossAmt>2697</EmpGrossAmt>
+    <EmpAdvance>10</EmpAdvance>
+    <EmpEpf>0</EmpEpf>
+    <EmpSocso>0</EmpSocso>
+    <EmpDeduction>250</EmpDeduction>
+    <EmpNetPay>2437</EmpNetPay>
+    <EmpBank>0</EmpBank>
+    <EmpNetCash>2437</EmpNetCash>
+  </FinalMonth>
+</DocumentElement>
