@@ -51,10 +51,10 @@ Partial Class FrmGroupPolicyManagerSimple
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -77,10 +77,10 @@ Partial Class FrmGroupPolicyManagerSimple
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -209,6 +209,8 @@ Partial Class FrmGroupPolicyManagerSimple
         '
         'gvGroups
         '
+        Me.gvGroups.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvGroups.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gvGroups.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colGroupId, Me.colGroupName, Me.colGroupDescription, Me.colGroupActive})
         Me.gvGroups.GridControl = Me.dgvGroups
         Me.gvGroups.Name = "gvGroups"
@@ -218,6 +220,7 @@ Partial Class FrmGroupPolicyManagerSimple
         '
         'colGroupId
         '
+        Me.colGroupId.Caption = "GroupId"
         Me.colGroupId.FieldName = "pug_id"
         Me.colGroupId.Name = "colGroupId"
         '
@@ -404,6 +407,16 @@ Partial Class FrmGroupPolicyManagerSimple
         Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(84, 13)
         '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(424, 0)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(139, 26)
+        Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
         'LayoutControlGroup3
         '
         Me.LayoutControlGroup3.CustomizationFormText = "Permissions Management"
@@ -435,16 +448,6 @@ Partial Class FrmGroupPolicyManagerSimple
         Me.LayoutControlItem6.Text = "Menu Permissions"
         Me.LayoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(84, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(424, 0)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(139, 26)
-        Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem2
         '
@@ -486,10 +489,10 @@ Partial Class FrmGroupPolicyManagerSimple
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

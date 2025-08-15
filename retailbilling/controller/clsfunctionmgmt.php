@@ -2337,7 +2337,7 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
         if ($sub_menu_id === null || $sub_menu_id === '' || $sub_menu_id == 0) {
-            // Header menu
+            // Header menu - use NULL for sub_menu_id due to foreign key constraint
             $sqlQuery = ("INSERT INTO `pos_group_menu_permissions`(`pgmp_group_id`, `pgmp_header_menu_id`, `pgmp_sub_menu_id`, `pgmp_active`)
                           VALUES ('" . $group_id . "','" . $header_menu_id . "', NULL, '" . $menu_active . "')");
         } else {
