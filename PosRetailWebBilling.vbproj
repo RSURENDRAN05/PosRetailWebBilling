@@ -260,6 +260,18 @@
     <Compile Include="MainMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmGroupPolicyManagerSimple.Designer.vb">
+      <DependentUpon>FrmGroupPolicyManagerSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmGroupPolicyManagerSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmMenuManager.designer.vb">
+      <DependentUpon>FrmMenuManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmMenuManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Master\FrmNewCustomer.Designer.vb">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </Compile>
@@ -400,13 +412,6 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.vb">
-      <DependentUpon>MainForm.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -514,6 +519,12 @@
     <EmbeddedResource Include="MainMaster.resx">
       <DependentUpon>MainMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmGroupPolicyManagerSimple.resx">
+      <DependentUpon>FrmGroupPolicyManagerSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmMenuManager.resx">
+      <DependentUpon>FrmMenuManager.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmNewCustomer.resx">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </EmbeddedResource>
@@ -574,9 +585,6 @@
     <EmbeddedResource Include="Master\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -598,7 +606,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -635,7 +642,7 @@
     <Folder Include="Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

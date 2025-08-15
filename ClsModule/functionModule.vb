@@ -41,6 +41,7 @@ Module functionModule
     End Structure
     Public Structure _JsonData
         Public Shared USerTable As New DataTable
+        Public Shared UserPolicyTable As New DataTable
         Public Shared CompanyTable As New DataTable
         Public Shared CompanyLocationTable As New DataTable
         Public Shared LocationTable As New DataTable
@@ -115,6 +116,22 @@ Module functionModule
             Dim Userparsejson As JObject = JObject.Parse(json)
             _JsonData.USerTable = Userparsejson("Data").ToObject(Of DataTable)()
             If _JsonData.USerTable.Rows.Count > 0 Then
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function getUserPolicyInfo(ByRef user_id As String) As Boolean
+        Try
+            _JsonData.UserPolicyTable.TableName = "UserPolicyTable"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=6&user_id=" & user_id)
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            _JsonData.UserPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
+            If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                 Return True
             End If
             Return True
@@ -622,7 +639,7 @@ Module functionModule
                 _companyInfo.UserName = data("UserName")
                 _companyInfo.UserRole = data("UserRole")
                 'Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.USerTable Where dtrow("Id") = _companyInfo.UserId
-
+                getUserPolicyInfo(_companyInfo.UserId)
                 'If dtrows.Any Then
                 '    _companyInfo.UserRole = dtrows(0)("Role")
                 'End If

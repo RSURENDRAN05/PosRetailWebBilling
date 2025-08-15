@@ -79,6 +79,7 @@ Public Class Login
                     _companyInfo.CompanyName = GridLookUuCompany.GetSelectedDataRow(1).ToString
                     _companyInfo.LocId = LocationId
                     _companyInfo.LocationName = GridLookUuCompany.GetSelectedDataRow(3).ToString
+
                     Me.Hide()
                     MainMaster.Show()
 

@@ -236,7 +236,7 @@ Public Class frmFinalProcess
             Dim ST As String = _printProfile
             If String.IsNullOrEmpty(ST) Then
                 MsgBox("Select Print Profile", MsgBoxStyle.OkOnly, "Msg")
-                Exit Try
+                Return False
             End If
             Dim _rptstaf As New rptStaffProfile
             _rptstaf.LoadLayout(AppDomain.CurrentDomain.BaseDirectory & "\Print\" & ST.ToString)

@@ -15,11 +15,10 @@ Partial Class FrmNewUser
     Private components As System.ComponentModel.IContainer
 
     'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'It can be modified using the Windows Form Designer.
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmNewUser))
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -31,6 +30,8 @@ Partial Class FrmNewUser
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtrestid = New DevExpress.XtraEditors.TextEdit()
+        Me.txtcomid = New DevExpress.XtraEditors.TextEdit()
         Me.btncancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btnsave = New DevExpress.XtraEditors.SimpleButton()
         Me.txtpassword = New DevExpress.XtraEditors.TextEdit()
@@ -39,6 +40,12 @@ Partial Class FrmNewUser
         Me.chkuseractive = New DevExpress.XtraEditors.CheckEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmbrole = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -50,18 +57,12 @@ Partial Class FrmNewUser
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.txtcomid = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtrestid = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.imgcol = New DevExpress.Utils.ImageCollection()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +73,8 @@ Partial Class FrmNewUser
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtrestid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtcomid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtpassword.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtusername.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtuserid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,12 +92,10 @@ Partial Class FrmNewUser
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtcomid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtrestid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControlItem7
@@ -220,6 +221,26 @@ Partial Class FrmNewUser
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'txtrestid
+        '
+        Me.txtrestid.Location = New System.Drawing.Point(706, 72)
+        Me.txtrestid.Name = "txtrestid"
+        Me.txtrestid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.txtrestid.Properties.Appearance.Options.UseFont = True
+        Me.txtrestid.Size = New System.Drawing.Size(223, 26)
+        Me.txtrestid.StyleController = Me.LayoutControl1
+        Me.txtrestid.TabIndex = 19
+        '
+        'txtcomid
+        '
+        Me.txtcomid.Location = New System.Drawing.Point(706, 42)
+        Me.txtcomid.Name = "txtcomid"
+        Me.txtcomid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.txtcomid.Properties.Appearance.Options.UseFont = True
+        Me.txtcomid.Size = New System.Drawing.Size(223, 26)
+        Me.txtcomid.StyleController = Me.LayoutControl1
+        Me.txtcomid.TabIndex = 18
+        '
         'btncancel
         '
         Me.btncancel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -307,7 +328,7 @@ Partial Class FrmNewUser
         Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -315,6 +336,64 @@ Partial Class FrmNewUser
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         Me.GridView1.RowHeight = 25
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "UserID"
+        Me.GridColumn1.FieldName = "Id"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "UserName"
+        Me.GridColumn2.FieldName = "UserName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Password"
+        Me.GridColumn3.FieldName = "Password"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "ComId"
+        Me.GridColumn4.FieldName = "ComId"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "LocId"
+        Me.GridColumn5.FieldName = "LocId"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Status"
+        Me.GridColumn6.FieldName = "Status"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 6
         '
         'cmbrole
         '
@@ -324,7 +403,6 @@ Partial Class FrmNewUser
         Me.cmbrole.Properties.Appearance.Options.UseFont = True
         Me.cmbrole.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.cmbrole.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmbrole.Properties.Items.AddRange(New Object() {"Admin", "User"})
         Me.cmbrole.Size = New System.Drawing.Size(536, 26)
         Me.cmbrole.StyleController = Me.LayoutControl1
         Me.cmbrole.TabIndex = 14
@@ -441,6 +519,26 @@ Partial Class FrmNewUser
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem15
+        '
+        Me.LayoutControlItem15.Control = Me.txtcomid
+        Me.LayoutControlItem15.CustomizationFormText = "Company Id :"
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(617, 30)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(304, 30)
+        Me.LayoutControlItem15.Text = "Company Id :"
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(74, 13)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.txtrestid
+        Me.LayoutControlItem16.CustomizationFormText = "Restaurant Id :"
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(617, 60)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(304, 30)
+        Me.LayoutControlItem16.Text = "Restaurant Id :"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(74, 13)
+        '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -459,103 +557,21 @@ Partial Class FrmNewUser
         Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
         Me.imgcol.Images.SetKeyName(1, "accept.png")
         '
-        'txtcomid
+        'GridColumn7
         '
-        Me.txtcomid.Location = New System.Drawing.Point(706, 42)
-        Me.txtcomid.Name = "txtcomid"
-        Me.txtcomid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.txtcomid.Properties.Appearance.Options.UseFont = True
-        Me.txtcomid.Size = New System.Drawing.Size(223, 26)
-        Me.txtcomid.StyleController = Me.LayoutControl1
-        Me.txtcomid.TabIndex = 18
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "Role"
+        Me.GridColumn7.FieldName = "GroupName"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
-        'LayoutControlItem15
+        'GridColumn8
         '
-        Me.LayoutControlItem15.Control = Me.txtcomid
-        Me.LayoutControlItem15.CustomizationFormText = "Company Id :"
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(617, 30)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(304, 30)
-        Me.LayoutControlItem15.Text = "Company Id :"
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(74, 13)
-        '
-        'txtrestid
-        '
-        Me.txtrestid.Location = New System.Drawing.Point(706, 72)
-        Me.txtrestid.Name = "txtrestid"
-        Me.txtrestid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.txtrestid.Properties.Appearance.Options.UseFont = True
-        Me.txtrestid.Size = New System.Drawing.Size(223, 26)
-        Me.txtrestid.StyleController = Me.LayoutControl1
-        Me.txtrestid.TabIndex = 19
-        '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.txtrestid
-        Me.LayoutControlItem16.CustomizationFormText = "Restaurant Id :"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(617, 60)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(304, 30)
-        Me.LayoutControlItem16.Text = "Restaurant Id :"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(74, 13)
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn1.Caption = "UserID"
-        Me.GridColumn1.FieldName = "Id"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.Caption = "UserName"
-        Me.GridColumn2.FieldName = "UserName"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Password"
-        Me.GridColumn3.FieldName = "Password"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.Caption = "ComId"
-        Me.GridColumn4.FieldName = "ComId"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.Caption = "RestId"
-        Me.GridColumn5.FieldName = "RestId"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.Caption = "Status"
-        Me.GridColumn6.FieldName = "Status"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn8.Caption = "GroupId"
+        Me.GridColumn8.FieldName = "GroupId"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'FrmNewUser
         '
@@ -577,6 +593,8 @@ Partial Class FrmNewUser
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtrestid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtcomid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtpassword.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtusername.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtuserid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -594,12 +612,10 @@ Partial Class FrmNewUser
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtcomid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtrestid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -644,4 +660,6 @@ Partial Class FrmNewUser
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

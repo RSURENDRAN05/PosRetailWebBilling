@@ -53,7 +53,14 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $row = mysqli_num_rows($checkUser);
         if ($row == 1) {
             $rows = mysqli_fetch_assoc($checkUser);
-            $data = array("UserId" => $rows["id"], "UserRole" => $rows["role"], "UserName" => $rows["username"], "ComId" => $rows["comid"], "BranchID" => $rows["rid"]);
+            $data = array(
+                "UserId" => $rows["id"],
+                "UserRole" => $rows["role"],
+                "UserName" => $rows["username"],
+                "ComId" => $rows["comid"],
+                "BranchID" => $rows["rid"],
+                "GroupId" => $rows["group_id"]  // Add this line
+            );
             echo json_encode(array("Success" => true, "Data" => $data));
         } else {
             echo json_encode(array("Success" => false, "Data" => $row . ',' . $username . ',' . $password));
@@ -109,7 +116,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Tax Group Create
+    //Tax Group Create
     if ((int) $_REQUEST['AjaxRequest'] == 9) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
@@ -149,16 +156,16 @@ if (isset($_REQUEST['AjaxRequest'])) {
     if ((int) $_REQUEST['AjaxRequest'] == 12) {
         $ResulQuery = $clsfunreq->_SelectTaxMastrer();
         $GetDataRes = array();
-        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
-            $GetDataRes[] = $rows;
-        }
-        if ($ResulQuery) {
+        if ($ResulQuery instanceof mysqli_result) {
+            while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+                $GetDataRes[] = $rows;
+            }
             echo json_encode(array("Data" => $GetDataRes));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Main Group Create
+    //Main Group Create
     if ((int) $_REQUEST['AjaxRequest'] == 13) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
@@ -212,7 +219,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Sub Group Create
+    //Sub Group Create
     if ((int) $_REQUEST['AjaxRequest'] == 17) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
@@ -265,44 +272,44 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Update User  
+    //Save User
     if ((int) $_REQUEST['AjaxRequest'] == 21) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
         $username = $row["username"];
         $password = trim($row["userpass"]);
-        $role = $row["userrole"];
+        $group_id = $row["userrole"];  // This is now the group_id from the Group Policy system
         $status = $row["useractive"];
-        $rid = $row["userrestid"];
+        $locid = $row["userrestid"];
         $comid = $row["usercomid"];
-        $tum_id = 1;
-        $saveResults = $clsfunreq->SaveUser($username, $password, $status, $rid, $tum_id, $role, $comid);
+
+        $saveResults = $clsfunreq->SaveUser($username, $password, $status, $locid, $group_id, $comid);
         if ($saveResults) {
             echo json_encode(array("Success" => true, "Data" => $saveResults));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
+    //Update User
     if ((int) $_REQUEST['AjaxRequest'] == 22) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
         $id = $row["userid"];
         $username = $row["username"];
         $password = trim($row["userpass"]);
-        $role = $row["userrole"];
+        $group_id = $row["userrole"];  // This is now the group_id from the Group Policy system
         $status = $row["useractive"];
-        $rid = $row["userrestid"];
+        $locid = $row["userrestid"];
         $comid = $row["usercomid"];
-        $rid = 1;
-        $tum_id = 1;
-        $saveResults = $clsfunreq->UpdateUser($id, $username, $password, $status, $rid, $tum_id, $role,$comid);
+
+        $saveResults = $clsfunreq->UpdateUser($id, $username, $password, $status, $locid, $group_id, $comid);
         if ($saveResults) {
             echo json_encode(array("Success" => true, "Data" => $saveResults));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Item Create
+    //Item Create
     if ((int) $_REQUEST['AjaxRequest'] == 23) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
@@ -444,7 +451,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-//Branch Entry
+    //Branch Entry
     if ((int) $_REQUEST['AjaxRequest'] == 31) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
@@ -462,7 +469,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $branchmessage = $row['branchWarrningmsg'];
         $branchstatus = $row['branchstatus'];
         $branchinstalldate = $row['branchinstalldate'];
-//        $strl = $branchcustomerid . ',' . $branchname . ',' . $branchemail . ',' . $branchcontact . ',' . $branchaddress . ',' . $branchanydesk . ',' . $branchserver . ',' . $branchclient . ',' . $branchtab . ',' . $branchlock . ',' . $branchactivationcode . ',' . $branchstatus;
+        //        $strl = $branchcustomerid . ',' . $branchname . ',' . $branchemail . ',' . $branchcontact . ',' . $branchaddress . ',' . $branchanydesk . ',' . $branchserver . ',' . $branchclient . ',' . $branchtab . ',' . $branchlock . ',' . $branchactivationcode . ',' . $branchstatus;
         $res = $clsfunreq->_branchSave($branchcustomerid, $branchname, $branchaddress, $branchemail, $branchcontact, $branchanydesk, $branchserver, $branchclient, $branchtab, $branchlock, $branchactivationcode, $branchstatus, $branchmessage, $branchinstalldate);
         $cusSave = $clsfunreq->storeCustomerLedgerData($branchname);
         if ($res) {
@@ -489,7 +496,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $branchmessage = $row['branchWarrningmsg'];
         $branchstatus = $row['branchstatus'];
         $branchinstalldate = $row['branchinstalldate'];
-//        $strl = $branchid . ',' . $branchcustomerid . ',' . $branchname . ',' . $branchemail . ',' . $branchcontact . ',' . $branchaddress . ',' . $branchanydesk . ',' . $branchserver . ',' . $branchclient . ',' . $branchtab . ',' . $branchlock . ',' . $branchactivationcode . ',' . $branchstatus;
+        //        $strl = $branchid . ',' . $branchcustomerid . ',' . $branchname . ',' . $branchemail . ',' . $branchcontact . ',' . $branchaddress . ',' . $branchanydesk . ',' . $branchserver . ',' . $branchclient . ',' . $branchtab . ',' . $branchlock . ',' . $branchactivationcode . ',' . $branchstatus;
         $res = $clsfunreq->_branchUpdate($branchid, $branchcustomerid, $branchname, $branchaddress, $branchemail, $branchcontact, $branchanydesk, $branchserver, $branchclient, $branchtab, $branchlock, $branchactivationcode, $branchstatus, $branchmessage, $branchinstalldate);
         $cusSave = $clsfunreq->updateCustomerLedgerData($branchid, $branchname);
         if ($cusSave) {
@@ -524,7 +531,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         }
     }
 
-    //Save Unit 
+    //Save Unit
     if ((int) $_REQUEST['AjaxRequest'] == 35) {
         $ResulQuery = $clsfunreq->UnitSelect();
         $GetDataRes = array();
@@ -574,7 +581,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $strval = $supplierName; // . ',' . $supplierEmail . ',' . $supplierMobile;
         $res = $clsfunreq->storesupplierData($supplierName, $Status); //, $supplierEmail, $supplierMobile);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $cusSave = $clsfunreq->storeSupplierLedgerData($supplierName);
             if ($cusSave) {
@@ -593,7 +600,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $strval = $supplierName; // . ',' . $supplierEmail . ',' . $supplierMobile;
         $res1 = $clsfunreq->updatesupplierData($supplierid, $supplierName, $Status);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res1) {
             $res = $clsfunreq->updateSupplierLedgerData($supplierid, $supplierName);
             if ($res == true) {
@@ -704,13 +711,34 @@ if (isset($_REQUEST['AjaxRequest'])) {
             $ppd_comid = $row['PURCOMID'];
             $ppd_locid = $row['PURLOCID'];
 
-//            $resultsPurDtl = $ppd_trno . ',' . $ppd_sno . ',' . $ppd_itemcode . ',' . $ppd_barcode . ',' . $ppd_serialno . ',' . $ppd_batch . ',' . $ppd_prate . ',' . $ppd_qty . ',' . $ppd_amount . ',' .
-//                    $ppd_discper . ',' . $ppd_discamt . ',' . $ppd_totalamt . ',' . $ppd_taxid . ',' . $ppd_taxamt . ',' . $ppd_grossamt . ',' . $ppd_roundoff . ',' . $ppd_netamt . ',' . $ppd_expiry . ',' .
-//                    $ppd_costprice . ',' . $ppd_sellprice . ',' . $ppd_comid . ',' . $ppd_locid;
+            //            $resultsPurDtl = $ppd_trno . ',' . $ppd_sno . ',' . $ppd_itemcode . ',' . $ppd_barcode . ',' . $ppd_serialno . ',' . $ppd_batch . ',' . $ppd_prate . ',' . $ppd_qty . ',' . $ppd_amount . ',' .
+            //                    $ppd_discper . ',' . $ppd_discamt . ',' . $ppd_totalamt . ',' . $ppd_taxid . ',' . $ppd_taxamt . ',' . $ppd_grossamt . ',' . $ppd_roundoff . ',' . $ppd_netamt . ',' . $ppd_expiry . ',' .
+            //                    $ppd_costprice . ',' . $ppd_sellprice . ',' . $ppd_comid . ',' . $ppd_locid;
 
-            $resultsPurDtl = $clsfunreq->SavePurchaseDataDtl($ppd_trno, $ppd_sno, $ppd_itemcode, $ppd_barcode, $ppd_serialno, $ppd_batch, $ppd_prate, $ppd_qty, $ppd_amount,
-                    $ppd_discper, $ppd_discamt, $ppd_totalamt, $ppd_taxid, $ppd_taxamt, $ppd_grossamt, $ppd_roundoff, $ppd_netamt, $ppd_expiry, $ppd_costprice, $ppd_sellprice,
-                    $ppd_comid, $ppd_locid);
+            $resultsPurDtl = $clsfunreq->SavePurchaseDataDtl(
+                $ppd_trno,
+                $ppd_sno,
+                $ppd_itemcode,
+                $ppd_barcode,
+                $ppd_serialno,
+                $ppd_batch,
+                $ppd_prate,
+                $ppd_qty,
+                $ppd_amount,
+                $ppd_discper,
+                $ppd_discamt,
+                $ppd_totalamt,
+                $ppd_taxid,
+                $ppd_taxamt,
+                $ppd_grossamt,
+                $ppd_roundoff,
+                $ppd_netamt,
+                $ppd_expiry,
+                $ppd_costprice,
+                $ppd_sellprice,
+                $ppd_comid,
+                $ppd_locid
+            );
             //LiveStockUpdate
             $dim_item_id = $ppd_itemcode;
             $dim_item_barcode = $ppd_barcode;
@@ -736,8 +764,21 @@ if (isset($_REQUEST['AjaxRequest'])) {
                 $pph_comid = $row['PURHDRCOMID'];
                 $pph_locid = $row['PURHDRLOCID'];
                 $pph_userid = $row['PURHDRUSERID'];
-                $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr($pph_trno, $pph_refno, $pph_invdate, $pph_purdate, $pph_suppid, $pph_billdiscper, $pph_billdiscamt, $pph_netamt,
-                        $pph_paymenttype, $pph_baloutamt, $pph_comid, $pph_locid, $pph_userid);
+                $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr(
+                    $pph_trno,
+                    $pph_refno,
+                    $pph_invdate,
+                    $pph_purdate,
+                    $pph_suppid,
+                    $pph_billdiscper,
+                    $pph_billdiscamt,
+                    $pph_netamt,
+                    $pph_paymenttype,
+                    $pph_baloutamt,
+                    $pph_comid,
+                    $pph_locid,
+                    $pph_userid
+                );
             }
         }
 
@@ -827,82 +868,91 @@ if (isset($_REQUEST['AjaxRequest'])) {
             $pph_comid = $row['PURHDRCOMID'];
             $pph_locid = $row['PURHDRLOCID'];
             $pph_userid = $row['PURHDRUSERID'];
-        }
-        $ppd_trno = $pph_trno;
-        $trno = $pph_trno;
-        //$resultsPurDtl = $pph_trno . ',' . $pph_refno . ',' . $pph_invdate . ',' . $pph_purdate . ',' . $pph_suppid . ',' . $pph_billdiscper . ',' . $pph_billdiscamt . ',' . $pph_netamt . ',' . $pph_paymenttype . ',' . $pph_baloutamt . ',' . $pph_comid . ',' . $pph_locid . ',' . $pph_userid;
-
-        foreach ($rowDtl as $row) {
-            $ppd_sno = $row['SNO'];
-            $ppd_id = $row['PURID'];
-            $ppd_itemcode = $row['ITEMCODE'];
-            $ppd_barcode = $row['BARCODE'];
-            $ppd_serialno = $row['ITEMSERIALNO'];
-            $ppd_batch = $row['PURBATCH'];
-            $ppd_prate = $row['PURRATE'];
-            $ppd_qty = $row['PURQTY'];
-            $ppd_amount = $row['PURAMT'];
-            $ppd_discper = $row['PURDISPER'];
-            $ppd_discamt = $row['PURDISAMT'];
-            $ppd_totalamt = $row['PURTOTAMT'];
-            $ppd_taxid = $row['PURTAXID'];
-            $ppd_taxamt = $row['PURTAXAMT'];
-            $ppd_grossamt = $row['PURGROSSAMT'];
-            $ppd_roundoff = $row['PURROUNDOFF'];
-            $ppd_netamt = $row['PURNETAMT'];
-            $ppd_expiry = $row['PUREXPIRE'];
-            $ppd_costprice = $row['PURCOST'];
-            $ppd_sellprice = $row['PURSELL'];
-            $ppd_comid = $row['PURCOMID'];
-            $ppd_locid = $row['PURLOCID'];
-
-//            $resultsPurDtl = $ppd_trno . ',' . $ppd_sno . ',' . $ppd_itemcode . ',' . $ppd_barcode . ',' . $ppd_serialno . ',' . $ppd_batch . ',' . $ppd_prate . ',' . $ppd_qty . ',' . $ppd_amount . ',' .
-//                    $ppd_discper . ',' . $ppd_discamt . ',' . $ppd_totalamt . ',' . $ppd_taxid . ',' . $ppd_taxamt . ',' . $ppd_grossamt . ',' . $ppd_roundoff . ',' . $ppd_netamt . ',' . $ppd_expiry . ',' .
-//                    $ppd_costprice . ',' . $ppd_sellprice . ',' . $ppd_comid . ',' . $ppd_locid;
-
-            $resultsPurDtl = $clsfunreq->UpdatePurchaseDataDtl($ppd_id, $ppd_trno, $ppd_sno, $ppd_itemcode, $ppd_barcode, $ppd_serialno, $ppd_batch, $ppd_prate, $ppd_qty, $ppd_amount,
-                    $ppd_discper, $ppd_discamt, $ppd_totalamt, $ppd_taxid, $ppd_taxamt, $ppd_grossamt, $ppd_roundoff, $ppd_netamt, $ppd_expiry, $ppd_costprice, $ppd_sellprice,
-                    $ppd_comid, $ppd_locid);
+            $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr(
+                $pph_trno,
+                $pph_refno,
+                $pph_invdate,
+                $pph_purdate,
+                $pph_suppid,
+                $pph_billdiscper,
+                $pph_billdiscamt,
+                $pph_netamt,
+                $pph_paymenttype,
+                $pph_baloutamt,
+                $pph_comid,
+                $pph_locid,
+                $pph_userid
+            );
         }
         if ($resultsPurDtl) {
-            $reshdrdel = $clsfunreq->deleteInvoiceByHDR($pph_trno);
-            $deleteJourEntry = $clsfunreq->deleteJourEntry($pph_trno);
-            $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr($pph_trno, $pph_refno, $pph_invdate, $pph_purdate, $pph_suppid, $pph_billdiscper, $pph_billdiscamt, $pph_netamt,
-                    $pph_paymenttype, $pph_baloutamt, $pph_comid, $pph_locid, $pph_userid);
-            //accoutsLegder Posting
-            if ($resultsPurHdr) {
-                if ($pph_paymenttype == 'CASH') {
-                    $ledgerid = "1";
-                    $branchid = $pph_suppid;
-                    $vocheramt = $pph_netamt;
-                    $accttype = "PUR";
-                    $modetype = "CA";
-                    $txtdatepicker = $pph_invdate;
-                    $statuAcct = "A";
-                    $userid = $pph_userid;
-                    $txtnarration = 'Purchase :' . $trno;
-                    $refinvoiceno = $trno;
-                    //$ressalesentry = $ledgerid . ',' . $branchid . ',' . $vocheramt . ',' . $accttype . ',' . $modetype . ',' . $txtdatepicker . ',' . $statuAcct . ',' . $userid . ',' . $txtnarration . ',' . $refinvoiceno;
-                    $ressalesentry = $clsfunreq->storeJournalPurchaseEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
-                }
-                if ($pph_paymenttype == 'CREDIT') {
-                    $ledgerid = "2";
-                    $branchid = $pph_suppid;
-                    $vocheramt = $pph_netamt;
-                    $accttype = "PUR";
-                    $modetype = "CR";
-                    $txtdatepicker = $pph_invdate;
-                    $statuAcct = "NP";
-                    $userid = $pph_userid;
-                    $txtnarration = 'Purchase :' . $trno;
-                    $refinvoiceno = $trno;
-                    //$ressalesentry = $ledgerid . ',' . $branchid . ',' . $vocheramt . ',' . $accttype . ',' . $modetype . ',' . $txtdatepicker . ',' . $statuAcct . ',' . $userid . ',' . $txtnarration . ',' . $refinvoiceno;
-                    $ressalesentry = $clsfunreq->storeJournalPurchaseEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
-                }
+            $pph_trno = $trno;
+            foreach ($rowHdr as $row) {
+                $pph_refno = $row['PURHDRREFNO'];
+                $pph_invdate = $row['PURHDRINVDATE'];
+                $pph_purdate = $row['PURHDRPURDATE'];
+                $pph_suppid = $row['PURHDRSUPPID'];
+                $pph_billdiscper = $row['PURHDRBDISCPER'];
+                $pph_billdiscamt = $row['PURHDRBDISCAMT'];
+                $pph_netamt = $row['PURHDRNETAMT'];
+                $pph_paymenttype = $row['PURHDRPAYMENTTYPE'];
+                $pph_baloutamt = $row['PURHDRBALOUT'];
+                $pph_comid = $row['PURHDRCOMID'];
+                $pph_locid = $row['PURHDRLOCID'];
+                $pph_userid = $row['PURHDRUSERID'];
+                $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr(
+                    $pph_trno,
+                    $pph_refno,
+                    $pph_invdate,
+                    $pph_purdate,
+                    $pph_suppid,
+                    $pph_billdiscper,
+                    $pph_billdiscamt,
+                    $pph_netamt,
+                    $pph_paymenttype,
+                    $pph_baloutamt,
+                    $pph_comid,
+                    $pph_locid,
+                    $pph_userid
+                );
             }
         }
-        if (true) {
-            echo json_encode(array("Success" => true, "Data" => $ressalesentry . '' . $resultsPurDtl . ',' . $resultsPurHdr . ',' . $resultLiveStock . ',' . $ressalesentry));
+
+        //accoutsLegder Posting
+        $accttype = "";
+        $modetype = "";
+        $statuAcct = "";
+        $ledgerid = "";
+        if ($pph_paymenttype == 'CASH') {
+            $ledgerid = "1";
+            $branchid = $pph_suppid;
+            $vocheramt = $pph_netamt;
+            $accttype = "PUR";
+            $modetype = "CA";
+            $txtdatepicker = $pph_invdate;
+            $statuAcct = "A";
+            $userid = $pph_userid;
+            $txtnarration = 'Purchase :' . $trno;
+            $refinvoiceno = $trno;
+            //$ressalesentry = $ledgerid . ',' . $branchid . ',' . $vocheramt . ',' . $accttype . ',' . $modetype . ',' . $txtdatepicker . ',' . $statuAcct . ',' . $userid . ',' . $txtnarration . ',' . $refinvoiceno;
+            $ressalesentry = $clsfunreq->storeJournalPurchaseEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+        }
+        if ($pph_paymenttype == 'CREDIT') {
+            $ledgerid = "2";
+            $branchid = $pph_suppid;
+            $vocheramt = $pph_netamt;
+            $accttype = "PUR";
+            $modetype = "CR";
+            $txtdatepicker = $pph_invdate;
+            $statuAcct = "NP";
+            $userid = $pph_userid;
+            $txtnarration = 'Purchase :' . $trno;
+            $refinvoiceno = $trno;
+            $ressalesentry = $ledgerid . ',' . $branchid . ',' . $vocheramt . ',' . $accttype . ',' . $modetype . ',' . $txtdatepicker . ',' . $statuAcct . ',' . $userid . ',' . $txtnarration . ',' . $refinvoiceno;
+            $ressalesentry = $clsfunreq->storeJournalPurchaseEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+        }
+
+        if ($ressalesentry) {
+            echo json_encode(array("Success" => true, "Data" => $resultsPurDtl . ',' . $resultsPurHdr . ',' . $resultLiveStock . ',' . $ressalesentry));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
@@ -970,7 +1020,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['AjaxRequest'] == 51) { //Get Company 
+    if ((int) $_REQUEST['AjaxRequest'] == 51) { //Get Company
         $GetComapany = $clsfunreq->GetComapany();
         $GetComapanyRes = array();
         while ($rows = mysqli_fetch_assoc($GetComapany)) {
@@ -982,7 +1032,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['AjaxRequest'] == 52) {//getfiles
+    if ((int) $_REQUEST['AjaxRequest'] == 52) { //getfiles
         $RestId = $_GET['Id'];
         $arrFiles = array();
         $dirPath = '../slider/' . $RestId;
@@ -1221,8 +1271,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $gethdr = $_GET['hdr'];
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
-        //echo print_r($datadtl);
-        //echo print_r($datahdr);
         //Save Hdr
 
         $invoiceno = "";
@@ -1257,21 +1305,42 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
-//        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
-//                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
-//                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
-//                $psih_invoice_userid . ',' . $psih_invoice_comid . ',' . $psih_invoice_locid . ',' . $psih_invoice_billremarks . ',' . $psih_invoice_advamt . ',' . $psih_invoice_outstanding . ',' .
-//                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
+        //        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
+        //                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
+        //                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
+        //                $psih_invoice_userid . ',' . $psih_invoice_comid . ',' . $psih_invoice_locid . ',' . $psih_invoice_billremarks . ',' . $psih_invoice_advamt . ',' . $psih_invoice_outstanding . ',' .
+        //                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
 
 
-        $saveHdr = $clsfunreq->SaveSaleHdr($psih_invoice_trno, $psih_invoice_date, $psih_invoice_description, $psih_invoice_tqty, $psih_invoice_tamount,
-                $psih_invoice_titemdisper, $psih_invoice_titemdisamt, $psih_invoice_tbilldiscper, $psih_invoice_tbilldiscamt, $psih_invoice_tgrossamt,
-                $psih_invoice_ttaxamt, $psih_invoice_tnetamt, $psih_invoice_saletype, $psih_invoice_billtype, $psih_invoice_billstatus, $psih_invoice_customerid,
-                $psih_invoice_userid, $psih_invoice_comid, $psih_invoice_locid, $psih_invoice_billremarks, $psih_invoice_advamt, $psih_invoice_outstanding,
-                $psih_invoice_givenamt, $psih_invoice_balamt);
+        $saveHdr = $clsfunreq->SaveSaleHdr(
+            $psih_invoice_trno,
+            $psih_invoice_date,
+            $psih_invoice_description,
+            $psih_invoice_tqty,
+            $psih_invoice_tamount,
+            $psih_invoice_titemdisper,
+            $psih_invoice_titemdisamt,
+            $psih_invoice_tbilldiscper,
+            $psih_invoice_tbilldiscamt,
+            $psih_invoice_tgrossamt,
+            $psih_invoice_ttaxamt,
+            $psih_invoice_tnetamt,
+            $psih_invoice_saletype,
+            $psih_invoice_billtype,
+            $psih_invoice_billstatus,
+            $psih_invoice_customerid,
+            $psih_invoice_userid,
+            $psih_invoice_comid,
+            $psih_invoice_locid,
+            $psih_invoice_billremarks,
+            $psih_invoice_advamt,
+            $psih_invoice_outstanding,
+            $psih_invoice_givenamt,
+            $psih_invoice_balamt
+        );
 
         if ($saveHdr) {
-            //Save Dtl 
+            //Save Dtl
             $Sa_id = $clsfunreq->GetSalesId($invoiceno);
             foreach ($datadtl as $row) {
                 $psid_invoice_sno = $row['SNO'];
@@ -1291,9 +1360,26 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psid_invoice_taxvalue = $row['TAXVALUE'];
                 $psid_invoice_taxamt = $row['TAXAMT'];
                 $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleDtl($psid_invoice_sno, $psid_invoice_salid, $psih_invoice_date, $psid_invoice_trno, $psid_invoice_description, $psid_invoice_procode, $psid_invoice_proqty,
-                        $psid_invoice_rate, $psid_invoice_amt, $psid_invoice_itemdisp, $psid_invoice_itemdisamt, $psid_invoice_billdisp, $psid_invoice_billdisamt,
-                        $psid_invoice_gross, $psid_invoice_taxinex, $psid_invoice_taxvalue, $psid_invoice_taxamt, $psid_invoice_netamt);
+                $saveDtl = $clsfunreq->SaveSaleDtl(
+                    $psid_invoice_sno,
+                    $psid_invoice_salid,
+                    $psih_invoice_date,
+                    $psid_invoice_trno,
+                    $psid_invoice_description,
+                    $psid_invoice_procode,
+                    $psid_invoice_proqty,
+                    $psid_invoice_rate,
+                    $psid_invoice_amt,
+                    $psid_invoice_itemdisp,
+                    $psid_invoice_itemdisamt,
+                    $psid_invoice_billdisp,
+                    $psid_invoice_billdisamt,
+                    $psid_invoice_gross,
+                    $psid_invoice_taxinex,
+                    $psid_invoice_taxvalue,
+                    $psid_invoice_taxamt,
+                    $psid_invoice_netamt
+                );
                 $resultLiveStock = $clsfunreq->_UpdateLiveStockSales($psid_invoice_procode, $psid_invoice_proqty, $psih_invoice_comid, $psih_invoice_locid);
             }
         }
@@ -1331,7 +1417,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $statuAcct = "NP";
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
-
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
                 } elseif ($psih_invoice_paymode == 'card') {
                     $ledgerid = "6";
@@ -1343,7 +1428,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $statuAcct = "P";
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
-
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
                 }
             }
@@ -1391,8 +1475,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $gethdr = $_GET['hdr'];
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
-//        echo print_r($datadtl);
-//        echo print_r($datahdr);
+        //        echo print_r($datadtl);
+        //        echo print_r($datahdr);
         //Save Hdr
         $invoiceno = $datahdr["psih_invoice_trno"];
         $psih_invoice_trno = $invoiceno;
@@ -1419,14 +1503,34 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
-        $psih_invoice_paymode = $datahdr["psih_invoice_paymode"];
-        $saveHdr = $clsfunreq->SaveSaleUpdate($psih_invoice_trno, $psih_invoice_date, $psih_invoice_description, $psih_invoice_tqty, $psih_invoice_tamount,
-                $psih_invoice_titemdisper, $psih_invoice_titemdisamt, $psih_invoice_tbilldiscper, $psih_invoice_tbilldiscamt, $psih_invoice_tgrossamt,
-                $psih_invoice_ttaxamt, $psih_invoice_tnetamt, $psih_invoice_saletype, $psih_invoice_billtype, $psih_invoice_billstatus, $psih_invoice_customerid,
-                $psih_invoice_userid, $psih_invoice_comid, $psih_invoice_locid, $psih_invoice_billremarks, $psih_invoice_advamt, $psih_invoice_outstanding,
-                $psih_invoice_givenamt, $psih_invoice_balamt);
+        $saveHdr = $clsfunreq->SaveSaleUpdate(
+            $psih_invoice_trno,
+            $psih_invoice_date,
+            $psih_invoice_description,
+            $psih_invoice_tqty,
+            $psih_invoice_tamount,
+            $psih_invoice_titemdisper,
+            $psih_invoice_titemdisamt,
+            $psih_invoice_tbilldiscper,
+            $psih_invoice_tbilldiscamt,
+            $psih_invoice_tgrossamt,
+            $psih_invoice_ttaxamt,
+            $psih_invoice_tnetamt,
+            $psih_invoice_saletype,
+            $psih_invoice_billtype,
+            $psih_invoice_billstatus,
+            $psih_invoice_customerid,
+            $psih_invoice_userid,
+            $psih_invoice_comid,
+            $psih_invoice_locid,
+            $psih_invoice_billremarks,
+            $psih_invoice_advamt,
+            $psih_invoice_outstanding,
+            $psih_invoice_givenamt,
+            $psih_invoice_balamt
+        );
         if ($saveHdr) {
-            //Save Dtl 
+            //Save Dtl
             $Sal_ID = $clsfunreq->GetSalesId($invoiceno);
             //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
             foreach ($datadtl as $row) {
@@ -1448,10 +1552,29 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psid_invoice_taxvalue = $row['TAXVALUE'];
                 $psid_invoice_taxamt = $row['TAXAMT'];
                 $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleDtlUpdate($psid_invoice_id, $psid_invoice_sno, $psid_invoice_salid, $psih_invoice_date, $psid_invoice_trno, $psid_invoice_description,
-                        $psid_invoice_procode, $psid_invoice_proqty, $psid_invoice_rate, $psid_invoice_amt, $psid_invoice_itemdisp, $psid_invoice_itemdisamt, $psid_invoice_billdisp,
-                        $psid_invoice_billdisamt, $psid_invoice_gross, $psid_invoice_taxinex, $psid_invoice_taxvalue, $psid_invoice_taxamt, $psid_invoice_netamt, $psih_invoice_comid,
-                        $psih_invoice_locid);
+                $saveDtl = $clsfunreq->SaveSaleDtlUpdate(
+                    $psid_invoice_id,
+                    $psid_invoice_sno,
+                    $psid_invoice_salid,
+                    $psih_invoice_date,
+                    $psid_invoice_trno,
+                    $psid_invoice_description,
+                    $psid_invoice_procode,
+                    $psid_invoice_proqty,
+                    $psid_invoice_rate,
+                    $psid_invoice_amt,
+                    $psid_invoice_itemdisp,
+                    $psid_invoice_itemdisamt,
+                    $psid_invoice_billdisp,
+                    $psid_invoice_billdisamt,
+                    $psid_invoice_gross,
+                    $psid_invoice_taxinex,
+                    $psid_invoice_taxvalue,
+                    $psid_invoice_taxamt,
+                    $psid_invoice_netamt,
+                    $psih_invoice_comid,
+                    $psih_invoice_locid
+                );
             }
         }
         if ($saveDtl) {
@@ -1488,7 +1611,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $statuAcct = "NP";
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
-
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
                 } elseif ($psih_invoice_paymode == 'card') {
                     $ledgerid = "6";
@@ -1500,7 +1622,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $statuAcct = "P";
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
-
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
                 }
             }
@@ -1534,9 +1655,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $gethdr = $_GET['hdr'];
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
-        //echo print_r($datadtl);
-        //echo print_r($datahdr);
         //Save Hdr
+
         $invoiceno = "";
         $updatePurTrno = $clsfunreq->UpdateQuoteNo();
         if ($updatePurTrno) {
@@ -1569,21 +1689,42 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
-//        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
-//                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
-//                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
-//                $psih_invoice_userid . ',' . $psih_invoice_comid . ',' . $psih_invoice_locid . ',' . $psih_invoice_billremarks . ',' . $psih_invoice_advamt . ',' . $psih_invoice_outstanding . ',' .
-//                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
+        //        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
+        //                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
+        //                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
+        //                $psih_invoice_userid . ',' . $psih_invoice_comid . ',' . $psih_invoice_locid . ',' . $psih_invoice_billremarks . ',' . $psih_invoice_advamt . ',' . $psih_invoice_outstanding . ',' .
+        //                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
 
 
-        $saveHdr = $clsfunreq->SaveSaleQuoteHdr($psih_invoice_trno, $psih_invoice_date, $psih_invoice_description, $psih_invoice_tqty, $psih_invoice_tamount,
-                $psih_invoice_titemdisper, $psih_invoice_titemdisamt, $psih_invoice_tbilldiscper, $psih_invoice_tbilldiscamt, $psih_invoice_tgrossamt,
-                $psih_invoice_ttaxamt, $psih_invoice_tnetamt, $psih_invoice_saletype, $psih_invoice_billtype, $psih_invoice_billstatus, $psih_invoice_customerid,
-                $psih_invoice_userid, $psih_invoice_comid, $psih_invoice_locid, $psih_invoice_billremarks, $psih_invoice_advamt, $psih_invoice_outstanding,
-                $psih_invoice_givenamt, $psih_invoice_balamt);
+        $saveHdr = $clsfunreq->SaveSaleQuoteHdr(
+            $psih_invoice_trno,
+            $psih_invoice_date,
+            $psih_invoice_description,
+            $psih_invoice_tqty,
+            $psih_invoice_tamount,
+            $psih_invoice_titemdisper,
+            $psih_invoice_titemdisamt,
+            $psih_invoice_tbilldiscper,
+            $psih_invoice_tbilldiscamt,
+            $psih_invoice_tgrossamt,
+            $psih_invoice_ttaxamt,
+            $psih_invoice_tnetamt,
+            $psih_invoice_saletype,
+            $psih_invoice_billtype,
+            $psih_invoice_billstatus,
+            $psih_invoice_customerid,
+            $psih_invoice_userid,
+            $psih_invoice_comid,
+            $psih_invoice_locid,
+            $psih_invoice_billremarks,
+            $psih_invoice_advamt,
+            $psih_invoice_outstanding,
+            $psih_invoice_givenamt,
+            $psih_invoice_balamt
+        );
 
         if ($saveHdr) {
-            //Save Dtl 
+            //Save Dtl
             $Sa_id = $clsfunreq->GetSalesQuoteId($invoiceno);
             foreach ($datadtl as $row) {
                 $psid_invoice_sno = $row['SNO'];
@@ -1603,9 +1744,26 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psid_invoice_taxvalue = $row['TAXVALUE'];
                 $psid_invoice_taxamt = $row['TAXAMT'];
                 $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleQuoteDtl($psid_invoice_sno, $psid_invoice_salid, $psih_invoice_date, $psid_invoice_trno, $psid_invoice_description, $psid_invoice_procode, $psid_invoice_proqty,
-                        $psid_invoice_rate, $psid_invoice_amt, $psid_invoice_itemdisp, $psid_invoice_itemdisamt, $psid_invoice_billdisp, $psid_invoice_billdisamt,
-                        $psid_invoice_gross, $psid_invoice_taxinex, $psid_invoice_taxvalue, $psid_invoice_taxamt, $psid_invoice_netamt);
+                $saveDtl = $clsfunreq->SaveSaleQuoteDtl(
+                    $psid_invoice_sno,
+                    $psid_invoice_salid,
+                    $psih_invoice_date,
+                    $psid_invoice_trno,
+                    $psid_invoice_description,
+                    $psid_invoice_procode,
+                    $psid_invoice_proqty,
+                    $psid_invoice_rate,
+                    $psid_invoice_amt,
+                    $psid_invoice_itemdisp,
+                    $psid_invoice_itemdisamt,
+                    $psid_invoice_billdisp,
+                    $psid_invoice_billdisamt,
+                    $psid_invoice_gross,
+                    $psid_invoice_taxinex,
+                    $psid_invoice_taxvalue,
+                    $psid_invoice_taxamt,
+                    $psid_invoice_netamt
+                );
             }
         }
         if ($saveDtl) {
@@ -1619,8 +1777,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $gethdr = $_GET['hdr'];
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
-//        echo print_r($datadtl);
-//        echo print_r($datahdr);
+        //        echo print_r($datadtl);
+        //        echo print_r($datahdr);
         //Save Hdr
         $invoiceno = $datahdr["psih_invoice_trno"];
         $psih_invoice_trno = $invoiceno;
@@ -1647,14 +1805,34 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
-        $psih_invoice_paymode = $datahdr["psih_invoice_paymode"];
-        $saveHdr = $clsfunreq->SaveSaleQuoteUpdate($psih_invoice_trno, $psih_invoice_date, $psih_invoice_description, $psih_invoice_tqty, $psih_invoice_tamount,
-                $psih_invoice_titemdisper, $psih_invoice_titemdisamt, $psih_invoice_tbilldiscper, $psih_invoice_tbilldiscamt, $psih_invoice_tgrossamt,
-                $psih_invoice_ttaxamt, $psih_invoice_tnetamt, $psih_invoice_saletype, $psih_invoice_billtype, $psih_invoice_billstatus, $psih_invoice_customerid,
-                $psih_invoice_userid, $psih_invoice_comid, $psih_invoice_locid, $psih_invoice_billremarks, $psih_invoice_advamt, $psih_invoice_outstanding,
-                $psih_invoice_givenamt, $psih_invoice_balamt);
+        $saveHdr = $clsfunreq->SaveSaleQuoteUpdate(
+            $psih_invoice_trno,
+            $psih_invoice_date,
+            $psih_invoice_description,
+            $psih_invoice_tqty,
+            $psih_invoice_tamount,
+            $psih_invoice_titemdisper,
+            $psih_invoice_titemdisamt,
+            $psih_invoice_tbilldiscper,
+            $psih_invoice_tbilldiscamt,
+            $psih_invoice_tgrossamt,
+            $psih_invoice_ttaxamt,
+            $psih_invoice_tnetamt,
+            $psih_invoice_saletype,
+            $psih_invoice_billtype,
+            $psih_invoice_billstatus,
+            $psih_invoice_customerid,
+            $psih_invoice_userid,
+            $psih_invoice_comid,
+            $psih_invoice_locid,
+            $psih_invoice_billremarks,
+            $psih_invoice_advamt,
+            $psih_invoice_outstanding,
+            $psih_invoice_givenamt,
+            $psih_invoice_balamt
+        );
         if ($saveHdr) {
-            //Save Dtl 
+            //Save Dtl
             $Sal_ID = $clsfunreq->GetSalesQuoteId($invoiceno);
             //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
             foreach ($datadtl as $row) {
@@ -1676,13 +1854,31 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psid_invoice_taxvalue = $row['TAXVALUE'];
                 $psid_invoice_taxamt = $row['TAXAMT'];
                 $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleDtlQuoteUpdate($psid_invoice_id, $psid_invoice_sno, $psid_invoice_salid, $psih_invoice_date, $psid_invoice_trno, $psid_invoice_description,
-                        $psid_invoice_procode, $psid_invoice_proqty, $psid_invoice_rate, $psid_invoice_amt, $psid_invoice_itemdisp, $psid_invoice_itemdisamt, $psid_invoice_billdisp,
-                        $psid_invoice_billdisamt, $psid_invoice_gross, $psid_invoice_taxinex, $psid_invoice_taxvalue, $psid_invoice_taxamt, $psid_invoice_netamt, $psih_invoice_comid,
-                        $psih_invoice_locid);
+                $saveDtl = $clsfunreq->SaveSaleDtlQuoteUpdate(
+                    $psid_invoice_id,
+                    $psid_invoice_sno,
+                    $psid_invoice_salid,
+                    $psih_invoice_date,
+                    $psid_invoice_trno,
+                    $psid_invoice_description,
+                    $psid_invoice_procode,
+                    $psid_invoice_proqty,
+                    $psid_invoice_rate,
+                    $psid_invoice_amt,
+                    $psid_invoice_itemdisp,
+                    $psid_invoice_itemdisamt,
+                    $psid_invoice_billdisp,
+                    $psid_invoice_billdisamt,
+                    $psid_invoice_gross,
+                    $psid_invoice_taxinex,
+                    $psid_invoice_taxvalue,
+                    $psid_invoice_taxamt,
+                    $psid_invoice_netamt,
+                    $psih_invoice_comid,
+                    $psih_invoice_locid
+                );
             }
         }
-
         if ($saveDtl) {
             echo json_encode(array("Success" => true, "Data" => "Voucher Updated" . $saveDtl . ',' . $refinvoiceno . ',' . $deleteJourEntry)); //"hdr" => $saveHdr, "dtl" => $saveDtl));
         } else {
@@ -1750,7 +1946,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $strval = $groupName;
         $res = $clsfunreq->storegroupData($groupName);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "message" => 'Data Saved');
             echo json_encode($response);
@@ -1767,7 +1963,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $strval = $groupName;
         $res = $clsfunreq->updategroupData($groupid, $groupName);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "message" => 'Data Saved');
             echo json_encode($response);
@@ -1812,7 +2008,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $strval = $parentName;
         $res = $clsfunreq->storeparentData($parentName);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "message" => 'Data Saved');
             echo json_encode($response);
@@ -1829,7 +2025,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $strval = $parentName;
         $res = $clsfunreq->updateparentData($id, $parentName);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "message" => 'Data Saved');
             echo json_encode($response);
@@ -1879,7 +2075,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $ledgerActive = $datadtl['ledgerActive'];
         $res = $clsfunreq->storeLedgerData($ledgerrefId, $ledgerName, $ledgerparenId, $ledgergroupId, $ledgerType, $ledgeropenDate, $ledgeropenbal, $ledgerdrcr, $ledgerActive);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "Data" => 'Data Saved');
             echo json_encode($response);
@@ -1903,7 +2099,7 @@ elseif (isset($_REQUEST['AccountRequest'])) {
         $ledgerActive = $datadtl['ledgerActive'];
         $res = $clsfunreq->updateLedgerData($ledgerId, $ledgerrefId, $ledgerName, $ledgerparenId, $ledgergroupId, $ledgerType, $ledgeropenDate, $ledgeropenbal, $ledgerdrcr, $ledgerActive);
         // $response = array("type" => "0","message" =>$strval);
-        // echo json_encode($response);  
+        // echo json_encode($response);
         if ($res) {
             $response = array("Success" => true, "Data" => 'Data Saved');
             echo json_encode($response);
@@ -1976,8 +2172,28 @@ elseif (isset($_REQUEST['AjaxPayRec'])) {
         //echo json_encode(array("Success" => true, "BillNo" => $autobillno));
         if ($actype == "PAY") {
             //New
-            $res = $clsfunreq->storeJournalpayments($ledgerid, $description, $dr, $cr, $jstatus, $autobillno, $entrydate, $actype, $modetype, $narration,
-                    $status, $username, $description2, $ledgerid2, $bankname, $chequeamt, $chequedate, $chequeno, $comid, $locid);
+            $res = $clsfunreq->storeJournalpayments(
+                $ledgerid,
+                $description,
+                $dr,
+                $cr,
+                $jstatus,
+                $autobillno,
+                $entrydate,
+                $actype,
+                $modetype,
+                $narration,
+                $status,
+                $username,
+                $description2,
+                $ledgerid2,
+                $bankname,
+                $chequeamt,
+                $chequedate,
+                $chequeno,
+                $comid,
+                $locid
+            );
             if ($res) {
                 echo json_encode(array("Success" => true, "Data" => $res));
             } else {
@@ -1986,8 +2202,28 @@ elseif (isset($_REQUEST['AjaxPayRec'])) {
             //echo json_encode(array("Success" => true,"BillNo"=>$res));
         } elseif ($actype == "JUR") {
             //New
-            $res = $clsfunreq->storeJournal($ledgerid, $description, $dr, $cr, $jstatus, $autobillno, $entrydate, $actype, $modetype, $narration,
-                    $status, $username, $description2, $ledgerid2, $bankname, $chequeamt, $chequedate, $chequeno, $comid, $locid);
+            $res = $clsfunreq->storeJournal(
+                $ledgerid,
+                $description,
+                $dr,
+                $cr,
+                $jstatus,
+                $autobillno,
+                $entrydate,
+                $actype,
+                $modetype,
+                $narration,
+                $status,
+                $username,
+                $description2,
+                $ledgerid2,
+                $bankname,
+                $chequeamt,
+                $chequedate,
+                $chequeno,
+                $comid,
+                $locid
+            );
             if ($res) {
                 echo json_encode(array("Success" => true, "Data" => $autobillno));
             } else {
@@ -1996,8 +2232,28 @@ elseif (isset($_REQUEST['AjaxPayRec'])) {
             //echo json_encode(array("Success" => true,"BillNo"=>$res));
         } elseif ($actype == "REC") {
             //New
-            $res = $clsfunreq->storeJournalReceipt($ledgerid, $description, $dr, $cr, $jstatus, $autobillno, $entrydate, $actype, $modetype, $narration,
-                    $status, $username, $description2, $ledgerid2, $bankname, $chequeamt, $chequedate, $chequeno, $comid, $locid);
+            $res = $clsfunreq->storeJournalReceipt(
+                $ledgerid,
+                $description,
+                $dr,
+                $cr,
+                $jstatus,
+                $autobillno,
+                $entrydate,
+                $actype,
+                $modetype,
+                $narration,
+                $status,
+                $username,
+                $description2,
+                $ledgerid2,
+                $bankname,
+                $chequeamt,
+                $chequedate,
+                $chequeno,
+                $comid,
+                $locid
+            );
             if ($res) {
                 echo json_encode(array("Success" => true, "Data" => $autobillno));
             } else {
@@ -2080,7 +2336,7 @@ elseif (isset($_REQUEST['AjaxPayRec'])) {
 }
 //EmployeeReq
 elseif (isset($_REQUEST['EmployeeReq'])) {
-    if ((int) $_REQUEST['EmployeeReq'] == 1) { //Get Company 
+    if ((int) $_REQUEST['EmployeeReq'] == 1) { //Get Company
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $emp_firstname = $datadtl['emp_firstname'];
@@ -2117,10 +2373,42 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
         $emp_monthexpire = $datadtl['emp_monthexpire'];
         $emp_curpermit = $datadtl['emp_curpermit'];
         $emp_nextpermit = $datadtl['emp_nextpermit'];
-        $SaveEmpDataId = $clsfunreq->SaveEmpData($emp_firstname, $emp_lastname, $emp_printname, $emp_idtype, $emp_passportic, $emp_nationality, $emp_passexpire,
-                $emp_visaexpire, $emp_joindate, $emp_resigndate, $emp_contactno, $emp_contactname, $emp_emergencyno, $emp_compid, $emp_locid, $emp_designation,
-                $emp_bankname, $emp_accountname, $emp_accountno, $emp_image, $emp_basicsalary, $emp_basicrate, $emp_otrate, $emp_othrsrate, $emp_allowance,
-                $emp_currentstatus, $emp_remarks, $emp_active, $emp_epf, $emp_socso, $emp_dob, $emp_monthexpire, $emp_curpermit, $emp_nextpermit);
+        $SaveEmpDataId = $clsfunreq->SaveEmpData(
+            $emp_firstname,
+            $emp_lastname,
+            $emp_printname,
+            $emp_idtype,
+            $emp_passportic,
+            $emp_nationality,
+            $emp_passexpire,
+            $emp_visaexpire,
+            $emp_joindate,
+            $emp_resigndate,
+            $emp_contactno,
+            $emp_contactname,
+            $emp_emergencyno,
+            $emp_compid,
+            $emp_locid,
+            $emp_designation,
+            $emp_bankname,
+            $emp_accountname,
+            $emp_accountno,
+            $emp_image,
+            $emp_basicsalary,
+            $emp_basicrate,
+            $emp_otrate,
+            $emp_othrsrate,
+            $emp_allowance,
+            $emp_currentstatus,
+            $emp_remarks,
+            $emp_active,
+            $emp_epf,
+            $emp_socso,
+            $emp_dob,
+            $emp_monthexpire,
+            $emp_curpermit,
+            $emp_nextpermit
+        );
         $createLedgerEmployee = $clsfunreq->saveEmployeeLedgerData($SaveEmpDataId);
         if ($createLedgerEmployee) {
             echo json_encode(array("Success" => true, "Msg" => "Data Saved", "Data" => "New Record Id:" . $SaveEmpDataId));
@@ -2128,7 +2416,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 2) { //Get Company 
+    if ((int) $_REQUEST['EmployeeReq'] == 2) { //Get Company
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $emp_id = $datadtl['emp_id'];
@@ -2166,10 +2454,43 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
         $emp_monthexpire = $datadtl['emp_monthexpire'];
         $emp_curpermit = $datadtl['emp_curpermit'];
         $emp_nextpermit = $datadtl['emp_nextpermit'];
-        $SaveEmpData = $clsfunreq->UpdateEmpData($emp_id, $emp_firstname, $emp_lastname, $emp_printname, $emp_idtype, $emp_passportic, $emp_nationality,
-                $emp_passexpire, $emp_visaexpire, $emp_joindate, $emp_resigndate, $emp_contactno, $emp_contactname, $emp_emergencyno, $emp_compid,
-                $emp_locid, $emp_designation, $emp_bankname, $emp_accountname, $emp_accountno, $emp_image, $emp_basicsalary, $emp_basicrate,
-                $emp_otrate, $emp_othrsrate, $emp_allowance, $emp_currentstatus, $emp_remarks, $emp_active, $emp_epf, $emp_socso, $emp_dob, $emp_monthexpire, $emp_curpermit, $emp_nextpermit);
+        $SaveEmpData = $clsfunreq->UpdateEmpData(
+            $emp_id,
+            $emp_firstname,
+            $emp_lastname,
+            $emp_printname,
+            $emp_idtype,
+            $emp_passportic,
+            $emp_nationality,
+            $emp_passexpire,
+            $emp_visaexpire,
+            $emp_joindate,
+            $emp_resigndate,
+            $emp_contactno,
+            $emp_contactname,
+            $emp_emergencyno,
+            $emp_compid,
+            $emp_locid,
+            $emp_designation,
+            $emp_bankname,
+            $emp_accountname,
+            $emp_accountno,
+            $emp_image,
+            $emp_basicsalary,
+            $emp_basicrate,
+            $emp_otrate,
+            $emp_othrsrate,
+            $emp_allowance,
+            $emp_currentstatus,
+            $emp_remarks,
+            $emp_active,
+            $emp_epf,
+            $emp_socso,
+            $emp_dob,
+            $emp_monthexpire,
+            $emp_curpermit,
+            $emp_nextpermit
+        );
         if ($SaveEmpData) {
             echo json_encode(array("Success" => true, "Msg" => $SaveEmpData));
         } else {
@@ -2241,7 +2562,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(["success" => false, "message" => "Invalid input data."]);
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 7) {//getfiles
+    if ((int) $_REQUEST['EmployeeReq'] == 7) { //getfiles
         $EmployeeId = $_GET['EmployeeId'];
         $arrFiles = array();
         $dirPath = '../employee/' . $EmployeeId;
@@ -2269,7 +2590,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'File Not Found'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 9) {//get employee salary history
+    if ((int) $_REQUEST['EmployeeReq'] == 9) { //get employee salary history
         $EmployeeId = $_GET['EmployeeId'];
         $GetEmployeeView = $clsfunreq->GetEmployeeSalaryHistoryById($EmployeeId);
         $GetEmployeeViewRes = array();
@@ -2283,7 +2604,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
         }
     }
 
-    if ((int) $_REQUEST['EmployeeReq'] == 10) {//Save employee salary history
+    if ((int) $_REQUEST['EmployeeReq'] == 10) { //Save employee salary history
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pes_empid = $datadtl['pes_empid'];
@@ -2298,7 +2619,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 11) {//select month
+    if ((int) $_REQUEST['EmployeeReq'] == 11) { //select month
         $GetEmployee = $clsfunreq->GetMonthofsalary();
         $GetEmployeeRes = array();
         while ($rows = mysqli_fetch_assoc($GetEmployee)) {
@@ -2310,7 +2631,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Received'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 12) {//Save month
+    if ((int) $_REQUEST['EmployeeReq'] == 12) { //Save month
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pems_monthname = $datadtl['pems_monthname'];
@@ -2322,7 +2643,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 13) {//Update month
+    if ((int) $_REQUEST['EmployeeReq'] == 13) { //Update month
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pems_id = $datadtl['pems_id'];
@@ -2335,7 +2656,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 14) {//Check month
+    if ((int) $_REQUEST['EmployeeReq'] == 14) { //Check month
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pemp_month = $datadtl['pemp_month'];
@@ -2369,7 +2690,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
         }
     }
 
-    if ((int) $_REQUEST['EmployeeReq'] == 15) {//Save Month
+    if ((int) $_REQUEST['EmployeeReq'] == 15) { //Save Month
         $getdtl = $_GET['json'];
         $rowDtl = json_decode($getdtl, true);
         foreach ($rowDtl as $row) {
@@ -2401,7 +2722,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Data Not Found', "Data" => $savemonthempatt));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 16) {//Final Save Month
+    if ((int) $_REQUEST['EmployeeReq'] == 16) { //Final Save Month
         $getdtl = $_GET['json'];
         $rowDtl = json_decode($getdtl, true);
         foreach ($rowDtl as $row) {
@@ -2427,23 +2748,59 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             $pef_bank = $row['EmpBank'];
             $pef_netcash = $row['EmpNetCash'];
 
-//            $data = $pef_refid . ',' . $pef_comid . ',' . $pef_locid . ',' . $pef_month . ',' .
-//                    $pef_basicsalary . ',' . $pef_workingdays . ',' . $pef_wages . ',' . $pef_extraday . ',' . $pef_extradayamt . ',' .
-//                    $pef_extrahours . ',' . $pef_extrahrsamt . ',' . $pef_allowance . ',' . $pef_grossamt . ',' . $pef_advance . ',' .
-//                    $pef_epf . ',' . $pef_socso . ',' . $pef_deduction . ',' . $pef_netpay . ',' . $pef_bank . ',' . $pef_netcash;
+            //            $data = $pef_refid . ',' . $pef_comid . ',' . $pef_locid . ',' . $pef_month . ',' .
+            //                    $pef_basicsalary . ',' . $pef_workingdays . ',' . $pef_wages . ',' . $pef_extraday . ',' . $pef_extradayamt . ',' .
+            //                    $pef_extrahours . ',' . $pef_extrahrsamt . ',' . $pef_allowance . ',' . $pef_grossamt . ',' . $pef_advance . ',' .
+            //                    $pef_epf . ',' . $pef_socso . ',' . $pef_deduction . ',' . $pef_netpay . ',' . $pef_bank . ',' . $pef_netcash;
             //2,1,1,m,10000,30,9999.9,1,333.33,,138.9,200,10672.13,,10672.13,200,18,10254.13,0,10254.13
             if ($pef_id == 0) {
-                $savemonthempatt = $clsfunreq->SaveFinalProcess($pef_refid, $pef_comid, $pef_locid, $pef_month,
-                        $pef_basicsalary, $pef_workingdays, $pef_wages, $pef_extraday, $pef_extradayamt,
-                        $pef_extrahours, $pef_extrahrsamt, $pef_allowance, $pef_grossamt, $pef_advance,
-                        $pef_epf, $pef_socso, $pef_deduction, $pef_netpay, $pef_bank, $pef_netcash);
+                $savemonthempatt = $clsfunreq->SaveFinalProcess(
+                    $pef_refid,
+                    $pef_comid,
+                    $pef_locid,
+                    $pef_month,
+                    $pef_basicsalary,
+                    $pef_workingdays,
+                    $pef_wages,
+                    $pef_extraday,
+                    $pef_extradayamt,
+                    $pef_extrahours,
+                    $pef_extrahrsamt,
+                    $pef_allowance,
+                    $pef_grossamt,
+                    $pef_advance,
+                    $pef_epf,
+                    $pef_socso,
+                    $pef_deduction,
+                    $pef_netpay,
+                    $pef_bank,
+                    $pef_netcash
+                );
             } else {
                 $deleteOld = $clsfunreq->DeleteFinalProcess($pef_id);
                 if ($deleteOld) {
-                    $savemonthempatt = $clsfunreq->SaveFinalProcess($pef_refid, $pef_comid, $pef_locid, $pef_month,
-                            $pef_basicsalary, $pef_workingdays, $pef_wages, $pef_extraday, $pef_extradayamt,
-                            $pef_extrahours, $pef_extrahrsamt, $pef_allowance, $pef_grossamt, $pef_advance,
-                            $pef_epf, $pef_socso, $pef_deduction, $pef_netpay, $pef_bank, $pef_netcash);
+                    $savemonthempatt = $clsfunreq->SaveFinalProcess(
+                        $pef_refid,
+                        $pef_comid,
+                        $pef_locid,
+                        $pef_month,
+                        $pef_basicsalary,
+                        $pef_workingdays,
+                        $pef_wages,
+                        $pef_extraday,
+                        $pef_extradayamt,
+                        $pef_extrahours,
+                        $pef_extrahrsamt,
+                        $pef_allowance,
+                        $pef_grossamt,
+                        $pef_advance,
+                        $pef_epf,
+                        $pef_socso,
+                        $pef_deduction,
+                        $pef_netpay,
+                        $pef_bank,
+                        $pef_netcash
+                    );
                 }
             }
         }
@@ -2453,7 +2810,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Data Not Found', "Data" => $savemonthempatt));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 17) {//Select Final Process
+    if ((int) $_REQUEST['EmployeeReq'] == 17) { //Select Final Process
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pemp_month = $datadtl['pemp_month'];
@@ -2486,7 +2843,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             }
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 18) {//Delete Final Process
+    if ((int) $_REQUEST['EmployeeReq'] == 18) { //Delete Final Process
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pemp_month = $datadtl['pemp_month'];
@@ -2499,7 +2856,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Data Not Found', "Data" => $GetEmployee));
         }
     }
-    if ((int) $_REQUEST['EmployeeReq'] == 19) {//Transfer Final Process
+    if ((int) $_REQUEST['EmployeeReq'] == 19) { //Transfer Final Process
         $getdtl = $_GET['json'];
         $datadtl = json_decode($getdtl, true);
         $pemp_month = $datadtl['pemp_month'];
@@ -2517,60 +2874,51 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
 }
 //MenuRequest
 elseif (isset($_REQUEST['MenuRequest'])) {
-    if ((int) $_REQUEST['MenuRequest'] == 1 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Insert Header/Update
-        $jsonData = file_get_contents("php://input");
-        $data = json_decode($jsonData, true);
+
+    if ((int) $_REQUEST['MenuRequest'] == 1) { //Insert Header/Update - Accept both GET and POST
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Handle POST request
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            // Handle GET request - json parameter in URL
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            }
+        }
+
         if ($data) {
+            $phid = isset($data['phid']) ? $data['phid'] : 0;
             $ph_name = $data['ph_name'];
             $ph_projectid = $data['ph_projectid'];
             $ph_active = $data['ph_active'];
             $ph_menucode = $data['ph_menucode'];
-            $validMenuCode = $clsfunreq->ValidCheckHMenu($ph_menucode);
-            if ($validMenuCode == 0) {
+
+            // Use phid to determine insert vs update, not menu code validation
+            if ($phid == 0 || $phid == null) {
+                // Insert new header menu
                 $RequestInsert = $clsfunreq->InsertHeaderMenu($ph_name, $ph_projectid, $ph_active, $ph_menucode);
                 if ($RequestInsert) {
                     echo json_encode(array("Success" => true, "Msg" => 'Menu Inserted'));
                 } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
+                    echo json_encode(array("Success" => false, "Msg" => 'No Data Inserted'));
                 }
             } else {
-                $RequestInsert = $clsfunreq->UpdateHeaderMenu(0, $ph_name, $ph_projectid, $ph_active, $ph_menucode);
+                // Update existing header menu
+                $RequestInsert = $clsfunreq->UpdateHeaderMenu($phid, $ph_name, $ph_projectid, $ph_active, $ph_menucode);
                 if ($RequestInsert) {
                     echo json_encode(array("Success" => true, "Msg" => 'Menu Updated'));
                 } else {
                     echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
                 }
             }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 2 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Insert Header/Update
-        $jsonData = file_get_contents("php://input");
-        $data = json_decode($jsonData, true);
-        if ($data) {
-            $phid = $data['phid'];
-            $ph_name = $data['ph_name'];
-            $ph_projectid = $data['ph_projectid'];
-            $ph_active = $data['ph_active'];
-            $ph_menucode = $data['ph_menucode'];
-            $validMenuCode = $clsfunreq->ValidCheckHMenu($ph_menucode);
-            if ($validMenuCode == 0) {
-                $RequestInsert = $clsfunreq->InsertHeaderMenu($ph_name, $ph_projectid, $ph_active, $ph_menucode);
-                if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Inserted'));
-                } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
-                }
-            } else {
-                $RequestInsert = $clsfunreq->UpdateHeaderMenu(0, $ph_name, $ph_projectid, $ph_active, $ph_menucode);
-                if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Updated'));
-                } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
-                }
-            }
-        }
-    }
-    if ((int) $_REQUEST['MenuRequest'] == 3 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
+    if ((int) $_REQUEST['MenuRequest'] == 2) { //Delete Header Menu
         $jsonData = file_get_contents("php://input");
         $data = json_decode($jsonData, true);
         if ($data) {
@@ -2583,73 +2931,76 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             }
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 4 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
-        $jsonData = file_get_contents("php://input");
-        $data = json_decode($jsonData, true);
+    if ((int) $_REQUEST['MenuRequest'] == 3) { //Insert SubMenu - Accept both GET and POST
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Handle POST request
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            // Handle GET request - json parameter in URL
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            }
+        }
+
         if ($data) {
+            $psid = isset($data['psid']) ? $data['psid'] : 0;
             $ps_name = $data['ps_name'];
             $ph_id = $data['ph_id'];
             $ps_active = $data['ps_active'];
             $ps_menucode = $data['ps_menucode'];
-            $validMenuCode = $clsfunreq->ValidCheckSMenu($ps_menucode);
-            if ($validMenuCode == 0) {
+
+            // Use psid to determine insert vs update
+            if ($psid == 0 || $psid == null) {
+                // Insert new sub menu
                 $RequestInsert = $clsfunreq->InsertSubMenu($ps_name, $ph_id, $ps_active, $ps_menucode);
                 if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Saved'));
+                    echo json_encode(array("Success" => true, "Msg" => 'Sub Menu Inserted'));
                 } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
+                    echo json_encode(array("Success" => false, "Msg" => 'No Data Inserted'));
                 }
             } else {
+                // Update existing sub menu
                 $RequestInsert = $clsfunreq->UpdateSubMenu($psid, $ps_name, $ph_id, $ps_active, $ps_menucode);
                 if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Updated'));
+                    echo json_encode(array("Success" => true, "Msg" => 'Sub Menu Updated'));
                 } else {
                     echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
                 }
             }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 5 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
-        $jsonData = file_get_contents("php://input");
-        $data = json_decode($jsonData, true);
-        if ($data) {
-            $psid = $data['psid'];
-            $ps_name = $data['ps_name'];
-            $ph_id = $data['ph_id'];
-            $ps_active = $data['ps_active'];
-            $ps_menucode = $data['ps_menucode'];
-            $validMenuCode = $clsfunreq->ValidCheckSMenu($ps_menucode);
-            if ($validMenuCode == 0) {
-                $RequestInsert = $clsfunreq->InsertSubMenu($ps_name, $ph_id, $ps_active, $ps_menucode);
-                if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Saved'));
-                } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
-                }
-            } else {
-                $RequestInsert = $clsfunreq->UpdateSubMenu(0, $ps_name, $ph_id, $ps_active, $ps_menucode);
-                if ($RequestInsert) {
-                    echo json_encode(array("Success" => true, "Msg" => 'Menu Updated'));
-                } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
-                }
+    if ((int) $_REQUEST['MenuRequest'] == 4) { //Delete SubMenu - Accept both GET and POST
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Handle POST request
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            // Handle GET request - json parameter in URL
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
             }
         }
-    }
-    if ((int) $_REQUEST['MenuRequest'] == 6 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
-        $jsonData = file_get_contents("php://input");
-        $data = json_decode($jsonData, true);
+
         if ($data) {
             $psid = $data['psid'];
             $RequestInsert = $clsfunreq->DeleteSubMenu($psid);
             if ($RequestInsert) {
-                echo json_encode(array("Success" => true, "Msg" => 'Menu Deleted'));
+                echo json_encode(array("Success" => true, "Msg" => 'Sub Menu Deleted'));
             } else {
-                echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
+                echo json_encode(array("Success" => false, "Msg" => 'No Data Deleted'));
             }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 7 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
+    if ((int) $_REQUEST['MenuRequest'] == 5) { //Select Header Sub Menu
         $GetQueryData = $clsfunreq->SelectHeadAndSubMenu();
         $GetDataRes = array();
         while ($rows = mysqli_fetch_assoc($GetQueryData)) {
@@ -2661,7 +3012,7 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 8 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
+    if ((int) $_REQUEST['MenuRequest'] == 6) { //Get Header Menu List - Accept both GET and POST
         $GetQueryData = $clsfunreq->SelectHeadMenu();
         $GetDataRes = array();
         while ($rows = mysqli_fetch_assoc($GetQueryData)) {
@@ -2673,8 +3024,30 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 9 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
-        $GetQueryData = $clsfunreq->SelectSubMenu();
+    if ((int) $_REQUEST['MenuRequest'] == 7) { //Get SubMenu with optional header filter - Accept both GET and POST
+        $headerMenuId = 0;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+            if ($data && isset($data['headerMenuId'])) {
+                $headerMenuId = (int)$data['headerMenuId'];
+            }
+        } else {
+            // Handle GET request - check for headerMenuId in URL parameters
+            if (isset($_GET['headerMenuId'])) {
+                $headerMenuId = (int)$_GET['headerMenuId'];
+            }
+        }
+
+        if ($headerMenuId == 0) {
+            // Get all sub menus with header menu names
+            $GetQueryData = $clsfunreq->SelectSubMenuWithHeader();
+        } else {
+            // Get sub menus filtered by header menu ID
+            $GetQueryData = $clsfunreq->SelectSubMenuByHeaderId($headerMenuId);
+        }
+
         $GetDataRes = array();
         while ($rows = mysqli_fetch_assoc($GetQueryData)) {
             $GetDataRes[] = $rows;
@@ -2685,12 +3058,283 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
         }
     }
-    if ((int) $_REQUEST['MenuRequest'] == 10 && $_SERVER['REQUEST_METHOD'] == 'POST') { //Delete UserBranchRightList
+    if ((int) $_REQUEST['MenuRequest'] == 8) { //Get Header Menu List for Permissions - Accept both GET and POST
+        $GetQueryData = $clsfunreq->SelectHeadMenu();
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($GetQueryData) {
+            echo json_encode(array("Success" => true, "Msg" => 'Data Received', "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => array()));
+        }
+    }
+
+    if ((int) $_REQUEST['MenuRequest'] == 9) { //Get SubMenu List for Permissions - Accept both GET and POST
+        $headerMenuId = 0;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+            if ($data && isset($data['headerMenuId'])) {
+                $headerMenuId = (int)$data['headerMenuId'];
+            }
+        } else {
+            // Handle GET request - check for headerMenuId in URL parameters
+            if (isset($_GET['headerMenuId'])) {
+                $headerMenuId = (int)$_GET['headerMenuId'];
+            }
+        }
+
+        if ($headerMenuId == 0) {
+            // Get all sub menus with header menu names
+            $GetQueryData = $clsfunreq->SelectSubMenuWithHeader();
+        } else {
+            // Get sub menus filtered by header menu ID
+            $GetQueryData = $clsfunreq->SelectSubMenuByHeaderId($headerMenuId);
+        }
+
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($GetQueryData) {
+            echo json_encode(array("Success" => true, "Msg" => 'Data Received', "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => array()));
+        }
+    }
+
+    if ((int) $_REQUEST['MenuRequest'] == 10) { //Truncate Table (moved from 8 to 10)
         $GetQueryData = $clsfunreq->DeleteTruncateMenu(); //Table Trucate
         if ($GetQueryData) {
             echo json_encode(array("Success" => true, "Msg" => 'Data Received', "Data" => "Deleted Successfully"));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
+        }
+    }
+}
+//GroupPolicyRequest
+elseif (isset($_REQUEST['GroupPolicyRequest'])) {
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 1) { //Get all user groups
+        $GetQueryData = $clsfunreq->GetAllUserGroups();
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($GetQueryData) {
+            echo json_encode(array("Success" => true, "Msg" => 'User Groups Retrieved', "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No User Groups Found', "Data" => array()));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 2) { //Create/Update user group
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            }
+        }
+
+        if ($data) {
+            $group_id = isset($data['group_id']) ? $data['group_id'] : 0;
+            $group_name = $data['group_name'];
+            $group_description = isset($data['group_description']) ? $data['group_description'] : '';
+            $group_active = isset($data['group_active']) ? $data['group_active'] : 1;
+
+            if ($group_id == 0 || $group_id == null) {
+                // Create new user group
+                $RequestInsert = $clsfunreq->CreateUserGroup($group_name, $group_description, $group_active);
+                if ($RequestInsert) {
+                    echo json_encode(array("Success" => true, "Msg" => 'User Group Created'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to Create User Group'));
+                }
+            } else {
+                // Update existing user group
+                $RequestUpdate = $clsfunreq->UpdateUserGroup($group_id, $group_name, $group_description, $group_active);
+                if ($RequestUpdate) {
+                    echo json_encode(array("Success" => true, "Msg" => 'User Group Updated'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to Update User Group'));
+                }
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 3) { //Delete user group
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            if (isset($_GET['group_id'])) {
+                $data = array('group_id' => $_GET['group_id']);
+            }
+        }
+
+        if ($data && isset($data['group_id'])) {
+            $group_id = $data['group_id'];
+            $RequestDelete = $clsfunreq->DeleteUserGroup($group_id);
+            if ($RequestDelete) {
+                echo json_encode(array("Success" => true, "Msg" => 'User Group Deleted'));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to Delete User Group'));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Group ID not provided'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 4) { //Get group menu permissions
+        $group_id = 0;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+            if ($data && isset($data['group_id'])) {
+                $group_id = (int)$data['group_id'];
+            }
+        } else {
+            if (isset($_GET['group_id'])) {
+                $group_id = (int)$_GET['group_id'];
+            }
+        }
+
+        if ($group_id > 0) {
+            $GetQueryData = $clsfunreq->GetGroupMenuPermissions($group_id);
+            $GetDataRes = array();
+            while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+                $GetDataRes[] = $rows;
+            }
+            if ($GetQueryData) {
+                echo json_encode(array("Success" => true, "Msg" => 'Group Menu Permissions Retrieved', "Data" => $GetDataRes));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No Permissions Found', "Data" => array()));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid Group ID'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 5) { //Save group menu permissions
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            }
+        }
+
+        if ($data) {
+            // Debug: Log the received data
+            error_log("GroupPolicyRequest=5 received data: " . print_r($data, true));
+
+            $group_id = $data['group_id'];
+            $permissions = $data['permissions']; // Array of menu permissions
+
+            // Debug: Log the group_id
+            error_log("Extracted group_id: " . $group_id);
+
+            // First delete existing permissions for this group
+            $DeleteExisting = $clsfunreq->DeleteGroupMenuPermissions($group_id);
+
+            $allSaved = true;
+            foreach ($permissions as $permission) {
+                // Extract header_menu_id and sub_menu_id
+                $header_menu_id = isset($permission['header_menu_id']) ? $permission['header_menu_id'] : null;
+                $sub_menu_id = isset($permission['sub_menu_id']) ? $permission['sub_menu_id'] : null;
+                $menu_active = isset($permission['menu_active']) ? $permission['menu_active'] : 1;
+
+                $SaveResult = $clsfunreq->SaveGroupMenuPermission($group_id, $header_menu_id, $sub_menu_id, $menu_active);
+                if (!$SaveResult) {
+                    $allSaved = false;
+                }
+            }
+
+            if ($allSaved) {
+                echo json_encode(array("Success" => true, "Msg" => 'Group Menu Permissions Saved'));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to Save Some Permissions'));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 6) { //Get user menu permissions
+        $user_id = 0;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+            if ($data && isset($data['user_id'])) {
+                $user_id = (int)$data['user_id'];
+            }
+        } else {
+            if (isset($_GET['user_id'])) {
+                $user_id = (int)$_GET['user_id'];
+            }
+        }
+
+        if ($user_id > 0) {
+            $GetQueryData = $clsfunreq->GetUserMenuPermissions($user_id);
+            $GetDataRes = array();
+            while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+                $GetDataRes[] = $rows;
+            }
+            if ($GetQueryData) {
+                echo json_encode(array("Success" => true, "Msg" => 'User Menu Permissions Retrieved', "Data" => $GetDataRes));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No Permissions Found', "Data" => array()));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid User ID'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 7) { //Check specific user permission
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            if (isset($_GET['user_id']) && isset($_GET['menu_code'])) {
+                $data = array(
+                    'user_id' => $_GET['user_id'],
+                    'menu_code' => $_GET['menu_code'],
+                    'permission_type' => isset($_GET['permission_type']) ? $_GET['permission_type'] : 'view'
+                );
+            }
+        }
+
+        if ($data && isset($data['user_id']) && isset($data['menu_code'])) {
+            $user_id = $data['user_id'];
+            $menu_code = $data['menu_code'];
+
+            $HasPermission = $clsfunreq->CheckUserPermission($user_id, $menu_code);
+
+            if ($HasPermission) {
+                echo json_encode(array("Success" => true, "Msg" => 'User has permission', "HasPermission" => true));
+            } else {
+                echo json_encode(array("Success" => true, "Msg" => 'User does not have permission', "HasPermission" => false));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'User ID and Menu Code are required'));
         }
     }
 }

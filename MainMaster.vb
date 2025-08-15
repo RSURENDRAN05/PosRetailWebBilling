@@ -509,4 +509,22 @@
 
         End Try
     End Sub
+
+    Private Sub barmenuheader_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barmenuheader.ItemClick
+        Try
+            FrmMenuManager.MdiParent = Me
+            FrmMenuManager.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub baruserpolicy_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles baruserpolicy.ItemClick
+        Try
+            FrmGroupPolicyManagerSimple.MdiParent = Me
+            FrmGroupPolicyManagerSimple.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
