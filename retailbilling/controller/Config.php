@@ -15,7 +15,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'myposqrc_accts');
 define('DB_PASSWORD', 'Ruthram@1986');
-define('DB_DATABASE', 'myposqrc_retail');
+define('DB_DATABASE', 'myposqrc_posretail');
 //Qrconnection
 define("DBQR_HOST", 'localhost');
 define("DBQR_USER", 'myposqrc_db');
