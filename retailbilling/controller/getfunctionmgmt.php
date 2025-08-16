@@ -1007,19 +1007,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['AjaxRequest'] == 50) {
-        $pmrtype = $_GET['pmrtype'];
-        $ResulQuery = $clsfunreq->selectMenuList($pmrtype);
-        $GetDataRes = array();
-        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
-            $GetDataRes[] = $rows;
-        }
-        if ($ResulQuery) {
-            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
-        }
-    }
+     
     if ((int) $_REQUEST['AjaxRequest'] == 51) { //Get Company
         $GetComapany = $clsfunreq->GetComapany();
         $GetComapanyRes = array();

@@ -38,166 +38,370 @@
     End Sub
     Private Sub MenuReading()
         Try
-            If getMenuSetting() = True Then
-                If _JsonData.MenuSettings.Rows.Count > 0 Then
-                    Dim Company As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "Company"
+            If getUserPolicyInfo(_companyInfo.UserId) = True Then
+                'MainHear
+                If _companyInfo.UserRoleId.ToString = "1" Then
+                    Exit Sub
+                End If
+                RibbonPageMaster.Visible = False
+                RibbonPagePurchase.Visible = False
+                RibbonPageSales.Visible = False
+                RibbonPageAccounts.Visible = False
+                RibbonPageUser.Visible = False
+                RibbonPageEmployee.Visible = False
+                RibbonPageSettings.Visible = False
+
+
+                'SubMen
+                barcompany.Enabled = False
+                barlocation.Enabled = False
+                barnewsupplier.Enabled = False
+                barnewpurchase.Enabled = False
+                barmasterpurchasereport.Enabled = False
+                bartaxmaster.Enabled = False
+                barunitmaster.Enabled = False
+                barmaingroup.Enabled = False
+                barnewcustomer.Enabled = False
+                barmastersalesreport.Enabled = False
+                barmaterial.Enabled = False
+                barsubgroup.Enabled = False
+                barpossales.Enabled = False
+                barledgerReport.Enabled = False
+                barchequeentry.Enabled = False
+                barledgerentry.Enabled = False
+                barnewledger.Enabled = False
+                barparentgroup.Enabled = False
+                barcreategroup.Enabled = False
+                baruserpolicy.Enabled = False
+                barnewuser.Enabled = False
+                barbtnpayslipprint.Enabled = False
+                barbtnGenerateSalary.Enabled = False
+                barbtngeneratemonth.Enabled = False
+                barbtncreatemonth.Enabled = False
+                barbtnemployeeinfo.Enabled = False
+                barmenuheader.Enabled = False
+                barbtnPrintProfile.Enabled = False
+                barbtnprintdesign.Enabled = False
+                barsystemsettings.Enabled = False
+
+                If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                    'Master
+                    Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
+                    If MenuMaster.Any Then
+                        If MenuMaster(0)("menu_active") = "1" Then
+                            RibbonPageMaster.Visible = True
+                        Else
+                            RibbonPageMaster.Visible = False
+                        End If
+                    End If
+                    Dim Company As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "Company"
                     If Company.Any Then
-                        If Company(0)("pmr_active") = "1" Then
+                        If Company(0)("menu_active") = "1" Then
                             barcompany.Enabled = True
                         Else
                             barcompany.Enabled = False
                         End If
                     End If
-                    Dim Location As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "Location"
+                    Dim Location As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "Location"
                     If Location.Any Then
-                        If Location(0)("pmr_active") = "1" Then
+                        If Location(0)("menu_active") = "1" Then
                             barlocation.Enabled = True
                         Else
                             barlocation.Enabled = False
                         End If
                     End If
-                    Dim NewClient As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "NewClient"
-                    If NewClient.Any Then
-                        If NewClient(0)("pmr_active") = "1" Then
-                            barnewclient.Enabled = True
+                    'Purchase
+                    Dim MenuPurchase As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuPurchase"
+                    If MenuPurchase.Any Then
+                        If MenuPurchase(0)("menu_active") = "1" Then
+                            RibbonPagePurchase.Visible = True
                         Else
-                            barnewclient.Enabled = False
+                            RibbonPagePurchase.Visible = False
                         End If
                     End If
-                    Dim NewSupplier As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "NewSupplier"
+                    Dim NewSupplier As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewSupplier"
                     If NewSupplier.Any Then
-                        If NewSupplier(0)("pmr_active") = "1" Then
+                        If NewSupplier(0)("menu_active") = "1" Then
                             barnewsupplier.Enabled = True
                         Else
                             barnewsupplier.Enabled = False
                         End If
                     End If
-                    Dim NewPurchase As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "NewPurchase"
+                    Dim NewPurchase As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewPurchase"
                     If NewPurchase.Any Then
-                        If NewPurchase(0)("pmr_active") = "1" Then
+                        If NewPurchase(0)("menu_active") = "1" Then
                             barnewpurchase.Enabled = True
                         Else
                             barnewpurchase.Enabled = False
                         End If
                     End If
-                    Dim TaxMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "TaxMaster"
+                    Dim MasterPurchaseReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterPurchaseReport"
+                    If MasterPurchaseReport.Any Then
+                        If MasterPurchaseReport(0)("menu_active") = "1" Then
+                            barmasterpurchasereport.Enabled = True
+                        Else
+                            barmasterpurchasereport.Enabled = False
+                        End If
+                    End If
+                    'Sales
+                    Dim MenuSales As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuSales"
+                    If MenuSales.Any Then
+                        If MenuSales(0)("menu_active") = "1" Then
+                            RibbonPageSales.Visible = True
+                        Else
+                            RibbonPageSales.Visible = False
+                        End If
+                    End If
+                    Dim TaxMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "TaxMaster"
                     If TaxMaster.Any Then
-                        If TaxMaster(0)("pmr_active") = "1" Then
+                        If TaxMaster(0)("menu_active") = "1" Then
                             bartaxmaster.Enabled = True
                         Else
                             bartaxmaster.Enabled = False
                         End If
                     End If
-                    Dim Unitmaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "Unitmaster"
+                    Dim Unitmaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "Unitmaster"
                     If Unitmaster.Any Then
-                        If Unitmaster(0)("pmr_active") = "1" Then
+                        If Unitmaster(0)("menu_active") = "1" Then
                             barunitmaster.Enabled = True
                         Else
                             barunitmaster.Enabled = False
                         End If
                     End If
-                    Dim MainGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "MainGroup"
+                    Dim MainGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MainGroup"
                     If MainGroup.Any Then
-                        If MainGroup(0)("pmr_active") = "1" Then
+                        If MainGroup(0)("menu_active") = "1" Then
                             barmaingroup.Enabled = True
                         Else
                             barmaingroup.Enabled = False
                         End If
                     End If
-                    Dim SubGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "SubGroup"
+                    Dim SubGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SubGroup"
                     If SubGroup.Any Then
-                        If SubGroup(0)("pmr_active") = "1" Then
+                        If SubGroup(0)("menu_active") = "1" Then
                             barsubgroup.Enabled = True
                         Else
                             barsubgroup.Enabled = False
                         End If
                     End If
-                    Dim ProductMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "ProductMaster"
+                    Dim ProductMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "ProductMaster"
                     If ProductMaster.Any Then
-                        If ProductMaster(0)("pmr_active") = "1" Then
+                        If ProductMaster(0)("menu_active") = "1" Then
                             barmaterial.Enabled = True
                         Else
                             barmaterial.Enabled = False
+
                         End If
                     End If
-                    Dim PosSales1 As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "PosSales"
+                    Dim PosSales1 As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PosSales"
                     If PosSales1.Any Then
-                        If PosSales1(0)("pmr_active") = "1" Then
+                        If PosSales1(0)("menu_active") = "1" Then
                             barpossales.Enabled = True
                         Else
                             barpossales.Enabled = False
                         End If
                     End If
-                    Dim CreateGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "CreateGroup"
+                    Dim MasterSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSalesReport"
+                    If MasterSalesReport.Any Then
+                        If MasterSalesReport(0)("menu_active") = "1" Then
+                            barmastersalesreport.Enabled = True
+                        Else
+                            barmastersalesreport.Enabled = False
+                            
+                        End If
+                    End If
+                    Dim NewCustomer As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewCustomer"
+                    If NewCustomer.Any Then
+                        If PosSales1(0)("menu_active") = "1" Then
+                            barnewcustomer.Enabled = True
+                        Else
+                            barnewcustomer.Enabled = False
+                           
+                        End If
+                    End If
+                    'Accounts
+                    Dim MenuAccounts As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuAccounts"
+                    If MenuAccounts.Any Then
+                        If MenuAccounts(0)("menu_active") = "1" Then
+                            RibbonPageAccounts.Visible = True
+                        Else
+                            RibbonPageAccounts.Visible = False
+                        End If
+                    End If
+                    Dim CreateGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "CreateGroup"
                     If CreateGroup.Any Then
-                        If CreateGroup(0)("pmr_active") = "1" Then
+                        If CreateGroup(0)("menu_active") = "1" Then
                             barcreategroup.Enabled = True
                         Else
                             barcreategroup.Enabled = False
                         End If
                     End If
-                    Dim CreateParent As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "CreateParent"
+                    Dim CreateParent As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "CreateParent"
                     If CreateParent.Any Then
-                        If CreateParent(0)("pmr_active") = "1" Then
+                        If CreateParent(0)("menu_active") = "1" Then
                             barparentgroup.Enabled = True
                         Else
                             barparentgroup.Enabled = False
+
                         End If
                     End If
-                    Dim NewLedger As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "NewLedger"
+                    Dim NewLedger As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewLedger"
                     If NewLedger.Any Then
-                        If NewLedger(0)("pmr_active") = "1" Then
+                        If NewLedger(0)("menu_active") = "1" Then
                             barnewledger.Enabled = True
                         Else
                             barnewledger.Enabled = False
+                           
                         End If
                     End If
-                    Dim LedgerEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "LedgerEntry"
+                    Dim LedgerEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "LedgerEntry"
                     If LedgerEntry.Any Then
-                        If LedgerEntry(0)("pmr_active") = "1" Then
+                        If LedgerEntry(0)("menu_active") = "1" Then
                             barledgerentry.Enabled = True
                         Else
                             barledgerentry.Enabled = False
+                       
                         End If
                     End If
-                    Dim ChequeEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "ChequeEntry"
+                    Dim ChequeEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "ChequeEntry"
                     If ChequeEntry.Any Then
-                        If ChequeEntry(0)("pmr_active") = "1" Then
+                        If ChequeEntry(0)("menu_active") = "1" Then
                             barchequeentry.Enabled = True
                         Else
                             barchequeentry.Enabled = False
+                            
                         End If
                     End If
-                    'Dim SystemSetting As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "SystemSetting"
-                    'If SystemSetting.Any Then
-                    '    If SystemSetting(0)("pmr_active") = "1" Then
-                    '        frm.Enabled = True
-                    '    Else
-                    '        frmChequeprint.Enabled = False
-                    '    End If
-                    'End If
-                    'Dim SystemSetting As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "SystemSetting"
-                    'If SystemSetting.Any Then
-                    '    If SystemSetting(0)("pmr_active") = "1" Then
-                    '        frm.Enabled = True
-                    '    Else
-                    '        frmChequeprint.Enabled = False
-                    '    End If
-                    'End If
-                    Dim SalesProfile As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "SalesProfile"
-                    If SalesProfile.Any Then
-                        If SalesProfile(0)("pmr_active") = "1" Then
-                            barbtnPrintProfile.Enabled = True
+                    Dim LedgerReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "LedgerReport"
+                    If LedgerReport.Any Then
+                        If LedgerReport(0)("menu_active") = "1" Then
+                            barledgerReport.Enabled = True
                         Else
-                            barbtnPrintProfile.Enabled = False
+                            barledgerReport.Enabled = False
+                           
                         End If
                     End If
-                    Dim PrintDesign As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.MenuSettings Where dtrow("pmr_name") = "PrintDesign"
+                    'UserMaster
+                    Dim MenuUser As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuUser"
+                    If MenuUser.Any Then
+                        If MenuUser(0)("menu_active") = "1" Then
+                            RibbonPageUser.Visible = True
+                        Else
+                            RibbonPageUser.Visible = False
+                        End If
+                    End If
+                    Dim NewUser As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewUser"
+                    If NewUser.Any Then
+                        If NewUser(0)("menu_active") = "1" Then
+                            barnewuser.Enabled = True
+                        Else
+                            barnewuser.Enabled = False
+                        End If
+                    End If
+                    Dim GroupPolicy As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "GroupPolicy"
+                    If GroupPolicy.Any Then
+                        If GroupPolicy(0)("menu_active") = "1" Then
+                            baruserpolicy.Enabled = True
+                        Else
+                            baruserpolicy.Enabled = False
+
+                        End If
+                    End If
+                    'emplyoee
+                    Dim MenuEmployee As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuEmployee"
+                    If MenuEmployee.Any Then
+                        If MenuEmployee(0)("menu_active") = "1" Then
+                            RibbonPageEmployee.Visible = True
+                        Else
+                            RibbonPageEmployee.Visible = False
+                        End If
+                    End If
+                    Dim EmployeeInfo As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "EmployeeInfo"
+                    If EmployeeInfo.Any Then
+                        If EmployeeInfo(0)("menu_active") = "1" Then
+                            barbtnemployeeinfo.Enabled = True
+                        Else
+                            barbtnemployeeinfo.Enabled = False
+                        End If
+                    End If
+                    Dim CreateMonth As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "CreateMonth"
+                    If CreateMonth.Any Then
+                        If CreateMonth(0)("menu_active") = "1" Then
+                            barbtncreatemonth.Enabled = True
+                        Else
+                            barbtncreatemonth.Enabled = False
+
+                        End If
+                    End If
+                    Dim GenerateMonth As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "GenerateMonth"
+                    If GenerateMonth.Any Then
+                        If GenerateMonth(0)("menu_active") = "1" Then
+                            barbtngeneratemonth.Enabled = True
+                        Else
+                            barbtngeneratemonth.Enabled = False
+                      
+                        End If
+                    End If
+                    Dim GenerateSalary As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "GenerateSalary"
+                    If GenerateSalary.Any Then
+                        If GenerateSalary(0)("menu_active") = "1" Then
+                            barbtnGenerateSalary.Enabled = True
+                        Else
+                            barbtnGenerateSalary.Enabled = False
+                             
+                        End If
+                    End If
+                    Dim PaySlipPrint As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PaySlipPrint"
+                    If PaySlipPrint.Any Then
+                        If PaySlipPrint(0)("menu_active") = "1" Then
+                            barbtnpayslipprint.Enabled = True
+                        Else
+                            barbtnpayslipprint.Enabled = False
+                             
+                        End If
+                    End If
+                    'Settings
+                    Dim MenuSettings As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuSettings"
+                    If MenuSettings.Any Then
+                        If MenuSettings(0)("menu_active") = "1" Then
+                            RibbonPageSettings.Visible = True
+                        Else
+                            RibbonPageSettings.Visible = False
+                        End If
+                    End If
+                    Dim SystemSettings As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SystemSettings"
+                    If SystemSettings.Any Then
+                        If SystemSettings(0)("menu_active") = "1" Then
+                            barsystemsettings.Enabled = True
+                        Else
+                            barsystemsettings.Enabled = False
+                        End If
+                    End If
+                    Dim PrintDesign As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PrintDesign"
                     If PrintDesign.Any Then
-                        If PrintDesign(0)("pmr_active") = "1" Then
+                        If PrintDesign(0)("menu_active") = "1" Then
                             barbtnprintdesign.Enabled = True
                         Else
                             barbtnprintdesign.Enabled = False
+
+                        End If
+                    End If
+                    Dim SalesProfile As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SalesProfile"
+                    If SalesProfile.Any Then
+                        If SalesProfile(0)("menu_active") = "1" Then
+                            barbtnPrintProfile.Enabled = True
+                        Else
+                            barbtnPrintProfile.Enabled = False
+                             
+                        End If
+                    End If
+                    Dim MainMenuList As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MainMenuList"
+                    If MainMenuList.Any Then
+                        If MainMenuList(0)("menu_active") = "1" Then
+                            barmenuheader.Enabled = True
+                        Else
+                            barmenuheader.Enabled = False
+                            
                         End If
                     End If
                 End If
@@ -310,7 +514,7 @@
         End Try
     End Sub
 
-    Private Sub barpurchasereport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barpurchasereport.ItemClick
+    Private Sub barpurchasereport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barmasterpurchasereport.ItemClick
         Try
             FrmPurchaseView.MdiParent = Me
             FrmPurchaseView.Show()
@@ -420,7 +624,7 @@
         End Try
     End Sub
 
-    Private Sub barbtnledgerReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnledgerReport.ItemClick
+    Private Sub barbtnledgerReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barledgerReport.ItemClick
         Try
 
 

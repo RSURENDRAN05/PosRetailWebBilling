@@ -38,6 +38,7 @@ Module functionModule
         Public Shared CompanyName As String = ""
         Public Shared LocationName As String = ""
         Public Shared UserRole As String = ""
+        Public Shared UserRoleId As String = "1"
     End Structure
     Public Structure _JsonData
         Public Shared USerTable As New DataTable
@@ -64,7 +65,6 @@ Module functionModule
         Public Shared AccountGroup As New DataTable
         Public Shared AccountParent As New DataTable
         Public Shared AccountLedger As New DataTable
-        Public Shared MenuSettings As New DataTable
         Public Shared MonthOfSalary As New DataTable
     End Structure
     Public Structure _discount
@@ -92,22 +92,7 @@ Module functionModule
         _update = 0
         _reset = 3
     End Enum
-    Public Function getMenuSetting() As Boolean
-        Try
-            _JsonData.MenuSettings.TableName = "MenuTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=50&pmrtype=" & M_Details.licenceServerCleint)
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.MenuSettings = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.MenuSettings.Rows.Count > 0 Then
-                Return True
-            End If
-            Return True
-        Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        End Try
-    End Function
+   
     Public Function getUserInfo() As Boolean
         Try
             _JsonData.USerTable.TableName = "UserTable"
@@ -638,8 +623,9 @@ Module functionModule
                 _companyInfo.UserId = data("UserId")
                 _companyInfo.UserName = data("UserName")
                 _companyInfo.UserRole = data("UserRole")
+                _companyInfo.UserRoleId = data("GroupId")
                 'Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.USerTable Where dtrow("Id") = _companyInfo.UserId
-                getUserPolicyInfo(_companyInfo.UserId)
+                'getUserPolicyInfo(_companyInfo.UserId)
                 'If dtrows.Any Then
                 '    _companyInfo.UserRole = dtrows(0)("Role")
                 'End If

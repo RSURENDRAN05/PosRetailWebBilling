@@ -45,6 +45,7 @@ Public Class FrmNewUser
         End Try
     End Sub
 
+
     Private Sub LoadUserGroups()
         Try
             Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=1")
@@ -62,23 +63,46 @@ Public Class FrmNewUser
                 ' Clear existing items
                 cmbrole.Properties.Items.Clear()
 
+                ' First, add Admin group (group_id = 1) if it exists
+                Dim adminGroupAdded As Boolean = False
                 For Each item In dataArray
-                    If ConvertToBoolean(item("pug_active")) Then
+                    If Convert.ToInt32(item("pug_id")) = 1 AndAlso ConvertToBoolean(item("pug_active")) Then
+                        groupsTable.Rows.Add(
+                            1,
+                            item("pug_name").ToString(),
+                            item("pug_description").ToString(),
+                            True
+                        )
+                        cmbrole.Properties.Items.Add(item("pug_name").ToString())
+                        adminGroupAdded = True
+                        Exit For
+                    End If
+                Next
+
+                ' Then add other groups
+                For Each item In dataArray
+                    If Convert.ToInt32(item("pug_id")) <> 1 AndAlso ConvertToBoolean(item("pug_active")) Then
                         groupsTable.Rows.Add(
                             Convert.ToInt32(item("pug_id")),
                             item("pug_name").ToString(),
                             item("pug_description").ToString(),
                             ConvertToBoolean(item("pug_active"))
                         )
-                        ' Add group name to combobox
                         cmbrole.Properties.Items.Add(item("pug_name").ToString())
                     End If
                 Next
+
+                ' Set Admin as default selection if it exists
+                If adminGroupAdded AndAlso cmbrole.Properties.Items.Count > 0 Then
+                    cmbrole.SelectedIndex = 0
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading user groups: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 
     Private Function ConvertToBoolean(value As Object) As Boolean
         If value Is Nothing Then Return False

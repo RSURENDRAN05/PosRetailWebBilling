@@ -205,7 +205,15 @@ Public Class FrmGroupPolicyManagerSimple
                         row("menu_active") = False
                     Next
 
-                    ' Set permissions from database
+                    ' Special handling for group ID = 1: Enable all menus
+                    If selectedGroupId = 1 Then
+                        For Each row As DataRow In permissionsTable.Rows
+                            row("menu_active") = True
+                        Next
+                        Return ' Exit early since we've set all to true
+                    End If
+
+                    ' Set permissions from database for other groups
                     For Each item In dataArray
                         Try
                             Dim headerMenuId As Integer = 0

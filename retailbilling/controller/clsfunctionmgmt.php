@@ -550,14 +550,6 @@ class funcProcessMgmt
         return $result;
     }
 
-    //Menu List
-    public function selectMenuList($pmrtype)
-    {
-        $conn = $this->conn;
-        $sqlquery = ("SELECT `pmr_id`, `pmr_name`, `pmr_groupname`, `pmr_type`, `pmr_active` FROM `pos_menu_rights` WHERE `pmr_type`='" . $pmrtype . "'");
-        $result = mysqli_query($conn, $sqlquery);
-        return $result;
-    }
 
     //Purchase Save
     public function GetProductList()
@@ -2348,49 +2340,115 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
-
     public function GetUserMenuPermissions($user_id)
     {
         $conn = $this->conn;
+
+        // First check if user belongs to group_id = 1 (Admin group)
+        $adminCheckQuery = ("SELECT u.group_id, ug.pug_name FROM `users` as u
+                            INNER JOIN `pos_usergroups` as ug ON u.`group_id` = ug.`pug_id`
+                            WHERE u.`id`='" . $user_id . "' AND u.`status`='1'");
+        $adminResult = mysqli_query($conn, $adminCheckQuery);
+
+        if ($adminResult && mysqli_num_rows($adminResult) > 0) {
+            $adminRow = mysqli_fetch_assoc($adminResult);
+            if ($adminRow['group_id'] == 1) {
+                // Group ID 1 gets all menus automatically
+                $sqlQuery = ("SELECT
+                            0 as permission_id,
+                            1 as group_id,
+                            phm.`phid` as menu_id,
+                            'header' as menu_type,
+                            phm.`phid` as header_menu_id,
+                            NULL as sub_menu_id,
+                            1 as menu_active,
+                            phm.`ph_name` as menu_name,
+                            phm.`ph_menucode` as menu_code,
+                            '" . $adminRow['pug_name'] . "' as group_name
+                            FROM `pos_headermenu` as phm
+                            WHERE phm.`ph_active`='1'
+
+                            UNION ALL
+
+                            SELECT
+                            0 as permission_id,
+                            1 as group_id,
+                            psm.`psid` as menu_id,
+                            'sub' as menu_type,
+                            psm.`ph_id` as header_menu_id,
+                            psm.`psid` as sub_menu_id,
+                            1 as menu_active,
+                            psm.`ps_name` as menu_name,
+                            psm.`ps_menucode` as menu_code,
+                            '" . $adminRow['pug_name'] . "' as group_name
+                            FROM `pos_submenu` as psm
+                            WHERE psm.`ps_active`='1'
+
+                            ORDER BY menu_name ASC");
+
+                $result = mysqli_query($conn, $sqlQuery);
+                return $result;
+            }
+        }
+
+        // For other groups, get permissions normally
         $sqlQuery = ("SELECT gmp.`pgmp_id` as permission_id, gmp.`pgmp_group_id` as group_id,
-                      CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN gmp.`pgmp_header_menu_id` ELSE gmp.`pgmp_sub_menu_id` END as menu_id,
-                      CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN 'header' ELSE 'sub' END as menu_type,
-                      gmp.`pgmp_header_menu_id` as header_menu_id,
-                      gmp.`pgmp_sub_menu_id` as sub_menu_id,
-                      gmp.`pgmp_active` as menu_active,
-                      CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN phm.`ph_name` ELSE psm.`ps_name` END as menu_name,
-                      CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN phm.`ph_menucode` ELSE psm.`ps_menucode` END as menu_code,
-                      ug.`pug_name` as group_name
-                      FROM `users` as u
-                      INNER JOIN `pos_usergroups` as ug ON u.`group_id` = ug.`pug_id`
-                      INNER JOIN `pos_group_menu_permissions` as gmp ON ug.`pug_id` = gmp.`pgmp_group_id`
-                      LEFT JOIN `pos_headermenu` as phm ON gmp.`pgmp_header_menu_id` = phm.`phid`
-                      LEFT JOIN `pos_submenu` as psm ON gmp.`pgmp_sub_menu_id` = psm.`psid`
-                      WHERE u.`id`='" . $user_id . "' AND u.`status`='1' AND ug.`pug_active`='1' AND gmp.`pgmp_active`='1'
-                      ORDER BY menu_name ASC");
+                    CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN gmp.`pgmp_header_menu_id` ELSE gmp.`pgmp_sub_menu_id` END as menu_id,
+                    CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN 'header' ELSE 'sub' END as menu_type,
+                    gmp.`pgmp_header_menu_id` as header_menu_id,
+                    gmp.`pgmp_sub_menu_id` as sub_menu_id,
+                    gmp.`pgmp_active` as menu_active,
+                    CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN phm.`ph_name` ELSE psm.`ps_name` END as menu_name,
+                    CASE WHEN gmp.`pgmp_sub_menu_id` IS NULL THEN phm.`ph_menucode` ELSE psm.`ps_menucode` END as menu_code,
+                    ug.`pug_name` as group_name
+                    FROM `users` as u
+                    INNER JOIN `pos_usergroups` as ug ON u.`group_id` = ug.`pug_id`
+                    INNER JOIN `pos_group_menu_permissions` as gmp ON ug.`pug_id` = gmp.`pgmp_group_id`
+                    LEFT JOIN `pos_headermenu` as phm ON gmp.`pgmp_header_menu_id` = phm.`phid`
+                    LEFT JOIN `pos_submenu` as psm ON gmp.`pgmp_sub_menu_id` = psm.`psid`
+                    WHERE u.`id`='" . $user_id . "' AND u.`status`='1' AND ug.`pug_active`='1' AND gmp.`pgmp_active`='1'
+                    ORDER BY menu_name ASC");
+
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
+
     public function CheckUserPermission($user_id, $menu_code)
     {
         $conn = $this->conn;
+
+        // First check if user belongs to group_id = 1 (Admin group)
+        $adminCheckQuery = ("SELECT u.group_id FROM `users` as u WHERE u.`id`='" . $user_id . "' AND u.`status`='1'");
+        $adminResult = mysqli_query($conn, $adminCheckQuery);
+
+        if ($adminResult && mysqli_num_rows($adminResult) > 0) {
+            $adminRow = mysqli_fetch_assoc($adminResult);
+            if ($adminRow['group_id'] == 1) {
+                // Group ID 1 always has access to all menus
+                return true;
+            }
+        }
+
+        // For other groups, check permissions normally
         $sqlQuery = ("SELECT COUNT(*) as has_permission
-                      FROM `users` as u
-                      INNER JOIN `pos_usergroups` as ug ON u.`group_id` = ug.`pug_id`
-                      INNER JOIN `pos_group_menu_permissions` as gmp ON ug.`pug_id` = gmp.`pgmp_group_id`
-                      LEFT JOIN `pos_headermenu` as phm ON gmp.`pgmp_header_menu_id` = phm.`phid`
-                      LEFT JOIN `pos_submenu` as psm ON gmp.`pgmp_sub_menu_id` = psm.`psid`
-                      WHERE u.`id`='" . $user_id . "'
-                      AND u.`status`='1'
-                      AND ug.`pug_active`='1'
-                      AND gmp.`pgmp_active`='1'
-                      AND (phm.`ph_menucode`='" . $menu_code . "' OR psm.`ps_menucode`='" . $menu_code . "')");
+                    FROM `users` as u
+                    INNER JOIN `pos_usergroups` as ug ON u.`group_id` = ug.`pug_id`
+                    INNER JOIN `pos_group_menu_permissions` as gmp ON ug.`pug_id` = gmp.`pgmp_group_id`
+                    LEFT JOIN `pos_headermenu` as phm ON gmp.`pgmp_header_menu_id` = phm.`phid`
+                    LEFT JOIN `pos_submenu` as psm ON gmp.`pgmp_sub_menu_id` = psm.`psid`
+                    WHERE u.`id`='" . $user_id . "'
+                    AND u.`status`='1'
+                    AND ug.`pug_active`='1'
+                    AND gmp.`pgmp_active`='1'
+                    AND (phm.`ph_menucode`='" . $menu_code . "' OR psm.`ps_menucode`='" . $menu_code . "')");
 
         $result = mysqli_query($conn, $sqlQuery);
-        $row = mysqli_fetch_assoc($result);
-        return ($row['has_permission'] > 0);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['has_permission'] > 0;
+        }
+        return false;
     }
-
     public function GetAllMenusForPermission()
     {
         $conn = $this->conn;
