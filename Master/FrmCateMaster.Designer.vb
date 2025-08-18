@@ -37,6 +37,7 @@ Partial Class FrmCateMaster
         Me.chkactive = New DevExpress.XtraEditors.CheckEdit()
         Me.txtcatename = New DevExpress.XtraEditors.TextEdit()
         Me.txtcateid = New DevExpress.XtraEditors.TextEdit()
+        Me.txtmainname = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.labletaxname1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -47,7 +48,6 @@ Partial Class FrmCateMaster
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtmainname = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -58,6 +58,7 @@ Partial Class FrmCateMaster
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcatename.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcateid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +69,6 @@ Partial Class FrmCateMaster
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControlItem8
@@ -86,7 +86,7 @@ Partial Class FrmCateMaster
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(334, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(159, 24)
@@ -243,11 +243,23 @@ Partial Class FrmCateMaster
         Me.txtcateid.StyleController = Me.LayoutControl1
         Me.txtcateid.TabIndex = 4
         '
+        'txtmainname
+        '
+        Me.txtmainname.Location = New System.Drawing.Point(75, 80)
+        Me.txtmainname.Name = "txtmainname"
+        Me.txtmainname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.txtmainname.Properties.Appearance.Options.UseFont = True
+        Me.txtmainname.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtmainname.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainId", "MainId"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainName", 80, "MainName")})
+        Me.txtmainname.Properties.DisplayMember = "MainName"
+        Me.txtmainname.Properties.NullText = ""
+        Me.txtmainname.Properties.ValueMember = "MainId"
+        Me.txtmainname.Size = New System.Drawing.Size(418, 30)
+        Me.txtmainname.StyleController = Me.LayoutControl1
+        Me.txtmainname.TabIndex = 12
+        '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -355,21 +367,6 @@ Partial Class FrmCateMaster
         Me.LayoutControlItem2.Text = "MainName :"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(60, 13)
         '
-        'txtmainname
-        '
-        Me.txtmainname.Location = New System.Drawing.Point(75, 80)
-        Me.txtmainname.Name = "txtmainname"
-        Me.txtmainname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
-        Me.txtmainname.Properties.Appearance.Options.UseFont = True
-        Me.txtmainname.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtmainname.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainId", "MainId"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainName", 80, "MainName")})
-        Me.txtmainname.Properties.DisplayMember = "MainName"
-        Me.txtmainname.Properties.NullText = ""
-        Me.txtmainname.Properties.ValueMember = "MainId"
-        Me.txtmainname.Size = New System.Drawing.Size(418, 30)
-        Me.txtmainname.StyleController = Me.LayoutControl1
-        Me.txtmainname.TabIndex = 12
-        '
         'FrmCateMaster
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,6 +387,7 @@ Partial Class FrmCateMaster
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcatename.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcateid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -400,7 +398,6 @@ Partial Class FrmCateMaster
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

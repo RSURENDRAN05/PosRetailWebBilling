@@ -192,7 +192,7 @@ Partial Class FrmNewUser
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(826, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(121, 24)
@@ -426,9 +426,6 @@ Partial Class FrmNewUser
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -581,6 +578,7 @@ Partial Class FrmNewUser
         Me.ClientSize = New System.Drawing.Size(959, 631)
         Me.Controls.Add(Me.LayoutControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.LookAndFeel.SkinName = "VS2010"
         Me.Name = "FrmNewUser"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frnNewUser"

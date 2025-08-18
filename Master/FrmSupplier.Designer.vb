@@ -75,7 +75,6 @@ Partial Class FrmSupplier
         '
         Me.GridControl1.Location = New System.Drawing.Point(12, 138)
         Me.GridControl1.LookAndFeel.SkinName = "Office 2010 Black"
-        Me.GridControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImagecustomeractive})
@@ -230,9 +229,6 @@ Partial Class FrmSupplier
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False

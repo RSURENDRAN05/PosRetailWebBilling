@@ -82,7 +82,6 @@ Partial Class FrmCreateComp
         '
         Me.GridControl1.Location = New System.Drawing.Point(12, 138)
         Me.GridControl1.LookAndFeel.SkinName = "Office 2010 Black"
-        Me.GridControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImagecustomeractive})
@@ -92,14 +91,10 @@ Partial Class FrmCreateComp
         '
         'GridView1
         '
-        Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView1.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView1.Appearance.HeaderPanel.Options.UseBackColor = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridView1.Appearance.Row.Options.UseTextOptions = True
         Me.GridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
@@ -155,11 +150,11 @@ Partial Class FrmCreateComp
         Me.btnsave.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.Options.UseBackColor = True
-        Me.btnsave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btnsave.Image = CType(resources.GetObject("btnsave.Image"), System.Drawing.Image)
         Me.btnsave.Location = New System.Drawing.Point(102, 80)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(127, 38)
+        Me.btnsave.StyleController = Me.LayoutControl1
         Me.btnsave.TabIndex = 8
         Me.btnsave.Text = "Save"
         '
@@ -168,11 +163,11 @@ Partial Class FrmCreateComp
         Me.btncancel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.Options.UseBackColor = True
-        Me.btncancel.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
         Me.btncancel.Location = New System.Drawing.Point(233, 80)
         Me.btncancel.Name = "btncancel"
         Me.btncancel.Size = New System.Drawing.Size(137, 38)
+        Me.btncancel.StyleController = Me.LayoutControl1
         Me.btncancel.TabIndex = 7
         Me.btncancel.Text = "Cancel"
         '
@@ -208,9 +203,6 @@ Partial Class FrmCreateComp
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False

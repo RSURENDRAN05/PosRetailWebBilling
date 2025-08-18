@@ -26,6 +26,11 @@ Partial Class FrmCompany
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.activeimagebox = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
         Me.btncancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btnsave = New DevExpress.XtraEditors.SimpleButton()
         Me.chkactive = New DevExpress.XtraEditors.CheckEdit()
@@ -39,20 +44,17 @@ Partial Class FrmCompany
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
         Me.RepositoryItemImageActive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.RepositoryItemImageComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.RepositoryItemImageComboBox2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.RepositoryItemImageComboBox3 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.activeimagebox = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.activeimagebox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,12 +66,10 @@ Partial Class FrmCompany
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageComboBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.activeimagebox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControlItem7
@@ -87,7 +87,7 @@ Partial Class FrmCompany
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(364, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(169, 24)
@@ -135,6 +135,46 @@ Partial Class FrmCompany
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "COID"
+        Me.GridColumn1.FieldName = "COID"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "CompanyName"
+        Me.GridColumn2.FieldName = "CompanyName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Active"
+        Me.GridColumn3.ColumnEdit = Me.activeimagebox
+        Me.GridColumn3.FieldName = "Active"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'activeimagebox
+        '
+        Me.activeimagebox.AutoHeight = False
+        Me.activeimagebox.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
+        Me.activeimagebox.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.activeimagebox.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("In-Active", "0", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Active", "1", 1)})
+        Me.activeimagebox.Name = "activeimagebox"
+        Me.activeimagebox.SmallImages = Me.imgcol
+        '
+        'imgcol
+        '
+        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
+        Me.imgcol.Images.SetKeyName(1, "accept.png")
         '
         'btncancel
         '
@@ -197,9 +237,6 @@ Partial Class FrmCompany
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -287,12 +324,6 @@ Partial Class FrmCompany
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'imgcol
-        '
-        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
-        Me.imgcol.Images.SetKeyName(1, "accept.png")
-        '
         'RepositoryItemImageActive
         '
         Me.RepositoryItemImageActive.AutoHeight = False
@@ -333,40 +364,6 @@ Partial Class FrmCompany
         Me.RepositoryItemImageComboBox3.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
         Me.RepositoryItemImageComboBox3.SmallImages = Me.imgcol
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "COID"
-        Me.GridColumn1.FieldName = "COID"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "CompanyName"
-        Me.GridColumn2.FieldName = "CompanyName"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Active"
-        Me.GridColumn3.ColumnEdit = Me.activeimagebox
-        Me.GridColumn3.FieldName = "Active"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'activeimagebox
-        '
-        Me.activeimagebox.AutoHeight = False
-        Me.activeimagebox.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
-        Me.activeimagebox.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.activeimagebox.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("In-Active", "0", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Active", "1", 1)})
-        Me.activeimagebox.Name = "activeimagebox"
-        Me.activeimagebox.SmallImages = Me.imgcol
-        '
         'FrmCompany
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -382,6 +379,8 @@ Partial Class FrmCompany
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.activeimagebox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -393,12 +392,10 @@ Partial Class FrmCompany
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageComboBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.activeimagebox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

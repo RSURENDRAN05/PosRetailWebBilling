@@ -22,7 +22,8 @@ Partial Class FrmPurchaseView
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPurchaseView))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.BTNCANCEL = New DevExpress.XtraEditors.SimpleButton()
+        Me.BTNoK = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlGRNSelector = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPM_ID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,26 +33,25 @@ Partial Class FrmPurchaseView
         Me.GridColumnSupplierName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRetrun = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageComboBoxRetrun = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.ImageCollectionGRNSelect = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GridColumnBillAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnGivenTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1OtherCount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1St_StaffName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1St_UserID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.ImageCollectionGRNSelect = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BTNoK = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BTNCANCEL = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControlGRNSelector, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageComboBoxRetrun, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollectionGRNSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,20 +71,33 @@ Partial Class FrmPurchaseView
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'LayoutControlGroup1
+        'BTNCANCEL
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
-        Me.LayoutControlGroup1.CustomizationFormText = "Root"
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.EmptySpaceItem1})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1014, 624)
-        Me.LayoutControlGroup1.Text = "Root"
-        Me.LayoutControlGroup1.TextVisible = False
+        Me.BTNCANCEL.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BTNCANCEL.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BTNCANCEL.Appearance.Options.UseBackColor = True
+        Me.BTNCANCEL.Appearance.Options.UseForeColor = True
+        Me.BTNCANCEL.Image = CType(resources.GetObject("BTNCANCEL.Image"), System.Drawing.Image)
+        Me.BTNCANCEL.Location = New System.Drawing.Point(917, 574)
+        Me.BTNCANCEL.Name = "BTNCANCEL"
+        Me.BTNCANCEL.Size = New System.Drawing.Size(85, 38)
+        Me.BTNCANCEL.StyleController = Me.LayoutControl1
+        Me.BTNCANCEL.TabIndex = 7
+        Me.BTNCANCEL.Text = "CANCEL"
+        '
+        'BTNoK
+        '
+        Me.BTNoK.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BTNoK.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BTNoK.Appearance.Options.UseBackColor = True
+        Me.BTNoK.Appearance.Options.UseForeColor = True
+        Me.BTNoK.Image = CType(resources.GetObject("BTNoK.Image"), System.Drawing.Image)
+        Me.BTNoK.Location = New System.Drawing.Point(821, 574)
+        Me.BTNoK.Name = "BTNoK"
+        Me.BTNoK.Size = New System.Drawing.Size(92, 38)
+        Me.BTNoK.StyleController = Me.LayoutControl1
+        Me.BTNoK.TabIndex = 6
+        Me.BTNoK.Text = "OK"
         '
         'GridControlGRNSelector
         '
@@ -92,7 +105,7 @@ Partial Class FrmPurchaseView
         Me.GridControlGRNSelector.MainView = Me.GridView1
         Me.GridControlGRNSelector.Name = "GridControlGRNSelector"
         Me.GridControlGRNSelector.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImageComboBoxRetrun})
-        Me.GridControlGRNSelector.Size = New System.Drawing.Size(990, 544)
+        Me.GridControlGRNSelector.Size = New System.Drawing.Size(990, 542)
         Me.GridControlGRNSelector.TabIndex = 5
         Me.GridControlGRNSelector.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -181,6 +194,12 @@ Partial Class FrmPurchaseView
         Me.RepositoryItemImageComboBoxRetrun.Name = "RepositoryItemImageComboBoxRetrun"
         Me.RepositoryItemImageComboBoxRetrun.SmallImages = Me.ImageCollectionGRNSelect
         '
+        'ImageCollectionGRNSelect
+        '
+        Me.ImageCollectionGRNSelect.ImageStream = CType(resources.GetObject("ImageCollectionGRNSelect.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImageCollectionGRNSelect.Images.SetKeyName(0, "stop_green.png")
+        Me.ImageCollectionGRNSelect.Images.SetKeyName(1, "stop_red.png")
+        '
         'GridColumnBillAmount
         '
         Me.GridColumnBillAmount.AppearanceCell.Options.UseTextOptions = True
@@ -221,70 +240,48 @@ Partial Class FrmPurchaseView
         Me.GridColumn1St_UserID.FieldName = "St_UserID"
         Me.GridColumn1St_UserID.Name = "GridColumn1St_UserID"
         '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.CustomizationFormText = "Root"
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Name = "Root"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1014, 624)
+        Me.LayoutControlGroup1.Text = "Root"
+        Me.LayoutControlGroup1.TextVisible = False
+        '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.GridControlGRNSelector
         Me.LayoutControlItem1.CustomizationFormText = "Select GRN"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(994, 564)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(994, 562)
         Me.LayoutControlItem1.Text = "Select GRN"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(53, 13)
-        '
-        'ImageCollectionGRNSelect
-        '
-        Me.ImageCollectionGRNSelect.ImageStream = CType(resources.GetObject("ImageCollectionGRNSelect.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.ImageCollectionGRNSelect.Images.SetKeyName(0, "stop_green.png")
-        Me.ImageCollectionGRNSelect.Images.SetKeyName(1, "stop_red.png")
-        '
-        'BTNoK
-        '
-        Me.BTNoK.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.BTNoK.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BTNoK.Appearance.Options.UseBackColor = True
-        Me.BTNoK.Appearance.Options.UseForeColor = True
-        Me.BTNoK.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.BTNoK.Image = CType(resources.GetObject("BTNoK.Image"), System.Drawing.Image)
-        Me.BTNoK.Location = New System.Drawing.Point(821, 576)
-        Me.BTNoK.Name = "BTNoK"
-        Me.BTNoK.Size = New System.Drawing.Size(94, 36)
-        Me.BTNoK.TabIndex = 6
-        Me.BTNoK.Text = "OK"
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.BTNoK
         Me.LayoutControlItem2.CustomizationFormText = "LayoutControlItem2"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(809, 564)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(809, 562)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(98, 40)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(96, 42)
         Me.LayoutControlItem2.Text = "LayoutControlItem2"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextToControlDistance = 0
         Me.LayoutControlItem2.TextVisible = False
         '
-        'BTNCANCEL
-        '
-        Me.BTNCANCEL.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.BTNCANCEL.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BTNCANCEL.Appearance.Options.UseBackColor = True
-        Me.BTNCANCEL.Appearance.Options.UseForeColor = True
-        Me.BTNCANCEL.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.BTNCANCEL.Image = CType(resources.GetObject("BTNCANCEL.Image"), System.Drawing.Image)
-        Me.BTNCANCEL.Location = New System.Drawing.Point(919, 576)
-        Me.BTNCANCEL.Name = "BTNCANCEL"
-        Me.BTNCANCEL.Size = New System.Drawing.Size(83, 36)
-        Me.BTNCANCEL.TabIndex = 7
-        Me.BTNCANCEL.Text = "CANCEL"
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.BTNCANCEL
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(907, 564)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(905, 562)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(87, 40)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(89, 42)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextToControlDistance = 0
@@ -294,9 +291,9 @@ Partial Class FrmPurchaseView
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 564)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 562)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(809, 40)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(809, 42)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -313,12 +310,12 @@ Partial Class FrmPurchaseView
         Me.Text = "Purchase View"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControlGRNSelector, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageComboBoxRetrun, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageCollectionGRNSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()

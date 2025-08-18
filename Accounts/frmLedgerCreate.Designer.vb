@@ -24,6 +24,7 @@ Partial Class frmLedgerCreate
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.txtparentname = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtledgertype = New DevExpress.XtraEditors.TextEdit()
         Me.txtopeningbalance = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -36,6 +37,9 @@ Partial Class frmLedgerCreate
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImagetaxactive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.btnsave = New DevExpress.XtraEditors.SimpleButton()
         Me.btncancel = New DevExpress.XtraEditors.SimpleButton()
         Me.chkactive = New DevExpress.XtraEditors.CheckEdit()
@@ -56,15 +60,12 @@ Partial Class frmLedgerCreate
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.labletaxname1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtledgertype = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtparentname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtledgertype.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtopeningbalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +90,6 @@ Partial Class frmLedgerCreate
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtledgertype.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -142,6 +142,14 @@ Partial Class frmLedgerCreate
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'txtledgertype
+        '
+        Me.txtledgertype.Location = New System.Drawing.Point(798, 46)
+        Me.txtledgertype.Name = "txtledgertype"
+        Me.txtledgertype.Size = New System.Drawing.Size(115, 20)
+        Me.txtledgertype.StyleController = Me.LayoutControl1
+        Me.txtledgertype.TabIndex = 16
+        '
         'txtopeningbalance
         '
         Me.txtopeningbalance.Location = New System.Drawing.Point(369, 46)
@@ -153,7 +161,7 @@ Partial Class frmLedgerCreate
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(771, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(142, 24)
@@ -248,6 +256,30 @@ Partial Class frmLedgerCreate
         Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
         Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
         Me.imgcol.Images.SetKeyName(1, "accept.png")
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "LedgerType"
+        Me.GridColumn7.FieldName = "LedgerType"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "OpenDate"
+        Me.GridColumn8.FieldName = "OpenDate"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "OpeningBalance"
+        Me.GridColumn9.FieldName = "OpeningBalance"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 8
         '
         'btnsave
         '
@@ -352,9 +384,6 @@ Partial Class frmLedgerCreate
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -484,14 +513,6 @@ Partial Class frmLedgerCreate
         Me.LayoutControlItem12.Text = "Dr / Cr :"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(87, 13)
         '
-        'txtledgertype
-        '
-        Me.txtledgertype.Location = New System.Drawing.Point(798, 46)
-        Me.txtledgertype.Name = "txtledgertype"
-        Me.txtledgertype.Size = New System.Drawing.Size(115, 20)
-        Me.txtledgertype.StyleController = Me.LayoutControl1
-        Me.txtledgertype.TabIndex = 16
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.txtledgertype
@@ -501,30 +522,6 @@ Partial Class frmLedgerCreate
         Me.LayoutControlItem3.Size = New System.Drawing.Size(209, 24)
         Me.LayoutControlItem3.Text = "Ledger Type :"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(87, 13)
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "LedgerType"
-        Me.GridColumn7.FieldName = "LedgerType"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "OpenDate"
-        Me.GridColumn8.FieldName = "OpenDate"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "OpeningBalance"
-        Me.GridColumn9.FieldName = "OpeningBalance"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
         '
         'frmLedgerCreate
         '
@@ -540,6 +537,7 @@ Partial Class frmLedgerCreate
         CType(Me.txtparentname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtledgertype.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtopeningbalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -564,7 +562,6 @@ Partial Class frmLedgerCreate
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtledgertype.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

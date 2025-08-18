@@ -15,14 +15,12 @@ Partial Class MainMaster
     Private components As System.ComponentModel.IContainer
 
     'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'It can be modified using the Windows Form Designer.
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMaster))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
-        Me.BarAndDockingController1 = New DevExpress.XtraBars.BarAndDockingController(Me.components)
         Me.barcompany = New DevExpress.XtraBars.BarButtonItem()
         Me.barlocation = New DevExpress.XtraBars.BarButtonItem()
         Me.barstatustrial = New DevExpress.XtraBars.BarStaticItem()
@@ -61,6 +59,7 @@ Partial Class MainMaster
         Me.barbtnGenerateSalary = New DevExpress.XtraBars.BarButtonItem()
         Me.baruserpolicy = New DevExpress.XtraBars.BarButtonItem()
         Me.barmenuheader = New DevExpress.XtraBars.BarButtonItem()
+        Me.skinRibbonGalleryBarItem = New DevExpress.XtraBars.RibbonGalleryBarItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -78,9 +77,10 @@ Partial Class MainMaster
         Me.RibbonPageGroup11 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageSettings = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroupAppearance = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
+        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager()
+        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
         Me.cmbCompany = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmbLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -90,7 +90,6 @@ Partial Class MainMaster
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarAndDockingController1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,26 +107,16 @@ Partial Class MainMaster
         'RibbonControl
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
-        Me.RibbonControl.Controller = Me.BarAndDockingController1
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barmastersalesreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barmastersalesreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 43
+        Me.RibbonControl.MaxItemId = 44
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
         Me.RibbonControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(1183, 143)
-        Me.RibbonControl.StatusBar = Me.RibbonStatusBar
+        Me.RibbonControl.Size = New System.Drawing.Size(1183, 144)
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
-        '
-        'BarAndDockingController1
-        '
-        Me.BarAndDockingController1.LookAndFeel.SkinName = "VS2010"
-        Me.BarAndDockingController1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BarAndDockingController1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BarAndDockingController1.PropertiesBar.DefaultGlyphSize = New System.Drawing.Size(16, 16)
-        Me.BarAndDockingController1.PropertiesBar.DefaultLargeGlyphSize = New System.Drawing.Size(32, 32)
         '
         'barcompany
         '
@@ -427,6 +416,12 @@ Partial Class MainMaster
         Me.barmenuheader.LargeGlyph = CType(resources.GetObject("barmenuheader.LargeGlyph"), System.Drawing.Image)
         Me.barmenuheader.Name = "barmenuheader"
         '
+        'skinRibbonGalleryBarItem
+        '
+        Me.skinRibbonGalleryBarItem.Caption = "Skin"
+        Me.skinRibbonGalleryBarItem.Id = 43
+        Me.skinRibbonGalleryBarItem.Name = "skinRibbonGalleryBarItem"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -552,7 +547,7 @@ Partial Class MainMaster
         '
         Me.RibbonPageSettings.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.RibbonPageSettings.Appearance.Options.UseFont = True
-        Me.RibbonPageSettings.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup10})
+        Me.RibbonPageSettings.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup10, Me.RibbonPageGroupAppearance})
         Me.RibbonPageSettings.Name = "RibbonPageSettings"
         Me.RibbonPageSettings.Text = "Settings"
         '
@@ -565,6 +560,12 @@ Partial Class MainMaster
         Me.RibbonPageGroup10.Name = "RibbonPageGroup10"
         Me.RibbonPageGroup10.Text = "Group Settings"
         '
+        'RibbonPageGroupAppearance
+        '
+        Me.RibbonPageGroupAppearance.ItemLinks.Add(Me.skinRibbonGalleryBarItem)
+        Me.RibbonPageGroupAppearance.Name = "RibbonPageGroupAppearance"
+        Me.RibbonPageGroupAppearance.Text = "Appearance"
+        '
         'RibbonStatusBar
         '
         Me.RibbonStatusBar.ItemLinks.Add(Me.barStatus)
@@ -572,14 +573,13 @@ Partial Class MainMaster
         Me.RibbonStatusBar.ItemLinks.Add(Me.baruserStatus)
         Me.RibbonStatusBar.ItemLinks.Add(Me.barstatuscompany)
         Me.RibbonStatusBar.ItemLinks.Add(Me.barbtnstatustime)
-        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 833)
+        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 835)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(1183, 33)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1183, 31)
         '
         'DocumentManager1
         '
-        Me.DocumentManager1.BarAndDockingController = Me.BarAndDockingController1
         Me.DocumentManager1.MdiParent = Me
         Me.DocumentManager1.MenuManager = Me.RibbonControl
         Me.DocumentManager1.View = Me.TabbedView1
@@ -685,7 +685,7 @@ Partial Class MainMaster
         '
         Me.PanelControl1.Controls.Add(Me.LayoutControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 143)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 144)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
@@ -708,7 +708,6 @@ Partial Class MainMaster
         Me.Text = "MainMaster"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarAndDockingController1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -731,7 +730,6 @@ Partial Class MainMaster
     Friend WithEvents RibbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
     Friend WithEvents barcompany As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barlocation As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarAndDockingController1 As DevExpress.XtraBars.BarAndDockingController
     Friend WithEvents barstatustrial As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents baruserStatus As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents barStatus As DevExpress.XtraBars.BarStaticItem
@@ -793,6 +791,8 @@ Partial Class MainMaster
     Friend WithEvents barbtnGenerateSalary As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents baruserpolicy As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barmenuheader As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents skinRibbonGalleryBarItem As DevExpress.XtraBars.RibbonGalleryBarItem
+    Friend WithEvents RibbonPageGroupAppearance As DevExpress.XtraBars.Ribbon.RibbonPageGroup
 
 
 End Class

@@ -293,11 +293,11 @@ Partial Class FrmPurchase
         Me.LayoutControl1.Controls.Add(Me.txtunit)
         Me.LayoutControl1.Controls.Add(Me.cmbMaterialSearch)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 30)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 31)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(499, 486, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1203, 681)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1203, 675)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -345,7 +345,7 @@ Partial Class FrmPurchase
         '
         'barbtnExit
         '
-        Me.barbtnExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.barbtnExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
         Me.barbtnExit.Caption = "Exit"
         Me.barbtnExit.Glyph = CType(resources.GetObject("barbtnExit.Glyph"), System.Drawing.Image)
         Me.barbtnExit.Id = 0
@@ -358,7 +358,7 @@ Partial Class FrmPurchase
         '
         'BarSubItem1
         '
-        Me.BarSubItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.BarSubItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
         Me.BarSubItem1.Caption = "File"
         Me.BarSubItem1.Glyph = CType(resources.GetObject("BarSubItem1.Glyph"), System.Drawing.Image)
         Me.BarSubItem1.Id = 1
@@ -411,9 +411,8 @@ Partial Class FrmPurchase
         Me.BarAndDockingController1.AppearancesBar.BarAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.BarAndDockingController1.AppearancesBar.BarAppearance.Normal.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.BarAndDockingController1.AppearancesBar.BarAppearance.Normal.Options.UseBackColor = True
-        Me.BarAndDockingController1.LookAndFeel.SkinName = "DevExpress Dark Style"
-        Me.BarAndDockingController1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BarAndDockingController1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BarAndDockingController1.LookAndFeel.SkinName = "Office 2010 Black"
+        Me.BarAndDockingController1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003
         Me.BarAndDockingController1.PropertiesBar.AllowLinkLighting = False
         Me.BarAndDockingController1.PropertiesBar.DefaultGlyphSize = New System.Drawing.Size(16, 16)
         Me.BarAndDockingController1.PropertiesBar.DefaultLargeGlyphSize = New System.Drawing.Size(32, 32)
@@ -423,33 +422,33 @@ Partial Class FrmPurchase
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1203, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1203, 31)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 711)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1203, 18)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 706)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1203, 23)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 681)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 675)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1203, 30)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 681)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1203, 31)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 675)
         '
         'txtroundoff
         '
         Me.txtroundoff.EditValue = "0.00"
-        Me.txtroundoff.Location = New System.Drawing.Point(808, 571)
+        Me.txtroundoff.Location = New System.Drawing.Point(808, 565)
         Me.txtroundoff.MenuManager = Me.BarManager1
         Me.txtroundoff.Name = "txtroundoff"
         Me.txtroundoff.Properties.Appearance.Options.UseTextOptions = True
@@ -601,9 +600,6 @@ Partial Class FrmPurchase
         '
         'LayoutControlGroup2
         '
-        Me.LayoutControlGroup2.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup2.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup2.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup2.CustomizationFormText = "LayoutControlGroup2"
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[False]
         Me.LayoutControlGroup2.GroupBordersVisible = False
@@ -704,7 +700,7 @@ Partial Class FrmPurchase
         'txtnetamt
         '
         Me.txtnetamt.EditValue = "0.00"
-        Me.txtnetamt.Location = New System.Drawing.Point(1031, 639)
+        Me.txtnetamt.Location = New System.Drawing.Point(1031, 633)
         Me.txtnetamt.MenuManager = Me.BarManager1
         Me.txtnetamt.Name = "txtnetamt"
         Me.txtnetamt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
@@ -724,7 +720,7 @@ Partial Class FrmPurchase
         'txttottax
         '
         Me.txttottax.EditValue = "0.00"
-        Me.txttottax.Location = New System.Drawing.Point(1031, 605)
+        Me.txttottax.Location = New System.Drawing.Point(1031, 599)
         Me.txttottax.MenuManager = Me.BarManager1
         Me.txttottax.Name = "txttottax"
         Me.txttottax.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
@@ -744,7 +740,7 @@ Partial Class FrmPurchase
         'txttotdiscamt
         '
         Me.txttotdiscamt.EditValue = "0.00"
-        Me.txttotdiscamt.Location = New System.Drawing.Point(362, 595)
+        Me.txttotdiscamt.Location = New System.Drawing.Point(362, 589)
         Me.txttotdiscamt.MenuManager = Me.BarManager1
         Me.txttotdiscamt.Name = "txttotdiscamt"
         Me.txttotdiscamt.Properties.Appearance.Options.UseTextOptions = True
@@ -763,7 +759,7 @@ Partial Class FrmPurchase
         'txttotdiscper
         '
         Me.txttotdiscper.EditValue = "0%"
-        Me.txttotdiscper.Location = New System.Drawing.Point(363, 571)
+        Me.txttotdiscper.Location = New System.Drawing.Point(363, 565)
         Me.txttotdiscper.MenuManager = Me.BarManager1
         Me.txttotdiscper.Name = "txttotdiscper"
         Me.txttotdiscper.Properties.Appearance.Options.UseTextOptions = True
@@ -782,7 +778,7 @@ Partial Class FrmPurchase
         'txttaxexcamt
         '
         Me.txttaxexcamt.EditValue = "0.00"
-        Me.txttaxexcamt.Location = New System.Drawing.Point(210, 595)
+        Me.txttaxexcamt.Location = New System.Drawing.Point(210, 589)
         Me.txttaxexcamt.MenuManager = Me.BarManager1
         Me.txttaxexcamt.Name = "txttaxexcamt"
         Me.txttaxexcamt.Properties.Appearance.Options.UseTextOptions = True
@@ -800,7 +796,7 @@ Partial Class FrmPurchase
         'txttaxincamt
         '
         Me.txttaxincamt.EditValue = "0.00"
-        Me.txttaxincamt.Location = New System.Drawing.Point(212, 571)
+        Me.txttaxincamt.Location = New System.Drawing.Point(212, 565)
         Me.txttaxincamt.MenuManager = Me.BarManager1
         Me.txttaxincamt.Name = "txttaxincamt"
         Me.txttaxincamt.Properties.Appearance.Options.UseTextOptions = True
@@ -818,7 +814,7 @@ Partial Class FrmPurchase
         'txttotitem
         '
         Me.txttotitem.EditValue = "0.00"
-        Me.txttotitem.Location = New System.Drawing.Point(83, 595)
+        Me.txttotitem.Location = New System.Drawing.Point(83, 589)
         Me.txttotitem.MenuManager = Me.BarManager1
         Me.txttotitem.Name = "txttotitem"
         Me.txttotitem.Properties.Appearance.Options.UseTextOptions = True
@@ -836,7 +832,7 @@ Partial Class FrmPurchase
         'txtgrossamt
         '
         Me.txtgrossamt.EditValue = "0.00"
-        Me.txtgrossamt.Location = New System.Drawing.Point(1031, 571)
+        Me.txtgrossamt.Location = New System.Drawing.Point(1031, 565)
         Me.txtgrossamt.MenuManager = Me.BarManager1
         Me.txtgrossamt.Name = "txtgrossamt"
         Me.txtgrossamt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
@@ -856,7 +852,7 @@ Partial Class FrmPurchase
         'txttotqty
         '
         Me.txttotqty.EditValue = "0.00"
-        Me.txttotqty.Location = New System.Drawing.Point(82, 571)
+        Me.txttotqty.Location = New System.Drawing.Point(82, 565)
         Me.txttotqty.MenuManager = Me.BarManager1
         Me.txttotqty.Name = "txttotqty"
         Me.txttotqty.Properties.Appearance.Options.UseTextOptions = True
@@ -1069,7 +1065,7 @@ Partial Class FrmPurchase
         Me.GridControl1.MainView = Me.GridViewPOS
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1179, 441)
+        Me.GridControl1.Size = New System.Drawing.Size(1179, 435)
         Me.GridControl1.TabIndex = 9
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPOS})
         '
@@ -1438,16 +1434,13 @@ Partial Class FrmPurchase
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem21, Me.LayoutControlItem15, Me.LayoutControlItem17, Me.LayoutControlItem16, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.LayoutControlItem28, Me.LayoutControlItem29, Me.LayoutControlItem30, Me.LayoutControlItem31, Me.EmptySpaceItem2, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.EmptySpaceItem1, Me.EmptySpaceItem4, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem32, Me.LayoutControlItem5, Me.LayoutControlItem35, Me.LayoutControlItem40, Me.EmptySpaceItem3, Me.LayoutControlItem41})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1203, 681)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1203, 675)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -1467,7 +1460,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem6.CustomizationFormText = "Purchase Details "
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 98)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1183, 461)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1183, 455)
         Me.LayoutControlItem6.Text = "Purchase Details "
         Me.LayoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(123, 13)
@@ -1676,7 +1669,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem22.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem22.Control = Me.txttotqty
         Me.LayoutControlItem22.CustomizationFormText = "Total Qty :"
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(10, 559)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(10, 553)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
         Me.LayoutControlItem22.Size = New System.Drawing.Size(138, 24)
         Me.LayoutControlItem22.Text = "Total Qty  :"
@@ -1693,7 +1686,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem23.Control = Me.txtgrossamt
         Me.LayoutControlItem23.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight
         Me.LayoutControlItem23.CustomizationFormText = "Total Amount :"
-        Me.LayoutControlItem23.Location = New System.Drawing.Point(893, 559)
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(893, 553)
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
         Me.LayoutControlItem23.Size = New System.Drawing.Size(290, 34)
         Me.LayoutControlItem23.Text = "Total Amount :"
@@ -1706,7 +1699,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem24.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem24.Control = Me.txttotitem
         Me.LayoutControlItem24.CustomizationFormText = "Total Item :"
-        Me.LayoutControlItem24.Location = New System.Drawing.Point(10, 583)
+        Me.LayoutControlItem24.Location = New System.Drawing.Point(10, 577)
         Me.LayoutControlItem24.Name = "LayoutControlItem24"
         Me.LayoutControlItem24.Size = New System.Drawing.Size(138, 24)
         Me.LayoutControlItem24.Text = "Total Item :"
@@ -1720,7 +1713,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem25.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem25.Control = Me.txttaxincamt
         Me.LayoutControlItem25.CustomizationFormText = "Tax Inc."
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(148, 559)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(148, 553)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
         Me.LayoutControlItem25.Size = New System.Drawing.Size(127, 24)
         Me.LayoutControlItem25.Text = "Tax Inc. :"
@@ -1734,7 +1727,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem26.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem26.Control = Me.txttaxexcamt
         Me.LayoutControlItem26.CustomizationFormText = "Tax Exc."
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(148, 583)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(148, 577)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
         Me.LayoutControlItem26.Size = New System.Drawing.Size(127, 24)
         Me.LayoutControlItem26.Text = "Tax Exc: "
@@ -1748,7 +1741,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem27.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem27.Control = Me.txttotdiscper
         Me.LayoutControlItem27.CustomizationFormText = "Tot Disc :"
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(275, 559)
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(275, 553)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
         Me.LayoutControlItem27.Size = New System.Drawing.Size(146, 24)
         Me.LayoutControlItem27.Text = "Tot Disc Per %"
@@ -1762,7 +1755,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem28.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem28.Control = Me.txttotdiscamt
         Me.LayoutControlItem28.CustomizationFormText = "Tot Disc Amt :"
-        Me.LayoutControlItem28.Location = New System.Drawing.Point(275, 583)
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(275, 577)
         Me.LayoutControlItem28.Name = "LayoutControlItem28"
         Me.LayoutControlItem28.Size = New System.Drawing.Size(146, 24)
         Me.LayoutControlItem28.Text = "Tot Disc Amt  :"
@@ -1778,7 +1771,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem29.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem29.Control = Me.txttottax
         Me.LayoutControlItem29.CustomizationFormText = "Total Tax :"
-        Me.LayoutControlItem29.Location = New System.Drawing.Point(893, 593)
+        Me.LayoutControlItem29.Location = New System.Drawing.Point(893, 587)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
         Me.LayoutControlItem29.Size = New System.Drawing.Size(290, 34)
         Me.LayoutControlItem29.Text = "Total Tax :"
@@ -1792,7 +1785,7 @@ Partial Class FrmPurchase
         Me.LayoutControlItem30.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LayoutControlItem30.Control = Me.txtnetamt
         Me.LayoutControlItem30.CustomizationFormText = "Net Amount :"
-        Me.LayoutControlItem30.Location = New System.Drawing.Point(893, 627)
+        Me.LayoutControlItem30.Location = New System.Drawing.Point(893, 621)
         Me.LayoutControlItem30.Name = "LayoutControlItem30"
         Me.LayoutControlItem30.Size = New System.Drawing.Size(290, 34)
         Me.LayoutControlItem30.Text = "Net Amount :"
@@ -1816,7 +1809,7 @@ Partial Class FrmPurchase
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.CustomizationFormText = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(10, 607)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(10, 601)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(411, 54)
         Me.EmptySpaceItem2.Text = "EmptySpaceItem2"
@@ -1850,7 +1843,7 @@ Partial Class FrmPurchase
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 559)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 553)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 102)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
@@ -1860,7 +1853,7 @@ Partial Class FrmPurchase
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
         Me.EmptySpaceItem4.CustomizationFormText = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(421, 559)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(421, 553)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(313, 102)
         Me.EmptySpaceItem4.Text = "EmptySpaceItem4"
@@ -1950,7 +1943,7 @@ Partial Class FrmPurchase
         '
         Me.LayoutControlItem40.Control = Me.txtroundoff
         Me.LayoutControlItem40.CustomizationFormText = "Round Off :"
-        Me.LayoutControlItem40.Location = New System.Drawing.Point(734, 559)
+        Me.LayoutControlItem40.Location = New System.Drawing.Point(734, 553)
         Me.LayoutControlItem40.Name = "LayoutControlItem40"
         Me.LayoutControlItem40.Size = New System.Drawing.Size(159, 24)
         Me.LayoutControlItem40.Text = "Round Off :"
@@ -1962,7 +1955,7 @@ Partial Class FrmPurchase
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
         Me.EmptySpaceItem3.CustomizationFormText = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(734, 583)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(734, 577)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(159, 78)
         Me.EmptySpaceItem3.Text = "EmptySpaceItem3"

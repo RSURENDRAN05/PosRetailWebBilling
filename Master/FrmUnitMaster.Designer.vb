@@ -29,10 +29,10 @@ Partial Class FrmUnitMaster
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemImageunitactive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
-        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemImageunitactive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
         Me.txtunitname = New DevExpress.XtraEditors.TextEdit()
         Me.txtunitid = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -82,7 +82,7 @@ Partial Class FrmUnitMaster
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(289, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(117, 24)
@@ -160,22 +160,6 @@ Partial Class FrmUnitMaster
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 55
         '
-        'RepositoryItemImageunitactive
-        '
-        Me.RepositoryItemImageunitactive.AutoHeight = False
-        Me.RepositoryItemImageunitactive.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
-        Me.RepositoryItemImageunitactive.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.RepositoryItemImageunitactive.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("In-Active", "0", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Active", "1", 1)})
-        Me.RepositoryItemImageunitactive.Name = "RepositoryItemImageunitactive"
-        Me.RepositoryItemImageunitactive.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.RepositoryItemImageunitactive.SmallImages = Me.imgcol
-        '
-        'imgcol
-        '
-        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
-        Me.imgcol.Images.SetKeyName(1, "accept.png")
-        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "UnitName"
@@ -194,6 +178,22 @@ Partial Class FrmUnitMaster
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 77
+        '
+        'RepositoryItemImageunitactive
+        '
+        Me.RepositoryItemImageunitactive.AutoHeight = False
+        Me.RepositoryItemImageunitactive.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
+        Me.RepositoryItemImageunitactive.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RepositoryItemImageunitactive.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("In-Active", "0", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Active", "1", 1)})
+        Me.RepositoryItemImageunitactive.Name = "RepositoryItemImageunitactive"
+        Me.RepositoryItemImageunitactive.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.RepositoryItemImageunitactive.SmallImages = Me.imgcol
+        '
+        'imgcol
+        '
+        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
+        Me.imgcol.Images.SetKeyName(1, "accept.png")
         '
         'txtunitname
         '
@@ -218,9 +218,6 @@ Partial Class FrmUnitMaster
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False

@@ -163,7 +163,7 @@ Partial Class FrmMainGroup
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl1.Location = New System.Drawing.Point(350, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(117, 24)
@@ -194,11 +194,11 @@ Partial Class FrmMainGroup
         Me.btnsave.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.Options.UseBackColor = True
-        Me.btnsave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnsave.Image = CType(resources.GetObject("btnsave.Image"), System.Drawing.Image)
         Me.btnsave.Location = New System.Drawing.Point(126, 80)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(162, 38)
+        Me.btnsave.StyleController = Me.LayoutControl1
         Me.btnsave.TabIndex = 9
         Me.btnsave.Text = "Save"
         '
@@ -207,11 +207,11 @@ Partial Class FrmMainGroup
         Me.btncancel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.Options.UseBackColor = True
-        Me.btncancel.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
         Me.btncancel.Location = New System.Drawing.Point(292, 80)
         Me.btncancel.Name = "btncancel"
         Me.btncancel.Size = New System.Drawing.Size(175, 38)
+        Me.btncancel.StyleController = Me.LayoutControl1
         Me.btncancel.TabIndex = 8
         Me.btncancel.Text = "Cancel"
         '
@@ -234,6 +234,7 @@ Partial Class FrmMainGroup
         Me.txtmainname.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.txtmainname.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtmainname.Size = New System.Drawing.Size(386, 30)
+        Me.txtmainname.StyleController = Me.LayoutControl1
         Me.txtmainname.TabIndex = 5
         '
         'txtmainid
@@ -249,9 +250,6 @@ Partial Class FrmMainGroup
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -320,6 +318,8 @@ Partial Class FrmMainGroup
         '
         'LayoutControlItem8
         '
+        Me.LayoutControlItem8.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black
+        Me.LayoutControlItem8.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem8.Control = Me.LabelControl1
         Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem8"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(338, 0)

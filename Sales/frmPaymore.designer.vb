@@ -477,8 +477,6 @@ Partial Class frmPaymore
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -491,7 +489,7 @@ Partial Class frmPaymore
         '
         'LayoutControlItem1
         '
-        Me.LayoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.White
+        Me.LayoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black
         Me.LayoutControlItem1.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem1.Control = Me.GridControl3
         Me.LayoutControlItem1.CustomizationFormText = "Payment List"

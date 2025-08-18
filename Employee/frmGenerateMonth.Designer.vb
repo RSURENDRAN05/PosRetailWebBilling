@@ -107,7 +107,7 @@ Partial Class frmGenerateMonth
         '
         'ExportDataToolStripMenuItem
         '
-        Me.ExportDataToolStripMenuItem.Image = Global.PosRetailWebBilling.My.Resources.Resources.Action_Totals_Row_32x32
+        ' Me.ExportDataToolStripMenuItem.Image = Global.PosRetailWebBilling.My.Resources.Resources.Action_Totals_Row_32x32
         Me.ExportDataToolStripMenuItem.Name = "ExportDataToolStripMenuItem"
         Me.ExportDataToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.ExportDataToolStripMenuItem.Text = "Export Data"

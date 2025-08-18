@@ -35,6 +35,7 @@ Partial Class PosSales
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barbtnstatus = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnbilltype = New DevExpress.XtraBars.BarStaticItem()
+        Me.barbtnposstatus = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -107,7 +108,6 @@ Partial Class PosSales
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.barbtnposstatus = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -258,6 +258,12 @@ Partial Class PosSales
         Me.barbtnbilltype.Id = 8
         Me.barbtnbilltype.Name = "barbtnbilltype"
         Me.barbtnbilltype.TextAlignment = System.Drawing.StringAlignment.Near
+        '
+        'barbtnposstatus
+        '
+        Me.barbtnposstatus.Caption = "BarButtonItem3"
+        Me.barbtnposstatus.Id = 11
+        Me.barbtnposstatus.Name = "barbtnposstatus"
         '
         'barDockControlTop
         '
@@ -1227,12 +1233,6 @@ Partial Class PosSales
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(318, 64)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'barbtnposstatus
-        '
-        Me.barbtnposstatus.Caption = "BarButtonItem3"
-        Me.barbtnposstatus.Id = 11
-        Me.barbtnposstatus.Name = "barbtnposstatus"
         '
         'PosSales
         '

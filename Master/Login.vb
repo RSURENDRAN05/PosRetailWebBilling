@@ -9,6 +9,15 @@ Public Class Login
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
             InitializeComponent()
+
+            ' Debug: Show skin status on Login form load
+            System.Diagnostics.Debug.WriteLine("=== Login Constructor - Skin Status ===")
+            System.Diagnostics.Debug.WriteLine("Current skin: " & DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName)
+            System.Diagnostics.Debug.WriteLine("Saved skin: " & SkinManager.GetSavedSkin())
+
+            ' Apply the current skin to Login form (don't reload, just apply what's already set)
+            SkinManager.ApplySkinToNewForm(Me)
+
             M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
             M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
             M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
@@ -103,5 +112,5 @@ Public Class Login
         End Try
     End Sub
 
-   
+
 End Class

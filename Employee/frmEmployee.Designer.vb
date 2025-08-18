@@ -23,6 +23,8 @@ Partial Class frmEmployee
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEmployee))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,6 +39,7 @@ Partial Class frmEmployee
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtnextpermit = New DevExpress.XtraEditors.TextEdit()
         Me.txtcurrentpermit = New DevExpress.XtraEditors.TextEdit()
         Me.txtmonthexpire = New DevExpress.XtraEditors.TextEdit()
@@ -161,12 +164,10 @@ Partial Class frmEmployee
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ExportDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtnextpermit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcurrentpermit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,7 +278,6 @@ Partial Class frmEmployee
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -336,6 +336,18 @@ Partial Class frmEmployee
         Me.GridControl1.Size = New System.Drawing.Size(1135, 336)
         Me.GridControl1.TabIndex = 42
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportDataToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(135, 26)
+        '
+        'ExportDataToolStripMenuItem
+        '
+        Me.ExportDataToolStripMenuItem.Name = "ExportDataToolStripMenuItem"
+        Me.ExportDataToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.ExportDataToolStripMenuItem.Text = "Export Data"
         '
         'GridView1
         '
@@ -464,6 +476,15 @@ Partial Class frmEmployee
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 10
         Me.GridColumn15.Width = 80
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Notes"
+        Me.GridColumn16.FieldName = "Notes"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 11
+        Me.GridColumn16.Width = 100
         '
         'txtnextpermit
         '
@@ -1146,10 +1167,7 @@ Partial Class frmEmployee
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.LayoutControlGroup1.AppearanceGroup.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[False]
         Me.LayoutControlGroup1.GroupBordersVisible = False
@@ -1994,28 +2012,6 @@ Partial Class frmEmployee
         Me.barDockControlRight.Location = New System.Drawing.Point(1377, 29)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 767)
         '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Notes"
-        Me.GridColumn16.FieldName = "Notes"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 11
-        Me.GridColumn16.Width = 100
-        '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportDataToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 48)
-        '
-        'ExportDataToolStripMenuItem
-        '
-        Me.ExportDataToolStripMenuItem.Image = Global.PosRetailWebBilling.My.Resources.Resources.Action_Totals_Row_32x32
-        Me.ExportDataToolStripMenuItem.Name = "ExportDataToolStripMenuItem"
-        Me.ExportDataToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ExportDataToolStripMenuItem.Text = "Export Data"
-        '
         'frmEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2032,6 +2028,7 @@ Partial Class frmEmployee
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtnextpermit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcurrentpermit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2143,7 +2140,6 @@ Partial Class frmEmployee
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

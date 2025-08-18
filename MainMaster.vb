@@ -1,4 +1,9 @@
-﻿Public Class MainMaster 
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraBars.Helpers
+
+Public Class MainMaster
     Dim bankId As String = ""
     Dim profileId As String = ""
 
@@ -35,6 +40,16 @@
         cmbCompany.EditValue = _companyInfo.ComId
         cmbLocation.EditValue = _companyInfo.LocId
         'RibbonPage2.Visible = False 'ClientInfo
+
+        ' Apply skin to MainMaster form (skins already initialized at app startup)
+        SkinManager.ApplySkinToNewForm(Me)
+
+        ' Initialize the skin gallery
+        InitializeSkinGallery()
+
+        ' Debug: Test skin loading on application startup
+        System.Diagnostics.Debug.WriteLine("=== MainMaster Constructor - Skin Status ===")
+        System.Diagnostics.Debug.WriteLine(SkinManager.GetCurrentSkinStatus())
     End Sub
     Private Sub MenuReading()
         Try
@@ -207,7 +222,7 @@
                             barmastersalesreport.Enabled = True
                         Else
                             barmastersalesreport.Enabled = False
-                            
+
                         End If
                     End If
                     Dim NewCustomer As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewCustomer"
@@ -216,7 +231,7 @@
                             barnewcustomer.Enabled = True
                         Else
                             barnewcustomer.Enabled = False
-                           
+
                         End If
                     End If
                     'Accounts
@@ -251,7 +266,7 @@
                             barnewledger.Enabled = True
                         Else
                             barnewledger.Enabled = False
-                           
+
                         End If
                     End If
                     Dim LedgerEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "LedgerEntry"
@@ -260,7 +275,7 @@
                             barledgerentry.Enabled = True
                         Else
                             barledgerentry.Enabled = False
-                       
+
                         End If
                     End If
                     Dim ChequeEntry As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "ChequeEntry"
@@ -269,7 +284,7 @@
                             barchequeentry.Enabled = True
                         Else
                             barchequeentry.Enabled = False
-                            
+
                         End If
                     End If
                     Dim LedgerReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "LedgerReport"
@@ -278,7 +293,7 @@
                             barledgerReport.Enabled = True
                         Else
                             barledgerReport.Enabled = False
-                           
+
                         End If
                     End If
                     'UserMaster
@@ -339,7 +354,7 @@
                             barbtngeneratemonth.Enabled = True
                         Else
                             barbtngeneratemonth.Enabled = False
-                      
+
                         End If
                     End If
                     Dim GenerateSalary As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "GenerateSalary"
@@ -348,7 +363,7 @@
                             barbtnGenerateSalary.Enabled = True
                         Else
                             barbtnGenerateSalary.Enabled = False
-                             
+
                         End If
                     End If
                     Dim PaySlipPrint As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PaySlipPrint"
@@ -357,7 +372,7 @@
                             barbtnpayslipprint.Enabled = True
                         Else
                             barbtnpayslipprint.Enabled = False
-                             
+
                         End If
                     End If
                     'Settings
@@ -392,7 +407,7 @@
                             barbtnPrintProfile.Enabled = True
                         Else
                             barbtnPrintProfile.Enabled = False
-                             
+
                         End If
                     End If
                     Dim MainMenuList As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MainMenuList"
@@ -401,7 +416,7 @@
                             barmenuheader.Enabled = True
                         Else
                             barmenuheader.Enabled = False
-                            
+
                         End If
                     End If
                 End If
@@ -526,7 +541,9 @@
 
     Private Sub barpossales_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barpossales.ItemClick
         Try
-            PosSales.ShowDialog()
+            ' Show the new DevExpress LayoutControl-based POS form
+            Dim frmPos As New PosSalesII()
+            frmPos.ShowDialog()
         Catch ex As Exception
 
         End Try
@@ -653,7 +670,7 @@
         End Try
     End Sub
 
-    
+
     Private Sub cmbCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cmbCompany.EditValueChanged
         Try
             cmbCompany_ListChanged(Nothing, Nothing)
@@ -729,6 +746,93 @@
             FrmGroupPolicyManagerSimple.Show()
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    ' Initialize the skin gallery using DevExpress SkinHelper (much more reliable!)
+    Private Sub InitializeSkinGallery()
+        Try
+            ' Use DevExpress built-in SkinHelper to initialize the gallery
+            ' This automatically populates the gallery with all available skins
+            ' and handles skin preview images and application
+            SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem, True)
+
+            ' Get the current active skin (from UserLookAndFeel or saved settings)
+            Dim currentSkin As String = UserLookAndFeel.Default.SkinName
+            If String.IsNullOrEmpty(currentSkin) OrElse currentSkin = "Default" Then
+                currentSkin = SkinManager.GetSavedSkin()
+            End If
+
+            System.Diagnostics.Debug.WriteLine("InitializeSkinGallery - Current active skin: " & currentSkin)
+
+            ' Find and select the current skin in the gallery
+            If Not String.IsNullOrEmpty(currentSkin) Then
+                Dim found As Boolean = False
+                For Each group As DevExpress.XtraBars.Ribbon.GalleryItemGroup In skinRibbonGalleryBarItem.Gallery.Groups
+                    For Each item As DevExpress.XtraBars.Ribbon.GalleryItem In group.Items
+                        ' Check both Caption and Value properties for skin name matching
+                        If item.Caption = currentSkin OrElse
+                           (item.Value IsNot Nothing AndAlso item.Value.ToString() = currentSkin) Then
+                            item.Checked = True
+                            found = True
+                            System.Diagnostics.Debug.WriteLine("Found and selected skin in gallery: " & currentSkin)
+                            Exit For
+                        End If
+                    Next
+                    If found Then Exit For
+                Next
+
+                If Not found Then
+                    System.Diagnostics.Debug.WriteLine("Warning: Current skin '" & currentSkin & "' not found in gallery")
+                End If
+            End If
+
+            System.Diagnostics.Debug.WriteLine("Skin gallery initialized using SkinHelper with " &
+                                             skinRibbonGalleryBarItem.Gallery.Groups(0).Items.Count & " skins")
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("Error initializing skin gallery with SkinHelper: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Handle skin gallery item selection
+    Private Sub skinRibbonGalleryBarItem_GalleryItemClick(sender As Object, e As DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs) Handles skinRibbonGalleryBarItem.GalleryItemClick
+        Try
+            Dim selectedItem As DevExpress.XtraBars.Ribbon.GalleryItem = e.Item
+            If selectedItem IsNot Nothing Then
+                Dim skinName As String = ""
+
+                ' Get skin name from the item (SkinHelper may use different properties)
+                If selectedItem.Value IsNot Nothing Then
+                    skinName = selectedItem.Value.ToString()
+                ElseIf Not String.IsNullOrEmpty(selectedItem.Caption) Then
+                    skinName = selectedItem.Caption
+                End If
+
+                If Not String.IsNullOrEmpty(skinName) Then
+                    System.Diagnostics.Debug.WriteLine("=== MainMaster Gallery - Skin Selection ===")
+                    System.Diagnostics.Debug.WriteLine("Selected skin: " & skinName)
+
+                    ' Save the skin setting (when using SkinHelper, skin is applied automatically)
+                    SkinManager.SaveSkinSetting(skinName)
+
+                    ' Test the persistence using the simple test method
+                    SkinManager.TestPersistence(skinName)
+
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Skin '" & skinName & "' applied and saved!" & vbCrLf &
+                        "Check Debug Output for persistence test results.",
+                        "Theme Changed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information)
+                End If
+            End If
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("Error in SkinHelper GalleryItemClick: " & ex.Message & vbCrLf & ex.StackTrace)
+            DevExpress.XtraEditors.XtraMessageBox.Show(
+                "Error applying skin: " & ex.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

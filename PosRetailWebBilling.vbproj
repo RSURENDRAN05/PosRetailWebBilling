@@ -297,6 +297,7 @@
     <Compile Include="ClsModule\functionModule.vb" />
     <Compile Include="ClsModule\IniFile.vb" />
     <Compile Include="ClsModule\MCaluation.vb" />
+    <Compile Include="ClsModule\SkinManager.vb" />
     <Compile Include="PrintModule\Billing_rpt.Designer.vb">
       <DependentUpon>Billing_rpt.vb</DependentUpon>
     </Compile>
@@ -412,17 +413,20 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
+    <Compile Include="MyProjectSettings\AssemblyInfo.vb" />
+    <Compile Include="MyProjectSettings\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
+    <Compile Include="MyProjectSettings\Application.vb">
+      <DependentUpon>Application.Designer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MyProjectSettings\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Settings.Designer.vb">
+    <Compile Include="MyProjectSettings\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -439,6 +443,12 @@
     <Compile Include="Sales\frmPaymore.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmPosRetailBilling.Designer.vb">
+      <DependentUpon>frmPosRetailBilling.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmPosRetailBilling.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\frmSelectBill.designer.vb">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
     </Compile>
@@ -449,6 +459,12 @@
       <DependentUpon>PosSales.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\PosSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\PosSalesII.Designer.vb">
+      <DependentUpon>PosSalesII.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PosSalesII.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -528,6 +544,7 @@
     <EmbeddedResource Include="Master\FrmNewCustomer.resx">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="PaymentGateWay\frmpaymentgateway.resx">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
     </EmbeddedResource>
@@ -585,8 +602,8 @@
     <EmbeddedResource Include="Master\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\licenses.licx" />
-    <EmbeddedResource Include="My Project\Resources.resx">
+    <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
+    <EmbeddedResource Include="MyProjectSettings\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
@@ -598,19 +615,25 @@
     <EmbeddedResource Include="Sales\frmPaymore.resx">
       <DependentUpon>frmPaymore.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmPosRetailBilling.resx">
+      <DependentUpon>frmPosRetailBilling.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmSelectBill.resx">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosSales.resx">
       <DependentUpon>PosSales.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\PosSalesII.resx">
+      <DependentUpon>PosSalesII.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="My Project\Application.myapp">
+    <None Include="MyProjectSettings\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\Settings.settings">
+    <None Include="MyProjectSettings\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
@@ -638,9 +661,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
