@@ -62,7 +62,11 @@ Public Class PosSalesII
 
             End If
             LoadItemMaster()
-
+            If _globalSetting.SearchProductCode = True Then
+                barSearchProductCode.Checked = True
+            Else
+                barSearchProductCode.Checked = False
+            End If
         Catch ex As Exception
 
         End Try
@@ -371,6 +375,7 @@ Public Class PosSalesII
     End Sub
 
 
+
     Private Sub cmbMaterialSearch_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbMaterialSearch.KeyDown
         Try
             Dim Qty As Decimal = 1.0
@@ -403,13 +408,24 @@ Public Class PosSalesII
                 Else
                     Dim str As String
                     str = cmbMaterialSearch.Text
-                    If Get_product_info(str, Qty, "ItemCode", Errstr) = False Then
-                        DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If _globalSetting.SearchProductCode = True Then
+                        If Get_product_info(str, Qty, "ItemCode", Errstr) = False Then
+                            DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            cmbMaterialSearch.Text = ""
+                            cmbMaterialSearch.Focus()
+                            cmbMaterialSearch.EditValue = Nothing
+                        End If
                     Else
-                        cmbMaterialSearch.Text = ""
-                        cmbMaterialSearch.Focus()
-                        cmbMaterialSearch.EditValue = Nothing
+                        If Get_product_info(str, Qty, "BarCode", Errstr) = False Then
+                            DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            cmbMaterialSearch.Text = ""
+                            cmbMaterialSearch.Focus()
+                            cmbMaterialSearch.EditValue = Nothing
+                        End If
                     End If
+
                 End If
             ElseIf e.KeyCode = Keys.Escape Then
                 If GridViewPOS.RowCount = 0 Then
@@ -472,45 +488,46 @@ Public Class PosSalesII
             If ReceivedProCode Is Nothing Then
                 Return False
             End If
-            Dim dtrows As System.Data.EnumerableRowCollection(Of DataRow)
+            Dim dtrows As System.Data.EnumerableRowCollection(Of DataRow) = Nothing
 
             If _Mode = "ItemCode" Then
-                ReceivedProCode = _productCode
-                dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("BARCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase) 'OrElse String.Equals(dtrow("ItemCode"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
-                'dtrow("MBarcode") = Barcode'dtrow.Field(Of String)("MN_ID") = ReceivedProCode Select dtrow   
-                If dtrows.Any = False Then
-                    cmbMaterialSearch.EditValue = Nothing
-                    ErrorMsg = "This Barcode is not Exists" & Environment.NewLine & "Kindly Refresh(F5) the Windows and Try Again."
-                    Return False
-                Else
-                    Dim _Code As String = ""
-                    Dim _item As String = ""
-                    Dim _barcode As String = ""
-                    Dim _wholesalerate As String = ""
-                    Dim _srate As String = ""
-                    Dim _taxId As String = ""
-                    Dim _taxValue As String = ""
-                    Dim TaxInEx As Integer = 0
-                    If _globalSetting.TaxInEx = True Then
-                        TaxInEx = 0
-                    Else
-                        TaxInEx = 1
-                    End If
+
+                dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("BARCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
+            ElseIf _Mode = "BarCode" Then
+
+                dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("ITEMCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
+            Else
+                ' Handle invalid mode
+                ErrorMsg = "Invalid search mode: " & _Mode
+                Return False
+            End If
+
+            If dtrows Is Nothing OrElse dtrows.Any = False Then
+                cmbMaterialSearch.EditValue = Nothing
+                ErrorMsg = "This " & _Mode & " is not Exists" & Environment.NewLine & "Kindly Refresh(F5) the Windows and Try Again."
+                Return False
+            Else
+                Dim _Code As String = ""
+                Dim _item As String = ""
+                Dim _barcode As String = ""
+                Dim _wholesalerate As String = ""
+                Dim _srate As String = ""
+                Dim _taxId As String = ""
+                Dim _taxValue As String = ""
 
 
-                    Dim _dsMaterial As New DataTable
-                    _dsMaterial = dtrows.CopyToDataTable
-                    If _dsMaterial.Rows.Count > 0 Then
-                        For Each _rows In _dsMaterial.Rows
-                            _Code = _rows("ITEMCODE")
-                            _item = _rows("ITEMNAME")
-                            _barcode = _rows("BARCODE")
-                            _srate = _rows("SELL")
-                            _taxValue = _rows("TAXVALUE")
-                            'txtnotes.Text = _rows("Remarks")
-                        Next
-                        _InsertDt(_Code, _item, _srate, _taxValue, TaxInEx)
-                    End If
+                Dim _dsMaterial As New DataTable
+                _dsMaterial = dtrows.CopyToDataTable
+                If _dsMaterial.Rows.Count > 0 Then
+                    For Each _rows In _dsMaterial.Rows
+                        _Code = _rows("ITEMCODE")
+                        _item = _rows("ITEMNAME")
+                        _barcode = _rows("BARCODE")
+                        _srate = _rows("SELL")
+                        _taxValue = _rows("TAXVALUE")
+                        'txtnotes.Text = _rows("Remarks")
+                    Next
+                    _InsertDt(_Code, _item, _srate, _taxValue)
                 End If
             End If
             Return True
@@ -520,7 +537,7 @@ Public Class PosSalesII
         End Try
 
     End Function
-    Public Sub _InsertDt(ByRef _code As Integer, ByRef _items As String, ByRef _srate As Double, ByRef _taxValue As Integer, ByRef _taxInEx As Integer)
+    Public Sub _InsertDt(ByRef _code As Integer, ByRef _items As String, ByRef _srate As Double, ByRef _taxValue As Integer)
         Try
             Dim Qty As Integer = 1
             Dim PrintItem As Integer = 1
@@ -545,13 +562,13 @@ Public Class PosSalesII
             _SnoCount = _SnoCount + 1
             TAmount = Qty * _srate
             GAmount = Qty * _srate
-            TaxRetunAmt = _ReturnGst(_taxInEx, _taxValue, TAmount)
-            If _taxInEx = 0 Then
+            TaxRetunAmt = _ReturnGst(_taxValue, TAmount)
+            If _globalSetting.TaxExculsive = True Then
                 NetAmount = TAmount + TaxRetunAmt
             Else
                 NetAmount = TAmount
             End If
-            GridDataTble_Insert.Rows.Add(_SnoCount, 0, _code, Trim(_item), _srate, Qty, TAmount, DisPer, DisAmt, DisBPer, DisBAmt, GAmount, _taxValue, _taxInEx, TaxRetunAmt, _RoundOff(NetAmount))
+            GridDataTble_Insert.Rows.Add(_SnoCount, 0, _code, Trim(_item), _srate, Qty, TAmount, DisPer, DisAmt, DisBPer, DisBAmt, GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount))
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
@@ -565,22 +582,18 @@ Public Class PosSalesII
 
         End Try
     End Sub
-    Public Function _ReturnGst(ByRef GstType As Integer, ByRef GstValue As Double, ByRef Amount As Double)
+    Public Function _ReturnGst(ByRef GstValue As Double, ByRef Amount As Double)
         Try
             Dim _RtAmt As Decimal = 0.0
             Dim _taxvalue As Double = GstValue
-            Select Case GstType
-                Case 0 'exclusive
-                    ' _taxvalue = (_taxvalue / 100)
-                    _taxvalue = (_taxvalue / 100)
-                    _RtAmt = (Amount * _taxvalue)
-                Case 1 'inclusive
-                    _RtAmt = ((Amount * GstValue) / 100)
-                    _taxvalue = (_taxvalue / 100) + 1
-                    _RtAmt = (Amount - (Amount / _taxvalue))
-                Case Nothing
-                    _RtAmt = 0.0
-            End Select
+            If _globalSetting.TaxExculsive = True Then
+                _taxvalue = (_taxvalue / 100)
+                _RtAmt = (Amount * _taxvalue)
+            Else
+                _RtAmt = ((Amount * GstValue) / 100)
+                _taxvalue = (_taxvalue / 100) + 1
+                _RtAmt = (Amount - (Amount / _taxvalue))
+            End If
             Return _RtAmt
         Catch ex As Exception
             Return False
@@ -794,7 +807,7 @@ Public Class PosSalesII
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = Format((Format(DValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = v 'GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") - GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT") = Format((Format(TValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-                If _globalSetting.TaxInEx = True Then
+                If _globalSetting.TaxExculsive = True Then
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") + GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT")
                 Else
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT")
@@ -866,7 +879,7 @@ Public Class PosSalesII
 
 
 
-                'Here Calculate the Discount 
+                'Here Calculate the Discount
                 If CalPercentage(BasicRate, DisPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
                     Return False
                 End If
@@ -887,7 +900,7 @@ Public Class PosSalesII
 
             Else
 
-                'Here Calculate the Discount 
+                'Here Calculate the Discount
                 If CalPercentage(BasicRate, DisPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
                     Return False
                 End If
@@ -914,4 +927,23 @@ Public Class PosSalesII
     End Function
 
 #End Region
+#Region "OptionButton"
+
+    Private Sub barSearchProductCode_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barSearchProductCode.ItemClick
+        Try
+
+            ' Convert Boolean to Integer (1 for True, 0 for False)
+            Dim statusValue As Integer = If(barSearchProductCode.Checked, 1, 0)
+
+            ' Update the setting using the helper function
+            UpdatePosSetting("SearchProductCode", statusValue, 0, 0)
+
+        Catch ex As Exception
+            ' If update fails, revert the UI change
+            barSearchProductCode.Checked = Not barSearchProductCode.Checked
+        End Try
+    End Sub
+#End Region
+
+
 End Class

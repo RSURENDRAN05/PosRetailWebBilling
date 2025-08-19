@@ -496,7 +496,7 @@ class funcProcessMgmt
         $rowCusId = (mysqli_fetch_assoc($resCutomer));
         $rowCusIds = $rowCusId;
         $sqlquery = (" INSERT INTO `ledgermaster`(`ledgerrefId`, `ledgerName`, `ledgerparenId`, `ledgergroupId`,`ledgerType`,`ledgeropenDate`, `ledgeropenbal`, `ledgerdrcr`, `ledgerActive`) VALUES"
-            . "(" . $rowCusIds['supplierId'] . ",'" . $customer . "',2,3,'SUP'," . date("Y/m/d") . "',0.00,'Cr','Active')");
+            . "(" . $rowCusIds['supplierId'] . ",'" . $customer . "',2,3,'SUP'," . date("Y/m/d") . ",0.00,'Cr','Active')");
         //  print_r($rowCusIds);
         $result = mysqli_query($conn, $sqlquery);
         return $result;
@@ -1013,6 +1013,7 @@ class funcProcessMgmt
         } else {
             $result .= $this->_UpdateLiveStockEditSales($psid_invoice_procode, $psid_invoice_proqty, $comid, $locid);
             $sqlDeleteQuery = ("DELETE FROM `pos_sale_invoicedtl` WHERE `psid_invoice_id` ='" . $psid_invoice_id . "' AND `psid_invoice_trno`='" . $psid_invoice_trno . "'");
+
             $result .= mysqli_query($conn, $sqlDeleteQuery);
             $sqlquery2 = ("INSERT INTO `pos_sale_invoicedtl`(`psid_invoice_sno`,`psid_invoice_salid`, `psid_invoice_prf`, `psid_invoice_date`,`psid_invoice_trno`,"
                 . " `psid_invoice_description`, `psid_invoice_procode`, `psid_invoice_proqty`, `psid_invoice_rate`,`psid_invoice_amt`,"
@@ -1656,8 +1657,9 @@ class funcProcessMgmt
                 . " VALUES ('" . $billno . "','" . $ledgerid2 . "','" . $bankname . "',$chequeamt,'" . $chequedate . "','" . $chequeno . "','I')");
             $result = mysqli_query($conn, $sqlMode);
             return $result;
+        } else {
+            return $sqlquery2;
         }
-        return $result; //$sqlquery4 . '' . $sqlquery2;
     }
 
     public function storeJournalReceipt($ledgerid, $description, $dr, $cr, $jstatus, $billno, $entrydate, $actype, $modetype, $narration, $status, $username, $description2, $ledgerid2, $bankname, $chequeamt, $chequedate, $chequeno, $comid, $locid)
@@ -1963,8 +1965,8 @@ class funcProcessMgmt
     public function GetEmpOldMonthofsalary($pemp_comid, $pemp_locid, $pem_month)
     {
         $conn = $this->conn;
-        $sqlquery = ("SELECT pem.pemp_id as EmpTrId,pem.pemp_refid as EmpRefId,pe.emp_printname as EmpName,pem.pemp_month as EmpMonth,pem.pemp_comid AS EmpComId, pcm.pcm_name as EmpComName,"
-            . "pem.pemp_locid as EmpLocId,plm.plm_name as EmpLocName,pem.pemp_noofdays as EmpNoOfDays,pem.pemp_extradays as EmpExtraDays,pem.pemp_extrahrs as EmpExtraOtHrs,"
+        $sqlquery = ("SELECT pem.pemp_id as EmpTrId,pem.pemp_refid as EmpRefId,pe.emp_printname as EmpName,pem.pemp_month as EmpMonth,pem.pemp_comid AS EmpComId, "
+            . "pcm.pcm_name as EmpComName,pem.pemp_locid as EmpLocId,plm.plm_name as EmpLocName,pem.pemp_noofdays as EmpNoOfDays,pem.pemp_extradays as EmpExtraDays,pem.pemp_extrahrs as EmpExtraOtHrs,"
             . "pem.pemp_advance as EmpAdvance,pem.`pemp_deduction` as EmpDeduction,pem.`pemp_bankin` as EmpBankIn FROM `pos_emp_monthprocess` as pem  "
             . "INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pem.pemp_refid "
             . "INNER JOIN pos_company_mast as pcm ON pem.pemp_comid = pcm.pcm_id "
@@ -2004,9 +2006,10 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlquery = ("SELECT pem.pemp_id as EmpTrId,pem.pemp_refid as EmpRefId,pe.emp_printname as EmpName,pem.pemp_month as EmpMonth,pem.pemp_comid AS EmpComId,"
             . "pcm.pcm_name as EmpComName,pem.pemp_locid as EmpLocId,plm.plm_name as EmpLocName,pe.emp_basicsalary as EmpBasic,pem.pemp_noofdays as EmpNoOfDays,"
-            . "pe.emp_basicrate as EmpBasicRate,pem.pemp_extradays as EmpExtraDays,pe.emp_otrate as ExtraDayRate,pem.pemp_extrahrs as EmpExtraOtHrs,pe.emp_othrsrate as EmpHrsRate,"
-            . "pem.pemp_advance as EmpAdvance,pe.emp_allowance as EmpAllowance,pe.emp_epf as EmpEpf,pe.emp_socso as EmpSocso,pem.`pemp_deduction` as EmpDeduction,pem.`pemp_bankin` as EmpBank"
-            . " FROM `pos_emp_monthprocess` as pem "
+            . " pef.`pef_wages` as EmpWages, pef.`pef_extraday` as EmpExtraDays, pef.`pef_extradayamt` as EmpExtraDayAmt, pef.`pef_extrahours` as EmpExtraOtHrs, "
+            . " pef.`pef_extrahrsamt` as EmpExtraOtAmt, pef.`pef_allowance` as EmpAllowance, pef.`pef_grossamt` as EmpGrossAmt, pef.`pef_advance` as EmpAdvance, "
+            . " pef.`pef_epf` as EmpEpf, pef.`pef_socso` as EmpSocso, pef.`pef_deduction` as EmpDeduction, pef.`pef_netpay` as EmpNetPay, pef.`pef_bank` as EmpBank,"
+            . " pef.`pef_netcash` as EmpNetCash FROM `pos_emp_monthprocess` as pem "
             . "INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pem.pemp_refid "
             . "INNER JOIN pos_company_mast as pcm ON pem.pemp_comid = pcm.pcm_id "
             . "INNER JOIN pos_location_mast as plm ON pem.pemp_locid = plm.plm_id"
@@ -2406,7 +2409,10 @@ class funcProcessMgmt
                     INNER JOIN `pos_group_menu_permissions` as gmp ON ug.`pug_id` = gmp.`pgmp_group_id`
                     LEFT JOIN `pos_headermenu` as phm ON gmp.`pgmp_header_menu_id` = phm.`phid`
                     LEFT JOIN `pos_submenu` as psm ON gmp.`pgmp_sub_menu_id` = psm.`psid`
-                    WHERE u.`id`='" . $user_id . "' AND u.`status`='1' AND ug.`pug_active`='1' AND gmp.`pgmp_active`='1'
+                    WHERE u.`id`='" . $user_id . "'
+                    AND u.`status`='1'
+                    AND ug.`pug_active`='1'
+                    AND gmp.`pgmp_active`='1'
                     ORDER BY menu_name ASC");
 
         $result = mysqli_query($conn, $sqlQuery);
@@ -2469,6 +2475,58 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
         $sqlQuery = ("UPDATE `users` SET `group_id`='" . $group_id . "' WHERE `id`='" . $user_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    //POS Settings CRUD Functions
+    public function GetPosSettings($whereClause = '', $params = array())
+    {
+        $conn = $this->conn;
+        $sqlQuery = "SELECT `Id`, `Name`, `Status`, `Value`, `Type`, `Created` FROM `pos_settings` WHERE 1" . $whereClause . " ORDER BY `Name` ASC";
+
+        // For now, we'll use simple string concatenation since the original codebase doesn't use prepared statements
+        // In a production environment, prepared statements should be used for security
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function InsertPosSetting($Name, $Status, $Value, $Type)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("INSERT INTO `pos_settings`(`Name`, `Status`, `Value`, `Type`, `Created`) VALUES ('" . $Name . "','" . $Status . "','" . $Value . "','" . $Type . "','" . date('Y-m-d H:i:s') . "')");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function UpdatePosSetting($Id, $Name, $Status, $Value, $Type)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `pos_settings` SET `Name`='" . $Name . "',`Status`='" . $Status . "',`Value`='" . $Value . "',`Type`='" . $Type . "'  WHERE `Id`='" . $Id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function DeletePosSetting($Id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("DELETE FROM `pos_settings` WHERE `Id`='" . $Id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function GetPosSettingById($Id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `Id`, `Name`, `Status`, `Value`, `Type`, `Created` FROM `pos_settings` WHERE `Id`='" . $Id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function GetPosSettingByName($Name)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `Id`, `Name`, `Status`, `Value`, `Type`, `Created` FROM `pos_settings` WHERE `Name`='" . $Name . "' AND `Status`='1'");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }

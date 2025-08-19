@@ -746,7 +746,14 @@ Public Class MainMaster
 
         End Try
     End Sub
+    Private Sub barsystemsettings_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barsystemsettings.ItemClick
+        Try
+            FrmPosSettings.MdiParent = Me
+            FrmPosSettings.Show()
+        Catch ex As Exception
 
+        End Try
+    End Sub
     ' Initialize the skin gallery using DevExpress SkinHelper (much more reliable!)
     Private Sub InitializeSkinGallery()
         Try
@@ -828,4 +835,6 @@ Public Class MainMaster
                 MessageBoxIcon.Error)
         End Try
     End Sub
+
+   
 End Class

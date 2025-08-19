@@ -361,7 +361,7 @@ Public Class PosSales
                     Dim _taxId As String = ""
                     Dim _taxValue As String = ""
                     Dim TaxInEx As Integer = 0
-                    If _globalSetting.TaxInEx = True Then
+                    If _globalSetting.TaxExculsive = False Then
                         TaxInEx = 0
                     Else
                         TaxInEx = 1
@@ -416,7 +416,7 @@ Public Class PosSales
             TAmount = Qty * _srate
             GAmount = Qty * _srate
             TaxRetunAmt = _ReturnGst(_taxInEx, _taxValue, TAmount)
-            If _taxInEx = 0 Then
+            If _globalSetting.TaxExculsive = True Then
                 NetAmount = TAmount + TaxRetunAmt
             Else
                 NetAmount = TAmount
@@ -439,18 +439,14 @@ Public Class PosSales
         Try
             Dim _RtAmt As Decimal = 0.0
             Dim _taxvalue As Double = GstValue
-            Select Case GstType
-                Case 0 'exclusive
-                    ' _taxvalue = (_taxvalue / 100)
-                    _taxvalue = (_taxvalue / 100)
-                    _RtAmt = (Amount * _taxvalue)
-                Case 1 'inclusive
-                    _RtAmt = ((Amount * GstValue) / 100)
-                    _taxvalue = (_taxvalue / 100) + 1
-                    _RtAmt = (Amount - (Amount / _taxvalue))
-                Case Nothing
-                    _RtAmt = 0.0
-            End Select
+            If _globalSetting.TaxExculsive = True Then
+                _taxvalue = (_taxvalue / 100)
+                _RtAmt = (Amount * _taxvalue)
+            Else
+                _RtAmt = ((Amount * GstValue) / 100)
+                _taxvalue = (_taxvalue / 100) + 1
+                _RtAmt = (Amount - (Amount / _taxvalue))
+            End If
             Return _RtAmt
         Catch ex As Exception
             Return False
@@ -543,7 +539,7 @@ Public Class PosSales
                         GridDataTble_Insert.Rows(i)("BPER") = _disCountItemPer
                         GridDataTble_Insert.Rows(i)("GAMOUNT") = GridDataTble_Insert.Rows(i)("TAMOUNT") - GridDataTble_Insert.Rows(i)("BAMT")
                         GridDataTble_Insert.Rows(i)("TAXAMT") = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), GridDataTble_Insert.Rows(i)("GAMOUNT"))
-                        If _globalSetting.TaxInEx = True Then
+                        If _globalSetting.TaxExculsive = True Then
                             GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT") + GridDataTble_Insert.Rows(i)("TAXAMT")
                         Else
                             GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT")
@@ -564,7 +560,7 @@ Public Class PosSales
                         GridDataTble_Insert.Rows(i)("GAMOUNT") = _Grosamt
                         Dim _TAxamt = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), _Grosamt)
                         GridDataTble_Insert.Rows(i)("TAXAMT") = _TAxamt
-                        If _globalSetting.TaxInEx = True Then
+                        If _globalSetting.TaxExculsive = True Then
                             GridDataTble_Insert.Rows(i)("NETAMT") = _Grosamt + _TAxamt
                         Else
                             GridDataTble_Insert.Rows(i)("NETAMT") = _Grosamt
@@ -591,7 +587,7 @@ Public Class PosSales
                 GridDataTble_Insert.Rows(i)("BPER") = 0
                 GridDataTble_Insert.Rows(i)("GAMOUNT") = GridDataTble_Insert.Rows(i)("TAMOUNT")
                 GridDataTble_Insert.Rows(i)("TAXAMT") = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), GridDataTble_Insert.Rows(i)("GAMOUNT"))
-                If _globalSetting.TaxInEx = True Then
+                If _globalSetting.TaxExculsive = True Then
                     GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT") + GridDataTble_Insert.Rows(i)("TAXAMT")
                 Else
                     GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT")
@@ -630,7 +626,7 @@ Public Class PosSales
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = Format((Format(DValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") - GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT") = Format((Format(TValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-                If _globalSetting.TaxInEx = True Then
+                If _globalSetting.TaxExculsive = True Then
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") + GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT")
                 Else
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT")
@@ -664,7 +660,7 @@ Public Class PosSales
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = Format((Format(DValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = v 'GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") - GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT")
                 GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT") = Format((Format(TValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-                If _globalSetting.TaxInEx = True Then
+                If _globalSetting.TaxExculsive = True Then
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") + GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT")
                 Else
                     GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT")
@@ -694,7 +690,7 @@ Public Class PosSales
             BAMT = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("BAMT"))
             GAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("GAMOUNT"))
             GST = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("TAXAMT"))
-            If _globalSetting.TaxInEx = True Then
+            If _globalSetting.TaxExculsive = True Then
                 NetTot = GAmount + GST
             Else
                 lbltax.Text = "SST: " & Format(GAmount - GST, "#####.00")

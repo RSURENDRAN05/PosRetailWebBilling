@@ -1007,7 +1007,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-     
+
     if ((int) $_REQUEST['AjaxRequest'] == 51) { //Get Company
         $GetComapany = $clsfunreq->GetComapany();
         $GetComapanyRes = array();
@@ -2099,8 +2099,8 @@ elseif (isset($_REQUEST['AccountRequest'])) {
     if ((int) $_REQUEST['AccountRequest'] == 11) {
         $res = $clsfunreq->selectledger();
         $GetSalesBillHDRRes = array();
-        while ($rowsHDR = mysqli_fetch_assoc($res)) {
-            $GetSalesBillHDRRes[] = $rowsHDR;
+        while ($rows = mysqli_fetch_assoc($res)) {
+            $GetSalesBillHDRRes[] = $rows;
         }
 
         if ($res) {
@@ -3323,6 +3323,115 @@ elseif (isset($_REQUEST['GroupPolicyRequest'])) {
             }
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'User ID and Menu Code are required'));
+        }
+    }
+
+    if ((int) $_REQUEST['GroupPolicyRequest'] == 8) { //POS Settings CRUD operations
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            } else if (isset($_GET['operation'])) {
+                $data = $_GET;
+            }
+        }
+
+        if ($data && isset($data['operation'])) {
+            $operation = strtoupper($data['operation']);
+
+            switch ($operation) {
+                case 'SELECT':
+                    // Get all settings or filter by specific criteria
+                    $whereClause = '';
+                    $params = array();
+
+                    if (isset($data['Id']) && !empty($data['Id'])) {
+                        $whereClause = ' AND Id = ?';
+                        $params[] = $data['Id'];
+                    }
+                    if (isset($data['Name']) && !empty($data['Name'])) {
+                        $whereClause .= ' AND Name = ?';
+                        $params[] = $data['Name'];
+                    }
+                    if (isset($data['Type']) && !empty($data['Type'])) {
+                        $whereClause .= ' AND Type = ?';
+                        $params[] = $data['Type'];
+                    }
+
+                    $GetQueryData = $clsfunreq->GetPosSettings($whereClause, $params);
+                    $GetDataRes = array();
+                    if ($GetQueryData) {
+                        while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+                            $GetDataRes[] = $rows;
+                        }
+                        echo json_encode(array("Success" => true, "Msg" => 'Settings Retrieved', "Data" => $GetDataRes));
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'No Settings Found', "Data" => array()));
+                    }
+                    break;
+
+                case 'INSERT':
+                    if (isset($data['Name']) && isset($data['Value'])) {
+                        $Name = $data['Name'];
+                        $Value = $data['Value'];
+                        $Status = isset($data['Status']) ? $data['Status'] : 1;
+                        $Type = isset($data['Type']) ? $data['Type'] : '0';
+
+                        $RequestInsert = $clsfunreq->InsertPosSetting($Name, $Status, $Value, $Type);
+                        if ($RequestInsert) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Setting Created Successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to Create Setting'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Name and Value are required'));
+                    }
+                    break;
+
+                case 'UPDATE':
+                    if (isset($data['Id']) && isset($data['Name']) && isset($data['Value'])) {
+                        $Id = $data['Id'];
+                        $Name = $data['Name'];
+                        $Value = $data['Value'];
+                        $Status = isset($data['Status']) ? $data['Status'] : 1;
+                        $Type = isset($data['Type']) ? $data['Type'] : '0';
+
+                        $RequestUpdate = $clsfunreq->UpdatePosSetting($Id, $Name, $Status, $Value, $Type);
+                        if ($RequestUpdate) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Setting Updated Successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to Update Setting'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Id, Name and Value are required'));
+                    }
+                    break;
+
+                case 'DELETE':
+                    if (isset($data['Id'])) {
+                        $Id = $data['Id'];
+
+                        $RequestDelete = $clsfunreq->DeletePosSetting($Id);
+                        if ($RequestDelete) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Setting Deleted Successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to Delete Setting'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Id is required for delete operation'));
+                    }
+                    break;
+
+                default:
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid operation. Use SELECT, INSERT, UPDATE, or DELETE'));
+                    break;
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Operation parameter is required'));
         }
     }
 }

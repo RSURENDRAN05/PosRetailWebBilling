@@ -66,6 +66,7 @@ Module functionModule
         Public Shared AccountParent As New DataTable
         Public Shared AccountLedger As New DataTable
         Public Shared MonthOfSalary As New DataTable
+        Public Shared PosSettingsTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -76,10 +77,16 @@ Module functionModule
         Public Shared paymentMode As String = ""
     End Structure
     Public Structure _globalSetting
-        Public Shared TaxInEx As Boolean = True   'true exclusive  or false  inclusive
+        Public Shared TaxExculsive As Boolean = False   'true exclusive  or false  inclusive
         Public Shared QuoteBill As Boolean = False
         Public Shared PaymentMachine As Boolean = False
         Public Shared ResponseData As Object = ""
+        Public Shared PriceEdit As Boolean = False
+        Public Shared ServiceTaxActive As Boolean = False
+        Public Shared SearchProductCode As Boolean = True 'SearchByProductcode,SearchByBarcode
+    End Structure
+    Public Structure _globalSettingValues
+        Public Shared ServiceTaxValue As String = "0"
     End Structure
     Public Structure saveMode
         Shared _newMode As String = "New"
@@ -117,6 +124,22 @@ Module functionModule
             Dim Userparsejson As JObject = JObject.Parse(json)
             _JsonData.UserPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
             If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function getPosSettingsInfo() As Boolean
+        Try
+            _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=8&operation=SELECT")
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            _JsonData.PosSettingsTable = Userparsejson("Data").ToObject(Of DataTable)()
+            If _JsonData.PosSettingsTable.Rows.Count > 0 Then
                 Return True
             End If
             Return True

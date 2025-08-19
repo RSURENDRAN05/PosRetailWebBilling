@@ -49,12 +49,16 @@ Partial Class PosSalesII
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem2 = New DevExpress.XtraBars.BarSubItem()
         Me.btnSaveLayout = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarSubItem3 = New DevExpress.XtraBars.BarSubItem()
+        Me.barSearchProductCode = New DevExpress.XtraBars.BarCheckItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
+        Me.barbtnposstatus = New DevExpress.XtraBars.BarStaticItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
+        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.GridControlSalesData = New DevExpress.XtraGrid.GridControl()
@@ -86,7 +90,19 @@ Partial Class PosSalesII
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.barbtnposstatus = New DevExpress.XtraBars.BarStaticItem()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PopConSales, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +120,7 @@ Partial Class PosSalesII
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbMaterialSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +133,10 @@ Partial Class PosSalesII
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -334,18 +355,21 @@ Partial Class PosSalesII
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.LayoutControl2)
-        Me.PanelControl1.Location = New System.Drawing.Point(12, 532)
+        Me.PanelControl1.Location = New System.Drawing.Point(12, 553)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1242, 162)
+        Me.PanelControl1.Size = New System.Drawing.Size(1242, 141)
         Me.PanelControl1.TabIndex = 8
         '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.TableLayoutPanel2)
+        Me.LayoutControl2.Controls.Add(Me.TableLayoutPanel1)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl2.Location = New System.Drawing.Point(2, 2)
         Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2289, 654, 250, 350)
         Me.LayoutControl2.Root = Me.LayoutControlGroup2
-        Me.LayoutControl2.Size = New System.Drawing.Size(1238, 158)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1238, 137)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -354,22 +378,24 @@ Partial Class PosSalesII
         Me.LayoutControlGroup2.CustomizationFormText = "LayoutControlGroup2"
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.LayoutControlItem9})
         Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1238, 158)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1238, 137)
         Me.LayoutControlGroup2.Text = "LayoutControlGroup2"
         Me.LayoutControlGroup2.TextVisible = False
         '
         'cmbMaterialSearch
         '
-        Me.cmbMaterialSearch.Location = New System.Drawing.Point(111, 12)
+        Me.cmbMaterialSearch.Location = New System.Drawing.Point(84, 12)
         Me.cmbMaterialSearch.MenuManager = Me.BarManager1
         Me.cmbMaterialSearch.Name = "cmbMaterialSearch"
         Me.cmbMaterialSearch.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.cmbMaterialSearch.Properties.Appearance.Options.UseFont = True
         Me.cmbMaterialSearch.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmbMaterialSearch.Properties.PopupControl = Me.PopConSales
-        Me.cmbMaterialSearch.Size = New System.Drawing.Size(588, 26)
+        Me.cmbMaterialSearch.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.cmbMaterialSearch.Size = New System.Drawing.Size(615, 26)
         Me.cmbMaterialSearch.StyleController = Me.LayoutControl1
         Me.cmbMaterialSearch.TabIndex = 7
         '
@@ -381,8 +407,8 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus})
-        Me.BarManager1.MaxItemId = 6
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode})
+        Me.BarManager1.MaxItemId = 9
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -391,7 +417,7 @@ Partial Class PosSalesII
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem1, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem1, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem3)})
         Me.Bar1.OptionsBar.UseWholeRow = True
         Me.Bar1.Text = "Tools"
         '
@@ -420,6 +446,19 @@ Partial Class PosSalesII
         Me.btnSaveLayout.Id = 4
         Me.btnSaveLayout.Name = "btnSaveLayout"
         '
+        'BarSubItem3
+        '
+        Me.BarSubItem3.Caption = "Options"
+        Me.BarSubItem3.Id = 6
+        Me.BarSubItem3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSearchProductCode)})
+        Me.BarSubItem3.Name = "BarSubItem3"
+        '
+        'barSearchProductCode
+        '
+        Me.barSearchProductCode.Caption = "SearchProductCode"
+        Me.barSearchProductCode.Id = 8
+        Me.barSearchProductCode.Name = "barSearchProductCode"
+        '
         'Bar3
         '
         Me.Bar3.BarName = "Status bar"
@@ -432,6 +471,13 @@ Partial Class PosSalesII
         Me.Bar3.OptionsBar.DrawDragBorder = False
         Me.Bar3.OptionsBar.UseWholeRow = True
         Me.Bar3.Text = "Status bar"
+        '
+        'barbtnposstatus
+        '
+        Me.barbtnposstatus.Caption = "BarStaticItem1"
+        Me.barbtnposstatus.Id = 5
+        Me.barbtnposstatus.Name = "barbtnposstatus"
+        Me.barbtnposstatus.TextAlignment = System.Drawing.StringAlignment.Near
         '
         'barDockControlTop
         '
@@ -467,12 +513,18 @@ Partial Class PosSalesII
         Me.BarSubItem1.Id = 1
         Me.BarSubItem1.Name = "BarSubItem1"
         '
+        'BarButtonItem3
+        '
+        Me.BarButtonItem3.Caption = "BarButtonItem3"
+        Me.BarButtonItem3.Id = 7
+        Me.BarButtonItem3.Name = "BarButtonItem3"
+        '
         'FlowLayoutPanel2
         '
         Me.FlowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FlowLayoutPanel2.Location = New System.Drawing.Point(703, 126)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(551, 386)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(551, 407)
         Me.FlowLayoutPanel2.TabIndex = 6
         '
         'FlowLayoutPanel1
@@ -490,7 +542,7 @@ Partial Class PosSalesII
         Me.GridControlSalesData.MenuManager = Me.BarManager1
         Me.GridControlSalesData.Name = "GridControlSalesData"
         Me.GridControlSalesData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEditDelete})
-        Me.GridControlSalesData.Size = New System.Drawing.Size(687, 470)
+        Me.GridControlSalesData.Size = New System.Drawing.Size(687, 491)
         Me.GridControlSalesData.TabIndex = 4
         Me.GridControlSalesData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPOS})
         '
@@ -505,6 +557,10 @@ Partial Class PosSalesII
         Me.GridViewPOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn20, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
         Me.GridViewPOS.GridControl = Me.GridControlSalesData
         Me.GridViewPOS.Name = "GridViewPOS"
+        Me.GridViewPOS.OptionsBehavior.Editable = False
+        Me.GridViewPOS.OptionsCustomization.AllowFilter = False
+        Me.GridViewPOS.OptionsCustomization.AllowGroup = False
+        Me.GridViewPOS.OptionsCustomization.AllowSort = False
         Me.GridViewPOS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -737,7 +793,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem1.CustomizationFormText = "LayoutControlItem1"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(691, 474)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(691, 495)
         Me.LayoutControlItem1.Text = "LayoutControlItem1"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextToControlDistance = 0
@@ -761,7 +817,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(691, 114)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(555, 390)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(555, 411)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextToControlDistance = 0
@@ -777,25 +833,163 @@ Partial Class PosSalesII
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(691, 30)
         Me.LayoutControlItem4.Text = "BarCode"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(96, 19)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(69, 19)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.PanelControl1
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 504)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 525)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(1246, 182)
-        Me.LayoutControlItem5.Text = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(1246, 161)
+        Me.LayoutControlItem5.Text = "Bill Details :"
         Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(96, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(69, 13)
         '
-        'barbtnposstatus
+        'TableLayoutPanel1
         '
-        Me.barbtnposstatus.Caption = "BarStaticItem1"
-        Me.barbtnposstatus.Id = 5
-        Me.barbtnposstatus.Name = "barbtnposstatus"
-        Me.barbtnposstatus.TextAlignment = System.Drawing.StringAlignment.Near
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 1, 3)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 12)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 4
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(182, 113)
+        Me.TableLayoutPanel1.TabIndex = 4
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.TableLayoutPanel1
+        Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(186, 117)
+        Me.LayoutControlItem6.Text = "LayoutControlItem6"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem6.TextToControlDistance = 0
+        Me.LayoutControlItem6.TextVisible = False
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "No Of Items :"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(94, 3)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl2.TabIndex = 1
+        Me.LabelControl2.Text = "LabelControl2"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(3, 31)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl3.TabIndex = 2
+        Me.LabelControl3.Text = "No Of Items :"
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.AppearanceItemCaption.BackColor = System.Drawing.Color.Yellow
+        Me.LayoutControlItem13.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LayoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseBackColor = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseFont = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseForeColor = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = True
+        Me.LayoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LayoutControlItem13.CustomizationFormText = "SALES AMOUNT"
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(12, 6)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(234, 74)
+        Me.LayoutControlItem13.Text = "SALES AMOUNT"
+        Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
+        Me.LayoutControlItem13.TextToControlDistance = 5
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(3, 59)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl4.TabIndex = 3
+        Me.LabelControl4.Text = "Invoice Date :"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(3, 87)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Invoice No :"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(94, 31)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl6.TabIndex = 5
+        Me.LabelControl6.Text = "LabelControl6"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(94, 59)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl7.TabIndex = 6
+        Me.LabelControl7.Text = "LabelControl7"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(94, 87)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl8.TabIndex = 7
+        Me.LabelControl8.Text = "LabelControl8"
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(198, 12)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 4
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1028, 113)
+        Me.TableLayoutPanel2.TabIndex = 5
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.TableLayoutPanel2
+        Me.LayoutControlItem9.CustomizationFormText = "LayoutControlItem9"
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(186, 0)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1032, 117)
+        Me.LayoutControlItem9.Text = "LayoutControlItem9"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem9.TextToControlDistance = 0
+        Me.LayoutControlItem9.TextVisible = False
         '
         'PosSalesII
         '
@@ -828,6 +1022,7 @@ Partial Class PosSalesII
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbMaterialSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -840,6 +1035,11 @@ Partial Class PosSalesII
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -909,4 +1109,20 @@ Partial Class PosSalesII
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents barbtnposstatus As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents BarSubItem3 As DevExpress.XtraBars.BarSubItem
+    Friend WithEvents barSearchProductCode As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
 End Class
