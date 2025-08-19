@@ -19,6 +19,7 @@ Partial Class MainMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMaster))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.barcompany = New DevExpress.XtraBars.BarButtonItem()
@@ -79,8 +80,8 @@ Partial Class MainMaster
         Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroupAppearance = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager()
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
+        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
+        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
         Me.cmbCompany = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmbLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -116,6 +117,7 @@ Partial Class MainMaster
         Me.RibbonControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show
         Me.RibbonControl.ShowToolbarCustomizeItem = False
         Me.RibbonControl.Size = New System.Drawing.Size(1183, 144)
+        Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
         'barcompany
@@ -587,7 +589,7 @@ Partial Class MainMaster
         '
         'cmbCompany
         '
-        Me.cmbCompany.Location = New System.Drawing.Point(90, 5)
+        Me.cmbCompany.Location = New System.Drawing.Point(87, 2)
         Me.cmbCompany.MenuManager = Me.RibbonControl
         Me.cmbCompany.Name = "cmbCompany"
         Me.cmbCompany.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
@@ -598,7 +600,7 @@ Partial Class MainMaster
         Me.cmbCompany.Properties.DisplayMember = "CompanyName"
         Me.cmbCompany.Properties.NullText = ""
         Me.cmbCompany.Properties.ValueMember = "COID"
-        Me.cmbCompany.Size = New System.Drawing.Size(206, 22)
+        Me.cmbCompany.Size = New System.Drawing.Size(213, 22)
         Me.cmbCompany.StyleController = Me.LayoutControl1
         Me.cmbCompany.TabIndex = 3
         '
@@ -607,17 +609,17 @@ Partial Class MainMaster
         Me.LayoutControl1.Controls.Add(Me.cmbLocation)
         Me.LayoutControl1.Controls.Add(Me.cmbCompany)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl1.Location = New System.Drawing.Point(2, 2)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2150, 195, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1177, 31)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1179, 33)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cmbLocation
         '
-        Me.cmbLocation.Location = New System.Drawing.Point(391, 5)
+        Me.cmbLocation.Location = New System.Drawing.Point(389, 2)
         Me.cmbLocation.MenuManager = Me.RibbonControl
         Me.cmbLocation.Name = "cmbLocation"
         Me.cmbLocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
@@ -628,22 +630,19 @@ Partial Class MainMaster
         Me.cmbLocation.Properties.DisplayMember = "plm_name"
         Me.cmbLocation.Properties.NullText = ""
         Me.cmbLocation.Properties.ValueMember = "plm_id"
-        Me.cmbLocation.Size = New System.Drawing.Size(213, 22)
+        Me.cmbLocation.Size = New System.Drawing.Size(221, 22)
         Me.cmbLocation.StyleController = Me.LayoutControl1
         Me.cmbLocation.TabIndex = 4
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.LayoutControlGroup1.AppearanceGroup.Options.UseBackColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[False]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.EmptySpaceItem1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1177, 31)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1179, 33)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -652,10 +651,8 @@ Partial Class MainMaster
         Me.LayoutControlItem1.Control = Me.cmbCompany
         Me.LayoutControlItem1.CustomizationFormText = "Company Name :"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(140, 26)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(301, 31)
-        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(302, 33)
         Me.LayoutControlItem1.Text = "Company Name :"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -663,11 +660,9 @@ Partial Class MainMaster
         '
         Me.LayoutControlItem2.Control = Me.cmbLocation
         Me.LayoutControlItem2.CustomizationFormText = "Location Name :"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(301, 0)
-        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(140, 26)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(302, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(308, 31)
-        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(310, 33)
         Me.LayoutControlItem2.Text = "Location Name :"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -675,9 +670,9 @@ Partial Class MainMaster
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(609, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(612, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(568, 31)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(567, 33)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '

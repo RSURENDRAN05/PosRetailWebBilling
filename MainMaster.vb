@@ -42,14 +42,12 @@ Public Class MainMaster
         'RibbonPage2.Visible = False 'ClientInfo
 
         ' Apply skin to MainMaster form (skins already initialized at app startup)
-        SkinManager.ApplySkinToNewForm(Me)
+        SkinManager.LoadSkinSetting()
 
         ' Initialize the skin gallery
         InitializeSkinGallery()
 
-        ' Debug: Test skin loading on application startup
-        System.Diagnostics.Debug.WriteLine("=== MainMaster Constructor - Skin Status ===")
-        System.Diagnostics.Debug.WriteLine(SkinManager.GetCurrentSkinStatus())
+        
     End Sub
     Private Sub MenuReading()
         Try
@@ -809,15 +807,10 @@ Public Class MainMaster
                 End If
 
                 If Not String.IsNullOrEmpty(skinName) Then
-                    System.Diagnostics.Debug.WriteLine("=== MainMaster Gallery - Skin Selection ===")
-                    System.Diagnostics.Debug.WriteLine("Selected skin: " & skinName)
-
+                   
                     ' Save the skin setting (when using SkinHelper, skin is applied automatically)
                     SkinManager.SaveSkinSetting(skinName)
-
-                    ' Test the persistence using the simple test method
-                    SkinManager.TestPersistence(skinName)
-
+ 
                     DevExpress.XtraEditors.XtraMessageBox.Show(
                         "Skin '" & skinName & "' applied and saved!" & vbCrLf &
                         "Check Debug Output for persistence test results.",

@@ -16,7 +16,7 @@ Public Class Login
             System.Diagnostics.Debug.WriteLine("Saved skin: " & SkinManager.GetSavedSkin())
 
             ' Apply the current skin to Login form (don't reload, just apply what's already set)
-            SkinManager.ApplySkinToNewForm(Me)
+            SkinManager.LoadSkinSetting()
 
             M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
             M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")

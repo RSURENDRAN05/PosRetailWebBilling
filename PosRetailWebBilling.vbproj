@@ -545,6 +545,7 @@
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
     <EmbeddedResource Include="PaymentGateWay\frmpaymentgateway.resx">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
     </EmbeddedResource>

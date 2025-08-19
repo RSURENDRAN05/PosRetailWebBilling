@@ -16,21 +16,19 @@ Namespace My
 
                 ' Load the saved skin setting and apply it
                 Dim savedSkin As String = SkinManager.GetSavedSkin()
-                System.Diagnostics.Debug.WriteLine("Application Startup - Saved skin: " & savedSkin)
 
                 ' Set the UserLookAndFeel to the saved skin
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(savedSkin)
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.UseDefaultLookAndFeel = False
 
-                System.Diagnostics.Debug.WriteLine("Application Startup - Applied skin: " & DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName)
+
             Catch ex As Exception
-                System.Diagnostics.Debug.WriteLine("Error in Application Startup skin loading: " & ex.Message)
+
             End Try
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
-            ' Save skin setting when application closes
-            SkinManager.SaveSkinSetting()
+           
         End Sub
 
         Private Sub InitializeDevExpressSkins()
