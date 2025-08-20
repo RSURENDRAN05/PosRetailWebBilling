@@ -69,10 +69,6 @@ PosRetailWebBilling
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="P:PosRetailWebBilling.My.Resources.Resources.Action_Totals_Row_32x32">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
 </member><member name="T:PosRetailWebBilling.My.Resources.Resources">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.

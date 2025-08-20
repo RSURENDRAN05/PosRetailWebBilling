@@ -36,6 +36,18 @@ Module PosSettingsManager
                             Else
                                 _globalSetting.SearchProductCode = True
                             End If
+                        Case "BillDiscountAcitve"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.BillDiscountAcitve = False
+                            Else
+                                _globalSetting.BillDiscountAcitve = True
+                            End If
+                        Case "ItemDiscountActive"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.ItemDiscountActive = False
+                            Else
+                                _globalSetting.ItemDiscountActive = True
+                            End If
                     End Select
                 Next
                 For Each _setRow In _JsonData.PosSettingsTable.Select("Type = '1'") 'Values

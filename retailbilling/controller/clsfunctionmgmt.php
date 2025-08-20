@@ -2580,4 +2580,46 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
+
+    // Discount Management Methods
+    public function _InsertDiscount($discount_name, $discount_type, $discount_value, $discount_description, $status, $com_id, $loc_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("INSERT INTO `discount_master`(`discount_name`, `discount_type`, `discount_value`, `discount_description`, `status`, `com_id`, `loc_id`, `created`) VALUES "
+            . "('" . $discount_name . "','" . $discount_type . "','" . $discount_value . "','" . $discount_description . "','" . $status . "','" . $com_id . "','" . $loc_id . "','" . date('Y-m-d H:i:s') . "')");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _UpdateDiscount($discount_id, $discount_name, $discount_type, $discount_value, $discount_description, $status)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `discount_master` SET `discount_name`='" . $discount_name . "',`discount_type`='" . $discount_type . "',`discount_value`='" . $discount_value . "',`discount_description`='" . $discount_description . "',`status`='" . $status . "' WHERE `discount_id`='" . $discount_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _DeleteDiscount($discount_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("DELETE FROM `discount_master` WHERE `discount_id`='" . $discount_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _GetAllActiveDiscounts()
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `discount_id`, `discount_name`, `discount_type`, `discount_value`, `discount_description`, `status`, `created` FROM `discount_master` WHERE `status`='1' ORDER BY `discount_name` ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _GetDiscountById($discount_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `discount_id`, `discount_name`, `discount_type`, `discount_value`, `discount_description`, `status`, `created` FROM `discount_master` WHERE `discount_id`='" . $discount_id . "' AND `status`='1'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
 }

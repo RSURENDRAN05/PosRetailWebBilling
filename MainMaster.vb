@@ -96,7 +96,7 @@ Public Class MainMaster
                 barbtnPrintProfile.Enabled = False
                 barbtnprintdesign.Enabled = False
                 barsystemsettings.Enabled = False
-
+                barnewdiscountmaster.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -229,6 +229,15 @@ Public Class MainMaster
                             barnewcustomer.Enabled = True
                         Else
                             barnewcustomer.Enabled = False
+
+                        End If
+                    End If
+                    Dim DiscountMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "DiscountMaster"
+                    If DiscountMaster.Any Then
+                        If DiscountMaster(0)("menu_active") = "1" Then
+                            barnewdiscountmaster.Enabled = True
+                        Else
+                            barnewdiscountmaster.Enabled = False
 
                         End If
                     End If
@@ -837,4 +846,12 @@ Public Class MainMaster
     End Sub
 
    
+    Private Sub barnewdiscountmaster_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barnewdiscountmaster.ItemClick
+        Try
+            FrmDiscountMaster.MdiParent = Me
+            FrmDiscountMaster.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

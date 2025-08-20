@@ -30,6 +30,10 @@ Module functionModule
         Public Shared licenceActive As String = ""
         Public Shared licenceServerCleint As String = ""
     End Structure
+    Public Structure _FunctionKeyBoardModule
+        Public Shared gs_keyboardValueInteger As Integer = 0
+        Public Shared gs_keyboardValueDecimal As Decimal = 0.0
+    End Structure
     Public Structure _companyInfo
         Public Shared UserId As Integer = 0
         Public Shared UserName As String = ""
@@ -84,6 +88,8 @@ Module functionModule
         Public Shared PriceEdit As Boolean = False
         Public Shared ServiceTaxActive As Boolean = False
         Public Shared SearchProductCode As Boolean = True 'SearchByProductcode,SearchByBarcode
+        Public Shared BillDiscountAcitve As Boolean = False
+        Public Shared ItemDiscountActive As Boolean = False
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"

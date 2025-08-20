@@ -1285,6 +1285,75 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Data" => array()));
         }
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 67) {
+        // Discount Management - Save/Insert
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $disc_name = $row['discountname'];
+        $disc_type = $row['discounttype']; // 'percentage' or 'amount'
+        $disc_value = $row['discountvalue'];
+        $disc_description = isset($row['discountdescription']) ? $row['discountdescription'] : '';
+        $disc_status = 1; // Active
+        $disc_com_id = 1; // Default company ID
+        $disc_loc_id = 1; // Default location ID
+
+        $RequestInsert = $clsfunreq->_InsertDiscount($disc_name, $disc_type, $disc_value, $disc_description, $disc_status, $disc_com_id, $disc_loc_id);
+        if ($RequestInsert) {
+            echo json_encode(array("Success" => true, "Data" => $RequestInsert, "Msg" => "Discount saved successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestInsert, "Msg" => "Failed to save discount"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 68) {
+        // Discount Management - Update
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $disc_id = $row['discountid'];
+        $disc_name = $row['discountname'];
+        $disc_type = $row['discounttype'];
+        $disc_value = $row['discountvalue'];
+        $disc_description = isset($row['discountdescription']) ? $row['discountdescription'] : '';
+        $disc_status = $row['discountstatus'];
+
+        $RequestUpdate = $clsfunreq->_UpdateDiscount($disc_id, $disc_name, $disc_type, $disc_value, $disc_description, $disc_status);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Data" => $RequestUpdate, "Msg" => "Discount updated successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestUpdate, "Msg" => "Failed to update discount"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 69) {
+        // Discount Management - Delete
+        $disc_id = $_GET['discountid'];
+
+        $RequestDelete = $clsfunreq->_DeleteDiscount($disc_id);
+        if ($RequestDelete) {
+            echo json_encode(array("Success" => true, "Data" => $RequestDelete, "Msg" => "Discount deleted successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestDelete, "Msg" => "Failed to delete discount"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 70) {
+        // Discount Management - Get All Active Discounts
+        $RequestSelect = $clsfunreq->_GetAllActiveDiscounts();
+        $DiscountsRes = array();
+        if ($RequestSelect) {
+            while ($rows = mysqli_fetch_assoc($RequestSelect)) {
+                $DiscountsRes[] = array(
+                    "Id" => $rows['discount_id'],
+                    "Name" => $rows['discount_name'],
+                    "Type" => $rows['discount_type'],
+                    "Value" => $rows['discount_value'],
+                    "Description" => $rows['discount_description'],
+                    "Status" => $rows['status'],
+                    "Created" => $rows['created']
+                );
+            }
+            echo json_encode(array("Success" => true, "Data" => $DiscountsRes));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => array()));
+        }
+    }
 }
 //Sales
 elseif (isset($_REQUEST['SalesRequest'])) {

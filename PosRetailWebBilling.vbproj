@@ -212,6 +212,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsModule\mySqlConnection.vb" />
+    <Compile Include="Controller\frmKeyAmt.designer.vb">
+      <DependentUpon>frmKeyAmt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyAmt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmKeyQty.designer.vb">
+      <DependentUpon>frmKeyQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Employee\frmcreatemonth.Designer.vb">
       <DependentUpon>frmcreatemonth.vb</DependentUpon>
     </Compile>
@@ -277,6 +289,11 @@
     </Compile>
     <Compile Include="Master\FrmNewCustomer.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PaymentGateWay\PortDataReceived.vb" />
     <Compile Include="PaymentGateWay\frmpaymentgateway.Designer.vb">
@@ -428,11 +445,6 @@
     <Compile Include="MyProjectSettings\Application.vb">
       <DependentUpon>Application.Designer.vb</DependentUpon>
     </Compile>
-    <Compile Include="MyProjectSettings\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="MyProjectSettings\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -472,6 +484,18 @@
       <DependentUpon>PosSalesII.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\PosSalesII.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\FrmDiscountSelection.Designer.vb">
+      <DependentUpon>FrmDiscountSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmDiscountSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmDiscountMaster.Designer.vb">
+      <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmDiscountMaster.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -518,6 +542,13 @@
     <EmbeddedResource Include="ChequeSystem\frmTodayCheque.resx">
       <DependentUpon>frmTodayCheque.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyAmt.resx">
+      <DependentUpon>frmKeyAmt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyQty.resx">
+      <DependentUpon>frmKeyQty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyQtyAmt.resx" />
     <EmbeddedResource Include="Employee\frmcreatemonth.resx">
       <DependentUpon>frmcreatemonth.vb</DependentUpon>
     </EmbeddedResource>
@@ -552,6 +583,11 @@
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
     <EmbeddedResource Include="PaymentGateWay\frmpaymentgateway.resx">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
@@ -615,12 +651,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
-    <EmbeddedResource Include="MyProjectSettings\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmDiscount.resx">
       <DependentUpon>frmDiscount.vb</DependentUpon>
     </EmbeddedResource>
@@ -638,6 +668,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosSalesII.resx">
       <DependentUpon>PosSalesII.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmDiscountSelection.resx">
+      <DependentUpon>FrmDiscountSelection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmDiscountMaster.resx">
+      <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

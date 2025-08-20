@@ -27,17 +27,28 @@ Public Class PosSalesII
             GridDataTble_Insert.Columns.Add("RATE", GetType(Decimal)) '3
             GridDataTble_Insert.Columns.Add("QTY", GetType(Decimal)) '4
             GridDataTble_Insert.Columns.Add("TAMOUNT", GetType(Decimal)) '5
-            GridDataTble_Insert.Columns.Add("DPER", GetType(Decimal)).DefaultValue = 0 '6
-            GridDataTble_Insert.Columns.Add("DAMT", GetType(Decimal)).DefaultValue = 0 '7
-            GridDataTble_Insert.Columns.Add("GAMOUNT", GetType(Decimal)) '8
-            GridDataTble_Insert.Columns.Add("TAXVALUE", GetType(Integer)).DefaultValue = 0 '9
-            GridDataTble_Insert.Columns.Add("TAXAMT", GetType(Decimal)).DefaultValue = 0 '11
-            GridDataTble_Insert.Columns.Add("NETAMT", GetType(Decimal)) '12
-            GridDataTble_Insert.Columns.Add("ITEMREMARS", GetType(String)).DefaultValue = "Notes" '2
-            GridDataTble_Insert.Columns.Add("BATCHNO ", GetType(Integer)).DefaultValue = 0 '10
-            GridDataTble_Insert.Columns.Add("SALESPERSONID ", GetType(Integer)).DefaultValue = 0 '10
-            GridDataTble_Insert.Columns.Add("SALESPERSON", GetType(String)).DefaultValue = "SP" '9
-            GridDataTble_Insert.Columns.Add("DELETE ", GetType(Integer)).DefaultValue = 1 '10
+
+            ' Item Discount Columns
+            GridDataTble_Insert.Columns.Add("ITEM_DPER", GetType(Decimal)).DefaultValue = 0 '6 - Item Discount Percentage
+            GridDataTble_Insert.Columns.Add("ITEM_DAMT", GetType(Decimal)).DefaultValue = 0 '7 - Item Discount Amount
+
+            ' Bill Discount Columns
+            GridDataTble_Insert.Columns.Add("BILL_DPER", GetType(Decimal)).DefaultValue = 0 '8 - Bill Discount Percentage
+            GridDataTble_Insert.Columns.Add("BILL_DAMT", GetType(Decimal)).DefaultValue = 0 '9 - Bill Discount Amount
+
+            ' Total Discount Columns (Combined Item + Bill)
+            GridDataTble_Insert.Columns.Add("TOTAL_DPER", GetType(Decimal)).DefaultValue = 0 '10 - Total Discount Percentage
+            GridDataTble_Insert.Columns.Add("TOTAL_DAMT", GetType(Decimal)).DefaultValue = 0 '11 - Total Discount Amount
+
+            GridDataTble_Insert.Columns.Add("GAMOUNT", GetType(Decimal)) '12
+            GridDataTble_Insert.Columns.Add("TAXVALUE", GetType(Integer)).DefaultValue = 0 '13
+            GridDataTble_Insert.Columns.Add("TAXAMT", GetType(Decimal)).DefaultValue = 0 '14
+            GridDataTble_Insert.Columns.Add("NETAMT", GetType(Decimal)) '15
+            GridDataTble_Insert.Columns.Add("ITEMREMARS", GetType(String)).DefaultValue = "Notes" '16
+            GridDataTble_Insert.Columns.Add("BATCHNO ", GetType(Integer)).DefaultValue = 0 '17
+            GridDataTble_Insert.Columns.Add("SALESPERSONID ", GetType(Integer)).DefaultValue = 0 '18
+            GridDataTble_Insert.Columns.Add("SALESPERSON", GetType(String)).DefaultValue = "SP" '19
+            GridDataTble_Insert.Columns.Add("DELETE ", GetType(Integer)).DefaultValue = 1 '20
 
             Return GridDataTble_Insert
         Catch ex As Exception
@@ -342,25 +353,18 @@ Public Class PosSalesII
     Private Sub GridViewPOS_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GridViewPOS.KeyDown
         Try
             If e.KeyCode = Keys.Delete Then
-                Dim M_trid = GridViewPOS.GetFocusedRowCellValue("ITEMCODE")
-                Dim MaterialeName = GridViewPOS.GetFocusedRowCellValue("ITEMNAME")
-
-                GridViewPOS.DeleteSelectedRows()
-                GridDataTble_Insert.AcceptChanges()
-                _SnoCount = 0
-                For Each _rData In GridDataTble_Insert.Rows
-                    _SnoCount = _SnoCount + 1
-                    _rData("SNO") = _SnoCount
-                Next
-
-                'If SalesGrandtotal("er") = False Then
-                '    DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                'End If
-                'End If
-                'GridViewPOS.DeleteRow(GridViewPOS.FocusedRowHandle)
-                ' dtPOS.AcceptChanges()
-                'SalesGrandtotal(Errstr)
-                cmbMaterialSearch.Focus()
+                Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
+                If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                    ' Show confirmation dialog
+                    Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                               "Confirm Delete", _
+                                                               MessageBoxButtons.YesNo, _
+                                                               MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        DeleteSelectedRow(focusedRowHandle)
+                    End If
+                End If
             ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.Up Then
                 cmbMaterialSearch.Focus()
                 '' txtbarcodeNo.Focus()
@@ -370,14 +374,191 @@ Public Class PosSalesII
             ElseIf e.KeyCode = Keys.Escape Then
                 cmbMaterialSearch.Focus()
             ElseIf e.KeyCode = Keys.Enter Then
-                GridViewPOS.CloseEditor()
-                cmbMaterialSearch.Focus()
+                ' Check if focused column is DELETE column
+                If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE " Then
+                    ' Delete focused row
+                    Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
+                    If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                        Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                                   "Confirm Delete", _
+                                                                   MessageBoxButtons.YesNo, _
+                                                                   MessageBoxIcon.Question)
+                        If result = DialogResult.Yes Then
+                            DeleteSelectedRow(focusedRowHandle)
+                        End If
+                    End If
+                Else
+                    GridViewPOS.CloseEditor()
+                    cmbMaterialSearch.Focus()
+                End If
+                ' Quantity control shortcuts
+            ElseIf e.KeyCode = Keys.Add OrElse (My.Computer.Keyboard.ShiftKeyDown AndAlso e.KeyCode = Keys.Oemplus) Then
+                ' + key: Add 1 to quantity
+                AddQuantityToItem(1)
+                e.Handled = True
+            ElseIf e.KeyCode = Keys.Subtract OrElse e.KeyCode = Keys.OemMinus Then
+                ' - key: Subtract 1 from quantity
+                SubtractQuantityFromItem(1)
+                e.Handled = True
+            ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.Q Then
+                ' Ctrl+Q: Open quantity dialog
+                btnqty_Click(Nothing, Nothing)
+                e.Handled = True
             End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
     End Sub
+
+    ' Handle DELETE column click to delete row
+    Private Sub GridViewPOS_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GridViewPOS.CellValueChanged
+        Try
+            ' Check if the changed column is the DELETE column
+            If e.Column.FieldName = "DELETE " AndAlso e.Value IsNot Nothing Then
+                ' If user clicked/changed the DELETE column value, delete the row
+                If Convert.ToInt32(e.Value) = 0 OrElse Convert.ToInt32(e.Value) = 1 Then
+                    DeleteSelectedRow(e.RowHandle)
+                End If
+            End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error in delete operation: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Alternative method - Handle mouse click on DELETE column
+    Private Sub GridViewPOS_MouseDown(sender As Object, e As MouseEventArgs) Handles GridViewPOS.MouseDown
+        Try
+            If e.Button = MouseButtons.Left Then
+                Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+                Dim hi As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Location)
+
+                ' Check if click is on a cell in the DELETE column
+                If hi.InRowCell AndAlso hi.Column IsNot Nothing AndAlso hi.Column.FieldName = "DELETE " Then
+                    ' Show confirmation dialog
+                    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", _
+                                                               "Confirm Delete", _
+                                                               MessageBoxButtons.YesNo, _
+                                                               MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        DeleteSelectedRow(hi.RowHandle)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error in delete click: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Handle double-click on DELETE column for quick deletion
+    Private Sub GridViewPOS_DoubleClick(sender As Object, e As EventArgs) Handles GridViewPOS.DoubleClick
+        Try
+            ' Check if focused column is DELETE column
+            If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE " Then
+                Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
+                If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                    Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                               "Confirm Delete", _
+                                                               MessageBoxButtons.YesNo, _
+                                                               MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        DeleteSelectedRow(focusedRowHandle)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error in delete double-click: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Method to delete a specific row
+    Private Sub DeleteSelectedRow(rowHandle As Integer)
+        Try
+            ' Validate row handle
+            If rowHandle < 0 OrElse rowHandle >= GridDataTble_Insert.Rows.Count Then
+                Exit Sub
+            End If
+
+            ' Get item information for confirmation/logging
+            Dim itemCode = GridDataTble_Insert.Rows(rowHandle)("ITEMCODE")
+            Dim itemName = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME")
+
+            ' Remove the row from DataTable
+            GridDataTble_Insert.Rows.RemoveAt(rowHandle)
+            GridDataTble_Insert.AcceptChanges()
+
+            ' Renumber the SNO column
+            RenumberSerialNumbers()
+
+            ' Refresh the grid
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            ' Optional: Show success message (uncomment if needed)
+            ' MessageBox.Show($"Item '{itemName}' deleted successfully.", "Item Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Set focus back to search for next item entry
+            cmbMaterialSearch.Focus()
+
+        Catch ex As Exception
+            Throw New Exception("Error deleting row: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Method to renumber serial numbers after deletion
+    Private Sub RenumberSerialNumbers()
+        Try
+            _SnoCount = 0
+            For Each row As DataRow In GridDataTble_Insert.Rows
+                _SnoCount = _SnoCount + 1
+                row("SNO") = _SnoCount
+            Next
+            GridDataTble_Insert.AcceptChanges()
+        Catch ex As Exception
+            ' Handle renumbering errors silently
+        End Try
+    End Sub
+
+    ' Public method to delete current selected row (can be called externally)
+    Public Sub DeleteCurrentSelectedRow()
+        Try
+            Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
+            If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                           "Confirm Delete", _
+                                                           MessageBoxButtons.YesNo, _
+                                                           MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    DeleteSelectedRow(focusedRowHandle)
+                End If
+            Else
+                MessageBox.Show("Please select an item to delete.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error deleting item: " & ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Public method to delete row by item code
+    Public Function DeleteItemByCode(itemCode As Integer) As Boolean
+        Try
+            For i As Integer = GridDataTble_Insert.Rows.Count - 1 To 0 Step -1
+                If Convert.ToInt32(GridDataTble_Insert.Rows(i)("ITEMCODE")) = itemCode Then
+                    DeleteSelectedRow(i)
+                    Return True
+                End If
+            Next
+            Return False
+        Catch ex As Exception
+            MessageBox.Show("Error deleting item by code: " & ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
 
 
 
@@ -546,7 +727,15 @@ Public Class PosSalesII
     End Function
     Public Sub _InsertDt(ByRef _barcode As String, ByRef _itemcode As Integer, ByRef _itemname As String, ByRef _serialno As String, ByRef _uom As String, ByRef _srate As Double, ByRef _taxValue As Integer)
         Try
-            Dim Qty As Integer = 1
+            ' Get quantity from txtMqty control, default to 1 if invalid
+            Dim Qty As Decimal = 1
+            If txtMqty.EditValue IsNot Nothing Then
+                Dim tempQty As Decimal
+                If Decimal.TryParse(txtMqty.EditValue.ToString(), tempQty) AndAlso tempQty > 0 Then
+                    Qty = tempQty
+                End If
+            End If
+
             Dim PrintItem As Integer = 1
             Dim DisPer As Double = 0.0
             Dim DisAmt As Double = 0.0
@@ -560,6 +749,20 @@ Public Class PosSalesII
             Dim _item As String = _itemname
             Dim _batchno As String = 0
 
+            ' Check if bill discount is already applied to existing items
+            Dim billDiscountExists As Boolean = False
+            Dim existingBillDiscountPer As Decimal = 0
+
+            If GridDataTble_Insert.Rows.Count > 0 Then
+                ' Check if any existing item has bill discount
+                For Each row As DataRow In GridDataTble_Insert.Rows
+                    If Convert.ToDecimal(row("BILL_DAMT")) > 0 Then
+                        billDiscountExists = True
+                        existingBillDiscountPer = Convert.ToDecimal(row("BILL_DPER"))
+                        Exit For
+                    End If
+                Next
+            End If
 
             GridDataTble_Insert.NewRow()
             GridDataTble_Insert.BeginInit()
@@ -567,18 +770,51 @@ Public Class PosSalesII
             TAmount = Qty * _srate
             GAmount = Qty * _srate
             TaxRetunAmt = _ReturnGst(_taxValue, TAmount)
-            If _globalSetting.TaxExculsive = True Then
-                NetAmount = TAmount + TaxRetunAmt
-            Else
-                NetAmount = TAmount
+
+            ' Apply existing bill discount to new item if it exists
+            If billDiscountExists Then
+                Dim billDiscountAmount As Decimal = (TAmount * existingBillDiscountPer) / 100
+                DisBPer = existingBillDiscountPer
+                DisBAmt = billDiscountAmount
+
+                ' Update totals for discount calculations
+                Dim totalDiscountAmt As Decimal = billDiscountAmount
+                Dim totalDiscountPer As Decimal = existingBillDiscountPer
+
+                ' Recalculate GAmount after discount
+                GAmount = TAmount - totalDiscountAmt
+                TaxRetunAmt = _ReturnGst(_taxValue, GAmount)
             End If
-            GridDataTble_Insert.Rows.Add(_SnoCount, _barcode, _itemcode, Trim(_item), _serialno, _uom, _srate, Qty, TAmount, DisPer, DisAmt, GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, 1, "SaleMan", 1)
+
+            If _globalSetting.TaxExculsive = True Then
+                NetAmount = GAmount + TaxRetunAmt
+            Else
+                NetAmount = GAmount
+            End If
+
+            ' Add row with new column structure including separate discount columns
+            ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
+            '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
+            '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, DELETE
+            GridDataTble_Insert.Rows.Add(_SnoCount, _barcode, _itemcode, Trim(_item), _serialno, _uom, _srate, Qty, TAmount, _
+                                        0, 0, _
+                                        DisBPer, DisBAmt, _
+                                        DisBPer, DisBAmt, _
+                                        GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, 1, "SaleMan", 1)
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
             GridViewPOS.MoveNext()
-            ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
-            'txtnotes.Text = "-"
+
+            ' Reset quantity input to 1 for next item
+            txtMqty.EditValue = 1
+
+            ' Show message if bill discount was automatically applied
+            ' If billDiscountExists Then
+            '     MessageBox.Show($"New item added with existing bill discount of {existingBillDiscountPer:F2}% applied automatically.", _
+            '                   "Bill Discount Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' End If
+
             If SalesGrandtotal("ER") = False Then
 
             End If
@@ -608,16 +844,20 @@ Public Class PosSalesII
         Try
 
             Dim TAmount As Decimal = 0.0
-            Dim DAMT As Decimal = 0.0
-            Dim BAMT As Decimal = 0.0
+            Dim ItemDiscountAmt As Decimal = 0.0
+            Dim BillDiscountAmt As Decimal = 0.0
+            Dim TotalDiscountAmt As Decimal = 0.0
             Dim GAmount As Decimal = 0.0
             Dim GST As Decimal = 0.0
             Dim ServiceChargeAmount As Decimal = 0.0
             Dim NetTot As Decimal = 0.0
 
             TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
-            'DPER = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Double)("DPER"))
-            DAMT = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("DAMT"))
+
+            ' Calculate separate discount totals
+            ItemDiscountAmt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("ITEM_DAMT"))
+            BillDiscountAmt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("BILL_DAMT"))
+            TotalDiscountAmt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TOTAL_DAMT"))
 
             GAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("GAMOUNT"))
             GST = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
@@ -641,28 +881,27 @@ Public Class PosSalesII
                 NetTot = GAmount + ServiceChargeAmount
             End If
 
-            ' Update UI labels
+            ' Update UI labels with detailed discount breakdown
             lblsubtotal.Text = TAmount.ToString("0.00")
-            lblitemdisctotal.Text = (DAMT).ToString("0.00")
+            lblitemdisctotal.Text = ItemDiscountAmt.ToString("0.00")
+            lblbilldisctotal.Text = BillDiscountAmt.ToString("0.00")
             lblssttotal.Text = GST.ToString("0.00")
             lblservchargetotal.Text = ServiceChargeAmount.ToString("0.00")
-            ' Display service charge if there's a label for it
-            ' If you have a service charge label, uncomment and modify this line:
-            ' lblservicecharge.Text = ServiceChargeAmount.ToString("0.00")
-
             lblnetamt.Text = _RoundOff(NetTot).ToString("0.00")
 
-            'GridViewPOS.MoveLast()
-            If GridDataTble_Insert.Rows.Count <> 0 Then
-                GridDataTble_Insert.WriteXml(M_Details.AppPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
-            End If
+            ' Update any additional discount breakdown labels if they exist
+            ' You can add these labels to show separate item and bill discounts
+            ' lblitemdiscountonly.Text = ItemDiscountAmt.ToString("0.00")
+            ' lblbilldiscountonly.Text = BillDiscountAmt.ToString("0.00")
+
             Return True
+
         Catch ex As Exception
-            ERR = ex.Message
+            ERR = "Error in SalesGrandtotal: " & ex.Message
             Return False
         End Try
-
     End Function
+
 
     Public Function CalculateServiceCharge(grossAmount As Decimal) As Decimal
         Try
@@ -687,64 +926,6 @@ Public Class PosSalesII
         Catch ex As Exception
             '.WriteErroLog(ex.Message.ToString)
             Return 0.0
-        End Try
-    End Function
-    Private k As Decimal = 0.0
-    Private KL As Decimal = 0.0
-    Private min As Decimal = 0.0
-    Private distxtper As Decimal = 0.0
-    Private Function DiscountAddTax(ByVal BasicRate As Decimal, ByVal DisPerValue As Decimal, ByVal TaxPerValue As Decimal, ByVal TaxType As Integer, ByRef SalesValue As Decimal, ByRef TaxValue As Decimal, ByRef DiscountValue As Decimal, ByRef ErrorMsg As String) As Boolean
-        Try
-            Dim j As Decimal = 0.0
-            Dim k As Decimal = 0.0
-            If TaxType = 1 Then
-
-
-
-                'Here Calculate the Discount
-                If CalPercentage(BasicRate, DisPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
-                    Return False
-                End If
-
-                DiscountValue = Format(KL, "0.00")
-
-                j = Format((BasicRate - Format(KL, "0.00")), "0.00")
-
-                KL = j - (j / (TaxPerValue / 100 + 1))
-
-                ''Here Calculate the Tax
-                'If CalPercentage(j, TaxPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
-                '    Return False
-                'End If
-
-                TaxValue = KL
-                SalesValue = j 'Format((j + KL), "0.00")
-
-            Else
-
-                'Here Calculate the Discount
-                If CalPercentage(BasicRate, DisPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
-                    Return False
-                End If
-
-                DiscountValue = Format(KL, "0.00")
-                j = Format((BasicRate - Format(KL, "0.00")), "0.00")
-                'Here Calculate the Tax
-                If CalPercentage(j, TaxPerValue, KL, Tax.Percentage2Price, RoundType.DefaultValue, ErrorMsg) = False Then
-                    Return False
-                End If
-
-                TaxValue = Format(KL, "0.00")
-                SalesValue = Format((j), "0.00")
-
-            End If
-
-
-
-            Return True
-        Catch ex As Exception
-            ErrorMsg = ex.Message
-            Return False
         End Try
     End Function
 
@@ -788,5 +969,680 @@ Public Class PosSalesII
     'End Sub
 #End Region
 
+#Region "Discount Management"
+    ' Bill Discount Button Click Handler
+    Private Sub BarButtonItem7_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbilldiscount.ItemClick
+        Try
+            If _globalSetting.BillDiscountAcitve = False Then
+                MessageBox.Show("You do not have rights apply billdiscount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            ' Show discount selection form
+            Dim discountForm As New FrmDiscountSelection()
+            If discountForm.ShowDialog() = DialogResult.OK Then
+                Dim selectedDiscount = discountForm.SelectedDiscountInfo
+
+                If selectedDiscount IsNot Nothing Then
+                    ' Apply bill-level discount
+                    _ApplyBillDiscount(selectedDiscount)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error applying bill discount: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Item Discount Button Click Handler
+    Private Sub BarButtonItem8_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles baritemdiscount.ItemClick
+        Try
+            If _globalSetting.ItemDiscountActive = False Then
+                MessageBox.Show("You do not have rights apply item discount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            ' Check if any item is selected in the grid
+            If GridViewPOS.FocusedRowHandle < 0 Then
+                MessageBox.Show("Please select an item to apply discount.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Show discount selection form
+            Dim discountForm As New FrmDiscountSelection()
+            If discountForm.ShowDialog() = DialogResult.OK Then
+                Dim selectedDiscount = discountForm.SelectedDiscountInfo
+
+                If selectedDiscount IsNot Nothing Then
+                    ' Apply item-level discount
+                    _ApplyItemDiscount(selectedDiscount)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error applying item discount: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Apply Bill Level Discount
+    Private Sub _ApplyBillDiscount(discountInfo As Object)
+        Try
+            Dim discountType As String = discountInfo.Type.ToString()
+            Dim discountValue As Decimal = Convert.ToDecimal(discountInfo.Value)
+            Dim discountName As String = discountInfo.Name.ToString()
+
+            ' Calculate total amount before discount
+            Dim totalAmount As Decimal = 0
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim rowAmount As Decimal = 0
+                If Decimal.TryParse(GridDataTble_Insert.Rows(i)("TAMOUNT").ToString(), rowAmount) Then
+                    totalAmount += rowAmount
+                End If
+            Next
+
+            ' Calculate discount amount
+            Dim discountAmount As Decimal = 0
+            If discountType = "percentage" Then
+                discountAmount = (totalAmount * discountValue) / 100
+            Else
+                discountAmount = discountValue
+            End If
+
+            ' Apply discount to each item proportionally
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim itemAmount As Decimal = 0
+                If Decimal.TryParse(GridDataTble_Insert.Rows(i)("TAMOUNT").ToString(), itemAmount) Then
+                    Dim itemDiscountAmount As Decimal = (itemAmount / totalAmount) * discountAmount
+                    Dim itemDiscountPercent As Decimal = (itemDiscountAmount / itemAmount) * 100
+
+                    ' Update the DataTable directly with BILL discount
+                    GridDataTble_Insert.Rows(i)("BILL_DPER") = itemDiscountPercent
+                    GridDataTble_Insert.Rows(i)("BILL_DAMT") = itemDiscountAmount
+
+                    ' Update total discount in DataTable
+                    Dim existingItemDiscountAmt As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("ITEM_DAMT"))
+                    Dim totalDiscountAmt As Decimal = existingItemDiscountAmt + itemDiscountAmount
+                    Dim totalDiscountPer As Decimal = If(itemAmount > 0, (totalDiscountAmt / itemAmount) * 100, 0)
+
+                    GridDataTble_Insert.Rows(i)("TOTAL_DAMT") = totalDiscountAmt
+                    GridDataTble_Insert.Rows(i)("TOTAL_DPER") = totalDiscountPer
+
+                    ' Recalculate the row totals
+                    _RecalculateRowTotals(i)
+                End If
+            Next
+
+            ' Accept changes to DataTable and refresh grid
+            GridDataTble_Insert.AcceptChanges()
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            MessageBox.Show("Bill discount of " & discountName & " applied successfully." & Environment.NewLine &
+                          "Total Bill Discount: " & discountAmount.ToString("0.00"),
+                          "Discount Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            Throw New Exception("Error applying bill discount: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Apply Item Level Discount
+    Private Sub _ApplyItemDiscount(discountInfo As Object)
+        Try
+            Dim discountType As String = discountInfo.Type.ToString()
+            Dim discountValue As Decimal = Convert.ToDecimal(discountInfo.Value)
+            Dim discountName As String = discountInfo.Name.ToString()
+            Dim selectedRow As Integer = GridViewPOS.FocusedRowHandle
+
+            ' Get item amount
+            Dim itemAmount As Decimal = 0
+            If selectedRow < 0 OrElse selectedRow >= GridDataTble_Insert.Rows.Count Then
+                Throw New Exception("Invalid item selection")
+            End If
+            If Not Decimal.TryParse(GridDataTble_Insert.Rows(selectedRow)("TAMOUNT").ToString(), itemAmount) Then
+                Throw New Exception("Invalid item amount")
+            End If
+
+            ' Calculate discount amount
+            Dim discountAmount As Decimal = 0
+            If discountType = "percentage" Then
+                discountAmount = (itemAmount * discountValue) / 100
+            Else
+                discountAmount = discountValue
+            End If
+
+            ' Validate discount doesn't exceed item amount
+            If discountAmount > itemAmount Then
+                MessageBox.Show("Discount amount cannot exceed item amount.", "Invalid Discount", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Calculate discount percentage for storage
+            Dim discountPercent As Decimal = (discountAmount / itemAmount) * 100
+
+            ' Update the DataTable directly with ITEM discount
+            GridDataTble_Insert.Rows(selectedRow)("ITEM_DPER") = discountPercent
+            GridDataTble_Insert.Rows(selectedRow)("ITEM_DAMT") = discountAmount
+
+            ' Update total discount in DataTable (item + bill discount if any)
+            Dim existingBillDiscountAmt As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(selectedRow)("BILL_DAMT"))
+            Dim totalDiscountAmt As Decimal = discountAmount + existingBillDiscountAmt
+            Dim totalDiscountPer As Decimal = If(itemAmount > 0, (totalDiscountAmt / itemAmount) * 100, 0)
+
+            GridDataTble_Insert.Rows(selectedRow)("TOTAL_DAMT") = totalDiscountAmt
+            GridDataTble_Insert.Rows(selectedRow)("TOTAL_DPER") = totalDiscountPer
+
+            ' Accept changes to DataTable
+            GridDataTble_Insert.AcceptChanges()
+
+            ' Recalculate the row totals
+            _RecalculateRowTotals(selectedRow)
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            MessageBox.Show("Item discount of " & discountName & " applied successfully." & Environment.NewLine &
+                          "Item Discount: " & discountAmount.ToString("0.00") & Environment.NewLine &
+                          "Total Discount: " & totalDiscountAmt.ToString("0.00"),
+                          "Discount Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            Throw New Exception("Error applying item discount: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Recalculate Row Totals after discount application
+    Private Sub _RecalculateRowTotals(rowIndex As Integer)
+        Try
+            Dim rate As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("RATE"))
+            Dim qty As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("QTY"))
+            Dim totalDiscountAmount As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("TOTAL_DAMT"))
+            Dim taxValue As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowIndex)("TAXVALUE"))
+
+            ' Calculate totals
+            Dim totalAmount As Decimal = rate * qty
+            Dim grossAmount As Decimal = totalAmount - totalDiscountAmount
+
+            ' Calculate tax amount based on tax setting
+            Dim taxAmount As Decimal = 0
+            Dim netAmount As Decimal = 0
+
+            If _globalSetting.TaxExculsive = True Then
+                ' Tax Exclusive: Calculate tax on gross amount and add to get net amount
+                taxAmount = (grossAmount * taxValue) / 100
+                netAmount = grossAmount + taxAmount
+            Else
+                ' Tax Inclusive: Extract tax from gross amount
+                Dim taxMultiplier As Decimal = (taxValue / 100) + 1
+                taxAmount = grossAmount - (grossAmount / taxMultiplier)
+                netAmount = grossAmount
+            End If
+
+            ' Update calculated fields in DataTable
+            GridDataTble_Insert.Rows(rowIndex)("TAMOUNT") = totalAmount
+            GridDataTble_Insert.Rows(rowIndex)("GAMOUNT") = grossAmount
+            GridDataTble_Insert.Rows(rowIndex)("TAXAMT") = taxAmount
+            GridDataTble_Insert.Rows(rowIndex)("NETAMT") = netAmount
+
+            ' Accept changes
+            GridDataTble_Insert.AcceptChanges()
+
+        Catch ex As Exception
+            ' Handle calculation errors silently
+        End Try
+    End Sub
+
+    ' Get discount summary for reporting/analysis
+    Public Function GetDiscountSummary() As Object
+        Try
+            Dim itemDiscountTotal As Decimal = 0
+            Dim billDiscountTotal As Decimal = 0
+            Dim totalDiscountTotal As Decimal = 0
+
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                itemDiscountTotal += Convert.ToDecimal(GridDataTble_Insert.Rows(i)("ITEM_DAMT"))
+                billDiscountTotal += Convert.ToDecimal(GridDataTble_Insert.Rows(i)("BILL_DAMT"))
+                totalDiscountTotal += Convert.ToDecimal(GridDataTble_Insert.Rows(i)("TOTAL_DAMT"))
+            Next
+
+            Return New With {
+                .ItemDiscountTotal = itemDiscountTotal,
+                .BillDiscountTotal = billDiscountTotal,
+                .TotalDiscountAmount = totalDiscountTotal,
+                .ItemDiscountCount = GridDataTble_Insert.AsEnumerable().Count(Function(row) row.Field(Of Decimal)("ITEM_DAMT") > 0),
+                .BillDiscountApplied = GridDataTble_Insert.AsEnumerable().Any(Function(row) row.Field(Of Decimal)("BILL_DAMT") > 0)
+            }
+
+        Catch ex As Exception
+            Return New With {
+                .ItemDiscountTotal = 0,
+                .BillDiscountTotal = 0,
+                .TotalDiscountAmount = 0,
+                .ItemDiscountCount = 0,
+                .BillDiscountApplied = False
+            }
+        End Try
+    End Function
+
+    ' Clear all discounts (both item and bill)
+    Public Sub ClearAllDiscounts()
+        Try
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                ' Clear item discounts in DataTable
+                GridDataTble_Insert.Rows(i)("ITEM_DPER") = 0
+                GridDataTble_Insert.Rows(i)("ITEM_DAMT") = 0
+
+                ' Clear bill discounts in DataTable
+                GridDataTble_Insert.Rows(i)("BILL_DPER") = 0
+                GridDataTble_Insert.Rows(i)("BILL_DAMT") = 0
+
+                ' Clear total discounts in DataTable
+                GridDataTble_Insert.Rows(i)("TOTAL_DPER") = 0
+                GridDataTble_Insert.Rows(i)("TOTAL_DAMT") = 0
+
+                ' Recalculate row totals
+                _RecalculateRowTotals(i)
+            Next
+
+            ' Accept changes and refresh grid
+            GridDataTble_Insert.AcceptChanges()
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            MessageBox.Show("All discounts cleared successfully.", "Discounts Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error clearing discounts: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Apply existing bill discount to newly added items
+    Public Sub ApplyExistingBillDiscountToNewItems()
+        Try
+            ' Find existing bill discount rate
+            Dim billDiscountPer As Decimal = 0
+            Dim hasExistingBillDiscount As Boolean = False
+
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim billDiscAmt As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("BILL_DAMT"))
+                If billDiscAmt > 0 Then
+                    billDiscountPer = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("BILL_DPER"))
+                    hasExistingBillDiscount = True
+                    Exit For
+                End If
+            Next
+
+            If hasExistingBillDiscount Then
+                ' Apply to items that don't have bill discount
+                For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                    Dim currentBillDiscAmt As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("BILL_DAMT"))
+                    If currentBillDiscAmt = 0 Then
+                        Dim itemAmount As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("TAMOUNT"))
+                        Dim discountAmount As Decimal = (itemAmount * billDiscountPer) / 100
+
+                        ' Apply bill discount using DataTable
+                        GridDataTble_Insert.Rows(i)("BILL_DPER") = billDiscountPer
+                        GridDataTble_Insert.Rows(i)("BILL_DAMT") = discountAmount
+
+                        ' Update total discount
+                        Dim existingItemDiscountAmt As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("ITEM_DAMT"))
+                        Dim totalDiscountAmt As Decimal = existingItemDiscountAmt + discountAmount
+                        Dim totalDiscountPer As Decimal = If(itemAmount > 0, (totalDiscountAmt / itemAmount) * 100, 0)
+
+                        GridDataTble_Insert.Rows(i)("TOTAL_DAMT") = totalDiscountAmt
+                        GridDataTble_Insert.Rows(i)("TOTAL_DPER") = totalDiscountPer
+
+                        ' Recalculate totals
+                        _RecalculateRowTotals(i)
+                    End If
+                Next
+
+                ' Accept changes to DataTable and refresh grid
+                GridDataTble_Insert.AcceptChanges()
+                GridControlSalesData.DataSource = GridDataTble_Insert
+
+                ' Update grand totals
+                SalesGrandtotal("OK")
+
+                'MessageBox.Show($"Existing bill discount of {billDiscountPer:F2}% applied to new items.", _
+                '              "Bill Discount Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error applying bill discount to new items: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+#End Region
+
+    Private Sub barbtnNewBill_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnNewBill.ItemClick
+        Try
+            ' Confirm with user if there are items in the current bill
+            If GridDataTble_Insert.Rows.Count > 0 Then
+                Dim result As DialogResult = MessageBox.Show("Are you sure you want to start a new bill? All current items will be cleared.", _
+                                                           "New Bill Confirmation", _
+                                                           MessageBoxButtons.YesNo, _
+                                                           MessageBoxIcon.Question)
+                If result = DialogResult.No Then
+                    Exit Sub
+                End If
+            End If
+
+            ' Clear the current bill and start fresh
+            ClearCurrentBill()
+
+            ' Set focus to search field for quick item entry
+            cmbMaterialSearch.Focus()
+
+            ' Update status
+            MessageBox.Show("New bill started successfully.", "New Bill", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Helper method to clear current bill and reset form
+    Private Sub ClearCurrentBill()
+        Try
+            ' Clear the sales data table
+            GridDataTble_Insert.Clear()
+            GridDataTble_Insert.AcceptChanges()
+
+            ' Reset counters
+            _SnoCount = 0
+
+            ' Set mode to new
+            modeOfSale = "New"
+
+            ' Get new bill number
+            If _getBillno() = False Then
+                ' Handle error getting bill number if needed
+            End If
+
+            ' Clear all totals by recalculating with empty data
+            SalesGrandtotal("OK")
+
+            ' Clear search fields
+            cmbMaterialSearch.Text = ""
+            cmbMaterialSearch.EditValue = Nothing
+            txtsearch2.Text = ""
+            txtMqty.EditValue = 1
+
+            ' Update data source
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+        Catch ex As Exception
+            Throw New Exception("Error clearing current bill: " & ex.Message)
+        End Try
+    End Sub
+#Region "QtyControll"
+    ' Current quantity being entered via number buttons
+    Private currentQtyInput As String = ""
+
+    Private Sub btn_1_Click(sender As Object, e As EventArgs) Handles btn_7.Click, btn_8.Click, btn_9.Click, btn_6.Click, btn_5.Click, btn_4.Click, btn_3.Click, btn_2.Click, btn_1.Click, btn_10.Click, btn_12.Click
+        Try
+            Dim NUMBTN As Label = CType(sender, Label)
+            Dim buttonText As String = NUMBTN.Text.Trim()
+
+            ' Numeric input - directly add to current input and apply
+            Dim numValue As Integer
+            If Integer.TryParse(buttonText, numValue) Then
+                currentQtyInput += buttonText
+                ' Update quantity display
+                Dim qty As Decimal
+                If Decimal.TryParse(currentQtyInput, qty) AndAlso qty > 0 Then
+                    txtMqty.EditValue = qty
+                    ' Directly apply the quantity to selected/last item
+                    ApplyQuantityInput()
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error in quantity button click: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Separate event handlers for specific function buttons
+    Private Sub btnPlus_Click(sender As Object, e As EventArgs) ' Add this handler to your + button
+        Try
+            AddQuantityToItem(1)
+        Catch ex As Exception
+            MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnMinus_Click(sender As Object, e As EventArgs) ' Add this handler to your - button
+        Try
+            SubtractQuantityFromItem(1)
+        Catch ex As Exception
+            MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) ' Add this handler to your Clear button
+        Try
+            currentQtyInput = ""
+            txtMqty.EditValue = 1
+        Catch ex As Exception
+            MessageBox.Show("Error clearing quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub btnqty_Click(sender As Object, e As EventArgs) Handles btnqty.Click
+        Try
+            frmKeyQty.ShowDialog("Enter Qty")
+            If frmKeyQty.DialogResult = Windows.Forms.DialogResult.OK Then
+                Dim Qty = _FunctionKeyBoardModule.gs_keyboardValueInteger
+                If Qty > 0 Then
+                    UpdateQuantityForSelectedItem(Qty)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error in quantity entry: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Add quantity to selected item or last item
+    Private Sub AddQuantityToItem(addQty As Decimal)
+        Try
+            Dim targetRowIndex As Integer = GetTargetRowIndex()
+            If targetRowIndex >= 0 Then
+                UpdateRowQuantity(targetRowIndex, addQty, "ADD")
+            Else
+                MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Subtract quantity from selected item or last item
+    Private Sub SubtractQuantityFromItem(subtractQty As Decimal)
+        Try
+            Dim targetRowIndex As Integer = GetTargetRowIndex()
+            If targetRowIndex >= 0 Then
+                UpdateRowQuantity(targetRowIndex, subtractQty, "SUBTRACT")
+            Else
+                MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Apply the current quantity input to selected or last item
+    Private Sub ApplyQuantityInput()
+        Try
+            If String.IsNullOrEmpty(currentQtyInput) Then
+                Exit Sub
+            End If
+
+            Dim qty As Decimal
+            If Decimal.TryParse(currentQtyInput, qty) AndAlso qty > 0 Then
+                Dim targetRowIndex As Integer = GetTargetRowIndex()
+                If targetRowIndex >= 0 Then
+                    UpdateRowQuantity(targetRowIndex, qty, "SET")
+                Else
+                    MessageBox.Show("No item available to set quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+                ' Reset input after applying
+                currentQtyInput = ""
+                txtMqty.EditValue = 1
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error applying quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Get the target row index (selected row or last row)
+    Private Function GetTargetRowIndex() As Integer
+        Try
+            ' First try to get focused/selected row
+            If GridViewPOS.FocusedRowHandle >= 0 AndAlso GridViewPOS.FocusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                Return GridViewPOS.FocusedRowHandle
+            End If
+
+            ' If no focused row, use last row
+            If GridDataTble_Insert.Rows.Count > 0 Then
+                Return GridDataTble_Insert.Rows.Count - 1
+            End If
+
+            Return -1 ' No rows available
+        Catch ex As Exception
+            Return -1
+        End Try
+    End Function
+
+    ' Update quantity for specific row
+    Private Sub UpdateRowQuantity(rowIndex As Integer, qtyValue As Decimal, operation As String)
+        Try
+            If rowIndex < 0 OrElse rowIndex >= GridDataTble_Insert.Rows.Count Then
+                Exit Sub
+            End If
+
+            Dim currentQty As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("QTY"))
+            Dim newQty As Decimal
+
+            Select Case operation.ToUpper()
+                Case "ADD"
+                    newQty = currentQty + qtyValue
+                Case "SUBTRACT"
+                    newQty = currentQty - qtyValue
+                    If newQty < 1 Then newQty = 1 ' Minimum quantity is 1
+                Case "SET"
+                    newQty = qtyValue
+                Case Else
+                    Exit Sub
+            End Select
+
+            ' Update the quantity in DataTable
+            GridDataTble_Insert.Rows(rowIndex)("QTY") = newQty
+
+            ' Recalculate all amounts for this row
+            RecalculateRowAmounts(rowIndex)
+
+            ' Accept changes and refresh
+            GridDataTble_Insert.AcceptChanges()
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            ' Focus on the updated row
+            GridViewPOS.FocusedRowHandle = rowIndex
+
+        Catch ex As Exception
+            Throw New Exception("Error updating row quantity: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Update quantity for selected item directly (from txtMqty or external input)
+    Private Sub UpdateQuantityForSelectedItem(newQty As Decimal)
+        Try
+            If newQty <= 0 Then
+                MessageBox.Show("Quantity must be greater than zero.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim targetRowIndex As Integer = GetTargetRowIndex()
+            If targetRowIndex >= 0 Then
+                UpdateRowQuantity(targetRowIndex, newQty, "SET")
+                txtMqty.EditValue = 1 ' Reset quantity input
+            Else
+                ' If no existing item, store the quantity for next item addition
+                txtMqty.EditValue = newQty
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error updating quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Recalculate all amounts for a specific row after quantity change
+    Private Sub RecalculateRowAmounts(rowIndex As Integer)
+        Try
+            Dim rate As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("RATE"))
+            Dim qty As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("QTY"))
+            Dim itemDiscountPer As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("ITEM_DPER"))
+            Dim billDiscountPer As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(rowIndex)("BILL_DPER"))
+            Dim taxValue As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowIndex)("TAXVALUE"))
+
+            ' Calculate basic amount
+            Dim totalAmount As Decimal = rate * qty
+
+            ' Calculate discounts
+            Dim itemDiscountAmount As Decimal = (totalAmount * itemDiscountPer) / 100
+            Dim billDiscountAmount As Decimal = (totalAmount * billDiscountPer) / 100
+            Dim totalDiscountAmount As Decimal = itemDiscountAmount + billDiscountAmount
+            Dim totalDiscountPer As Decimal = If(totalAmount > 0, (totalDiscountAmount / totalAmount) * 100, 0)
+
+            ' Calculate gross amount after discount
+            Dim grossAmount As Decimal = totalAmount - totalDiscountAmount
+
+            ' Calculate tax
+            Dim taxAmount As Decimal = 0
+            Dim netAmount As Decimal = 0
+
+            If _globalSetting.TaxExculsive = True Then
+                ' Tax Exclusive: Calculate tax on gross amount and add to get net amount
+                taxAmount = (grossAmount * taxValue) / 100
+                netAmount = grossAmount + taxAmount
+            Else
+                ' Tax Inclusive: Extract tax from gross amount
+                Dim taxMultiplier As Decimal = (taxValue / 100) + 1
+                taxAmount = grossAmount - (grossAmount / taxMultiplier)
+                netAmount = grossAmount
+            End If
+
+            ' Update all calculated fields
+            GridDataTble_Insert.Rows(rowIndex)("TAMOUNT") = totalAmount
+            GridDataTble_Insert.Rows(rowIndex)("ITEM_DAMT") = itemDiscountAmount
+            GridDataTble_Insert.Rows(rowIndex)("BILL_DAMT") = billDiscountAmount
+            GridDataTble_Insert.Rows(rowIndex)("TOTAL_DAMT") = totalDiscountAmount
+            GridDataTble_Insert.Rows(rowIndex)("TOTAL_DPER") = totalDiscountPer
+            GridDataTble_Insert.Rows(rowIndex)("GAMOUNT") = grossAmount
+            GridDataTble_Insert.Rows(rowIndex)("TAXAMT") = taxAmount
+            GridDataTble_Insert.Rows(rowIndex)("NETAMT") = netAmount
+
+        Catch ex As Exception
+            ' Handle calculation errors silently
+        End Try
+    End Sub
+
+    ' Quick quantity buttons (can be added to form if needed)
+    Public Sub QuickAddQty1()
+        AddQuantityToItem(1)
+    End Sub
+
+    Public Sub QuickAddQty5()
+        AddQuantityToItem(5)
+    End Sub
+
+    Public Sub QuickAddQty10()
+        AddQuantityToItem(10)
+    End Sub
+
+    Public Sub QuickSubtractQty1()
+        SubtractQuantityFromItem(1)
+    End Sub
+#End Region
 
 End Class
