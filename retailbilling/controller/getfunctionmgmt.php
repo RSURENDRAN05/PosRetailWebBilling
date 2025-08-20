@@ -1,7 +1,18 @@
 <?php
 
+// Suppress errors to prevent JSON corruption
+error_reporting(0);
+ini_set('display_errors', 0);
+
+// Start output buffering to prevent any accidental output
+ob_start();
+
 include_once 'clsfunctionmgmt.php';
 $clsfunreq = new funcProcessMgmt();
+
+// Clear any output buffer content before sending headers
+ob_clean();
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -465,72 +476,6 @@ if (isset($_REQUEST['AjaxRequest'])) {
         }
     }
 
-    // Get All Customers (including inactive)
-    if ((int) $_REQUEST['AjaxRequest'] == 68) {
-        $ResulQuery = $clsfunreq->selectAllCustomers();
-        $GetDataRes = array();
-        if ($ResulQuery) {
-            while ($rows = mysqli_fetch_assoc($ResulQuery)) {
-                $GetDataRes[] = array(
-                    "CustomerId" => $rows['customerId'],
-                    "CustomerName" => $rows['customerName'],
-                    "CustomerPhone" => $rows['customerPhone'] ?? '',
-                    "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
-                    "Status" => $rows['status'],
-                    "Created" => $rows['created'] ?? ''
-                );
-            }
-            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'No Customer Data Found'));
-        }
-    }
-
-    // Get Customer by ID
-    if ((int) $_REQUEST['AjaxRequest'] == 69) {
-        $customerId = $_GET['customerid'];
-        $ResulQuery = $clsfunreq->selectCustomerById($customerId);
-        $GetDataRes = array();
-        if ($ResulQuery && mysqli_num_rows($ResulQuery) > 0) {
-            $rows = mysqli_fetch_assoc($ResulQuery);
-            $GetDataRes = array(
-                "CustomerId" => $rows['customerId'],
-                "CustomerName" => $rows['customerName'],
-                "CustomerPhone" => $rows['customerPhone'] ?? '',
-                "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
-                "Status" => $rows['status'],
-                "Created" => $rows['created'] ?? ''
-            );
-            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'Customer Not Found'));
-        }
-    }
-
-    // Update Customer Points
-    if ((int) $_REQUEST['AjaxRequest'] == 70) {
-        $getjson = $_GET['json'];
-        $row = json_decode($getjson, true);
-        $customerId = $row['customerid'];
-        $pointsToAdd = $row['points'];
-        $res = $clsfunreq->updateCustomerPoints($customerId, $pointsToAdd);
-        if ($res) {
-            echo json_encode(array("Success" => true, "Msg" => 'Customer points updated successfully'));
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'Failed to update customer points'));
-        }
-    }
-
-    // Delete Customer (Soft Delete)
-    if ((int) $_REQUEST['AjaxRequest'] == 71) {
-        $customerId = $_GET['customerid'];
-        $res = $clsfunreq->deleteCustomer($customerId);
-        if ($res) {
-            echo json_encode(array("Success" => true, "Msg" => 'Customer deleted successfully'));
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'Failed to delete customer'));
-        }
-    }
     //Branch Entry
     if ((int) $_REQUEST['AjaxRequest'] == 31) {
         $getjson = $_GET['json'];
@@ -1428,6 +1373,73 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => true, "Data" => $DiscountsRes));
         } else {
             echo json_encode(array("Success" => false, "Data" => array()));
+        }
+    }
+
+    // Get All Customers (including inactive)
+    if ((int) $_REQUEST['AjaxRequest'] == 71) {
+        $ResulQuery = $clsfunreq->selectAllCustomers();
+        $GetDataRes = array();
+        if ($ResulQuery) {
+            while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+                $GetDataRes[] = array(
+                    "CustomerId" => $rows['customerId'],
+                    "CustomerName" => $rows['customerName'],
+                    "CustomerPhone" => $rows['customerPhone'] ?? '',
+                    "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
+                    "Status" => $rows['status'],
+                    "Created" => $rows['created'] ?? ''
+                );
+            }
+            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Customer Data Found'));
+        }
+    }
+
+    // Get Customer by ID
+    if ((int) $_REQUEST['AjaxRequest'] == 72) {
+        $customerId = $_GET['customerid'];
+        $ResulQuery = $clsfunreq->selectCustomerById($customerId);
+        $GetDataRes = array();
+        if ($ResulQuery && mysqli_num_rows($ResulQuery) > 0) {
+            $rows = mysqli_fetch_assoc($ResulQuery);
+            $GetDataRes = array(
+                "CustomerId" => $rows['customerId'],
+                "CustomerName" => $rows['customerName'],
+                "CustomerPhone" => $rows['customerPhone'] ?? '',
+                "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
+                "Status" => $rows['status'],
+                "Created" => $rows['created'] ?? ''
+            );
+            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Customer Not Found'));
+        }
+    }
+
+    // Update Customer Points
+    if ((int) $_REQUEST['AjaxRequest'] == 73) {
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $customerId = $row['customerid'];
+        $pointsToAdd = $row['points'];
+        $res = $clsfunreq->updateCustomerPoints($customerId, $pointsToAdd);
+        if ($res) {
+            echo json_encode(array("Success" => true, "Msg" => 'Customer points updated successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to update customer points'));
+        }
+    }
+
+    // Delete Customer (Soft Delete)
+    if ((int) $_REQUEST['AjaxRequest'] == 74) {
+        $customerId = $_GET['customerid'];
+        $res = $clsfunreq->deleteCustomer($customerId);
+        if ($res) {
+            echo json_encode(array("Success" => true, "Msg" => 'Customer deleted successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to delete customer'));
         }
     }
 }

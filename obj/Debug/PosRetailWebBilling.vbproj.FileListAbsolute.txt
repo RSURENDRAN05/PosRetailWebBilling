@@ -4,7 +4,6 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.exe
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.pdb
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.xml
-D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\Newtonsoft.Json.dll
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\System.Memory.dll
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\System.Numerics.Vectors.dll
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmGroup.resources
@@ -73,3 +72,4 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.exe
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.xml
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.pdb
+d:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbprojResolveAssemblyReference.cache

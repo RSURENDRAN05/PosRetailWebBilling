@@ -663,7 +663,7 @@ Public Class MainMaster
 
     Private Sub barnewcustomer_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barnewcustomer.ItemClick
         Try
-            'FrmNewCustomer.ShowDialog()
+            FrmCustomerList.ShowDialog()
         Catch ex As Exception
 
         End Try

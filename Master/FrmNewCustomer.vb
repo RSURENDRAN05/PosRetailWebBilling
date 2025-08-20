@@ -52,10 +52,9 @@ Public Class FrmNewCustomer
 
             ' Set default status
             cmbStatus.Properties.Items.Clear()
-            cmbStatus.Properties.Items.Add("1")
-            cmbStatus.Properties.Items.Add("0")
-            cmbStatus.Text = "1"
-
+            cmbStatus.Properties.Items.Add("Active")
+            cmbStatus.Properties.Items.Add("In-Active")
+            cmbStatus.SelectedIndex = 0
         Catch ex As Exception
             MessageBox.Show("Error loading form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -65,7 +64,7 @@ Public Class FrmNewCustomer
         Try
             If _customerId <= 0 Then Return
 
-            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=69&customerid=" & _customerId
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=72&customerid=" & _customerId
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim json As String = New System.Net.WebClient().DownloadString(url)
@@ -78,7 +77,12 @@ Public Class FrmNewCustomer
                 txtCustomerName.Text = customerData("CustomerName").ToString()
                 txtCustomerPhone.Text = If(customerData("CustomerPhone") IsNot Nothing, customerData("CustomerPhone").ToString(), "")
                 lblPointsEarned.Text = If(customerData("CustomerPointsEarned") IsNot Nothing, customerData("CustomerPointsEarned").ToString(), "0")
-                cmbStatus.Text = customerData("Status").ToString()
+                Dim status = customerData("Status").ToString()
+                If status.ToString = "1" Then
+                    cmbStatus.SelectedIndex = 0
+                Else
+                    cmbStatus.SelectedIndex = 1
+                End If
                 lblCreatedDate.Text = If(customerData("Created") IsNot Nothing, customerData("Created").ToString(), "")
             Else
                 MessageBox.Show("Customer not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -111,7 +115,13 @@ Public Class FrmNewCustomer
             Dim customerData As New Dictionary(Of String, Object)
             customerData("customername") = txtCustomerName.Text.Trim()
             customerData("customerphone") = txtCustomerPhone.Text.Trim()
-            customerData("cmbstatus") = cmbStatus.Text
+            If cmbStatus.Text = "Active" Then
+                customerData("cmbstatus") = 1
+            Else
+                customerData("cmbstatus") = 0
+
+            End If
+
 
             If _isEditMode Then
                 customerData("customerid") = _customerId
@@ -198,7 +208,7 @@ Public Class FrmNewCustomer
             pointsData("points") = Convert.ToInt32(pointsToAdd)
 
             Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(pointsData)
-            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=70&json=" & jsonData
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=73&json=" & jsonData
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim json As String = New System.Net.WebClient().DownloadString(url)
@@ -235,4 +245,6 @@ Public Class FrmNewCustomer
             btnSave_Click(Nothing, Nothing)
         End If
     End Sub
+
+    
 End Class

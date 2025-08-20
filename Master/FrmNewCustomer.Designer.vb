@@ -45,9 +45,9 @@ Partial Class FrmNewCustomer
         Me.GroupControl1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.cmbStatus, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCustomerPhone, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCustomerName, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmbStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCustomerPhone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +77,7 @@ Partial Class FrmNewCustomer
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.DarkBlue
         Me.LabelControl1.Location = New System.Drawing.Point(12, 8)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(103, 19)
+        Me.LabelControl1.Size = New System.Drawing.Size(119, 19)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "New Customer"
         '
@@ -102,10 +102,10 @@ Partial Class FrmNewCustomer
         Me.LayoutControl1.Controls.Add(Me.txtCustomerPhone)
         Me.LayoutControl1.Controls.Add(Me.txtCustomerName)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(2, 20)
+        Me.LayoutControl1.Location = New System.Drawing.Point(2, 21)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(456, 198)
+        Me.LayoutControl1.Size = New System.Drawing.Size(456, 197)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -117,18 +117,18 @@ Partial Class FrmNewCustomer
         Me.btnAddPoints.Appearance.Options.UseBackColor = True
         Me.btnAddPoints.Appearance.Options.UseFont = True
         Me.btnAddPoints.Appearance.Options.UseForeColor = True
-        Me.btnAddPoints.Location = New System.Drawing.Point(351, 133)
+        Me.btnAddPoints.Location = New System.Drawing.Point(115, 124)
         Me.btnAddPoints.Name = "btnAddPoints"
-        Me.btnAddPoints.Size = New System.Drawing.Size(93, 22)
+        Me.btnAddPoints.Size = New System.Drawing.Size(329, 22)
         Me.btnAddPoints.StyleController = Me.LayoutControl1
         Me.btnAddPoints.TabIndex = 9
         Me.btnAddPoints.Text = "Add Points"
         '
         'lblCreatedDate
         '
-        Me.lblCreatedDate.Location = New System.Drawing.Point(123, 159)
+        Me.lblCreatedDate.Location = New System.Drawing.Point(104, 150)
         Me.lblCreatedDate.Name = "lblCreatedDate"
-        Me.lblCreatedDate.Size = New System.Drawing.Size(321, 13)
+        Me.lblCreatedDate.Size = New System.Drawing.Size(4, 13)
         Me.lblCreatedDate.StyleController = Me.LayoutControl1
         Me.lblCreatedDate.TabIndex = 8
         Me.lblCreatedDate.Text = "-"
@@ -137,116 +137,126 @@ Partial Class FrmNewCustomer
         '
         Me.lblPointsEarned.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.lblPointsEarned.Appearance.ForeColor = System.Drawing.Color.Green
-        Me.lblPointsEarned.Appearance.Options.UseFont = True
-        Me.lblPointsEarned.Appearance.Options.UseForeColor = True
-        Me.lblPointsEarned.Location = New System.Drawing.Point(123, 133)
+        Me.lblPointsEarned.Location = New System.Drawing.Point(104, 124)
         Me.lblPointsEarned.Name = "lblPointsEarned"
-        Me.lblPointsEarned.Size = New System.Drawing.Size(224, 22)
+        Me.lblPointsEarned.Size = New System.Drawing.Size(7, 13)
         Me.lblPointsEarned.StyleController = Me.LayoutControl1
         Me.lblPointsEarned.TabIndex = 7
         Me.lblPointsEarned.Text = "0"
         '
         'cmbStatus
         '
-        Me.cmbStatus.Location = New System.Drawing.Point(123, 107)
+        Me.cmbStatus.Location = New System.Drawing.Point(104, 100)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmbStatus.Properties.Items.AddRange(New Object() {"1", "0"})
         Me.cmbStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cmbStatus.Size = New System.Drawing.Size(321, 20)
+        Me.cmbStatus.Size = New System.Drawing.Size(340, 20)
         Me.cmbStatus.StyleController = Me.LayoutControl1
         Me.cmbStatus.TabIndex = 6
         '
         'txtCustomerPhone
         '
-        Me.txtCustomerPhone.Location = New System.Drawing.Point(123, 58)
+        Me.txtCustomerPhone.Location = New System.Drawing.Point(104, 56)
         Me.txtCustomerPhone.Name = "txtCustomerPhone"
         Me.txtCustomerPhone.Properties.MaxLength = 20
-        Me.txtCustomerPhone.Size = New System.Drawing.Size(321, 20)
+        Me.txtCustomerPhone.Size = New System.Drawing.Size(340, 20)
         Me.txtCustomerPhone.StyleController = Me.LayoutControl1
         Me.txtCustomerPhone.TabIndex = 5
         '
         'txtCustomerName
         '
-        Me.txtCustomerName.Location = New System.Drawing.Point(123, 12)
+        Me.txtCustomerName.Location = New System.Drawing.Point(104, 12)
         Me.txtCustomerName.Name = "txtCustomerName"
         Me.txtCustomerName.Properties.MaxLength = 100
-        Me.txtCustomerName.Size = New System.Drawing.Size(321, 20)
+        Me.txtCustomerName.Size = New System.Drawing.Size(340, 20)
         Me.txtCustomerName.StyleController = Me.LayoutControl1
         Me.txtCustomerName.TabIndex = 4
         '
         'LayoutControlGroup1
         '
+        Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(456, 198)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(456, 197)
+        Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.txtCustomerName
+        Me.LayoutControlItem1.CustomizationFormText = "Customer Name *:"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(436, 46)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(436, 44)
         Me.LayoutControlItem1.Spacing = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 20)
         Me.LayoutControlItem1.Text = "Customer Name *:"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(107, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(89, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtCustomerPhone
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 46)
+        Me.LayoutControlItem2.CustomizationFormText = "Customer Phone:"
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 44)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(436, 45)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(436, 44)
         Me.LayoutControlItem2.Spacing = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 20)
         Me.LayoutControlItem2.Text = "Customer Phone:"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(107, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(89, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmbStatus
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 95)
+        Me.LayoutControlItem3.CustomizationFormText = "Status:"
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 88)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(436, 26)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(436, 24)
         Me.LayoutControlItem3.Text = "Status:"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(107, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(89, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.lblPointsEarned
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 121)
+        Me.LayoutControlItem4.CustomizationFormText = "Points Earned:"
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 112)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(339, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(103, 26)
         Me.LayoutControlItem4.Text = "Points Earned:"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(107, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(89, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.lblCreatedDate
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 147)
+        Me.LayoutControlItem5.CustomizationFormText = "Created Date:"
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 138)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(436, 17)
         Me.LayoutControlItem5.Text = "Created Date:"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(107, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(89, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.btnAddPoints
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(339, 121)
+        Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(103, 112)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(97, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(333, 26)
+        Me.LayoutControlItem6.Text = "LayoutControlItem6"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem6.TextToControlDistance = 0
         Me.LayoutControlItem6.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 164)
+        Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 155)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(436, 14)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(436, 22)
+        Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'btnSave
@@ -254,13 +264,13 @@ Partial Class FrmNewCustomer
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
         Me.btnSave.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnSave.Appearance.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Appearance.ForeColor = System.Drawing.Color.Black
         Me.btnSave.Appearance.Options.UseBackColor = True
         Me.btnSave.Appearance.Options.UseFont = True
         Me.btnSave.Appearance.Options.UseForeColor = True
-        Me.btnSave.Location = New System.Drawing.Point(297, 275)
+        Me.btnSave.Location = New System.Drawing.Point(211, 275)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(85, 30)
+        Me.btnSave.Size = New System.Drawing.Size(171, 30)
         Me.btnSave.TabIndex = 2
         Me.btnSave.Text = "Save"
         '
@@ -269,7 +279,7 @@ Partial Class FrmNewCustomer
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.btnCancel.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnCancel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.btnCancel.Appearance.ForeColor = System.Drawing.Color.Black
         Me.btnCancel.Appearance.Options.UseBackColor = True
         Me.btnCancel.Appearance.Options.UseFont = True
         Me.btnCancel.Appearance.Options.UseForeColor = True
@@ -301,9 +311,9 @@ Partial Class FrmNewCustomer
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.cmbStatus, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCustomerPhone, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCustomerName, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmbStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCustomerPhone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
