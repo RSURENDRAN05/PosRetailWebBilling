@@ -22,6 +22,9 @@ Public Class FrmItemMaster
             txtcompany.EditValue = _companyInfo.ComId
             txtlocation.EditValue = _companyInfo.LocId
             chkactive.CheckState = CheckState.Checked
+            chkallowitemdiscount.CheckState = CheckState.Checked
+            chkallowmultipleprice.CheckState = CheckState.Checked
+            chkallownegativestock.CheckState = CheckState.Checked
             btnsave.Text = "Save"
             txtitemname.Select()
             txtbusinesstype.EditValue = 70
@@ -29,10 +32,31 @@ Public Class FrmItemMaster
             txtcompany.EditValue = 1
             txtlocation.EditValue = 1
             txtopeningstock.EditValue = 0.0
-
+            txtminprice.EditValue = 0.0
+            txtmaxprice.EditValue = 0.0
+            _ClearMultiplePriceGrid()
+            _ClearPriceInputs()
             _DataLoad()
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub _ClearMultiplePriceGrid()
+        Try
+            ' Clear the multiple price grid
+            GridControlMultiplePrice.DataSource = Nothing
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub _LoadMultiplePricesForItem(itemId As String)
+        Try
+            ' Load multiple prices from server
+            _LoadMultiplePricesFromServer(itemId)
+        Catch ex As Exception
+            _ClearMultiplePriceGrid()
         End Try
     End Sub
 
@@ -119,6 +143,11 @@ Public Class FrmItemMaster
                 itemdata.itemlocid = txtlocation.EditValue
                 itemdata.itemactive = chkactive.CheckState
                 itemdata.itemopstock = txtopeningstock.EditValue
+                itemdata.itemminprice = txtminprice.EditValue
+                itemdata.itemmaxprice = txtmaxprice.EditValue
+                itemdata.itemallowdiscount = chkallowitemdiscount.CheckState
+                itemdata.itemallownegativestock = chkallownegativestock.CheckState
+                itemdata.itemallowmultipleprice = chkallowmultipleprice.CheckState
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=23&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
@@ -140,6 +169,11 @@ Public Class FrmItemMaster
                 itemdata.itemlocid = txtlocation.EditValue
                 itemdata.itemactive = chkactive.CheckState
                 itemdata.itemopstock = txtopeningstock.EditValue
+                itemdata.itemminprice = txtminprice.EditValue
+                itemdata.itemmaxprice = txtmaxprice.EditValue
+                itemdata.itemallowdiscount = chkallowitemdiscount.CheckState
+                itemdata.itemallownegativestock = chkallownegativestock.CheckState
+                itemdata.itemallowmultipleprice = chkallowmultipleprice.CheckState
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=24&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
@@ -164,14 +198,34 @@ Public Class FrmItemMaster
             Dim main = GridView1.GetFocusedRowCellValue("MainName")
             Dim subg = GridView1.GetFocusedRowCellValue("CateName")
             Dim sell = GridView1.GetFocusedRowCellValue("SellPrice")
+            Dim minsell = GridView1.GetFocusedRowCellValue("MinPrice")
+            Dim maxsell = GridView1.GetFocusedRowCellValue("MaxPrice")
             Dim cost = GridView1.GetFocusedRowCellValue("CostPrice")
             Dim comp = GridView1.GetFocusedRowCellValue("CompanyName")
             Dim loc = GridView1.GetFocusedRowCellValue("LocationName")
             Dim chk = GridView1.GetFocusedRowCellValue("Active")
+            Dim chkdiscount = GridView1.GetFocusedRowCellValue("AllowDiscount")
+            Dim chknegstock = GridView1.GetFocusedRowCellValue("AllowNegStock")
+            Dim chkmultiprice = GridView1.GetFocusedRowCellValue("AllowMultiPrice")
             If chk = 1 Then
                 chkactive.CheckState = CheckState.Checked
             Else
                 chkactive.CheckState = CheckState.Unchecked
+            End If
+            If chkdiscount = 1 Then
+                chkallowitemdiscount.CheckState = CheckState.Checked
+            Else
+                chkallowitemdiscount.CheckState = CheckState.Unchecked
+            End If
+            If chknegstock = 1 Then
+                chkallownegativestock.CheckState = CheckState.Checked
+            Else
+                chkallownegativestock.CheckState = CheckState.Unchecked
+            End If
+            If chkmultiprice = 1 Then
+                chkallowmultipleprice.CheckState = CheckState.Checked
+            Else
+                chkallowmultipleprice.CheckState = CheckState.Unchecked
             End If
             txtitemid.Text = id
             txtitemname.Text = itemname
@@ -182,10 +236,15 @@ Public Class FrmItemMaster
             txtsubgroup.Text = subg
             txtcostprice.EditValue = cost
             txtsellprice.EditValue = sell
+            txtminprice.EditValue = minsell
+            txtmaxprice.EditValue = maxsell
             txtbusinesstype.Text = "Retail"
             txtcompany.Text = comp
             txtlocation.Text = loc
             txtopeningstock.EditValue = 0
+
+            ' Load multiple prices for this item
+            _LoadMultiplePricesForItem(id.ToString())
         Catch ex As Exception
 
         End Try
@@ -261,11 +320,11 @@ Public Class FrmItemMaster
 
         End Try
     End Sub
-     
+
     Private Sub FrmItemMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-
             _DataLoadAll()
+            _EnableMultiplePriceButtons()
         Catch ex As Exception
 
         End Try
@@ -288,7 +347,289 @@ Public Class FrmItemMaster
         End Try
     End Sub
 
+    Private Sub chkallowmultipleprice_CheckStateChanged(sender As Object, e As EventArgs) Handles chkallowmultipleprice.CheckStateChanged
+        _EnableMultiplePriceButtons()
+    End Sub
 
+
+    Private Sub btnmultipleadd_Click(sender As Object, e As EventArgs) Handles btnmultipleadd.Click
+        Try
+            ' Use the same save functionality as btnSavePrice_Click
+            btnSavePrice_Click()
+        Catch ex As Exception
+            MessageBox.Show("Error adding multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnmultipledelete_Click(sender As Object, e As EventArgs) Handles btnmultipledelete.Click
+        Try
+            ' Check if any row is selected
+            If GridView2.FocusedRowHandle < 0 Then
+                MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Get the selected row data
+            Dim selectedPriceId As String = GridView2.GetFocusedRowCellValue("Id").ToString()
+            Dim selectedPriceName As String = GridView2.GetFocusedRowCellValue("Name").ToString()
+
+            ' Confirm deletion
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete the price '" & selectedPriceName & "'?",
+                                                       "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+
+            ' Delete from server
+            _DeleteMultiplePriceFromServer(selectedPriceId)
+
+        Catch ex As Exception
+            MessageBox.Show("Error deleting multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Function _GetMultiplePricesData() As List(Of multiprice)
+        Dim multiplePricesList As New List(Of multiprice)()
+        Try
+            If GridControlMultiplePrice.DataSource IsNot Nothing Then
+                Dim dt As DataTable = DirectCast(GridControlMultiplePrice.DataSource, DataTable)
+                For Each row As DataRow In dt.Rows
+                    If row.RowState <> DataRowState.Deleted Then
+                        Dim priceItem As New multiprice()
+                        priceItem.itemid = txtitemid.Text
+                        priceItem.itempriceid = row("Id").ToString()
+                        priceItem.itempricename = row("Name").ToString()
+                        priceItem.itemprice = row("Price").ToString()
+                        multiplePricesList.Add(priceItem)
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            ' Return empty list on error
+        End Try
+        Return multiplePricesList
+    End Function
+
+    Private Sub _EnableMultiplePriceButtons()
+        Try
+            ' Enable/disable multiple price buttons based on allow multiple price setting
+            Dim allowMultiplePrice As Boolean = chkallowmultipleprice.CheckState = CheckState.Checked
+            btnmultipleadd.Enabled = allowMultiplePrice
+            btnmultipledelete.Enabled = allowMultiplePrice
+            GridControlMultiplePrice.Enabled = allowMultiplePrice
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    ' Variable to track if we're editing an existing price
+    Private editingPriceId As String = ""
+
+    Private Sub btnSavePrice_Click()
+        Try
+            ' Validate that an item is selected
+            If String.IsNullOrEmpty(txtitemid.Text) Then
+                MessageBox.Show("Please select an item first.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Validate price name from textbox
+            If String.IsNullOrEmpty(txtpricename.Text.Trim()) Then
+                txtpricename.Properties.Appearance.BackColor = Color.Red
+                MessageBox.Show("Please enter a price name.", "Price Name Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtpricename.Focus()
+                Exit Sub
+            Else
+                txtpricename.Properties.Appearance.BackColor = Color.White
+            End If
+
+            ' Validate price value from textbox
+            Dim priceAmount As Decimal = 0
+            If Not Decimal.TryParse(txtmultipleprice.Text, priceAmount) OrElse priceAmount <= 0 Then
+                txtmultipleprice.Properties.Appearance.BackColor = Color.Red
+                MessageBox.Show("Please enter a valid price value.", "Invalid Price", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtmultipleprice.Focus()
+                Exit Sub
+            Else
+                txtmultipleprice.Properties.Appearance.BackColor = Color.White
+            End If
+
+            ' Validate price against selling price, min price, and max price
+            Dim sellPrice As Decimal = If(txtsellprice.EditValue IsNot Nothing, Convert.ToDecimal(txtsellprice.EditValue), 0)
+            Dim minPrice As Decimal = If(txtminprice.EditValue IsNot Nothing, Convert.ToDecimal(txtminprice.EditValue), 0)
+            Dim maxPrice As Decimal = If(txtmaxprice.EditValue IsNot Nothing, Convert.ToDecimal(txtmaxprice.EditValue), 0)
+
+            ' Check if multiple price is greater than selling price
+            If sellPrice > 0 AndAlso priceAmount > sellPrice Then
+                txtmultipleprice.Properties.Appearance.BackColor = Color.Red
+                MessageBox.Show("Multiple price (" & priceAmount.ToString("F2") & ") cannot be greater than selling price (" & sellPrice.ToString("F2") & ").", "Price Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtmultipleprice.Focus()
+                Exit Sub
+            End If
+
+            ' Check if multiple price is less than minimum price (if min price is set)
+            If minPrice > 0 AndAlso priceAmount < minPrice Then
+                txtmultipleprice.Properties.Appearance.BackColor = Color.Red
+                MessageBox.Show("Multiple price (" & priceAmount.ToString("F2") & ") cannot be less than minimum price (" & minPrice.ToString("F2") & ").", "Price Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtmultipleprice.Focus()
+                Exit Sub
+            End If
+
+            ' Check if multiple price is greater than maximum price (if max price is set)
+            If maxPrice > 0 AndAlso priceAmount > maxPrice Then
+                txtmultipleprice.Properties.Appearance.BackColor = Color.Red
+                MessageBox.Show("Multiple price (" & priceAmount.ToString("F2") & ") cannot be greater than maximum price (" & maxPrice.ToString("F2") & ").", "Price Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtmultipleprice.Focus()
+                Exit Sub
+            End If
+
+            ' Create multiprice object
+            Dim priceData As New multiprice()
+            priceData.itemid = txtitemid.Text
+            priceData.itempricename = txtpricename.Text.Trim()
+            priceData.itemprice = priceAmount.ToString()
+
+            ' Determine if we're updating or inserting
+            Dim ajaxRequestType As String
+            Dim operationType As String
+
+            If Not String.IsNullOrEmpty(editingPriceId) Then
+                ' Updating existing price
+                priceData.itempriceid = editingPriceId
+                ajaxRequestType = "64" ' Update
+                operationType = "updated"
+            Else
+                ' Inserting new price
+                ajaxRequestType = "63" ' Insert
+                operationType = "saved"
+            End If
+
+            ' Serialize to JSON
+            Dim PostString As String = JsonConvert.SerializeObject(priceData)
+
+            ' Save/Update to backend
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim response As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=" & ajaxRequestType & "&json=" & Uri.EscapeDataString(PostString))
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            If responseObj("Success").ToObject(Of Boolean)() = True Then
+                MessageBox.Show("Multiple price " & operationType & " successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Clear input fields and reset editing state
+                txtpricename.Text = ""
+                txtmultipleprice.EditValue = 0.0
+                editingPriceId = ""
+                txtpricename.Focus()
+
+                ' Reload multiple prices for this item
+                _LoadMultiplePricesFromServer(txtitemid.Text)
+            Else
+                MessageBox.Show("Failed to " & operationType.Replace("d", "") & " multiple price: " & responseObj("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub _LoadMultiplePricesFromServer(itemId As String)
+        Try
+            If Not String.IsNullOrEmpty(itemId) Then
+                ' Load multiple prices from server using AjaxRequest 66
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim response As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=66&itemid=" & itemId)
+                Dim responseObj As JObject = JObject.Parse(response)
+
+                If responseObj("Success").ToObject(Of Boolean)() = True Then
+                    Dim multiplePricesData As JArray = responseObj("Data")
+
+                    ' Create DataTable for grid
+                    Dim dt As New DataTable()
+                    dt.Columns.Add("Id", GetType(Integer))
+                    dt.Columns.Add("RefId", GetType(Integer))
+                    dt.Columns.Add("Name", GetType(String))
+                    dt.Columns.Add("Price", GetType(Decimal))
+
+                    ' Populate DataTable with server data
+                    For Each priceItem In multiplePricesData
+                        Dim newRow As DataRow = dt.NewRow()
+                        newRow("Id") = priceItem("Id").ToObject(Of Integer)()
+                        newRow("RefId") = priceItem("RefId").ToObject(Of Integer)()
+                        newRow("Name") = priceItem("Name").ToString()
+                        newRow("Price") = priceItem("Price").ToObject(Of Decimal)()
+                        dt.Rows.Add(newRow)
+                    Next
+
+                    GridControlMultiplePrice.DataSource = dt
+                Else
+                    ' No data found, create empty table
+                    Dim dt As New DataTable()
+                    dt.Columns.Add("Id", GetType(Integer))
+                    dt.Columns.Add("RefId", GetType(Integer))
+                    dt.Columns.Add("Name", GetType(String))
+                    dt.Columns.Add("Price", GetType(Decimal))
+                    GridControlMultiplePrice.DataSource = dt
+                End If
+            Else
+                _ClearMultiplePriceGrid()
+            End If
+        Catch ex As Exception
+            _ClearMultiplePriceGrid()
+        End Try
+    End Sub
+
+    Private Sub _DeleteMultiplePriceFromServer(priceId As String)
+        Try
+            If Not String.IsNullOrEmpty(priceId) Then
+                ' Delete from server using AjaxRequest 65
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim response As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=65&priceid=" & priceId)
+                Dim responseObj As JObject = JObject.Parse(response)
+
+                If responseObj("Success").ToObject(Of Boolean)() = True Then
+                    MessageBox.Show("Multiple price deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    ' Reload multiple prices for this item
+                    _LoadMultiplePricesFromServer(txtitemid.Text)
+                Else
+                    MessageBox.Show("Failed to delete multiple price: " & responseObj("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error deleting multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GridView2_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView2.RowClick
+        Try
+            ' Load selected price data into input fields for editing
+            If GridView2.FocusedRowHandle >= 0 Then
+                Dim selectedPriceId As String = GridView2.GetFocusedRowCellValue("Id").ToString()
+                Dim selectedPriceName As String = GridView2.GetFocusedRowCellValue("Name").ToString()
+                Dim selectedPriceValue As Decimal = Convert.ToDecimal(GridView2.GetFocusedRowCellValue("Price"))
+
+                ' Set values for editing
+                editingPriceId = selectedPriceId
+                txtpricename.Text = selectedPriceName
+                txtmultipleprice.EditValue = selectedPriceValue
+                txtpricename.Focus()
+            End If
+        Catch ex As Exception
+            ' Handle any errors silently
+        End Try
+    End Sub
+
+    Private Sub _ClearPriceInputs()
+        Try
+            ' Clear price input fields and reset editing state
+            txtpricename.Text = ""
+            txtmultipleprice.EditValue = 0.0
+            editingPriceId = ""
+            txtpricename.Focus()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
 
 Public Class itemmaster
@@ -306,4 +647,15 @@ Public Class itemmaster
     Public Property itemlocid As String
     Public Property itemactive As String
     Public Property itemopstock As String
+    Public Property itemminprice As String
+    Public Property itemmaxprice As String
+    Public Property itemallowdiscount As String
+    Public Property itemallownegativestock As String
+    Public Property itemallowmultipleprice As String
+End Class
+Public Class multiprice
+    Public Property itemid As String
+    Public Property itempriceid As String
+    Public Property itempricename As String
+    Public Property itemprice As String
 End Class

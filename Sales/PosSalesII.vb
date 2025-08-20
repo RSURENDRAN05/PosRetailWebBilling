@@ -33,10 +33,10 @@ Public Class PosSalesII
             GridDataTble_Insert.Columns.Add("TAXVALUE", GetType(Integer)).DefaultValue = 0 '9
             GridDataTble_Insert.Columns.Add("TAXAMT", GetType(Decimal)).DefaultValue = 0 '11
             GridDataTble_Insert.Columns.Add("NETAMT", GetType(Decimal)) '12
-            GridDataTble_Insert.Columns.Add("SALESPERSON", GetType(String)).DefaultValue = "SP" '9
             GridDataTble_Insert.Columns.Add("ITEMREMARS", GetType(String)).DefaultValue = "Notes" '2
             GridDataTble_Insert.Columns.Add("BATCHNO ", GetType(Integer)).DefaultValue = 0 '10
             GridDataTble_Insert.Columns.Add("SALESPERSONID ", GetType(Integer)).DefaultValue = 0 '10
+            GridDataTble_Insert.Columns.Add("SALESPERSON", GetType(String)).DefaultValue = "SP" '9
             GridDataTble_Insert.Columns.Add("DELETE ", GetType(Integer)).DefaultValue = 1 '10
 
             Return GridDataTble_Insert
@@ -66,6 +66,11 @@ Public Class PosSalesII
                 barSearchProductCode.Checked = True
             Else
                 barSearchProductCode.Checked = False
+            End If
+            If _globalSetting.TaxExculsive = True Then
+                barstatustaxtype.Caption = "Tax Exclusive"
+            Else
+                barstatustaxtype.Caption = "Tax Inclusive"
             End If
         Catch ex As Exception
 
@@ -514,20 +519,22 @@ Public Class PosSalesII
                 Dim _srate As String = ""
                 Dim _taxId As String = ""
                 Dim _taxValue As String = ""
-
-
+                Dim _serialno As String = ""
+                Dim _uom As String = ""
                 Dim _dsMaterial As New DataTable
                 _dsMaterial = dtrows.CopyToDataTable
                 If _dsMaterial.Rows.Count > 0 Then
                     For Each _rows In _dsMaterial.Rows
+                        _barcode = _rows("BARCODE")
                         _Code = _rows("ITEMCODE")
                         _item = _rows("ITEMNAME")
-                        _barcode = _rows("BARCODE")
                         _srate = _rows("SELL")
                         _taxValue = _rows("TAXVALUE")
-                        'txtnotes.Text = _rows("Remarks")
+                        _serialno = 1
+                        _uom = 1
+
                     Next
-                    _InsertDt(_Code, _item, _srate, _taxValue)
+                    _InsertDt(_barcode, _Code, _item, _serialno, _uom, _srate, _taxValue)
                 End If
             End If
             Return True
@@ -537,7 +544,7 @@ Public Class PosSalesII
         End Try
 
     End Function
-    Public Sub _InsertDt(ByRef _code As Integer, ByRef _items As String, ByRef _srate As Double, ByRef _taxValue As Integer)
+    Public Sub _InsertDt(ByRef _barcode As String, ByRef _itemcode As Integer, ByRef _itemname As String, ByRef _serialno As String, ByRef _uom As String, ByRef _srate As Double, ByRef _taxValue As Integer)
         Try
             Dim Qty As Integer = 1
             Dim PrintItem As Integer = 1
@@ -549,13 +556,10 @@ Public Class PosSalesII
             Dim GAmount As Double = 0.0
             Dim TaxRetunAmt As Double = 0.0
             Dim NetAmount As Double = 0.0
-            Dim _mountProCode As Integer = _code
-            Dim _item As String = String.Empty
-            'If txtnotes.Text <> "-" Then
-            '    _item = _items & vbNewLine & txtnotes.Text
-            'Else
-            '    _item = _items
-            'End If
+            Dim _mountProCode As Integer = _itemcode
+            Dim _item As String = _itemname
+            Dim _batchno As String = 0
+
 
             GridDataTble_Insert.NewRow()
             GridDataTble_Insert.BeginInit()
@@ -568,16 +572,16 @@ Public Class PosSalesII
             Else
                 NetAmount = TAmount
             End If
-            GridDataTble_Insert.Rows.Add(_SnoCount, 0, _code, Trim(_item), _srate, Qty, TAmount, DisPer, DisAmt, DisBPer, DisBAmt, GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount))
+            GridDataTble_Insert.Rows.Add(_SnoCount, _barcode, _itemcode, Trim(_item), _serialno, _uom, _srate, Qty, TAmount, DisPer, DisAmt, GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, 1, "SaleMan", 1)
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
             GridViewPOS.MoveNext()
             ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
             'txtnotes.Text = "-"
-            'If SalesGrandtotal("ER") = False Then
+            If SalesGrandtotal("ER") = False Then
 
-            'End If
+            End If
         Catch ex As Exception
 
         End Try
@@ -599,264 +603,82 @@ Public Class PosSalesII
             Return False
         End Try
     End Function
-    'Private Sub RepositoryItemTextEditQty_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEditQty.KeyDown
-    '    Try
-    '        If e.KeyCode = Keys.Enter OrElse e.KeyCode = Keys.Right Then
 
-    '            Dim iQty As Decimal = DirectCast(sender, DevExpress.XtraEditors.TextEdit).EditValue
-    '            GridViewPOS.SetFocusedRowCellValue(GCItemqty, iQty)
-    '            QtyEditUpdate(iQty, False)
-    '            GridViewPOS.FocusedColumn = GCItemRate
-
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub RepositoryItemTextEditRate_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEditRate.KeyDown
-    '    Try
-    '        If e.KeyCode = Keys.Enter OrElse e.KeyCode = Keys.Right Then
-    '            Dim iSaleRate As Decimal = DirectCast(sender, DevExpress.XtraEditors.TextEdit).EditValue
-    '            GridViewPOS.SetFocusedRowCellValue(GCItemRate, iSaleRate)
-    '            QtyEditUpdate(iSaleRate, True)
-    '            'GCItemRate.OptionsColumn.AllowFocus = False
-    '            'GCItemRate.OptionsColumn.AllowEdit = False
-    '            GridViewPOS.CloseEditor()
-    '            cmbMaterialSearch.Focus()
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub RepositoryItemTextEditQty_MouseLeave(sender As Object, e As EventArgs) Handles RepositoryItemTextEditQty.MouseLeave
-    '    Try
-    '        Dim iQty As Decimal = DirectCast(sender, DevExpress.XtraEditors.TextEdit).EditValue
-    '        GridViewPOS.SetFocusedRowCellValue(GCItemqty, iQty)
-    '        QtyEditUpdate(iQty, False)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub RepositoryItemTextEditRate_MouseLeave(sender As Object, e As EventArgs) Handles RepositoryItemTextEditRate.MouseLeave
-    '    Try
-    '        Dim iSaleRate As Decimal = DirectCast(sender, DevExpress.XtraEditors.TextEdit).EditValue
-    '        GridViewPOS.SetFocusedRowCellValue(GCItemRate, iSaleRate)
-    '        QtyEditUpdate(iSaleRate, True)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub barbtnDiscount_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnDiscount.ItemClick
-    '    Try
-    '        frmDiscount.ShowDialog()
-    '        If frmDiscount.DialogResult = Windows.Forms.DialogResult.OK Then
-    '            Dim result As Decimal = 0.0
-    '            Dim amount As Decimal = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAMOUNT")
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = 0
-    '            If _discount.DiscountPer = True Then
-    '                CalPercentage(amount, _discount.discountValue, result, Tax.Percentage2Price, RoundType.DefaultValue, Errstr)
-    '                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DPER") = _discount.discountValue
-    '            Else
-    '                CalPercentage(amount, _discount.discountValue, result, Tax.Price2Percentage, RoundType.DefaultValue, Errstr)
-    '            End If
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DPER") = result
-
-    '            DiscountItemWise()
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-
-    'Private Sub barbtnBilldiscount_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnBilldiscount.ItemClick
-    '    Try
-    '        Dim _disCountItemPer As Double
-    '        frmDiscount.ShowDialog()
-    '        If frmDiscount.DialogResult = Windows.Forms.DialogResult.OK Then
-    '            Dim result As Decimal = 0.0
-    '            Dim amount As Decimal = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAMOUNT")
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("BAMT") = 0
-    '            If _discount.DiscountPer = True Then
-    '                _disCountItemPer = _discount.discountValue / 100
-    '                Dim count As Integer = GridDataTble_Insert.Rows.Count
-    '                GridDataTble_Insert.BeginInit()
-    '                For i As Integer = 0 To count - 1
-    '                    GridDataTble_Insert.Rows(i)("TAMOUNT") = GridDataTble_Insert.Rows(i)("RATE") * GridDataTble_Insert.Rows(i)("QTY")
-    '                    GridDataTble_Insert.Rows(i)("BAMT") = GridDataTble_Insert.Rows(i)("TAMOUNT") * _disCountItemPer
-    '                    GridDataTble_Insert.Rows(i)("BPER") = _disCountItemPer
-    '                    GridDataTble_Insert.Rows(i)("GAMOUNT") = GridDataTble_Insert.Rows(i)("TAMOUNT") - GridDataTble_Insert.Rows(i)("BAMT")
-    '                    GridDataTble_Insert.Rows(i)("TAXAMT") = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), GridDataTble_Insert.Rows(i)("GAMOUNT"))
-    '                    If _globalSetting.TaxInEx = True Then
-    '                        GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT") + GridDataTble_Insert.Rows(i)("TAXAMT")
-    '                    Else
-    '                        GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT")
-    '                    End If
-    '                Next
-    '            Else
-    '                Dim TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("TAMOUNT"))
-    '                Dim _DPer = (_discount.discountValue / TAmount)
-    '                Dim count As Integer = GridDataTble_Insert.Rows.Count
-    '                GridDataTble_Insert.BeginInit()
-    '                For i As Integer = 0 To count - 1
-    '                    Dim _TAmtRatexQty = GridDataTble_Insert.Rows(i)("RATE") * GridDataTble_Insert.Rows(i)("QTY")
-    '                    GridDataTble_Insert.Rows(i)("TAMOUNT") = _TAmtRatexQty
-    '                    GridDataTble_Insert.Rows(i)("BAMT") = _TAmtRatexQty * _DPer
-    '                    GridDataTble_Insert.Rows(i)("BPER") = _DPer
-    '                    Dim _DAmt = GridDataTble_Insert.Rows(i)("BAMT")
-    '                    Dim _Grosamt = _TAmtRatexQty - _DAmt
-    '                    GridDataTble_Insert.Rows(i)("GAMOUNT") = _Grosamt
-    '                    Dim _TAxamt = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), _Grosamt)
-    '                    GridDataTble_Insert.Rows(i)("TAXAMT") = _TAxamt
-    '                    If _globalSetting.TaxInEx = True Then
-    '                        GridDataTble_Insert.Rows(i)("NETAMT") = _Grosamt + _TAxamt
-    '                    Else
-    '                        GridDataTble_Insert.Rows(i)("NETAMT") = _Grosamt
-    '                    End If
-    '                Next
-    '            End If
-    '            GridDataTble_Insert.AcceptChanges()
-    '            GridDataTble_Insert.EndInit()
-    '            SalesGrandtotal(Errstr)
-    '            '_salesDiscount.R_disper = 0.0
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub barbtndiscountclear_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtndiscountclear.ItemClick
-    '    Try
-    '        Dim count As Integer = GridDataTble_Insert.Rows.Count
-    '        For i As Integer = 0 To count - 1
-    '            GridDataTble_Insert.Rows(i)("TAMOUNT") = GridDataTble_Insert.Rows(i)("RATE") * GridDataTble_Insert.Rows(i)("QTY")
-    '            GridDataTble_Insert.Rows(i)("BAMT") = 0
-    '            GridDataTble_Insert.Rows(i)("DAMT") = 0
-    '            GridDataTble_Insert.Rows(i)("DPER") = 0
-    '            GridDataTble_Insert.Rows(i)("BPER") = 0
-    '            GridDataTble_Insert.Rows(i)("GAMOUNT") = GridDataTble_Insert.Rows(i)("TAMOUNT")
-    '            GridDataTble_Insert.Rows(i)("TAXAMT") = _ReturnGst(GridDataTble_Insert.Rows(i)("TAXINEX"), GridDataTble_Insert.Rows(i)("TAXVALUE"), GridDataTble_Insert.Rows(i)("GAMOUNT"))
-    '            If _globalSetting.TaxInEx = True Then
-    '                GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT") + GridDataTble_Insert.Rows(i)("TAXAMT")
-    '            Else
-    '                GridDataTble_Insert.Rows(i)("NETAMT") = GridDataTble_Insert.Rows(i)("GAMOUNT")
-    '            End If
-    '        Next
-    '        GridDataTble_Insert.AcceptChanges()
-    '        GridDataTble_Insert.EndInit()
-    '        SalesGrandtotal(Errstr)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    'Private Sub QtyEditUpdate(ByRef _IqtyEdit As Decimal, ByRef _Edit As Boolean)
-    '    Try
-    '        Dim salesrate As Decimal
-    '        If _Edit = True Then
-    '            salesrate = GridViewPOS.GetFocusedRowCellValue("QTY") * _IqtyEdit
-    '        Else
-    '            salesrate = GridViewPOS.GetFocusedRowCellValue("RATE") * _IqtyEdit
-    '        End If
-
-    '        GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAMOUNT") = salesrate
-    '        GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = salesrate
-
-    '        Dim DValue As Decimal = 0.0
-    '        Dim TValue As Decimal = 0.0
-    '        Dim v As Decimal = 0.0
-    '        Dim j As Decimal = 0.0
-    '        'GridViewPOS.GetFocusedRowCellValue("FixedPrice")
-    '        If DiscountAddTax(GridViewPOS.GetFocusedRowCellValue("RATE"), GridViewPOS.GetFocusedRowCellValue("DPER"), GridViewPOS.GetFocusedRowCellValue("TAXVALUE"), GridViewPOS.GetFocusedRowCellValue("TAXINEX"), v, TValue, DValue, Errstr) = False Then
-    '            DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-    '        Else
-
-    '            'GridViewPOS.SetFocusedRowCellValue("RATE", v)
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = Format((Format(DValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") - GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT")
-    '            GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT") = Format((Format(TValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-    '            If _globalSetting.TaxInEx = True Then
-    '                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") + GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT")
-    '            Else
-    '                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT")
-    '            End If
-    '        End If
-
-    '        GridViewPOS.UpdateCurrentRow()
-    '        GridDataTble_Insert.AcceptChanges()
-
-    '        SalesGrandtotal(Errstr)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    Private Sub DiscountItemWise()
+    Public Function SalesGrandtotal(ByRef ERR As String) As Boolean
         Try
 
-            Dim DValue As Decimal = 0.0
-            Dim TValue As Decimal = 0.0
-            Dim v As Decimal = 0.0
-            Dim j As Decimal = 0.0
-            Dim DPerDisc As Decimal = 0.0
+            Dim TAmount As Decimal = 0.0
+            Dim DAMT As Decimal = 0.0
+            Dim BAMT As Decimal = 0.0
+            Dim GAmount As Decimal = 0.0
+            Dim GST As Decimal = 0.0
+            Dim ServiceChargeAmount As Decimal = 0.0
+            Dim NetTot As Decimal = 0.0
 
-            'GridViewPOS.GetFocusedRowCellValue("FixedPrice")
-            If DiscountAddTax(GridViewPOS.GetFocusedRowCellValue("RATE"), GridViewPOS.GetFocusedRowCellValue("DPER"), GridViewPOS.GetFocusedRowCellValue("TAXVALUE"), GridViewPOS.GetFocusedRowCellValue("TAXINEX"), v, TValue, DValue, Errstr) = False Then
-                DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
+            'DPER = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Double)("DPER"))
+            DAMT = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("DAMT"))
 
-            Else
+            GAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("GAMOUNT"))
+            GST = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
 
-                'GridViewPOS.SetFocusedRowCellValue("RATE", v)
-                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT") = Format((Format(DValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") = v 'GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") - GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("DAMT")
-                GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT") = Format((Format(TValue, "0.00") * GridViewPOS.GetFocusedRowCellValue("QTY")), "0.00")
-                If _globalSetting.TaxExculsive = True Then
-                    GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT") + GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("TAXAMT")
-                Else
-                    GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("NETAMT") = GridDataTble_Insert.Rows(GridViewPOS.FocusedRowHandle)("GAMOUNT")
+            ' Calculate Service Charge if enabled
+            If _globalSetting.ServiceTaxActive = True Then
+                Dim ServiceTaxPercentage As Decimal = 0.0
+                ' Convert string to decimal safely
+                If Decimal.TryParse(_globalSettingValues.ServiceTaxValue, ServiceTaxPercentage) Then
+                    ' Calculate service charge on gross amount (after discount, before tax)
+                    ServiceChargeAmount = (GAmount * ServiceTaxPercentage) / 100
                 End If
             End If
 
-            GridViewPOS.UpdateCurrentRow()
-            GridDataTble_Insert.AcceptChanges()
+            ' Calculate final net total
+            If _globalSetting.TaxExculsive = True Then
+                ' Tax Exclusive: Add tax and service charge to gross amount
+                NetTot = GAmount + GST + ServiceChargeAmount
+            Else
+                ' Tax Inclusive: Add only service charge (tax already included in gross amount)
+                NetTot = GAmount + ServiceChargeAmount
+            End If
 
-            ' SalesGrandtotal(Errstr)
+            ' Update UI labels
+            lblsubtotal.Text = TAmount.ToString("0.00")
+            lblitemdisctotal.Text = (DAMT).ToString("0.00")
+            lblssttotal.Text = GST.ToString("0.00")
+            lblservchargetotal.Text = ServiceChargeAmount.ToString("0.00")
+            ' Display service charge if there's a label for it
+            ' If you have a service charge label, uncomment and modify this line:
+            ' lblservicecharge.Text = ServiceChargeAmount.ToString("0.00")
+
+            lblnetamt.Text = _RoundOff(NetTot).ToString("0.00")
+
+            'GridViewPOS.MoveLast()
+            If GridDataTble_Insert.Rows.Count <> 0 Then
+                GridDataTble_Insert.WriteXml(M_Details.AppPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
+            End If
+            Return True
         Catch ex As Exception
-
+            ERR = ex.Message
+            Return False
         End Try
-    End Sub
-    'Public Function SalesGrandtotal(ByRef ERR As String) As Boolean
-    '    Try
 
-    '        Dim TAmount As Double = 0.0
-    '        Dim DAMT As Double = 0.0
-    '        Dim BAMT As Double = 0.0
-    '        Dim GAmount As Double = 0.0
-    '        Dim GST As Double = 0.0
-    '        Dim NetTot As Decimal = 0.0
-    '        TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("TAMOUNT"))
-    '        'DPER = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Double)("DPER"))
-    '        DAMT = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("DAMT"))
-    '        BAMT = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("BAMT"))
-    '        GAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("GAMOUNT"))
-    '        GST = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("TAXAMT"))
-    '        If _globalSetting.TaxInEx = True Then
-    '            NetTot = GAmount + GST
-    '        Else
-    '            lbltax.Text = "SST: " & Format(GAmount - GST, "#####.00")
-    '            NetTot = GAmount
-    '        End If
-    '        txttotamount.Text = TAmount.ToString("0.00")
-    '        txtdiscamt.Text = (DAMT + BAMT).ToString("0.00")
-    '        txttaxamt.Text = GST.ToString("0.00")
-    '        txtnetamt.Text = _RoundOff(NetTot).ToString("0.00")
-    '        'GridViewPOS.MoveLast()
-    '        If GridDataTble_Insert.Rows.Count <> 0 Then
-    '            GridDataTble_Insert.WriteXml(M_Details.AppPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
-    '        End If
-    '        Return True
-    '    Catch ex As Exception
-    '        Return False
-    '    End Try
+    End Function
 
-    'End Function
+    Public Function CalculateServiceCharge(grossAmount As Decimal) As Decimal
+        Try
+            If _globalSetting.ServiceTaxActive = True Then
+                Dim ServiceTaxPercentage As Decimal = 0.0
+                ' Convert string to decimal safely
+                If Decimal.TryParse(_globalSettingValues.ServiceTaxValue, ServiceTaxPercentage) Then
+                    Return (grossAmount * ServiceTaxPercentage) / 100
+                End If
+            End If
+            Return 0.0
+        Catch ex As Exception
+            Return 0.0
+        End Try
+    End Function
+
     Public Function _RoundOff(ByRef AMT As Decimal) As Decimal
         Try
             Dim _roundoffs As Double = 0.0
@@ -943,6 +765,27 @@ Public Class PosSalesII
             barSearchProductCode.Checked = Not barSearchProductCode.Checked
         End Try
     End Sub
+
+    ' Add this event handler for Service Tax toggle (if you have a button for it)
+    'Private Sub barServiceTaxActive_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barServiceTaxActive.ItemClick
+    '    Try
+    '        ' Toggle the service tax setting
+    '        barServiceTaxActive.Checked = Not barServiceTaxActive.Checked
+    '
+    '        ' Update the setting
+    '        UpdateServiceTaxActive(barServiceTaxActive.Checked)
+    '
+    '        ' Recalculate totals
+    '        If GridDataTble_Insert.Rows.Count > 0 Then
+    '            SalesGrandtotal("ER")
+    '        End If
+    '
+    '    Catch ex As Exception
+    '        ' If update fails, revert the UI change
+    '        barServiceTaxActive.Checked = Not barServiceTaxActive.Checked
+    '        DevExpress.XtraEditors.XtraMessageBox.Show("Error updating Service Tax setting: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 #End Region
 
 

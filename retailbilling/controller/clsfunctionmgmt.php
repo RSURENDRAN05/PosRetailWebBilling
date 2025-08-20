@@ -239,7 +239,7 @@ class funcProcessMgmt
     public function _SelectProductJoin()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim.dim_remark as Remarks,dmg.mainname as MainName,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id WHERE 1;");
+        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim.dim_remark as Remarks,dmg.mainname as MainName,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id WHERE 1;");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -253,10 +253,12 @@ class funcProcessMgmt
         $dim_tax_id,
         $dim_cost_price,
         $dim_sell_price,
+        $dim_min_price,
+        $dim_max_price,
+        $dim_allow_disc,
+        $dim_allow_negstock,
+        $dim_allow_multiprice,
         $dim_op_stock,
-        $dim_stock_in,
-        $dim_stock_out,
-        $dim_stock_cur,
         $dim_com_id,
         $dim_loc_id,
         $dim_status,
@@ -264,9 +266,9 @@ class funcProcessMgmt
     ) {
         $conn = $this->conn;
         $sqlQuery = ("INSERT INTO `di_item_mast`( `dim_item_barcode`, `dim_item_name`, `dim_business_type`, `dim_main_id`, `dim_cate_id`, `dim_tax_id`, `dim_cost_price`"
-            . ", `dim_sell_price`, `dim_op_stock`, `dim_stock_in`, `dim_stock_out`, `dim_stock_cur`, `dim_com_id`, `dim_loc_id`, `dim_status`,`dim_remark`,`created`) VALUES "
+            . ", `dim_sell_price`, `dim_min_price`, `dim_max_price`, `dim_allow_disc`, `dim_allow_negstock`, `dim_allow_multiprice`, `dim_op_stock`, `dim_com_id`, `dim_loc_id`, `dim_status`,`dim_remark`,`created`) VALUES "
             . " ('" . $dim_item_barcode . "','" . $dim_item_name . "','" . $dim_business_type . "','" . $dim_main_id . "','" . $dim_cate_id . "','" . $dim_tax_id . "','" . $dim_cost_price . "'"
-            . ",'" . $dim_sell_price . "','" . $dim_op_stock . "','" . $dim_stock_in . "','" . $dim_stock_out . "','" . $dim_stock_cur . "','" . $dim_com_id . "','" . $dim_loc_id . "','" . $dim_status . "'"
+            . ",'" . $dim_sell_price . "','" . $dim_min_price . "','" . $dim_max_price . "','" . $dim_allow_disc . "','" . $dim_allow_negstock . "','" . $dim_allow_multiprice . "','" . $dim_op_stock . "','" . $dim_com_id . "','" . $dim_loc_id . "','" . $dim_status . "'"
             . ",'" . $dim_remark . "','" . date('Y/m/d') . "')");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
@@ -315,10 +317,12 @@ class funcProcessMgmt
         $dim_tax_id,
         $dim_cost_price,
         $dim_sell_price,
+        $dim_min_price,
+        $dim_max_price,
+        $dim_allow_disc,
+        $dim_allow_negstock,
+        $dim_allow_multiprice,
         $dim_op_stock,
-        $dim_stock_in,
-        $dim_stock_out,
-        $dim_stock_cur,
         $dim_com_id,
         $dim_loc_id,
         $dim_status,
@@ -327,7 +331,8 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlQuery = ("UPDATE `di_item_mast` SET `dim_item_barcode`='" . $dim_item_barcode . "',`dim_item_name`='" . $dim_item_name . "',`dim_business_type`='" . $dim_business_type . "'"
             . ",`dim_main_id`='" . $dim_main_id . "',`dim_cate_id`='" . $dim_cate_id . "',`dim_tax_id`='" . $dim_tax_id . "',`dim_cost_price`='" . $dim_cost_price . "',`dim_sell_price`='" . $dim_sell_price . "'"
-            . ",`dim_op_stock`='" . $dim_op_stock . "',`dim_stock_in`='" . $dim_stock_in . "',`dim_stock_out`='" . $dim_stock_out . "',`dim_stock_cur`='" . $dim_stock_cur . "',`dim_com_id`='" . $dim_com_id . "'"
+            . ",`dim_min_price`='" . $dim_min_price . "',`dim_max_price`='" . $dim_max_price . "',`dim_allow_disc`='" . $dim_allow_disc . "',`dim_allow_negstock`='" . $dim_allow_negstock . "',`dim_allow_multiprice`='" . $dim_allow_multiprice . "'"
+            . ",`dim_op_stock`='" . $dim_op_stock . "',`dim_com_id`='" . $dim_com_id . "'"
             . ",`dim_loc_id`='" . $dim_loc_id . "',`dim_status`='" . $dim_status . "',`dim_remark`='" . $dim_remark . "' WHERE `dim_item_id`='" . $dim_item_id . "'");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
@@ -2527,6 +2532,51 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
         $sqlQuery = ("SELECT `Id`, `Name`, `Status`, `Value`, `Type`, `Created` FROM `pos_settings` WHERE `Name`='" . $Name . "' AND `Status`='1'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    // Multiple Price Management Methods
+    public function _InsertMultiplePrice($item_id, $price_name, $price_value, $com_id, $loc_id, $status)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("INSERT INTO `item_multiple_price`(`item_id`, `price_name`, `price_value`, `com_id`, `loc_id`, `status`, `created`) VALUES "
+            . "('" . $item_id . "','" . $price_name . "','" . $price_value . "','" . $com_id . "','" . $loc_id . "','" . $status . "','" . date('Y-m-d H:i:s') . "')");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _UpdateMultiplePrice($price_id, $item_id, $price_name, $price_value, $status)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `item_multiple_price` SET `item_id`='" . $item_id . "',`price_name`='" . $price_name . "',`price_value`='" . $price_value . "',`status`='" . $status . "' WHERE `price_id`='" . $price_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _DeleteMultiplePrice($price_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("DELETE FROM `item_multiple_price` WHERE `price_id`='" . $price_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _GetMultiplePricesByItem($item_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `price_id`, `item_id`, `price_name`, `price_value`, `status`, `created` FROM `item_multiple_price` WHERE `item_id`='" . $item_id . "' AND `status`='1' ORDER BY `price_id` ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    public function _GetAllMultiplePrices()
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT imp.`price_id`, imp.`item_id`, dim.`dim_item_name` as `item_name`, imp.`price_name`, imp.`price_value`, imp.`status`, imp.`created` "
+            . "FROM `item_multiple_price` imp "
+            . "INNER JOIN `di_item_mast` dim ON imp.`item_id` = dim.`dim_item_id` "
+            . "WHERE imp.`status`='1' ORDER BY imp.`item_id`, imp.`price_id`");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }

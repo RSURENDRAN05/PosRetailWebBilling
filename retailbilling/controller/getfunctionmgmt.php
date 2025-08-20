@@ -322,18 +322,20 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $dim_cate_id = $row['itemsubgroupid'];
         $dim_cost_price = $row['itemcostprice'];
         $dim_sell_price = $row['itemsellprice'];
+        $dim_min_price = $row['itemminprice'];
+        $dim_max_price = $row['itemmaxprice'];
+        $dim_allow_disc = $row['itemallowdiscount'];
+        $dim_allow_negstock = $row['itemallownegativestock'];
+        $dim_allow_multiprice = $row['itemallowmultipleprice'];
         $dim_com_id = $row['itemcompid'];
         $dim_loc_id = $row['itemlocid'];
         $dim_status = $row['itemactive'];
         $dim_op_stock = $row['itemopstock'];
-        $dim_stock_in = 0;
-        $dim_stock_out = 0;
-        $dim_stock_cur = 0;
-        $RequestInsert = $clsfunreq->_InsertProductMaster($dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_stock_in, $dim_stock_out, $dim_stock_cur, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
+        $RequestInsert = $clsfunreq->_InsertProductMaster($dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
         if ($RequestInsert) {
             $productCode = $clsfunreq->_GetProductCode($dim_item_barcode, $dim_item_name, $dim_com_id, $dim_loc_id);
             if (strlen($productCode) > 0) {
-                $RequestLiveStock = $clsfunreq->_InsertLiveStock($productCode, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_stock_cur, $dim_com_id, $dim_loc_id);
+                $RequestLiveStock = $clsfunreq->_InsertLiveStock($productCode, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_op_stock, $dim_com_id, $dim_loc_id);
                 if ($RequestLiveStock) {
                     echo json_encode(array("Success" => true));
                 } else {
@@ -359,16 +361,18 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $dim_cate_id = $row['itemsubgroupid'];
         $dim_cost_price = $row['itemcostprice'];
         $dim_sell_price = $row['itemsellprice'];
+        $dim_min_price = $row['itemminprice'];
+        $dim_max_price = $row['itemmaxprice'];
+        $dim_allow_disc = $row['itemallowdiscount'];
+        $dim_allow_negstock = $row['itemallownegativestock'];
+        $dim_allow_multiprice = $row['itemallowmultipleprice'];
         $dim_com_id = $row['itemcompid'];
         $dim_loc_id = $row['itemlocid'];
         $dim_status = $row['itemactive'];
         $dim_op_stock = $row['itemopstock'];
-        $dim_stock_in = 0;
-        $dim_stock_out = 0;
-        $dim_stock_cur = 0;
-        $RequestInsert = $clsfunreq->_UpdateProductMaster($dim_item_id, $dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_stock_in, $dim_stock_out, $dim_stock_cur, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
+        $RequestInsert = $clsfunreq->_UpdateProductMaster($dim_item_id, $dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
         if ($RequestInsert) {
-            $RequestLiveStock = $clsfunreq->_InsertLiveStock($dim_item_id, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_stock_cur, $dim_com_id, $dim_loc_id);
+            $RequestLiveStock = $clsfunreq->_InsertLiveStock($dim_item_id, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_op_stock, $dim_com_id, $dim_loc_id);
             if ($RequestLiveStock) {
                 echo json_encode(array("Success" => true, "Data" => $RequestLiveStock));
             } else {
@@ -1211,6 +1215,74 @@ if (isset($_REQUEST['AjaxRequest'])) {
                 "Msg" => "Invalid or missing data",
                 "Data" => $jsonData
             ]);
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 63) {
+        // Multiple Price Management - Save/Insert
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $dim_item_id = $row['itemid'];
+        $dim_price_name = $row['itempricename'];
+        $dim_price_value = $row['itemprice'];
+        $dim_com_id = 1; // Default company ID
+        $dim_loc_id = 1; // Default location ID
+        $dim_status = 1; // Active status
+
+        $RequestInsert = $clsfunreq->_InsertMultiplePrice($dim_item_id, $dim_price_name, $dim_price_value, $dim_com_id, $dim_loc_id, $dim_status);
+        if ($RequestInsert) {
+            echo json_encode(array("Success" => true, "Data" => $RequestInsert, "Msg" => "Multiple price saved successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestInsert, "Msg" => "Failed to save multiple price"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 64) {
+        // Multiple Price Management - Update
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $dim_price_id = $row['itempriceid'];
+        $dim_item_id = $row['itemid'];
+        $dim_price_name = $row['itempricename'];
+        $dim_price_value = $row['itemprice'];
+        $dim_status = 1; // Active status
+
+        $RequestUpdate = $clsfunreq->_UpdateMultiplePrice($dim_price_id, $dim_item_id, $dim_price_name, $dim_price_value, $dim_status);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Data" => $RequestUpdate, "Msg" => "Multiple price updated successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestUpdate, "Msg" => "Failed to update multiple price"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 65) {
+        // Multiple Price Management - Delete
+        $dim_price_id = $_GET['priceid'];
+
+        $RequestDelete = $clsfunreq->_DeleteMultiplePrice($dim_price_id);
+        if ($RequestDelete) {
+            echo json_encode(array("Success" => true, "Data" => $RequestDelete, "Msg" => "Multiple price deleted successfully"));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => $RequestDelete, "Msg" => "Failed to delete multiple price"));
+        }
+    }
+    if ((int) $_REQUEST['AjaxRequest'] == 66) {
+        // Multiple Price Management - Get by Item ID
+        $dim_item_id = $_GET['itemid'];
+
+        $RequestSelect = $clsfunreq->_GetMultiplePricesByItem($dim_item_id);
+        $MultiplePricesRes = array();
+        if ($RequestSelect) {
+            while ($rows = mysqli_fetch_assoc($RequestSelect)) {
+                $MultiplePricesRes[] = array(
+                    "Id" => $rows['price_id'],
+                    "RefId" => $rows['item_id'],
+                    "Name" => $rows['price_name'],
+                    "Price" => $rows['price_value'],
+                    "Status" => $rows['status'],
+                    "Created" => $rows['created']
+                );
+            }
+            echo json_encode(array("Success" => true, "Data" => $MultiplePricesRes));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => array()));
         }
     }
 }

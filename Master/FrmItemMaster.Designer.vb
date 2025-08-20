@@ -19,9 +19,27 @@ Partial Class FrmItemMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmItemMaster))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnmultipledelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.btnmultipleadd = New DevExpress.XtraEditors.SimpleButton()
+        Me.txtmultipleprice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtpricename = New DevExpress.XtraEditors.TextEdit()
+        Me.GridControlMultiplePrice = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtmaxprice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtminprice = New DevExpress.XtraEditors.TextEdit()
+        Me.chkallowmultipleprice = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkallownegativestock = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkallowitemdiscount = New DevExpress.XtraEditors.CheckEdit()
         Me.txtopeningstock = New DevExpress.XtraEditors.TextEdit()
         Me.btncancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btnsave = New DevExpress.XtraEditors.SimpleButton()
@@ -42,7 +60,7 @@ Partial Class FrmItemMaster
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageitemactive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
-        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.imgcol = New DevExpress.Utils.ImageCollection()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.chkactive = New DevExpress.XtraEditors.CheckEdit()
         Me.txtsellprice = New DevExpress.XtraEditors.TextEdit()
@@ -78,8 +96,21 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.txtmultipleprice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtpricename.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControlMultiplePrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtmaxprice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtminprice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkallowmultipleprice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkallownegativestock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkallowitemdiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtopeningstock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,10 +151,12 @@ Partial Class FrmItemMaster
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.GroupControl1)
         Me.LayoutControl1.Controls.Add(Me.txtopeningstock)
         Me.LayoutControl1.Controls.Add(Me.btncancel)
         Me.LayoutControl1.Controls.Add(Me.btnsave)
@@ -152,10 +185,203 @@ Partial Class FrmItemMaster
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'GroupControl1
+        '
+        Me.GroupControl1.Controls.Add(Me.btnmultipledelete)
+        Me.GroupControl1.Controls.Add(Me.LabelControl4)
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
+        Me.GroupControl1.Controls.Add(Me.btnmultipleadd)
+        Me.GroupControl1.Controls.Add(Me.txtmultipleprice)
+        Me.GroupControl1.Controls.Add(Me.txtpricename)
+        Me.GroupControl1.Controls.Add(Me.GridControlMultiplePrice)
+        Me.GroupControl1.Controls.Add(Me.LabelControl3)
+        Me.GroupControl1.Controls.Add(Me.LabelControl2)
+        Me.GroupControl1.Controls.Add(Me.txtmaxprice)
+        Me.GroupControl1.Controls.Add(Me.txtminprice)
+        Me.GroupControl1.Controls.Add(Me.chkallowmultipleprice)
+        Me.GroupControl1.Controls.Add(Me.chkallownegativestock)
+        Me.GroupControl1.Controls.Add(Me.chkallowitemdiscount)
+        Me.GroupControl1.Location = New System.Drawing.Point(621, 28)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(269, 334)
+        Me.GroupControl1.TabIndex = 22
+        Me.GroupControl1.Text = "Item Settings Group"
+        '
+        'btnmultipledelete
+        '
+        Me.btnmultipledelete.Location = New System.Drawing.Point(212, 181)
+        Me.btnmultipledelete.Name = "btnmultipledelete"
+        Me.btnmultipledelete.Size = New System.Drawing.Size(52, 23)
+        Me.btnmultipledelete.TabIndex = 13
+        Me.btnmultipledelete.Text = "Delete"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(7, 183)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl4.TabIndex = 12
+        Me.LabelControl4.Text = "Price :"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(7, 158)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl5.TabIndex = 11
+        Me.LabelControl5.Text = "Price Name :"
+        '
+        'btnmultipleadd
+        '
+        Me.btnmultipleadd.Location = New System.Drawing.Point(149, 181)
+        Me.btnmultipleadd.Name = "btnmultipleadd"
+        Me.btnmultipleadd.Size = New System.Drawing.Size(57, 23)
+        Me.btnmultipleadd.TabIndex = 10
+        Me.btnmultipleadd.Text = "Add"
+        '
+        'txtmultipleprice
+        '
+        Me.txtmultipleprice.Location = New System.Drawing.Point(81, 184)
+        Me.txtmultipleprice.Name = "txtmultipleprice"
+        Me.txtmultipleprice.Properties.DisplayFormat.FormatString = "{0:n2}"
+        Me.txtmultipleprice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtmultipleprice.Properties.EditFormat.FormatString = "{0:n2}"
+        Me.txtmultipleprice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtmultipleprice.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtmultipleprice.Size = New System.Drawing.Size(62, 20)
+        Me.txtmultipleprice.TabIndex = 9
+        '
+        'txtpricename
+        '
+        Me.txtpricename.Location = New System.Drawing.Point(81, 155)
+        Me.txtpricename.Name = "txtpricename"
+        Me.txtpricename.Size = New System.Drawing.Size(100, 20)
+        Me.txtpricename.TabIndex = 8
+        '
+        'GridControlMultiplePrice
+        '
+        Me.GridControlMultiplePrice.Location = New System.Drawing.Point(5, 210)
+        Me.GridControlMultiplePrice.MainView = Me.GridView2
+        Me.GridControlMultiplePrice.Name = "GridControlMultiplePrice"
+        Me.GridControlMultiplePrice.Size = New System.Drawing.Size(264, 124)
+        Me.GridControlMultiplePrice.TabIndex = 7
+        Me.GridControlMultiplePrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridView2.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridView2.Appearance.Row.Options.UseFont = True
+        Me.GridView2.Appearance.Row.Options.UseTextOptions = True
+        Me.GridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GridView2.GridControl = Me.GridControlMultiplePrice
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "RefId"
+        Me.GridColumn13.FieldName = "RefId"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 44
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Name"
+        Me.GridColumn14.FieldName = "Name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        Me.GridColumn14.Width = 76
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Price"
+        Me.GridColumn15.FieldName = "Price"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn15.Width = 85
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(6, 58)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl3.TabIndex = 6
+        Me.LabelControl3.Text = "Max Price :"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(6, 33)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl2.TabIndex = 5
+        Me.LabelControl2.Text = "Min Price :"
+        '
+        'txtmaxprice
+        '
+        Me.txtmaxprice.Location = New System.Drawing.Point(81, 54)
+        Me.txtmaxprice.Name = "txtmaxprice"
+        Me.txtmaxprice.Properties.DisplayFormat.FormatString = "{0:n2}"
+        Me.txtmaxprice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtmaxprice.Properties.EditFormat.FormatString = "{0:n2}"
+        Me.txtmaxprice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtmaxprice.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtmaxprice.Size = New System.Drawing.Size(100, 20)
+        Me.txtmaxprice.TabIndex = 4
+        '
+        'txtminprice
+        '
+        Me.txtminprice.Location = New System.Drawing.Point(81, 28)
+        Me.txtminprice.Name = "txtminprice"
+        Me.txtminprice.Properties.DisplayFormat.FormatString = "{0:n2}"
+        Me.txtminprice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtminprice.Properties.EditFormat.FormatString = "{0:n2}"
+        Me.txtminprice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtminprice.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtminprice.Size = New System.Drawing.Size(100, 20)
+        Me.txtminprice.TabIndex = 3
+        '
+        'chkallowmultipleprice
+        '
+        Me.chkallowmultipleprice.EditValue = True
+        Me.chkallowmultipleprice.Location = New System.Drawing.Point(5, 130)
+        Me.chkallowmultipleprice.Name = "chkallowmultipleprice"
+        Me.chkallowmultipleprice.Properties.Caption = "Allow Multiple Price"
+        Me.chkallowmultipleprice.Size = New System.Drawing.Size(129, 19)
+        Me.chkallowmultipleprice.TabIndex = 2
+        '
+        'chkallownegativestock
+        '
+        Me.chkallownegativestock.EditValue = True
+        Me.chkallownegativestock.Location = New System.Drawing.Point(5, 105)
+        Me.chkallownegativestock.Name = "chkallownegativestock"
+        Me.chkallownegativestock.Properties.Caption = "Allow Negative Stock"
+        Me.chkallownegativestock.Size = New System.Drawing.Size(129, 19)
+        Me.chkallownegativestock.TabIndex = 1
+        '
+        'chkallowitemdiscount
+        '
+        Me.chkallowitemdiscount.EditValue = True
+        Me.chkallowitemdiscount.Location = New System.Drawing.Point(5, 80)
+        Me.chkallowitemdiscount.Name = "chkallowitemdiscount"
+        Me.chkallowitemdiscount.Properties.Caption = "Allow Item Discount"
+        Me.chkallowitemdiscount.Size = New System.Drawing.Size(129, 19)
+        Me.chkallowitemdiscount.TabIndex = 0
+        '
         'txtopeningstock
         '
         Me.txtopeningstock.EditValue = "0.00"
-        Me.txtopeningstock.Location = New System.Drawing.Point(772, 80)
+        Me.txtopeningstock.Location = New System.Drawing.Point(503, 80)
         Me.txtopeningstock.Name = "txtopeningstock"
         Me.txtopeningstock.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtopeningstock.Properties.Appearance.Options.UseFont = True
@@ -167,7 +393,7 @@ Partial Class FrmItemMaster
         Me.txtopeningstock.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtopeningstock.Properties.Mask.EditMask = "n2"
         Me.txtopeningstock.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtopeningstock.Size = New System.Drawing.Size(118, 30)
+        Me.txtopeningstock.Size = New System.Drawing.Size(114, 30)
         Me.txtopeningstock.StyleController = Me.LayoutControl1
         Me.txtopeningstock.TabIndex = 21
         '
@@ -177,9 +403,9 @@ Partial Class FrmItemMaster
         Me.btncancel.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.Options.UseBackColor = True
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
-        Me.btncancel.Location = New System.Drawing.Point(672, 324)
+        Me.btncancel.Location = New System.Drawing.Point(472, 324)
         Me.btncancel.Name = "btncancel"
-        Me.btncancel.Size = New System.Drawing.Size(218, 38)
+        Me.btncancel.Size = New System.Drawing.Size(145, 38)
         Me.btncancel.StyleController = Me.LayoutControl1
         Me.btncancel.TabIndex = 20
         Me.btncancel.Text = "Cancel"
@@ -190,9 +416,9 @@ Partial Class FrmItemMaster
         Me.btnsave.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.Options.UseBackColor = True
         Me.btnsave.Image = CType(resources.GetObject("btnsave.Image"), System.Drawing.Image)
-        Me.btnsave.Location = New System.Drawing.Point(452, 324)
+        Me.btnsave.Location = New System.Drawing.Point(319, 324)
         Me.btnsave.Name = "btnsave"
-        Me.btnsave.Size = New System.Drawing.Size(216, 38)
+        Me.btnsave.Size = New System.Drawing.Size(149, 38)
         Me.btnsave.StyleController = Me.LayoutControl1
         Me.btnsave.TabIndex = 19
         Me.btnsave.Text = "Save"
@@ -203,9 +429,9 @@ Partial Class FrmItemMaster
         Me.btnnew.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnnew.Appearance.Options.UseBackColor = True
         Me.btnnew.Image = CType(resources.GetObject("btnnew.Image"), System.Drawing.Image)
-        Me.btnnew.Location = New System.Drawing.Point(233, 324)
+        Me.btnnew.Location = New System.Drawing.Point(207, 324)
         Me.btnnew.Name = "btnnew"
-        Me.btnnew.Size = New System.Drawing.Size(215, 38)
+        Me.btnnew.Size = New System.Drawing.Size(108, 38)
         Me.btnnew.StyleController = Me.LayoutControl1
         Me.btnnew.TabIndex = 18
         Me.btnnew.Text = "New"
@@ -373,7 +599,7 @@ Partial Class FrmItemMaster
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.LabelControl1.Location = New System.Drawing.Point(736, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(463, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(154, 24)
         Me.LabelControl1.StyleController = Me.LayoutControl1
@@ -386,13 +612,13 @@ Partial Class FrmItemMaster
         Me.chkactive.Name = "chkactive"
         Me.chkactive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.chkactive.Properties.Caption = "Active"
-        Me.chkactive.Size = New System.Drawing.Size(217, 21)
+        Me.chkactive.Size = New System.Drawing.Size(191, 21)
         Me.chkactive.StyleController = Me.LayoutControl1
         Me.chkactive.TabIndex = 16
         '
         'txtsellprice
         '
-        Me.txtsellprice.Location = New System.Drawing.Point(537, 256)
+        Me.txtsellprice.Location = New System.Drawing.Point(404, 256)
         Me.txtsellprice.Name = "txtsellprice"
         Me.txtsellprice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtsellprice.Properties.Appearance.Options.UseFont = True
@@ -402,7 +628,7 @@ Partial Class FrmItemMaster
         Me.txtsellprice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtsellprice.Properties.Mask.EditMask = "n2"
         Me.txtsellprice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtsellprice.Size = New System.Drawing.Size(353, 30)
+        Me.txtsellprice.Size = New System.Drawing.Size(213, 30)
         Me.txtsellprice.StyleController = Me.LayoutControl1
         Me.txtsellprice.TabIndex = 13
         '
@@ -418,7 +644,7 @@ Partial Class FrmItemMaster
         Me.txtcostprice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtcostprice.Properties.Mask.EditMask = "n2"
         Me.txtcostprice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtcostprice.Size = New System.Drawing.Size(351, 30)
+        Me.txtcostprice.Size = New System.Drawing.Size(218, 30)
         Me.txtcostprice.StyleController = Me.LayoutControl1
         Me.txtcostprice.TabIndex = 12
         '
@@ -428,7 +654,7 @@ Partial Class FrmItemMaster
         Me.txtitembarcode.Name = "txtitembarcode"
         Me.txtitembarcode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtitembarcode.Properties.Appearance.Options.UseFont = True
-        Me.txtitembarcode.Size = New System.Drawing.Size(586, 30)
+        Me.txtitembarcode.Size = New System.Drawing.Size(317, 30)
         Me.txtitembarcode.StyleController = Me.LayoutControl1
         Me.txtitembarcode.TabIndex = 6
         '
@@ -439,7 +665,7 @@ Partial Class FrmItemMaster
         Me.txtitemname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtitemname.Properties.Appearance.Options.UseFont = True
         Me.txtitemname.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtitemname.Size = New System.Drawing.Size(793, 30)
+        Me.txtitemname.Size = New System.Drawing.Size(520, 30)
         Me.txtitemname.StyleController = Me.LayoutControl1
         Me.txtitemname.TabIndex = 5
         '
@@ -450,7 +676,7 @@ Partial Class FrmItemMaster
         Me.txtitemid.Name = "txtitemid"
         Me.txtitemid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtitemid.Properties.Appearance.Options.UseFont = True
-        Me.txtitemid.Size = New System.Drawing.Size(635, 30)
+        Me.txtitemid.Size = New System.Drawing.Size(362, 30)
         Me.txtitemid.StyleController = Me.LayoutControl1
         Me.txtitemid.TabIndex = 4
         '
@@ -460,7 +686,7 @@ Partial Class FrmItemMaster
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtremarks.Properties.Appearance.Options.UseFont = True
-        Me.txtremarks.Size = New System.Drawing.Size(793, 70)
+        Me.txtremarks.Size = New System.Drawing.Size(520, 70)
         Me.txtremarks.StyleController = Me.LayoutControl1
         Me.txtremarks.TabIndex = 7
         '
@@ -476,13 +702,13 @@ Partial Class FrmItemMaster
         Me.txtbusinesstype.Properties.ImmediatePopup = True
         Me.txtbusinesstype.Properties.NullText = ""
         Me.txtbusinesstype.Properties.ValueMember = "Id"
-        Me.txtbusinesstype.Size = New System.Drawing.Size(351, 30)
+        Me.txtbusinesstype.Size = New System.Drawing.Size(218, 30)
         Me.txtbusinesstype.StyleController = Me.LayoutControl1
         Me.txtbusinesstype.TabIndex = 8
         '
         'txttaxtype
         '
-        Me.txttaxtype.Location = New System.Drawing.Point(537, 188)
+        Me.txttaxtype.Location = New System.Drawing.Point(404, 188)
         Me.txttaxtype.Name = "txttaxtype"
         Me.txttaxtype.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txttaxtype.Properties.Appearance.Options.UseFont = True
@@ -492,7 +718,7 @@ Partial Class FrmItemMaster
         Me.txttaxtype.Properties.ImmediatePopup = True
         Me.txttaxtype.Properties.NullText = ""
         Me.txttaxtype.Properties.ValueMember = "TaxId"
-        Me.txttaxtype.Size = New System.Drawing.Size(353, 30)
+        Me.txttaxtype.Size = New System.Drawing.Size(213, 30)
         Me.txttaxtype.StyleController = Me.LayoutControl1
         Me.txttaxtype.TabIndex = 9
         '
@@ -507,13 +733,13 @@ Partial Class FrmItemMaster
         Me.txtmaingroup.Properties.DisplayMember = "MainName"
         Me.txtmaingroup.Properties.NullText = ""
         Me.txtmaingroup.Properties.ValueMember = "MainId"
-        Me.txtmaingroup.Size = New System.Drawing.Size(351, 30)
+        Me.txtmaingroup.Size = New System.Drawing.Size(218, 30)
         Me.txtmaingroup.StyleController = Me.LayoutControl1
         Me.txtmaingroup.TabIndex = 10
         '
         'txtsubgroup
         '
-        Me.txtsubgroup.Location = New System.Drawing.Point(537, 222)
+        Me.txtsubgroup.Location = New System.Drawing.Point(404, 222)
         Me.txtsubgroup.Name = "txtsubgroup"
         Me.txtsubgroup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtsubgroup.Properties.Appearance.Options.UseFont = True
@@ -522,7 +748,7 @@ Partial Class FrmItemMaster
         Me.txtsubgroup.Properties.DisplayMember = "CateName"
         Me.txtsubgroup.Properties.NullText = ""
         Me.txtsubgroup.Properties.ValueMember = "CateId"
-        Me.txtsubgroup.Size = New System.Drawing.Size(353, 30)
+        Me.txtsubgroup.Size = New System.Drawing.Size(213, 30)
         Me.txtsubgroup.StyleController = Me.LayoutControl1
         Me.txtsubgroup.TabIndex = 11
         '
@@ -537,13 +763,13 @@ Partial Class FrmItemMaster
         Me.txtcompany.Properties.DisplayMember = "CompanyName"
         Me.txtcompany.Properties.NullText = ""
         Me.txtcompany.Properties.ValueMember = "COID"
-        Me.txtcompany.Size = New System.Drawing.Size(351, 30)
+        Me.txtcompany.Size = New System.Drawing.Size(218, 30)
         Me.txtcompany.StyleController = Me.LayoutControl1
         Me.txtcompany.TabIndex = 14
         '
         'txtlocation
         '
-        Me.txtlocation.Location = New System.Drawing.Point(537, 290)
+        Me.txtlocation.Location = New System.Drawing.Point(404, 290)
         Me.txtlocation.Name = "txtlocation"
         Me.txtlocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtlocation.Properties.Appearance.Options.UseFont = True
@@ -552,7 +778,7 @@ Partial Class FrmItemMaster
         Me.txtlocation.Properties.DisplayMember = "plm_name"
         Me.txtlocation.Properties.NullText = ""
         Me.txtlocation.Properties.ValueMember = "plm_id"
-        Me.txtlocation.Size = New System.Drawing.Size(353, 30)
+        Me.txtlocation.Size = New System.Drawing.Size(213, 30)
         Me.txtlocation.StyleController = Me.LayoutControl1
         Me.txtlocation.TabIndex = 15
         '
@@ -561,7 +787,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem1, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem6, Me.LayoutControlItem19})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem1, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem6, Me.LayoutControlItem19, Me.LayoutControlItem20})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(902, 739)
@@ -574,7 +800,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem1.CustomizationFormText = "Item Id :"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(724, 34)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(451, 34)
         Me.LayoutControlItem1.Text = "Item Id :"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -584,7 +810,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem2.CustomizationFormText = "Item Name :"
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 34)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(882, 34)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(609, 34)
         Me.LayoutControlItem2.Text = "Item Name :"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -594,7 +820,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem3.CustomizationFormText = "BarCode :"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 68)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(675, 34)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(406, 34)
         Me.LayoutControlItem3.Text = "BarCode :"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -604,7 +830,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem4.CustomizationFormText = "Remarks :"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 102)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(882, 74)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(609, 74)
         Me.LayoutControlItem4.Text = "Remarks :"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -614,7 +840,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem5.CustomizationFormText = "Business Type :"
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 176)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(440, 34)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(307, 34)
         Me.LayoutControlItem5.Text = "Business Type :"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -624,7 +850,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem7.CustomizationFormText = "Main Group :"
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 210)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(440, 34)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(307, 34)
         Me.LayoutControlItem7.Text = "Main Group :"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -632,9 +858,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem8.Control = Me.txtsubgroup
         Me.LayoutControlItem8.CustomizationFormText = "Sub Group :"
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(440, 210)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(307, 210)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(442, 34)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(302, 34)
         Me.LayoutControlItem8.Text = "Sub Group :"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -644,7 +870,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem9.CustomizationFormText = "Cost Price :"
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 244)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(440, 34)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(307, 34)
         Me.LayoutControlItem9.Text = "Cost Price :"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -652,9 +878,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem10.Control = Me.txtsellprice
         Me.LayoutControlItem10.CustomizationFormText = "Sell Price :"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(440, 244)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(307, 244)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(442, 34)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(302, 34)
         Me.LayoutControlItem10.Text = "Sell Price :"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -664,7 +890,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem11.CustomizationFormText = "Company Name :"
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 278)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(440, 34)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(307, 34)
         Me.LayoutControlItem11.Text = "Company Name :"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -672,9 +898,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem12.Control = Me.txtlocation
         Me.LayoutControlItem12.CustomizationFormText = "Location Name :"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(440, 278)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(307, 278)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(442, 34)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(302, 34)
         Me.LayoutControlItem12.Text = "Location Name :"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -684,7 +910,7 @@ Partial Class FrmItemMaster
         Me.LayoutControlItem13.CustomizationFormText = "LayoutControlItem13"
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 312)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(221, 42)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(195, 42)
         Me.LayoutControlItem13.Text = "LayoutControlItem13"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextToControlDistance = 0
@@ -704,7 +930,7 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem14.Control = Me.LabelControl1
         Me.LayoutControlItem14.CustomizationFormText = "LayoutControlItem14"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(724, 0)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(451, 0)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(158, 34)
         Me.LayoutControlItem14.Text = "LayoutControlItem14"
@@ -727,9 +953,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem16.Control = Me.btnnew
         Me.LayoutControlItem16.CustomizationFormText = "LayoutControlItem16"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(221, 312)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(195, 312)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(219, 42)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(112, 42)
         Me.LayoutControlItem16.Text = "LayoutControlItem16"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextToControlDistance = 0
@@ -739,9 +965,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem17.Control = Me.btnsave
         Me.LayoutControlItem17.CustomizationFormText = "LayoutControlItem17"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(440, 312)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(307, 312)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(220, 42)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(153, 42)
         Me.LayoutControlItem17.Text = "LayoutControlItem17"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextToControlDistance = 0
@@ -751,9 +977,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem18.Control = Me.btncancel
         Me.LayoutControlItem18.CustomizationFormText = "LayoutControlItem18"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(660, 312)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(460, 312)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(222, 42)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(149, 42)
         Me.LayoutControlItem18.Text = "LayoutControlItem18"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem18.TextToControlDistance = 0
@@ -763,9 +989,9 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem6.Control = Me.txttaxtype
         Me.LayoutControlItem6.CustomizationFormText = "Tax Type :"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(440, 176)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(307, 176)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(442, 34)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(302, 34)
         Me.LayoutControlItem6.Text = "Tax Type :"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(82, 13)
         '
@@ -773,11 +999,31 @@ Partial Class FrmItemMaster
         '
         Me.LayoutControlItem19.Control = Me.txtopeningstock
         Me.LayoutControlItem19.CustomizationFormText = "Opening Stock :"
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(675, 68)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(406, 68)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(207, 34)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(203, 34)
         Me.LayoutControlItem19.Text = "Opening Stock :"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(82, 13)
+        '
+        'LayoutControlItem20
+        '
+        Me.LayoutControlItem20.Control = Me.GroupControl1
+        Me.LayoutControlItem20.CustomizationFormText = "More Settings "
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(609, 0)
+        Me.LayoutControlItem20.Name = "LayoutControlItem20"
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(273, 354)
+        Me.LayoutControlItem20.Text = "More Settings "
+        Me.LayoutControlItem20.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(82, 13)
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Id"
+        Me.GridColumn16.FieldName = "Id"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        Me.GridColumn16.Width = 41
         '
         'FrmItemMaster
         '
@@ -791,6 +1037,18 @@ Partial Class FrmItemMaster
         Me.Text = "FrmItemMaster"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.txtmultipleprice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtpricename.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControlMultiplePrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtmaxprice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtminprice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkallowmultipleprice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkallownegativestock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkallowitemdiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtopeningstock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -831,6 +1089,7 @@ Partial Class FrmItemMaster
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -891,4 +1150,25 @@ Partial Class FrmItemMaster
     Friend WithEvents imgcol As DevExpress.Utils.ImageCollection
     Friend WithEvents txtopeningstock As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtmaxprice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtminprice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents chkallowmultipleprice As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents chkallownegativestock As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents chkallowitemdiscount As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents btnmultipleadd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txtmultipleprice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtpricename As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridControlMultiplePrice As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents btnmultipledelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
