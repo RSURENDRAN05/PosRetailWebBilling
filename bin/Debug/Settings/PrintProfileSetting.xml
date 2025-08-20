@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="ProfileSetting" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ProfileSetting">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ProfileID" type="xs:int" minOccurs="0" />
+                <xs:element name="ProfileName" type="xs:string" minOccurs="0" />
+                <xs:element name="FileName" type="xs:string" minOccurs="0" />
+                <xs:element name="ProfileType" type="xs:string" minOccurs="0" />
+                <xs:element name="ProfileSingle" type="xs:string" minOccurs="0" />
+                <xs:element name="ProfileActive" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <ProfileSetting>
+    <ProfileID>1</ProfileID>
+    <ProfileName>ds</ProfileName>
+    <FileName>ChqNormal.repx</FileName>
+    <ProfileType>Cheque</ProfileType>
+    <ProfileSingle>Print</ProfileSingle>
+    <ProfileActive>Active</ProfileActive>
+  </ProfileSetting>
+  <ProfileSetting>
+    <ProfileID>2</ProfileID>
+    <ProfileName>SalesPrint</ProfileName>
+    <FileName>SalesPrint.repx</FileName>
+    <ProfileType>Sales</ProfileType>
+    <ProfileSingle>Print</ProfileSingle>
+    <ProfileActive>Active</ProfileActive>
+  </ProfileSetting>
+  <ProfileSetting>
+    <ProfileID>3</ProfileID>
+    <ProfileName>SalesQuotation</ProfileName>
+    <FileName>SalesQuotationPrint.repx</FileName>
+    <ProfileType>Sales</ProfileType>
+    <ProfileSingle>Print</ProfileSingle>
+    <ProfileActive>Active</ProfileActive>
+  </ProfileSetting>
+</NewDataSet>

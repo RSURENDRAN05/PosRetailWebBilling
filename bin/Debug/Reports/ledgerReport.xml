@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="DataTable1" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="DataTable1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="HEAD_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DESCRIP" type="xs:string" minOccurs="0" />
+                <xs:element name="Debit" type="xs:string" minOccurs="0" />
+                <xs:element name="Credit" type="xs:string" minOccurs="0" />
+                <xs:element name="ENTRY_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="Openingbalance" type="xs:string" minOccurs="0" />
+                <xs:element name="Closingbalance" type="xs:string" minOccurs="0" />
+                <xs:element name="HEAD_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="JModeStatus" type="xs:string" minOccurs="0" />
+                <xs:element name="BillNo" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <DataTable1>
+    <HEAD_NAME>ILLI SIVAKUMAR</HEAD_NAME>
+    <DESCRIP>CASH A/C To ILLI SIVAKUMAR -</DESCRIP>
+    <Credit>10.00</Credit>
+    <ENTRY_DATE>2024-10-26</ENTRY_DATE>
+    <Openingbalance>0.00 Cr</Openingbalance>
+    <Closingbalance>10.00 Cr</Closingbalance>
+    <HEAD_ID>112</HEAD_ID>
+    <JModeStatus>PAY</JModeStatus>
+    <BillNo>222</BillNo>
+  </DataTable1>
+</NewDataSet>
