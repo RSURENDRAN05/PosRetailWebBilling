@@ -90,6 +90,7 @@ Module functionModule
         Public Shared SearchProductCode As Boolean = True 'SearchByProductcode,SearchByBarcode
         Public Shared BillDiscountAcitve As Boolean = False
         Public Shared ItemDiscountActive As Boolean = False
+        Public Shared SelectMultiplePriceActive As Boolean = False
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"

@@ -1093,7 +1093,7 @@ Public Class PosSales
     End Sub
     Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
         Try
-            FrmNewCustomer.ShowDialog()
+            'FrmNewCustomer.ShowDialog()
             LoadItemMaster()
         Catch ex As Exception
 

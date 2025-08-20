@@ -21,7 +21,7 @@ Private Sub barSearchProductCode_CheckedChanged(sender As Object, e As DevExpres
         End If
 
     Catch ex As Exception
-        XtraMessageBox.Show($"Error in barSearchProductCode_CheckedChanged: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        XtraMessageBox.Show("Error in barSearchProductCode_CheckedChanged: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
 End Sub
 
@@ -34,7 +34,7 @@ Public Sub UpdateGlobalTaxType(isExclusive As Boolean)
             _globalSetting.TaxExculsive = isExclusive
         End If
     Catch ex As Exception
-        XtraMessageBox.Show($"Error updating GlobalTaxType: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        XtraMessageBox.Show("Error updating GlobalTaxType: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
 End Sub
 
@@ -45,7 +45,7 @@ Public Sub UpdatePriceEditSetting(allowEdit As Boolean)
             _globalSetting.PriceEdit = allowEdit
         End If
     Catch ex As Exception
-        XtraMessageBox.Show($"Error updating PriceEdit: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        XtraMessageBox.Show("Error updating PriceEdit: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
 End Sub
 
@@ -56,7 +56,7 @@ Public Sub UpdateServiceTaxActive(isActive As Boolean)
             _globalSetting.ServiceTaxActive = isActive
         End If
     Catch ex As Exception
-        XtraMessageBox.Show($"Error updating ServiceTaxActive: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        XtraMessageBox.Show("Error updating ServiceTaxActive: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
 End Sub
 
@@ -72,6 +72,6 @@ Public Sub UpdateServiceTaxValue(taxValue As String)
             End If
         End If
     Catch ex As Exception
-        XtraMessageBox.Show($"Error updating ServiceTaxValue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        XtraMessageBox.Show("Error updating ServiceTaxValue: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Try
 End Sub

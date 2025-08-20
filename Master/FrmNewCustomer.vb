@@ -1,295 +1,238 @@
-﻿Imports Newtonsoft.Json
 Imports System.Net
 Imports Newtonsoft.Json.Linq
 
 Public Class FrmNewCustomer
+    Private _customerId As Integer = 0
+    Private _isEditMode As Boolean = False
+    Private _companyInfo As Object
 
-    Private Sub btncancel_Click(sender As Object, e As EventArgs) Handles btncancel.Click
+    Public Property CustomerId As Integer
+        Get
+            Return _customerId
+        End Get
+        Set(value As Integer)
+            _customerId = value
+        End Set
+    End Property
+
+    Public Property IsEditMode As Boolean
+        Get
+            Return _isEditMode
+        End Get
+        Set(value As Boolean)
+            _isEditMode = value
+        End Set
+    End Property
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
+    Public Sub New(customerId As Integer)
+        InitializeComponent()
+        _customerId = customerId
+        _isEditMode = True
+    End Sub
+
+    Private Sub FrmNewCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            ' Get company info from global variables
+            _companyInfo = M_Details.SoftwareVersion
+
+            ' Setup form based on mode
+            If _isEditMode Then
+                Me.Text = "Edit Customer"
+                btnSave.Text = "Update Customer"
+                LoadCustomerData()
+            Else
+                Me.Text = "New Customer"
+                btnSave.Text = "Save Customer"
+                ClearForm()
+            End If
+
+            ' Set default status
+            cmbStatus.Properties.Items.Clear()
+            cmbStatus.Properties.Items.Add("1")
+            cmbStatus.Properties.Items.Add("0")
+            cmbStatus.Text = "1"
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub LoadCustomerData()
+        Try
+            If _customerId <= 0 Then Return
+
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=69&customerid=" & _customerId
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(url)
+            Dim parseJson As JObject = JObject.Parse(json)
+            Dim success = parseJson("Success").ToString()
+
+            If success = "True" Then
+                Dim customerData = parseJson("Data")
+
+                txtCustomerName.Text = customerData("CustomerName").ToString()
+                txtCustomerPhone.Text = If(customerData("CustomerPhone") IsNot Nothing, customerData("CustomerPhone").ToString(), "")
+                lblPointsEarned.Text = If(customerData("CustomerPointsEarned") IsNot Nothing, customerData("CustomerPointsEarned").ToString(), "0")
+                cmbStatus.Text = customerData("Status").ToString()
+                lblCreatedDate.Text = If(customerData("Created") IsNot Nothing, customerData("Created").ToString(), "")
+            Else
+                MessageBox.Show("Customer not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading customer data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ClearForm()
+        txtCustomerName.Text = ""
+        txtCustomerPhone.Text = ""
+        lblPointsEarned.Text = "0"
+        cmbStatus.Text = "1"
+        lblCreatedDate.Text = ""
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            ' Validate required fields
+            If String.IsNullOrEmpty(txtCustomerName.Text.Trim()) Then
+                MessageBox.Show("Customer name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtCustomerName.Focus()
+                Return
+            End If
+
+            ' Prepare data
+            Dim customerData As New Dictionary(Of String, Object)
+            customerData("customername") = txtCustomerName.Text.Trim()
+            customerData("customerphone") = txtCustomerPhone.Text.Trim()
+            customerData("cmbstatus") = cmbStatus.Text
+
+            If _isEditMode Then
+                customerData("customerid") = _customerId
+                UpdateCustomer(customerData)
+            Else
+                customerData("customerid") = 0
+                SaveNewCustomer(customerData)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub SaveNewCustomer(customerData As Dictionary(Of String, Object))
+        Try
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(customerData)
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=28&json=" & jsonData
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(url)
+            Dim parseJson As JObject = JObject.Parse(json)
+            Dim success = parseJson("Success").ToString()
+
+            If success = "True" Then
+                MessageBox.Show("Customer saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.DialogResult = DialogResult.OK
+                Me.Close()
+            Else
+                Dim errorMsg As String = If(parseJson("Msg") IsNot Nothing, parseJson("Msg").ToString(), "Failed to save customer")
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub UpdateCustomer(customerData As Dictionary(Of String, Object))
+        Try
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(customerData)
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=29&json=" & jsonData
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(url)
+            Dim parseJson As JObject = JObject.Parse(json)
+            Dim success = parseJson("Success").ToString()
+
+            If success = "True" Then
+                MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.DialogResult = DialogResult.OK
+                Me.Close()
+            Else
+                Dim errorMsg As String = If(parseJson("Msg") IsNot Nothing, parseJson("Msg").ToString(), "Failed to update customer")
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Try
+            Me.DialogResult = DialogResult.Cancel
             Me.Close()
         Catch ex As Exception
-
+            MessageBox.Show("Error closing form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    Private Sub btnnew_Click(sender As Object, e As EventArgs) Handles btnnew.Click
+    Private Sub btnAddPoints_Click(sender As Object, e As EventArgs) Handles btnAddPoints.Click
         Try
-            _clear()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub _clear()
-        Try
-            txtbranchid.Text = ""
-            txtbranchname.Text = ""
-            txtemail.Text = "-"
-            txtcontact.Text = "-"
-            txtaddress.Text = "-"
-            txtanydesk.Text = "0"
-            txtnoofserver.Text = "0"
-            txtnoofclient.Text = "0"
-            txtnooftab.Text = "0"
-            txtactivationcode.Text = "-"
-            txtmessage.Text = "-"
-            txtinstalldate.Text = Date.Now.ToString("dd-MM-yyyy")
-            chklock.CheckState = CheckState.Unchecked
-            chkactive.CheckState = CheckState.Checked
-            btnsave.Text = "Save"
-            _DataLoad()
-            _CustomerDataLoad()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub _DataLoad()
-        Try
-            getBranchTableMaster()
-            If _JsonData.BranchTable.Rows.Count > 0 Then
-                GridControl1.DataSource = _JsonData.BranchTable
-            Else
-                GridControl1.DataSource = Nothing
+            If Not _isEditMode OrElse _customerId <= 0 Then
+                MessageBox.Show("Please save the customer first before adding points.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
             End If
-        Catch ex As Exception
-            GridControl1.DataSource = Nothing
-        End Try
-    End Sub
-    Private Sub btnaddcompany_Click(sender As Object, e As EventArgs) Handles btnaddcompany.Click
-        Try
-            FrmCreateComp.ShowDialog()
-            _CustomerDataLoad()
-        Catch ex As Exception
 
-        End Try
+            Dim pointsToAdd As String = InputBox("Enter points to add:", "Add Customer Points", "0")
+            If String.IsNullOrEmpty(pointsToAdd) OrElse Not IsNumeric(pointsToAdd) Then Return
 
-    End Sub
-    Private Sub _CustomerDataLoad()
-        Try
-            getCustomerMaster()
-            If _JsonData.CustomerTable.Rows.Count > 0 Then
-                txtcompany.Properties.DataSource = _JsonData.CustomerTable.Select("Active = 1").CopyToDataTable
-            Else
-                txtcompany.Properties.DataSource = Nothing
-            End If
-        Catch ex As Exception
-            txtcompany.Properties.DataSource = Nothing
-        End Try
-    End Sub
+            Dim pointsData As New Dictionary(Of String, Object)
+            pointsData("customerid") = _customerId
+            pointsData("points") = Convert.ToInt32(pointsToAdd)
 
-    Private Sub FrmNewClient_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Try
-            _clear()
-        Catch ex As Exception
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(pointsData)
+            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=70&json=" & jsonData
 
-        End Try
-    End Sub
-
-    Private Sub GridView1_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView1.RowClick
-        Try
-            btnsave.Text = "Update"
-            Dim id As Integer = GridView1.GetFocusedRowCellValue("Id")
-            Dim _BranchTable As DataTable
-            _BranchTable = New DataTable
-            _BranchTable.TableName = "_BranchTable"
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=34&id=" & id)
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _BranchTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _BranchTable.Rows.Count > 0 Then
-                For Each _rows In _BranchTable.Rows
-                    txtcompany.Text = _rows("CompanyName")
-                    txtbranchid.Text = _rows("Id")
-                    txtbranchname.Text = _rows("BranchName")
-                    txtemail.Text = _rows("Email")
-                    txtcontact.Text = _rows("Contact")
-                    txtaddress.Text = _rows("Address")
-                    txtanydesk.Text = _rows("AnyDesk")
-                    txtnoofserver.Text = _rows("Server")
-                    txtnoofclient.Text = _rows("Client")
-                    txtnooftab.Text = _rows("Tab")
-                    txtactivationcode.Text = _rows("Activation")
-                    If _rows("Message") = "" Then
-                        txtmessage.Text = "-"
-                    Else
-                        txtmessage.Text = _rows("Message")
-                    End If
-                    txtinstalldate.Text = _rows("InstallDate")
-                    If _rows("Locks") = 1 Then
-                        chklock.CheckState = CheckState.Checked
-                    Else
-                        chklock.CheckState = CheckState.Unchecked
-                    End If
-                    If _rows("Active") = 1 Then
-                        chkactive.CheckState = CheckState.Checked
-                    Else
-                        chkactive.CheckState = CheckState.Unchecked
-                    End If
-                Next
+            Dim json As String = New System.Net.WebClient().DownloadString(url)
+            Dim parseJson As JObject = JObject.Parse(json)
+            Dim success = parseJson("Success").ToString()
+
+            If success = "True" Then
+                MessageBox.Show("Customer points updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                LoadCustomerData() ' Refresh data
+            Else
+                Dim errorMsg As String = If(parseJson("Msg") IsNot Nothing, parseJson("Msg").ToString(), "Failed to update points")
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
         Catch ex As Exception
-
+            MessageBox.Show("Error updating points: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    Private Sub btnsave_Click(sender As Object, e As EventArgs) Handles btnsave.Click
-        Dim dialog As New DevExpress.Utils.WaitDialogForm()
-        Try
-            If txtcompany.Text = "" OrElse txtcompany.EditValue Is Nothing Then
-                txtcompany.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtcompany.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtbranchname.Text = "" OrElse txtbranchname.EditValue Is Nothing Then
-                txtbranchname.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtbranchname.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtemail.Text = "" OrElse txtemail.EditValue Is Nothing Then
-                txtemail.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtemail.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtcontact.Text = "" OrElse txtcontact.EditValue Is Nothing Then
-                txtcontact.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtcontact.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtaddress.Text = "" OrElse txtaddress.EditValue Is Nothing Then
-                txtaddress.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtaddress.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtanydesk.Text = "" OrElse txtanydesk.EditValue Is Nothing Then
-                txtanydesk.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtanydesk.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtnoofserver.Text = "" OrElse txtnoofserver.EditValue Is Nothing Then
-                txtnoofserver.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtnoofserver.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtcompany.Text = "" OrElse txtcompany.EditValue Is Nothing Then
-                txtcompany.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtcompany.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtnoofclient.Text = "" OrElse txtnoofclient.EditValue Is Nothing Then
-                txtnoofclient.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtnoofclient.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtnooftab.Text = "" OrElse txtnoofclient.EditValue Is Nothing Then
-                txtnooftab.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtnooftab.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtactivationcode.Text = "" OrElse txtnoofclient.EditValue Is Nothing Then
-                txtactivationcode.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtactivationcode.Properties.Appearance.BackColor = Color.White
-            End If
-            If txtmessage.Text = "" OrElse txtnoofclient.EditValue Is Nothing Then
-                txtmessage.Properties.Appearance.BackColor = Color.Red
-                Exit Sub
-            Else
-                txtmessage.Properties.Appearance.BackColor = Color.White
-            End If
-            Dim comp As New clsbranch
-            If btnsave.Text = "Save" Then
-                dialog.Caption = "Connecting To Server"
-                comp.branchid = 0
-                comp.branchcustomerid = txtcompany.EditValue
-                comp.branchname = txtbranchname.Text
-                comp.branchemail = txtemail.Text
-                comp.branchcontact = txtcontact.Text
-                comp.branchaddress = txtaddress.Text
-                comp.branchanydesk = txtanydesk.Text
-                comp.branchserver = txtnoofserver.Text
-                comp.branchclient = txtnoofclient.Text
-                comp.branchtab = txtnooftab.Text
-                comp.branchWarrningmsg = txtmessage.Text
-                comp.branchactivationcode = txtactivationcode.Text
-                Dim Coldate As String = ""
-                _DateConversion(txtinstalldate.Text, Coldate)
-                comp.branchinstalldate = Coldate
-                comp.branchlock = chklock.CheckState
-                comp.branchstatus = chkactive.CheckState
-                Dim PostString As String = JsonConvert.SerializeObject(comp)
-                If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=31&json=" & PostString) = True Then
-                    dialog.Caption = "Data Saved Success.."
-                    _clear()
-                Else
-                    dialog.Caption = "Data not Saved.."
-                End If
-                btnsave.Text = "Save"
-            Else
-                dialog.Caption = "Connecting To Server"
-                comp.branchid = txtbranchid.Text
-                comp.branchcustomerid = txtcompany.EditValue
-                comp.branchname = txtbranchname.Text
-                comp.branchemail = txtemail.Text
-                comp.branchcontact = txtcontact.Text
-                comp.branchaddress = txtaddress.Text
-                comp.branchanydesk = txtanydesk.Text
-                comp.branchserver = txtnoofserver.Text
-                comp.branchclient = txtnoofclient.Text
-                comp.branchtab = txtnooftab.Text
-                comp.branchWarrningmsg = txtmessage.Text
-                comp.branchactivationcode = txtactivationcode.Text
-                Dim Coldate As String = ""
-                _DateConversion(txtinstalldate.Text, Coldate)
-                comp.branchinstalldate = Coldate.ToString
-                comp.branchlock = chklock.CheckState
-                comp.branchstatus = chkactive.CheckState
-                Dim PostString As String = JsonConvert.SerializeObject(comp)
-                If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=32&json=" & PostString) = True Then
-                    dialog.Caption = "Updated Saved Success.."
-                    _clear()
-                End If
-                btnsave.Text = "Save"
-            End If
-        Catch ex As Exception
-            dialog.Close()
-        Finally
-            dialog.Close()
-        End Try
+    Private Sub txtCustomerName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCustomerName.KeyPress
+        If e.KeyChar = Chr(13) Then ' Enter key
+            txtCustomerPhone.Focus()
+        End If
     End Sub
 
-    Private Sub btncreatefloder_Click(sender As Object, e As EventArgs) Handles btncreatefloder.Click
-        Try
-
-        Catch ex As Exception
-
-        End Try
+    Private Sub txtCustomerPhone_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCustomerPhone.KeyPress
+        If e.KeyChar = Chr(13) Then ' Enter key
+            cmbStatus.Focus()
+        End If
     End Sub
-End Class
-Public Class clscustomer
-    Public Property branchid As String
-    Public Property branchcustomerid As String
-    Public Property branchname As String
-    Public Property branchemail As String
-    Public Property branchcontact As String
-    Public Property branchaddress As String
-    Public Property branchanydesk As String
-    Public Property branchserver As String
-    Public Property branchclient As String
-    Public Property branchtab As String
-    Public Property branchlock As String
-    Public Property branchactivationcode As String
-    Public Property branchWarrningmsg As String
-    Public Property branchstatus As String
-    Public Property branchinstalldate As String
+
+    Private Sub cmbStatus_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbStatus.KeyPress
+        If e.KeyChar = Chr(13) Then ' Enter key
+            btnSave_Click(Nothing, Nothing)
+        End If
+    End Sub
 End Class

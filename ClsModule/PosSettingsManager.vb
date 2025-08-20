@@ -48,6 +48,12 @@ Module PosSettingsManager
                             Else
                                 _globalSetting.ItemDiscountActive = True
                             End If
+                        Case "SelectMultiplePriceActive"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.SelectMultiplePriceActive = False
+                            Else
+                                _globalSetting.SelectMultiplePriceActive = True
+                            End If
                     End Select
                 Next
                 For Each _setRow In _JsonData.PosSettingsTable.Select("Type = '1'") 'Values

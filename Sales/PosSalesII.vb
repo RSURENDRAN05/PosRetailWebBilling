@@ -405,6 +405,14 @@ Public Class PosSalesII
                 ' Ctrl+Q: Open quantity dialog
                 btnqty_Click(Nothing, Nothing)
                 e.Handled = True
+            ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.P Then
+                ' Ctrl+P: Open multiple price selection dialog
+                ShowMultiplePriceSelection()
+                e.Handled = True
+            ElseIf e.KeyCode = Keys.F2 Then
+                ' F2: Open multiple price selection dialog
+                ShowMultiplePriceSelection()
+                e.Handled = True
             End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -435,7 +443,7 @@ Public Class PosSalesII
                 Dim hi As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Location)
 
                 ' Check if click is on a cell in the DELETE column
-                If hi.InRowCell AndAlso hi.Column IsNot Nothing AndAlso hi.Column.FieldName = "DELETE " Then
+                If hi.InRowCell AndAlso hi.Column IsNot Nothing AndAlso hi.Column.FieldName = "DELETE" Then
                     ' Show confirmation dialog
                     Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", _
                                                                "Confirm Delete", _
@@ -499,7 +507,7 @@ Public Class PosSalesII
             SalesGrandtotal("OK")
 
             ' Optional: Show success message (uncomment if needed)
-            ' MessageBox.Show($"Item '{itemName}' deleted successfully.", "Item Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' MessageBox.Show("Item '" & itemName & "' deleted successfully.", "Item Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' Set focus back to search for next item entry
             cmbMaterialSearch.Focus()
@@ -811,7 +819,7 @@ Public Class PosSalesII
 
             ' Show message if bill discount was automatically applied
             ' If billDiscountExists Then
-            '     MessageBox.Show($"New item added with existing bill discount of {existingBillDiscountPer:F2}% applied automatically.", _
+            '     MessageBox.Show("New item added with existing bill discount of " & existingBillDiscountPer.ToString("F2") & "% applied automatically.", _
             '                   "Bill Discount Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
             ' End If
 
@@ -1304,7 +1312,7 @@ Public Class PosSalesII
                 ' Update grand totals
                 SalesGrandtotal("OK")
 
-                'MessageBox.Show($"Existing bill discount of {billDiscountPer:F2}% applied to new items.", _
+                'MessageBox.Show("Existing bill discount of " & billDiscountPer.ToString("F2") & "% applied to new items.", _
                 '              "Bill Discount Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
 
@@ -1644,5 +1652,108 @@ Public Class PosSalesII
         SubtractQuantityFromItem(1)
     End Sub
 #End Region
+#Region "SelectMultiplePrice"
+    Private Sub barbtnselectprice_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnselectprice.ItemClick
+        Try
+            If _globalSetting.SelectMultiplePriceActive = False Then
+                MessageBox.Show("You Dont Have Rights To opening multiple price selection: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            ShowMultiplePriceSelection()
+        Catch ex As Exception
+            MessageBox.Show("Error opening multiple price selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
+    ' Show multiple price selection dialog
+    Private Sub ShowMultiplePriceSelection()
+        Try
+            ' Check if any item is selected in the grid
+            If GridViewPOS.FocusedRowHandle < 0 Then
+                MessageBox.Show("Please select an item to change price.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Get selected item information
+            Dim rowHandle As Integer = GridViewPOS.FocusedRowHandle
+            If rowHandle >= GridDataTble_Insert.Rows.Count Then
+                MessageBox.Show("Invalid item selection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim itemId As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowHandle)("ITEMCODE"))
+            Dim itemName As String = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME").ToString()
+
+            ' Show multiple price selection form
+            Dim priceSelectionForm As New FrmMultiplePriceSelection(itemId, itemName)
+            If priceSelectionForm.ShowDialog() = DialogResult.OK Then
+                Dim selectedPriceInfo = priceSelectionForm.SelectedPriceInfo
+
+                If selectedPriceInfo IsNot Nothing Then
+                    ' Apply the selected price to the item
+                    ApplyMultiplePrice(rowHandle, selectedPriceInfo)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error showing multiple price selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Apply selected multiple price to item
+    Private Sub ApplyMultiplePrice(rowIndex As Integer, priceInfo As Object)
+        Try
+            If rowIndex < 0 OrElse rowIndex >= GridDataTble_Insert.Rows.Count Then
+                Exit Sub
+            End If
+
+            Dim newPrice As Decimal = Convert.ToDecimal(priceInfo.PriceValue)
+            Dim priceName As String = priceInfo.PriceName.ToString()
+
+            ' Update the price in DataTable
+            GridDataTble_Insert.Rows(rowIndex)("RATE") = newPrice
+
+            ' Recalculate all amounts for this row
+            RecalculateRowAmounts(rowIndex)
+
+            ' Accept changes and refresh
+            GridDataTble_Insert.AcceptChanges()
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+            ' Update grand totals
+            SalesGrandtotal("OK")
+
+            ' Show confirmation message
+            MessageBox.Show("Price updated to " & priceName & ": " & newPrice.ToString("0.00"), _
+                          "Price Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Keep focus on the updated row
+            GridViewPOS.FocusedRowHandle = rowIndex
+
+        Catch ex As Exception
+            MessageBox.Show("Error applying multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Public method to apply specific price by price ID
+    Public Sub ApplyPriceById(itemId As Integer, priceId As Integer)
+        Try
+            ' Find the row with the specified item
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                If Convert.ToInt32(GridDataTble_Insert.Rows(i)("ITEMCODE")) = itemId Then
+                    ' Get price information for this price ID
+                    ' This would typically come from server or cache
+                    ' For now, we'll show the selection dialog
+                    ShowMultiplePriceSelection()
+                    Exit Sub
+                End If
+            Next
+
+            MessageBox.Show("Item not found in current bill.", "Item Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error applying price by ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+#End Region
 End Class

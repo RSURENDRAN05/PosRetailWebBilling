@@ -339,18 +339,34 @@ class funcProcessMgmt
     }
 
     //Company Save
-    public function storeCustomerData($txtCustomerName, $status)
+    public function storeCustomerData($txtCustomerName, $txtCustomerPhone, $status)
     {
         $conn = $this->conn;
-        $sqlquery = ("INSERT INTO `customermaster`(`customerName`,`status`) VALUES ('" . $txtCustomerName . "','" . $status . "')");
+        $sqlquery = ("INSERT INTO `customermaster`(`customerName`, `customerPhone`, `customerPointsEarned`, `status`, `created`) VALUES ('" . $txtCustomerName . "', '" . $txtCustomerPhone . "', '0', '" . $status . "', NOW())");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }
 
-    public function updateCustomerData($id, $txtCustomerName, $status)
+    public function updateCustomerData($id, $txtCustomerName, $txtCustomerPhone, $status)
     {
         $conn = $this->conn;
-        $sqlquery = ("UPDATE `customermaster` SET `customerName`='" . $txtCustomerName . "',`status`='" . $status . "' WHERE `customerId`=" . $id);
+        $sqlquery = ("UPDATE `customermaster` SET `customerName`='" . $txtCustomerName . "', `customerPhone`='" . $txtCustomerPhone . "', `status`='" . $status . "' WHERE `customerId`=" . $id);
+        $result = mysqli_query($conn, $sqlquery);
+        return $result;
+    }
+
+    public function updateCustomerPoints($id, $pointsToAdd)
+    {
+        $conn = $this->conn;
+        $sqlquery = ("UPDATE `customermaster` SET `customerPointsEarned` = `customerPointsEarned` + " . $pointsToAdd . " WHERE `customerId`=" . $id);
+        $result = mysqli_query($conn, $sqlquery);
+        return $result;
+    }
+
+    public function deleteCustomer($id)
+    {
+        $conn = $this->conn;
+        $sqlquery = ("UPDATE `customermaster` SET `status`='0' WHERE `customerId`=" . $id);
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }
@@ -358,7 +374,23 @@ class funcProcessMgmt
     public function selectCustomer()
     {
         $conn = $this->conn;
-        $sqlquery = ("SELECT `customerId` as CustomerId,`customerName` CustomerName,`status` as Active FROM `customermaster` ORDER BY customerName ASC");
+        $sqlquery = ("SELECT `customerId`, `customerName`, `customerPhone`, `customerPointsEarned`, `status`, `created` FROM `customermaster` WHERE `status`='1' ORDER BY `customerName` ASC");
+        $result = mysqli_query($conn, $sqlquery);
+        return $result;
+    }
+
+    public function selectAllCustomers()
+    {
+        $conn = $this->conn;
+        $sqlquery = ("SELECT `customerId`, `customerName`, `customerPhone`, `customerPointsEarned`, `status`, `created` FROM `customermaster` WHERE 1 ORDER BY `customerName` ASC");
+        $result = mysqli_query($conn, $sqlquery);
+        return $result;
+    }
+
+    public function selectCustomerById($customerId)
+    {
+        $conn = $this->conn;
+        $sqlquery = ("SELECT `customerId`, `customerName`, `customerPhone`, `customerPointsEarned`, `status`, `created` FROM `customermaster` WHERE `customerId`='" . $customerId . "'");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }

@@ -46,8 +46,8 @@ Partial Class PosSalesII
         Me.btnsavequote = New DevExpress.XtraEditors.SimpleButton()
         Me.btnlastprint = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btnpayment = New DevExpress.XtraEditors.SimpleButton()
         Me.lblnetamt = New System.Windows.Forms.Label()
+        Me.btnpayment = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.btn_1 = New System.Windows.Forms.Label()
         Me.btn_2 = New System.Windows.Forms.Label()
@@ -152,6 +152,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.barbtnselectprice = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PopConSales, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -488,6 +489,19 @@ Partial Class PosSalesII
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(166, 149)
         Me.TableLayoutPanel3.TabIndex = 60
         '
+        'lblnetamt
+        '
+        Me.lblnetamt.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.TableLayoutPanel3.SetColumnSpan(Me.lblnetamt, 2)
+        Me.lblnetamt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblnetamt.Font = New System.Drawing.Font("Tahoma", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblnetamt.Location = New System.Drawing.Point(3, 0)
+        Me.lblnetamt.Name = "lblnetamt"
+        Me.lblnetamt.Size = New System.Drawing.Size(160, 68)
+        Me.lblnetamt.TabIndex = 1
+        Me.lblnetamt.Text = "00000.00"
+        Me.lblnetamt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'btnpayment
         '
         Me.btnpayment.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold)
@@ -501,19 +515,6 @@ Partial Class PosSalesII
         Me.btnpayment.Size = New System.Drawing.Size(160, 75)
         Me.btnpayment.TabIndex = 0
         Me.btnpayment.Text = "PAYMENT"
-        '
-        'lblnetamt
-        '
-        Me.lblnetamt.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.TableLayoutPanel3.SetColumnSpan(Me.lblnetamt, 2)
-        Me.lblnetamt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblnetamt.Font = New System.Drawing.Font("Tahoma", 22.0!, System.Drawing.FontStyle.Bold)
-        Me.lblnetamt.Location = New System.Drawing.Point(3, 0)
-        Me.lblnetamt.Name = "lblnetamt"
-        Me.lblnetamt.Size = New System.Drawing.Size(160, 68)
-        Me.lblnetamt.TabIndex = 1
-        Me.lblnetamt.Text = "00000.00"
-        Me.lblnetamt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TableLayoutPanel4
         '
@@ -1144,8 +1145,8 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarButtonItem1, Me.BarButtonItem4, Me.BarSubItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill})
-        Me.BarManager1.MaxItemId = 24
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarButtonItem1, Me.BarButtonItem4, Me.BarSubItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice})
+        Me.BarManager1.MaxItemId = 25
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -1181,7 +1182,7 @@ Partial Class PosSalesII
         '
         Me.BarSubItem3.Caption = "Options"
         Me.BarSubItem3.Id = 6
-        Me.BarSubItem3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSearchProductCode), New DevExpress.XtraBars.LinkPersistInfo(Me.barbilldiscount), New DevExpress.XtraBars.LinkPersistInfo(Me.baritemdiscount)})
+        Me.BarSubItem3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSearchProductCode), New DevExpress.XtraBars.LinkPersistInfo(Me.barbilldiscount), New DevExpress.XtraBars.LinkPersistInfo(Me.baritemdiscount), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnselectprice)})
         Me.BarSubItem3.Name = "BarSubItem3"
         '
         'barSearchProductCode
@@ -1682,6 +1683,12 @@ Partial Class PosSalesII
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
         Me.LayoutControlItem13.TextToControlDistance = 5
         '
+        'barbtnselectprice
+        '
+        Me.barbtnselectprice.Caption = "Select Price"
+        Me.barbtnselectprice.Id = 24
+        Me.barbtnselectprice.Name = "barbtnselectprice"
+        '
         'PosSalesII
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1874,4 +1881,5 @@ Partial Class PosSalesII
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TableLayoutPanel5 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents barbtnselectprice As DevExpress.XtraBars.BarButtonItem
 End Class

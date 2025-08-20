@@ -272,6 +272,12 @@
     <Compile Include="MainMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmCustomerList.designer.vb">
+      <DependentUpon>FrmCustomerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmCustomerList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Master\FrmGroupPolicyManagerSimple.Designer.vb">
       <DependentUpon>FrmGroupPolicyManagerSimple.vb</DependentUpon>
     </Compile>
@@ -284,7 +290,13 @@
     <Compile Include="Master\FrmMenuManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\FrmNewCustomer.Designer.vb">
+    <Compile Include="Master\FrmMultiplePriceSelection.designer.vb">
+      <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmMultiplePriceSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmNewCustomer.designer.vb">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
     </Compile>
     <Compile Include="Master\FrmNewCustomer.vb">
@@ -573,11 +585,17 @@
     <EmbeddedResource Include="MainMaster.resx">
       <DependentUpon>MainMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmCustomerList.resx">
+      <DependentUpon>FrmCustomerList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmGroupPolicyManagerSimple.resx">
       <DependentUpon>FrmGroupPolicyManagerSimple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmMenuManager.resx">
       <DependentUpon>FrmMenuManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmMultiplePriceSelection.resx">
+      <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmNewCustomer.resx">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>

@@ -1,5 +1,4 @@
-﻿
-Imports Newtonsoft.Json
+﻿Imports Newtonsoft.Json
 Public Class frmLedgerCreate
 
     Private Sub btncancel_Click(sender As Object, e As EventArgs) Handles btncancel.Click
