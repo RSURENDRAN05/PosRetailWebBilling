@@ -302,6 +302,12 @@
     <Compile Include="Master\FrmNewCustomer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmSalesCommission.designer.vb">
+      <DependentUpon>FrmSalesCommission.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmSalesCommission.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -599,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmNewCustomer.resx">
       <DependentUpon>FrmNewCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmSalesCommission.resx">
+      <DependentUpon>FrmSalesCommission.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

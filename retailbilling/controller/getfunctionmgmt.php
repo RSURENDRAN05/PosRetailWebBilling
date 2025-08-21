@@ -880,7 +880,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $pph_netamt = "";
         $pph_userid = "";
         foreach ($rowHdr as $row) {
-            $pph_trno = $row['PURHDRTRNO'];
+            $pph_trno = $trno;
             $pph_refno = $row['PURHDRREFNO'];
             $pph_invdate = $row['PURHDRINVDATE'];
             $pph_purdate = $row['PURHDRPURDATE'];
@@ -908,38 +908,6 @@ if (isset($_REQUEST['AjaxRequest'])) {
                 $pph_locid,
                 $pph_userid
             );
-        }
-        if ($resultsPurDtl) {
-            $pph_trno = $trno;
-            foreach ($rowHdr as $row) {
-                $pph_refno = $row['PURHDRREFNO'];
-                $pph_invdate = $row['PURHDRINVDATE'];
-                $pph_purdate = $row['PURHDRPURDATE'];
-                $pph_suppid = $row['PURHDRSUPPID'];
-                $pph_billdiscper = $row['PURHDRBDISCPER'];
-                $pph_billdiscamt = $row['PURHDRBDISCAMT'];
-                $pph_netamt = $row['PURHDRNETAMT'];
-                $pph_paymenttype = $row['PURHDRPAYMENTTYPE'];
-                $pph_baloutamt = $row['PURHDRBALOUT'];
-                $pph_comid = $row['PURHDRCOMID'];
-                $pph_locid = $row['PURHDRLOCID'];
-                $pph_userid = $row['PURHDRUSERID'];
-                $resultsPurHdr = $clsfunreq->SavePurchaseDataHdr(
-                    $pph_trno,
-                    $pph_refno,
-                    $pph_invdate,
-                    $pph_purdate,
-                    $pph_suppid,
-                    $pph_billdiscper,
-                    $pph_billdiscamt,
-                    $pph_netamt,
-                    $pph_paymenttype,
-                    $pph_baloutamt,
-                    $pph_comid,
-                    $pph_locid,
-                    $pph_userid
-                );
-            }
         }
 
         //accoutsLegder Posting
@@ -1913,7 +1881,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         //                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
 
 
-        $saveHdr = $clsfunreq->SaveSaleQuoteHdr(
+        $saveHdr = $clsfunreq->SaveSaleHdr(
             $psih_invoice_trno,
             $psih_invoice_date,
             $psih_invoice_description,
@@ -1961,7 +1929,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psid_invoice_taxvalue = $row['TAXVALUE'];
                 $psid_invoice_taxamt = $row['TAXAMT'];
                 $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleQuoteDtl(
+                $saveDtl = $clsfunreq->SaveSaleDtl(
                     $psid_invoice_sno,
                     $psid_invoice_salid,
                     $psih_invoice_date,
@@ -3661,6 +3629,237 @@ elseif (isset($_REQUEST['GroupPolicyRequest'])) {
             }
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'Operation parameter is required'));
+        }
+    }
+}
+//SalesManCommission
+elseif (isset($_REQUEST['SalesManCommission'])) {
+    if ((int) $_REQUEST['SalesManCommission'] == 1) { // Get Salesmen List
+        $GetSalesmen = $clsfunreq->GetSalesmanList();
+        $GetSalesmenRes = array();
+        while ($rows = mysqli_fetch_assoc($GetSalesmen)) {
+            $GetSalesmenRes[] = $rows;
+        }
+        if ($GetSalesmen) {
+            echo json_encode(array("Success" => true, "Data" => $GetSalesmenRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Salesmen Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 2) { // Get Sub Groups List
+        $GetSubGroups = $clsfunreq->GetSubGroupList();
+        $GetSubGroupsRes = array();
+        while ($rows = mysqli_fetch_assoc($GetSubGroups)) {
+            $GetSubGroupsRes[] = $rows;
+        }
+        if ($GetSubGroups) {
+            echo json_encode(array("Success" => true, "Data" => $GetSubGroupsRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Sub Groups Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 3) { // Get Items by Sub Group
+        $sub_group_id = $_GET['sub_group_id'];
+        $GetItems = $clsfunreq->GetItemsBySubGroup($sub_group_id);
+        $GetItemsRes = array();
+        while ($rows = mysqli_fetch_assoc($GetItems)) {
+            $GetItemsRes[] = $rows;
+        }
+        if ($GetItems) {
+            echo json_encode(array("Success" => true, "Data" => $GetItemsRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Items Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 4) { // Insert Commission
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $emp_id = $row['emp_id'];
+        $item_id = $row['item_id'];
+        $sub_group_id = $row['sub_group_id'];
+        $commission_percentage = $row['commission_percentage'];
+        $commission_type = $row['commission_type'];
+        $fixed_amount = isset($row['fixed_amount']) ? $row['fixed_amount'] : 0;
+        $status = isset($row['status']) ? $row['status'] : 1;
+
+        // Check if commission already exists
+        $exists = $clsfunreq->CheckCommissionExists($emp_id, $item_id, $sub_group_id);
+        if ($exists) {
+            echo json_encode(array("Success" => false, "Msg" => 'Commission already exists for this item and salesman'));
+        } else {
+            $RequestInsert = $clsfunreq->InsertSalesmanCommission($emp_id, $item_id, $sub_group_id, $commission_percentage, $commission_type, $fixed_amount, $status);
+            if ($RequestInsert) {
+                echo json_encode(array("Success" => true, "Msg" => 'Commission created successfully'));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to create commission'));
+            }
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 5) { // Update Commission
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $commission_id = $row['commission_id'];
+        $emp_id = $row['emp_id'];
+        $item_id = $row['item_id'];
+        $sub_group_id = $row['sub_group_id'];
+        $commission_percentage = $row['commission_percentage'];
+        $commission_type = $row['commission_type'];
+        $fixed_amount = isset($row['fixed_amount']) ? $row['fixed_amount'] : 0;
+        $status = isset($row['status']) ? $row['status'] : 1;
+
+        $RequestUpdate = $clsfunreq->UpdateSalesmanCommission($commission_id, $emp_id, $item_id, $sub_group_id, $commission_percentage, $commission_type, $fixed_amount, $status);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Msg" => 'Commission updated successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to update commission'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 6) { // Delete Commission
+        $commission_id = $_GET['commission_id'];
+
+        $RequestDelete = $clsfunreq->DeleteSalesmanCommission($commission_id);
+        if ($RequestDelete) {
+            echo json_encode(array("Success" => true, "Msg" => 'Commission deleted successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to delete commission'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 7) { // Get All Commissions
+        $GetCommissions = $clsfunreq->GetAllSalesmanCommissions();
+        $GetCommissionsRes = array();
+        while ($rows = mysqli_fetch_assoc($GetCommissions)) {
+            $GetCommissionsRes[] = $rows;
+        }
+        if ($GetCommissions) {
+            echo json_encode(array("Success" => true, "Data" => $GetCommissionsRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Commissions Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 8) { // Get Commissions by Salesman
+        $emp_id = $_GET['emp_id'];
+
+        $GetCommissions = $clsfunreq->GetCommissionsBySalesman($emp_id);
+        $GetCommissionsRes = array();
+        while ($rows = mysqli_fetch_assoc($GetCommissions)) {
+            $GetCommissionsRes[] = $rows;
+        }
+        if ($GetCommissions) {
+            echo json_encode(array("Success" => true, "Data" => $GetCommissionsRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Commissions Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 9) { // Get Commission Report
+        $emp_id = isset($_GET['emp_id']) ? $_GET['emp_id'] : '';
+        $from_date = $_GET['from_date'];
+        $to_date = $_GET['to_date'];
+
+        $GetReport = $clsfunreq->GetCommissionReport($emp_id, $from_date, $to_date);
+        $GetReportRes = array();
+        while ($rows = mysqli_fetch_assoc($GetReport)) {
+            $GetReportRes[] = $rows;
+        }
+        if ($GetReport) {
+            echo json_encode(array("Success" => true, "Data" => $GetReportRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Commission Data Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 10) { // Get Commission Summary
+        $from_date = $_GET['from_date'];
+        $to_date = $_GET['to_date'];
+
+        $GetSummary = $clsfunreq->GetCommissionSummary($from_date, $to_date);
+        $GetSummaryRes = array();
+        while ($rows = mysqli_fetch_assoc($GetSummary)) {
+            $GetSummaryRes[] = $rows;
+        }
+        if ($GetSummary) {
+            echo json_encode(array("Success" => true, "Data" => $GetSummaryRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Commission Summary Found'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 11) { // Mark Commission as Paid
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $log_ids = $row['log_ids']; // Array of log IDs
+
+        $RequestUpdate = $clsfunreq->MarkCommissionAsPaid($log_ids);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Msg" => 'Commission marked as paid successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to mark commission as paid'));
+        }
+    }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 12) { // Process Sales Commission (called from sales save)
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        $sale_invoice_id = $row['sale_invoice_id'];
+        $emp_id = $row['emp_id'];
+        $sale_date = $row['sale_date'];
+        $sale_items = $row['sale_items']; // Array of sold items with amounts
+
+        $totalCommission = 0;
+        $processedCount = 0;
+
+        foreach ($sale_items as $item) {
+            $item_id = $item['item_id'];
+            $sale_amount = $item['sale_amount'];
+
+            // Get commission details for this item and salesman
+            $commissionQuery = $clsfunreq->GetCommissionByItemAndSalesman($item_id, $emp_id);
+            if ($commissionQuery && mysqli_num_rows($commissionQuery) > 0) {
+                $commission = mysqli_fetch_assoc($commissionQuery);
+
+                // Calculate commission amount
+                $commission_amount = $clsfunreq->CalculateCommissionAmount(
+                    $sale_amount,
+                    $commission['CommissionPercentage'],
+                    $commission['CommissionType'],
+                    $commission['FixedAmount']
+                );
+
+                // Log commission transaction
+                $logResult = $clsfunreq->LogCommissionTransaction(
+                    $commission['CommissionId'],
+                    $emp_id,
+                    $sale_invoice_id,
+                    $item_id,
+                    $sale_amount,
+                    $commission_amount,
+                    $commission['CommissionPercentage'],
+                    $sale_date
+                );
+
+                if ($logResult) {
+                    $totalCommission += $commission_amount;
+                    $processedCount++;
+                }
+            }
+        }
+
+        if ($processedCount > 0) {
+            echo json_encode(array(
+                "Success" => true,
+                "Msg" => 'Commission processed successfully',
+                "TotalCommission" => $totalCommission,
+                "ProcessedItems" => $processedCount
+            ));
+        } else {
+            echo json_encode(array("Success" => true, "Msg" => 'No commission applicable for this sale'));
         }
     }
 }

@@ -2654,4 +2654,278 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
+
+    //SalesMan Commission
+
+    public function GetSalesmanList()
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT `emp_id`, `emp_printname`, `emp_firstname`, `emp_lastname`, `emp_designation`, `emp_active`
+                     FROM `pos_employeeinfo`
+                     WHERE `emp_active`='1'
+                     ORDER BY `emp_printname` ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get all sub groups (categories) for commission setup
+     */
+    public function GetSubGroupList()
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT sg.dcm_id as SubGroupId, sg.dcm_name as SubGroupName, mg.mainname as MainGroupName, sg.dcm_active as Active
+                     FROM `di_category_master` as sg
+                     INNER JOIN `di_main_group` as mg ON sg.di_main_id = mg.mainid
+                     WHERE sg.dcm_active = '1'
+                     ORDER BY mg.mainname ASC, sg.dcm_name ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get items by sub group for commission setup
+     */
+    public function GetItemsBySubGroup($sub_group_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT dim.dim_item_id as ItemId, dim.dim_item_name as ItemName, dim.dim_item_barcode as Barcode,
+                     dim.dim_sell_price as SellPrice, dcm.dcm_name as SubGroupName
+                     FROM `di_item_mast` as dim
+                     INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id = dcm.dcm_id
+                     WHERE dim.dim_cate_id = '" . $sub_group_id . "' AND dim.dim_status = '1'
+                     ORDER BY dim.dim_item_name ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Insert new salesman commission
+     */
+    public function InsertSalesmanCommission($emp_id, $item_id, $sub_group_id, $commission_percentage, $commission_type, $fixed_amount, $status)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("INSERT INTO `salesman_commission`(`emp_id`, `item_id`, `sub_group_id`, `commission_percentage`, `commission_type`, `fixed_amount`, `status`)
+                     VALUES ('" . $emp_id . "', '" . $item_id . "', '" . $sub_group_id . "', '" . $commission_percentage . "', '" . $commission_type . "', '" . $fixed_amount . "', '" . $status . "')");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Update existing salesman commission
+     */
+    public function UpdateSalesmanCommission($commission_id, $emp_id, $item_id, $sub_group_id, $commission_percentage, $commission_type, $fixed_amount, $status)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `salesman_commission` SET
+                     `emp_id`='" . $emp_id . "',
+                     `item_id`='" . $item_id . "',
+                     `sub_group_id`='" . $sub_group_id . "',
+                     `commission_percentage`='" . $commission_percentage . "',
+                     `commission_type`='" . $commission_type . "',
+                     `fixed_amount`='" . $fixed_amount . "',
+                     `status`='" . $status . "',
+                     `updated`='" . date('Y-m-d H:i:s') . "'
+                     WHERE `commission_id`='" . $commission_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Delete salesman commission
+     */
+    public function DeleteSalesmanCommission($commission_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("DELETE FROM `salesman_commission` WHERE `commission_id`='" . $commission_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get all salesman commissions with details
+     */
+    public function GetAllSalesmanCommissions()
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT
+                     sc.commission_id as CommissionId,
+                     sc.emp_id as EmpId,
+                     pe.emp_printname as SalesmanName,
+                     pe.emp_designation as Designation,
+                     sc.item_id as ItemId,
+                     dim.dim_item_name as ItemName,
+                     dim.dim_item_barcode as Barcode,
+                     sc.sub_group_id as SubGroupId,
+                     dcm.dcm_name as SubGroupName,
+                     mg.mainname as MainGroupName,
+                     sc.commission_percentage as CommissionPercentage,
+                     sc.commission_type as CommissionType,
+                     sc.fixed_amount as FixedAmount,
+                     sc.status as Status,
+                     sc.created as Created,
+                     sc.updated as Updated
+                     FROM `salesman_commission` as sc
+                     INNER JOIN `pos_employeeinfo` as pe ON sc.emp_id = pe.emp_id
+                     INNER JOIN `di_item_mast` as dim ON sc.item_id = dim.dim_item_id
+                     INNER JOIN `di_category_master` as dcm ON sc.sub_group_id = dcm.dcm_id
+                     INNER JOIN `di_main_group` as mg ON dcm.di_main_id = mg.mainid
+                     WHERE sc.status = '1'
+                     ORDER BY pe.emp_printname ASC, dcm.dcm_name ASC, dim.dim_item_name ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get commissions by salesman
+     */
+    public function GetCommissionsBySalesman($emp_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT
+                     sc.commission_id as CommissionId,
+                     sc.emp_id as EmpId,
+                     pe.emp_printname as SalesmanName,
+                     pe.emp_designation as Designation,
+                     sc.item_id as ItemId,
+                     dim.dim_item_name as ItemName,
+                     dim.dim_item_barcode as Barcode,
+                     sc.sub_group_id as SubGroupId,
+                     dcm.dcm_name as SubGroupName,
+                     mg.mainname as MainGroupName,
+                     sc.commission_percentage as CommissionPercentage,
+                     sc.commission_type as CommissionType,
+                     sc.fixed_amount as FixedAmount,
+                     sc.status as Status,
+                     sc.created as Created,
+                     sc.updated as Updated
+                     FROM `salesman_commission` as sc
+                     INNER JOIN `pos_employeeinfo` as pe ON sc.emp_id = pe.emp_id
+                     INNER JOIN `di_item_mast` as dim ON sc.item_id = dim.dim_item_id
+                     INNER JOIN `di_category_master` as dcm ON sc.sub_group_id = dcm.dcm_id
+                     INNER JOIN `di_main_group` as mg ON dcm.di_main_id = mg.mainid
+                     WHERE sc.emp_id = '" . $emp_id . "' AND sc.status = '1'
+                     ORDER BY dcm.dcm_name ASC, dim.dim_item_name ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get commission by item and salesman
+     */
+    public function GetCommissionByItemAndSalesman($item_id, $emp_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT
+                     sc.commission_id as CommissionId,
+                     sc.commission_percentage as CommissionPercentage,
+                     sc.commission_type as CommissionType,
+                     sc.fixed_amount as FixedAmount
+                     FROM `salesman_commission` as sc
+                     WHERE sc.item_id = '" . $item_id . "' AND sc.emp_id = '" . $emp_id . "' AND sc.status = '1'
+                     LIMIT 1");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Calculate commission amount
+     */
+    public function CalculateCommissionAmount($sale_amount, $commission_percentage, $commission_type, $fixed_amount)
+    {
+        if ($commission_type == 'PERCENTAGE') {
+            return ($sale_amount * $commission_percentage) / 100;
+        } else {
+            return $fixed_amount;
+        }
+    }
+
+    /**
+     * Log commission transaction
+     */
+    public function LogCommissionTransaction($commission_id, $emp_id, $sale_invoice_id, $item_id, $sale_amount, $commission_amount, $commission_percentage, $sale_date)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("INSERT INTO `salesman_commission_log`(`commission_id`, `emp_id`, `sale_invoice_id`, `item_id`, `sale_amount`, `commission_amount`, `commission_percentage`, `sale_date`)
+                     VALUES ('" . $commission_id . "', '" . $emp_id . "', '" . $sale_invoice_id . "', '" . $item_id . "', '" . $sale_amount . "', '" . $commission_amount . "', '" . $commission_percentage . "', '" . $sale_date . "')");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get commission report by date range
+     */
+    public function GetCommissionReport($emp_id, $from_date, $to_date)
+    {
+        $conn = $this->conn;
+        $whereClause = "";
+
+        if (!empty($emp_id)) {
+            $whereClause .= " AND scl.emp_id = '" . $emp_id . "'";
+        }
+
+        $sqlQuery = ("SELECT
+                     scl.log_id as LogId,
+                     pe.emp_printname as SalesmanName,
+                     dim.dim_item_name as ItemName,
+                     scl.sale_amount as SaleAmount,
+                     scl.commission_percentage as CommissionPercentage,
+                     scl.commission_amount as CommissionAmount,
+                     scl.sale_date as SaleDate,
+                     scl.status as Status
+                     FROM `salesman_commission_log` as scl
+                     INNER JOIN `pos_employeeinfo` as pe ON scl.emp_id = pe.emp_id
+                     INNER JOIN `di_item_mast` as dim ON scl.item_id = dim.dim_item_id
+                     WHERE scl.sale_date >= '" . $from_date . "' AND scl.sale_date <= '" . $to_date . "'" . $whereClause . "
+                     ORDER BY scl.sale_date DESC, pe.emp_printname ASC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get commission summary by salesman
+     */
+    public function GetCommissionSummary($from_date, $to_date)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT
+                     pe.emp_id as EmpId,
+                     pe.emp_printname as SalesmanName,
+                     COUNT(scl.log_id) as TotalSales,
+                     SUM(scl.sale_amount) as TotalSaleAmount,
+                     SUM(scl.commission_amount) as TotalCommissionAmount,
+                     AVG(scl.commission_percentage) as AvgCommissionPercentage
+                     FROM `salesman_commission_log` as scl
+                     INNER JOIN `pos_employeeinfo` as pe ON scl.emp_id = pe.emp_id
+                     WHERE scl.sale_date >= '" . $from_date . "' AND scl.sale_date <= '" . $to_date . "' AND scl.status = 'PENDING'
+                     GROUP BY pe.emp_id, pe.emp_printname
+                     ORDER BY TotalCommissionAmount DESC");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Mark commission as paid
+     */
+    public function MarkCommissionAsPaid($log_ids)
+    {
+        $conn = $this->conn;
+        $log_ids_string = implode(',', array_map('intval', $log_ids));
+        $sqlQuery = ("UPDATE `salesman_commission_log` SET `status`='PAID' WHERE `log_id` IN (" . $log_ids_string . ")");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Check if commission exists for item and salesman
+     */
+    public function CheckCommissionExists($emp_id, $item_id, $sub_group_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("SELECT COUNT(*) as count FROM `salesman_commission`
+                     WHERE `emp_id`='" . $emp_id . "' AND `item_id`='" . $item_id . "' AND `sub_group_id`='" . $sub_group_id . "' AND `status`='1'");
+        $result = mysqli_query($conn, $sqlQuery);
+        $row = mysqli_fetch_assoc($result);
+        return $row['count'] > 0;
+    }
 }

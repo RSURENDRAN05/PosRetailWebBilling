@@ -97,6 +97,7 @@ Public Class MainMaster
                 barbtnprintdesign.Enabled = False
                 barsystemsettings.Enabled = False
                 barnewdiscountmaster.Enabled = False
+                barSalesCommission.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -241,6 +242,16 @@ Public Class MainMaster
 
                         End If
                     End If
+                    Dim SalesCommission As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SalesCommission"
+                    If SalesCommission.Any Then
+                        If SalesCommission(0)("menu_active") = "1" Then
+                            barSalesCommission.Enabled = True
+                        Else
+                            barSalesCommission.Enabled = False
+
+                        End If
+                    End If
+
                     'Accounts
                     Dim MenuAccounts As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuAccounts"
                     If MenuAccounts.Any Then
@@ -850,6 +861,15 @@ Public Class MainMaster
         Try
             FrmDiscountMaster.MdiParent = Me
             FrmDiscountMaster.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barSalesCommission_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barSalesCommission.ItemClick
+        Try
+            FrmSalesCommission.MdiParent = Me
+            FrmSalesCommission.Show()
         Catch ex As Exception
 
         End Try
