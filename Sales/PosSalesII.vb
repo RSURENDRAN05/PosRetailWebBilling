@@ -1,5 +1,6 @@
 ﻿Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports System.Drawing
 
 ' PosSalesII Form - Enhanced with Grid Layout Management
 ' Features:
@@ -14,6 +15,13 @@ Public Class PosSalesII
     Dim Errstr As String
     Dim _SnoCount As Integer = 0
     Dim modeOfSale As String = "New"
+
+    ' Customer Selection Variables
+    Private selectedCustomerId As Integer = 0
+    Private selectedCustomerName As String = ""
+    Private selectedCustomerPhone As String = ""
+    Private customerDisplayTable As DataTable
+#Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
         Try
             GridDataTble_Insert = New DataTable
@@ -45,10 +53,11 @@ Public Class PosSalesII
             GridDataTble_Insert.Columns.Add("TAXAMT", GetType(Decimal)).DefaultValue = 0 '14
             GridDataTble_Insert.Columns.Add("NETAMT", GetType(Decimal)) '15
             GridDataTble_Insert.Columns.Add("ITEMREMARS", GetType(String)).DefaultValue = "Notes" '16
-            GridDataTble_Insert.Columns.Add("BATCHNO ", GetType(Integer)).DefaultValue = 0 '17
-            GridDataTble_Insert.Columns.Add("SALESPERSONID ", GetType(Integer)).DefaultValue = 0 '18
+            GridDataTble_Insert.Columns.Add("BATCHNO", GetType(Integer)).DefaultValue = 0 '17
+            GridDataTble_Insert.Columns.Add("SALESPERSONID", GetType(Integer)).DefaultValue = 0 '18
             GridDataTble_Insert.Columns.Add("SALESPERSON", GetType(String)).DefaultValue = "SP" '19
-            GridDataTble_Insert.Columns.Add("DELETE ", GetType(Integer)).DefaultValue = 1 '20
+            GridDataTble_Insert.Columns.Add("SALESMANPER", GetType(Decimal)).DefaultValue = 0 '20 - Salesman Commission Percentage
+            GridDataTble_Insert.Columns.Add("DELETE", GetType(Integer)).DefaultValue = 1 '21
 
             Return GridDataTble_Insert
         Catch ex As Exception
@@ -61,6 +70,9 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = CreateSalesDataTable()
             ' Load grid layout after setting data source
             LoadGridLayout()
+            ' Load complete form layout
+            RestoreFormLayout()
+            InitializeCustomerGrid()
             InitialLoad()
         Catch ex As Exception
 
@@ -73,6 +85,8 @@ Public Class PosSalesII
 
             End If
             LoadItemMaster()
+            LoadTouchItemMaster()
+            subMenu()
             If _globalSetting.SearchProductCode = True Then
                 barSearchProductCode.Checked = True
             Else
@@ -87,28 +101,7 @@ Public Class PosSalesII
 
         End Try
     End Sub
-    Private Sub LoadItemMaster()
-        Try
-            If getItemMaster() = True Then
-                If _JsonData.ItemMasterTable.Rows.Count > 0 Then
-                    GridControl2.DataSource = _JsonData.ItemMasterTable.DefaultView
-                    dtview = _JsonData.ItemMasterTable.DefaultView
-                End If
-            End If
-            If getLedgerListTable() = True Then
-                If _JsonData.LedgerListTable.Rows.Count > 0 Then
-                    'txtclientname.Properties.DataSource = _JsonData.LedgerListTable
 
-                End If
-            End If
-            '' getClientInfo()
-            'If _JsonData.ClientTable.Rows.Count > 0 Then
-            '    GridControl1.DataSource = _JsonData.ClientTable
-            'End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
     'Public Function _printProfileLoad() As Boolean
     '    Try
     '        If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
@@ -174,6 +167,8 @@ Public Class PosSalesII
             MessageBox.Show(ex.Message)
         End Try
     End Function
+#End Region
+
 #Region "SaveLayOut"
 
     Private Sub btnSaveLayout_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveLayout.ItemClick
@@ -290,20 +285,324 @@ Public Class PosSalesII
     End Sub
 #End Region
 #Region "LoadMenu"
-    Private Sub subMenu()
+    Dim ItemTable As DataTable
+    Function LoadTouchItemMaster() As Boolean
         Try
 
+            ItemTable = New DataTable
+            ItemTable.TableName = "ItemTable"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=27")
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            ItemTable = Userparsejson("Data").ToObject(Of DataTable)()
+            If ItemTable.Rows.Count > 0 Then
+                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In ItemTable Where dtrow("LocationName") = _companyInfo.LocationName
+                If dtrows.Any Then
+                    Return True
+                End If
+            Else
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Private Sub LoadItemMaster()
+        Try
+            If getItemMaster() = True Then
+                If _JsonData.ItemMasterTable.Rows.Count > 0 Then
+                    GridControl2.DataSource = _JsonData.ItemMasterTable.DefaultView
+                    dtview = _JsonData.ItemMasterTable.DefaultView
+                End If
+            End If
+            If getLedgerListTable() = True Then
+                If _JsonData.LedgerListTable.Rows.Count > 0 Then
+                    'txtclientname.Properties.DataSource = _JsonData.LedgerListTable
+
+                End If
+            End If
+            '' getClientInfo()
+            'If _JsonData.ClientTable.Rows.Count > 0 Then
+            '    GridControl1.DataSource = _JsonData.ClientTable
+            'End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Dim hoverColors() As Color = { _
+               Color.FromArgb(41, 128, 185), _
+               Color.FromArgb(39, 174, 96), _
+               Color.FromArgb(142, 68, 173), _
+               Color.FromArgb(211, 84, 0), _
+               Color.FromArgb(192, 57, 43), _
+               Color.FromArgb(22, 160, 133), _
+               Color.FromArgb(243, 156, 18), _
+               Color.FromArgb(44, 62, 80), _
+               Color.FromArgb(125, 60, 152), _
+               Color.FromArgb(34, 153, 84) _
+           }
+    Private Sub subMenu()
+        Try
+            If _JsonData.CategoryTable.Rows.Count = 0 Then
+                getCategoryMaster()
+            End If
+            FlowLayoutPanelSubMenu.Controls.Clear()
+
+          
+            Dim buttonWidth As Integer = 150 ' Perfect division with no remainder
+            Dim buttonHeight As Integer = 70 ' Increased height for better appearance
+
+         
+
+            ' Set FlowLayoutPanel properties for perfect layout
+            FlowLayoutPanelSubMenu.FlowDirection = FlowDirection.LeftToRight
+            FlowLayoutPanelSubMenu.WrapContents = True
+            FlowLayoutPanelSubMenu.AutoScroll = True
+         
+            ' Color palette for buttons - different colors for variety
+            Dim buttonColors() As Color = { _
+                Color.FromArgb(52, 152, 219), _
+                Color.FromArgb(46, 204, 113), _
+                Color.FromArgb(155, 89, 182), _
+                Color.FromArgb(230, 126, 34), _
+                Color.FromArgb(231, 76, 60), _
+                Color.FromArgb(26, 188, 156), _
+                Color.FromArgb(241, 196, 15), _
+                Color.FromArgb(52, 73, 94), _
+                Color.FromArgb(142, 68, 173), _
+                Color.FromArgb(39, 174, 96) _
+            }
+
+
+
+            ' Add dynamic SimpleButtons for each category with perfect fit styling
+            Dim colorIndex As Integer = 0
+            Dim firstCategoryId As Integer = 0 ' Store first category ID for initial load
+
+            For Each row As DataRow In _JsonData.CategoryTable.Rows
+                Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+                ' Button text and data
+                btn.Text = row("CateName").ToString()
+                btn.Tag = row("CateID")
+
+                ' Store first category ID for initial product load
+                If colorIndex = 0 Then
+                    firstCategoryId = Convert.ToInt32(row("CateID"))
+                End If
+ 
+                ' Button styling and dimensions for perfect fit with even padding
+                btn.Size = New Size(buttonWidth, buttonHeight)
+                btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
+
+                ' Get color for this button
+                Dim buttonColor As Color = buttonColors(colorIndex Mod buttonColors.Length)
+                Dim hoverColor As Color = hoverColors(colorIndex Mod hoverColors.Length)
+
+                ' DevExpress SimpleButton specific properties with enhanced styling
+                btn.Appearance.BackColor = buttonColor
+                btn.Appearance.ForeColor = Color.White
+                btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
+                btn.Appearance.Options.UseBackColor = True
+                btn.Appearance.Options.UseForeColor = True
+                btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+
+                ' Hover effects with corresponding darker color
+                btn.Appearance.BackColor2 = hoverColor
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
+
+                ' Event handler
+                AddHandler btn.Click, AddressOf CategoryButton_Click
+
+                ' Add to panel
+                FlowLayoutPanelSubMenu.Controls.Add(btn)
+
+                ' Increment color index for next button
+                colorIndex += 1
+            Next
+
+            ' Force layout update to ensure proper sizing
+            FlowLayoutPanelSubMenu.PerformLayout()
+
+            ' Load products for the first category initially
+            If firstCategoryId > 0 Then
+                LoadProductMenu(firstCategoryId)
+            End If
+
+        Catch ex As Exception
+            ' Handle error silently or log if needed
+        End Try
+    End Sub
+    Private Sub LoadProductMenu(ByRef DefaultCateId As Integer)
+        Try
+            Dim Cateid As Integer = 0
+            Cateid = DefaultCateId
+
+            ' Clear existing product buttons
+            FlowLayoutPanelProduct.Controls.Clear()
+
+            If ItemTable.Rows.Count > 0 Then
+                ' Filter items by category ID and update the item grid
+                Dim filteredItems = From item In ItemTable.AsEnumerable() _
+                                   Where IsNumeric(item("CateId")) AndAlso Convert.ToInt32(item("CateId")) = Cateid _
+                                   Select item
+
+                If filteredItems.Any() Then
+                    ' Create a new DataTable with filtered items
+                    Dim filteredTable As DataTable = filteredItems.CopyToDataTable()
+
+                 
+                    Dim buttonWidth As Integer = 200
+                    Dim buttonHeight As Integer = 80 ' Taller buttons for product display
+
+                    ' Color palette for product buttons
+                    Dim productColors() As Color = { _
+                        Color.FromArgb(70, 130, 180), _
+                        Color.FromArgb(60, 179, 113), _
+                        Color.FromArgb(255, 140, 0), _
+                        Color.FromArgb(218, 112, 214), _
+                        Color.FromArgb(255, 99, 71), _
+                        Color.FromArgb(32, 178, 170) _
+                    }
+
+                    'Create styled product buttons
+                    Dim colorIndex As Integer = 0
+                    For Each row As DataRow In filteredTable.Rows
+                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+                        ' Button content - Item name and price
+                        Dim itemName As String = If(row("ItemName") IsNot Nothing, row("ItemName").ToString(), "Unknown Item")
+                        Dim sellPrice As Decimal = 0
+                        If IsNumeric(row("SellPrice")) Then
+                            sellPrice = Convert.ToDecimal(row("SellPrice"))
+                        End If
+                        btn.Text = itemName & Environment.NewLine & sellPrice.ToString("C2")
+
+                        ' Store ItemCode in Tag with safety check
+                        If IsNumeric(row("Id")) Then
+                            btn.Tag = Convert.ToInt32(row("Id"))
+                        Else
+                            btn.Tag = 0 ' Default value if conversion fails
+                        End If
+
+                        ' Enhanced button styling
+                        btn.Size = New Size(buttonWidth, buttonHeight)
+                        btn.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                        Dim hoverColor As Color = hoverColors(colorIndex Mod hoverColors.Length)
+                        ' Color styling with rotation
+                        Dim btnColor As Color = productColors(colorIndex Mod productColors.Length)
+                        btn.Appearance.BackColor = btnColor
+                        btn.Appearance.ForeColor = Color.White
+                        btn.Appearance.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                        btn.Appearance.Options.UseBackColor = True
+                        btn.Appearance.Options.UseForeColor = True
+                        btn.Appearance.Options.UseFont = True
+                        btn.Appearance.Options.UseTextOptions = True
+                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+
+                        ' Hover and visual effects
+                        btn.Appearance.BackColor2 = hoverColor
+                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                        btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                        ' Border styling
+                        btn.Appearance.BorderColor = Color.FromArgb(180, 180, 180)
+                        btn.Appearance.Options.UseBorderColor = True
+
+                        ' Event handler
+                        AddHandler btn.Click, AddressOf ItemButton_Click
+                        FlowLayoutPanelProduct.Controls.Add(btn)
+
+                        colorIndex += 1
+                    Next
+                End If
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
     Private Sub mainMenu()
         Try
-
+            If _JsonData.MainGroupTable.Rows.Count = 0 Then
+                getMainMaster()
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
+    Private Sub CategoryButton_Click(sender As Object, e As EventArgs)
+        Try
+            ' Get the clicked button and extract the category ID from its Tag
+            Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
+            Dim selectedCategoryId As Integer = 0
+
+            ' Safely convert the Tag to Integer
+            If IsNumeric(clickedButton.Tag) Then
+                selectedCategoryId = Convert.ToInt32(clickedButton.Tag)
+            End If
+
+            ' Load products for the selected category
+            If selectedCategoryId > 0 Then
+                LoadProductMenu(selectedCategoryId)
+            End If
+
+        Catch ex As Exception
+            ' Handle error silently or log if needed
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error loading category: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ItemButton_Click(sender As Object, e As EventArgs)
+        Try
+            ' Get the clicked button and extract the item ID from its Tag
+            Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
+            Dim selectedItemId As Integer = 0
+
+            ' Safely convert the Tag to Integer
+            If IsNumeric(clickedButton.Tag) Then
+                selectedItemId = Convert.ToInt32(clickedButton.Tag)
+            End If
+
+            ' Validate that we have a valid item ID
+            If selectedItemId <= 0 Then
+                DevExpress.XtraEditors.XtraMessageBox.Show("Invalid item selected. Please try again.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Convert ItemId to string for the Get_product_info function
+            Dim itemCodeStr As String = selectedItemId.ToString()
+            Dim qty As Decimal = 1 ' Default quantity
+            Dim errStr As String = String.Empty
+
+            ' Call Get_product_info with ItemCode mode
+            If Get_product_info(itemCodeStr, qty, "ItemCode", errStr) = False Then
+                ' Show error message if product info retrieval failed
+                DevExpress.XtraEditors.XtraMessageBox.Show(errStr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                ' Success - product added to grid
+                ' Focus back to search for potential next item
+                cmbMaterialSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            ' Handle error silently or show error message
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error adding product: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 #End Region
 #Region "KeyDown"
     Private dtview As New DataView
@@ -375,7 +674,7 @@ Public Class PosSalesII
                 cmbMaterialSearch.Focus()
             ElseIf e.KeyCode = Keys.Enter Then
                 ' Check if focused column is DELETE column
-                If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE " Then
+                If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE" Then
                     ' Delete focused row
                     Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
                     If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
@@ -424,7 +723,7 @@ Public Class PosSalesII
     Private Sub GridViewPOS_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GridViewPOS.CellValueChanged
         Try
             ' Check if the changed column is the DELETE column
-            If e.Column.FieldName = "DELETE " AndAlso e.Value IsNot Nothing Then
+            If e.Column.FieldName = "DELETE" AndAlso e.Value IsNot Nothing Then
                 ' If user clicked/changed the DELETE column value, delete the row
                 If Convert.ToInt32(e.Value) = 0 OrElse Convert.ToInt32(e.Value) = 1 Then
                     DeleteSelectedRow(e.RowHandle)
@@ -463,7 +762,7 @@ Public Class PosSalesII
     Private Sub GridViewPOS_DoubleClick(sender As Object, e As EventArgs) Handles GridViewPOS.DoubleClick
         Try
             ' Check if focused column is DELETE column
-            If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE " Then
+            If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE" Then
                 Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
                 If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
                     Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
@@ -800,15 +1099,22 @@ Public Class PosSalesII
                 NetAmount = GAmount
             End If
 
-            ' Add row with new column structure including separate discount columns
+            ' Salesman Selection Variables
+            Dim salesmanId As Integer = 1
+            Dim salesmanName As String = "Default"
+            Dim salesmanPer As Decimal = 0
+
+
+
+            ' Add row with new column structure including separate discount columns and salesman info
             ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
             '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
-            '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, DELETE
+            '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE
             GridDataTble_Insert.Rows.Add(_SnoCount, _barcode, _itemcode, Trim(_item), _serialno, _uom, _srate, Qty, TAmount, _
                                         0, 0, _
                                         DisBPer, DisBAmt, _
                                         DisBPer, DisBAmt, _
-                                        GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, 1, "SaleMan", 1)
+                                        GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, salesmanId, salesmanName, salesmanPer, 1)
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
@@ -816,13 +1122,6 @@ Public Class PosSalesII
 
             ' Reset quantity input to 1 for next item
             txtMqty.EditValue = 1
-
-            ' Show message if bill discount was automatically applied
-            ' If billDiscountExists Then
-            '     MessageBox.Show("New item added with existing bill discount of " & existingBillDiscountPer.ToString("F2") & "% applied automatically.", _
-            '                   "Bill Discount Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ' End If
-
             If SalesGrandtotal("ER") = False Then
 
             End If
@@ -1321,7 +1620,7 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
-
+#Region "New Bill"
     Private Sub barbtnNewBill_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnNewBill.ItemClick
         Try
             ' Confirm with user if there are items in the current bill
@@ -1362,6 +1661,9 @@ Public Class PosSalesII
             ' Set mode to new
             modeOfSale = "New"
 
+            ' Clear selected customer
+            ClearSelectedCustomer()
+
             ' Get new bill number
             If _getBillno() = False Then
                 ' Handle error getting bill number if needed
@@ -1383,6 +1685,8 @@ Public Class PosSalesII
             Throw New Exception("Error clearing current bill: " & ex.Message)
         End Try
     End Sub
+#End Region
+
 #Region "QtyControll"
     ' Current quantity being entered via number buttons
     Private currentQtyInput As String = ""
@@ -1755,5 +2059,331 @@ Public Class PosSalesII
             MessageBox.Show("Error applying price by ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+#End Region
+#Region "CustomerSelect"
+    Private Sub barselectcustomer1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barselectcustomer1.ItemClick
+        Try
+            ' Open customer selection dialog
+            Dim customerListForm As New FrmCustomerList(True) ' True for selection mode
+
+            If customerListForm.ShowDialog() = DialogResult.OK Then
+                ' Customer was selected
+                selectedCustomerId = customerListForm.SelectedCustomerId
+                selectedCustomerName = customerListForm.SelectedCustomerName
+                selectedCustomerPhone = customerListForm.SelectedCustomerPhone
+                SetSelectedCustomer(selectedCustomerId, selectedCustomerName, selectedCustomerPhone)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error selecting customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Method to get selected customer information
+    Public Function GetSelectedCustomer() As Object
+        Return New With {
+            .CustomerId = selectedCustomerId,
+            .CustomerName = selectedCustomerName,
+            .CustomerPhone = selectedCustomerPhone
+        }
+    End Function
+    Private Sub barclearcustomer_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barclearcustomer.ItemClick
+        Try
+            ClearSelectedCustomer()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    ' Method to clear selected customer
+    Public Sub ClearSelectedCustomer()
+        Try
+            selectedCustomerId = 0
+            selectedCustomerName = ""
+            selectedCustomerPhone = ""
+            barselectcustomer1.Caption = "Select Customer"
+            barselectcustomer1.Hint = "Click to select a customer for this bill"
+
+            ' Reset button appearance
+            barselectcustomer1.ItemAppearance.Normal.ForeColor = Color.Black
+            barselectcustomer1.ItemAppearance.Normal.Font = New Font(barselectcustomer1.ItemAppearance.Normal.Font, FontStyle.Regular)
+
+            ' Update customer grid to clear display
+            UpdateCustomerGrid()
+
+        Catch ex As Exception
+            MessageBox.Show("Error clearing customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Method to set customer programmatically
+    Public Sub SetSelectedCustomer(customerId As Integer, customerName As String, customerPhone As String)
+        Try
+            selectedCustomerId = customerId
+            selectedCustomerName = customerName
+            selectedCustomerPhone = customerPhone
+
+            ' Update customer grid to show selected customer
+            UpdateCustomerGrid()
+
+        Catch ex As Exception
+            MessageBox.Show("Error setting customer: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Method to validate if customer selection is required
+    Public Function ValidateCustomerSelection(Optional showMessage As Boolean = True) As Boolean
+        Try
+            If selectedCustomerId = 0 Then
+                If showMessage Then
+                    MessageBox.Show("Please select a customer before proceeding with this bill.", _
+                                  "Customer Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            If showMessage Then
+                MessageBox.Show("Error validating customer selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+            Return False
+        End Try
+    End Function
+
+    ' Method to check if a customer is selected
+    Public Function IsCustomerSelected() As Boolean
+        Return selectedCustomerId > 0
+    End Function
+
+    ' Customer Grid Management Methods
+    Private Sub InitializeCustomerGrid()
+        Try
+            ' Create customer display DataTable
+            customerDisplayTable = New DataTable()
+            customerDisplayTable.Columns.Add("Id", GetType(Integer))
+            customerDisplayTable.Columns.Add("Name", GetType(String))
+            customerDisplayTable.Columns.Add("Phone", GetType(String))
+
+            ' Bind to GridControl
+            GridControlCustomer.DataSource = customerDisplayTable
+
+            ' Configure grid appearance
+            GridViewCustomer.OptionsBehavior.ReadOnly = True
+            GridViewCustomer.OptionsBehavior.Editable = False
+            GridViewCustomer.OptionsSelection.EnableAppearanceFocusedCell = False
+            GridViewCustomer.OptionsView.ShowGroupPanel = False
+            GridViewCustomer.OptionsView.ShowIndicator = False
+
+        Catch ex As Exception
+            MessageBox.Show("Error initializing customer grid: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub UpdateCustomerGrid()
+        Try
+            ' Clear existing data
+            customerDisplayTable.Clear()
+
+            ' Add selected customer to grid if available
+            If selectedCustomerId > 0 Then
+                Dim row As DataRow = customerDisplayTable.NewRow()
+                row("Id") = selectedCustomerId
+                row("Name") = selectedCustomerName
+                row("Phone") = selectedCustomerPhone
+                customerDisplayTable.Rows.Add(row)
+            End If
+
+            ' Refresh the grid
+            GridControlCustomer.RefreshDataSource()
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating customer grid: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+#End Region
+
+#Region "SalesMan"
+    Private Sub barselectsalesman_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barselectsalesman.ItemClick
+        Try
+            If _globalSetting.SalesManEachItemActive = False Then
+                MessageBox.Show("Salesman selection for each item is not active.", "Feature Disabled", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Check if any item is selected in the grid
+            If GridViewPOS.FocusedRowHandle < 0 Then
+                MessageBox.Show("Please select an item to assign a salesman.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Show salesman selection dialog
+            Dim salesmanForm As New FrmSalesmanList(True) ' True for selection mode
+            If salesmanForm.ShowDialog() = DialogResult.OK Then
+                ' Update the selected item with salesman information
+                UpdateItemSalesman(GridViewPOS.FocusedRowHandle,
+                                 salesmanForm.SelectedSalesmanId,
+                                 salesmanForm.SelectedSalesmanName)
+
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error selecting salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Method to update salesman information for a specific item
+    Private Sub UpdateItemSalesman(rowIndex As Integer, salesmanId As Integer, salesmanName As String)
+        Try
+            If rowIndex < 0 OrElse rowIndex >= GridDataTble_Insert.Rows.Count Then
+                Exit Sub
+            End If
+            If _JsonData.SalesManCommissionTable.Rows.Count = 0 Then
+                getSalesManCommissionInfo()
+            End If
+            Dim ItemId As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowIndex)("ITEMCODE"))
+            Dim commissionPercentage As Decimal = 0
+
+            ' Find commission for specific salesman and item using safe type conversion
+            Dim commissionRow = _JsonData.SalesManCommissionTable.AsEnumerable().
+                               FirstOrDefault(Function(row) Convert.ToInt32(row("EmpId")) = salesmanId AndAlso
+                                                           Convert.ToInt32(row("ItemId")) = ItemId)
+
+            If commissionRow IsNot Nothing Then
+                commissionPercentage = Convert.ToDecimal(commissionRow("CommissionPercentage"))
+            Else
+                commissionPercentage = 0
+            End If
+
+            ' Update the salesman information in DataTable (note: column names with spaces)
+            GridDataTble_Insert.Rows(rowIndex)("SALESPERSONID") = salesmanId
+            GridDataTble_Insert.Rows(rowIndex)("SALESPERSON") = salesmanName
+            GridDataTble_Insert.Rows(rowIndex)("SALESMANPER") = commissionPercentage
+
+
+            ' Accept changes
+            GridDataTble_Insert.AcceptChanges()
+
+            ' Refresh the grid
+            GridControlSalesData.DataSource = GridDataTble_Insert
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+
+    '' Method to get salesman summary for reporting
+    'Public Function GetSalesmanSummary() As Object
+    '    Try
+    '        Dim salesmanSummary As New Dictionary(Of Integer, Object)
+
+    '        For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+    '            Dim salesmanId As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(i)("SALESPERSONID "))
+    '            Dim salesmanName As String = GridDataTble_Insert.Rows(i)("SALESPERSON").ToString()
+    '            Dim salesmanPer As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("SALESMANPER"))
+    '            Dim itemAmount As Decimal = Convert.ToDecimal(GridDataTble_Insert.Rows(i)("NETAMT"))
+    '            Dim commissionAmount As Decimal = (itemAmount * salesmanPer) / 100
+
+    '            If salesmanSummary.ContainsKey(salesmanId) Then
+    '                Dim existing = salesmanSummary(salesmanId)
+    '                salesmanSummary(salesmanId) = New With {
+    '                    .SalesmanId = salesmanId,
+    '                    .SalesmanName = salesmanName,
+    '                    .TotalSalesAmount = existing.TotalSalesAmount + itemAmount,
+    '                    .TotalCommissionAmount = existing.TotalCommissionAmount + commissionAmount,
+    '                    .ItemCount = existing.ItemCount + 1
+    '                }
+    '            Else
+    '                salesmanSummary.Add(salesmanId, New With {
+    '                    .SalesmanId = salesmanId,
+    '                    .SalesmanName = salesmanName,
+    '                    .TotalSalesAmount = itemAmount,
+    '                    .TotalCommissionAmount = commissionAmount,
+    '                    .ItemCount = 1
+    '                })
+    '            End If
+    '        Next
+
+    '        Return salesmanSummary.Values.ToList()
+
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error getting salesman summary: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        Return New List(Of Object)()
+    '    End Try
+    'End Function
+
+    '' Method to assign default salesman to all items
+    'Public Sub AssignDefaultSalesmanToAllItems(salesmanId As Integer, salesmanName As String, salesmanPercentage As Decimal)
+    '    Try
+    '        For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+    '            GridDataTble_Insert.Rows(i)("SALESPERSONID ") = salesmanId
+    '            GridDataTble_Insert.Rows(i)("SALESPERSON") = salesmanName
+    '            GridDataTble_Insert.Rows(i)("SALESMANPER") = salesmanPercentage
+    '        Next
+
+    '        ' Accept changes and refresh grid
+    '        GridDataTble_Insert.AcceptChanges()
+    '        GridControlSalesData.DataSource = GridDataTble_Insert
+
+    '        MessageBox.Show("Default salesman assigned to all items successfully!", "Default Salesman Assigned", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error assigning default salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
+#End Region
+
+
+
+
+#Region "Form Layout Management"
+    Private Sub Barfromlayoutsave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles Barfromlayoutsave.ItemClick
+        Try
+            SaveFormLayout()
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error saving form layout: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Save complete form layout
+    Private Sub SaveFormLayout()
+        Try
+            Dim layoutPath As String = GetFormLayoutFilePath()
+            ' Create directory if it doesn't exist
+            Dim layoutDir As String = System.IO.Path.GetDirectoryName(layoutPath)
+            If Not System.IO.Directory.Exists(layoutDir) Then
+                System.IO.Directory.CreateDirectory(layoutDir)
+            End If
+            LayoutControl1.SaveLayoutToXml(layoutPath)
+
+            DevExpress.XtraEditors.XtraMessageBox.Show("Form layout saved successfully!", "Layout Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            Throw New Exception("Error saving form layout: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Restore complete form layout
+    Public Sub RestoreFormLayout()
+        Try
+            Dim layoutPath As String = GetFormLayoutFilePath()
+            If Not System.IO.File.Exists(layoutPath) Then
+                Exit Sub ' No saved layout exists
+            End If
+            LayoutControl1.RestoreLayoutFromXml(layoutPath)
+            'LayoutControl2.RestoreLayoutFromXml(layoutPath)
+            'LayoutControl3.RestoreLayoutFromXml(layoutPath)
+        Catch ex As Exception
+            ' If restore fails, continue with default layout
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error restoring form layout. Using default layout.", "Layout Restore Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
+    ' Get form layout file path
+    Private Function GetFormLayoutFilePath() As String
+        Dim appPath As String = Application.StartupPath
+        Dim layoutFolder As String = System.IO.Path.Combine(appPath, "Layout")
+        Return System.IO.Path.Combine(layoutFolder, "PosSalesII_FormLayout.xml")
+    End Function
+ 
 #End Region
 End Class

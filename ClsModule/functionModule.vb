@@ -71,6 +71,8 @@ Module functionModule
         Public Shared AccountLedger As New DataTable
         Public Shared MonthOfSalary As New DataTable
         Public Shared PosSettingsTable As New DataTable
+        Public Shared SalesManCommissionTable As New DataTable
+     
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -91,6 +93,7 @@ Module functionModule
         Public Shared BillDiscountAcitve As Boolean = False
         Public Shared ItemDiscountActive As Boolean = False
         Public Shared SelectMultiplePriceActive As Boolean = False
+        Public Shared SalesManEachItemActive As Boolean = False
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"
@@ -131,6 +134,22 @@ Module functionModule
             Dim Userparsejson As JObject = JObject.Parse(json)
             _JsonData.UserPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
             If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function getSalesManCommissionInfo() As Boolean
+        Try
+            _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=7")
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            _JsonData.SalesManCommissionTable = Userparsejson("Data").ToObject(Of DataTable)()
+            If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
                 Return True
             End If
             Return True
@@ -229,6 +248,25 @@ Module functionModule
             _JsonData.TaxTable = Userparsejson("Data").ToObject(Of DataTable)()
             If _JsonData.TaxTable.Rows.Count > 0 Then
                 Return True
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function getItemMaster() As Boolean
+        Try
+            _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+            Dim _dt As New DataTable
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            _dt = Userparsejson("Data").ToObject(Of DataTable)()
+            Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
+
+            If dtrows.Any Then
+                _JsonData.ItemMasterTable = dtrows.CopyToDataTable
             End If
             Return True
         Catch ex As Exception
@@ -350,25 +388,8 @@ Module functionModule
             Return False
         End Try
     End Function
-    Public Function getItemMaster() As Boolean
-        Try
-            _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
-            Dim _dt As New DataTable
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _dt = Userparsejson("Data").ToObject(Of DataTable)()
-            Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
-
-            If dtrows.Any Then
-                _JsonData.ItemMasterTable = dtrows.CopyToDataTable
-            End If
-            Return True
-        Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        End Try
-    End Function
+ 
+    
     Public Function getPurchaseView() As Boolean
         Try
             _JsonData.PurchaseViewTable.TableName = "PurchaseView"

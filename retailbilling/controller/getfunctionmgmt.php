@@ -221,10 +221,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
     if ((int) $_REQUEST['AjaxRequest'] == 16) {
         $ResulQuery = $clsfunreq->_SelectMainMastrer();
         $GetDataRes = array();
-        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
-            $GetDataRes[] = $rows;
-        }
-        if ($ResulQuery) {
+        if ($ResulQuery instanceof mysqli_result) {
+            while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+                $GetDataRes[] = $rows;
+            }
             echo json_encode(array("Data" => $GetDataRes));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
@@ -3860,6 +3860,22 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
             ));
         } else {
             echo json_encode(array("Success" => true, "Msg" => 'No commission applicable for this sale'));
+        }
+    }
+    if ((int) $_REQUEST['SalesManCommission'] == 13) { // Get SalesMan by Comid,Locid
+        {
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $GetSalesMan = $clsfunreq->GetSalesManByComidLocid($comid, $locid);
+            $GetSalesManRes = array();
+            while ($rows = mysqli_fetch_assoc($GetSalesMan)) {
+                $GetSalesManRes[] = $rows;
+            }
+            if ($GetSalesMan) {
+                echo json_encode(array("Success" => true, "Data" => $GetSalesManRes));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No SalesMan Found'));
+            }
         }
     }
 }

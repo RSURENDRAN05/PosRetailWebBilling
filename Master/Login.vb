@@ -51,8 +51,19 @@ Public Class Login
                 Else
                     dialog.Caption = "Location Data Not Received"
                 End If
-                LoadPosSettings()
-                dialog.Caption = "Loading Pos Settings"
+                If getPosSettingsInfo() = True Then
+                    LoadPosSettings()
+                    dialog.Caption = "Loading Pos Settings"
+                Else
+                    dialog.Caption = "Pos Setting Data Not Received"
+                End If
+                If getSalesManCommissionInfo() = True Then
+
+                    dialog.Caption = "Loading SalesCommission"
+                Else
+                    dialog.Caption = "SalesCommission Data Not Received"
+                End If
+
                 GridLookUuCompany.EditValue = LocationId
             End If
         Catch ex As Exception

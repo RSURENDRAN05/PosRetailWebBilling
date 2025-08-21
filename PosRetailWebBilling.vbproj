@@ -486,6 +486,12 @@
     <Compile Include="Sales\frmPosRetailBilling.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\FrmSalesmanList.designer.vb">
+      <DependentUpon>FrmSalesmanList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmSalesmanList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\frmSelectBill.designer.vb">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
     </Compile>
@@ -686,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPosRetailBilling.resx">
       <DependentUpon>frmPosRetailBilling.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmSalesmanList.resx">
+      <DependentUpon>FrmSalesmanList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmSelectBill.resx">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
