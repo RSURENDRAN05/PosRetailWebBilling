@@ -33,6 +33,7 @@ Partial Class PosSalesII
         Me.BarSubItem2 = New DevExpress.XtraBars.BarSubItem()
         Me.barbtnNewBill = New DevExpress.XtraBars.BarButtonItem()
         Me.btnSaveLayout = New DevExpress.XtraBars.BarButtonItem()
+        Me.Barfromlayoutsave = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem3 = New DevExpress.XtraBars.BarSubItem()
         Me.barSearchProductCode = New DevExpress.XtraBars.BarCheckItem()
         Me.barbilldiscount = New DevExpress.XtraBars.BarButtonItem()
@@ -102,7 +103,6 @@ Partial Class PosSalesII
         Me.btn_12 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblbilldiscper = New System.Windows.Forms.Label()
-        Me.lblitemdiscper = New System.Windows.Forms.Label()
         Me.lblsst = New System.Windows.Forms.Label()
         Me.lblservcharge = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -164,7 +164,6 @@ Partial Class PosSalesII
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Barfromlayoutsave = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControlCustomer, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -323,6 +322,12 @@ Partial Class PosSalesII
         Me.btnSaveLayout.Caption = "Save LayOut"
         Me.btnSaveLayout.Id = 4
         Me.btnSaveLayout.Name = "btnSaveLayout"
+        '
+        'Barfromlayoutsave
+        '
+        Me.Barfromlayoutsave.Caption = "From Save Layout"
+        Me.Barfromlayoutsave.Id = 29
+        Me.Barfromlayoutsave.Name = "Barfromlayoutsave"
         '
         'BarSubItem3
         '
@@ -1033,7 +1038,6 @@ Partial Class PosSalesII
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666!))
         Me.TableLayoutPanel2.Controls.Add(Me.lblbilldiscper, 1, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.lblitemdiscper, 1, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.lblsst, 1, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.lblservcharge, 1, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label16, 0, 0)
@@ -1069,19 +1073,6 @@ Partial Class PosSalesII
         Me.lblbilldiscper.TabIndex = 9
         Me.lblbilldiscper.Text = "0"
         Me.lblbilldiscper.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblitemdiscper
-        '
-        Me.lblitemdiscper.AutoSize = True
-        Me.lblitemdiscper.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblitemdiscper.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblitemdiscper.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblitemdiscper.Location = New System.Drawing.Point(119, 28)
-        Me.lblitemdiscper.Name = "lblitemdiscper"
-        Me.lblitemdiscper.Size = New System.Drawing.Size(46, 26)
-        Me.lblitemdiscper.TabIndex = 6
-        Me.lblitemdiscper.Text = "0"
-        Me.lblitemdiscper.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblsst
         '
@@ -1794,12 +1785,6 @@ Partial Class PosSalesII
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
         Me.LayoutControlItem13.TextToControlDistance = 5
         '
-        'Barfromlayoutsave
-        '
-        Me.Barfromlayoutsave.Caption = "From Save Layout"
-        Me.Barfromlayoutsave.Id = 29
-        Me.Barfromlayoutsave.Name = "Barfromlayoutsave"
-        '
         'PosSalesII
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1938,7 +1923,6 @@ Partial Class PosSalesII
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents lblnetamt As System.Windows.Forms.Label
-    Friend WithEvents lblitemdiscper As System.Windows.Forms.Label
     Friend WithEvents lblsst As System.Windows.Forms.Label
     Friend WithEvents lblservcharge As System.Windows.Forms.Label
     Friend WithEvents lblbilldiscper As System.Windows.Forms.Label
