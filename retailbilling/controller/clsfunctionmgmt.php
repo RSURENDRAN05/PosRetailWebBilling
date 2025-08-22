@@ -6,8 +6,8 @@ class funcProcessMgmt
 
     public function __construct()
     {
-        require_once 'DB_Connect.php';
-        $db = new Db_Connect();
+        require_once 'dbconnect.php';
+        $db = new database();
         $this->conn = $db->connect();
     }
 
@@ -2934,5 +2934,1043 @@ class funcProcessMgmt
         $sqlQuery = ("SELECT `emp_id` as Id , `emp_printname` as SalesMan FROM `pos_employeeinfo` WHERE `emp_compid`= " . intval($comid) . " and `emp_locid`= " . intval($locid));
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
+    }
+
+    /**
+     * Insert new POS Master record
+     */
+    public function InsertPosMaster(
+        $pm_machine_name,
+        $pm_business_date,
+        $pm_trans_no,
+        $pm_user_id,
+        $psr_bill_number,
+        $pm_day_no,
+        $pm_shift_no,
+        $pm_day_st,
+        $pm_shift_st,
+        $pm_prefix,
+        $pm_comid,
+        $pm_locid,
+        $pm_batch_number,
+        $pm_mailstatus,
+        $pm_monthdate,
+        $pm_autoupdate,
+        $pm_webid,
+        $pm_restid
+    ) {
+        $conn = $this->conn;
+
+        // Check if PM_PREFIX column exists
+        $checkColumn = mysqli_query($conn, "SHOW COLUMNS FROM `POS_MASTER` LIKE 'PM_PREFIX'");
+        $hasPrefix = mysqli_num_rows($checkColumn) > 0;
+
+        if ($hasPrefix) {
+            // Include PM_PREFIX in the query
+            $sqlQuery = "INSERT INTO `POS_MASTER` (
+                `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`, `PSR_BILL_NUMBER`,
+                `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`, `PM_PREFIX`,
+                `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`, `PM_MONTHDATE`,
+                `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`
+            ) VALUES (
+                '" . mysqli_real_escape_string($conn, $pm_machine_name) . "',
+                '" . mysqli_real_escape_string($conn, $pm_business_date) . "',
+                '" . mysqli_real_escape_string($conn, $pm_trans_no) . "',
+                '" . intval($pm_user_id) . "',
+                '" . mysqli_real_escape_string($conn, $psr_bill_number) . "',
+                '" . intval($pm_day_no) . "',
+                '" . intval($pm_shift_no) . "',
+                '" . mysqli_real_escape_string($conn, $pm_day_st) . "',
+                '" . mysqli_real_escape_string($conn, $pm_shift_st) . "',
+                '" . mysqli_real_escape_string($conn, $pm_prefix) . "',
+                '" . intval($pm_comid) . "',
+                '" . intval($pm_locid) . "',
+                '" . mysqli_real_escape_string($conn, $pm_batch_number) . "',
+                '" . mysqli_real_escape_string($conn, $pm_mailstatus) . "',
+                '" . mysqli_real_escape_string($conn, $pm_monthdate) . "',
+                '" . mysqli_real_escape_string($conn, $pm_autoupdate) . "',
+                '" . mysqli_real_escape_string($conn, $pm_webid) . "',
+                '" . mysqli_real_escape_string($conn, $pm_restid) . "',
+                NOW()
+            )";
+        } else {
+            // Exclude PM_PREFIX from the query
+            $sqlQuery = "INSERT INTO `POS_MASTER` (
+                `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`, `PSR_BILL_NUMBER`,
+                `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`,
+                `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`, `PM_MONTHDATE`,
+                `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`
+            ) VALUES (
+                '" . mysqli_real_escape_string($conn, $pm_machine_name) . "',
+                '" . mysqli_real_escape_string($conn, $pm_business_date) . "',
+                '" . mysqli_real_escape_string($conn, $pm_trans_no) . "',
+                '" . intval($pm_user_id) . "',
+                '" . mysqli_real_escape_string($conn, $psr_bill_number) . "',
+                '" . intval($pm_day_no) . "',
+                '" . intval($pm_shift_no) . "',
+                '" . mysqli_real_escape_string($conn, $pm_day_st) . "',
+                '" . mysqli_real_escape_string($conn, $pm_shift_st) . "',
+                '" . intval($pm_comid) . "',
+                '" . intval($pm_locid) . "',
+                '" . mysqli_real_escape_string($conn, $pm_batch_number) . "',
+                '" . mysqli_real_escape_string($conn, $pm_mailstatus) . "',
+                '" . mysqli_real_escape_string($conn, $pm_monthdate) . "',
+                '" . mysqli_real_escape_string($conn, $pm_autoupdate) . "',
+                '" . mysqli_real_escape_string($conn, $pm_webid) . "',
+                '" . mysqli_real_escape_string($conn, $pm_restid) . "',
+                NOW()
+            )";
+        }
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Update POS Master record based on company and location ID
+     */
+    public function UpdatePosMaster(
+        $pm_id,
+        $pm_machine_name,
+        $pm_business_date,
+        $pm_trans_no,
+        $pm_user_id,
+        $psr_bill_number,
+        $pm_day_no,
+        $pm_shift_no,
+        $pm_day_st,
+        $pm_shift_st,
+        $pm_prefix,
+        $pm_comid,
+        $pm_locid,
+        $pm_batch_number,
+        $pm_mailstatus,
+        $pm_monthdate,
+        $pm_autoupdate,
+        $pm_webid,
+        $pm_restid
+    ) {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER` SET
+            `PM_MACHINE_NAME` = '" . mysqli_real_escape_string($conn, $pm_machine_name) . "',
+            `PM_BUINESS_DATE` = '" . mysqli_real_escape_string($conn, $pm_business_date) . "',
+            `PM_TRANS_NO` = '" . mysqli_real_escape_string($conn, $pm_trans_no) . "',
+            `PM_USER_ID` = '" . intval($pm_user_id) . "',
+            `PSR_BILL_NUMBER` = '" . mysqli_real_escape_string($conn, $psr_bill_number) . "',
+            `PM_DAY_NO` = '" . intval($pm_day_no) . "',
+            `PM_SHIFT_NO` = '" . intval($pm_shift_no) . "',
+            `PM_DAY_ST` = '" . mysqli_real_escape_string($conn, $pm_day_st) . "',
+            `PM_SHIFT_ST` = '" . mysqli_real_escape_string($conn, $pm_shift_st) . "',
+            `PM_PREFIX` = '" . mysqli_real_escape_string($conn, $pm_prefix) . "',
+            `PM_COMID` = '" . intval($pm_comid) . "',
+            `PM_LOCID` = '" . intval($pm_locid) . "',
+            `PM_BATCH_NUMBER` = '" . mysqli_real_escape_string($conn, $pm_batch_number) . "',
+            `PM_MAILSTATUS` = '" . mysqli_real_escape_string($conn, $pm_mailstatus) . "',
+            `PM_MONTHDATE` = '" . mysqli_real_escape_string($conn, $pm_monthdate) . "',
+            `PM_AUTOUPDATE` = '" . mysqli_real_escape_string($conn, $pm_autoupdate) . "',
+            `PM_WEBID` = '" . mysqli_real_escape_string($conn, $pm_webid) . "',
+            `PM_RESTID` = '" . mysqli_real_escape_string($conn, $pm_restid) . "',
+            `PM_UPDATED` = NOW()
+        WHERE `PM_ID` = '" . intval($pm_id) . "'
+        AND `PM_COMID` = '" . intval($pm_comid) . "'
+        AND `PM_LOCID` = '" . intval($pm_locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Get POS Master records by company and location ID
+     */
+    public function GetPosMasterByComidLocid($comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Check if PM_PREFIX column exists
+        $checkColumn = mysqli_query($conn, "SHOW COLUMNS FROM `POS_MASTER` LIKE 'PM_PREFIX'");
+        $hasPrefix = mysqli_num_rows($checkColumn) > 0;
+
+        if ($hasPrefix) {
+            $sqlQuery = "SELECT `PM_ID`, `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`,
+                        `PSR_BILL_NUMBER`, `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`,
+                        `PM_PREFIX`, `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`,
+                        `PM_MONTHDATE`, `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`, `PM_UPDATED`
+                        FROM `POS_MASTER`
+                        WHERE `PM_COMID` = '" . intval($comid) . "'
+                        AND `PM_LOCID` = '" . intval($locid) . "'
+                        ORDER BY `PM_CREATED` DESC";
+        } else {
+            $sqlQuery = "SELECT `PM_ID`, `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`,
+                        `PSR_BILL_NUMBER`, `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`,
+                        '' as `PM_PREFIX`, `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`,
+                        `PM_MONTHDATE`, `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`, `PM_UPDATED`
+                        FROM `POS_MASTER`
+                        WHERE `PM_COMID` = '" . intval($comid) . "'
+                        AND `PM_LOCID` = '" . intval($locid) . "'
+                        ORDER BY `PM_CREATED` DESC";
+        }
+
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
+    /**
+     * Check if POS Master record exists
+     */
+    public function CheckPosMasterExists($pm_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "SELECT COUNT(*) as count FROM `POS_MASTER`
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        $row = mysqli_fetch_assoc($result);
+        return $row['count'] > 0;
+    }
+
+    /**
+     * Check if company and location combination exists and is active
+     */
+    public function ValidateCompanyLocationExists($comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "SELECT COUNT(*) as count FROM `pos_company_mast` as pcm
+                    INNER JOIN `pos_location_mast` as plm ON 1=1
+                    WHERE pcm.`pcm_id` = '" . intval($comid) . "'
+                    AND plm.`plm_id` = '" . intval($locid) . "'
+                    AND pcm.`pcm_active` = '1'
+                    AND plm.`plm_active` = '1'";
+        $result = mysqli_query($conn, $sqlQuery);
+        $row = mysqli_fetch_assoc($result);
+        return $row['count'] > 0;
+    }
+
+    public function UpdateTransNo($pm_id, $pm_trans_no, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_TRANS_NO` = `PM_TRANS_NO` + 1,
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function UpdateBillNumber($pm_id, $pm_bill_number, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_BILL_NO` = `PM_BILL_NO` + 1,
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function UpdateBatchNumber($pm_id, $pm_batch_number, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_BATCH_NO` = `PM_BATCH_NO` + 1,
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function UpdateAutoUpdate($pm_id, $pm_auto_update, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_AUTO_UPDATE` = `PM_AUTO_UPDATE` + 1,
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function UpdateMailStatus($pm_id, $pm_mail_status, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_MAIL_STATUS` = '" . intval($pm_mail_status) . "',
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function UpdateMonthDate($pm_id, $pm_month_date, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `POS_MASTER`
+                    SET `PM_MONTHDATE` = '" . intval($pm_month_date) . "',
+                        `PM_UPDATED` = NOW()
+                    WHERE `PM_ID` = '" . intval($pm_id) . "'
+                    AND `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'";
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    public function GetAllData($pm_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Check if PM_PREFIX column exists
+        $checkColumn = mysqli_query($conn, "SHOW COLUMNS FROM `POS_MASTER` LIKE 'PM_PREFIX'");
+        $hasPrefix = mysqli_num_rows($checkColumn) > 0;
+
+        if ($hasPrefix) {
+            $sqlQuery = "SELECT `PM_ID`, `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`,
+                        `PSR_BILL_NUMBER`, `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`,
+                        `PM_PREFIX`, `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`,
+                        `PM_MONTHDATE`, `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`, `PM_UPDATED`
+                        FROM `POS_MASTER`
+                        WHERE `PM_ID` = '" . intval($pm_id) . "'
+                        AND `PM_COMID` = '" . intval($comid) . "'
+                        AND `PM_LOCID` = '" . intval($locid) . "'";
+        } else {
+            $sqlQuery = "SELECT `PM_ID`, `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`,
+                        `PSR_BILL_NUMBER`, `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`, `PM_SHIFT_ST`,
+                        '' as `PM_PREFIX`, `PM_COMID`, `PM_LOCID`, `PM_BATCH_NUMBER`, `PM_MAILSTATUS`,
+                        `PM_MONTHDATE`, `PM_AUTOUPDATE`, `PM_WEBID`, `PM_RESTID`, `PM_CREATED`, `PM_UPDATED`
+                        FROM `POS_MASTER`
+                        WHERE `PM_ID` = '" . intval($pm_id) . "'
+                        AND `PM_COMID` = '" . intval($comid) . "'
+                        AND `PM_LOCID` = '" . intval($locid) . "'";
+        }
+
+        $result = mysqli_query($conn, $sqlQuery);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+        return false;
+    }
+
+    // Shift Management Methods
+
+    public function CreateNewShift($comid, $locid, $userid, $pcname, $opbalance = 0)
+    {
+        $conn = $this->conn;
+
+        // Get current date
+        $currentDate = date('Y-m-d');
+
+        // Get next shift number and day number from POS_MASTER
+        $shiftQuery = "SELECT `PM_SHIFT_NO`, `PM_DAY_NO` FROM `POS_MASTER`
+                      WHERE `PM_COMID` = '" . intval($comid) . "'
+                      AND `PM_LOCID` = '" . intval($locid) . "'
+                      LIMIT 1";
+        $shiftResult = mysqli_query($conn, $shiftQuery);
+
+        $shiftNo = 1;
+        $dayNo = 1;
+
+        if ($shiftResult && mysqli_num_rows($shiftResult) > 0) {
+            $shiftData = mysqli_fetch_assoc($shiftResult);
+            $shiftNo = intval($shiftData['PM_SHIFT_NO']);
+            $dayNo = intval($shiftData['PM_DAY_NO']);
+        }
+
+        // Insert new shift record
+        $insertQuery = "INSERT INTO `pos_shiftclose` (
+            `psc_curdate`, `psc_opbalance`, `psc_todaysales`, `psc_totdiscount`,
+            `psc_tottax`, `psc_netamt`, `psc_servicetax`, `psc_todayin`,
+            `psc_todayout`, `psc_todaybanking`, `psc_clsbalance`, `psc_state`,
+            `psc_comid`, `psc_locid`, `psc_shiftno`, `psc_dayno`, `psc_pcname`,
+            `psc_totbills`, `psc_cancelamt`, `psc_creditsales`, `psc_opendrawer`,
+            `psc_clsdrawer`, `psc_userid`, `psc_smail`, `psc_print`, `psc_created`
+        ) VALUES (
+            '" . $currentDate . "', '" . floatval($opbalance) . "', 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 'Open',
+            '" . intval($comid) . "', '" . intval($locid) . "', '" . intval($shiftNo) . "', '" . intval($dayNo) . "', '" . mysqli_real_escape_string($conn, $pcname) . "',
+            0, 0, 0, 0,
+            0, '" . intval($userid) . "', 0, 0, NOW()
+        )";
+
+        $result = mysqli_query($conn, $insertQuery);
+
+        if ($result) {
+            // Update POS_MASTER table to set PM_SHIFT_ST = "Open" after creating new shift
+            $updatePosQuery = "UPDATE `POS_MASTER` SET
+                              `PM_SHIFT_ST` = 'Open',
+                              `PM_UPDATED` = NOW()
+                              WHERE `PM_COMID` = '" . intval($comid) . "'
+                              AND `PM_LOCID` = '" . intval($locid) . "'";
+
+            mysqli_query($conn, $updatePosQuery);
+
+            return array(
+                'shift_id' => mysqli_insert_id($conn),
+                'shift_no' => $shiftNo,
+                'day_no' => $dayNo
+            );
+        }
+        return false;
+    }
+
+    public function UpdateShiftClose($psc_id, $comid, $locid, $shiftCloseData)
+    {
+        $conn = $this->conn;
+
+        // Build update query
+        $updateFields = array();
+        $allowedFields = array(
+            'psc_todaysales',
+            'psc_totdiscount',
+            'psc_tottax',
+            'psc_netamt',
+            'psc_servicetax',
+            'psc_todayin',
+            'psc_todayout',
+            'psc_todaybanking',
+            'psc_clsbalance',
+            'psc_totbills',
+            'psc_cancelamt',
+            'psc_creditsales',
+            'psc_opendrawer',
+            'psc_clsdrawer',
+            'psc_smail',
+            'psc_print'
+        );
+
+        foreach ($allowedFields as $field) {
+            if (isset($shiftCloseData[$field])) {
+                $updateFields[] = "`$field` = '" . mysqli_real_escape_string($conn, $shiftCloseData[$field]) . "'";
+            }
+        }
+
+        $updateFields[] = "`psc_state` = 'Close'";
+        $updateFields[] = "`psc_updated` = NOW()";
+
+        $updateQuery = "UPDATE `pos_shiftclose` SET " . implode(', ', $updateFields) . "
+                       WHERE `psc_id` = '" . intval($psc_id) . "'
+                       AND `psc_comid` = '" . intval($comid) . "'
+                       AND `psc_locid` = '" . intval($locid) . "'";
+
+        $result = mysqli_query($conn, $updateQuery);
+
+        // If shift close successful, update POS_MASTER shift number and status
+        if ($result && mysqli_affected_rows($conn) > 0) {
+            $this->UpdatePosShiftStatus($comid, $locid);
+            return true;
+        }
+        return false;
+    }
+
+    public function UpdatePosShiftStatus($comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Update PM_SHIFT_NO +1 and PM_SHIFT_ST = "Close" in POS_MASTER
+        $updateQuery = "UPDATE `POS_MASTER` SET
+                       `PM_SHIFT_NO` = `PM_SHIFT_NO` + 1,
+                       `PM_SHIFT_ST` = 'Close',
+                       `PM_UPDATED` = NOW()
+                       WHERE `PM_COMID` = '" . intval($comid) . "'
+                       AND `PM_LOCID` = '" . intval($locid) . "'";
+
+        return mysqli_query($conn, $updateQuery);
+    }
+
+    public function GetShiftData($comid, $locid, $psc_id = null, $state = null)
+    {
+        $conn = $this->conn;
+
+        $whereConditions = array(
+            "`psc_comid` = '" . intval($comid) . "'",
+            "`psc_locid` = '" . intval($locid) . "'"
+        );
+
+        if ($psc_id !== null) {
+            $whereConditions[] = "`psc_id` = '" . intval($psc_id) . "'";
+        }
+
+        if ($state !== null) {
+            $whereConditions[] = "`psc_state` = '" . mysqli_real_escape_string($conn, $state) . "'";
+        }
+
+        $sqlQuery = "SELECT `psc_id`, `psc_curdate`, `psc_opbalance`, `psc_todaysales`,
+                    `psc_totdiscount`, `psc_tottax`, `psc_netamt`, `psc_servicetax`,
+                    `psc_todayin`, `psc_todayout`, `psc_todaybanking`, `psc_clsbalance`,
+                    `psc_state`, `psc_comid`, `psc_locid`, `psc_shiftno`, `psc_dayno`,
+                    `psc_pcname`, `psc_totbills`, `psc_cancelamt`, `psc_creditsales`,
+                    `psc_opendrawer`, `psc_clsdrawer`, `psc_userid`, `psc_smail`,
+                    `psc_print`, `psc_created`, `psc_updated`
+                    FROM `pos_shiftclose`
+                    WHERE " . implode(' AND ', $whereConditions) . "
+                    ORDER BY `psc_created` DESC";
+
+        return mysqli_query($conn, $sqlQuery);
+    }
+
+    public function GetCurrentOpenShift($comid, $locid)
+    {
+        $conn = $this->conn;
+
+        $sqlQuery = "SELECT `psc_id`, `psc_curdate`, `psc_opbalance`, `psc_todaysales`,
+                    `psc_totdiscount`, `psc_tottax`, `psc_netamt`, `psc_servicetax`,
+                    `psc_todayin`, `psc_todayout`, `psc_todaybanking`, `psc_clsbalance`,
+                    `psc_state`, `psc_comid`, `psc_locid`, `psc_shiftno`, `psc_dayno`,
+                    `psc_pcname`, `psc_totbills`, `psc_cancelamt`, `psc_creditsales`,
+                    `psc_opendrawer`, `psc_clsdrawer`, `psc_userid`, `psc_smail`,
+                    `psc_print`, `psc_created`, `psc_updated`
+                    FROM `pos_shiftclose`
+                    WHERE `psc_comid` = '" . intval($comid) . "'
+                    AND `psc_locid` = '" . intval($locid) . "'
+                    AND `psc_state` = 'Open'
+                    ORDER BY `psc_created` DESC
+                    LIMIT 1";
+
+        $result = mysqli_query($conn, $sqlQuery);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+        return false;
+    }
+
+    public function CloseShiftAndIncrement($pm_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Update PM_SHIFT_NO +1 and PM_SHIFT_ST = "Close" in POS_MASTER
+        $updateQuery = "UPDATE `POS_MASTER` SET
+                       `PM_SHIFT_NO` = `PM_SHIFT_NO` + 1,
+                       `PM_SHIFT_ST` = 'Close',
+                       `PM_UPDATED` = NOW()
+                       WHERE `PM_ID` = '" . intval($pm_id) . "'
+                       AND `PM_COMID` = '" . intval($comid) . "'
+                       AND `PM_LOCID` = '" . intval($locid) . "'";
+
+        $result = mysqli_query($conn, $updateQuery);
+        return $result && mysqli_affected_rows($conn) > 0;
+    }
+
+    public function ValidateShiftBeforeClose($psc_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Check if shift exists and its current state
+        $sqlQuery = "SELECT `psc_id`, `psc_state`, `psc_shiftno`
+                    FROM `pos_shiftclose`
+                    WHERE `psc_id` = '" . intval($psc_id) . "'
+                    AND `psc_comid` = '" . intval($comid) . "'
+                    AND `psc_locid` = '" . intval($locid) . "'";
+
+        $result = mysqli_query($conn, $sqlQuery);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $shiftData = mysqli_fetch_assoc($result);
+
+            // Return validation result with status
+            return array(
+                'exists' => true,
+                'state' => $shiftData['psc_state'],
+                'shift_no' => $shiftData['psc_shiftno'],
+                'can_close' => ($shiftData['psc_state'] === 'Open'),
+                'message' => ($shiftData['psc_state'] === 'Close') ?
+                    'Shift #' . $shiftData['psc_shiftno'] . ' is already closed' :
+                    'Shift #' . $shiftData['psc_shiftno'] . ' is open and can be closed'
+            );
+        }
+
+        return array(
+            'exists' => false,
+            'state' => null,
+            'shift_no' => null,
+            'can_close' => false,
+            'message' => 'Shift not found'
+        );
+    }
+
+    public function ValidateCurrentShiftAndCreate($comid, $locid, $userid, $pcname)
+    {
+        $conn = $this->conn;
+
+        // Step 1: Get current shift data from POS_MASTER
+        $posQuery = "SELECT `PM_ID`, `PM_SHIFT_NO`, `PM_DAY_NO`, `PM_SHIFT_ST`
+                    FROM `POS_MASTER`
+                    WHERE `PM_COMID` = '" . intval($comid) . "'
+                    AND `PM_LOCID` = '" . intval($locid) . "'
+                    LIMIT 1";
+
+        $posResult = mysqli_query($conn, $posQuery);
+
+        if (!$posResult || mysqli_num_rows($posResult) == 0) {
+            return array(
+                'success' => false,
+                'message' => 'POS Master record not found',
+                'action' => 'none'
+            );
+        }
+
+        $posData = mysqli_fetch_assoc($posResult);
+        $pmId = $posData['PM_ID'];
+        $currentShiftNo = intval($posData['PM_SHIFT_NO']);
+        $currentDayNo = intval($posData['PM_DAY_NO']);
+        $shiftStatus = $posData['PM_SHIFT_ST'];
+
+        // Step 2: Check if current shift is marked as "Open" in POS_MASTER
+        if ($shiftStatus !== 'Open') {
+            // Shift is marked as closed, check if shift record exists in pos_shiftclose
+            $shiftExistsResult = $this->CheckShiftExists($comid, $locid, $currentShiftNo, $currentDayNo);
+
+            if (!$shiftExistsResult['exists']) {
+                // Shift doesn't exist, create new shift
+                $createResult = $this->CreateNewShift($comid, $locid, $userid, $pcname);
+
+                if ($createResult) {
+                    return array(
+                        'success' => true,
+                        'message' => 'New shift created successfully',
+                        'action' => 'created',
+                        'shift_data' => $createResult,
+                        'shift_no' => $createResult['shift_no'],
+                        'day_no' => $createResult['day_no'],
+                        'pm_id' => $pmId
+                    );
+                } else {
+                    return array(
+                        'success' => false,
+                        'message' => 'Failed to create new shift',
+                        'action' => 'error'
+                    );
+                }
+            } else {
+                // Shift exists but POS_MASTER shows closed - update POS_MASTER to Open
+                $updateQuery = "UPDATE `POS_MASTER` SET
+                               `PM_SHIFT_ST` = 'Open',
+                               `PM_UPDATED` = NOW()
+                               WHERE `PM_ID` = '" . intval($pmId) . "'";
+
+                mysqli_query($conn, $updateQuery);
+
+                return array(
+                    'success' => true,
+                    'message' => 'Shift exists, POS Master updated to Open',
+                    'action' => 'updated',
+                    'shift_no' => $currentShiftNo,
+                    'day_no' => $currentDayNo,
+                    'pm_id' => $pmId
+                );
+            }
+        } else {
+            // Shift is marked as Open in POS_MASTER, check if shift record exists
+            $shiftExistsResult = $this->CheckShiftExists($comid, $locid, $currentShiftNo, $currentDayNo);
+
+            if (!$shiftExistsResult['exists']) {
+                // POS_MASTER shows Open but no shift record exists - create shift record
+                $createResult = $this->CreateNewShift($comid, $locid, $userid, $pcname);
+
+                if ($createResult) {
+                    return array(
+                        'success' => true,
+                        'message' => 'Shift record created to match POS Master',
+                        'action' => 'created',
+                        'shift_data' => $createResult,
+                        'shift_no' => $createResult['shift_no'],
+                        'day_no' => $createResult['day_no'],
+                        'pm_id' => $pmId
+                    );
+                } else {
+                    return array(
+                        'success' => false,
+                        'message' => 'Failed to create shift record',
+                        'action' => 'error'
+                    );
+                }
+            } else {
+                // Everything is consistent
+                return array(
+                    'success' => true,
+                    'message' => 'Current shift is open and exists',
+                    'action' => 'validated',
+                    'shift_no' => $currentShiftNo,
+                    'day_no' => $currentDayNo,
+                    'shift_data' => $shiftExistsResult['data'],
+                    'pm_id' => $pmId
+                );
+            }
+        }
+    }
+
+    public function CheckShiftExists($comid, $locid, $shiftNo, $dayNo)
+    {
+        $conn = $this->conn;
+
+        $sqlQuery = "SELECT * FROM `pos_shiftclose`
+                    WHERE `psc_comid` = '" . intval($comid) . "'
+                    AND `psc_locid` = '" . intval($locid) . "'
+                    AND `psc_shiftno` = '" . intval($shiftNo) . "'
+                    AND `psc_dayno` = '" . intval($dayNo) . "'
+                    LIMIT 1";
+
+        $result = mysqli_query($conn, $sqlQuery);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $shiftData = mysqli_fetch_assoc($result);
+            return array(
+                'exists' => true,
+                'data' => $shiftData
+            );
+        }
+
+        return array(
+            'exists' => false,
+            'data' => null
+        );
+    }
+
+    // Day Close Management Methods
+    public function CreateNewDay($comid, $locid, $psd_opbalance, $psd_shiftno, $psd_dayno, $psd_pcname, $psd_userid)
+    {
+        $conn = $this->conn;
+
+        try {
+            $current_date = date('Y-m-d H:i:s');
+
+            // Get next shift number and day number from POS_MASTER
+            $shiftQuery = "SELECT `PM_SHIFT_NO`, `PM_DAY_NO` FROM `POS_MASTER`
+                      WHERE `PM_COMID` = '" . intval($comid) . "'
+                      AND `PM_LOCID` = '" . intval($locid) . "'
+                      LIMIT 1";
+            $shiftResult = mysqli_query($conn, $shiftQuery);
+
+            $shiftNo = 1;
+            $dayNo = 1;
+
+            if ($shiftResult && mysqli_num_rows($shiftResult) > 0) {
+                $shiftData = mysqli_fetch_assoc($shiftResult);
+                $shiftNo = intval($shiftData['PM_SHIFT_NO']);
+                $dayNo = intval($shiftData['PM_DAY_NO']);
+            }
+
+            $sql = "INSERT INTO pos_dayclose (
+                psd_curdate, psd_opbalance, psd_shiftno, psd_dayno,
+                psd_pcname, psd_userid, psd_state, psd_comid, psd_locid,
+                psd_created, psd_updated
+            ) VALUES (
+                '$current_date', '$psd_opbalance', '$shiftNo', '$dayNo',
+                '$psd_pcname', '$psd_userid', 'Open', '$comid', '$locid',
+                '$current_date', '$current_date'
+            )";
+
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                $new_id = mysqli_insert_id($conn);
+                return array(
+                    'psd_id' => $new_id,
+                    'day_no' => $dayNo,
+                    'shift_no' => $shiftNo,
+                    'state' => 'Open'
+                );
+            }
+
+            return false;
+        } catch (Exception $e) {
+            error_log("CreateNewDay Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function ValidateDayBeforeClose($psd_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        $sql = "SELECT psd_id, psd_dayno, psd_state
+                FROM pos_dayclose
+                WHERE psd_id = '$psd_id' AND psd_comid = '$comid' AND psd_locid = '$locid'";
+
+        $result = mysqli_query($conn, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['psd_state'] === 'Close') {
+                return array(
+                    'exists' => true,
+                    'can_close' => false,
+                    'state' => $row['psd_state'],
+                    'day_no' => $row['psd_dayno'],
+                    'message' => 'Day is already closed'
+                );
+            }
+
+            return array(
+                'exists' => true,
+                'can_close' => true,
+                'state' => $row['psd_state'],
+                'day_no' => $row['psd_dayno'],
+                'message' => 'Day can be closed'
+            );
+        }
+
+        return array(
+            'exists' => false,
+            'can_close' => false,
+            'message' => 'Day record not found'
+        );
+    }
+
+    public function UpdateDayClose($psd_id, $comid, $locid, $dayCloseData)
+    {
+        $conn = $this->conn;
+
+        try {
+            $updateFields = array();
+            foreach ($dayCloseData as $field => $value) {
+                $updateFields[] = "$field = '$value'";
+            }
+
+            $updateFields[] = "psd_updated = '" . date('Y-m-d H:i:s') . "'";
+
+            $sql = "UPDATE pos_dayclose SET " .
+                implode(', ', $updateFields) .
+                " WHERE psd_id = '$psd_id' AND psd_comid = '$comid' AND psd_locid = '$locid'";
+
+            $result = mysqli_query($conn, $sql);
+            return $result;
+        } catch (Exception $e) {
+            error_log("UpdateDayClose Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function CloseDayAndIncrement($pm_id, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        try {
+            // Get current day number
+            $getCurrentSql = "SELECT `PM_DAY_NO` FROM `POS_MASTER`
+                            WHERE `PM_ID` = '" . intval($pm_id) . "' AND `PM_COMID` = '" . intval($comid) . "' AND `PM_LOCID` = '" . intval($locid) . "'";
+
+            $getCurrentResult = mysqli_query($conn, $getCurrentSql);
+
+            if ($getCurrentResult && mysqli_num_rows($getCurrentResult) > 0) {
+                $currentRow = mysqli_fetch_assoc($getCurrentResult);
+                $newDayNo = $currentRow['PM_DAY_NO'] + 1;
+
+                // Update POS_MASTER with incremented day number and set day status to Open (for next day)
+                $updateSql = "UPDATE `POS_MASTER` SET
+                            `PM_DAY_NO` = '" . intval($newDayNo) . "',
+                            `PM_DAY_ST` = 'Open'
+                            WHERE `PM_ID` = '" . intval($pm_id) . "' AND `PM_COMID` = '" . intval($comid) . "' AND `PM_LOCID` = '" . intval($locid) . "'";
+
+                $result = mysqli_query($conn, $updateSql);
+                return $result;
+            }
+
+            return false;
+        } catch (Exception $e) {
+            error_log("CloseDayAndIncrement Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function GetCurrentOpenDay($comid, $locid)
+    {
+        $conn = $this->conn;
+
+        $sql = "SELECT * FROM pos_dayclose
+                WHERE psd_comid = '$comid' AND psd_locid = '$locid' AND psd_state = 'Open'
+                ORDER BY psd_dayno DESC, psd_created DESC
+                LIMIT 1";
+
+        $result = mysqli_query($conn, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+
+        return null;
+    }
+
+    public function GetDayData($comid, $locid, $limit = 50)
+    {
+        $conn = $this->conn;
+
+        $sql = "SELECT * FROM pos_dayclose
+                WHERE psd_comid = '$comid' AND psd_locid = '$locid'
+                ORDER BY psd_dayno DESC, psd_created DESC
+                LIMIT $limit";
+
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    public function ValidateCurrentDayAndCreate($comid, $locid, $userid, $pcname)
+    {
+        $conn = $this->conn;
+
+        try {
+            // First check POS_MASTER for current day status and numbers
+            $posMasterSql = "SELECT `PM_ID`, `PM_DAY_NO`, `PM_SHIFT_NO`, `PM_DAY_ST`
+                           FROM `POS_MASTER`
+                           WHERE `PM_COMID` = '" . intval($comid) . "' AND `PM_LOCID` = '" . intval($locid) . "'
+                           ORDER BY `PM_ID` DESC LIMIT 1";
+
+            $posMasterResult = mysqli_query($conn, $posMasterSql);
+
+            if (!$posMasterResult || mysqli_num_rows($posMasterResult) == 0) {
+                return array(
+                    'success' => false,
+                    'action' => 'error',
+                    'message' => 'No POS Master record found'
+                );
+            }
+
+            $posMasterRow = mysqli_fetch_assoc($posMasterResult);
+            $currentDayNo = $posMasterRow['PM_DAY_NO'];
+            $currentShiftNo = $posMasterRow['PM_SHIFT_NO'];
+            $dayStatus = $posMasterRow['PM_DAY_ST'];
+            $pmId = $posMasterRow['PM_ID'];
+
+            // Check if day record exists in pos_dayclose table
+            $dayExistsSql = "SELECT `psd_id`, `psd_dayno`, `psd_shiftno`, `psd_state`
+                           FROM `pos_dayclose`
+                           WHERE `psd_comid` = '" . intval($comid) . "' AND `psd_locid` = '" . intval($locid) . "' AND `psd_dayno` = '" . intval($currentDayNo) . "'
+                           ORDER BY `psd_id` DESC LIMIT 1";
+
+            $dayExistsResult = mysqli_query($conn, $dayExistsSql);
+
+            if ($dayExistsResult && mysqli_num_rows($dayExistsResult) > 0) {
+                // Day record exists
+                $dayRow = mysqli_fetch_assoc($dayExistsResult);
+
+                // Normalize day status values (handle case sensitivity)
+                $dayStatus = trim(strtolower($dayStatus));
+                $recordStatus = trim(strtolower($dayRow['psd_state']));
+
+                if ($dayStatus === 'close') {
+                    // POS Master shows day as closed, check day record status
+                    if ($recordStatus === 'close') {
+                        // Everything is properly closed, validation successful
+                        return array(
+                            'success' => true,
+                            'action' => 'validated',
+                            'message' => 'Day validation successful - all properly closed',
+                            'day_no' => $currentDayNo,
+                            'shift_no' => $currentShiftNo,
+                            'pm_id' => $pmId
+                        );
+                    } else {
+                        // Day record should be closed but isn't - fix the inconsistency
+                        // Close the day record to match POS Master status
+                        $closeDayRecordSql = "UPDATE `pos_dayclose` SET `psd_state` = 'Close', `psd_updated` = NOW()
+                                            WHERE `psd_id` = '" . intval($dayRow['psd_id']) . "'
+                                            AND `psd_comid` = '" . intval($comid) . "'
+                                            AND `psd_locid` = '" . intval($locid) . "'";
+
+                        mysqli_query($conn, $closeDayRecordSql);
+
+                        return array(
+                            'success' => true,
+                            'action' => 'synchronized',
+                            'message' => 'Day status synchronized - day record closed to match POS Master',
+                            'day_no' => $currentDayNo,
+                            'shift_no' => $currentShiftNo,
+                            'pm_id' => $pmId
+                        );
+                    }
+                } else {
+                    // POS Master shows day as open (or other status)
+                    if ($recordStatus === 'open') {
+                        // Everything is consistent and open
+                        return array(
+                            'success' => true,
+                            'action' => 'validated',
+                            'message' => 'Day validation successful - day is open',
+                            'day_no' => $currentDayNo,
+                            'shift_no' => $currentShiftNo,
+                            'pm_id' => $pmId
+                        );
+                    } else {
+                        // Day record is closed but POS Master says open - update day record to open
+                        $openDayRecordSql = "UPDATE `pos_dayclose` SET `psd_state` = 'Open', `psd_updated` = NOW()
+                                           WHERE `psd_id` = '" . intval($dayRow['psd_id']) . "'
+                                           AND `psd_comid` = '" . intval($comid) . "'
+                                           AND `psd_locid` = '" . intval($locid) . "'";
+
+                        mysqli_query($conn, $openDayRecordSql);
+
+                        return array(
+                            'success' => true,
+                            'action' => 'synchronized',
+                            'message' => 'Day status synchronized - day record opened to match POS Master',
+                            'day_no' => $currentDayNo,
+                            'shift_no' => $currentShiftNo,
+                            'pm_id' => $pmId
+                        );
+                    }
+                }
+            } else {
+                // No day record exists - create new day record
+                $createResult = $this->CreateNewDay($comid, $locid, 0, $currentShiftNo, $currentDayNo, $pcname, $userid);
+
+                if ($createResult) {
+                    // Update POS Master to ensure day status is Open
+                    $updatePosMasterSql = "UPDATE `POS_MASTER` SET `PM_DAY_ST` = 'Open'
+                                         WHERE `PM_ID` = '" . intval($pmId) . "' AND `PM_COMID` = '" . intval($comid) . "' AND `PM_LOCID` = '" . intval($locid) . "'";
+                    mysqli_query($conn, $updatePosMasterSql);
+
+                    return array(
+                        'success' => true,
+                        'action' => 'created',
+                        'message' => 'New day created successfully',
+                        'day_data' => $createResult,
+                        'day_no' => $createResult['day_no'],
+                        'shift_no' => $createResult['shift_no'],
+                        'pm_id' => $pmId
+                    );
+                } else {
+                    return array(
+                        'success' => false,
+                        'action' => 'failed',
+                        'message' => 'Failed to create new day record'
+                    );
+                }
+            }
+        } catch (Exception $e) {
+            error_log("ValidateCurrentDayAndCreate Error: " . $e->getMessage());
+            return array(
+                'success' => false,
+                'action' => 'error',
+                'message' => 'Database error: ' . $e->getMessage()
+            );
+        }
+    }
+
+    public function CheckDayExists($comid, $locid, $dayno)
+    {
+        $conn = $this->conn;
+
+        $sql = "SELECT `psd_id`, `psd_dayno`, `psd_state`
+                FROM `pos_dayclose`
+                WHERE `psd_comid` = '" . intval($comid) . "' AND `psd_locid` = '" . intval($locid) . "' AND `psd_dayno` = '" . intval($dayno) . "'
+                ORDER BY `psd_id` DESC LIMIT 1";
+
+        $result = mysqli_query($conn, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $dayData = mysqli_fetch_assoc($result);
+            return array(
+                'exists' => true,
+                'data' => $dayData
+            );
+        }
+
+        return array(
+            'exists' => false,
+            'data' => null
+        );
     }
 }

@@ -3879,3 +3879,721 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
         }
     }
 }
+//Mgmt Request
+elseif (isset($_REQUEST['MgmtRequest'])) {
+
+    // Temporary error handling for debugging
+    try {
+        // Log the request for debugging
+        error_log("MgmtRequest received: " . $_REQUEST['MgmtRequest']);
+        error_log("Full request: " . print_r($_REQUEST, true));
+
+        if ((int) $_REQUEST['MgmtRequest'] == 1) { // Get Management Process Related
+            $comid = $_REQUEST['Comid'] ?? 0;
+            $locid = $_REQUEST['Locid'] ?? 0;
+
+            error_log("Processing MgmtRequest=1 with Comid: $comid, Locid: $locid");
+
+            // Check if this is a POS Master operation
+            if (isset($_REQUEST['Action']) && $_REQUEST['Action'] == 'POS_MASTER') {
+                error_log("POS_MASTER operation detected");
+
+                if (isset($_REQUEST['Operation']) && $_REQUEST['Operation'] == 'INSERT') {
+                    error_log("INSERT operation requested");
+                    // Validate company and location exists before insert
+                    if (!$clsfunreq->ValidateCompanyLocationExists($comid, $locid)) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Invalid Company ID or Location ID. Please verify the company and location exist and are active.'));
+                        return;
+                    }
+
+                    // Insert new POS Master record
+                    $pm_machine_name = $_REQUEST['PM_MACHINE_NAME'] ?? '';
+                    $pm_business_date = $_REQUEST['PM_BUINESS_DATE'] ?? '';
+                    $pm_trans_no = $_REQUEST['PM_TRANS_NO'] ?? '';
+                    $pm_user_id = $_REQUEST['PM_USER_ID'] ?? 0;
+                    $psr_bill_number = $_REQUEST['PSR_BILL_NUMBER'] ?? '';
+                    $pm_day_no = $_REQUEST['PM_DAY_NO'] ?? 0;
+                    $pm_shift_no = $_REQUEST['PM_SHIFT_NO'] ?? 0;
+                    $pm_day_st = $_REQUEST['PM_DAY_ST'] ?? '';
+                    $pm_shift_st = $_REQUEST['PM_SHIFT_ST'] ?? '';
+                    $pm_prefix = $_REQUEST['PM_PREFIX'] ?? '';
+                    $pm_batch_number = $_REQUEST['PM_BATCH_NUMBER'] ?? '';
+                    $pm_mailstatus = $_REQUEST['PM_MAILSTATUS'] ?? '';
+                    $pm_monthdate = $_REQUEST['PM_MONTHDATE'] ?? '';
+                    $pm_autoupdate = $_REQUEST['PM_AUTOUPDATE'] ?? '';
+                    $pm_webid = $_REQUEST['PM_WEBID'] ?? '';
+                    $pm_restid = $_REQUEST['PM_RESTID'] ?? '';
+
+                    $insertResult = $clsfunreq->InsertPosMaster(
+                        $pm_machine_name,
+                        $pm_business_date,
+                        $pm_trans_no,
+                        $pm_user_id,
+                        $psr_bill_number,
+                        $pm_day_no,
+                        $pm_shift_no,
+                        $pm_day_st,
+                        $pm_shift_st,
+                        $pm_prefix,
+                        $comid,
+                        $locid,
+                        $pm_batch_number,
+                        $pm_mailstatus,
+                        $pm_monthdate,
+                        $pm_autoupdate,
+                        $pm_webid,
+                        $pm_restid
+                    );
+
+                    if ($insertResult) {
+                        echo json_encode(array("Success" => true, "Msg" => 'POS Master record inserted successfully'));
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Failed to insert POS Master record'));
+                    }
+                } elseif (isset($_REQUEST['Operation']) && $_REQUEST['Operation'] == 'UPDATE') {
+                    // Update existing POS Master record
+                    $pm_id = $_REQUEST['PM_ID'] ?? 0;
+                    $pm_machine_name = $_REQUEST['PM_MACHINE_NAME'] ?? '';
+                    $pm_business_date = $_REQUEST['PM_BUINESS_DATE'] ?? '';
+                    $pm_trans_no = $_REQUEST['PM_TRANS_NO'] ?? '';
+                    $pm_user_id = $_REQUEST['PM_USER_ID'] ?? 0;
+                    $psr_bill_number = $_REQUEST['PSR_BILL_NUMBER'] ?? '';
+                    $pm_day_no = $_REQUEST['PM_DAY_NO'] ?? 0;
+                    $pm_shift_no = $_REQUEST['PM_SHIFT_NO'] ?? 0;
+                    $pm_day_st = $_REQUEST['PM_DAY_ST'] ?? '';
+                    $pm_shift_st = $_REQUEST['PM_SHIFT_ST'] ?? '';
+                    $pm_prefix = $_REQUEST['PM_PREFIX'] ?? '';
+                    $pm_batch_number = $_REQUEST['PM_BATCH_NUMBER'] ?? '';
+                    $pm_mailstatus = $_REQUEST['PM_MAILSTATUS'] ?? '';
+                    $pm_monthdate = $_REQUEST['PM_MONTHDATE'] ?? '';
+                    $pm_autoupdate = $_REQUEST['PM_AUTOUPDATE'] ?? '';
+                    $pm_webid = $_REQUEST['PM_WEBID'] ?? '';
+                    $pm_restid = $_REQUEST['PM_RESTID'] ?? '';
+
+                    // Check if record exists before updating
+                    if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                        $updateResult = $clsfunreq->UpdatePosMaster(
+                            $pm_id,
+                            $pm_machine_name,
+                            $pm_business_date,
+                            $pm_trans_no,
+                            $pm_user_id,
+                            $psr_bill_number,
+                            $pm_day_no,
+                            $pm_shift_no,
+                            $pm_day_st,
+                            $pm_shift_st,
+                            $pm_prefix,
+                            $comid,
+                            $locid,
+                            $pm_batch_number,
+                            $pm_mailstatus,
+                            $pm_monthdate,
+                            $pm_autoupdate,
+                            $pm_webid,
+                            $pm_restid
+                        );
+
+                        if ($updateResult) {
+                            echo json_encode(array("Success" => true, "Msg" => 'POS Master record updated successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to update POS Master record'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+                    }
+                } elseif (isset($_REQUEST['Operation']) && $_REQUEST['Operation'] == 'GET') {
+                    // Get POS Master records by company and location
+                    $GetPosMaster = $clsfunreq->GetPosMasterByComidLocid($comid, $locid);
+                    $GetPosMasterRes = array();
+
+                    if ($GetPosMaster && mysqli_num_rows($GetPosMaster) > 0) {
+                        while ($rows = mysqli_fetch_assoc($GetPosMaster)) {
+                            $GetPosMasterRes[] = $rows;
+                        }
+                        echo json_encode(array("Success" => true, "Data" => $GetPosMasterRes, "Msg" => "Data retrieved successfully"));
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'No POS Master records found', "Data" => array()));
+                    }
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid Operation specified'));
+                }
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 2) {
+            // Update PM_TRANS_NO management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_trans_no = $_REQUEST['PM_TRANS_NO'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateTransNo($pm_id, $pm_trans_no, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Transaction Number updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Transaction Number'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 3) {
+            // Update PSR_BILL_NUMBER management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_bill_number = $_REQUEST['PM_BILL_NUMBER'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateBillNumber($pm_id, $pm_bill_number, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Bill Number updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Bill Number'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 4) {
+            // Update PM_BATCH_NUMBER management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_batch_number = $_REQUEST['PM_BATCH_NUMBER'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateBatchNumber($pm_id, $pm_batch_number, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Batch Number updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Batch Number'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 5) {
+            // Update PM_AUTOUPDATE management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_auto_update = $_REQUEST['PM_AUTOUPDATE'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateAutoUpdate($pm_id, $pm_auto_update, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Auto Update setting updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Auto Update setting'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 6) {
+            // Update PM_MAILSTATUS management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_mail_status = $_REQUEST['PM_MAILSTATUS'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateMailStatus($pm_id, $pm_mail_status, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Mail Status updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Mail Status'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 7) {
+            // Update PM_MONTHDATE management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $pm_month_date = $_REQUEST['PM_MONTHDATE'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before updating
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $updateResult = $clsfunreq->UpdateMonthDate($pm_id, $pm_month_date, $comid, $locid);
+
+                if ($updateResult) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Month Date updated successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to update Month Date'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 8) {
+            //Get All Data management request
+            $pm_id = $_REQUEST['PM_ID'] ?? 0;
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            // Check if record exists before retrieving
+            if ($clsfunreq->CheckPosMasterExists($pm_id, $comid, $locid)) {
+                $getData = $clsfunreq->GetAllData($pm_id, $comid, $locid);
+
+                if ($getData) {
+                    echo json_encode(array("Success" => true, "Data" => $getData, "Msg" => "Data retrieved successfully"));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to retrieve data'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+    } catch (Exception $e) {
+        error_log("MgmtRequest Exception: " . $e->getMessage());
+        error_log("Stack trace: " . $e->getTraceAsString());
+        echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
+    }
+}
+// ShiftCloseRequest
+elseif (isset($_REQUEST['ShiftCloseRequest'])) {
+    try {
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 1) {
+            // Create New Shift
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $psc_opbalance = $_REQUEST['PSC_OPBALANCE'] ?? 0;
+            $psc_shiftno = $_REQUEST['PSC_SHIFTNO'] ?? 1;
+            $psc_dayno = $_REQUEST['PSC_DAYNO'] ?? 1;
+            $psc_pcname = $_REQUEST['PSC_PCNAME'] ?? '';
+            $psc_userid = $_REQUEST['PSC_USERID'] ?? '';
+
+            error_log("Creating new shift - Comid: $comid, Locid: $locid, ShiftNo: $psc_shiftno");
+
+            $result = $clsfunreq->CreateNewShift($comid, $locid, $psc_opbalance, $psc_shiftno, $psc_dayno, $psc_pcname, $psc_userid);
+
+            if ($result) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data" => $result,
+                    "Msg" => "New shift created successfully"
+                ));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to create new shift'));
+            }
+        }
+
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 2) {
+            // Update Shift Close and increment shift number in POS_MASTER
+            $psc_id = $_REQUEST['PSC_ID'];
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $pm_id = $_REQUEST['PM_ID'] ?? 0; // POS Master ID for updating shift number
+
+            // Validate shift before closing
+            $validation = $clsfunreq->ValidateShiftBeforeClose($psc_id, $comid, $locid);
+
+            if (!$validation['exists']) {
+                echo json_encode(array("Success" => false, "Msg" => $validation['message']));
+                return;
+            }
+
+            if (!$validation['can_close']) {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Msg" => $validation['message'],
+                    "ShiftState" => $validation['state'],
+                    "ShiftNo" => $validation['shift_no']
+                ));
+                return;
+            }
+
+            // Collect shift close data
+            $shiftCloseData = array();
+            $fields = array(
+                'psc_todaysales',
+                'psc_totdiscount',
+                'psc_tottax',
+                'psc_netamt',
+                'psc_servicetax',
+                'psc_todayin',
+                'psc_todayout',
+                'psc_todaybanking',
+                'psc_clsbalance',
+                'psc_totbills',
+                'psc_cancelamt',
+                'psc_creditsales',
+                'psc_opendrawer',
+                'psc_clsdrawer',
+                'psc_smail',
+                'psc_print',
+                'psc_state' // Set to 'Close'
+            );
+
+            foreach ($fields as $field) {
+                if (isset($_REQUEST[strtoupper($field)])) {
+                    $shiftCloseData[$field] = $_REQUEST[strtoupper($field)];
+                }
+            }
+
+            // Set state to 'Close'
+            $shiftCloseData['psc_state'] = 'Close';
+
+            error_log("Closing shift and updating POS Master - PSC_ID: $psc_id, PM_ID: $pm_id, Comid: $comid, Locid: $locid");
+
+            // Close the shift
+            $closeResult = $clsfunreq->UpdateShiftClose($psc_id, $comid, $locid, $shiftCloseData);
+
+            if ($closeResult && $pm_id > 0) {
+                // Increment shift number and set shift status to 'Close' in POS_MASTER
+                $incrementResult = $clsfunreq->CloseShiftAndIncrement($pm_id, $comid, $locid);
+
+                if ($incrementResult) {
+                    echo json_encode(array(
+                        "Success" => true,
+                        "Msg" => "Shift #" . $validation['shift_no'] . " closed successfully and shift number incremented"
+                    ));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Shift closed but failed to update POS Master shift number'));
+                }
+            } elseif ($closeResult) {
+                echo json_encode(array("Success" => true, "Msg" => "Shift #" . $validation['shift_no'] . " closed successfully"));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to close shift'));
+            }
+        }
+
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 3) {
+            // Get Current Open Shift
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+
+            error_log("Getting current open shift - Comid: $comid, Locid: $locid");
+
+            $result = $clsfunreq->GetCurrentOpenShift($comid, $locid);
+
+            if ($result) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data" => $result,
+                    "Msg" => "Current open shift retrieved successfully"
+                ));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No open shift found'));
+            }
+        }
+
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 4) {
+            // Get All Shifts for Company/Location
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $limit = $_REQUEST['LIMIT'] ?? 50; // Default limit
+
+            error_log("Getting shift data - Comid: $comid, Locid: $locid, Limit: $limit");
+
+            $result = $clsfunreq->GetShiftData($comid, $locid, $limit);
+
+            if ($result) {
+                $shiftData = array();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $shiftData[] = $row;
+                }
+
+                if (!empty($shiftData)) {
+                    echo json_encode(array(
+                        "Success" => true,
+                        "Data" => $shiftData,
+                        "Msg" => "Shift data retrieved successfully"
+                    ));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'No shift data found'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to retrieve shift data'));
+            }
+        }
+
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 5) {
+            // Validate Shift Status (Check if shift can be closed)
+            $psc_id = $_REQUEST['PSC_ID'];
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+
+            error_log("Validating shift status - PSC_ID: $psc_id, Comid: $comid, Locid: $locid");
+
+            $validation = $clsfunreq->ValidateShiftBeforeClose($psc_id, $comid, $locid);
+
+            if ($validation['exists']) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "CanClose" => $validation['can_close'],
+                    "ShiftState" => $validation['state'],
+                    "ShiftNo" => $validation['shift_no'],
+                    "Msg" => $validation['message']
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "CanClose" => false,
+                    "Msg" => $validation['message']
+                ));
+            }
+        }
+
+        if ((int) $_REQUEST['ShiftCloseRequest'] === 6) {
+            // Validate Current Shift and Create if Needed
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $userid = $_REQUEST['USERID'] ?? '';
+            $pcname = $_REQUEST['PCNAME'] ?? '';
+
+            error_log("Validating current shift and auto-create - Comid: $comid, Locid: $locid, UserID: $userid, PCName: $pcname");
+
+            $result = $clsfunreq->ValidateCurrentShiftAndCreate($comid, $locid, $userid, $pcname);
+
+            if ($result['success']) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Action" => $result['action'],
+                    "Message" => $result['message'],
+                    "Data" => isset($result['shift_data']) ? $result['shift_data'] : null,
+                    "ShiftNo" => isset($result['shift_no']) ? $result['shift_no'] : null,
+                    "DayNo" => isset($result['day_no']) ? $result['day_no'] : null,
+                    "PM_ID" => isset($result['pm_id']) ? $result['pm_id'] : null
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Action" => $result['action'],
+                    "Msg" => $result['message']
+                ));
+            }
+        }
+    } catch (Exception $e) {
+        error_log("ShiftCloseRequest Exception: " . $e->getMessage());
+        error_log("Stack trace: " . $e->getTraceAsString());
+        echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
+    }
+}
+elseif(isset($_REQUEST["DayCloseRequest"])) {
+    try {
+        if ((int) $_REQUEST['DayCloseRequest'] === 1) {
+            // Create New Day
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $psd_opbalance = $_REQUEST['PSD_OPBALANCE'] ?? 0;
+            $psd_shiftno = $_REQUEST['PSD_SHIFTNO'] ?? 1;
+            $psd_dayno = $_REQUEST['PSD_DAYNO'] ?? 1;
+            $psd_pcname = $_REQUEST['PSD_PCNAME'] ?? '';
+            $psd_userid = $_REQUEST['PSD_USERID'] ?? '';
+
+            error_log("Creating new day - Comid: $comid, Locid: $locid, DayNo: $psd_dayno");
+
+            $result = $clsfunreq->CreateNewDay($comid, $locid, $psd_opbalance, $psd_shiftno, $psd_dayno, $psd_pcname, $psd_userid);
+
+            if ($result) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data" => $result,
+                    "Msg" => "New day created successfully"
+                ));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to create new day'));
+            }
+        }
+
+        if ((int) $_REQUEST['DayCloseRequest'] === 2) {
+            // Update Day Close and increment day number in POS_MASTER
+            $psd_id = $_REQUEST['PSD_ID'];
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $pm_id = $_REQUEST['PM_ID'] ?? 0; // POS Master ID for updating day number
+
+            // Validate day before closing
+            $validation = $clsfunreq->ValidateDayBeforeClose($psd_id, $comid, $locid);
+
+            if (!$validation['exists']) {
+                echo json_encode(array("Success" => false, "Msg" => $validation['message']));
+                return;
+            }
+
+            if (!$validation['can_close']) {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Msg" => $validation['message'],
+                    "DayState" => $validation['state'],
+                    "DayNo" => $validation['day_no']
+                ));
+                return;
+            }
+
+            // Collect day close data
+            $dayCloseData = array();
+            $fields = array(
+                'psd_todaysales',
+                'psd_totdiscount',
+                'psd_tottax',
+                'psd_netamt',
+                'psd_servicetax',
+                'psd_todayin',
+                'psd_todayout',
+                'psd_todaybanking',
+                'psd_clsbalance',
+                'psd_totbills',
+                'psd_cancelamt',
+                'psd_creditsales',
+                'psd_opendrawer',
+                'psd_clsdrawer',
+                'psd_mail',
+                'psd_print',
+                'psd_state' // Set to 'Close'
+            );
+
+            foreach ($fields as $field) {
+                if (isset($_REQUEST[strtoupper($field)])) {
+                    $dayCloseData[$field] = $_REQUEST[strtoupper($field)];
+                }
+            }
+
+            // Set state to 'Close'
+            $dayCloseData['psd_state'] = 'Close';
+
+            error_log("Closing day and updating POS Master - PSD_ID: $psd_id, PM_ID: $pm_id, Comid: $comid, Locid: $locid");
+
+            // Close the day
+            $closeResult = $clsfunreq->UpdateDayClose($psd_id, $comid, $locid, $dayCloseData);
+
+            if ($closeResult && $pm_id > 0) {
+                // Increment day number and set day status to 'Close' in POS_MASTER
+                $incrementResult = $clsfunreq->CloseDayAndIncrement($pm_id, $comid, $locid);
+
+                if ($incrementResult) {
+                    echo json_encode(array(
+                        "Success" => true,
+                        "Msg" => "Day #" . $validation['day_no'] . " closed successfully and day number incremented"
+                    ));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Day closed but failed to update POS Master day number'));
+                }
+            } elseif ($closeResult) {
+                echo json_encode(array("Success" => true, "Msg" => "Day #" . $validation['day_no'] . " closed successfully"));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to close day'));
+            }
+        }
+
+        if ((int) $_REQUEST['DayCloseRequest'] === 3) {
+            // Get Current Open Day
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+
+            error_log("Getting current open day - Comid: $comid, Locid: $locid");
+
+            $result = $clsfunreq->GetCurrentOpenDay($comid, $locid);
+
+            if ($result) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data" => $result,
+                    "Msg" => "Current open day retrieved successfully"
+                ));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No open day found'));
+            }
+        }
+
+        if ((int) $_REQUEST['DayCloseRequest'] === 4) {
+            // Get All Days for Company/Location
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $limit = $_REQUEST['LIMIT'] ?? 50; // Default limit
+
+            error_log("Getting day data - Comid: $comid, Locid: $locid, Limit: $limit");
+
+            $result = $clsfunreq->GetDayData($comid, $locid, $limit);
+
+            if ($result) {
+                $dayData = array();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $dayData[] = $row;
+                }
+
+                if (!empty($dayData)) {
+                    echo json_encode(array(
+                        "Success" => true,
+                        "Data" => $dayData,
+                        "Msg" => "Day data retrieved successfully"
+                    ));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'No day data found'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Failed to retrieve day data'));
+            }
+        }
+
+        if ((int) $_REQUEST['DayCloseRequest'] === 5) {
+            // Validate Day Status (Check if day can be closed)
+            $psd_id = $_REQUEST['PSD_ID'];
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+
+            error_log("Validating day status - PSD_ID: $psd_id, Comid: $comid, Locid: $locid");
+
+            $validation = $clsfunreq->ValidateDayBeforeClose($psd_id, $comid, $locid);
+
+            if ($validation['exists']) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "CanClose" => $validation['can_close'],
+                    "DayState" => $validation['state'],
+                    "DayNo" => $validation['day_no'],
+                    "Msg" => $validation['message']
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "CanClose" => false,
+                    "Msg" => $validation['message']
+                ));
+            }
+        }
+
+        if ((int) $_REQUEST['DayCloseRequest'] === 6) {
+            // Validate Current Day and Create if Needed
+            $comid = $_REQUEST['Comid'];
+            $locid = $_REQUEST['Locid'];
+            $userid = $_REQUEST['USERID'] ?? '';
+            $pcname = $_REQUEST['PCNAME'] ?? '';
+
+            error_log("Validating current day and auto-create - Comid: $comid, Locid: $locid, UserID: $userid, PCName: $pcname");
+
+            $result = $clsfunreq->ValidateCurrentDayAndCreate($comid, $locid, $userid, $pcname);
+
+            if ($result['success']) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Action" => $result['action'],
+                    "Message" => $result['message'],
+                    "Data" => isset($result['day_data']) ? $result['day_data'] : null,
+                    "DayNo" => isset($result['day_no']) ? $result['day_no'] : null,
+                    "ShiftNo" => isset($result['shift_no']) ? $result['shift_no'] : null,
+                    "PM_ID" => isset($result['pm_id']) ? $result['pm_id'] : null
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Action" => $result['action'],
+                    "Msg" => $result['message']
+                ));
+            }
+        }
+    } catch (Exception $e) {
+        error_log("DayCloseRequest Exception: " . $e->getMessage());
+        error_log("Stack trace: " . $e->getTraceAsString());
+        echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
+    }
+}

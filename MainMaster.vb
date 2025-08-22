@@ -20,8 +20,10 @@ Public Class MainMaster
         profileId = ini.ReadValue("Profile", "ProfileId")
 
         barStatus.Caption = M_Details.SoftwareVersion
-        baruserStatus.Caption = _companyInfo.UserId & "-" & _companyInfo.UserName
+        baruserStatus.Caption = _companyInfo.UserId & "-" & _companyInfo.UserName & " PMID  : " & _companyInfo.CompanyPMId
         barstatuscompany.Caption = _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocationName
+        barcurshiftno.Caption = "CurShiftNo : " & _companyInfo.CurShiftNo
+        bardayno.Caption = "CurDayNo : " & _companyInfo.CurDayNo
         barbtnstatustime.Caption = Date.Now
         PanelScreenHeight = Screen.PrimaryScreen.Bounds.Height
         PanelScreenWith = Screen.PrimaryScreen.Bounds.Width

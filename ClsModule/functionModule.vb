@@ -43,6 +43,9 @@ Module functionModule
         Public Shared LocationName As String = ""
         Public Shared UserRole As String = ""
         Public Shared UserRoleId As String = "1"
+        Public Shared CompanyPMId As Integer = 0
+        Public Shared CurShiftNo As Integer = 0
+        Public Shared CurDayNo As Integer = 0
     End Structure
     Public Structure _JsonData
         Public Shared USerTable As New DataTable
@@ -72,7 +75,7 @@ Module functionModule
         Public Shared MonthOfSalary As New DataTable
         Public Shared PosSettingsTable As New DataTable
         Public Shared SalesManCommissionTable As New DataTable
-     
+
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -109,7 +112,7 @@ Module functionModule
         _update = 0
         _reset = 3
     End Enum
-   
+
     Public Function getUserInfo() As Boolean
         Try
             _JsonData.USerTable.TableName = "UserTable"
@@ -238,7 +241,7 @@ Module functionModule
             Return False
         End Try
     End Function
-   
+
     Public Function getTaxMaster() As Boolean
         Try
             _JsonData.TaxTable.TableName = "TaxTable"
@@ -388,8 +391,8 @@ Module functionModule
             Return False
         End Try
     End Function
- 
-    
+
+
     Public Function getPurchaseView() As Boolean
         Try
             _JsonData.PurchaseViewTable.TableName = "PurchaseView"

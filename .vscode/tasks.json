@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build POS Solution",
+			"type": "shell",
+			"command": "msbuild \"d:\\Software Delevop\\MyposServerSystem2022V1.0\\Retail Project\\PosRetailWebBilling\\PosRetailWebBilling\\PosRetailWebBilling\\PosRetailWebBilling.sln\" /p:Configuration=Debug /p:Platform=\"Any CPU\" /verbosity:minimal",
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		}
+	]
+}

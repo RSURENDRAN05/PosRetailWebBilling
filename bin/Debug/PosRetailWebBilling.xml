@@ -6,7 +6,309 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.SkinManager.Initialize(System.String)">
+<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+	<summary>
+ Structure to hold POS Master data
+ </summary>
+</member><member name="M:PosRetailWebBilling.managementModule.InsertPosMaster(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32)">
+	<summary>
+ Insert new POS Master record
+ </summary>
+	<param name="posData">POS Master data structure</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdatePosMaster(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32)">
+	<summary>
+ Update existing POS Master record
+ </summary>
+	<param name="posData">POS Master data structure</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetPosMasterRecords(System.Int32,System.Int32)">
+	<summary>
+ Get POS Master records by company and location ID
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>DataTable with POS Master records</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.SendPostRequest(System.String,System.String)">
+	<summary>
+ Helper function to send GET request using WebClient with TLS 1.2
+ </summary>
+	<param name="url">Base URL</param>
+	<param name="postData">Query parameters to append to URL</param>
+	<returns>Response string</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.CreateNewPosMasterData">
+	<summary>
+ Create a new POS Master data structure with default values
+ </summary>
+	<returns>New PosMasterData structure</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.SavePosMaster(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32)">
+	<summary>
+ Save POS Master record (Insert if PM_ID = 0, Update if PM_ID &gt; 0)
+ </summary>
+	<param name="posData">POS Master data</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidatePosMasterData(PosRetailWebBilling.managementModule.PosMasterData)">
+	<summary>
+ Validate POS Master data before saving
+ </summary>
+	<param name="posData">POS Master data to validate</param>
+	<returns>Validation result with message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ShowSuccessMessage(System.String)">
+	<summary>
+ Show success message
+ </summary>
+	<param name="message">Message to show</param>
+</member><member name="M:PosRetailWebBilling.managementModule.ShowErrorMessage(System.String)">
+	<summary>
+ Show error message
+ </summary>
+	<param name="message">Error message to show</param>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateCompanyLocation(System.Int32,System.Int32)">
+	<summary>
+ Validate if Company ID and Location ID exist and are active before insert/update
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.InsertPosMasterWithValidation(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Insert new POS Master record with validation
+ </summary>
+	<param name="posData">POS Master data structure</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="skipValidation">Skip company/location validation (default: False)</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdatePosMasterWithValidation(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Update POS Master record with validation
+ </summary>
+	<param name="posData">POS Master data structure</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="skipValidation">Skip company/location validation (default: False)</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.SavePosMasterWithValidation(PosRetailWebBilling.managementModule.PosMasterData,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Save POS Master record with validation (Insert if PM_ID = 0, Update if PM_ID &gt; 0)
+ </summary>
+	<param name="posData">POS Master data</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="skipValidation">Skip company/location validation (default: False)</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateTransactionNumber(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Transaction Number (PM_TRANS_NO)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="transNo">New transaction number</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateBillNumber(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Bill Number (PSR_BILL_NUMBER)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="billNumber">New bill number</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateBatchNumber(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Batch Number (PM_BATCH_NUMBER)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="batchNumber">New batch number</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateAutoUpdate(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Auto Update Setting (PM_AUTOUPDATE)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="autoUpdate">Auto update setting (0 or 1)</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateMailStatus(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Mail Status (PM_MAILSTATUS)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="mailStatus">Mail status</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.UpdateMonthDate(System.Int32,System.String,System.Int32,System.Int32)">
+	<summary>
+ Update Month Date (PM_MONTHDATE)
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="monthDate">Month date</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetPosMasterByID(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Get POS Master data by PM_ID, Company ID, and Location ID
+ </summary>
+	<param name="pmId">POS Master ID</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>DataTable with POS Master data</returns>
+</member><member name="T:PosRetailWebBilling.managementModule.ShiftCloseData">
+	<summary>
+ Structure to hold Shift Close data
+ </summary>
+</member><member name="M:PosRetailWebBilling.managementModule.CreateNewShift(System.Int32,System.Int32,System.Decimal,System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Create new shift
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="opBalance">Opening Balance</param>
+	<param name="shiftNo">Shift Number</param>
+	<param name="dayNo">Day Number</param>
+	<param name="pcName">PC Name</param>
+	<param name="userId">User ID</param>
+	<returns>Success status and data</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateShiftStatus(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Validate shift status before closing
+ </summary>
+	<param name="pscId">Shift Close ID</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Validation result with status</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.CloseShift(PosRetailWebBilling.managementModule.ShiftCloseData,System.Int32)">
+	<summary>
+ Close shift with validation and update POS Master
+ </summary>
+	<param name="shiftData">Shift close data</param>
+	<param name="pmId">POS Master ID for updating shift number</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetCurrentOpenShift(System.Int32,System.Int32)">
+	<summary>
+ Get current open shift
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Current open shift data</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetAllShifts(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Get all shifts for company/location
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="limit">Number of records to retrieve (default 50)</param>
+	<returns>DataTable with shift records</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.CreateShiftCloseData(System.Int32,System.Int32,System.Int32,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Int32,System.Decimal,System.Decimal,System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Helper function to create ShiftCloseData structure from form inputs
+ </summary>
+	<param name="pscId">Shift ID</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="todaySales">Today's Sales</param>
+	<param name="totalDiscount">Total Discount</param>
+	<param name="totalTax">Total Tax</param>
+	<param name="netAmount">Net Amount</param>
+	<param name="serviceTax">Service Tax</param>
+	<param name="todayIn">Today In</param>
+	<param name="todayOut">Today Out</param>
+	<param name="todayBanking">Today Banking</param>
+	<param name="closeBalance">Closing Balance</param>
+	<param name="totalBills">Total Bills</param>
+	<param name="cancelAmount">Cancel Amount</param>
+	<param name="creditSales">Credit Sales</param>
+	<param name="openDrawer">Open Drawer Count</param>
+	<param name="closeDrawer">Close Drawer Count</param>
+	<param name="email">Email Status</param>
+	<param name="print">Print Status</param>
+	<returns>ShiftCloseData structure</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateCurrentShiftAndCreate(System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Validate current shift status and create new shift if needed
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="userId">User ID</param>
+	<param name="pcName">PC Name</param>
+	<returns>Tuple with success status, action taken, message, and shift data</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.CreateNewDay(System.Int32,System.Int32,System.Decimal,System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Create a new day record
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="opBalance">Opening balance</param>
+	<param name="shiftNo">Shift number</param>
+	<param name="dayNo">Day number</param>
+	<param name="pcName">PC name</param>
+	<param name="userId">User ID</param>
+	<returns>Success status, message and day data</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.CloseDayAndIncrement(System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+	<summary>
+ Close a day and update POS Master
+ </summary>
+	<param name="dayId">Day ID to close</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="pmId">POS Master ID</param>
+	<param name="dayCloseData">Dictionary containing day close data</param>
+	<returns>Success status and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetCurrentOpenDay(System.Int32,System.Int32)">
+	<summary>
+ Get current open day record
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status, message and day data</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.GetDayData(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Get day data records with optional limit
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="limit">Optional limit for records (default 50)</param>
+	<returns>DataTable with day records</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateDayBeforeClose(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Validate day status before closing
+ </summary>
+	<param name="dayId">Day ID to validate</param>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<returns>Success status, can close flag, day state, day number and message</returns>
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateCurrentDayAndCreate(System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Validate current day and create if needed (similar to shift validation)
+ </summary>
+	<param name="comId">Company ID</param>
+	<param name="locId">Location ID</param>
+	<param name="userId">User ID</param>
+	<param name="pcName">PC Name</param>
+	<returns>Success status, action, message and result data</returns>
+</member><member name="M:PosRetailWebBilling.Login.UpdateShiftInfo(System.Object)">
+	<summary>
+ Centralized method to update shift information from JSON response
+ This ensures consistent handling and avoids duplicate code
+ </summary>
+</member><member name="M:PosRetailWebBilling.Login.UpdateDayInfo(System.Object)">
+	<summary>
+ Centralized method to update day information from JSON response
+ This ensures consistent handling and avoids duplicate code
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.Initialize(System.String)">
 	<summary>
  Initialize skins for the entire application
  </summary>
