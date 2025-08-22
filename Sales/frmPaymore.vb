@@ -63,11 +63,7 @@
                     GridControl3.DataSource = _JsonData.PaymodeList.DefaultView
                 End If
             End If
-            If getLedgerListTable() = True Then
-                If _JsonData.LedgerListTable.Rows.Count > 0 Then
-                    txtclientname.Properties.DataSource = _JsonData.LedgerListTable.DefaultView
-                End If
-            End If
+            lblpaymode.Text = "Cash"
         Catch ex As Exception
 
         End Try

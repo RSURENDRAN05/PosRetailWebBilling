@@ -647,6 +647,7 @@ Module managementModule
             Dim success As Boolean = CBool(jsonResponse("Success"))
 
             If success AndAlso jsonResponse("Data") IsNot Nothing Then
+                ' Convert JSON array directly to DataTable
                 Dim dataTable As DataTable = jsonResponse("Data").ToObject(Of DataTable)()
                 Return dataTable
             Else
@@ -658,6 +659,7 @@ Module managementModule
             Return New DataTable()
         End Try
     End Function
+
 #End Region
 #Region "ShiftClose"
     ''' <summary>
@@ -1302,4 +1304,99 @@ Module managementModule
     End Function
 #End Region
 End Module
-
+Public Class SalesHeader
+    Public Property psih_invoice_pmid As String
+    Public Property psih_invoice_id As String
+    Public Property psih_invoice_trno As String
+    Public Property psih_invoice_date As String
+    Public Property psih_invoice_prefix As String
+    Public Property psih_invoice_tqty As Decimal
+    Public Property psih_invoice_tamount As Decimal
+    Public Property psih_invoice_titemdisper As Decimal
+    Public Property psih_invoice_titemdisamt As String
+    Public Property psih_invoice_tbilldiscper As Decimal
+    Public Property psih_invoice_tbilldiscamt As Decimal
+    Public Property psih_invoice_totdiscper As Decimal
+    Public Property psih_invoice_totdiscamt As Decimal
+    Public Property psih_invoice_tgrossamt As String
+    Public Property psih_invoice_ttaxamt As Decimal
+    Public Property psih_invoice_sercharge As Decimal
+    Public Property psih_invoice_roundoff As Decimal
+    Public Property psih_invoice_tnetamt As Decimal
+    Public Property psih_invoice_saletype As String 'invoice or quotation
+    Public Property psih_invoice_billtype As String 'Cash Bill,Credit Bill
+    Public Property psih_invoice_billstatus As String
+    Public Property psih_invoice_paymode As String 'cash,credit,card
+    Public Property psih_invoice_customerid As String
+    Public Property psih_invoice_description As String 'Store customername
+    Public Property psih_invoice_userid As String
+    Public Property psih_invoice_comid As String
+    Public Property psih_invoice_locid As String
+    Public Property psih_invoice_billremarks As String
+    Public Property psih_invoice_advamt As Decimal
+    Public Property psih_invoice_outstanding As Decimal
+    Public Property psih_invoice_givenamt As Decimal
+    Public Property psih_invoice_balamt As Decimal
+    Public Property psih_invoice_shiftno As String
+    Public Property psih_invoice_dayno As String
+End Class
+Public Class SalesDetails
+    Public Property psid_invoice_id As String
+    Public Property psid_invoice_salid As String
+    Public Property psid_invoice_sno As String
+    Public Property psid_invoice_date As DateTime
+    Public Property psid_invoice_trno As String
+    Public Property psid_invoice_barcode As String
+    Public Property psid_invoice_procode As String
+    Public Property psid_invoice_description As String
+    Public Property psid_invoice_serialno As String
+    Public Property psid_invoice_uom As String
+    Public Property psid_invoice_proqty As Decimal
+    Public Property psid_invoice_rate As Decimal
+    Public Property psid_invoice_amt As Decimal
+    Public Property psid_invoice_itemdisp As Decimal
+    Public Property psid_invoice_itemdisamt As Decimal
+    Public Property psid_invoice_billdisp As Decimal
+    Public Property psid_invoice_billdisamt As Decimal
+    Public Property psid_invoice_totdper As Decimal
+    Public Property psid_invoice_totdamt As Decimal
+    Public Property psid_invoice_gross As Decimal
+    Public Property psid_invoice_taxinex As String
+    Public Property psid_invoice_taxvalue As Decimal
+    Public Property psid_invoice_taxamt As Decimal
+    Public Property psid_invoice_netamt As Decimal
+    Public Property psid_invoice_remarks As String
+    Public Property psid_invoice_batchno As String
+    Public Property psid_invoice_salesmanid As String
+    Public Property psid_invoice_salemanper As Decimal
+    Public Property psid_invoice_shiftno As String
+    Public Property psid_invoice_dayno As String
+    Public Sub New(dataRow As DataRow)
+        psid_invoice_sno = If(dataRow("SNO") IsNot DBNull.Value, dataRow("SNO").ToString(), "")
+        psid_invoice_barcode = If(dataRow("BARCODE") IsNot DBNull.Value, dataRow("BARCODE").ToString(), "")
+        psid_invoice_procode = If(dataRow("ITEMCODE") IsNot DBNull.Value, dataRow("ITEMCODE").ToString(), "")
+        psid_invoice_description = If(dataRow("ITEMNAME") IsNot DBNull.Value, dataRow("ITEMNAME").ToString(), "")
+        psid_invoice_serialno = If(dataRow("SERIALNO") IsNot DBNull.Value, dataRow("SERIALNO").ToString(), "")
+        psid_invoice_uom = If(dataRow("UOM") IsNot DBNull.Value, dataRow("UOM").ToString(), "")
+        psid_invoice_proqty = If(dataRow("QTY") IsNot DBNull.Value, Convert.ToDecimal(dataRow("QTY")), 0)
+        psid_invoice_rate = If(dataRow("RATE") IsNot DBNull.Value, Convert.ToDecimal(dataRow("RATE")), 0)
+        psid_invoice_amt = If(dataRow("TAMOUNT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("TAMOUNT")), 0)
+        psid_invoice_itemdisp = If(dataRow("ITEM_DPER") IsNot DBNull.Value, Convert.ToDecimal(dataRow("ITEM_DPER")), 0)
+        psid_invoice_itemdisamt = If(dataRow("ITEM_DAMT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("ITEM_DAMT")), 0)
+        psid_invoice_billdisp = If(dataRow("BILL_DPER") IsNot DBNull.Value, Convert.ToDecimal(dataRow("BILL_DPER")), 0)
+        psid_invoice_billdisamt = If(dataRow("BILL_DAMT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("BILL_DAMT")), 0)
+        psid_invoice_totdper = If(dataRow("TOTAL_DPER") IsNot DBNull.Value, Convert.ToDecimal(dataRow("TOTAL_DPER")), 0)
+        psid_invoice_totdamt = If(dataRow("TOTAL_DAMT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("TOTAL_DAMT")), 0)
+        psid_invoice_gross = If(dataRow("GAMOUNT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("GAMOUNT")), 0)
+        psid_invoice_taxvalue = If(dataRow("TAXVALUE") IsNot DBNull.Value, Convert.ToDecimal(dataRow("TAXVALUE")), 0)
+        psid_invoice_taxamt = If(dataRow("TAXAMT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("TAXAMT")), 0)
+        psid_invoice_netamt = If(dataRow("NETAMT") IsNot DBNull.Value, Convert.ToDecimal(dataRow("NETAMT")), 0)
+        psid_invoice_remarks = If(dataRow("ITEMREMARS") IsNot DBNull.Value, dataRow("ITEMREMARS").ToString(), "")
+        psid_invoice_batchno = If(dataRow("BATCHNO") IsNot DBNull.Value, dataRow("BATCHNO").ToString(), "")
+        psid_invoice_salesmanid = If(dataRow("SALESPERSONID") IsNot DBNull.Value, dataRow("SALESPERSONID").ToString(), "")
+        psid_invoice_salemanper = If(dataRow("SALESMANPER") IsNot DBNull.Value, Convert.ToDecimal(dataRow("SALESMANPER")), 0)
+    End Sub
+End Class
+'TRUNCATE TABLE pos_sale_invoicehdr;
+'TRUNCATE TABLE pos_sale_invoicedtl;
+'TRUNCATE TABLE journaldetails;

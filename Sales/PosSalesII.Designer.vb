@@ -15,7 +15,7 @@ Partial Class PosSalesII
     Private components As System.ComponentModel.IContainer
 
     'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'It can be modified using the Windows Form Designer.
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
@@ -39,7 +39,6 @@ Partial Class PosSalesII
         Me.barbilldiscount = New DevExpress.XtraBars.BarButtonItem()
         Me.baritemdiscount = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnselectprice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem4 = New DevExpress.XtraBars.BarSubItem()
         Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem5 = New DevExpress.XtraBars.BarSubItem()
@@ -48,9 +47,9 @@ Partial Class PosSalesII
         Me.barselectsalesman = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barbtnposstatus = New DevExpress.XtraBars.BarStaticItem()
-        Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
-        Me.BarStaticItem2 = New DevExpress.XtraBars.BarStaticItem()
-        Me.BarStaticItem3 = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarDate = New DevExpress.XtraBars.BarStaticItem()
+        Me.Barshiftno = New DevExpress.XtraBars.BarStaticItem()
+        Me.Bardayno = New DevExpress.XtraBars.BarStaticItem()
         Me.BarStaticItem4 = New DevExpress.XtraBars.BarStaticItem()
         Me.barstatustaxtype = New DevExpress.XtraBars.BarStaticItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -61,6 +60,7 @@ Partial Class PosSalesII
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.barselectcustomer = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.PopConSales = New DevExpress.XtraEditors.PopupContainerControl()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
@@ -82,9 +82,12 @@ Partial Class PosSalesII
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btnprintguest = New DevExpress.XtraEditors.SimpleButton()
-        Me.btnsavequote = New DevExpress.XtraEditors.SimpleButton()
         Me.btnlastprint = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnsavequote = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnprintguest = New DevExpress.XtraEditors.SimpleButton()
+        Me.CmbPaymentTerm = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblnetamt = New System.Windows.Forms.Label()
         Me.btnpayment = New DevExpress.XtraEditors.SimpleButton()
@@ -102,8 +105,6 @@ Partial Class PosSalesII
         Me.btnqty = New System.Windows.Forms.Label()
         Me.btn_12 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.lblbilldiscper = New System.Windows.Forms.Label()
-        Me.lblsst = New System.Windows.Forms.Label()
         Me.lblservcharge = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -186,6 +187,7 @@ Partial Class PosSalesII
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
+        CType(Me.CmbPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -290,7 +292,7 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.BarStaticItem4, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave})
         Me.BarManager1.MaxItemId = 30
         Me.BarManager1.StatusBar = Me.Bar3
         '
@@ -300,7 +302,7 @@ Partial Class PosSalesII
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem2, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem3, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem4, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem4, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem5, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem2, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem3, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem4, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem5, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.UseWholeRow = True
         Me.Bar1.Text = "Tools"
         '
@@ -360,12 +362,6 @@ Partial Class PosSalesII
         Me.barbtnselectprice.Id = 24
         Me.barbtnselectprice.Name = "barbtnselectprice"
         '
-        'BarButtonItem4
-        '
-        Me.BarButtonItem4.Caption = "SaleMan"
-        Me.BarButtonItem4.Id = 14
-        Me.BarButtonItem4.Name = "BarButtonItem4"
-        '
         'BarSubItem4
         '
         Me.BarSubItem4.Caption = "Counter"
@@ -411,7 +407,7 @@ Partial Class PosSalesII
         Me.Bar3.DockCol = 0
         Me.Bar3.DockRow = 0
         Me.Bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom
-        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnposstatus), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem3), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.barstatustaxtype)})
+        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnposstatus), New DevExpress.XtraBars.LinkPersistInfo(Me.BarDate), New DevExpress.XtraBars.LinkPersistInfo(Me.Barshiftno), New DevExpress.XtraBars.LinkPersistInfo(Me.Bardayno), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.barstatustaxtype)})
         Me.Bar3.OptionsBar.AllowQuickCustomization = False
         Me.Bar3.OptionsBar.DrawDragBorder = False
         Me.Bar3.OptionsBar.UseWholeRow = True
@@ -424,26 +420,26 @@ Partial Class PosSalesII
         Me.barbtnposstatus.Name = "barbtnposstatus"
         Me.barbtnposstatus.TextAlignment = System.Drawing.StringAlignment.Near
         '
-        'BarStaticItem1
+        'BarDate
         '
-        Me.BarStaticItem1.Caption = "Date Time :"
-        Me.BarStaticItem1.Id = 9
-        Me.BarStaticItem1.Name = "BarStaticItem1"
-        Me.BarStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near
+        Me.BarDate.Caption = "Date Time :"
+        Me.BarDate.Id = 9
+        Me.BarDate.Name = "BarDate"
+        Me.BarDate.TextAlignment = System.Drawing.StringAlignment.Near
         '
-        'BarStaticItem2
+        'Barshiftno
         '
-        Me.BarStaticItem2.Caption = "Current Shift No "
-        Me.BarStaticItem2.Id = 10
-        Me.BarStaticItem2.Name = "BarStaticItem2"
-        Me.BarStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near
+        Me.Barshiftno.Caption = "Current Shift No "
+        Me.Barshiftno.Id = 10
+        Me.Barshiftno.Name = "Barshiftno"
+        Me.Barshiftno.TextAlignment = System.Drawing.StringAlignment.Near
         '
-        'BarStaticItem3
+        'Bardayno
         '
-        Me.BarStaticItem3.Caption = "Current Day No :"
-        Me.BarStaticItem3.Id = 11
-        Me.BarStaticItem3.Name = "BarStaticItem3"
-        Me.BarStaticItem3.TextAlignment = System.Drawing.StringAlignment.Near
+        Me.Bardayno.Caption = "Current Day No :"
+        Me.Bardayno.Id = 11
+        Me.Bardayno.Name = "Bardayno"
+        Me.Bardayno.TextAlignment = System.Drawing.StringAlignment.Near
         '
         'BarStaticItem4
         '
@@ -511,6 +507,12 @@ Partial Class PosSalesII
         Me.barselectcustomer.Id = 13
         Me.barselectcustomer.Name = "barselectcustomer"
         '
+        'BarButtonItem4
+        '
+        Me.BarButtonItem4.Caption = "SaleMan"
+        Me.BarButtonItem4.Id = 14
+        Me.BarButtonItem4.Name = "BarButtonItem4"
+        '
         'BarButtonItem6
         '
         Me.BarButtonItem6.Caption = "BarButtonItem6"
@@ -522,7 +524,7 @@ Partial Class PosSalesII
         Me.PopConSales.Controls.Add(Me.LayoutControl3)
         Me.PopConSales.Location = New System.Drawing.Point(103, 88)
         Me.PopConSales.Name = "PopConSales"
-        Me.PopConSales.Size = New System.Drawing.Size(600, 460)
+        Me.PopConSales.Size = New System.Drawing.Size(765, 458)
         Me.PopConSales.TabIndex = 45
         '
         'LayoutControl3
@@ -534,7 +536,7 @@ Partial Class PosSalesII
         Me.LayoutControl3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup3
-        Me.LayoutControl3.Size = New System.Drawing.Size(600, 460)
+        Me.LayoutControl3.Size = New System.Drawing.Size(765, 458)
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -549,7 +551,7 @@ Partial Class PosSalesII
         Me.txtMqty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.txtMqty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtMqty.Properties.ReadOnly = True
-        Me.txtMqty.Size = New System.Drawing.Size(52, 30)
+        Me.txtMqty.Size = New System.Drawing.Size(75, 30)
         Me.txtMqty.StyleController = Me.LayoutControl3
         Me.txtMqty.TabIndex = 6
         '
@@ -558,7 +560,7 @@ Partial Class PosSalesII
         Me.GridControl2.Location = New System.Drawing.Point(2, 36)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(596, 422)
+        Me.GridControl2.Size = New System.Drawing.Size(761, 420)
         Me.GridControl2.TabIndex = 5
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -656,11 +658,11 @@ Partial Class PosSalesII
         '
         'txtsearch2
         '
-        Me.txtsearch2.Location = New System.Drawing.Point(86, 2)
+        Me.txtsearch2.Location = New System.Drawing.Point(109, 2)
         Me.txtsearch2.Name = "txtsearch2"
         Me.txtsearch2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
         Me.txtsearch2.Properties.Appearance.Options.UseFont = True
-        Me.txtsearch2.Size = New System.Drawing.Size(512, 30)
+        Me.txtsearch2.Size = New System.Drawing.Size(654, 30)
         Me.txtsearch2.StyleController = Me.LayoutControl3
         Me.txtsearch2.TabIndex = 4
         '
@@ -674,7 +676,7 @@ Partial Class PosSalesII
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem18})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup3.Size = New System.Drawing.Size(600, 460)
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(765, 458)
         Me.LayoutControlGroup3.Text = "LayoutControlGroup2"
         Me.LayoutControlGroup3.TextVisible = False
         '
@@ -682,9 +684,9 @@ Partial Class PosSalesII
         '
         Me.LayoutControlItem7.Control = Me.txtsearch2
         Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(84, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(107, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem3"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(516, 34)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(658, 34)
         Me.LayoutControlItem7.Text = "LayoutControlItem3"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextToControlDistance = 0
@@ -696,7 +698,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem4"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 34)
         Me.LayoutControlItem8.Name = "LayoutControlItem4"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(600, 426)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(765, 424)
         Me.LayoutControlItem8.Text = "LayoutControlItem4"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextToControlDistance = 0
@@ -710,7 +712,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem18.CustomizationFormText = "Qty :"
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(84, 34)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(107, 34)
         Me.LayoutControlItem18.Text = "Qty :"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(25, 13)
         '
@@ -740,43 +742,81 @@ Partial Class PosSalesII
         '
         'TableLayoutPanel5
         '
+        Me.TableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel5.ColumnCount = 2
-        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.Controls.Add(Me.btnprintguest, 1, 0)
-        Me.TableLayoutPanel5.Controls.Add(Me.btnsavequote, 0, 1)
-        Me.TableLayoutPanel5.Controls.Add(Me.btnlastprint, 0, 0)
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
+        Me.TableLayoutPanel5.Controls.Add(Me.btnlastprint, 1, 1)
+        Me.TableLayoutPanel5.Controls.Add(Me.btnsavequote, 1, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.btnprintguest, 0, 1)
+        Me.TableLayoutPanel5.Controls.Add(Me.CmbPaymentTerm, 0, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.SimpleButton1, 0, 2)
+        Me.TableLayoutPanel5.Controls.Add(Me.SimpleButton2, 1, 2)
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(692, 2)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-        Me.TableLayoutPanel5.RowCount = 2
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.RowCount = 3
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel5.Size = New System.Drawing.Size(357, 136)
         Me.TableLayoutPanel5.TabIndex = 61
         '
-        'btnprintguest
+        'btnlastprint
         '
-        Me.btnprintguest.Location = New System.Drawing.Point(181, 3)
-        Me.btnprintguest.Name = "btnprintguest"
-        Me.btnprintguest.Size = New System.Drawing.Size(173, 22)
-        Me.btnprintguest.TabIndex = 3
-        Me.btnprintguest.Text = "PRINT GUEST"
+        Me.btnlastprint.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnlastprint.Location = New System.Drawing.Point(181, 49)
+        Me.btnlastprint.Name = "btnlastprint"
+        Me.btnlastprint.Size = New System.Drawing.Size(172, 38)
+        Me.btnlastprint.TabIndex = 1
+        Me.btnlastprint.Text = "LAST RECEIPT"
         '
         'btnsavequote
         '
-        Me.btnsavequote.Location = New System.Drawing.Point(3, 71)
+        Me.btnsavequote.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnsavequote.Location = New System.Drawing.Point(181, 4)
         Me.btnsavequote.Name = "btnsavequote"
-        Me.btnsavequote.Size = New System.Drawing.Size(172, 22)
+        Me.btnsavequote.Size = New System.Drawing.Size(172, 38)
         Me.btnsavequote.TabIndex = 2
         Me.btnsavequote.Text = "SAVE AS QUOTE"
         '
-        'btnlastprint
+        'btnprintguest
         '
-        Me.btnlastprint.Location = New System.Drawing.Point(3, 3)
-        Me.btnlastprint.Name = "btnlastprint"
-        Me.btnlastprint.Size = New System.Drawing.Size(172, 22)
-        Me.btnlastprint.TabIndex = 1
-        Me.btnlastprint.Text = "LAST RECEIPT"
+        Me.btnprintguest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnprintguest.Location = New System.Drawing.Point(4, 49)
+        Me.btnprintguest.Name = "btnprintguest"
+        Me.btnprintguest.Size = New System.Drawing.Size(170, 38)
+        Me.btnprintguest.TabIndex = 3
+        Me.btnprintguest.Text = "PRINT GUEST"
+        '
+        'CmbPaymentTerm
+        '
+        Me.CmbPaymentTerm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CmbPaymentTerm.Location = New System.Drawing.Point(4, 4)
+        Me.CmbPaymentTerm.MenuManager = Me.BarManager1
+        Me.CmbPaymentTerm.Name = "CmbPaymentTerm"
+        Me.CmbPaymentTerm.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.CmbPaymentTerm.Properties.Appearance.Options.UseFont = True
+        Me.CmbPaymentTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CmbPaymentTerm.Size = New System.Drawing.Size(170, 30)
+        Me.CmbPaymentTerm.TabIndex = 4
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SimpleButton1.Location = New System.Drawing.Point(4, 94)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(170, 38)
+        Me.SimpleButton1.TabIndex = 5
+        Me.SimpleButton1.Text = "Bill Hold"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SimpleButton2.Location = New System.Drawing.Point(181, 94)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(172, 38)
+        Me.SimpleButton2.TabIndex = 6
+        Me.SimpleButton2.Text = "Cash Drawer"
         '
         'TableLayoutPanel3
         '
@@ -808,8 +848,14 @@ Partial Class PosSalesII
         '
         'btnpayment
         '
+        Me.btnpayment.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnpayment.Appearance.BackColor2 = System.Drawing.Color.Blue
         Me.btnpayment.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.btnpayment.Appearance.ForeColor = System.Drawing.Color.White
+        Me.btnpayment.Appearance.Options.UseBackColor = True
         Me.btnpayment.Appearance.Options.UseFont = True
+        Me.btnpayment.Appearance.Options.UseForeColor = True
+        Me.btnpayment.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.TableLayoutPanel3.SetColumnSpan(Me.btnpayment, 2)
         Me.btnpayment.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnpayment.Image = CType(resources.GetObject("btnpayment.Image"), System.Drawing.Image)
@@ -1035,10 +1081,8 @@ Partial Class PosSalesII
         Me.TableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666!))
-        Me.TableLayoutPanel2.Controls.Add(Me.lblbilldiscper, 1, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.lblsst, 1, 3)
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31646!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.68355!))
         Me.TableLayoutPanel2.Controls.Add(Me.lblservcharge, 1, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label16, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label17, 0, 1)
@@ -1061,32 +1105,6 @@ Partial Class PosSalesII
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(274, 136)
         Me.TableLayoutPanel2.TabIndex = 5
         '
-        'lblbilldiscper
-        '
-        Me.lblbilldiscper.AutoSize = True
-        Me.lblbilldiscper.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblbilldiscper.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblbilldiscper.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblbilldiscper.Location = New System.Drawing.Point(119, 55)
-        Me.lblbilldiscper.Name = "lblbilldiscper"
-        Me.lblbilldiscper.Size = New System.Drawing.Size(46, 26)
-        Me.lblbilldiscper.TabIndex = 9
-        Me.lblbilldiscper.Text = "0"
-        Me.lblbilldiscper.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblsst
-        '
-        Me.lblsst.AutoSize = True
-        Me.lblsst.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblsst.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblsst.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblsst.Location = New System.Drawing.Point(119, 82)
-        Me.lblsst.Name = "lblsst"
-        Me.lblsst.Size = New System.Drawing.Size(46, 26)
-        Me.lblsst.TabIndex = 7
-        Me.lblsst.Text = "0"
-        Me.lblsst.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'lblservcharge
         '
         Me.lblservcharge.AutoSize = True
@@ -1095,7 +1113,7 @@ Partial Class PosSalesII
         Me.lblservcharge.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.lblservcharge.Location = New System.Drawing.Point(119, 109)
         Me.lblservcharge.Name = "lblservcharge"
-        Me.lblservcharge.Size = New System.Drawing.Size(46, 26)
+        Me.lblservcharge.Size = New System.Drawing.Size(33, 26)
         Me.lblservcharge.TabIndex = 8
         Me.lblservcharge.Text = "0"
         Me.lblservcharge.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1165,9 +1183,10 @@ Partial Class PosSalesII
         Me.lblsubtotal.AutoSize = True
         Me.lblsubtotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblsubtotal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblsubtotal.Location = New System.Drawing.Point(172, 1)
+        Me.lblsubtotal.ForeColor = System.Drawing.Color.Navy
+        Me.lblsubtotal.Location = New System.Drawing.Point(159, 1)
         Me.lblsubtotal.Name = "lblsubtotal"
-        Me.lblsubtotal.Size = New System.Drawing.Size(98, 26)
+        Me.lblsubtotal.Size = New System.Drawing.Size(111, 26)
         Me.lblsubtotal.TabIndex = 15
         Me.lblsubtotal.Text = "0.00"
         Me.lblsubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1177,9 +1196,10 @@ Partial Class PosSalesII
         Me.lblitemdisctotal.AutoSize = True
         Me.lblitemdisctotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblitemdisctotal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblitemdisctotal.Location = New System.Drawing.Point(172, 28)
+        Me.lblitemdisctotal.ForeColor = System.Drawing.Color.Maroon
+        Me.lblitemdisctotal.Location = New System.Drawing.Point(159, 28)
         Me.lblitemdisctotal.Name = "lblitemdisctotal"
-        Me.lblitemdisctotal.Size = New System.Drawing.Size(98, 26)
+        Me.lblitemdisctotal.Size = New System.Drawing.Size(111, 26)
         Me.lblitemdisctotal.TabIndex = 16
         Me.lblitemdisctotal.Text = "0.00"
         Me.lblitemdisctotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1189,9 +1209,10 @@ Partial Class PosSalesII
         Me.lblbilldisctotal.AutoSize = True
         Me.lblbilldisctotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblbilldisctotal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblbilldisctotal.Location = New System.Drawing.Point(172, 55)
+        Me.lblbilldisctotal.ForeColor = System.Drawing.Color.Maroon
+        Me.lblbilldisctotal.Location = New System.Drawing.Point(159, 55)
         Me.lblbilldisctotal.Name = "lblbilldisctotal"
-        Me.lblbilldisctotal.Size = New System.Drawing.Size(98, 26)
+        Me.lblbilldisctotal.Size = New System.Drawing.Size(111, 26)
         Me.lblbilldisctotal.TabIndex = 17
         Me.lblbilldisctotal.Text = "0.00"
         Me.lblbilldisctotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1201,9 +1222,10 @@ Partial Class PosSalesII
         Me.lblssttotal.AutoSize = True
         Me.lblssttotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblssttotal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblssttotal.Location = New System.Drawing.Point(172, 82)
+        Me.lblssttotal.ForeColor = System.Drawing.Color.Maroon
+        Me.lblssttotal.Location = New System.Drawing.Point(159, 82)
         Me.lblssttotal.Name = "lblssttotal"
-        Me.lblssttotal.Size = New System.Drawing.Size(98, 26)
+        Me.lblssttotal.Size = New System.Drawing.Size(111, 26)
         Me.lblssttotal.TabIndex = 18
         Me.lblssttotal.Text = "0.00"
         Me.lblssttotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1213,9 +1235,10 @@ Partial Class PosSalesII
         Me.lblservchargetotal.AutoSize = True
         Me.lblservchargetotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblservchargetotal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblservchargetotal.Location = New System.Drawing.Point(172, 109)
+        Me.lblservchargetotal.ForeColor = System.Drawing.Color.Maroon
+        Me.lblservchargetotal.Location = New System.Drawing.Point(159, 109)
         Me.lblservchargetotal.Name = "lblservchargetotal"
-        Me.lblservchargetotal.Size = New System.Drawing.Size(98, 26)
+        Me.lblservchargetotal.Size = New System.Drawing.Size(111, 26)
         Me.lblservchargetotal.TabIndex = 19
         Me.lblservchargetotal.Text = "0.00"
         Me.lblservchargetotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1421,7 +1444,6 @@ Partial Class PosSalesII
         Me.cmbMaterialSearch.Properties.Appearance.Options.UseFont = True
         Me.cmbMaterialSearch.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmbMaterialSearch.Properties.PopupControl = Me.PopConSales
-        Me.cmbMaterialSearch.Properties.PopupResizeMode = DevExpress.XtraEditors.Controls.ResizeMode.FrameResize
         Me.cmbMaterialSearch.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cmbMaterialSearch.Size = New System.Drawing.Size(601, 30)
         Me.cmbMaterialSearch.StyleController = Me.LayoutControl1
@@ -1821,6 +1843,7 @@ Partial Class PosSalesII
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         Me.TableLayoutPanel5.ResumeLayout(False)
+        CType(Me.CmbPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.TableLayoutPanel4.PerformLayout()
@@ -1923,9 +1946,7 @@ Partial Class PosSalesII
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents lblnetamt As System.Windows.Forms.Label
-    Friend WithEvents lblsst As System.Windows.Forms.Label
     Friend WithEvents lblservcharge As System.Windows.Forms.Label
-    Friend WithEvents lblbilldiscper As System.Windows.Forms.Label
     Friend WithEvents lblnoofitems As System.Windows.Forms.Label
     Friend WithEvents lblnoofqty As System.Windows.Forms.Label
     Friend WithEvents lblinvoicedate As System.Windows.Forms.Label
@@ -1948,9 +1969,9 @@ Partial Class PosSalesII
     Friend WithEvents lblbilldisctotal As System.Windows.Forms.Label
     Friend WithEvents lblssttotal As System.Windows.Forms.Label
     Friend WithEvents lblservchargetotal As System.Windows.Forms.Label
-    Friend WithEvents BarStaticItem1 As DevExpress.XtraBars.BarStaticItem
-    Friend WithEvents BarStaticItem2 As DevExpress.XtraBars.BarStaticItem
-    Friend WithEvents BarStaticItem3 As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents BarDate As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents Barshiftno As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents Bardayno As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents BarStaticItem4 As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents barselectcustomer As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
@@ -1991,4 +2012,7 @@ Partial Class PosSalesII
     Friend WithEvents barclearcustomer As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barselectsalesman As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Barfromlayoutsave As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents CmbPaymentTerm As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
 End Class

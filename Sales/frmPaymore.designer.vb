@@ -31,7 +31,7 @@ Partial Class frmPaymore
         Me.txtadvanceamt = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtclientname = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txtclientname = New DevExpress.XtraEditors.TextEdit()
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtpopbalamt = New DevExpress.XtraEditors.TextEdit()
@@ -250,7 +250,6 @@ Partial Class frmPaymore
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(43, 46)
         Me.Label1.Name = "Label1"
@@ -262,7 +261,6 @@ Partial Class frmPaymore
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(4, 7)
         Me.Label3.Name = "Label3"
@@ -277,12 +275,6 @@ Partial Class frmPaymore
         Me.txtclientname.Name = "txtclientname"
         Me.txtclientname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtclientname.Properties.Appearance.Options.UseFont = True
-        Me.txtclientname.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtclientname.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ledgerId", "LedgerId"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ledgerName", 100, "LedgerName")})
-        Me.txtclientname.Properties.DisplayMember = "Name"
-        Me.txtclientname.Properties.NullText = ""
-        Me.txtclientname.Properties.PopupResizeMode = DevExpress.XtraEditors.Controls.ResizeMode.FrameResize
-        Me.txtclientname.Properties.ValueMember = "Id"
         Me.txtclientname.Size = New System.Drawing.Size(344, 30)
         Me.txtclientname.TabIndex = 7
         '
@@ -706,7 +698,6 @@ Partial Class frmPaymore
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtclientname As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtadvanceamt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -726,4 +717,5 @@ Partial Class frmPaymore
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents SimpleSeparator9 As DevExpress.XtraLayout.SimpleSeparator
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtclientname As DevExpress.XtraEditors.TextEdit
 End Class

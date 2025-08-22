@@ -63,7 +63,11 @@ Public Class Login
                 Else
                     dialog.Caption = "SalesCommission Data Not Received"
                 End If
-
+                If getPaymentTermTable() = True Then
+                    dialog.Caption = "Loading Payment Term"
+                Else
+                    dialog.Caption = "Payment Term Data Not Received"
+                End If
                 GridLookUuCompany.EditValue = LocationId
 
 

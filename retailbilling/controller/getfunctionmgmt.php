@@ -4,6 +4,23 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
+// Enable error logging to file
+ini_set('log_errors', 1);
+ini_set('error_log', dirname(__FILE__) . '/php_error.log');
+
+// Custom error logging function
+function logError($message, $context = '')
+{
+    $logFile = dirname(__FILE__) . '/sales_error.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $logMessage = "[$timestamp] $message";
+    if (!empty($context)) {
+        $logMessage .= " | Context: $context";
+    }
+    $logMessage .= PHP_EOL;
+    file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
+}
+
 // Start output buffering to prevent any accidental output
 ob_start();
 
@@ -1452,176 +1469,292 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 4) { //Save Sales
-        $getdtl = $_GET['dtl'];
-        $gethdr = $_GET['hdr'];
-        $datadtl = json_decode($getdtl, true);
-        $datahdr = json_decode($gethdr, true);
-        //Save Hdr
+        try {
+            logError("SalesRequest=4 started", "Processing save sales request - Method: " . $_SERVER['REQUEST_METHOD']);
 
-        $invoiceno = "";
-        $updatePurTrno = $clsfunreq->UpdateInvoiceNo();
-        if ($updatePurTrno) {
-            $invoiceno = $clsfunreq->selectMaxBillNoByType("SAL");
-        } else {
-            $invoiceno = 0;
-        }
-        $psih_invoice_trno = $invoiceno;
-        $psih_invoice_date = $datahdr["psih_invoice_date"];
-        $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
-        $psih_invoice_description = $datahdr["psih_invoice_description"];
-        $psih_invoice_tqty = $datahdr["psih_invoice_tqty"];
-        $psih_invoice_tamount = $datahdr["psih_invoice_tamount"];
-        $psih_invoice_titemdisper = $datahdr["psih_invoice_titemdisper"];
-        $psih_invoice_titemdisamt = $datahdr["psih_invoice_titemdisamt"];
-        $psih_invoice_tbilldiscper = $datahdr["psih_invoice_tbilldiscper"];
-        $psih_invoice_tbilldiscamt = $datahdr["psih_invoice_tbilldiscamt"];
-        $psih_invoice_tgrossamt = $datahdr["psih_invoice_tgrossamt"];
-        $psih_invoice_ttaxamt = $datahdr["psih_invoice_ttaxamt"];
-        $psih_invoice_tnetamt = $datahdr["psih_invoice_tnetamt"];
-        $psih_invoice_saletype = $datahdr["psih_invoice_saletype"];
-        $psih_invoice_billtype = $datahdr["psih_invoice_billtype"];
-        $psih_invoice_paymode = $datahdr["psih_invoice_paymode"];
-        $psih_invoice_billstatus = $datahdr["psih_invoice_billstatus"];
-        $psih_invoice_userid = $datahdr["psih_invoice_userid"];
-        $psih_invoice_comid = $datahdr["psih_invoice_comid"];
-        $psih_invoice_locid = $datahdr["psih_invoice_locid"];
-        $psih_invoice_billremarks = $datahdr["psih_invoice_billremarks"];
-        $psih_invoice_advamt = $datahdr["psih_invoice_advamt"];
-        $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
-        $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
-        $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
-        //        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
-        //                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
-        //                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
-        //                $psih_invoice_userid . ',' . $psih_invoice_comid . ',' . $psih_invoice_locid . ',' . $psih_invoice_billremarks . ',' . $psih_invoice_advamt . ',' . $psih_invoice_outstanding . ',' .
-        //                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
+            // Support both GET and POST to handle large data
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Use POST data for large requests
+                $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
+                $gethdr = isset($_POST['hdr']) ? $_POST['hdr'] : '';
+                $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
+                $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
+                $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
+                logError("Using POST method", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
+            } else {
+                // Fallback to GET for smaller requests
+                $getdtl = $_GET['dtl'];
+                $gethdr = $_GET['hdr'];
+                $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
+                $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
+                $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
+                logError("Using GET method", "URL Length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
 
-
-        $saveHdr = $clsfunreq->SaveSaleHdr(
-            $psih_invoice_trno,
-            $psih_invoice_date,
-            $psih_invoice_description,
-            $psih_invoice_tqty,
-            $psih_invoice_tamount,
-            $psih_invoice_titemdisper,
-            $psih_invoice_titemdisamt,
-            $psih_invoice_tbilldiscper,
-            $psih_invoice_tbilldiscamt,
-            $psih_invoice_tgrossamt,
-            $psih_invoice_ttaxamt,
-            $psih_invoice_tnetamt,
-            $psih_invoice_saletype,
-            $psih_invoice_billtype,
-            $psih_invoice_billstatus,
-            $psih_invoice_customerid,
-            $psih_invoice_userid,
-            $psih_invoice_comid,
-            $psih_invoice_locid,
-            $psih_invoice_billremarks,
-            $psih_invoice_advamt,
-            $psih_invoice_outstanding,
-            $psih_invoice_givenamt,
-            $psih_invoice_balamt
-        );
-
-        if ($saveHdr) {
-            //Save Dtl
-            $Sa_id = $clsfunreq->GetSalesId($invoiceno);
-            foreach ($datadtl as $row) {
-                $psid_invoice_sno = $row['SNO'];
-                $psid_invoice_salid = $Sa_id;
-                $psid_invoice_trno = $invoiceno;
-                $psid_invoice_description = $row['ITEMNAME'];
-                $psid_invoice_procode = $row['CODE'];
-                $psid_invoice_proqty = $row['QTY'];
-                $psid_invoice_rate = $row['RATE'];
-                $psid_invoice_amt = $row['TAMOUNT'];
-                $psid_invoice_itemdisp = $row['DPER'];
-                $psid_invoice_itemdisamt = $row['DAMT'];
-                $psid_invoice_billdisp = $row['BPER'];
-                $psid_invoice_billdisamt = $row['BAMT'];
-                $psid_invoice_gross = $row['GAMOUNT'];
-                $psid_invoice_taxinex = $row['TAXINEX'];
-                $psid_invoice_taxvalue = $row['TAXVALUE'];
-                $psid_invoice_taxamt = $row['TAXAMT'];
-                $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleDtl(
-                    $psid_invoice_sno,
-                    $psid_invoice_salid,
-                    $psih_invoice_date,
-                    $psid_invoice_trno,
-                    $psid_invoice_description,
-                    $psid_invoice_procode,
-                    $psid_invoice_proqty,
-                    $psid_invoice_rate,
-                    $psid_invoice_amt,
-                    $psid_invoice_itemdisp,
-                    $psid_invoice_itemdisamt,
-                    $psid_invoice_billdisp,
-                    $psid_invoice_billdisamt,
-                    $psid_invoice_gross,
-                    $psid_invoice_taxinex,
-                    $psid_invoice_taxvalue,
-                    $psid_invoice_taxamt,
-                    $psid_invoice_netamt
-                );
-                $resultLiveStock = $clsfunreq->_UpdateLiveStockSales($psid_invoice_procode, $psid_invoice_proqty, $psih_invoice_comid, $psih_invoice_locid);
-            }
-        }
-        if ($saveDtl) {
-            if ($psih_invoice_saletype == 'Invoice') {
-
-                $userid = $psih_invoice_userid;
-                $customerId = $psih_invoice_customerid;
-                $cr = $psih_invoice_tnetamt;
-                $refinvoiceno = $psih_invoice_trno;
-                $billno = $clsfunreq->selectMaxVoucherNo();
-                $comid = $psih_invoice_comid;
-                $locid = $psih_invoice_locid;
-                $customername = $psih_invoice_description;
-                $pph_invdate = $psih_invoice_date;
-                $deleteJourEntry = $clsfunreq->deleteJourEntryBySales($psih_invoice_trno); //$dbFunction->deleteJourEntry($psih_invoice_trno);
-                if ($psih_invoice_paymode == 'cash') {
-                    $ledgerid = "1";
-                    $branchid = $customerId;
-                    $vocheramt = $cr;
-                    $accttype = "SAL";
-                    $modetype = "CA";
-                    $txtdatepicker = $pph_invdate;
-                    $statuAcct = "A";
-                    $userid = $userid;
-                    $txtnarration = 'Sales :' . $refinvoiceno;
-                    $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
-                } elseif ($psih_invoice_paymode == 'credit') {
-                    $ledgerid = "3";
-                    $branchid = $customerId;
-                    $vocheramt = $cr;
-                    $accttype = "SAL";
-                    $modetype = "CR";
-                    $txtdatepicker = $pph_invdate;
-                    $statuAcct = "NP";
-                    $userid = $userid;
-                    $txtnarration = 'Sales :' . $refinvoiceno;
-                    $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
-                } elseif ($psih_invoice_paymode == 'card') {
-                    $ledgerid = "6";
-                    $branchid = $customerId;
-                    $vocheramt = $cr;
-                    $accttype = "SAL";
-                    $modetype = "CD";
-                    $txtdatepicker = $pph_invdate;
-                    $statuAcct = "P";
-                    $userid = $userid;
-                    $txtnarration = 'Sales :' . $refinvoiceno;
-                    $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+                // Check for potential URI too long issue
+                if (strlen($_SERVER['REQUEST_URI']) > 2000) {
+                    logError("WARNING: Long URL detected", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars - consider using POST method");
                 }
             }
-        }
 
-        if ($ressalesentry) {
-            echo json_encode(array("Success" => true, "Data" => 'Sales Saved InvoiceNo: ' . $invoiceno));
-        } else {
-            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
+            $datadtl = json_decode($getdtl, true);
+            $datahdr = json_decode($gethdr, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                logError("JSON decode error", "Error: " . json_last_error_msg());
+                echo json_encode(array("Success" => false, "Data" => "Invalid JSON data"));
+                exit;
+            }
+
+            logError("Parameters extracted", "pm_id: $pm_id, comid: $comid, locid: $locid");
+
+            //Save Hdr
+
+            $invoiceno = "";
+            logError("Starting invoice number generation", "About to call UpdateSalesTransNo");
+
+            $updatePurTrno = $clsfunreq->UpdateSalesTransNo($pm_id, $comid, $locid);
+            logError("UpdateSalesTransNo result", "Result: " . ($updatePurTrno ? 'true' : 'false'));
+
+            if ($updatePurTrno) {
+                $invoiceno = $clsfunreq->GetSaleTransNo($pm_id, $comid, $locid);
+                logError("Invoice number generated", "Invoice: $invoiceno");
+            } else {
+                $invoiceno = 0;
+                logError("Failed to update transaction number", "Setting invoiceno to 0");
+            }
+
+            $psih_invoice_trno = $invoiceno;
+            logError("Processing header data", "Invoice: $invoiceno");
+
+            // Validate required header fields
+            if (!isset($datahdr["psih_invoice_date"]) || empty($datahdr["psih_invoice_date"])) {
+                logError("Missing required field", "psih_invoice_date is missing or empty");
+            }
+            if (!isset($datahdr["psih_invoice_customerid"]) || empty($datahdr["psih_invoice_customerid"])) {
+                logError("Missing required field", "psih_invoice_customerid is missing or empty");
+            }
+
+            $psih_invoice_date = $datahdr["psih_invoice_date"];
+            $psih_invoice_prefix = isset($datahdr["psih_invoice_prefix"]) ? $datahdr["psih_invoice_prefix"] : "";
+            $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
+            $psih_invoice_description = $datahdr["psih_invoice_description"];
+            $psih_invoice_tqty = $datahdr["psih_invoice_tqty"];
+            $psih_invoice_tamount = $datahdr["psih_invoice_tamount"];
+            $psih_invoice_titemdisper = $datahdr["psih_invoice_titemdisper"];
+            $psih_invoice_titemdisamt = $datahdr["psih_invoice_titemdisamt"];
+            $psih_invoice_tbilldiscper = $datahdr["psih_invoice_tbilldiscper"];
+            $psih_invoice_tbilldiscamt = $datahdr["psih_invoice_tbilldiscamt"];
+            $psih_invoice_totdiscper = isset($datahdr["psih_invoice_totdiscper"]) ? $datahdr["psih_invoice_totdiscper"] : 0;
+            $psih_invoice_totdiscamt = isset($datahdr["psih_invoice_totdiscamt"]) ? $datahdr["psih_invoice_totdiscamt"] : 0;
+            $psih_invoice_tgrossamt = $datahdr["psih_invoice_tgrossamt"];
+            $psih_invoice_ttaxamt = $datahdr["psih_invoice_ttaxamt"];
+            $psih_invoice_sercharge = isset($datahdr["psih_invoice_sercharge"]) ? $datahdr["psih_invoice_sercharge"] : 0;
+            $psih_invoice_roundoff = isset($datahdr["psih_invoice_roundoff"]) ? $datahdr["psih_invoice_roundoff"] : 0;
+            $psih_invoice_tnetamt = $datahdr["psih_invoice_tnetamt"];
+            $psih_invoice_saletype = $datahdr["psih_invoice_saletype"];
+            $psih_invoice_billtype = $datahdr["psih_invoice_billtype"];
+            $psih_invoice_paymode = $datahdr["psih_invoice_paymode"];
+            $psih_invoice_billstatus = $datahdr["psih_invoice_billstatus"];
+            $psih_invoice_userid = $datahdr["psih_invoice_userid"];
+            $psih_invoice_comid = $datahdr["psih_invoice_comid"];
+            $psih_invoice_locid = $datahdr["psih_invoice_locid"];
+            $psih_invoice_billremarks = $datahdr["psih_invoice_billremarks"];
+            $psih_invoice_advamt = $datahdr["psih_invoice_advamt"];
+            $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
+            $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
+            $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
+            $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
+            $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
+
+            logError("About to save header", "Calling SaveSaleHdr with 32 parameters");
+            $saveHdr = $clsfunreq->SaveSaleHdr(
+                $psih_invoice_trno,
+                $psih_invoice_date,
+                $psih_invoice_prefix,
+                $psih_invoice_description,
+                $psih_invoice_tqty,
+                $psih_invoice_tamount,
+                $psih_invoice_titemdisper,
+                $psih_invoice_titemdisamt,
+                $psih_invoice_tbilldiscper,
+                $psih_invoice_tbilldiscamt,
+                $psih_invoice_totdiscper,
+                $psih_invoice_totdiscamt,
+                $psih_invoice_tgrossamt,
+                $psih_invoice_ttaxamt,
+                $psih_invoice_sercharge,
+                $psih_invoice_roundoff,
+                $psih_invoice_tnetamt,
+                $psih_invoice_saletype,
+                $psih_invoice_billtype,
+                $psih_invoice_billstatus,
+                $psih_invoice_paymode,
+                $psih_invoice_customerid,
+                $psih_invoice_userid,
+                $psih_invoice_comid,
+                $psih_invoice_locid,
+                $psih_invoice_billremarks,
+                $psih_invoice_advamt,
+                $psih_invoice_outstanding,
+                $psih_invoice_givenamt,
+                $psih_invoice_balamt,
+                $psih_invoice_shiftno,
+                $psih_invoice_dayno
+            );
+
+            logError("SaveSaleHdr result", "Result: " . ($saveHdr ? 'true' : 'false'));
+
+            if ($saveHdr) {
+                logError("Header saved successfully", "Getting Sales ID for invoice: $invoiceno");
+                //Save Dtl
+                $Sa_id = $clsfunreq->GetSalesId($invoiceno);
+                logError("Sales ID retrieved", "Sa_id: $Sa_id, Detail rows count: " . count($datadtl));
+
+                foreach ($datadtl as $index => $row) {
+                    logError("Processing detail row", "Row index: $index");
+                    $psid_invoice_sno = $row['psid_invoice_sno'];
+                    $psid_invoice_salid = $Sa_id;
+                    $psid_invoice_date = $psih_invoice_date;
+                    $psid_invoice_trno = $invoiceno;
+                    $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+                    $psid_invoice_description = $row['psid_invoice_description'];
+                    $psid_invoice_procode = $row['psid_invoice_procode'];
+                    $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+                    $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+                    $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+                    $psid_invoice_proqty = $row['psid_invoice_proqty'];
+                    $psid_invoice_rate = $row['psid_invoice_rate'];
+                    $psid_invoice_amt = $row['psid_invoice_amt'];
+                    $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+                    $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+                    $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+                    $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+                    $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+                    $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+                    $psid_invoice_gross = isset($row['psid_invoice_gross']) ? $row['psid_invoice_gross'] : 0;
+                    $psid_invoice_taxinex =  isset($row['psid_invoice_taxinex']) ? $row['psid_invoice_taxinex'] : 0;
+                    $psid_invoice_taxvalue = isset($row['psid_invoice_taxvalue']) ? $row['psid_invoice_taxvalue'] : 0;
+                    $psid_invoice_taxamt = isset($row['psid_invoice_taxamt']) ? $row['psid_invoice_taxamt'] : 0;
+                    $psid_invoice_netamt = isset($row['psid_invoice_netamt']) ? $row['psid_invoice_netamt'] : 0;
+                    $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "-";
+                    $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "-";
+                    $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "0";
+                    $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+                    $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "0";
+                    $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "0";
+                    $saveDtl = $clsfunreq->SaveSaleDtl(
+                        $psid_invoice_sno,
+                        $psid_invoice_salid,
+                        $psih_invoice_date,
+                        $psid_invoice_trno,
+                        $psid_invoice_description,
+                        $psid_invoice_procode,
+                        $psid_invoice_barcode,
+                        $psid_invoice_serialno,
+                        $psid_invoice_uom,
+                        $psid_invoice_proqty,
+                        $psid_invoice_rate,
+                        $psid_invoice_amt,
+                        $psid_invoice_itemdisp,
+                        $psid_invoice_itemdisamt,
+                        $psid_invoice_billdisp,
+                        $psid_invoice_billdisamt,
+                        $psid_invoice_totdper,
+                        $psid_invoice_totdamt,
+                        $psid_invoice_gross,
+                        $psid_invoice_taxinex,
+                        $psid_invoice_taxvalue,
+                        $psid_invoice_taxamt,
+                        $psid_invoice_netamt,
+                        $psid_invoice_remarks,
+                        $psid_invoice_batchno,
+                        $psid_invoice_salesmanid,
+                        $psid_invoice_salemanper,
+                        $psid_invoice_shiftno,
+                        $psid_invoice_dayno
+                    );
+
+                    logError("SaveSaleDtl call", "Product: $psid_invoice_procode, Qty: $psid_invoice_proqty, Amount: $psid_invoice_amt");
+
+                    if (!$saveDtl) {
+                        logError("SaveSaleDtl failed", "Failed to save detail for product: $psid_invoice_procode");
+                    }
+
+                    $resultLiveStock = $clsfunreq->_UpdateLiveStockSales($psid_invoice_procode, $psid_invoice_proqty, $psih_invoice_comid, $psih_invoice_locid);
+
+                    if (!$resultLiveStock) {
+                        logError("LiveStock update failed", "Failed to update stock for product: $psid_invoice_procode");
+                    }
+                }
+                logError("All detail rows processed", "Total rows: " . count($datadtl));
+            } else {
+                logError("Header save failed", "SaveSaleHdr returned false");
+            }
+
+            logError("Detail processing result", "saveDtl result: " . ($saveDtl ? 'true' : 'false'));
+
+            if ($saveDtl) {
+                logError("Starting journal entry processing", "Sale type: $psih_invoice_saletype");
+
+                if ($psih_invoice_saletype == 'Invoice') {
+
+                    $userid = $psih_invoice_userid;
+                    $customerId = $psih_invoice_customerid;
+                    $cr = $psih_invoice_tnetamt;
+                    $refinvoiceno = $psih_invoice_trno;
+                    $billno = $clsfunreq->selectMaxVoucherNo();
+                    $comid = $psih_invoice_comid;
+                    $locid = $psih_invoice_locid;
+                    $customername = $psih_invoice_description;
+                    $pph_invdate = $psih_invoice_date;
+                    $deleteJourEntry = $clsfunreq->deleteJourEntryBySales($psih_invoice_trno); //$dbFunction->deleteJourEntry($psih_invoice_trno);
+                    if ($psih_invoice_paymode == 'cash') {
+                        $ledgerid = "1";
+                        $branchid = $customerId;
+                        $vocheramt = $cr;
+                        $accttype = "SAL";
+                        $modetype = "CA";
+                        $txtdatepicker = $pph_invdate;
+                        $statuAcct = "A";
+                        $userid = $userid;
+                        $txtnarration = 'Sales :' . $refinvoiceno;
+                        $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+                    } elseif ($psih_invoice_paymode == 'credit') {
+                        $ledgerid = "3";
+                        $branchid = $customerId;
+                        $vocheramt = $cr;
+                        $accttype = "SAL";
+                        $modetype = "CR";
+                        $txtdatepicker = $pph_invdate;
+                        $statuAcct = "NP";
+                        $userid = $userid;
+                        $txtnarration = 'Sales :' . $refinvoiceno;
+                        $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+                    } elseif ($psih_invoice_paymode == 'card') {
+                        $ledgerid = "6";
+                        $branchid = $customerId;
+                        $vocheramt = $cr;
+                        $accttype = "SAL";
+                        $modetype = "CD";
+                        $txtdatepicker = $pph_invdate;
+                        $statuAcct = "P";
+                        $userid = $userid;
+                        $txtnarration = 'Sales :' . $refinvoiceno;
+                        $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+                    }
+                }
+            }
+
+            if ($ressalesentry) {
+                logError("SalesRequest=4 completed successfully", "Invoice: $invoiceno");
+                echo json_encode(array("Success" => true, "Data" => 'Sales Saved InvoiceNo: ' . $invoiceno));
+            } else {
+                logError("SalesRequest=4 failed", "ressalesentry is false");
+                echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
+            }
+        } catch (Exception $e) {
+            logError("SalesRequest=4 exception", $e->getMessage());
+            echo json_encode(array("Success" => false, "Data" => "Error occurred: " . $e->getMessage()));
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 5) {
@@ -1656,16 +1789,41 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 7) { //Update
-        $getdtl = $_GET['dtl'];
-        $gethdr = $_GET['hdr'];
+        // Support both GET and POST to handle large data
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
+            $gethdr = isset($_POST['hdr']) ? $_POST['hdr'] : '';
+            $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
+            $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
+            $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
+            logError("SalesRequest=7 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
+        } else {
+            $getdtl = $_GET['dtl'];
+            $gethdr = $_GET['hdr'];
+            $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
+            if (strlen($_SERVER['REQUEST_URI']) > 2000) {
+                logError("SalesRequest=7 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
+            }
+        }
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
+
+        // Get parameters from URL
+        $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
+        $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
+        $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
+
         //        echo print_r($datadtl);
         //        echo print_r($datahdr);
         //Save Hdr
         $invoiceno = $datahdr["psih_invoice_trno"];
+        $psih_invoice_pmid = isset($datahdr["psih_invoice_pmid"]) ? $datahdr["psih_invoice_pmid"] : "";
+        $psih_invoice_id = isset($datahdr["psih_invoice_id"]) ? $datahdr["psih_invoice_id"] : "";
         $psih_invoice_trno = $invoiceno;
         $psih_invoice_date = $datahdr["psih_invoice_date"];
+        $psih_invoice_prefix = isset($datahdr["psih_invoice_prefix"]) ? $datahdr["psih_invoice_prefix"] : "";
         $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
         $psih_invoice_description = $datahdr["psih_invoice_description"];
         $psih_invoice_tqty = $datahdr["psih_invoice_tqty"];
@@ -1674,8 +1832,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_titemdisamt = $datahdr["psih_invoice_titemdisamt"];
         $psih_invoice_tbilldiscper = $datahdr["psih_invoice_tbilldiscper"];
         $psih_invoice_tbilldiscamt = $datahdr["psih_invoice_tbilldiscamt"];
+        $psih_invoice_totdiscper = isset($datahdr["psih_invoice_totdiscper"]) ? $datahdr["psih_invoice_totdiscper"] : 0;
+        $psih_invoice_totdiscamt = isset($datahdr["psih_invoice_totdiscamt"]) ? $datahdr["psih_invoice_totdiscamt"] : 0;
         $psih_invoice_tgrossamt = $datahdr["psih_invoice_tgrossamt"];
         $psih_invoice_ttaxamt = $datahdr["psih_invoice_ttaxamt"];
+        $psih_invoice_sercharge = isset($datahdr["psih_invoice_sercharge"]) ? $datahdr["psih_invoice_sercharge"] : 0;
+        $psih_invoice_roundoff = isset($datahdr["psih_invoice_roundoff"]) ? $datahdr["psih_invoice_roundoff"] : 0;
         $psih_invoice_tnetamt = $datahdr["psih_invoice_tnetamt"];
         $psih_invoice_saletype = $datahdr["psih_invoice_saletype"];
         $psih_invoice_billtype = $datahdr["psih_invoice_billtype"];
@@ -1688,6 +1850,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
+        $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
+        $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
         $saveHdr = $clsfunreq->SaveSaleUpdate(
             $psih_invoice_trno,
             $psih_invoice_date,
@@ -1712,31 +1876,51 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_advamt,
             $psih_invoice_outstanding,
             $psih_invoice_givenamt,
-            $psih_invoice_balamt
+            $psih_invoice_balamt,
+            $pmid,
+            $id,
+            $prefix,
+            $psih_invoice_totdiscper,
+            $psih_invoice_totdiscamt,
+            $psih_invoice_sercharge,
+            $psih_invoice_roundoff,
+            $psih_invoice_shiftno,
+            $psih_invoice_dayno
         );
         if ($saveHdr) {
             //Save Dtl
             $Sal_ID = $clsfunreq->GetSalesId($invoiceno);
             //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
             foreach ($datadtl as $row) {
-                $psid_invoice_sno = $row['SNO'];
+                $psid_invoice_sno = $row['psid_invoice_sno'];
                 $psid_invoice_salid = $Sal_ID;
                 $psid_invoice_trno = $invoiceno;
-                $psid_invoice_id = $row['UID'];
-                $psid_invoice_description = $row['ITEMNAME'];
-                $psid_invoice_procode = $row['CODE'];
-                $psid_invoice_proqty = $row['QTY'];
-                $psid_invoice_rate = $row['RATE'];
-                $psid_invoice_amt = $row['TAMOUNT'];
-                $psid_invoice_itemdisp = $row['DPER'];
-                $psid_invoice_itemdisamt = $row['DAMT'];
-                $psid_invoice_billdisp = $row['BPER'];
-                $psid_invoice_billdisamt = $row['BAMT'];
-                $psid_invoice_gross = $row['GAMOUNT'];
-                $psid_invoice_taxinex = $row['TAXINEX'];
-                $psid_invoice_taxvalue = $row['TAXVALUE'];
-                $psid_invoice_taxamt = $row['TAXAMT'];
-                $psid_invoice_netamt = $row['NETAMT'];
+                $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+                $psid_invoice_description = $row['psid_invoice_description'];
+                $psid_invoice_procode = $row['psid_invoice_procode'];
+                $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+                $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+                $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+                $psid_invoice_proqty = $row['psid_invoice_proqty'];
+                $psid_invoice_rate = $row['psid_invoice_rate'];
+                $psid_invoice_amt = $row['psid_invoice_amt'];
+                $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+                $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+                $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+                $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+                $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+                $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+                $psid_invoice_gross = $row['psid_invoice_gross'];
+                $psid_invoice_taxinex = $row['psid_invoice_taxinex'];
+                $psid_invoice_taxvalue = $row['psid_invoice_taxvalue'];
+                $psid_invoice_taxamt = $row['psid_invoice_taxamt'];
+                $psid_invoice_netamt = $row['psid_invoice_netamt'];
+                $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "";
+                $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "";
+                $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "";
+                $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+                $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "";
+                $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "";
                 $saveDtl = $clsfunreq->SaveSaleDtlUpdate(
                     $psid_invoice_id,
                     $psid_invoice_sno,
@@ -1745,6 +1929,9 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_trno,
                     $psid_invoice_description,
                     $psid_invoice_procode,
+                    $psid_invoice_barcode,
+                    $psid_invoice_serialno,
+                    $psid_invoice_uom,
                     $psid_invoice_proqty,
                     $psid_invoice_rate,
                     $psid_invoice_amt,
@@ -1752,11 +1939,19 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_itemdisamt,
                     $psid_invoice_billdisp,
                     $psid_invoice_billdisamt,
+                    $psid_invoice_totdper,
+                    $psid_invoice_totdamt,
                     $psid_invoice_gross,
                     $psid_invoice_taxinex,
                     $psid_invoice_taxvalue,
                     $psid_invoice_taxamt,
                     $psid_invoice_netamt,
+                    $psid_invoice_remarks,
+                    $psid_invoice_batchno,
+                    $psid_invoice_salesmanid,
+                    $psid_invoice_salemanper,
+                    $psid_invoice_shiftno,
+                    $psid_invoice_dayno,
                     $psih_invoice_comid,
                     $psih_invoice_locid
                 );
@@ -1812,9 +2007,9 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             }
         }
         if (true) {
-            echo json_encode(array("Success" => true, "Data" => "Voucher Updated" . $saveDtl . ',' . $refinvoiceno . ',' . $deleteJourEntry)); //"hdr" => $saveHdr, "dtl" => $saveDtl));
+            echo json_encode(array("Success" => true, "Data" => "Voucher Updated"));
         } else {
-            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated" . $refinvoiceno . ',' . $deleteJourEntry)); // "hdr" => $saveHdr, "dtl" => $saveDtl));
+            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 8) {
@@ -1836,10 +2031,29 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 9) { //QuoteSales
-        $getdtl = $_GET['dtl'];
-        $gethdr = $_GET['hdr'];
+        // Support both GET and POST to handle large data
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
+            $gethdr = isset($_POST['hdr']) ? $_POST['hdr'] : '';
+            $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
+            $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
+            $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
+            logError("SalesRequest=9 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
+        } else {
+            $getdtl = $_GET['dtl'];
+            $gethdr = $_GET['hdr'];
+            $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
+            if (strlen($_SERVER['REQUEST_URI']) > 2000) {
+                logError("SalesRequest=9 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
+            }
+        }
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
+
+        logError("SalesRequest=9 Processing", "DTL count: " . count($datadtl) . ", HDR fields: " . count($datahdr) . ", pm_id: " . $pm_id);
+
         //Save Hdr
 
         $invoiceno = "";
@@ -1849,8 +2063,11 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         } else {
             $invoiceno = 0;
         }
+        $psih_invoice_pmid = isset($datahdr["psih_invoice_pmid"]) ? $datahdr["psih_invoice_pmid"] : "";
+        $psih_invoice_id = isset($datahdr["psih_invoice_id"]) ? $datahdr["psih_invoice_id"] : "";
         $psih_invoice_trno = $invoiceno;
         $psih_invoice_date = $datahdr["psih_invoice_date"];
+        $psih_invoice_prefix = isset($datahdr["psih_invoice_prefix"]) ? $datahdr["psih_invoice_prefix"] : "";
         $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
         $psih_invoice_description = $datahdr["psih_invoice_description"];
         $psih_invoice_tqty = $datahdr["psih_invoice_tqty"];
@@ -1859,8 +2076,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_titemdisamt = $datahdr["psih_invoice_titemdisamt"];
         $psih_invoice_tbilldiscper = $datahdr["psih_invoice_tbilldiscper"];
         $psih_invoice_tbilldiscamt = $datahdr["psih_invoice_tbilldiscamt"];
+        $psih_invoice_totdiscper = isset($datahdr["psih_invoice_totdiscper"]) ? $datahdr["psih_invoice_totdiscper"] : 0;
+        $psih_invoice_totdiscamt = isset($datahdr["psih_invoice_totdiscamt"]) ? $datahdr["psih_invoice_totdiscamt"] : 0;
         $psih_invoice_tgrossamt = $datahdr["psih_invoice_tgrossamt"];
         $psih_invoice_ttaxamt = $datahdr["psih_invoice_ttaxamt"];
+        $psih_invoice_sercharge = isset($datahdr["psih_invoice_sercharge"]) ? $datahdr["psih_invoice_sercharge"] : 0;
+        $psih_invoice_roundoff = isset($datahdr["psih_invoice_roundoff"]) ? $datahdr["psih_invoice_roundoff"] : 0;
         $psih_invoice_tnetamt = $datahdr["psih_invoice_tnetamt"];
         $psih_invoice_saletype = $datahdr["psih_invoice_saletype"];
         $psih_invoice_billtype = $datahdr["psih_invoice_billtype"];
@@ -1874,6 +2095,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
+        $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
+        $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
         //        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
         //                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
         //                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
@@ -1884,6 +2107,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $saveHdr = $clsfunreq->SaveSaleHdr(
             $psih_invoice_trno,
             $psih_invoice_date,
+            $psih_invoice_prefix,
             $psih_invoice_description,
             $psih_invoice_tqty,
             $psih_invoice_tamount,
@@ -1891,12 +2115,17 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_titemdisamt,
             $psih_invoice_tbilldiscper,
             $psih_invoice_tbilldiscamt,
+            $psih_invoice_totdiscper,
+            $psih_invoice_totdiscamt,
             $psih_invoice_tgrossamt,
             $psih_invoice_ttaxamt,
+            $psih_invoice_sercharge,
+            $psih_invoice_roundoff,
             $psih_invoice_tnetamt,
             $psih_invoice_saletype,
             $psih_invoice_billtype,
             $psih_invoice_billstatus,
+            $psih_invoice_paymode,
             $psih_invoice_customerid,
             $psih_invoice_userid,
             $psih_invoice_comid,
@@ -1905,37 +2134,55 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_advamt,
             $psih_invoice_outstanding,
             $psih_invoice_givenamt,
-            $psih_invoice_balamt
+            $psih_invoice_balamt,
+            $psih_invoice_shiftno,
+            $psih_invoice_dayno
         );
 
         if ($saveHdr) {
             //Save Dtl
             $Sa_id = $clsfunreq->GetSalesQuoteId($invoiceno);
             foreach ($datadtl as $row) {
-                $psid_invoice_sno = $row['SNO'];
+                $psid_invoice_sno = $row['psid_invoice_sno'];
                 $psid_invoice_salid = $Sa_id;
                 $psid_invoice_trno = $invoiceno;
-                $psid_invoice_description = $row['ITEMNAME'];
-                $psid_invoice_procode = $row['CODE'];
-                $psid_invoice_proqty = $row['QTY'];
-                $psid_invoice_rate = $row['RATE'];
-                $psid_invoice_amt = $row['TAMOUNT'];
-                $psid_invoice_itemdisp = $row['DPER'];
-                $psid_invoice_itemdisamt = $row['DAMT'];
-                $psid_invoice_billdisp = $row['BPER'];
-                $psid_invoice_billdisamt = $row['BAMT'];
-                $psid_invoice_gross = $row['GAMOUNT'];
-                $psid_invoice_taxinex = $row['TAXINEX'];
-                $psid_invoice_taxvalue = $row['TAXVALUE'];
-                $psid_invoice_taxamt = $row['TAXAMT'];
-                $psid_invoice_netamt = $row['NETAMT'];
-                $saveDtl = $clsfunreq->SaveSaleDtl(
+                $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+                $psid_invoice_description = $row['psid_invoice_description'];
+                $psid_invoice_procode = $row['psid_invoice_procode'];
+                $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+                $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+                $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+                $psid_invoice_proqty = $row['psid_invoice_proqty'];
+                $psid_invoice_rate = $row['psid_invoice_rate'];
+                $psid_invoice_amt = $row['psid_invoice_amt'];
+                $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+                $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+                $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+                $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+                $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+                $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+                $psid_invoice_gross = $row['psid_invoice_gross'];
+                $psid_invoice_taxinex = $row['psid_invoice_taxinex'];
+                $psid_invoice_taxvalue = $row['psid_invoice_taxvalue'];
+                $psid_invoice_taxamt = $row['psid_invoice_taxamt'];
+                $psid_invoice_netamt = $row['psid_invoice_netamt'];
+                $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "";
+                $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "";
+                $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "";
+                $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+                $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "";
+                $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "";
+                $saveDtl = $clsfunreq->SaveSaleQuoteDtl(
                     $psid_invoice_sno,
                     $psid_invoice_salid,
                     $psih_invoice_date,
                     $psid_invoice_trno,
+                    $psid_invoice_id,
                     $psid_invoice_description,
                     $psid_invoice_procode,
+                    $psid_invoice_barcode,
+                    $psid_invoice_serialno,
+                    $psid_invoice_uom,
                     $psid_invoice_proqty,
                     $psid_invoice_rate,
                     $psid_invoice_amt,
@@ -1943,11 +2190,19 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_itemdisamt,
                     $psid_invoice_billdisp,
                     $psid_invoice_billdisamt,
+                    $psid_invoice_totdper,
+                    $psid_invoice_totdamt,
                     $psid_invoice_gross,
                     $psid_invoice_taxinex,
                     $psid_invoice_taxvalue,
                     $psid_invoice_taxamt,
-                    $psid_invoice_netamt
+                    $psid_invoice_netamt,
+                    $psid_invoice_remarks,
+                    $psid_invoice_batchno,
+                    $psid_invoice_salesmanid,
+                    $psid_invoice_salemanper,
+                    $psid_invoice_shiftno,
+                    $psid_invoice_dayno
                 );
             }
         }
@@ -1958,16 +2213,38 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 10) { //QuoteUpdate
-        $getdtl = $_GET['dtl'];
-        $gethdr = $_GET['hdr'];
+        // Support both GET and POST to handle large data
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
+            $gethdr = isset($_POST['hdr']) ? $_POST['hdr'] : '';
+            $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
+            $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
+            $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
+            logError("SalesRequest=10 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
+        } else {
+            $getdtl = $_GET['dtl'];
+            $gethdr = $_GET['hdr'];
+            $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
+            if (strlen($_SERVER['REQUEST_URI']) > 2000) {
+                logError("SalesRequest=10 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
+            }
+        }
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
+
+        logError("SalesRequest=10 Processing", "DTL count: " . count($datadtl) . ", HDR fields: " . count($datahdr) . ", pm_id: " . $pm_id);
+
         //        echo print_r($datadtl);
         //        echo print_r($datahdr);
         //Save Hdr
         $invoiceno = $datahdr["psih_invoice_trno"];
+        $psih_invoice_pmid = isset($datahdr["psih_invoice_pmid"]) ? $datahdr["psih_invoice_pmid"] : "";
+        $psih_invoice_id = isset($datahdr["psih_invoice_id"]) ? $datahdr["psih_invoice_id"] : "";
         $psih_invoice_trno = $invoiceno;
         $psih_invoice_date = $datahdr["psih_invoice_date"];
+        $psih_invoice_prefix = isset($datahdr["psih_invoice_prefix"]) ? $datahdr["psih_invoice_prefix"] : "";
         $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
         $psih_invoice_description = $datahdr["psih_invoice_description"];
         $psih_invoice_tqty = $datahdr["psih_invoice_tqty"];
@@ -1976,8 +2253,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_titemdisamt = $datahdr["psih_invoice_titemdisamt"];
         $psih_invoice_tbilldiscper = $datahdr["psih_invoice_tbilldiscper"];
         $psih_invoice_tbilldiscamt = $datahdr["psih_invoice_tbilldiscamt"];
+        $psih_invoice_totdiscper = isset($datahdr["psih_invoice_totdiscper"]) ? $datahdr["psih_invoice_totdiscper"] : 0;
+        $psih_invoice_totdiscamt = isset($datahdr["psih_invoice_totdiscamt"]) ? $datahdr["psih_invoice_totdiscamt"] : 0;
         $psih_invoice_tgrossamt = $datahdr["psih_invoice_tgrossamt"];
         $psih_invoice_ttaxamt = $datahdr["psih_invoice_ttaxamt"];
+        $psih_invoice_sercharge = isset($datahdr["psih_invoice_sercharge"]) ? $datahdr["psih_invoice_sercharge"] : 0;
+        $psih_invoice_roundoff = isset($datahdr["psih_invoice_roundoff"]) ? $datahdr["psih_invoice_roundoff"] : 0;
         $psih_invoice_tnetamt = $datahdr["psih_invoice_tnetamt"];
         $psih_invoice_saletype = $datahdr["psih_invoice_saletype"];
         $psih_invoice_billtype = $datahdr["psih_invoice_billtype"];
@@ -1990,6 +2271,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_outstanding = $datahdr["psih_invoice_outstanding"];
         $psih_invoice_givenamt = $datahdr["psih_invoice_givenamt"];
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
+        $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
+        $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
         $saveHdr = $clsfunreq->SaveSaleQuoteUpdate(
             $psih_invoice_trno,
             $psih_invoice_date,
@@ -2014,31 +2297,51 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_advamt,
             $psih_invoice_outstanding,
             $psih_invoice_givenamt,
-            $psih_invoice_balamt
+            $psih_invoice_balamt,
+            $psih_invoice_pmid,
+            $psih_invoice_id,
+            $psih_invoice_prefix,
+            $psih_invoice_totdiscper,
+            $psih_invoice_totdiscamt,
+            $psih_invoice_sercharge,
+            $psih_invoice_roundoff,
+            $psih_invoice_shiftno,
+            $psih_invoice_dayno
         );
         if ($saveHdr) {
             //Save Dtl
             $Sal_ID = $clsfunreq->GetSalesQuoteId($invoiceno);
             //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
             foreach ($datadtl as $row) {
-                $psid_invoice_sno = $row['SNO'];
+                $psid_invoice_sno = $row['psid_invoice_sno'];
                 $psid_invoice_salid = $Sal_ID;
                 $psid_invoice_trno = $invoiceno;
-                $psid_invoice_id = $row['UID'];
-                $psid_invoice_description = $row['ITEMNAME'];
-                $psid_invoice_procode = $row['CODE'];
-                $psid_invoice_proqty = $row['QTY'];
-                $psid_invoice_rate = $row['RATE'];
-                $psid_invoice_amt = $row['TAMOUNT'];
-                $psid_invoice_itemdisp = $row['DPER'];
-                $psid_invoice_itemdisamt = $row['DAMT'];
-                $psid_invoice_billdisp = $row['BPER'];
-                $psid_invoice_billdisamt = $row['BAMT'];
-                $psid_invoice_gross = $row['GAMOUNT'];
-                $psid_invoice_taxinex = $row['TAXINEX'];
-                $psid_invoice_taxvalue = $row['TAXVALUE'];
-                $psid_invoice_taxamt = $row['TAXAMT'];
-                $psid_invoice_netamt = $row['NETAMT'];
+                $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+                $psid_invoice_description = $row['psid_invoice_description'];
+                $psid_invoice_procode = $row['psid_invoice_procode'];
+                $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+                $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+                $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+                $psid_invoice_proqty = $row['psid_invoice_proqty'];
+                $psid_invoice_rate = $row['psid_invoice_rate'];
+                $psid_invoice_amt = $row['psid_invoice_amt'];
+                $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+                $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+                $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+                $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+                $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+                $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+                $psid_invoice_gross = $row['psid_invoice_gross'];
+                $psid_invoice_taxinex = $row['psid_invoice_taxinex'];
+                $psid_invoice_taxvalue = $row['psid_invoice_taxvalue'];
+                $psid_invoice_taxamt = $row['psid_invoice_taxamt'];
+                $psid_invoice_netamt = $row['psid_invoice_netamt'];
+                $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "";
+                $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "";
+                $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "";
+                $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+                $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "";
+                $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "";
                 $saveDtl = $clsfunreq->SaveSaleDtlQuoteUpdate(
                     $psid_invoice_id,
                     $psid_invoice_sno,
@@ -2047,6 +2350,9 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_trno,
                     $psid_invoice_description,
                     $psid_invoice_procode,
+                    $psid_invoice_barcode,
+                    $psid_invoice_serialno,
+                    $psid_invoice_uom,
                     $psid_invoice_proqty,
                     $psid_invoice_rate,
                     $psid_invoice_amt,
@@ -2054,20 +2360,28 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_itemdisamt,
                     $psid_invoice_billdisp,
                     $psid_invoice_billdisamt,
+                    $psid_invoice_totdper,
+                    $psid_invoice_totdamt,
                     $psid_invoice_gross,
                     $psid_invoice_taxinex,
                     $psid_invoice_taxvalue,
                     $psid_invoice_taxamt,
                     $psid_invoice_netamt,
+                    $psid_invoice_remarks,
+                    $psid_invoice_batchno,
+                    $psid_invoice_salesmanid,
+                    $psid_invoice_salemanper,
+                    $psid_invoice_shiftno,
+                    $psid_invoice_dayno,
                     $psih_invoice_comid,
                     $psih_invoice_locid
                 );
             }
         }
         if ($saveDtl) {
-            echo json_encode(array("Success" => true, "Data" => "Voucher Updated" . $saveDtl . ',' . $refinvoiceno . ',' . $deleteJourEntry)); //"hdr" => $saveHdr, "dtl" => $saveDtl));
+            echo json_encode(array("Success" => true, "Data" => "Voucher Updated"));
         } else {
-            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated" . $refinvoiceno . ',' . $deleteJourEntry)); // "hdr" => $saveHdr, "dtl" => $saveDtl));
+            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 11) {
@@ -4144,7 +4458,9 @@ elseif (isset($_REQUEST['MgmtRequest'])) {
                 $getData = $clsfunreq->GetAllData($pm_id, $comid, $locid);
 
                 if ($getData) {
-                    echo json_encode(array("Success" => true, "Data" => $getData, "Msg" => "Data retrieved successfully"));
+                    // Wrap single record in array for DataTable conversion
+                    $dataArray = array($getData);
+                    echo json_encode(array("Success" => true, "Data" => $dataArray, "Msg" => 'Data retrieved successfully'));
                 } else {
                     echo json_encode(array("Success" => false, "Msg" => 'Failed to retrieve data'));
                 }
@@ -4377,8 +4693,7 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
         error_log("Stack trace: " . $e->getTraceAsString());
         echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
     }
-}
-elseif(isset($_REQUEST["DayCloseRequest"])) {
+} elseif (isset($_REQUEST["DayCloseRequest"])) {
     try {
         if ((int) $_REQUEST['DayCloseRequest'] === 1) {
             // Create New Day

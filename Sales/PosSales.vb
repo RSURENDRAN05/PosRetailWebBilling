@@ -790,7 +790,7 @@ Public Class PosSales
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
-                        Dim _saleData As New _salesFunDtl
+                        Dim _saleData As New SalesHeader
                         If txtclientname.EditValue Is Nothing OrElse txtclientname.Text = "" Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
@@ -877,7 +877,7 @@ Public Class PosSales
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
-                        Dim _saleData As New _salesFunDtl
+                        Dim _saleData As New SalesHeader
                         If txtclientname.EditValue Is Nothing OrElse txtclientname.Text = "" Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
@@ -1117,7 +1117,7 @@ Public Class PosSales
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If dialogResult = Windows.Forms.DialogResult.Yes Then
-                        Dim _saleData As New _salesFunDtl
+                        Dim _saleData As New SalesHeader
                         If txtclientname.EditValue Is Nothing OrElse txtclientname.Text = "" Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
@@ -1171,7 +1171,7 @@ Public Class PosSales
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If dialogResult = Windows.Forms.DialogResult.Yes Then
-                        Dim _saleData As New _salesFunDtl
+                        Dim _saleData As New SalesHeader
                         If txtclientname.EditValue Is Nothing OrElse txtclientname.Text = "" Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
@@ -1230,32 +1230,4 @@ Public Class PosSales
         End Try
     End Sub
 #End Region
-End Class
-Public Class _salesFunDtl
-    Public Property psih_invoice_date As String
-    Public Property psih_invoice_id As String
-    Public Property psih_invoice_trno As String
-    Public Property psih_invoice_customerid As String
-    Public Property psih_invoice_description As String 'Store customername
-    Public Property psih_invoice_tqty As Decimal
-    Public Property psih_invoice_tamount As Decimal
-    Public Property psih_invoice_titemdisper As Decimal
-    Public Property psih_invoice_titemdisamt As String
-    Public Property psih_invoice_tbilldiscper As Decimal
-    Public Property psih_invoice_tbilldiscamt As Decimal
-    Public Property psih_invoice_tgrossamt As String
-    Public Property psih_invoice_ttaxamt As Decimal
-    Public Property psih_invoice_tnetamt As Decimal
-    Public Property psih_invoice_saletype As String 'invoice or quotation
-    Public Property psih_invoice_billtype As String 'Cash Bill,Credit Bill
-    Public Property psih_invoice_paymode As String 'cash,credit,card
-    Public Property psih_invoice_billstatus As String
-    Public Property psih_invoice_userid As String
-    Public Property psih_invoice_comid As String
-    Public Property psih_invoice_locid As String
-    Public Property psih_invoice_billremarks As String
-    Public Property psih_invoice_advamt As Decimal
-    Public Property psih_invoice_outstanding As Decimal
-    Public Property psih_invoice_givenamt As Decimal
-    Public Property psih_invoice_balamt As Decimal
 End Class
