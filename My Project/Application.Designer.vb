@@ -30,10 +30,9 @@ Namespace My
             Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
         End Sub
 
-        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
-        Protected Overrides Sub OnCreateMainForm()
-            ' MainForm creation is now handled in Application.vb OnCreateMainForm override
-            ' This prevents duplicate form creation
-        End Sub
+        '<Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
+        'Protected Overrides Sub OnCreateMainForm()
+        '    Me.MainForm = Global.PosRetailWebBilling.Login
+        'End Sub
     End Class
 End Namespace

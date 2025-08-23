@@ -94,7 +94,7 @@ Public Class PosLogin
     End Sub
     Private Sub btn_close_Click(sender As Object, e As EventArgs) Handles btn_close.Click
         Try
-
+            Application.Exit()
         Catch ex As Exception
             WriteErroLog(errMsg & " btnBackUp_Click " & ex.Message)
         End Try
@@ -203,9 +203,9 @@ Public Class PosLogin
                     _companyInfo.LocationName = GridLookUuCompany.GetSelectedDataRow(3).ToString
                     ValidationProcess()
                     Me.Hide()
-                    MainMaster.Show()
-
+                    PosSalesII.Show()
                 Else
+                    txtpassword.Text = ""
                     XtraMessageBox.Show("User Id Or Password Is Wrong " & txtusername.Text & "!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
@@ -217,6 +217,15 @@ Public Class PosLogin
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Try
             lblDateTime.Text = "Today Date :" & Date.Now
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnPos_Click(sender As Object, e As EventArgs) Handles btnPos.Click
+        Try
+            Me.Hide()
+            Login.Show()
         Catch ex As Exception
 
         End Try

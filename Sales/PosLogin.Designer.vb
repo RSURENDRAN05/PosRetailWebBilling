@@ -564,7 +564,10 @@ Partial Class PosLogin
         Me.txtusername.Name = "txtusername"
         Me.txtusername.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.txtusername.Properties.Appearance.Options.UseFont = True
+        Me.txtusername.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 30.0!, System.Drawing.FontStyle.Bold)
+        Me.txtusername.Properties.AppearanceDropDown.Options.UseFont = True
         Me.txtusername.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtusername.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("UserName", 80, "UserName")})
         Me.txtusername.Properties.DisplayMember = "UserName"
         Me.txtusername.Properties.ImmediatePopup = True
         Me.txtusername.Properties.NullText = ""

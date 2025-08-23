@@ -86,6 +86,7 @@ Public Class PosSalesII
             BarDate.Caption = DateTime.Now
             Barshiftno.Caption = "ShiftNo : " & _companyInfo.CurShiftNo
             Bardayno.Caption = "DayNo : " & _companyInfo.CurDayNo
+            baruserinfomation.Caption = "UserName : " & _companyInfo.UserId & " - " & _companyInfo.UserName
             lblinvoicedate.Text = DateTime.Now.ToString("dd-MM-yyyy")
             ClearCurrentBill()
             LoadItemMaster()
@@ -2616,4 +2617,12 @@ Public Class PosSalesII
 #End Region
 
 
+    Private Sub barbtnhome_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnhome.ItemClick
+        Try
+            Me.Hide()
+            PosLogin.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

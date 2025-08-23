@@ -49,29 +49,38 @@ Namespace My
             ' Set culture/localization
             System.Threading.Thread.CurrentThread.CurrentUICulture = New System.Globalization.CultureInfo("en-US")
 
-            ' Conditional startup logic - you can customize this
-            ' Note: Don't call DetermineStartupForm here, it will be called in OnCreateMainForm
+            ' Load settings early in the startup process
+            Try
+                ReadUserSettings()
+            Catch ex As Exception
+                System.Diagnostics.Debug.WriteLine("Error loading settings in startup: " & ex.Message)
+            End Try
         End Sub
 
         Protected Overrides Sub OnCreateMainForm()
-            ' This method is called by the framework to create the main form
-            ' Override the default behavior from Application.Designer.vb
-            DetermineStartupForm()
+            ' This overrides the method in Application.Designer.vb
+            ' At this point, settings should already be loaded from Startup event
+            Try
+                If _globalSetting.PosBillScreen = True Then
+                    Me.MainForm = New Login()
+                Else
+                    Me.MainForm = New PosLogin()
+                End If
+            Catch ex As Exception
+                ' Fallback to Login if there's any error
+                Me.MainForm = New Login()
+            End Try
         End Sub
 
         Private Sub DetermineStartupForm()
-            ' Example: Change startup form based on conditions
+            ' This method now just reads settings - the MainForm is set in Application.Designer.vb
             Try
                 ReadUserSettings()
-                If _globalSetting.PosBillScreen = True Then
-                    Me.MainForm = New PosLogin()  ' Set as main form, don't call Show()
-                Else
-                    Me.MainForm = New Login()     ' Set as main form, don't call Show()
-                End If
-
+                ' MainForm is already set by OnCreateMainForm in Application.Designer.vb
+                ' No need to set it again here
             Catch ex As Exception
-                ' Fallback to default login form
-                Me.MainForm = New Login()
+                ' Handle errors in reading settings
+                System.Diagnostics.Debug.WriteLine("Error in DetermineStartupForm: " & ex.Message)
             End Try
         End Sub
 

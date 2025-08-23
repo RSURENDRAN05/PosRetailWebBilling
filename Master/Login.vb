@@ -125,11 +125,5 @@ Public Class Login
 
         End Try
     End Sub
-    Private Sub PictureEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles PictureEdit1.EditValueChanged
-        Try
-            PosLogin.Show()
-        Catch ex As Exception
-
-        End Try
-    End Sub
+    
 End Class
