@@ -309,11 +309,17 @@
     <Compile Include="Master\FrmSalesCommission.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <DependentUpon>Application.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Application.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="My Project\Settings.Designer.vb" />
     <Compile Include="PaymentGateWay\PortDataReceived.vb" />
     <Compile Include="PaymentGateWay\frmpaymentgateway.Designer.vb">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
@@ -455,19 +461,6 @@
     </Compile>
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MyProjectSettings\AssemblyInfo.vb" />
-    <Compile Include="MyProjectSettings\Application.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="MyProjectSettings\Application.vb">
-      <DependentUpon>Application.Designer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MyProjectSettings\Settings.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Sales\frmDiscount.designer.vb">
       <DependentUpon>frmDiscount.vb</DependentUpon>
@@ -622,7 +615,6 @@
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
     <EmbeddedResource Include="PaymentGateWay\frmpaymentgateway.resx">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
     </EmbeddedResource>
@@ -684,7 +676,6 @@
       <DependentUpon>FrmPosSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyProjectSettings\licenses.licx" />
     <EmbeddedResource Include="Sales\frmDiscount.resx">
       <DependentUpon>frmDiscount.vb</DependentUpon>
     </EmbeddedResource>
@@ -714,19 +705,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MyProjectSettings\Application.myapp">
-      <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="MyProjectSettings\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <CustomToolNamespace>My</CustomToolNamespace>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="My Project\Application.myapp" />
     <Content Include="mypos.ico" />
+    <None Include="My Project\Settings.settings" />
     <None Include="Resources\Action_Totals_Row_32x32.png" />
   </ItemGroup>
   <ItemGroup>
