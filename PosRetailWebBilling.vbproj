@@ -211,6 +211,8 @@
     <Compile Include="ChequeSystem\frmTodayCheque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClsModule\eventlogs.vb" />
+    <Compile Include="ClsModule\LoginModule.vb" />
     <Compile Include="ClsModule\mangementModule.vb" />
     <Compile Include="ClsModule\mySqlConnection.vb" />
     <Compile Include="Controller\frmKeyAmt.designer.vb">
@@ -492,7 +494,7 @@
     <Compile Include="Sales\frmSelectBill.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\PosLogin.Designer.vb">
+    <Compile Include="Sales\PosLogin.designer.vb">
       <DependentUpon>PosLogin.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\PosLogin.vb">
@@ -696,6 +698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmSelectBill.resx">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\PosLogin.resx">
+      <DependentUpon>PosLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosSales.resx">
       <DependentUpon>PosSales.vb</DependentUpon>

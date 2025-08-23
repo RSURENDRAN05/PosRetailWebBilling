@@ -32,12 +32,8 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            ' Change this line to set your desired startup form
-            Me.MainForm = Global.PosRetailWebBilling.Login  ' Example: Login form
-            ' Other options:
-            ' Me.MainForm = Global.PosRetailWebBilling.MainMaster
-            ' Me.MainForm = Global.PosRetailWebBilling.frmPosRetailBilling
-            ' Me.MainForm = Global.PosRetailWebBilling.frmAbout
+            ' MainForm creation is now handled in Application.vb OnCreateMainForm override
+            ' This prevents duplicate form creation
         End Sub
     End Class
 End Namespace

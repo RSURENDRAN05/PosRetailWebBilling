@@ -50,6 +50,12 @@ Namespace My
             System.Threading.Thread.CurrentThread.CurrentUICulture = New System.Globalization.CultureInfo("en-US")
 
             ' Conditional startup logic - you can customize this
+            ' Note: Don't call DetermineStartupForm here, it will be called in OnCreateMainForm
+        End Sub
+
+        Protected Overrides Sub OnCreateMainForm()
+            ' This method is called by the framework to create the main form
+            ' Override the default behavior from Application.Designer.vb
             DetermineStartupForm()
         End Sub
 
@@ -58,13 +64,13 @@ Namespace My
             Try
                 ReadUserSettings()
                 If _globalSetting.PosBillScreen = True Then
-                    Me.MainForm = New PosLogin
+                    Me.MainForm = New PosLogin()  ' Set as main form, don't call Show()
                 Else
-                    Me.MainForm = New Login()
+                    Me.MainForm = New Login()     ' Set as main form, don't call Show()
                 End If
 
             Catch ex As Exception
-                ' Fallback to default form
+                ' Fallback to default login form
                 Me.MainForm = New Login()
             End Try
         End Sub

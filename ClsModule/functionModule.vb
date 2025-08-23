@@ -23,13 +23,14 @@ Module functionModule
     Public E_EmployeeId As Integer = 0
 
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "MGMT VER25.0.0.22 R3 03072025"
+        Public Shared SoftwareVersion As String = "MGMT VER25.0.0.1 R1 23082025"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared AppPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
         Public Shared LinkAjaxRequestCheque As String = ""
         Public Shared licenceActive As String = ""
         Public Shared licenceServerCleint As String = ""
+        Shared _logPath As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("LogPath")
     End Structure
 
     ' Initialize the module safely
