@@ -1664,9 +1664,9 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     }
                 }
             } else {
+                echo json_encode(array("Success" => false, "Data" => "Sales Not Saved", "InvoiceNo" => '0'));
+                exit;
             }
-
-
 
             if ($saveDtl) {
 
@@ -2117,10 +2117,10 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         // Final result evaluation and logging
         if ($dtlSaveCount > 0) {
 
-            echo json_encode(array("Success" => true, "Data" => "Voucher Updated - Details saved: $dtlSaveCount"));
+            echo json_encode(array("Success" => true, "Data" => 'Sales Saved InvoiceNo: ', "InvoiceNo" => $invoiceno));
         } else {
 
-            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated - No details saved"));
+            echo json_encode(array("Success" => false, "Data" => "Sales Not Saved - No details saved"));
         }
     }
     if ((int) $_REQUEST['SalesRequest'] == 8) { //Get Sales Bill by BillNo
