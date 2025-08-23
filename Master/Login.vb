@@ -1,8 +1,9 @@
 ﻿Imports DevExpress.XtraEditors
 Public Class Login
-    Public ini As New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
+    'Public ini As New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
     Dim LocationId As Integer = 0
     Dim CompanyId As Integer = 0
+
     Public Sub New()
         'Dim dta As New DataTable
         'dta = MySqlDataAdapter("select * from user_table")
@@ -18,6 +19,7 @@ Public Class Login
             M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
             LocationId = ini.ReadValue("Bank", "LocationId")
             CompanyId = ini.ReadValue("Bank", "CompanyId")
+           
             If chkRegistryKey(M_Details.licenceActive) = False Then
                 End
             End If

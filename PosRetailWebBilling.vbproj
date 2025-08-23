@@ -492,6 +492,12 @@
     <Compile Include="Sales\frmSelectBill.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\PosLogin.Designer.vb">
+      <DependentUpon>PosLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PosLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\PosSales.Designer.vb">
       <DependentUpon>PosSales.vb</DependentUpon>
     </Compile>

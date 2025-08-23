@@ -1150,14 +1150,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="2761216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="2762752">
       <assemblyIdentity name="PosRetailWebBilling" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QKfj5qIFqaga873RA0JXnCtYnim2452avDemqIxpGJA=</dsig:DigestValue>
+        <dsig:DigestValue>YzYp4ZIQaHudR5SDRV6WNtVeYX1DGmEkK6nFqh6PvJc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1185,6 +1185,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="My Project\Application.myapp" size="436">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Bmo8VjkTC/nKy0FBqGh68jwjjsO6vuPtmMdyIEg46uc=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="mypos.ico" size="270398">
     <hash>
       <dsig:Transforms>

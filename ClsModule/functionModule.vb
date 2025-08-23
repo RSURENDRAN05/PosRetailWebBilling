@@ -16,20 +16,40 @@ Imports System.Globalization
 Module functionModule
     Public isTrial As Boolean
     Public G_SalID As Integer = 0
-    Public ini As New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
+    Public ini As IniFile ' Don't initialize here - initialize later
     Public PanelScreenWith As Integer = 0
     Public PanelScreenHeight As Integer = 0
     Public G_GRNNo As String = String.Empty
     Public E_EmployeeId As Integer = 0
+
     Public Structure M_Details
         Public Shared SoftwareVersion As String = "MGMT VER25.0.0.22 R3 03072025"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared AppPath As String = Application.StartupPath
-        Public Shared LinkAjaxRequest As String = ini.ReadValue("Profile", "UrlLink")
+        Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
         Public Shared LinkAjaxRequestCheque As String = ""
         Public Shared licenceActive As String = ""
         Public Shared licenceServerCleint As String = ""
     End Structure
+
+    ' Initialize the module safely
+    Public Sub InitializeModule()
+        Try
+            If ini Is Nothing Then
+                ini = New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
+                ' Now safely read the settings
+                M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
+                If String.IsNullOrEmpty(M_Details.LinkAjaxRequest) Then
+                    M_Details.LinkAjaxRequest = "http://localhost/api/" ' Default fallback
+                End If
+            End If
+        Catch ex As Exception
+            ' Handle initialization errors gracefully
+            System.Diagnostics.Debug.WriteLine("Module initialization error: " & ex.Message)
+            ' Set default values
+            M_Details.LinkAjaxRequest = "http://localhost/api/"
+        End Try
+    End Sub
     Public Structure _FunctionKeyBoardModule
         Public Shared gs_keyboardValueInteger As Integer = 0
         Public Shared gs_keyboardValueDecimal As Decimal = 0.0
@@ -97,6 +117,7 @@ Module functionModule
         Public Shared ItemDiscountActive As Boolean = False
         Public Shared SelectMultiplePriceActive As Boolean = False
         Public Shared SalesManEachItemActive As Boolean = False
+        Public Shared PosBillScreen As Boolean = True
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"
@@ -595,7 +616,6 @@ Module functionModule
                 End Using
             End Using
         Catch
-
             Return False
         End Try
     End Function
