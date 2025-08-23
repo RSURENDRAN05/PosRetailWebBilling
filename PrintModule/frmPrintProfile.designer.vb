@@ -39,6 +39,7 @@ Partial Class frmPrintProfile
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.lblmode = New System.Windows.Forms.Label()
+        Me.btnprintdesign = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCmbtype.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -290,6 +291,17 @@ Partial Class frmPrintProfile
         Me.lblmode.TabIndex = 22
         Me.lblmode.Text = "."
         '
+        'btnprintdesign
+        '
+        Me.btnprintdesign.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.btnprintdesign.Appearance.Options.UseFont = True
+        Me.btnprintdesign.Image = CType(resources.GetObject("btnprintdesign.Image"), System.Drawing.Image)
+        Me.btnprintdesign.Location = New System.Drawing.Point(852, 34)
+        Me.btnprintdesign.Name = "btnprintdesign"
+        Me.btnprintdesign.Size = New System.Drawing.Size(94, 48)
+        Me.btnprintdesign.TabIndex = 23
+        Me.btnprintdesign.Text = "Design"
+        '
         'frmPrintProfile
         '
         Me.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -297,6 +309,7 @@ Partial Class frmPrintProfile
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(951, 647)
+        Me.Controls.Add(Me.btnprintdesign)
         Me.Controls.Add(Me.lblmode)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -346,4 +359,5 @@ Partial Class frmPrintProfile
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents lblmode As System.Windows.Forms.Label
+    Friend WithEvents btnprintdesign As DevExpress.XtraEditors.SimpleButton
 End Class

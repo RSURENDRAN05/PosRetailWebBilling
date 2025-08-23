@@ -2,6 +2,7 @@
 Imports Newtonsoft.Json.Linq
 Imports System.Drawing
 Imports Newtonsoft.Json
+Imports System.IO
 
 ' PosSalesII Form - Enhanced with Grid Layout Management
 ' Features:
@@ -16,11 +17,10 @@ Public Class PosSalesII
     Dim Errstr As String
     Dim _SnoCount As Integer = 0
     Dim modeOfSale As String = "New"
-
     ' Customer Selection Variables
     Private selectedCustomerId As Integer = 0
-    Private selectedCustomerName As String = ""
-    Private selectedCustomerPhone As String = ""
+    Private selectedCustomerName As String = String.Empty
+    Private selectedCustomerPhone As String = String.Empty
     Private customerDisplayTable As DataTable
 #Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
@@ -60,6 +60,7 @@ Public Class PosSalesII
             GridDataTble_Insert.Columns.Add("SALESMANPER", GetType(Decimal)).DefaultValue = 0 '20 - Salesman Commission Percentage
             GridDataTble_Insert.Columns.Add("DELETE", GetType(Integer)).DefaultValue = 1 '21
             GridDataTble_Insert.Columns.Add("ITEMLOCK", GetType(Integer)).DefaultValue = 1 '22 - Item Lock Status
+            GridDataTble_Insert.Columns.Add("PSID", GetType(Integer)).DefaultValue = 0 '23 - psID Database Autoid for recall after insert
 
             Return GridDataTble_Insert
         Catch ex As Exception
@@ -112,34 +113,37 @@ Public Class PosSalesII
                 Next
                 CmbPaymentTerm.SelectedIndex = 0
             End If
+            If _printProfileLoad() = False Then
+
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
 
-    'Public Function _printProfileLoad() As Boolean
-    '    Try
-    '        If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
-    '            Dim str() As String = {"Sales"}
-    '            Dim _dsPrintProfile As New DataSet
-    '            _dsPrintProfile.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
-    '            Dim sas = From profile In _dsPrintProfile.Tables(0).AsEnumerable Where profile.Field(Of String)("ProfileType") = "Sales" Select profile
+    Public Function _printProfileLoad() As Boolean
+        Try
+            If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+                Dim str() As String = {"Sales"}
+                Dim _dsPrintProfile As New DataSet
+                _dsPrintProfile.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+                Dim sas = From profile In _dsPrintProfile.Tables(0).AsEnumerable Where profile.Field(Of String)("ProfileType") = "Sales" Select profile
 
-    '            Dim tabl As New DataTable
-    '            If sas.Count > 0 Then
-    '                txtprintprofile.Properties.Items.Clear()
-    '                tabl = sas.CopyToDataTable
-    '                For Each _Drows As DataRow In tabl.Rows
-    '                    txtprintprofile.Properties.Items.Add(_Drows("FileName"))
-    '                Next
-    '            End If
-    '            txtprintprofile.SelectedIndex = 0
-    '        End If
-    '        Return True
-    '    Catch ex As Exception
-    '        Return False
-    '    End Try
-    'End Function
+                Dim tabl As New DataTable
+                If sas.Count > 0 Then
+                    txtprintprofile.Properties.Items.Clear()
+                    tabl = sas.CopyToDataTable
+                    For Each _Drows As DataRow In tabl.Rows
+                        txtprintprofile.Properties.Items.Add(_Drows("FileName"))
+                    Next
+                End If
+                txtprintprofile.SelectedIndex = 0
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     'Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
     '    Try
     '        If _getBillno() = False Then
@@ -183,7 +187,6 @@ Public Class PosSalesII
     '    End Try
     'End Function
 #End Region
-
 #Region "SaveLayOut"
 
     Private Sub btnSaveLayout_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveLayout.ItemClick
@@ -666,21 +669,7 @@ Public Class PosSalesII
         Try
             Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
             If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "DELETE" Then
-                If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
-                    ' Show confirmation dialog
-                    Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
-                    If itemLock.ToString = "2" Then
-                        Exit Sub
-                    End If
-                    Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
-                    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
-                                                               "Confirm Delete", _
-                                                               MessageBoxButtons.YesNo, _
-                                                               MessageBoxIcon.Question)
-                    If result = DialogResult.Yes Then
-                        DeleteSelectedRow(focusedRowHandle)
-                    End If
-                End If
+                DeleteItem(focusedRowHandle)
             End If
             If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "SALESPERSON" Then
                 If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
@@ -691,17 +680,35 @@ Public Class PosSalesII
 
         End Try
     End Sub
-
-    Private Sub GridViewPOS_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GridViewPOS.KeyDown
+    Private Sub DeleteItem(ByRef focusedRowHandle As Integer)
         Try
-            If e.KeyCode = Keys.Delete Then
-                Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
-                If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
-                    ' Show confirmation dialog
-                    Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
-                    If itemLock.ToString = "2" Then
-                        Exit Sub
+            If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                ' Show confirmation dialog
+                Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
+
+                If itemLock.ToString = "2" Then
+                    If _globalSetting.ItemDeleteActive = True Then
+                        Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                                   "Confirm Delete", _
+                                                                   MessageBoxButtons.YesNo, _
+                                                                   MessageBoxIcon.Question)
+                        If result = DialogResult.Yes Then
+                            DeleteSelectedRow(focusedRowHandle)
+                        End If
+                    Else
+                        If _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                            Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+                            Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                                       "Confirm Delete", _
+                                                                       MessageBoxButtons.YesNo, _
+                                                                       MessageBoxIcon.Question)
+                            If result = DialogResult.Yes Then
+                                DeleteSelectedRow(focusedRowHandle)
+                            End If
+                        End If
                     End If
+                Else
                     Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
                     Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
                                                                "Confirm Delete", _
@@ -710,6 +717,19 @@ Public Class PosSalesII
                     If result = DialogResult.Yes Then
                         DeleteSelectedRow(focusedRowHandle)
                     End If
+                End If
+
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub GridViewPOS_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GridViewPOS.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
+                If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
+                    DeleteItem(focusedRowHandle)
                 End If
             ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.Up Then
                 cmbMaterialSearch.Focus()
@@ -725,54 +745,39 @@ Public Class PosSalesII
                     ' Delete focused row
                     Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
                     If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
-                        Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
-                        If itemLock.ToString = "2" Then
-                            Exit Sub
-                        End If
-                        Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
-                        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
-                                                                   "Confirm Delete", _
-                                                                   MessageBoxButtons.YesNo, _
-                                                                   MessageBoxIcon.Question)
-                        If result = DialogResult.Yes Then
-                            DeleteSelectedRow(focusedRowHandle)
-                        End If
+                        DeleteItem(focusedRowHandle)
                     End If
                 Else
                     GridViewPOS.CloseEditor()
                     cmbMaterialSearch.Focus()
                 End If
                 ' Quantity control shortcuts
-            ElseIf e.KeyCode = Keys.Add OrElse (My.Computer.Keyboard.ShiftKeyDown AndAlso e.KeyCode = Keys.Oemplus) Then
-                ' + key: Add 1 to quantity
-                AddQuantityToItem(1)
-                e.Handled = True
-            ElseIf e.KeyCode = Keys.Subtract OrElse e.KeyCode = Keys.OemMinus Then
-                ' - key: Subtract 1 from quantity
-                SubtractQuantityFromItem(1)
-                e.Handled = True
-            ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.Q Then
-                ' Ctrl+Q: Open quantity dialog
-                btnqty_Click(Nothing, Nothing)
-                e.Handled = True
-            ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.P Then
-                ' Ctrl+P: Open multiple price selection dialog
-                ShowMultiplePriceSelection()
-                e.Handled = True
-            ElseIf e.KeyCode = Keys.F2 Then
-                ' F2: Open multiple price selection dialog
-                ShowMultiplePriceSelection()
-                e.Handled = True
+                'ElseIf e.KeyCode = Keys.Add OrElse (My.Computer.Keyboard.ShiftKeyDown AndAlso e.KeyCode = Keys.Oemplus) Then
+                '    ' + key: Add 1 to quantity
+                '    AddQuantityToItem(1)
+                '    e.Handled = True
+                'ElseIf e.KeyCode = Keys.Subtract OrElse e.KeyCode = Keys.OemMinus Then
+                '    ' - key: Subtract 1 from quantity
+                '    SubtractQuantityFromItem(1)
+                '    e.Handled = True
+                'ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.Q Then
+                '    ' Ctrl+Q: Open quantity dialog
+                '    btnqty_Click(Nothing, Nothing)
+                '    e.Handled = True
+                'ElseIf My.Computer.Keyboard.CtrlKeyDown AndAlso e.KeyCode = Keys.P Then
+                '    ' Ctrl+P: Open multiple price selection dialog
+                '    ShowMultiplePriceSelection()
+                '    e.Handled = True
+                'ElseIf e.KeyCode = Keys.F2 Then
+                '    ' F2: Open multiple price selection dialog
+                '    ShowMultiplePriceSelection()
+                '    e.Handled = True
             End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
     End Sub
-
-
-
-
     ' Method to delete a specific row
     Private Sub DeleteSelectedRow(rowHandle As Integer)
         Try
@@ -782,30 +787,94 @@ Public Class PosSalesII
             End If
 
             ' Get item information for confirmation/logging
-            Dim itemCode = GridDataTble_Insert.Rows(rowHandle)("ITEMCODE")
-            Dim itemName = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME")
+            Dim itemCode = GridDataTble_Insert.Rows(rowHandle)("ITEMCODE").ToString()
+            Dim itemName = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME").ToString()
+            Dim netAmount = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("NETAMT"))
+            Dim rate = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("RATE"))
+            Dim qty = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("QTY"))
+            Dim psid = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("PSID"))
 
-            ' Remove the row from DataTable
-            GridDataTble_Insert.Rows.RemoveAt(rowHandle)
-            GridDataTble_Insert.AcceptChanges()
+            ' Send delete log to server before removing from grid
+            Try
+                SendDeleteLogToServer(itemCode, itemName, qty, netAmount, "Item deleted by user", psid)
 
-            ' Renumber the SNO column
-            RenumberSerialNumbers()
+                ' Only remove the row if server logging was successful
+                ' Remove the row from DataTable
+                GridDataTble_Insert.Rows.RemoveAt(rowHandle)
+                GridDataTble_Insert.AcceptChanges()
 
-            ' Refresh the grid
-            GridControlSalesData.DataSource = GridDataTble_Insert
+                ' Renumber the SNO column
+                RenumberSerialNumbers()
 
-            ' Update grand totals
-            SalesGrandtotal("OK")
+                ' Refresh the grid
+                GridControlSalesData.DataSource = GridDataTble_Insert
 
-            ' Optional: Show success message (uncomment if needed)
-            ' MessageBox.Show("Item '" & itemName & "' deleted successfully.", "Item Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ' Update grand totals
+                SalesGrandtotal("OK")
 
-            ' Set focus back to search for next item entry
-            cmbMaterialSearch.Focus()
+                ' Set focus back to search for next item entry
+                cmbMaterialSearch.Focus()
+
+            Catch ex As Exception
+                ' Show error message and do not delete the row
+                DevExpress.XtraEditors.XtraMessageBox.Show("Error: Could not log delete action to server: " & ex.Message & vbNewLine & vbNewLine & "Item was NOT deleted from the bill.",
+                                                         "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ' Exit without deleting the row
+                Exit Sub
+            End Try
 
         Catch ex As Exception
             Throw New Exception("Error deleting row: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Method to send delete log to server
+    Private Sub SendDeleteLogToServer(itemCode As String, itemName As String, qty As String, netAmount As Decimal, reason As String, psid As String)
+        Try
+            ' Prepare parameters for delete log
+            Dim billno As String = If(String.IsNullOrEmpty(lblinvoiceno.Text), "TEMP-" & DateTime.Now.ToString("yyyyMMddHHmmss"), lblinvoiceno.Text)
+            Dim pcname As String = Environment.MachineName
+            Dim shiftno As Integer = _companyInfo.CurShiftNo
+            Dim dayno As Integer = _companyInfo.CurDayNo
+            Dim comid As Integer = _companyInfo.ComId
+            Dim locid As Integer = _companyInfo.LocId
+            Dim userid As Integer = _companyInfo.UserId
+
+            ' Build URL parameters
+            Dim url As String = M_Details.LinkAjaxRequest & "SalesRequest=14" &
+                               "&billno=" & Uri.EscapeDataString(billno) &
+                               "&procode=" & Uri.EscapeDataString(itemCode) &
+                               "&description=" & Uri.EscapeDataString(itemName) &
+                               "&netamt=" & netAmount.ToString("0.00") &
+                               "&reason=" & Uri.EscapeDataString(reason) &
+                               "&pcname=" & Uri.EscapeDataString(pcname) &
+                               "&shiftno=" & shiftno.ToString() &
+                               "&dayno=" & dayno.ToString() &
+                               "&comid=" & comid.ToString() &
+                               "&locid=" & locid.ToString() &
+                               "&userid=" & userid.ToString() &
+                               "&qty=" & qty &
+                               "&psid=" & psid
+
+            ' Send request to server
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Using webClient As New System.Net.WebClient()
+                webClient.Encoding = System.Text.Encoding.UTF8
+                Dim response As String = webClient.DownloadString(url)
+
+                ' Parse response
+                Dim parsedResponse As JObject = JObject.Parse(response)
+                Dim success As Boolean = Convert.ToBoolean(parsedResponse("Success"))
+
+                If Not success Then
+                    Dim errorMessage As String = parsedResponse("Data").ToString()
+                    Throw New Exception("Server returned error: " & errorMessage)
+                End If
+            End Using
+
+        Catch ex As Exception
+            ' Re-throw with more context
+            Throw New Exception("Failed to send delete log to server: " & ex.Message)
         End Try
     End Sub
 
@@ -820,27 +889,6 @@ Public Class PosSalesII
             GridDataTble_Insert.AcceptChanges()
         Catch ex As Exception
             ' Handle renumbering errors silently
-        End Try
-    End Sub
-
-    ' Public method to delete current selected row (can be called externally)
-    Public Sub DeleteCurrentSelectedRow()
-        Try
-            Dim focusedRowHandle As Integer = GridViewPOS.FocusedRowHandle
-            If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
-                Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
-                Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
-                                                           "Confirm Delete", _
-                                                           MessageBoxButtons.YesNo, _
-                                                           MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    DeleteSelectedRow(focusedRowHandle)
-                End If
-            Else
-                MessageBox.Show("Please select an item to delete.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error deleting item: " & ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -1085,12 +1133,12 @@ Public Class PosSalesII
             ' Add row with new column structure including separate discount columns and salesman info
             ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
             '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
-            '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE, ITEMLOCK
+            '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE, ITEMLOCK, PSID
             GridDataTble_Insert.Rows.Add(_SnoCount, _barcode, _itemcode, Trim(_item), _serialno, _uom, _srate, Qty, TAmount, _
                                         0, 0, _
                                         DisBPer, DisBAmt, _
                                         DisBPer, DisBAmt, _
-                                        GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, salesmanId, salesmanName, salesmanPer, 1, 1)
+                                        GAmount, _taxValue, TaxRetunAmt, _RoundOff(NetAmount), "Remarks", _batchno, salesmanId, salesmanName, salesmanPer, 1, 1, 0)
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
@@ -1615,10 +1663,7 @@ Public Class PosSalesII
 
             ' Set focus to search field for quick item entry
             cmbMaterialSearch.Focus()
-
-            ' Update status
-            MessageBox.Show("New bill started successfully.", "New Bill", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+ 
         Catch ex As Exception
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1636,7 +1681,7 @@ Public Class PosSalesII
 
             ' Set mode to new
             modeOfSale = "New"
-
+            barbtnstatus.Caption = "Sales Mode : " & modeOfSale
             ' Clear selected customer
             ClearSelectedCustomer()
 
@@ -1676,43 +1721,64 @@ Public Class PosSalesII
 
     Private Sub btn_1_Click(sender As Object, e As EventArgs) Handles btn_7.Click, btn_8.Click, btn_9.Click, btn_6.Click, btn_5.Click, btn_4.Click, btn_3.Click, btn_2.Click, btn_1.Click, btn_10.Click, btn_12.Click
         Try
+            Dim focusedRowHandle = GetTargetRowIndex()
             Dim NUMBTN As Label = CType(sender, Label)
             Dim buttonText As String = NUMBTN.Text.Trim()
+            Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
+            If itemLock.ToString = "2" Then
+                If _globalSetting.QtyChangeActive = False Then
+                    Exit Sub
+                Else
 
-            ' Numeric input - directly add to current input and apply
-            Dim numValue As Integer
-            If Integer.TryParse(buttonText, numValue) Then
-                currentQtyInput += buttonText
-                ' Update quantity display
-                Dim qty As Decimal
-                If Decimal.TryParse(currentQtyInput, qty) AndAlso qty > 0 Then
-                    txtMqty.EditValue = qty
-                    ' Directly apply the quantity to selected/last item
-                    ApplyQuantityInput()
+
+                    ' Numeric input - directly add to current input and apply
+                    Dim numValue As Integer
+                    If Integer.TryParse(buttonText, numValue) Then
+                        currentQtyInput += buttonText
+                        ' Update quantity display
+                        Dim qty As Decimal
+                        If Decimal.TryParse(currentQtyInput, qty) AndAlso qty > 0 Then
+                            txtMqty.EditValue = qty
+                            ' Directly apply the quantity to selected/last item
+                            ApplyQuantityInput()
+                        End If
+                    End If
+                End If
+            Else
+                ' Numeric input - directly add to current input and apply
+                Dim numValue As Integer
+                If Integer.TryParse(buttonText, numValue) Then
+                    currentQtyInput += buttonText
+                    ' Update quantity display
+                    Dim qty As Decimal
+                    If Decimal.TryParse(currentQtyInput, qty) AndAlso qty > 0 Then
+                        txtMqty.EditValue = qty
+                        ' Directly apply the quantity to selected/last item
+                        ApplyQuantityInput()
+                    End If
                 End If
             End If
-
         Catch ex As Exception
             MessageBox.Show("Error in quantity button click: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    ' Separate event handlers for specific function buttons
-    Private Sub btnPlus_Click(sender As Object, e As EventArgs) ' Add this handler to your + button
-        Try
-            AddQuantityToItem(1)
-        Catch ex As Exception
-            MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '' Separate event handlers for specific function buttons
+    'Private Sub btnPlus_Click(sender As Object, e As EventArgs) ' Add this handler to your + button
+    '    Try
+    '        AddQuantityToItem(1)
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
-    Private Sub btnMinus_Click(sender As Object, e As EventArgs) ' Add this handler to your - button
-        Try
-            SubtractQuantityFromItem(1)
-        Catch ex As Exception
-            MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    'Private Sub btnMinus_Click(sender As Object, e As EventArgs) ' Add this handler to your - button
+    '    Try
+    '        SubtractQuantityFromItem(1)
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) ' Add this handler to your Clear button
         Try
@@ -1724,11 +1790,27 @@ Public Class PosSalesII
     End Sub
     Private Sub btnqty_Click(sender As Object, e As EventArgs) Handles btnqty.Click
         Try
-            frmKeyQty.ShowDialog("Enter Qty")
-            If frmKeyQty.DialogResult = Windows.Forms.DialogResult.OK Then
-                Dim Qty = _FunctionKeyBoardModule.gs_keyboardValueInteger
-                If Qty > 0 Then
-                    UpdateQuantityForSelectedItem(Qty)
+            Dim focusedRowHandle = GetTargetRowIndex()
+            Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
+            If itemLock.ToString = "2" Then
+                If _globalSetting.QtyChangeActive = False Then
+                    Exit Sub
+                Else
+                    frmKeyQty.ShowDialog("Enter Qty")
+                    If frmKeyQty.DialogResult = Windows.Forms.DialogResult.OK Then
+                        Dim Qty = _FunctionKeyBoardModule.gs_keyboardValueInteger
+                        If Qty > 0 Then
+                            UpdateQuantityForSelectedItem(Qty)
+                        End If
+                    End If
+                End If
+            Else
+                frmKeyQty.ShowDialog("Enter Qty")
+                If frmKeyQty.DialogResult = Windows.Forms.DialogResult.OK Then
+                    Dim Qty = _FunctionKeyBoardModule.gs_keyboardValueInteger
+                    If Qty > 0 Then
+                        UpdateQuantityForSelectedItem(Qty)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -1736,33 +1818,33 @@ Public Class PosSalesII
         End Try
     End Sub
 
-    ' Add quantity to selected item or last item
-    Private Sub AddQuantityToItem(addQty As Decimal)
-        Try
-            Dim targetRowIndex As Integer = GetTargetRowIndex()
-            If targetRowIndex >= 0 Then
-                UpdateRowQuantity(targetRowIndex, addQty, "ADD")
-            Else
-                MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '' Add quantity to selected item or last item
+    'Private Sub AddQuantityToItem(addQty As Decimal)
+    '    Try
+    '        Dim targetRowIndex As Integer = GetTargetRowIndex()
+    '        If targetRowIndex >= 0 Then
+    '            UpdateRowQuantity(targetRowIndex, addQty, "ADD")
+    '        Else
+    '            MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        End If
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error adding quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
-    ' Subtract quantity from selected item or last item
-    Private Sub SubtractQuantityFromItem(subtractQty As Decimal)
-        Try
-            Dim targetRowIndex As Integer = GetTargetRowIndex()
-            If targetRowIndex >= 0 Then
-                UpdateRowQuantity(targetRowIndex, subtractQty, "SUBTRACT")
-            Else
-                MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '' Subtract quantity from selected item or last item
+    'Private Sub SubtractQuantityFromItem(subtractQty As Decimal)
+    '    Try
+    '        Dim targetRowIndex As Integer = GetTargetRowIndex()
+    '        If targetRowIndex >= 0 Then
+    '            UpdateRowQuantity(targetRowIndex, subtractQty, "SUBTRACT")
+    '        Else
+    '            MessageBox.Show("No item available to update quantity.", "No Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        End If
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error subtracting quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
     ' Apply the current quantity input to selected or last item
     Private Sub ApplyQuantityInput()
@@ -1922,22 +2004,22 @@ Public Class PosSalesII
         End Try
     End Sub
 
-    ' Quick quantity buttons (can be added to form if needed)
-    Public Sub QuickAddQty1()
-        AddQuantityToItem(1)
-    End Sub
+    '' Quick quantity buttons (can be added to form if needed)
+    'Public Sub QuickAddQty1()
+    '    AddQuantityToItem(1)
+    'End Sub
 
-    Public Sub QuickAddQty5()
-        AddQuantityToItem(5)
-    End Sub
+    'Public Sub QuickAddQty5()
+    '    AddQuantityToItem(5)
+    'End Sub
 
-    Public Sub QuickAddQty10()
-        AddQuantityToItem(10)
-    End Sub
+    'Public Sub QuickAddQty10()
+    '    AddQuantityToItem(10)
+    'End Sub
 
-    Public Sub QuickSubtractQty1()
-        SubtractQuantityFromItem(1)
-    End Sub
+    'Public Sub QuickSubtractQty1()
+    '    SubtractQuantityFromItem(1)
+    'End Sub
 #End Region
 #Region "SelectMultiplePrice"
     Private Sub barbtnselectprice_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnselectprice.ItemClick
@@ -2081,8 +2163,8 @@ Public Class PosSalesII
     Public Sub ClearSelectedCustomer()
         Try
             selectedCustomerId = 0
-            selectedCustomerName = ""
-            selectedCustomerPhone = ""
+            selectedCustomerName = String.Empty
+            selectedCustomerPhone = String.Empty
             barselectcustomer1.Caption = "Select Customer"
             barselectcustomer1.Hint = "Click to select a customer for this bill"
 
@@ -2456,9 +2538,9 @@ Public Class PosSalesII
                             _saleData.psih_invoice_billstatus = "Closed"
                         End If
                         _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
-                        If selectedCustomerName = "" Then
-                            selectedCustomerId = 1
-                            selectedCustomerName = "Default Customer"
+                        If String.IsNullOrEmpty(selectedCustomerName) Then
+                            _saleData.psih_invoice_customerid = 1
+                            _saleData.psih_invoice_description = "Default Customer"
                         Else
                             _saleData.psih_invoice_customerid = selectedCustomerId
                             _saleData.psih_invoice_description = selectedCustomerName
@@ -2466,6 +2548,7 @@ Public Class PosSalesII
                         _saleData.psih_invoice_userid = _companyInfo.UserId
                         _saleData.psih_invoice_comid = _companyInfo.ComId
                         _saleData.psih_invoice_locid = _companyInfo.LocId
+                        _saleData.psih_invoice_countername = Environment.MachineName
                         _saleData.psih_invoice_billremarks = "-"
 
                         If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
@@ -2495,7 +2578,7 @@ Public Class PosSalesII
                         End If
                         _saleData.psih_invoice_shiftno = _companyInfo.CurShiftNo
                         _saleData.psih_invoice_dayno = _companyInfo.CurDayNo
-
+                        _saleData.psih_invoice_countername = Environment.MachineName
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2506,15 +2589,17 @@ Public Class PosSalesII
                         Dim jsondtl As String = GetSalesDetailJson()
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=4&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult) = True Then
+                        Dim ReturnBill As String = "0"
+                        If _JsonSendSales(M_Details.LinkAjaxRequest & "SalesRequest=4&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult, ReturnBill) = True Then
+                            barstatuslastbillno.Caption = ReturnBill
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved ", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
-
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
                     End If
                 End If
+
             ElseIf modeOfSale = "Edit" Then
                 If GridViewPOS.RowCount > 0 Then
                     frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
@@ -2522,34 +2607,41 @@ Public Class PosSalesII
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         Dim _saleData As New SalesHeader
-                        If selectedCustomerName = "" Then
-                            DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        Else
-                            _saleData.psih_invoice_customerid = selectedCustomerId
-                            _saleData.psih_invoice_description = selectedCustomerName
-                        End If
+                        _saleData.psih_invoice_pmid = _companyInfo.CompanyPMId
                         Dim invoicedate As String = ""
                         _DateConversion(lblinvoicedate.Text, invoicedate)
                         _saleData.psih_invoice_date = invoicedate
                         _saleData.psih_invoice_id = G_SalID
                         _saleData.psih_invoice_trno = lblinvoiceno.Text
-                        _saleData.psih_invoice_prefix = billPrefix
+                        _saleData.psih_invoice_prefix = billPrefix.ToString
                         _saleData.psih_invoice_tqty = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("QTY"))
                         _saleData.psih_invoice_tamount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
                         _saleData.psih_invoice_titemdisper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("ITEM_DPER"))
                         _saleData.psih_invoice_titemdisamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("ITEM_DAMT"))
                         _saleData.psih_invoice_tbilldiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("BILL_DPER"))
                         _saleData.psih_invoice_tbilldiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("BILL_DAMT"))
+                        _saleData.psih_invoice_totdiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("TOTAL_DPER"))
+                        _saleData.psih_invoice_totdiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TOTAL_DAMT"))
                         _saleData.psih_invoice_tgrossamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("GAMOUNT"))
                         _saleData.psih_invoice_ttaxamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
-                        _saleData.psih_invoice_sercharge = lblservcharge.Text
-                        _saleData.psih_invoice_tnetamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                        _saleData.psih_invoice_sercharge = lblservchargetotal.Text
+                        _saleData.psih_invoice_roundoff = 0
+                        Dim nettotal As Decimal = 0
+                        Dim serviecharge As Decimal = 0
+                        If _globalSetting.ServiceTaxActive = True Then
+                            serviecharge = ConvertDecimal(lblservchargetotal.Text)
+                            nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                            nettotal = nettotal + serviecharge
+                        Else
+                            nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                        End If
+                        _saleData.psih_invoice_tnetamt = nettotal
                         _saleData.psih_invoice_saletype = "Invoice"
-                        _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
                         _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
-                        _saleData.psih_invoice_shiftno = _companyInfo.CurShiftNo
-                        _saleData.psih_invoice_dayno = _companyInfo.CurDayNo
+                        If _PaymentDtl.paymentModeSelection = "" Then
+                            _PaymentDtl.paymentModeSelection = "Cash Bill"
+                            _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
+                        End If
                         If _PaymentDtl.paymentMode = "cash" Then
                             _saleData.psih_invoice_billstatus = "Closed"
                         ElseIf _PaymentDtl.paymentMode = "credit" Then
@@ -2557,7 +2649,19 @@ Public Class PosSalesII
                         ElseIf _PaymentDtl.paymentMode = "card" Then
                             _saleData.psih_invoice_billstatus = "Closed"
                         End If
+                        _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
+                        If String.IsNullOrEmpty(selectedCustomerName) Then
+                            _saleData.psih_invoice_customerid = 1
+                            _saleData.psih_invoice_description = "Default Customer"
+                        Else
+                            _saleData.psih_invoice_customerid = selectedCustomerId
+                            _saleData.psih_invoice_description = selectedCustomerName
+                        End If
+                        _saleData.psih_invoice_userid = _companyInfo.UserId
+                        _saleData.psih_invoice_comid = _companyInfo.ComId
+                        _saleData.psih_invoice_locid = _companyInfo.LocId
                         _saleData.psih_invoice_billremarks = "-"
+
                         If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
                             _saleData.psih_invoice_advamt = 0
                             DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can't Be Accepted For Cash Bill,", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2583,9 +2687,9 @@ Public Class PosSalesII
                         Else
                             _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
                         End If
-                        _saleData.psih_invoice_userid = _companyInfo.UserId
-                        _saleData.psih_invoice_comid = _companyInfo.ComId
-                        _saleData.psih_invoice_locid = _companyInfo.LocId
+                        _saleData.psih_invoice_shiftno = _companyInfo.CurShiftNo
+                        _saleData.psih_invoice_dayno = _companyInfo.CurDayNo
+                        _saleData.psih_invoice_countername = Environment.MachineName
 
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
@@ -2597,10 +2701,11 @@ Public Class PosSalesII
                         Dim jsondtl As String = GetSalesDetailJson()
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=7&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult) = True Then
+                        Dim ReturnBill As String = "0"
+                        If _JsonSendSales(M_Details.LinkAjaxRequest & "SalesRequest=7&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult, ReturnBill) = True Then
+                            barstatuslastbillno.Caption = ReturnBill
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
-                            'btnPrint_Click(Nothing, Nothing)
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
@@ -2615,8 +2720,152 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+#Region "ViewEdit"
+    Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.Click
+        Try
+            Dim modeofbill As String = ""
+            frmSelectBill.ShowDialog()
+            If frmSelectBill.DialogResult = Windows.Forms.DialogResult.OK Then
+                If GetSalesBySalID(G_SalID, modeofbill) = True Then
+                    modeOfSale = modeofbill
+                    barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+                End If
+            End If
+        Catch ex As Exception
 
+        End Try
+    End Sub
+    Public Function GetSalesBySalID(ByVal Sal_id As Integer, ByRef ModeOfBill As String) As Boolean
+        Try
+            Dim billDtl As New DataTable
+            Dim billHdr As New DataTable
+            billDtl.TableName = "billDtl"
+            billHdr.TableName = "billHdr"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = ""
+            If _globalSetting.QuoteBill = True Then
+                json = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=12&sal_id=" & Sal_id)
+                _globalSetting.QuoteBill = False
+                ModeOfBill = "Quote"
+            Else
+                json = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=6&sal_id=" & Sal_id)
+                ModeOfBill = "View"
+            End If
 
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dim Msg = Userparsejson("Success").ToString
+            If Msg.ToString = "True" Then
+                billDtl = Userparsejson("DTL").ToObject(Of DataTable)()
+                billHdr = Userparsejson("HDR").ToObject(Of DataTable)()
+                If billHdr.Rows.Count > 0 Then
+                    Dim billno = billHdr.Rows(0)("psih_invoice_trno")
+                    lblinvoiceno.Text = billno
+                    Dim CustomerId = billHdr.Rows(0)("psih_invoice_customerid")
+                    selectedCustomerId = CustomerId
+                    Dim Remarks = billHdr.Rows(0)("psih_invoice_billremarks")
+                    barbtnbilltype.Caption = "Bill Type : " & billHdr.Rows(0)("psih_invoice_billtype")
+                End If
+                If billDtl.Rows.Count > 0 Then
+                    _SnoCount = 0
+                    GridDataTble_Insert.Rows.Clear()
+                    GridDataTble_Insert.NewRow()
+                    GridDataTble_Insert.BeginInit()
+                    For Each rData In billDtl.Rows
+                        _SnoCount = _SnoCount + 1
+
+                        ' Declare variables for data mapping
+                        Dim barcode As Object = If(rData.Table.Columns.Contains("psid_invoice_barcode"), rData("psid_invoice_barcode"), 0)
+                        Dim itemCode As Object = rData("psid_invoice_procode")
+                        Dim itemName As String = Trim(rData("psid_invoice_description"))
+                        Dim serialNo As String = If(rData.Table.Columns.Contains("psid_invoice_serialno"), rData("psid_invoice_serialno"), "0")
+                        Dim uom As String = If(rData.Table.Columns.Contains("psid_invoice_uom"), rData("psid_invoice_uom"), "PCS")
+                        Dim rate As Object = rData("psid_invoice_rate")
+                        Dim qty As Object = rData("psid_invoice_proqty")
+                        Dim amount As Object = rData("psid_invoice_amt")
+                        Dim itemDiscPer As Object = rData("psid_invoice_itemdisp")
+                        Dim itemDiscAmt As Object = rData("psid_invoice_itemdisamt")
+                        Dim billDiscPer As Object = rData("psid_invoice_billdisp")
+                        Dim billDiscAmt As Object = rData("psid_invoice_billdisamt")
+                        Dim totalDiscPer As Object = rData("psid_invoice_totdper")
+                        Dim totalDiscAmt As Object = rData("psid_invoice_totdamt")
+                        Dim grossAmount As Object = rData("psid_invoice_gross")
+                        Dim taxValue As Object = rData("psid_invoice_taxvalue")
+                        Dim taxAmount As Object = rData("psid_invoice_taxamt")
+                        Dim netAmount As Decimal = _RoundOff(rData("psid_invoice_netamt"))
+                        Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
+                        Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
+                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salespersonid"), Convert.ToInt32(rData("psid_invoice_salespersonid")), 1)
+                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
+                        Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
+                        Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
+                        Dim psid As Object = If(rData.Table.Columns.Contains("psid_invoice_id"), rData("psid_invoice_id"), 0)
+
+                        ' Get salesperson name from _JsonData.SalesManCommissionTable using LINQ
+                        Dim salesPersonName As String = "Default"
+                        Try
+                            If _JsonData.SalesManCommissionTable.Rows.Count = 0 Then
+                                getSalesManCommissionInfo()
+                            End If
+
+                            If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                                Dim salesPersonRow = _JsonData.SalesManCommissionTable.AsEnumerable().
+                                                   FirstOrDefault(Function(row) Convert.ToInt32(row("EmpId")) = salesPersonId)
+
+                                If salesPersonRow IsNot Nothing Then
+                                    salesPersonName = salesPersonRow("SalesManName").ToString()
+                                End If
+                            End If
+                        Catch ex As Exception
+                            ' If error getting salesperson name, use default or from database if available
+                            If rData.Table.Columns.Contains("psid_invoice_salesperson") AndAlso rData("psid_invoice_salesperson") IsNot DBNull.Value Then
+                                salesPersonName = rData("psid_invoice_salesperson").ToString()
+                            End If
+                        End Try
+
+                        ' Map database fields to DataTable columns with PSID support
+                        ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
+                        '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
+                        '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE, ITEMLOCK, PSID
+                        GridDataTble_Insert.Rows.Add(_SnoCount, barcode, itemCode, itemName, serialNo, uom, rate, qty, amount, _
+                                                    itemDiscPer, itemDiscAmt, billDiscPer, billDiscAmt, totalDiscPer, totalDiscAmt, _
+                                                    grossAmount, taxValue, taxAmount, netAmount, remarks, batchNo, _
+                                                    salesPersonId, salesPersonName, salesManPer, deleteFlag, itemLock, psid)
+                    Next
+                    GridDataTble_Insert.AcceptChanges()
+                    GridDataTble_Insert.EndInit()
+                    GridControlSalesData.DataSource = GridDataTble_Insert
+                    GridViewPOS.MoveNext()
+
+                    ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
+                    'txtnotes.Text = "-"
+                    If SalesGrandtotal("ER") = False Then
+
+                    End If
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Private Sub barbtnbilledit_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnbilledit.ItemClick
+        Try
+            If modeOfSale = "View" Then
+                modeOfSale = "Edit"
+                barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+            ElseIf modeOfSale = "Quote" Then
+                modeOfSale = "New"
+                barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+            Else
+                DevExpress.XtraEditors.XtraMessageBox.Show("New Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
+#Region "Print/Home/Print"
     Private Sub barbtnhome_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnhome.ItemClick
         Try
             Me.Hide()
@@ -2625,4 +2874,33 @@ Public Class PosSalesII
 
         End Try
     End Sub
+
+    Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.Click
+        Try
+            Dim _receDs As New DataSet
+            If (GetSalesByBill(barstatuslastbillno.Caption, _receDs)) = True Then
+                If (_receDs.Tables(0).Rows.Count > 0) Then
+                    _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                End If
+
+                If clsBillPrint.BillPrintMin(_receDs, Errstr, txtprintprofile.Text) = False Then
+
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
+    Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
+        Try
+            frmPrintProfile.ShowDialog()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
 End Class

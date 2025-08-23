@@ -217,4 +217,12 @@ Public Class frmPrintProfile
 
         End Try
     End Sub
+
+    Private Sub btnprintdesign_Click(sender As Object, e As EventArgs) Handles btnprintdesign.Click
+        Try
+            frmreportdesign.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

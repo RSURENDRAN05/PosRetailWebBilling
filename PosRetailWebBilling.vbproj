@@ -362,6 +362,7 @@
     <Compile Include="PrintModule\Ledgerreport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PrintModule\RawPrinterHelper.vb" />
     <Compile Include="PrintModule\rpta5print.designer.vb">
       <DependentUpon>rpta5print.vb</DependentUpon>
     </Compile>
@@ -374,6 +375,7 @@
     <Compile Include="PrintModule\rptStaffProfile.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PrintModule\_cashdraw.vb" />
     <Compile Include="Purchase\FrmPurchaseView.Designer.vb">
       <DependentUpon>FrmPurchaseView.vb</DependentUpon>
     </Compile>
@@ -637,6 +639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrintModule\Ledgerreport.resx">
       <DependentUpon>Ledgerreport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintModule\rpta5print.resx">
+      <DependentUpon>rpta5print.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchase\FrmPurchaseView.resx">
       <DependentUpon>FrmPurchaseView.vb</DependentUpon>

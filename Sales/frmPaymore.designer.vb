@@ -26,7 +26,6 @@ Partial Class frmPaymore
         Me.btnpopClear = New DevExpress.XtraEditors.SimpleButton()
         Me.btnpopHome = New DevExpress.XtraEditors.SimpleButton()
         Me.btnpopCash = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.txtadvanceamt = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -126,7 +125,6 @@ Partial Class frmPaymore
         Me.FlowLayoutPanel1.Controls.Add(Me.btnpopClear)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnpopHome)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnpopCash)
-        Me.FlowLayoutPanel1.Controls.Add(Me.SimpleButton1)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(500, 291)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(481, 164)
@@ -195,30 +193,9 @@ Partial Class frmPaymore
         Me.btnpopCash.TabIndex = 47
         Me.btnpopCash.Text = "Pay"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.Green
-        Me.SimpleButton1.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SimpleButton1.Appearance.BorderColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseBorderColor = True
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.SimpleButton1.Location = New System.Drawing.Point(3, 85)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(154, 76)
-        Me.SimpleButton1.TabIndex = 50
-        Me.SimpleButton1.Text = "Bill Disc"
-        '
         'PanelControl2
         '
-        Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Gray
+        Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.PanelControl2.Appearance.Options.UseBackColor = True
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl2.Controls.Add(Me.txtadvanceamt)
@@ -275,12 +252,12 @@ Partial Class frmPaymore
         Me.txtclientname.Name = "txtclientname"
         Me.txtclientname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtclientname.Properties.Appearance.Options.UseFont = True
-        Me.txtclientname.Size = New System.Drawing.Size(344, 30)
+        Me.txtclientname.Size = New System.Drawing.Size(339, 30)
         Me.txtclientname.TabIndex = 7
         '
         'TableLayoutPanel5
         '
-        Me.TableLayoutPanel5.BackColor = System.Drawing.Color.DimGray
+        Me.TableLayoutPanel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.TableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel5.ColumnCount = 2
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.82759!))
@@ -343,6 +320,7 @@ Partial Class frmPaymore
         'Label16
         '
         Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label16.Location = New System.Drawing.Point(4, 35)
         Me.Label16.Name = "Label16"
@@ -711,7 +689,6 @@ Partial Class frmPaymore
     Friend WithEvents SimpleSeparator7 As DevExpress.XtraLayout.SimpleSeparator
     Friend WithEvents SimpleSeparator8 As DevExpress.XtraLayout.SimpleSeparator
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents lblpaymode As System.Windows.Forms.Label
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem

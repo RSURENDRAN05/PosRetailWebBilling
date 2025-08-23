@@ -4,23 +4,6 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
-// Enable error logging to file
-ini_set('log_errors', 1);
-ini_set('error_log', dirname(__FILE__) . '/php_error.log');
-
-// Custom error logging function
-function logError($message, $context = '')
-{
-    $logFile = dirname(__FILE__) . '/sales_error.log';
-    $timestamp = date('Y-m-d H:i:s');
-    $logMessage = "[$timestamp] $message";
-    if (!empty($context)) {
-        $logMessage .= " | Context: $context";
-    }
-    $logMessage .= PHP_EOL;
-    file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-}
-
 // Start output buffering to prevent any accidental output
 ob_start();
 
@@ -1430,7 +1413,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
 }
 //Sales
 elseif (isset($_REQUEST['SalesRequest'])) {
-    if ((int) $_REQUEST['SalesRequest'] == 1) {
+    if ((int) $_REQUEST['SalesRequest'] == 1) { // Get Client Info
 
         $GetClientInfo = $clsfunreq->GetClientInfo();
         $GetClientInfoRes = array();
@@ -1443,7 +1426,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 2) {
+    if ((int) $_REQUEST['SalesRequest'] == 2) { // Get Max Bill No
         $BillType = $_GET['BillType'];
         $ResulQuery = $clsfunreq->selectMaxBillNo($BillType);
         $GetDataRes = array();
@@ -1456,7 +1439,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 3) {
+    if ((int) $_REQUEST['SalesRequest'] == 3) { // Get Paymode List
         $GetMenuInfo = $clsfunreq->GetPaymodeList();
         $GetMenuInfoRes = array();
         while ($rows = mysqli_fetch_assoc($GetMenuInfo)) {
@@ -1470,7 +1453,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
     }
     if ((int) $_REQUEST['SalesRequest'] == 4) { //Save Sales
         try {
-            logError("SalesRequest=4 started", "Processing save sales request - Method: " . $_SERVER['REQUEST_METHOD']);
+
 
             // Support both GET and POST to handle large data
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -1480,7 +1463,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
                 $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
                 $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
-                logError("Using POST method", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
             } else {
                 // Fallback to GET for smaller requests
                 $getdtl = $_GET['dtl'];
@@ -1488,11 +1470,10 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
                 $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
                 $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
-                logError("Using GET method", "URL Length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
+
 
                 // Check for potential URI too long issue
                 if (strlen($_SERVER['REQUEST_URI']) > 2000) {
-                    logError("WARNING: Long URL detected", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars - consider using POST method");
                 }
             }
 
@@ -1500,38 +1481,34 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $datahdr = json_decode($gethdr, true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                logError("JSON decode error", "Error: " . json_last_error_msg());
+
                 echo json_encode(array("Success" => false, "Data" => "Invalid JSON data"));
                 exit;
             }
 
-            logError("Parameters extracted", "pm_id: $pm_id, comid: $comid, locid: $locid");
+
 
             //Save Hdr
 
             $invoiceno = "";
-            logError("Starting invoice number generation", "About to call UpdateSalesTransNo");
+
 
             $updatePurTrno = $clsfunreq->UpdateSalesTransNo($pm_id, $comid, $locid);
-            logError("UpdateSalesTransNo result", "Result: " . ($updatePurTrno ? 'true' : 'false'));
+
 
             if ($updatePurTrno) {
                 $invoiceno = $clsfunreq->GetSaleTransNo($pm_id, $comid, $locid);
-                logError("Invoice number generated", "Invoice: $invoiceno");
             } else {
                 $invoiceno = 0;
-                logError("Failed to update transaction number", "Setting invoiceno to 0");
             }
 
             $psih_invoice_trno = $invoiceno;
-            logError("Processing header data", "Invoice: $invoiceno");
+
 
             // Validate required header fields
             if (!isset($datahdr["psih_invoice_date"]) || empty($datahdr["psih_invoice_date"])) {
-                logError("Missing required field", "psih_invoice_date is missing or empty");
             }
             if (!isset($datahdr["psih_invoice_customerid"]) || empty($datahdr["psih_invoice_customerid"])) {
-                logError("Missing required field", "psih_invoice_customerid is missing or empty");
             }
 
             $psih_invoice_date = $datahdr["psih_invoice_date"];
@@ -1565,8 +1542,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
             $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
             $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
+            $psih_invoice_countername = isset($datahdr["psih_invoice_countername"]) ? $datahdr["psih_invoice_countername"] : "";
 
-            logError("About to save header", "Calling SaveSaleHdr with 32 parameters");
             $saveHdr = $clsfunreq->SaveSaleHdr(
                 $psih_invoice_trno,
                 $psih_invoice_date,
@@ -1599,19 +1576,20 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psih_invoice_givenamt,
                 $psih_invoice_balamt,
                 $psih_invoice_shiftno,
-                $psih_invoice_dayno
+                $psih_invoice_dayno,
+                $psih_invoice_countername
             );
 
-            logError("SaveSaleHdr result", "Result: " . ($saveHdr ? 'true' : 'false'));
+
 
             if ($saveHdr) {
-                logError("Header saved successfully", "Getting Sales ID for invoice: $invoiceno");
+
                 //Save Dtl
                 $Sa_id = $clsfunreq->GetSalesId($invoiceno);
-                logError("Sales ID retrieved", "Sa_id: $Sa_id, Detail rows count: " . count($datadtl));
+
 
                 foreach ($datadtl as $index => $row) {
-                    logError("Processing detail row", "Row index: $index");
+
                     $psid_invoice_sno = $row['psid_invoice_sno'];
                     $psid_invoice_salid = $Sa_id;
                     $psid_invoice_date = $psih_invoice_date;
@@ -1672,29 +1650,26 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                         $psid_invoice_salemanper,
                         $psid_invoice_shiftno,
                         $psid_invoice_dayno
+
                     );
 
-                    logError("SaveSaleDtl call", "Product: $psid_invoice_procode, Qty: $psid_invoice_proqty, Amount: $psid_invoice_amt");
+
 
                     if (!$saveDtl) {
-                        logError("SaveSaleDtl failed", "Failed to save detail for product: $psid_invoice_procode");
                     }
 
                     $resultLiveStock = $clsfunreq->_UpdateLiveStockSales($psid_invoice_procode, $psid_invoice_proqty, $psih_invoice_comid, $psih_invoice_locid);
 
                     if (!$resultLiveStock) {
-                        logError("LiveStock update failed", "Failed to update stock for product: $psid_invoice_procode");
                     }
                 }
-                logError("All detail rows processed", "Total rows: " . count($datadtl));
             } else {
-                logError("Header save failed", "SaveSaleHdr returned false");
             }
 
-            logError("Detail processing result", "saveDtl result: " . ($saveDtl ? 'true' : 'false'));
+
 
             if ($saveDtl) {
-                logError("Starting journal entry processing", "Sale type: $psih_invoice_saletype");
+
 
                 if ($psih_invoice_saletype == 'Invoice') {
 
@@ -1746,18 +1721,18 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             }
 
             if ($ressalesentry) {
-                logError("SalesRequest=4 completed successfully", "Invoice: $invoiceno");
-                echo json_encode(array("Success" => true, "Data" => 'Sales Saved InvoiceNo: ' . $invoiceno));
+
+                echo json_encode(array("Success" => true, "Data" => 'Sales Saved InvoiceNo: ', "InvoiceNo" => $invoiceno));
             } else {
-                logError("SalesRequest=4 failed", "ressalesentry is false");
-                echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
+
+                echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated", "InvoiceNo" => '0'));
             }
         } catch (Exception $e) {
-            logError("SalesRequest=4 exception", $e->getMessage());
+
             echo json_encode(array("Success" => false, "Data" => "Error occurred: " . $e->getMessage()));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 5) {
+    if ((int) $_REQUEST['SalesRequest'] == 5) { //Get Sales Bill by Date
         $date = $_GET['date'];
         $GetSalesBill = $clsfunreq->GetSalesBill($date);
         $GetSalesBillRes = array();
@@ -1770,7 +1745,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 6) {
+    if ((int) $_REQUEST['SalesRequest'] == 6) { //Get Sales Bill by ID
         $Sal_ID = $_GET['sal_id'];
         $GetSalesBillHDR = $clsfunreq->GetSalesBySalID_HDR($Sal_ID);
         $GetSalesBillHDRRes = array();
@@ -1788,7 +1763,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 7) { //Update
+    if ((int) $_REQUEST['SalesRequest'] == 7) { //Sales Update
+
         // Support both GET and POST to handle large data
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
@@ -1796,19 +1772,35 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
             $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
             $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
-            logError("SalesRequest=7 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
         } else {
-            $getdtl = $_GET['dtl'];
-            $gethdr = $_GET['hdr'];
+            $getdtl = isset($_GET['dtl']) ? $_GET['dtl'] : '';
+            $gethdr = isset($_GET['hdr']) ? $_GET['hdr'] : '';
             $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
             $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
             $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
-            if (strlen($_SERVER['REQUEST_URI']) > 2000) {
-                logError("SalesRequest=7 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
-            }
         }
+
+        // JSON decode with error handling
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
+
+        // Check for JSON decode errors
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $jsonError = json_last_error_msg();
+            echo json_encode(array("Success" => false, "Data" => "JSON Decode Error: " . $jsonError));
+            return;
+        }
+
+        // Validate decoded data
+        if ($datadtl === null || $datahdr === null) {
+            echo json_encode(array("Success" => false, "Data" => "Invalid JSON data received"));
+            return;
+        }
+
+        if (empty($datadtl) || empty($datahdr)) {
+            echo json_encode(array("Success" => false, "Data" => "Empty data arrays received"));
+            return;
+        }
 
         // Get parameters from URL
         $pm_id = isset($_GET['pm_id']) ? $_GET['pm_id'] : 0;
@@ -1817,11 +1809,41 @@ elseif (isset($_REQUEST['SalesRequest'])) {
 
         //        echo print_r($datadtl);
         //        echo print_r($datahdr);
+
+        // Validate required header fields
+        $requiredHdrFields = [
+            'psih_invoice_trno',
+            'psih_invoice_id',
+            'psih_invoice_date',
+            'psih_invoice_customerid',
+            'psih_invoice_description',
+            'psih_invoice_tqty',
+            'psih_invoice_tamount',
+            'psih_invoice_tnetamt',
+            'psih_invoice_saletype',
+            'psih_invoice_billtype',
+            'psih_invoice_billstatus',
+            'psih_invoice_userid',
+            'psih_invoice_comid',
+            'psih_invoice_locid'
+        ];
+
+        $missingFields = array();
+        foreach ($requiredHdrFields as $field) {
+            if (!isset($datahdr[$field]) || $datahdr[$field] === '') {
+                $missingFields[] = $field;
+            }
+        }
+
+        if (!empty($missingFields)) {
+            echo json_encode(array("Success" => false, "Data" => "Missing required header fields: " . implode(', ', $missingFields)));
+            return;
+        }
+
         //Save Hdr
         $invoiceno = $datahdr["psih_invoice_trno"];
-        $psih_invoice_pmid = isset($datahdr["psih_invoice_pmid"]) ? $datahdr["psih_invoice_pmid"] : "";
-        $psih_invoice_id = isset($datahdr["psih_invoice_id"]) ? $datahdr["psih_invoice_id"] : "";
         $psih_invoice_trno = $invoiceno;
+        $psih_invoice_id = $datahdr["psih_invoice_id"];
         $psih_invoice_date = $datahdr["psih_invoice_date"];
         $psih_invoice_prefix = isset($datahdr["psih_invoice_prefix"]) ? $datahdr["psih_invoice_prefix"] : "";
         $psih_invoice_customerid = $datahdr["psih_invoice_customerid"];
@@ -1852,9 +1874,20 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
         $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
         $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
+        $psih_invoice_countername = isset($datahdr["psih_invoice_countername"]) ? $datahdr["psih_invoice_countername"] : "";
+
+        // Extract payment mode - this was missing but used later in the code
+        $psih_invoice_paymode = isset($datahdr["psih_invoice_paymode"]) ? $datahdr["psih_invoice_paymode"] : "cash";
+
+
+        // Log header data before SaveSaleUpdate call
+
+
         $saveHdr = $clsfunreq->SaveSaleUpdate(
             $psih_invoice_trno,
+            $psih_invoice_id,
             $psih_invoice_date,
+            $psih_invoice_prefix,
             $psih_invoice_description,
             $psih_invoice_tqty,
             $psih_invoice_tamount,
@@ -1862,12 +1895,17 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_titemdisamt,
             $psih_invoice_tbilldiscper,
             $psih_invoice_tbilldiscamt,
+            $psih_invoice_totdiscper,
+            $psih_invoice_totdiscamt,
             $psih_invoice_tgrossamt,
             $psih_invoice_ttaxamt,
+            $psih_invoice_sercharge,
+            $psih_invoice_roundoff,
             $psih_invoice_tnetamt,
             $psih_invoice_saletype,
             $psih_invoice_billtype,
             $psih_invoice_billstatus,
+            $psih_invoice_paymode,
             $psih_invoice_customerid,
             $psih_invoice_userid,
             $psih_invoice_comid,
@@ -1877,88 +1915,133 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_outstanding,
             $psih_invoice_givenamt,
             $psih_invoice_balamt,
-            $pmid,
-            $id,
-            $prefix,
-            $psih_invoice_totdiscper,
-            $psih_invoice_totdiscamt,
-            $psih_invoice_sercharge,
-            $psih_invoice_roundoff,
             $psih_invoice_shiftno,
-            $psih_invoice_dayno
+            $psih_invoice_dayno,
+            $psih_invoice_countername
         );
+
+        // Check SaveSaleUpdate result
         if ($saveHdr) {
-            //Save Dtl
-            $Sal_ID = $clsfunreq->GetSalesId($invoiceno);
-            //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
-            foreach ($datadtl as $row) {
-                $psid_invoice_sno = $row['psid_invoice_sno'];
-                $psid_invoice_salid = $Sal_ID;
-                $psid_invoice_trno = $invoiceno;
-                $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
-                $psid_invoice_description = $row['psid_invoice_description'];
-                $psid_invoice_procode = $row['psid_invoice_procode'];
-                $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
-                $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
-                $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
-                $psid_invoice_proqty = $row['psid_invoice_proqty'];
-                $psid_invoice_rate = $row['psid_invoice_rate'];
-                $psid_invoice_amt = $row['psid_invoice_amt'];
-                $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
-                $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
-                $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
-                $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
-                $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
-                $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
-                $psid_invoice_gross = $row['psid_invoice_gross'];
-                $psid_invoice_taxinex = $row['psid_invoice_taxinex'];
-                $psid_invoice_taxvalue = $row['psid_invoice_taxvalue'];
-                $psid_invoice_taxamt = $row['psid_invoice_taxamt'];
-                $psid_invoice_netamt = $row['psid_invoice_netamt'];
-                $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "";
-                $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "";
-                $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "";
-                $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
-                $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "";
-                $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "";
-                $saveDtl = $clsfunreq->SaveSaleDtlUpdate(
-                    $psid_invoice_id,
-                    $psid_invoice_sno,
-                    $psid_invoice_salid,
-                    $psih_invoice_date,
-                    $psid_invoice_trno,
-                    $psid_invoice_description,
-                    $psid_invoice_procode,
-                    $psid_invoice_barcode,
-                    $psid_invoice_serialno,
-                    $psid_invoice_uom,
-                    $psid_invoice_proqty,
-                    $psid_invoice_rate,
-                    $psid_invoice_amt,
-                    $psid_invoice_itemdisp,
-                    $psid_invoice_itemdisamt,
-                    $psid_invoice_billdisp,
-                    $psid_invoice_billdisamt,
-                    $psid_invoice_totdper,
-                    $psid_invoice_totdamt,
-                    $psid_invoice_gross,
-                    $psid_invoice_taxinex,
-                    $psid_invoice_taxvalue,
-                    $psid_invoice_taxamt,
-                    $psid_invoice_netamt,
-                    $psid_invoice_remarks,
-                    $psid_invoice_batchno,
-                    $psid_invoice_salesmanid,
-                    $psid_invoice_salemanper,
-                    $psid_invoice_shiftno,
-                    $psid_invoice_dayno,
-                    $psih_invoice_comid,
-                    $psih_invoice_locid
-                );
+        } else {
+            // Log the database error - SaveSaleUpdate returned false
+
+
+            echo json_encode(array("Success" => false, "Data" => "Failed to save invoice header - check logs for details"));
+            return;
+        }
+
+        //Save Dtl
+        $Sal_ID = $psih_invoice_id;
+        $dtlSaveCount = 0;
+        $dtlFailCount = 0;
+
+        foreach ($datadtl as $index => $row) {
+            // Validate required detail fields
+            $requiredDtlFields = [
+                'psid_invoice_sno',
+                'psid_invoice_description',
+                'psid_invoice_procode',
+                'psid_invoice_proqty',
+                'psid_invoice_rate',
+                'psid_invoice_amt',
+                'psid_invoice_gross',
+                'psid_invoice_netamt'
+            ];
+
+            $missingDtlFields = array();
+            foreach ($requiredDtlFields as $field) {
+                if (!isset($row[$field]) || $row[$field] === '') {
+                    $missingDtlFields[] = $field;
+                }
+            }
+
+            if (!empty($missingDtlFields)) {
+
+                $dtlFailCount++;
+                continue;
+            }
+
+            $psid_invoice_sno = $row['psid_invoice_sno'];
+            $psid_invoice_salid = $Sal_ID;
+            $psid_invoice_trno = $invoiceno;
+            $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+            $psid_invoice_description = $row['psid_invoice_description'];
+            $psid_invoice_procode = $row['psid_invoice_procode'];
+
+
+            $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+            $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+            $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+            $psid_invoice_proqty = $row['psid_invoice_proqty'];
+            $psid_invoice_rate = $row['psid_invoice_rate'];
+            $psid_invoice_amt = $row['psid_invoice_amt'];
+            $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+            $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+            $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+            $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+            $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+            $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+            $psid_invoice_gross = $row['psid_invoice_gross'];
+            $psid_invoice_taxinex = $row['psid_invoice_taxinex'];
+            $psid_invoice_taxvalue = $row['psid_invoice_taxvalue'];
+            $psid_invoice_taxamt = $row['psid_invoice_taxamt'];
+            $psid_invoice_netamt = $row['psid_invoice_netamt'];
+            $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "";
+            $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "";
+            $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "";
+            $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+            $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "";
+            $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "";
+            $saveDtl = $clsfunreq->SaveSaleDtlUpdate(
+                $psid_invoice_id,
+                $psid_invoice_sno,
+                $psid_invoice_salid,
+                $psih_invoice_date,
+                $psid_invoice_trno,
+                $psid_invoice_description,
+                $psid_invoice_procode,
+                $psid_invoice_barcode,
+                $psid_invoice_serialno,
+                $psid_invoice_uom,
+                $psid_invoice_proqty,
+                $psid_invoice_rate,
+                $psid_invoice_amt,
+                $psid_invoice_itemdisp,
+                $psid_invoice_itemdisamt,
+                $psid_invoice_billdisp,
+                $psid_invoice_billdisamt,
+                $psid_invoice_totdper,
+                $psid_invoice_totdamt,
+                $psid_invoice_gross,
+                $psid_invoice_taxinex,
+                $psid_invoice_taxvalue,
+                $psid_invoice_taxamt,
+                $psid_invoice_netamt,
+                $psid_invoice_remarks,
+                $psid_invoice_batchno,
+                $psid_invoice_salesmanid,
+                $psid_invoice_salemanper,
+                $psid_invoice_shiftno,
+                $psid_invoice_dayno,
+                $psih_invoice_comid,
+                $psih_invoice_locid
+            );
+
+            // Check SaveSaleDtlUpdate result
+            if ($saveDtl) {
+                $dtlSaveCount++;
+            } else {
+                $dtlFailCount++;
             }
         }
-        if ($saveDtl) {
+
+
+
+        // Note: $saveDtl will only contain the result of the last detail save, this logic needs review
+        if ($dtlSaveCount > 0) { // Changed from if ($saveDtl) to check if any details were saved
+
             if ($psih_invoice_saletype == 'Invoice') {
+
 
                 $userid = $psih_invoice_userid;
                 $customerId = $psih_invoice_customerid;
@@ -1968,9 +2051,16 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $locid = $psih_invoice_locid;
                 $customername = $psih_invoice_description;
                 $pph_invdate = $psih_invoice_date;
-                $deleteJourEntry = $clsfunreq->deleteJourEntryBySales($psih_invoice_trno); //$dbFunction->deleteJourEntry($psih_invoice_trno);
+
+                // Delete existing journal entries
+
+                $deleteJourEntry = $clsfunreq->deleteJourEntryBySales($psih_invoice_trno);
+
+                if (!$deleteJourEntry) {
+                }
 
                 if ($psih_invoice_paymode == 'cash') {
+
                     $ledgerid = "1";
                     $branchid = $customerId;
                     $vocheramt = $cr;
@@ -1981,7 +2071,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+
+                    if ($ressalesentry) {
+                    } else {
+                    }
                 } elseif ($psih_invoice_paymode == 'credit') {
+
                     $ledgerid = "3";
                     $branchid = $customerId;
                     $vocheramt = $cr;
@@ -1992,7 +2087,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+
+                    if ($ressalesentry) {
+                    } else {
+                    }
                 } elseif ($psih_invoice_paymode == 'card') {
+
                     $ledgerid = "6";
                     $branchid = $customerId;
                     $vocheramt = $cr;
@@ -2003,16 +2103,27 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $userid = $userid;
                     $txtnarration = 'Sales :' . $refinvoiceno;
                     $ressalesentry = $clsfunreq->storeJournalSalesEntry($ledgerid, $branchid, $vocheramt, $accttype, $modetype, $txtdatepicker, $statuAcct, $userid, $txtnarration, $refinvoiceno);
+
+                    if ($ressalesentry) {
+                    } else {
+                    }
+                } else {
                 }
+            } else {
             }
-        }
-        if (true) {
-            echo json_encode(array("Success" => true, "Data" => "Voucher Updated"));
         } else {
-            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
+        }
+
+        // Final result evaluation and logging
+        if ($dtlSaveCount > 0) {
+
+            echo json_encode(array("Success" => true, "Data" => "Voucher Updated - Details saved: $dtlSaveCount"));
+        } else {
+
+            echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated - No details saved"));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 8) {
+    if ((int) $_REQUEST['SalesRequest'] == 8) { //Get Sales Bill by BillNo
         $Sal_ID = $_GET['billno'];
         $GetSalesBillHDR = $clsfunreq->GetSalesByBillno_HDR($Sal_ID);
         $GetSalesBillHDRRes = array();
@@ -2030,7 +2141,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 9) { //QuoteSales
+    if ((int) $_REQUEST['SalesRequest'] == 9) { //Quote Save Sales
         // Support both GET and POST to handle large data
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
@@ -2038,7 +2149,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
             $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
             $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
-            logError("SalesRequest=9 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
         } else {
             $getdtl = $_GET['dtl'];
             $gethdr = $_GET['hdr'];
@@ -2046,13 +2156,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
             $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
             if (strlen($_SERVER['REQUEST_URI']) > 2000) {
-                logError("SalesRequest=9 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
             }
         }
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
 
-        logError("SalesRequest=9 Processing", "DTL count: " . count($datadtl) . ", HDR fields: " . count($datahdr) . ", pm_id: " . $pm_id);
+
 
         //Save Hdr
 
@@ -2104,7 +2213,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         //                $psih_invoice_givenamt . ',' . $psih_invoice_balamt;
 
 
-        $saveHdr = $clsfunreq->SaveSaleHdr(
+        $saveHdr = $clsfunreq->SaveSaleQuoteHdr(
             $psih_invoice_trno,
             $psih_invoice_date,
             $psih_invoice_prefix,
@@ -2212,7 +2321,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 10) { //QuoteUpdate
+    if ((int) $_REQUEST['SalesRequest'] == 10) { //Quote Update Sales
         // Support both GET and POST to handle large data
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $getdtl = isset($_POST['dtl']) ? $_POST['dtl'] : '';
@@ -2220,7 +2329,6 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : 0;
             $comid = isset($_POST['comid']) ? $_POST['comid'] : 0;
             $locid = isset($_POST['locid']) ? $_POST['locid'] : 0;
-            logError("SalesRequest=10 using POST", "Data size - DTL: " . strlen($getdtl) . " chars, HDR: " . strlen($gethdr) . " chars");
         } else {
             $getdtl = $_GET['dtl'];
             $gethdr = $_GET['hdr'];
@@ -2228,13 +2336,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $comid = isset($_GET['comid']) ? $_GET['comid'] : 0;
             $locid = isset($_GET['locid']) ? $_GET['locid'] : 0;
             if (strlen($_SERVER['REQUEST_URI']) > 2000) {
-                logError("SalesRequest=10 Long URL Warning", "URI length: " . strlen($_SERVER['REQUEST_URI']) . " chars");
             }
         }
         $datadtl = json_decode($getdtl, true);
         $datahdr = json_decode($gethdr, true);
 
-        logError("SalesRequest=10 Processing", "DTL count: " . count($datadtl) . ", HDR fields: " . count($datahdr) . ", pm_id: " . $pm_id);
+
 
         //        echo print_r($datadtl);
         //        echo print_r($datahdr);
@@ -2311,7 +2418,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         if ($saveHdr) {
             //Save Dtl
             $Sal_ID = $clsfunreq->GetSalesQuoteId($invoiceno);
-            //$clsfunreq->DeleteBySalID_DTL($Sal_ID);
+
             foreach ($datadtl as $row) {
                 $psid_invoice_sno = $row['psid_invoice_sno'];
                 $psid_invoice_salid = $Sal_ID;
@@ -2384,7 +2491,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Data" => "Voucher Not Updated"));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 11) {
+    if ((int) $_REQUEST['SalesRequest'] == 11) { //Get Sales Bill by Date
         $date = $_GET['date'];
         $GetSalesBill = $clsfunreq->GetSalesQuoteBill($date);
         $GetSalesBillRes = array();
@@ -2397,7 +2504,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 12) {
+    if ((int) $_REQUEST['SalesRequest'] == 12) { //Get Sales Bill by QuoteSalID
         $Sal_ID = $_GET['sal_id'];
         $GetSalesBillHDR = $clsfunreq->GetSalesByQuoteSalID_HDR($Sal_ID);
         $GetSalesBillHDRRes = array();
@@ -2415,7 +2522,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
     }
-    if ((int) $_REQUEST['SalesRequest'] == 13) {
+    if ((int) $_REQUEST['SalesRequest'] == 13) { //Get Sales Bill by BillNo
         $Sal_ID = $_GET['billno'];
         $GetSalesBillHDR = $clsfunreq->GetSalesByQuoteBillno_HDR($Sal_ID);
         $GetSalesBillHDRRes = array();
@@ -2431,6 +2538,41 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             echo json_encode(array("Success" => true, "HDR" => $GetSalesBillHDRRes, "DTL" => $GetSalesBillDTLRes));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
+        }
+    }
+    if ((int)$_REQUEST['SalesRequest'] == 14) { //Save Delete Item
+        try {
+            // Get parameters from request
+            $billno = isset($_GET['billno']) ? $_GET['billno'] : '';
+            $procode = isset($_GET['procode']) ? $_GET['procode'] : '';
+            $description = isset($_GET['description']) ? $_GET['description'] : '';
+            $netamt = isset($_GET['netamt']) ? floatval($_GET['netamt']) : 0.00;
+            $reason = isset($_GET['reason']) ? $_GET['reason'] : 'Item deleted by user';
+            $pcname = isset($_GET['pcname']) ? $_GET['pcname'] : '';
+            $shiftno = isset($_GET['shiftno']) ? intval($_GET['shiftno']) : 0;
+            $dayno = isset($_GET['dayno']) ? intval($_GET['dayno']) : 0;
+            $comid = isset($_GET['comid']) ? intval($_GET['comid']) : 0;
+            $locid = isset($_GET['locid']) ? intval($_GET['locid']) : 0;
+            $userid = isset($_GET['userid']) ? intval($_GET['userid']) : 0;
+            $qty = isset($_GET['qty']) ? floatval($_GET['qty']) : 0.0;
+            $psid = isset($_GET['psid']) ? intval($_GET['psid']) : 0;
+
+            // Validate required fields - allow "0" for billno but not empty string
+            if ((empty(trim($billno)) && trim($billno) !== '0') || empty(trim($procode)) || empty(trim($description))) {
+                echo json_encode(array("Success" => false, "Data" => "Missing required fields: billno='" . $billno . "', procode='" . $procode . "', description='" . $description . "'"));
+                exit;
+            }
+
+            // Call the SaveDeleteRecord method with new parameters
+            $res = $clsfunreq->SaveDeleteRecord($billno, $procode, $description, $netamt, $reason, $pcname, $shiftno, $dayno, $comid, $locid, $userid, $qty, $psid);
+
+            if ($res) {
+                echo json_encode(array("Success" => true, "Data" => "Delete record saved successfully"));
+            } else {
+                echo json_encode(array("Success" => false, "Data" => "Failed to save delete record"));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Data" => "Error saving delete record: " . $e->getMessage()));
         }
     }
 }

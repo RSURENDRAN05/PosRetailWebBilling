@@ -44,4 +44,12 @@
     <ProfileSingle>Print</ProfileSingle>
     <ProfileActive>Active</ProfileActive>
   </ProfileSetting>
+  <ProfileSetting>
+    <ProfileID>4</ProfileID>
+    <ProfileName>SaleMini</ProfileName>
+    <FileName>SalesMinPrint.repx</FileName>
+    <ProfileType>Sales</ProfileType>
+    <ProfileSingle>Print</ProfileSingle>
+    <ProfileActive>Active</ProfileActive>
+  </ProfileSetting>
 </NewDataSet>

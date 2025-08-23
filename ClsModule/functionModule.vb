@@ -106,23 +106,7 @@ Module functionModule
         Public Shared paymentModeSelection As String = ""
         Public Shared paymentMode As String = ""
     End Structure
-    Public Structure _globalSetting
-        Public Shared TaxExculsive As Boolean = False   'true exclusive  or false  inclusive
-        Public Shared QuoteBill As Boolean = False
-        Public Shared PaymentMachine As Boolean = False
-        Public Shared ResponseData As Object = ""
-        Public Shared PriceEdit As Boolean = False
-        Public Shared ServiceTaxActive As Boolean = False
-        Public Shared SearchProductCode As Boolean = True 'SearchByProductcode,SearchByBarcode
-        Public Shared BillDiscountAcitve As Boolean = False
-        Public Shared ItemDiscountActive As Boolean = False
-        Public Shared SelectMultiplePriceActive As Boolean = False
-        Public Shared SalesManEachItemActive As Boolean = False
-        Public Shared PosBillScreen As Boolean = True
-    End Structure
-    Public Structure _globalSettingValues
-        Public Shared ServiceTaxValue As String = "0"
-    End Structure
+   
     Public Structure saveMode
         Shared _newMode As String = "New"
         Shared _saveMode As String = "Save"
@@ -793,6 +777,60 @@ Module functionModule
                 Return True
             Else
                 ErrMsg = Data.ToString
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ErrMsg = ex.Message
+            Return False
+        End Try
+    End Function
+    Public Function _JsonSendSales(ByRef _val As String, ByRef ErrMsg As String, ByRef BillNo As String) As Boolean
+        Try
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim json As String = ""
+            Dim client As New System.Net.WebClient()
+
+            ' Check URL length - if > 2000 chars, use POST method
+            If _val.Length > 2000 Then
+                ' Parse URL to separate base URL and parameters
+                Dim urlParts As String() = _val.Split("?"c)
+                If urlParts.Length = 2 Then
+                    Dim baseUrl As String = urlParts(0)
+                    Dim queryString As String = urlParts(1)
+
+                    ' Convert query string to POST data
+                    Dim postData As String = queryString
+                    Dim postBytes As Byte() = System.Text.Encoding.UTF8.GetBytes(postData)
+
+                    ' Set headers for POST request
+                    client.Headers("Content-Type") = "application/x-www-form-urlencoded"
+
+                    ' Send POST request
+                    Dim responseBytes As Byte() = client.UploadData(baseUrl, "POST", postBytes)
+                    json = System.Text.Encoding.UTF8.GetString(responseBytes)
+                Else
+                    ' Fallback to GET if URL parsing fails
+                    json = client.DownloadString(_val)
+                End If
+            Else
+                ' Use GET for smaller requests
+                json = client.DownloadString(_val)
+            End If
+
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dim dtresults = Userparsejson("Success")
+            Dim Data = Userparsejson("Data")
+            Dim InvoiceNo = Userparsejson("InvoiceNo")
+            If dtresults.ToString = "True" Then
+                ErrMsg = Data.ToString
+                BillNo = InvoiceNo.ToString
+                Return True
+            Else
+                ErrMsg = Data.ToString
+                BillNo = 0
                 Return False
             End If
             Return True

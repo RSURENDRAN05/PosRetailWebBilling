@@ -5,6 +5,25 @@ Imports Newtonsoft.Json
 Imports System.Data
 
 Module PosSettingsManager
+    Public Structure _globalSetting
+        Public Shared TaxExculsive As Boolean = False   'true exclusive  or false  inclusive
+        Public Shared QuoteBill As Boolean = False
+        Public Shared PaymentMachine As Boolean = False
+        Public Shared ResponseData As Object = ""
+        Public Shared PriceEdit As Boolean = False
+        Public Shared ServiceTaxActive As Boolean = False
+        Public Shared SearchProductCode As Boolean = True 'SearchByProductcode,SearchByBarcode
+        Public Shared BillDiscountAcitve As Boolean = False
+        Public Shared ItemDiscountActive As Boolean = False
+        Public Shared SelectMultiplePriceActive As Boolean = False
+        Public Shared SalesManEachItemActive As Boolean = False
+        Public Shared PosBillScreenActive As Boolean = True
+        Public Shared ItemDeleteActive As Boolean = False
+        Public Shared QtyChangeActive As Boolean = False
+    End Structure
+    Public Structure _globalSettingValues
+        Public Shared ServiceTaxValue As String = "0"
+    End Structure
     Public Sub LoadPosSettings()
         Try
             getPosSettingsInfo()
@@ -59,6 +78,18 @@ Module PosSettingsManager
                                 _globalSetting.SalesManEachItemActive = False
                             Else
                                 _globalSetting.SalesManEachItemActive = True
+                            End If
+                        Case "ItemDeleteActive"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.ItemDeleteActive = False
+                            Else
+                                _globalSetting.ItemDeleteActive = True
+                            End If
+                        Case "QtyChangeActive"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.QtyChangeActive = False
+                            Else
+                                _globalSetting.QtyChangeActive = True
                             End If
                     End Select
                 Next

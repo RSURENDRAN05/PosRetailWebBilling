@@ -1339,6 +1339,7 @@ Public Class SalesHeader
     Public Property psih_invoice_balamt As Decimal
     Public Property psih_invoice_shiftno As String
     Public Property psih_invoice_dayno As String
+    Public Property psih_invoice_countername As String
 End Class
 Public Class SalesDetails
     Public Property psid_invoice_id As String
@@ -1395,6 +1396,7 @@ Public Class SalesDetails
         psid_invoice_batchno = If(dataRow("BATCHNO") IsNot DBNull.Value, dataRow("BATCHNO").ToString(), "")
         psid_invoice_salesmanid = If(dataRow("SALESPERSONID") IsNot DBNull.Value, dataRow("SALESPERSONID").ToString(), "")
         psid_invoice_salemanper = If(dataRow("SALESMANPER") IsNot DBNull.Value, Convert.ToDecimal(dataRow("SALESMANPER")), 0)
+        psid_invoice_id = If(dataRow("PSID") IsNot DBNull.Value, Convert.ToDecimal(dataRow("PSID")), 0)
     End Sub
 End Class
 'TRUNCATE TABLE pos_sale_invoicehdr;

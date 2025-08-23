@@ -4,7 +4,8 @@ Imports System.IO
 
 Public Class frmSelectBill
     Dim SaleTabale As New DataTable
-    Dim dats As String
+    Dim dats As String = ""
+    Dim Errstr As String = ""
     Private Sub frmSelectBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
 
@@ -172,6 +173,23 @@ Public Class frmSelectBill
             _DateConversion(txtdatetimer.Text, txtdatetimer.Text, dats)
             If GetSalesQuoteBill(dats) = False Then
 
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        Try
+            Dim _receDs As New DataSet
+            If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
+                If (_receDs.Tables(0).Rows.Count > 0) Then
+                    _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                End If
+
+                If clsBillPrint.BillPrintMin(_receDs, Errstr, txtprintprofile.Text) = False Then
+
+                End If
             End If
         Catch ex As Exception
 

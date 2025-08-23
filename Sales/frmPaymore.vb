@@ -54,7 +54,7 @@
     Private Sub frmPaymore_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             txtpopbalamt.EditValue = 0.0
-            txttpopenamt.EditValue = Billamt
+            txttpopenamt.EditValue = 0.0
             txtadvanceamt.EditValue = 0.0
             txtclientname.Enabled = False
             txtadvanceamt.Enabled = False
@@ -78,6 +78,7 @@
 
     Private Sub btnpopCash_Click(sender As Object, e As EventArgs) Handles btnpopCash.Click
         Try
+
             If txtadvanceamt.EditValue Is Nothing Then
                 txtadvanceamt.EditValue = 0
             End If
@@ -86,6 +87,12 @@
             End If
             If txttpopenamt.EditValue Is Nothing OrElse String.IsNullOrEmpty(txttpopenamt.EditValue) Then
                 txttpopenamt.EditValue = 0
+            End If
+
+            If txtpopbalamt.EditValue < 0 Then
+                txttpopenamt.EditValue = 0
+                txttpopenamt.Select()
+                Exit Sub
             End If
             Me.DialogResult = Windows.Forms.DialogResult.OK
         Catch ex As Exception
@@ -111,4 +118,5 @@
 
         End Try
     End Sub
+
 End Class

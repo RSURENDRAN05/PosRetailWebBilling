@@ -61,7 +61,7 @@ Namespace My
             ' This overrides the method in Application.Designer.vb
             ' At this point, settings should already be loaded from Startup event
             Try
-                If _globalSetting.PosBillScreen = True Then
+                If _globalSetting.PosBillScreenActive = False Then
                     Me.MainForm = New Login()
                 Else
                     Me.MainForm = New PosLogin()
@@ -192,10 +192,10 @@ Namespace My
                     BillScreen = "0"
                 End Try
 
-                If BillScreen.ToString = "0" Then
-                    _globalSetting.PosBillScreen = False
+                If BillScreen.ToString = "1" Then
+                    _globalSetting.PosBillScreenActive = False
                 Else
-                    _globalSetting.PosBillScreen = True
+                    _globalSetting.PosBillScreenActive = True
                 End If
 
                 Try
