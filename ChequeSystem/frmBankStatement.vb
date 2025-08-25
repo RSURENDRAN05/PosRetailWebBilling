@@ -103,7 +103,7 @@ Public Class frmBankStatement
             End If
 
             ChqJson.BankTableSave.AcceptChanges()
-            ChqJson.BankTableSave.WriteXml(M_Details.AppPath & "\Settings\BankTableSave.xml")
+            ChqJson.BankTableSave.WriteXml(M_Details._appPath & "\Settings\BankTableSave.xml")
             Return True
         Catch ex As Exception
             ErrorMsg = ex.Message
@@ -172,9 +172,9 @@ Public Class frmBankStatement
                 ChqJson.BankTableStatement.Rows.Add(Nothing, "-", "**" & payeename & "**", refdatformart, "**" & payeeamount & "**", "**" & payeewords & "**")
                 ChqJson.BankTableStatement.EndInit()
                 ChqJson.BankTableStatement.AcceptChanges()
-                If File.Exists(M_Details.AppPath & "\Settings\BankTableStatement.xml") Then
-                    ChqJson.BankTableStatement.WriteXml(M_Details.AppPath & "\Settings\BankTableStatement.xml")
-                End If
+            If File.Exists(M_Details._appPath & "\Settings\BankTableStatement.xml") Then
+                ChqJson.BankTableStatement.WriteXml(M_Details._appPath & "\Settings\BankTableStatement.xml")
+            End If
                 ds.Merge(ChqJson.BankTableStatement)
                 If frmChequeprint.Gen_Report(ds) = True Then
                     ds.Tables.Clear()

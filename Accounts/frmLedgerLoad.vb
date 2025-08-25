@@ -104,7 +104,7 @@ Public Class frmLedgerLoad
             If dsex.Rows.Count > 0 Then
                 dsex.TableName = "Voucher"
                 _dt = dsex
-                _dt.WriteXml(M_Details.AppPath & "\Reports\UacVoucher.xml", True, True)
+                _dt.WriteXml(M_Details._appPath & "\Reports\UacVoucher.xml", True, True)
                 _Print("A", dsex)
             End If
             Me.Hide()
@@ -117,7 +117,7 @@ Public Class frmLedgerLoad
             Select Case _str
                 Case "A"
                     Dim rptvoucher As New rptStaffProfile
-                    rptvoucher.LoadLayout(M_Details.AppPath & "\Reports\payvoucher.repx")
+                    rptvoucher.LoadLayout(M_Details._appPath & "\Reports\payvoucher.repx")
                     rptvoucher.DataSource = _datset
                     Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(rptvoucher)
                     pt.ShowPreviewDialog()

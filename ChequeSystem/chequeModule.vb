@@ -83,10 +83,10 @@ Module chequeModule
             ChqJson.BankTable.Columns("Id").AutoIncrementStep = 1
             ChqJson.BankTable.Columns.Add("BankName", GetType(String))
             ChqJson.BankTable.Columns.Add("Active", GetType(Boolean))
-            If File.Exists(M_Details.AppPath & "\Settings\BankList.xml") Then
-                ChqJson.BankTable.ReadXml(M_Details.AppPath & "\Settings\BankList.xml")
+            If File.Exists(M_Details._appPath & "\Settings\BankList.xml") Then
+                ChqJson.BankTable.ReadXml(M_Details._appPath & "\Settings\BankList.xml")
             Else
-                ChqJson.BankTable.WriteXml(M_Details.AppPath & "\Settings\BankList.xml")
+                ChqJson.BankTable.WriteXml(M_Details._appPath & "\Settings\BankList.xml")
             End If
             Return ChqJson.BankTable
         Catch ex As Exception
@@ -111,10 +111,10 @@ Module chequeModule
             ChqJson.BankTableStatement.Columns.Add("PayeeDate", GetType(String))
             ChqJson.BankTableStatement.Columns.Add("PayeeAmount", GetType(String))
             ChqJson.BankTableStatement.Columns.Add("PayeeWords", GetType(String))
-            If File.Exists(M_Details.AppPath & "\Settings\BankTableStatement.xml") Then
-                ChqJson.BankTableStatement.ReadXml(M_Details.AppPath & "\Settings\BankTableStatement.xml")
+            If File.Exists(M_Details._appPath & "\Settings\BankTableStatement.xml") Then
+                ChqJson.BankTableStatement.ReadXml(M_Details._appPath & "\Settings\BankTableStatement.xml")
             Else
-                ChqJson.BankTableStatement.WriteXml(M_Details.AppPath & "\Settings\BankTableStatement.xml")
+                ChqJson.BankTableStatement.WriteXml(M_Details._appPath & "\Settings\BankTableStatement.xml")
             End If
             Return ChqJson.BankTableStatement
         Catch ex As Exception

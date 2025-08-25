@@ -14,8 +14,8 @@ Public Class frmFinalProcess
             GridControl1.DataSource = _FinalMonthProcessTable
             AddHandler RepositoryItemComboBoxFinalMont.SelectedIndexChanged, AddressOf MonthItemCmbBox
             AddHandler RepositoryItemComboBoxPrintProfile.SelectedIndexChanged, AddressOf CmbBoxPrintProfile
-            If System.IO.File.Exists(M_Details.AppPath & "\Layout\FinalProcess.xml") Then
-                GridView1.RestoreLayoutFromXml(M_Details.AppPath & "\Layout\FinalProcess.xml")
+            If System.IO.File.Exists(M_Details._appPath & "\Layout\FinalProcess.xml") Then
+                GridView1.RestoreLayoutFromXml(M_Details._appPath & "\Layout\FinalProcess.xml")
             End If
         Catch ex As Exception
 
@@ -168,11 +168,11 @@ Public Class frmFinalProcess
 
     Private Sub BarBtnSaveLayout_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarBtnSaveLayout.ItemClick
         Try
-            If Not System.IO.File.Exists(M_Details.AppPath & "\Layout\FinalProcess.xml") Then
-                System.IO.Directory.CreateDirectory(M_Details.AppPath & "\Layout")
-                GridView1.SaveLayoutToXml(M_Details.AppPath & "\Layout\FinalProcess.xml")
+            If Not System.IO.File.Exists(M_Details._appPath & "\Layout\FinalProcess.xml") Then
+                System.IO.Directory.CreateDirectory(M_Details._appPath & "\Layout")
+                GridView1.SaveLayoutToXml(M_Details._appPath & "\Layout\FinalProcess.xml")
             Else
-                GridView1.SaveLayoutToXml(M_Details.AppPath & "\Layout\FinalProcess.xml")
+                GridView1.SaveLayoutToXml(M_Details._appPath & "\Layout\FinalProcess.xml")
             End If
         Catch ex As Exception
 
@@ -241,7 +241,7 @@ Public Class frmFinalProcess
             Dim _rptstaf As New rptStaffProfile
             _rptstaf.LoadLayout(AppDomain.CurrentDomain.BaseDirectory & "\Print\" & ST.ToString)
             _rptstaf.DataSource = _FinalMonthProcessTable
-            _FinalMonthProcessTable.WriteXml(M_Details.AppPath & "\Print\PrintSlip.xml", True)
+            _FinalMonthProcessTable.WriteXml(M_Details._appPath & "\Print\PrintSlip.xml", True)
             Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(_rptstaf)
             If b = True Then
                 pt.ShowPreviewDialog()

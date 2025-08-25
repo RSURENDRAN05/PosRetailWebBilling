@@ -22,10 +22,10 @@ Public Class frmSelectBill
     End Sub
     Public Function _printProfileLoad() As Boolean
         Try
-            If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+            If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
                 Dim str() As String = {"Sales"}
                 Dim _dsPrintProfile As New DataSet
-                _dsPrintProfile.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+                _dsPrintProfile.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
                 Dim sas = From profile In _dsPrintProfile.Tables(0).AsEnumerable Where profile.Field(Of String)("ProfileType") = "Sales" Select profile
 
                 Dim tabl As New DataTable
@@ -144,7 +144,7 @@ Public Class frmSelectBill
             If _globalSetting.QuoteBill = True Then
                 If (GetSalesByQuoteBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
                     If (_receDs.Tables(0).Rows.Count > 0) Then
-                        _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                        _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                         _globalSetting.QuoteBill = False
                     End If
                     If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
@@ -154,7 +154,7 @@ Public Class frmSelectBill
             Else
                 If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
                     If (_receDs.Tables(0).Rows.Count > 0) Then
-                        _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                        _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                     End If
                     If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
 
@@ -184,7 +184,7 @@ Public Class frmSelectBill
             Dim _receDs As New DataSet
             If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
-                    _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
 
                 If clsBillPrint.BillPrintMin(_receDs, Errstr, txtprintprofile.Text) = False Then

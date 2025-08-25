@@ -93,10 +93,10 @@ Public Class PosSales
     End Sub
     Public Function _printProfileLoad() As Boolean
         Try
-            If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+            If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
                 Dim str() As String = {"Sales"}
                 Dim _dsPrintProfile As New DataSet
-                _dsPrintProfile.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+                _dsPrintProfile.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
                 Dim sas = From profile In _dsPrintProfile.Tables(0).AsEnumerable Where profile.Field(Of String)("ProfileType") = "Sales" Select profile
 
                 Dim tabl As New DataTable
@@ -702,7 +702,7 @@ Public Class PosSales
             txtnetamt.Text = _RoundOff(NetTot).ToString("0.00")
             'GridViewPOS.MoveLast()
             If GridDataTble_Insert.Rows.Count <> 0 Then
-                GridDataTble_Insert.WriteXml(M_Details.AppPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
+                GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
             End If
             Return True
         Catch ex As Exception
@@ -1065,7 +1065,7 @@ Public Class PosSales
             Dim _receDs As New DataSet
             If (GetSalesByBill(txtinvoiceno.EditValue - 1, _receDs)) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
-                    _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
 
                 If clsBillPrint.Billa4Print(_receDs, Errstr, txtprintprofile.Text) = False Then

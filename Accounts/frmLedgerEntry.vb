@@ -399,7 +399,7 @@ Public Class frmLedgerEntry
             Select Case _str
                 Case "A"
                     Dim rptvoucher As New rptStaffProfile
-                    rptvoucher.LoadLayout(M_Details.AppPath & "\Reports\payvoucher.repx")
+                    rptvoucher.LoadLayout(M_Details._appPath & "\Reports\payvoucher.repx")
                     rptvoucher.DataSource = _datset
                     Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(rptvoucher)
                     pt.ShowPreviewDialog()
@@ -630,7 +630,7 @@ Public Class frmLedgerEntry
 
     Private Sub BtnSaveLay_Click(sender As Object, e As EventArgs) Handles BtnSaveLay.Click
         Try
-            GridView1.SaveLayoutToXml(M_Details.AppPath & "\Layout\UacPayment.xml")
+            GridView1.SaveLayoutToXml(M_Details._appPath & "\Layout\UacPayment.xml")
         Catch ex As Exception
 
         End Try
@@ -652,7 +652,7 @@ Public Class frmLedgerEntry
             If dsex.Rows.Count > 0 Then
                 dsex.TableName = "Voucher"
                 _dt = dsex
-                _dt.WriteXml(M_Details.AppPath & "\Reports\UacVoucher.xml", True, True)
+                _dt.WriteXml(M_Details._appPath & "\Reports\UacVoucher.xml", True, True)
                 _Print("A", dsex)
             End If
 

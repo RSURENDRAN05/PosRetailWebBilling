@@ -6,7 +6,27 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
+	<summary>
+ Generates MD5 hash of the input string (same as PHP's md5() function)
+ </summary>
+	<param name="input">The string to hash</param>
+	<returns>MD5 hash as lowercase hex string</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
+	<summary>
+ Verifies password against stored MD5 hash
+ </summary>
+	<param name="password">Plain text password to verify</param>
+	<param name="storedHash">Stored MD5 hash from database</param>
+	<returns>True if password matches, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
+	<summary>
+ Authenticates user with username and password using MD5 hash comparison
+ </summary>
+	<param name="username">Username</param>
+	<param name="password">Plain text password</param>
+	<returns>True if authentication successful, False otherwise</returns>
+</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>

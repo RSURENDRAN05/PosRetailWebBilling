@@ -1,17 +1,8 @@
 <?php
 
-// Suppress errors to prevent JSON corruption
-error_reporting(0);
-ini_set('display_errors', 0);
-
-// Start output buffering to prevent any accidental output
-ob_start();
-
 include_once 'clsfunctionmgmt.php';
 $clsfunreq = new funcProcessMgmt();
-
-// Clear any output buffer content before sending headers
-ob_clean();
+ 
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");

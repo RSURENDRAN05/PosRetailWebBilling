@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <xs:schema id="DocumentElement" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="DocumentElement" msdata:IsDataSet="true" msdata:MainDataTable="MailConfiguration" msdata:Locale="en-US">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MailConfiguration">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MYMAILID" type="xs:string" minOccurs="0" />
+                <xs:element name="MYPASS" type="xs:string" minOccurs="0" />
+                <xs:element name="MYHOST" type="xs:string" minOccurs="0" />
+                <xs:element name="CUSTMAIL1" type="xs:string" minOccurs="0" />
+                <xs:element name="CUSTMAIL2" type="xs:string" minOccurs="0" />
+                <xs:element name="CUSTADDR" type="xs:string" minOccurs="0" />
+                <xs:element name="CUSTPHONE" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <MailConfiguration>
+    <MYMAILID>murifatechnologies@gmail.com</MYMAILID>
+    <MYPASS>fgon xvrc jeuu gsfb</MYPASS>
+    <MYHOST>smtp.gmail.com</MYHOST>
+    <CUSTMAIL1>alshiffasp@yahoo.com,mypos.web@gmail.com</CUSTMAIL1>
+    <CUSTMAIL2>surendcta@gmail.com,alshiffasp@yahoo.com</CUSTMAIL2>
+    <CUSTADDR>.</CUSTADDR>
+    <CUSTPHONE>.</CUSTPHONE>
+  </MailConfiguration>
+</DocumentElement>

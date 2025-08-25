@@ -1,0 +1,555 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="SalesManCommissionTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SalesManCommissionTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CommissionId" type="xs:string" minOccurs="0" />
+                <xs:element name="EmpId" type="xs:string" minOccurs="0" />
+                <xs:element name="SalesmanName" type="xs:string" minOccurs="0" />
+                <xs:element name="Designation" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemId" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
+                <xs:element name="Barcode" type="xs:string" minOccurs="0" />
+                <xs:element name="SubGroupId" type="xs:string" minOccurs="0" />
+                <xs:element name="SubGroupName" type="xs:string" minOccurs="0" />
+                <xs:element name="MainGroupName" type="xs:string" minOccurs="0" />
+                <xs:element name="CommissionPercentage" type="xs:string" minOccurs="0" />
+                <xs:element name="CommissionType" type="xs:string" minOccurs="0" />
+                <xs:element name="FixedAmount" type="xs:string" minOccurs="0" />
+                <xs:element name="Status" type="xs:string" minOccurs="0" />
+                <xs:element name="Created" type="xs:string" minOccurs="0" />
+                <xs:element name="Updated" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SalesManCommissionTable>
+    <CommissionId>5</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>4</ItemId>
+    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
+    <Barcode>4</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:11</Created>
+    <Updated>2025-08-21 11:16:11</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>2</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>6</ItemId>
+    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
+    <Barcode>6</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 10:26:01</Created>
+    <Updated>2025-08-21 02:46:59</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>7</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>CAT 6 CABLE OT011</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:11</Created>
+    <Updated>2025-08-21 11:16:11</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>8</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>CYBERPOWER UT800EGUN </ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>6</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>3</ItemId>
+    <ItemName>HAIR CUT</ItemName>
+    <Barcode>3</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:11</Created>
+    <Updated>2025-08-21 11:16:11</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>4</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>1</ItemId>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <Barcode>1</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>3.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 10:47:35</Created>
+    <Updated>2025-08-21 10:47:35</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>9</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>MINI KEYBOARD SLIM</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>10</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>11</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>11</ItemId>
+    <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
+    <Barcode>11</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>12</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>13</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>14</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>UGREEN CAT6 RJ45 </ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>15</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>FZUL</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>5</ItemId>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <Barcode>5</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>2.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 11:16:12</Created>
+    <Updated>2025-08-21 11:16:12</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>3</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>4</ItemId>
+    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
+    <Barcode>4</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>5.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-21 10:28:50</Created>
+    <Updated>2025-08-21 10:28:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>17</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>6</ItemId>
+    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
+    <Barcode>6</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:18</Created>
+    <Updated>2025-08-23 20:00:18</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>18</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>CAT 6 CABLE OT011</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:18</Created>
+    <Updated>2025-08-23 20:00:18</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>19</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>CYBERPOWER UT800EGUN </ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:18</Created>
+    <Updated>2025-08-23 20:00:18</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>20</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>3</ItemId>
+    <ItemName>HAIR CUT</ItemName>
+    <Barcode>3</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:19</Created>
+    <Updated>2025-08-23 20:00:19</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>21</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>1</ItemId>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <Barcode>1</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:20</Created>
+    <Updated>2025-08-23 20:00:20</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>22</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>2</ItemId>
+    <ItemName>HAIR CUT CHILDRAN</ItemName>
+    <Barcode>2</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:21</Created>
+    <Updated>2025-08-23 20:00:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>23</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>MINI KEYBOARD SLIM</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:21</Created>
+    <Updated>2025-08-23 20:00:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>24</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:21</Created>
+    <Updated>2025-08-23 20:00:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>25</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>11</ItemId>
+    <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
+    <Barcode>11</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:22</Created>
+    <Updated>2025-08-23 20:00:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>26</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:22</Created>
+    <Updated>2025-08-23 20:00:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>27</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:22</Created>
+    <Updated>2025-08-23 20:00:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>28</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>UGREEN CAT6 RJ45 </ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:22</Created>
+    <Updated>2025-08-23 20:00:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>29</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>SUREN</SalesmanName>
+    <Designation>ADMIN</Designation>
+    <ItemId>5</ItemId>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <Barcode>5</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:00:22</Created>
+    <Updated>2025-08-23 20:00:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>30</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>TEST</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>1</ItemId>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <Barcode>1</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:03:24</Created>
+    <Updated>2025-08-23 20:03:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>31</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>TEST</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>2</ItemId>
+    <ItemName>HAIR CUT CHILDRAN</ItemName>
+    <Barcode>2</Barcode>
+    <SubGroupId>1</SubGroupId>
+    <SubGroupName>SERVICES</SubGroupName>
+    <MainGroupName>HARDWARE</MainGroupName>
+    <CommissionPercentage>5.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-08-23 20:04:33</Created>
+    <Updated>2025-08-23 20:04:33</Updated>
+  </SalesManCommissionTable>
+</NewDataSet>

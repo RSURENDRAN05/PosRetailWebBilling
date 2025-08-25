@@ -7,7 +7,7 @@ Public Class frmChequeprint
     Dim PrintProfileDS As DataSet
     Private r As rpta5print
     Dim pt As ReportPrintTool
-    Dim ini As New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
+    Dim ini As New IniFile(M_Details._appPath & "\Settings\" & "Settings.ini")
     Dim banksta As New bankstate
     '    Dim ri As  = New CultureInfo("ms-MY")
     Dim lblentryMode As String = "Out"
@@ -62,9 +62,9 @@ Public Class frmChequeprint
         End If
 
         txtpayee.Properties.DataSource = ChqJson.PayeeTable
-        If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+        If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
             PrintProfileDS = New DataSet
-            PrintProfileDS.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+            PrintProfileDS.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
             'Dim da As DataTable = PrintProfileDS.Tables(0).Select("ProfileActive =" & "Active").CopyToDataTable
             For Each rs In PrintProfileDS.Tables(0).Rows
                 txtprintprofile.Properties.Items.Add(rs("FileName"))
@@ -103,13 +103,13 @@ Public Class frmChequeprint
     Private Sub barbtnrefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnrefresh.ItemClick
         Try
             ChqJson.BankTable.Rows.Clear()
-            If File.Exists(M_Details.AppPath & "\Settings\BankList.xml") Then
-                ChqJson.BankTable.ReadXml(M_Details.AppPath & "\Settings\BankList.xml")
+            If File.Exists(M_Details._appPath & "\Settings\BankList.xml") Then
+                ChqJson.BankTable.ReadXml(M_Details._appPath & "\Settings\BankList.xml")
                 txtbanklist.Properties.DataSource = ChqJson.BankTable.Select("Active =" & True).CopyToDataTable
             End If
-            If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+            If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
                 PrintProfileDS = New DataSet
-                PrintProfileDS.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+                PrintProfileDS.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
                 'Dim da As DataTable = PrintProfileDS.Tables(0).Select("ProfileActive =" & "Active").CopyToDataTable
                 For Each rs In PrintProfileDS.Tables(0).Rows
                     txtprintprofile.Properties.Items.Add(rs("FileName"))
@@ -147,7 +147,7 @@ Public Class frmChequeprint
 
     Private Sub barbtnprintdesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintdesign.ItemClick
         Try
-            frmreportdesign.ShowDialog()
+            frmPrintDesign.ShowDialog()
         Catch ex As Exception
 
         End Try
@@ -180,8 +180,8 @@ Public Class frmChequeprint
             ChqJson.BankTableStatement.Rows.Add(Nothing, txtbanklist.Text, payeename, refdatformart, "**" & curformated & "**", "**" & txtamtinwords.Text & "**")
             ChqJson.BankTableStatement.EndInit()
             ChqJson.BankTableStatement.AcceptChanges()
-            If File.Exists(M_Details.AppPath & "\Settings\BankTableStatement.xml") Then
-                ChqJson.BankTableStatement.WriteXml(M_Details.AppPath & "\Settings\BankTableStatement.xml")
+            If File.Exists(M_Details._appPath & "\Settings\BankTableStatement.xml") Then
+                ChqJson.BankTableStatement.WriteXml(M_Details._appPath & "\Settings\BankTableStatement.xml")
             End If
             dialog.Close()
             ds.Merge(ChqJson.BankTableStatement)
@@ -267,8 +267,8 @@ Public Class frmChequeprint
         Try
 
             r = New rpta5print
-            If File.Exists(M_Details.AppPath & "\Reports\" & txtprintprofile.Text) Then
-                r.LoadLayout(M_Details.AppPath & "\Reports\" & txtprintprofile.Text)
+            If File.Exists(M_Details._appPath & "\Reports\" & txtprintprofile.Text) Then
+                r.LoadLayout(M_Details._appPath & "\Reports\" & txtprintprofile.Text)
             End If
             'dt.Tables(0).TableName = "Table1"
             r.DataSource = ds '.Tables(0)
@@ -312,8 +312,8 @@ Public Class frmChequeprint
             ChqJson.BankTableStatement.Rows.Add(Nothing, txtbanklist.Text, payeename, refdatformart, "**" & curformated & "**", "**" & txtamtinwords.Text & "**")
             ChqJson.BankTableStatement.EndInit()
             ChqJson.BankTableStatement.AcceptChanges()
-            If File.Exists(M_Details.AppPath & "\Settings\BankTableStatement.xml") Then
-                ChqJson.BankTableStatement.WriteXml(M_Details.AppPath & "\Settings\BankTableStatement.xml")
+            If File.Exists(M_Details._appPath & "\Settings\BankTableStatement.xml") Then
+                ChqJson.BankTableStatement.WriteXml(M_Details._appPath & "\Settings\BankTableStatement.xml")
             End If
             ds.Merge(ChqJson.BankTableStatement)
             If Gen_Report(ds) = True Then

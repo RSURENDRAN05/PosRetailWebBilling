@@ -1,0 +1,111 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="PosSettingsTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="PosSettingsTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:string" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Status" type="xs:string" minOccurs="0" />
+                <xs:element name="Value" type="xs:string" minOccurs="0" />
+                <xs:element name="Type" type="xs:string" minOccurs="0" />
+                <xs:element name="Created" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <PosSettingsTable>
+    <Id>8</Id>
+    <Name>BillDiscountAcitve</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-20 01:24:35</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>1</Id>
+    <Name>GlobalTaxType</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-19 05:00:57</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>11</Id>
+    <Name>ItemDeleteActive</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-23 14:35:30</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>7</Id>
+    <Name>ItemDiscountActive</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-20 01:24:02</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>2</Id>
+    <Name>PriceEdit</Name>
+    <Status>1</Status>
+    <Value>1</Value>
+    <Type>0</Type>
+    <Created>2025-08-19 04:20:40</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>12</Id>
+    <Name>QtyChangeActive</Name>
+    <Status>0</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-23 14:35:47</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>10</Id>
+    <Name>SalesManEachItemActive</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-21 03:51:59</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>5</Id>
+    <Name>SearchProductCode</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-19 05:15:38</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>9</Id>
+    <Name>SelectMultiplePriceActive</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-20 06:57:20</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>3</Id>
+    <Name>ServiceTaxActive</Name>
+    <Status>0</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2025-08-19 04:53:25</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
+    <Id>4</Id>
+    <Name>ServiceTaxValue</Name>
+    <Status>1</Status>
+    <Value>0</Value>
+    <Type>1</Type>
+    <Created>2025-08-19 04:53:36</Created>
+  </PosSettingsTable>
+</NewDataSet>

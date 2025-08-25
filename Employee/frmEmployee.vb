@@ -636,11 +636,11 @@ Public Class frmEmployee
         Try
             Dim link As String = GridViewDownLoad.GetFocusedRowCellValue("Link")
             Dim FileName As String = GridViewDownLoad.GetFocusedRowCellValue("FileName")
-            If Not System.IO.Directory.Exists(M_Details.AppPath & "\Downloads\" & txtid.Text) Then
-                System.IO.Directory.CreateDirectory(M_Details.AppPath & "\Downloads\" & txtid.Text)
+            If Not System.IO.Directory.Exists(M_Details._appPath & "\Downloads\" & txtid.Text) Then
+                System.IO.Directory.CreateDirectory(M_Details._appPath & "\Downloads\" & txtid.Text)
             End If
             If DownloadFiles(FileName, link) = True Then
-                MessageBox.Show("Download Path" & M_Details.AppPath & "\Downloads\" & txtid.Text, "Download", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Download Path" & M_Details._appPath & "\Downloads\" & txtid.Text, "Download", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("No File", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -720,7 +720,7 @@ Public Class frmEmployee
             Using HttpResponse As HttpWebResponse = DirectCast(HttpReq.GetResponse(), HttpWebResponse)
                 Using Reader As New BinaryReader(HttpResponse.GetResponseStream())
                     Dim RdByte As Byte() = Reader.ReadBytes(1 * 1024 * 1024 * 10)
-                    Using FStream As New FileStream(M_Details.AppPath & "\Downloads\" & txtid.Text & "\" & strFileName, FileMode.Create)
+                    Using FStream As New FileStream(M_Details._appPath & "\Downloads\" & txtid.Text & "\" & strFileName, FileMode.Create)
                         FStream.Write(RdByte, 0, RdByte.Length)
                         Return True
                     End Using

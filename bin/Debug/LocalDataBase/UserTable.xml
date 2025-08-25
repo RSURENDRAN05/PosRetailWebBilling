@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="UserTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="UserTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:string" minOccurs="0" />
+                <xs:element name="UserName" type="xs:string" minOccurs="0" />
+                <xs:element name="Password" type="xs:string" minOccurs="0" />
+                <xs:element name="GroupName" type="xs:string" minOccurs="0" />
+                <xs:element name="Status" type="xs:string" minOccurs="0" />
+                <xs:element name="ComId" type="xs:string" minOccurs="0" />
+                <xs:element name="LocId" type="xs:string" minOccurs="0" />
+                <xs:element name="GroupId" type="xs:string" minOccurs="0" />
+                <xs:element name="Created" type="xs:string" minOccurs="0" />
+                <xs:element name="GroupDescription" type="xs:string" minOccurs="0" />
+                <xs:element name="GroupActive" type="xs:string" minOccurs="0" />
+                <xs:element name="GroupCreatedDate" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <UserTable>
+    <Id>1</Id>
+    <UserName>superadmin@mypos</UserName>
+    <Password>c81e728d9d4c2f636f067f89cc14862c</Password>
+    <GroupName>Super Admin</GroupName>
+    <Status>Active</Status>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <GroupId>1</GroupId>
+    <Created>2025-08-15 14:00:20</Created>
+    <GroupDescription>Full system access with all permissions</GroupDescription>
+    <GroupActive>1</GroupActive>
+    <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
+  </UserTable>
+  <UserTable>
+    <Id>2</Id>
+    <UserName>admin@mypos</UserName>
+    <Password>c4ca4238a0b923820dcc509a6f75849b</Password>
+    <GroupName>Admin</GroupName>
+    <Status>Active</Status>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <GroupId>2</GroupId>
+    <Created>2025-08-16 11:47:33</Created>
+    <GroupDescription>Administrative access with most permissions</GroupDescription>
+    <GroupActive>1</GroupActive>
+    <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
+  </UserTable>
+</NewDataSet>

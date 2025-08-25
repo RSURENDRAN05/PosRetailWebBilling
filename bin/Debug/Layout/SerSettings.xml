@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Register" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Register">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:int" minOccurs="0" />
+                <xs:element name="MACHINENAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SERVERTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="LOCALPCNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COM" type="xs:string" minOccurs="0" />
+                <xs:element name="LOC" type="xs:string" minOccurs="0" />
+                <xs:element name="ACTVE" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Register>
+    <ID>4</ID>
+    <MACHINENAME>CASHIER</MACHINENAME>
+    <SERVERTYPE>SERVER</SERVERTYPE>
+    <LOCALPCNAME>SERVER</LOCALPCNAME>
+    <COM>RESTROAN AL AMAL MAJU</COM>
+    <LOC>CHERAS</LOC>
+    <ACTVE>1</ACTVE>
+  </Register>
+</NewDataSet>

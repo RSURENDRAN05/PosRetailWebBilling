@@ -22,8 +22,8 @@ Public Class MainMaster
         barStatus.Caption = M_Details.SoftwareVersion
         baruserStatus.Caption = _companyInfo.UserId & "-" & _companyInfo.UserName & " PMID  : " & _companyInfo.CompanyPMId
         barstatuscompany.Caption = _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocationName
-        barcurshiftno.Caption = "CurShiftNo : " & _companyInfo.CurShiftNo
-        bardayno.Caption = "CurDayNo : " & _companyInfo.CurDayNo
+        barcurshiftno.Caption = "CurShiftNo : " & _saleSetting._curShiftno
+        bardayno.Caption = "CurDayNo : " & _saleSetting._curDayno
         barbtnstatustime.Caption = Date.Now
         PanelScreenHeight = Screen.PrimaryScreen.Bounds.Height
         PanelScreenWith = Screen.PrimaryScreen.Bounds.Width
@@ -637,7 +637,7 @@ Public Class MainMaster
 
     Private Sub barbtnprintdesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintdesign.ItemClick
         Try
-            frmreportdesign.Show()
+            frmPrintDesign.Show()
         Catch ex As Exception
 
         End Try

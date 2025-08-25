@@ -81,7 +81,7 @@ Public Class frmCompanyCheque
             End If
 
             dt.AcceptChanges()
-            dt.WriteXml(M_Details.AppPath & "\Settings\CompanyTable.xml", Data.XmlWriteMode.WriteSchema, True)
+            dt.WriteXml(M_Details._appPath & "\Settings\CompanyTable.xml", Data.XmlWriteMode.WriteSchema, True)
             Return True
         Catch ex As Exception
 

@@ -1,0 +1,239 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="ItemMasterTable" msdata:Locale="en-IN">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ItemMasterTable" msdata:Locale="en-IN">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ITEMCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="BARCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEMNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXID" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXVALUE" type="xs:string" minOccurs="0" />
+                <xs:element name="COST" type="xs:string" minOccurs="0" />
+                <xs:element name="SELL" type="xs:string" minOccurs="0" />
+                <xs:element name="LIVESTOCK" type="xs:string" minOccurs="0" />
+                <xs:element name="COMID" type="xs:string" minOccurs="0" />
+                <xs:element name="LOCID" type="xs:string" minOccurs="0" />
+                <xs:element name="Remarks" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <ItemMasterTable>
+    <ITEMCODE>1</ITEMCODE>
+    <BARCODE>1</BARCODE>
+    <ITEMNAME>HAIR CUT ADULT</ITEMNAME>
+    <TAXID>2</TAXID>
+    <TAXNAME>Tax 6%</TAXNAME>
+    <TAXVALUE>6</TAXVALUE>
+    <COST>145.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>-113.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>2</ITEMCODE>
+    <BARCODE>2</BARCODE>
+    <ITEMNAME>HAIR CUT CHILDRAN</ITEMNAME>
+    <TAXID>2</TAXID>
+    <TAXNAME>Tax 6%</TAXNAME>
+    <TAXVALUE>6</TAXVALUE>
+    <COST>235.00</COST>
+    <SELL>600.00</SELL>
+    <LIVESTOCK>-5.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>3</ITEMCODE>
+    <BARCODE>3</BARCODE>
+    <ITEMNAME>HAIR CUT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>60.00</COST>
+    <SELL>18.00</SELL>
+    <LIVESTOCK>-3.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>4</ITEMCODE>
+    <BARCODE>4</BARCODE>
+    <ITEMNAME>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ITEMNAME>
+    <TAXID>3</TAXID>
+    <TAXNAME>TAX 9%</TAXNAME>
+    <TAXVALUE>9</TAXVALUE>
+    <COST>1.25</COST>
+    <SELL>1.95</SELL>
+    <LIVESTOCK>-2.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>5</ITEMCODE>
+    <BARCODE>5</BARCODE>
+    <ITEMNAME>VPOS TERMINAL</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>2400.00</COST>
+    <SELL>4200.00</SELL>
+    <LIVESTOCK>-22.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>15.6  11.6 i5 5300U 8 128 WIFI SPEAKER TERMINAL</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>7</ITEMCODE>
+    <BARCODE>7</BARCODE>
+    <ITEMNAME>CAT 6 CABLE OT011</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>30.00</COST>
+    <SELL>31.00</SELL>
+    <LIVESTOCK>-3.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>8</ITEMCODE>
+    <BARCODE>8</BARCODE>
+    <ITEMNAME>CYBERPOWER UT800EGUN </ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>150.00</COST>
+    <SELL>151.00</SELL>
+    <LIVESTOCK>-2.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>GREENVA 400W UPS</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>9</ITEMCODE>
+    <BARCODE>9</BARCODE>
+    <ITEMNAME>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>80.00</COST>
+    <SELL>81.00</SELL>
+    <LIVESTOCK>-3.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>10</ITEMCODE>
+    <BARCODE>10</BARCODE>
+    <ITEMNAME>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>53.00</COST>
+    <SELL>54.00</SELL>
+    <LIVESTOCK>-4.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>11</ITEMCODE>
+    <BARCODE>11</BARCODE>
+    <ITEMNAME>TPLINK ARCHER T2U AC600 </ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>63.00</COST>
+    <SELL>64.00</SELL>
+    <LIVESTOCK>-2.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>DUALBAND WIRELESS USB ADAPTER </Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>12</ITEMCODE>
+    <BARCODE>12</BARCODE>
+    <ITEMNAME>UGREEN CAT6 RJ45 </ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.30</COST>
+    <SELL>1.00</SELL>
+    <LIVESTOCK>-3.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>Unsheilded Modular Plugs 1pcs</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>6</ITEMCODE>
+    <BARCODE>6</BARCODE>
+    <ITEMNAME>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>450.00</COST>
+    <SELL>451.00</SELL>
+    <LIVESTOCK>-2.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>RT AX57</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>13</ITEMCODE>
+    <BARCODE>13</BARCODE>
+    <ITEMNAME>MINI KEYBOARD SLIM</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>19.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>-4.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>MN903 </Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>14</ITEMCODE>
+    <BARCODE>14</BARCODE>
+    <ITEMNAME>STANDARD KEYBOARD WITH 102 KEYS</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>16.00</COST>
+    <SELL>17.00</SELL>
+    <LIVESTOCK>-5.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>SENSONIC K250 </Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>15</ITEMCODE>
+    <BARCODE>15</BARCODE>
+    <ITEMNAME>MINI PC</ITEMNAME>
+    <TAXID>3</TAXID>
+    <TAXNAME>TAX 9%</TAXNAME>
+    <TAXVALUE>9</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>5000.00</SELL>
+    <LIVESTOCK>-1.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+</NewDataSet>

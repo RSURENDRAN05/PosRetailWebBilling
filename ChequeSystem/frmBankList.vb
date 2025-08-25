@@ -18,8 +18,8 @@ Public Class frmBankList
                     ChqJson.BankTable.Rows.Add(Nothing, txtbankname.Text, CheckEdit1.CheckState)
                     ChqJson.BankTable.AcceptChanges()
                     ChqJson.BankTable.EndInit()
-                    If File.Exists(M_Details.AppPath & "\Settings\BankList.xml") Then
-                        ChqJson.BankTable.WriteXml(M_Details.AppPath & "\Settings\BankList.xml")
+                    If File.Exists(M_Details._appPath & "\Settings\BankList.xml") Then
+                        ChqJson.BankTable.WriteXml(M_Details._appPath & "\Settings\BankList.xml")
                     End If
                     txtid.Text = ""
                     txtbankname.Text = ""
@@ -64,7 +64,7 @@ Public Class frmBankList
             End If
 
             dt.AcceptChanges()
-            dt.WriteXml(M_Details.AppPath & "\Settings\BankList.xml", Data.XmlWriteMode.WriteSchema, True)
+            dt.WriteXml(M_Details._appPath & "\Settings\BankList.xml", Data.XmlWriteMode.WriteSchema, True)
             Return True
         Catch ex As Exception
 

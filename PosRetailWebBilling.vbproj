@@ -102,6 +102,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.0.898.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PdfSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -211,10 +215,27 @@
     <Compile Include="ChequeSystem\frmTodayCheque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClsModule\clsfunction.vb" />
+    <Compile Include="ClsModule\clssalesProperty.vb" />
+    <Compile Include="ClsModule\encryDecry.vb" />
     <Compile Include="ClsModule\eventlogs.vb" />
     <Compile Include="ClsModule\LoginModule.vb" />
     <Compile Include="ClsModule\mangementModule.vb" />
     <Compile Include="ClsModule\mySqlConnection.vb" />
+    <Compile Include="ClsModule\M_CONNECT.vb" />
+    <Compile Include="ClsModule\shiftclosecheck.vb" />
+    <Compile Include="Controller\frmbusinessDate.designer.vb">
+      <DependentUpon>frmbusinessDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmbusinessDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmDeno.designer.vb">
+      <DependentUpon>frmDeno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmDeno.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controller\frmKeyAmt.designer.vb">
       <DependentUpon>frmKeyAmt.vb</DependentUpon>
     </Compile>
@@ -225,6 +246,18 @@
       <DependentUpon>frmKeyQty.vb</DependentUpon>
     </Compile>
     <Compile Include="Controller\frmKeyQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmMsgBox.designer.vb">
+      <DependentUpon>frmMsgBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmMsgBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmMsgBoxOk.designer.vb">
+      <DependentUpon>frmMsgBoxOk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmMsgBoxOk.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Employee\frmcreatemonth.Designer.vb">
@@ -331,10 +364,10 @@
     </Compile>
     <Compile Include="PaymentGateWay\SerialPortData.vb" />
     <Compile Include="PaymentGateWay\SerialPortReaderAsync.vb" />
-    <Compile Include="PrintModule\frmreportdesign.designer.vb">
-      <DependentUpon>frmreportdesign.vb</DependentUpon>
+    <Compile Include="PrintModule\frmPrintDesign.designer.vb">
+      <DependentUpon>frmPrintDesign.vb</DependentUpon>
     </Compile>
-    <Compile Include="PrintModule\frmreportdesign.vb">
+    <Compile Include="PrintModule\frmPrintDesign.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsModule\clsRegisterKey.vb" />
@@ -356,11 +389,20 @@
     <Compile Include="PrintModule\frmPrintProfile.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PrintModule\frmReportDesign.designer.vb">
+      <DependentUpon>frmReportDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PrintModule\frmReportDesign.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PrintModule\Ledgerreport.designer.vb">
       <DependentUpon>Ledgerreport.vb</DependentUpon>
     </Compile>
     <Compile Include="PrintModule\Ledgerreport.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintModule\PrintCommand.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PrintModule\RawPrinterHelper.vb" />
     <Compile Include="PrintModule\rpta5print.designer.vb">
@@ -375,7 +417,9 @@
     <Compile Include="PrintModule\rptStaffProfile.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PrintModule\WindowsPrinter.vb" />
     <Compile Include="PrintModule\_cashdraw.vb" />
+    <Compile Include="PrintModule\_clsdotprinter.vb" />
     <Compile Include="Purchase\FrmPurchaseView.Designer.vb">
       <DependentUpon>FrmPurchaseView.vb</DependentUpon>
     </Compile>
@@ -466,6 +510,12 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\PosSalesIII.Designer.vb">
+      <DependentUpon>PosSalesIII.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PosSalesIII.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\frmDiscount.designer.vb">
       <DependentUpon>frmDiscount.vb</DependentUpon>
     </Compile>
@@ -526,6 +576,7 @@
     <Compile Include="Master\FrmDiscountMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\SyncLocalCloudModuel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Accounts\frmGroup.resx">
@@ -570,6 +621,12 @@
     <EmbeddedResource Include="ChequeSystem\frmTodayCheque.resx">
       <DependentUpon>frmTodayCheque.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmbusinessDate.resx">
+      <DependentUpon>frmbusinessDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmDeno.resx">
+      <DependentUpon>frmDeno.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmKeyAmt.resx">
       <DependentUpon>frmKeyAmt.vb</DependentUpon>
     </EmbeddedResource>
@@ -577,6 +634,12 @@
       <DependentUpon>frmKeyQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmKeyQtyAmt.resx" />
+    <EmbeddedResource Include="Controller\frmMsgBox.resx">
+      <DependentUpon>frmMsgBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmMsgBoxOk.resx">
+      <DependentUpon>frmMsgBoxOk.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmcreatemonth.resx">
       <DependentUpon>frmcreatemonth.vb</DependentUpon>
     </EmbeddedResource>
@@ -628,14 +691,17 @@
     <EmbeddedResource Include="PaymentGateWay\frmpaymentgateway.resx">
       <DependentUpon>frmpaymentgateway.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintModule\frmreportdesign.resx">
-      <DependentUpon>frmreportdesign.vb</DependentUpon>
+    <EmbeddedResource Include="PrintModule\frmPrintDesign.resx">
+      <DependentUpon>frmPrintDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintModule\Billing_rpt.resx">
       <DependentUpon>Billing_rpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintModule\frmPrintProfile.resx">
       <DependentUpon>frmPrintProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintModule\frmReportDesign.resx">
+      <DependentUpon>frmReportDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintModule\Ledgerreport.resx">
       <DependentUpon>Ledgerreport.vb</DependentUpon>
@@ -688,6 +754,9 @@
     <EmbeddedResource Include="Master\FrmPosSettings.resx">
       <DependentUpon>FrmPosSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\PosSalesIII.resx">
+      <DependentUpon>PosSalesIII.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmDiscount.resx">
       <DependentUpon>frmDiscount.vb</DependentUpon>

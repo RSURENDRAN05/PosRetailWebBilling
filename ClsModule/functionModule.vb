@@ -21,23 +21,139 @@ Module functionModule
     Public PanelScreenHeight As Integer = 0
     Public G_GRNNo As String = String.Empty
     Public E_EmployeeId As Integer = 0
-
+    Dim errMsg As String = ""
+    Public _PosSettingDt As DataTable
+    Public _posSettingDs As DataSet
+    Public _PRINTDS, _SETTINGS As New DataSet
+    Public _posPrintHeadDesign As DataSet
     Public Structure M_Details
         Public Shared SoftwareVersion As String = "MGMT VER25.0.0.1 R1 23082025"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
-        Public Shared AppPath As String = Application.StartupPath
+        Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
         Public Shared LinkAjaxRequestCheque As String = ""
+        Public Shared LinkAjaxRequestSyncLocalCloud As String = ""
         Public Shared licenceActive As String = ""
         Public Shared licenceServerCleint As String = ""
+        Public Shared CompanyId As Integer = 0
+        Public Shared LocationId As Integer = 0
+        Public Shared CompanyName As String = "DefalutCompany"
+        Public Shared LocationName As String = "DefalutLocation"
+        Public Shared PMID As Integer = 0
         Shared _logPath As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("LogPath")
+        Shared _Conn As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("Conn")
+        Shared _shopName As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("Rest_Name")
+        Shared _activationCode As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("ActivationCode")
+        Shared _registerDate As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("RegisterDate")
+        Shared _severclient As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("ServerClient")
+        Shared _WebId As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("WebId")
+        Shared _dataBasName As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("DataBase")
+        Public Shared _dbStatus As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("DB")
+    End Structure
+    Public Structure RegistrationDetails
+        Public Shared _machineId As String = ""
+        Public Shared _localPcname As String = ""
+        Public Shared _serverClient As String = ""
+        Public Shared _localcompname As String
+        Public Shared _active As String = ""
+        Public Shared _MenuActive As Boolean = False
+        Public Shared _registerdCounterName As String
+        Public Shared _paymentPopupActive As Boolean = False
+    End Structure
+    Public Structure _saleSetting
+        Public Shared _modeSales As String = ""
+        Public Shared _modeDefalueSales As String = "XA"
+        Public Shared _modeOfCardNo As String = "1000"
+        Public Shared _curBillnumber As Integer
+        Public Shared _batchNumber As Integer = 0
+        Public Shared _curTransnumber As Integer
+        Public Shared _curDayno As Integer
+        Public Shared _curShiftno As Integer
+        Public Shared _clsDayno As Integer
+        Public Shared _clsShiftno As Integer
+        Public Shared _clscountshiftno As Integer
+        Public Shared _BusinessDate As String
+        Public Shared _shiftclose As Boolean
+        Public Shared _dayclose As Boolean
+        Public Shared G_TableNo As String = 0
+        Public Shared frmdualClose As Integer = 0
+    End Structure
+    Public Structure LogFileText
+        Public Shared _richTextBox As New RichTextBox
+    End Structure
+    Public Structure PrintProfile
+        Shared _salesFilename As String = ""
+        Shared _purchaseFilename As String = ""
+        Shared _inventoryprintName As String = ""
+        Shared _salesGuestprintName As String = ""
+        Shared _shiftclosename As String = ""
+        Shared _dayclosename As String = ""
+        Shared _taxprintname As String = ""
+        Shared _taxCutprintname As String = ""
+        Shared _payouts As String = ""
+        Shared _dsPrintProfile As DataSet
+        Shared _Mulfile(,) As String
+    End Structure
+    Public Structure MailProfile
+        Shared _MailsalesFilename As String = ""
+        Shared _MailsalesGuestprintName As String = ""
+        Shared _Mailshiftclosename As String = ""
+        Shared _Maildayclosename As String = ""
+        Shared _Mailtaxprintname As String = ""
+        Shared _MailTaxReportCut As String = ""
+        Shared _dsMailPrintProfile As DataSet
+    End Structure
+    Public Structure MailConfiguration
+        Shared _myMailID As String = ""
+        Shared _myPassword As String = ""
+        Shared _myHostID As String = ""
+        Shared _custMailID1 As String = ""
+        Shared _custMailID2 As String = ""
+        Shared _custPhone As String = ""
+        Shared _custAddress As String = ""
+    End Structure
+    Public Structure SystemSettings
+        Shared _sysCode As String = ""
+        Shared _pcname As String = ""
+        Shared _filename As String = ""
+        Shared _activation As String = ""
+        Shared _dsSystemSettings As DataSet
+        Shared _SalesOpenCount As Integer = 0
+        Shared _CardSystem As Boolean = False
+        Shared _WebPageDualScreen As Boolean = False
+    End Structure
+    Public Structure _printHeaderDesign
+        Public Shared _shopname As String = String.Empty
+        Public Shared _address As String = String.Empty
+        Public Shared _PrinterName As String = String.Empty
+        Public Shared _logoPath As String = _logoPath
+        Shared _AFTPRINT As String = String.Empty
+        Public Shared _logoState As String = String.Empty
+        Public Shared _emptyrow As String = String.Empty
+        Public Shared _bottomMsg As String = String.Empty
+    End Structure
+    Public Structure _DotmatrixTemp
+        Public Shared shopadress As String = String.Empty
+        Public Shared PrintType As String = String.Empty
+        Public Shared _DAILYSALE As String = String.Empty
+        Public Shared _PCNAME As String = Environment.MachineName
+        Public Shared _PrinterName As String = String.Empty
+        Public Shared _Port As String = ""
+    End Structure
+    Public Structure _decryptCode
+        Shared _deCodeServer As String
+        Shared _deCodeClient As String
+        Shared _deCodeMainHD As String
+        Shared _deCodeClienHd As String
+        Shared _deCodeActivation As String
+        Shared _deCodeExpireDays As Integer
     End Structure
 
     ' Initialize the module safely
     Public Sub InitializeModule()
         Try
             If ini Is Nothing Then
-                ini = New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
+                ini = New IniFile(M_Details._appPath & "\Settings\" & "Settings.ini")
                 ' Now safely read the settings
                 M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
                 If String.IsNullOrEmpty(M_Details.LinkAjaxRequest) Then
@@ -64,12 +180,10 @@ Module functionModule
         Public Shared LocationName As String = ""
         Public Shared UserRole As String = ""
         Public Shared UserRoleId As String = "1"
-        Public Shared CompanyPMId As Integer = 0
-        Public Shared CurShiftNo As Integer = 0
-        Public Shared CurDayNo As Integer = 0
+        Public Shared CompanyPMID As Integer = 0
     End Structure
     Public Structure _JsonData
-        Public Shared USerTable As New DataTable
+        Public Shared UserTable As New DataTable
         Public Shared UserPolicyTable As New DataTable
         Public Shared CompanyTable As New DataTable
         Public Shared CompanyLocationTable As New DataTable
@@ -83,6 +197,7 @@ Module functionModule
         Public Shared UnitMasterTable As New DataTable
         Public Shared SupplierTable As New DataTable
         Public Shared ItemMasterTable As New DataTable
+        Public Shared ItemTouchMasterTable As New DataTable
         Public Shared PurchaseViewTable As New DataTable
         Public Shared ClientTable As New DataTable
         Public Shared AgentTable As New DataTable
@@ -96,7 +211,7 @@ Module functionModule
         Public Shared MonthOfSalary As New DataTable
         Public Shared PosSettingsTable As New DataTable
         Public Shared SalesManCommissionTable As New DataTable
-        Public Shared PaymentTerm As New DataTable
+        Public Shared PaymentTermTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -106,7 +221,7 @@ Module functionModule
         Public Shared paymentModeSelection As String = ""
         Public Shared paymentMode As String = ""
     End Structure
-   
+
     Public Structure saveMode
         Shared _newMode As String = "New"
         Shared _saveMode As String = "Save"
@@ -118,16 +233,53 @@ Module functionModule
         _update = 0
         _reset = 3
     End Enum
+    Public Sub WriteAuditLog(ByRef userId As Integer, ByRef AuditMenuName As String, ByRef AuditLogMsg As String)
+        Try
+            Dim _SqlLog(3) As SqlParameter
+            _SqlLog(0) = New SqlParameter("mode", "I")
+            _SqlLog(1) = New SqlParameter("pal_userid", userId)
+            _SqlLog(2) = New SqlParameter("pal_menu", AuditMenuName)
+            _SqlLog(3) = New SqlParameter("pal_logname", AuditLogMsg)
+            If _ExecuteNonQuery("sp_auditlog_save", _SqlLog, errMsg) = False Then
+                WriteErroLog("sp_auditlog_save " & errMsg)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Dim filePath As String = M_Details._appPath & "\LocalDataBase\"
 
     Public Function getUserInfo() As Boolean
         Try
-            _JsonData.USerTable.TableName = "UserTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=1")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.USerTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.USerTable.Rows.Count > 0 Then
+
+            Dim Path As String = filePath & "UserTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                ' Internet available - fetch from server
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=1")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.USerTable = Userparsejson("Data").ToObject(Of DataTable)()
+
+                If _JsonData.USerTable.Rows.Count > 0 Then
+                    ' Save DataTable to XML file
+                    _JsonData.UserTable.TableName = "UserTable"
+                    _JsonData.UserTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
                 Return True
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.UserTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.UserTable.ReadXml(Path)
+                    _JsonData.UserTable.TableName = "UserTable"
+
+                    If _JsonData.UserTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
             Return True
         Catch ex As Exception
@@ -135,16 +287,36 @@ Module functionModule
             Return False
         End Try
     End Function
+
+
     Public Function getUserPolicyInfo(ByRef user_id As String) As Boolean
         Try
-            _JsonData.UserPolicyTable.TableName = "UserPolicyTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=6&user_id=" & user_id)
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.UserPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.UserPolicyTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "UserPolicyTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=6&user_id=" & user_id)
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.UserPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                    _JsonData.UserPolicyTable.TableName = "UserPolicyTable"
+                    _JsonData.UserPolicyTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.UserPolicyTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.UserPolicyTable.ReadXml(Path)
+                    _JsonData.UserPolicyTable.TableName = "UserPolicyTable"
+
+                    If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+           
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -153,14 +325,32 @@ Module functionModule
     End Function
     Public Function getSalesManCommissionInfo() As Boolean
         Try
-            _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=7")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.SalesManCommissionTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "SalesManCommissionTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=7")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.SalesManCommissionTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                    _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
+                    _JsonData.SalesManCommissionTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.SalesManCommissionTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.SalesManCommissionTable.ReadXml(Path)
+                    _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
+                    If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+           
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -169,14 +359,32 @@ Module functionModule
     End Function
     Public Function getPosSettingsInfo() As Boolean
         Try
-            _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=8&operation=SELECT")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.PosSettingsTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.PosSettingsTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "PosSettingsTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "GroupPolicyRequest=8&operation=SELECT")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.PosSettingsTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.PosSettingsTable.Rows.Count > 0 Then
+                    _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
+                    _JsonData.PosSettingsTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.PosSettingsTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.PosSettingsTable.ReadXml(Path)
+                    _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
+                    If _JsonData.PosSettingsTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+            
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -185,14 +393,32 @@ Module functionModule
     End Function
     Public Function getComapnyInfo() As Boolean
         Try
-            _JsonData.CompanyTable.TableName = "ComapnyTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=51")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.CompanyTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.CompanyTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "CompanyTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.CompanyTable.TableName = "CompanyTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=51")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.CompanyTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.CompanyTable.Rows.Count > 0 Then
+                    _JsonData.CompanyTable.TableName = "CompanyTable"
+                    _JsonData.CompanyTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.CompanyTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.CompanyTable.ReadXml(Path)
+                    _JsonData.CompanyTable.TableName = "CompanyTable"
+                    If _JsonData.CompanyTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+            
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -201,14 +427,32 @@ Module functionModule
     End Function
     Public Function getLocationInfo() As Boolean
         Try
-            _JsonData.LocationTable.TableName = "LocationTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=3")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.LocationTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.LocationTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "LocationTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.LocationTable.TableName = "LocationTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=3")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.LocationTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.LocationTable.Rows.Count > 0 Then
+                    _JsonData.LocationTable.TableName = "LocationTable"
+                    _JsonData.LocationTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.LocationTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.LocationTable.ReadXml(Path)
+                    _JsonData.LocationTable.TableName = "LocationTable"
+                    If _JsonData.LocationTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+           
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -217,14 +461,32 @@ Module functionModule
     End Function
     Public Function getComapnyLocationInfo() As Boolean
         Try
-            _JsonData.CompanyLocationTable.TableName = "ComapnyLocationTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=2")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.CompanyLocationTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.CompanyLocationTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "CompanyLocationTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=2")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.CompanyLocationTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.CompanyLocationTable.Rows.Count > 0 Then
+                    _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
+                    _JsonData.CompanyLocationTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.CompanyLocationTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.CompanyLocationTable.ReadXml(Path)
+                    _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
+                    If _JsonData.CompanyLocationTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+           
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -249,14 +511,32 @@ Module functionModule
     End Function
     Public Function getPaymentTermTable() As Boolean
         Try
-            _JsonData.PaymentTerm.TableName = "PaymentTermTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=26&groupid=013")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.PaymentTerm = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.PaymentTerm.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "PaymentTermTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.PaymentTermTable.TableName = "PaymentTermTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=26&groupid=013")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.PaymentTermTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.PaymentTermTable.Rows.Count > 0 Then
+                    _JsonData.PaymentTermTable.TableName = "PaymentTermTable"
+                    _JsonData.PaymentTermTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.PaymentTermTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.PaymentTermTable.ReadXml(Path)
+                    _JsonData.PaymentTermTable.TableName = "PaymentTermTable"
+                    If _JsonData.PaymentTermTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+          
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -282,16 +562,33 @@ Module functionModule
     End Function
     Public Function getItemMaster() As Boolean
         Try
-            _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
-            Dim _dt As New DataTable
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _dt = Userparsejson("Data").ToObject(Of DataTable)()
-            Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
-
-            If dtrows.Any Then
-                _JsonData.ItemMasterTable = dtrows.CopyToDataTable
+            Dim Path As String = filePath & "ItemMasterTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+                Dim _dt As New DataTable
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _dt = Userparsejson("Data").ToObject(Of DataTable)()
+                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
+                If dtrows.Any Then
+                    _JsonData.ItemMasterTable = dtrows.CopyToDataTable
+                    _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+                    _JsonData.ItemMasterTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.ItemMasterTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.ItemMasterTable.ReadXml(Path)
+                    _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+                    If _JsonData.ItemMasterTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
             Return True
         Catch ex As Exception
@@ -299,16 +596,71 @@ Module functionModule
             Return False
         End Try
     End Function
+    Function getTouchItemMaster() As Boolean
+        Try
+            Dim Path As String = filePath & "ItemTouchMasterTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                Dim _dt As New DataTable
+                _JsonData.ItemTouchMasterTable.TableName = "ItemTouchMasterTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=27")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _dt = Userparsejson("Data").ToObject(Of DataTable)()
+
+                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("ComId") = _companyInfo.ComId And dtrow("LocId") = _companyInfo.LocId
+                If dtrows.Any Then
+                    _JsonData.ItemTouchMasterTable = dtrows.CopyToDataTable
+                    _JsonData.ItemTouchMasterTable.TableName = "ItemTouchMasterTable"
+                    _JsonData.ItemTouchMasterTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.ItemTouchMasterTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.ItemTouchMasterTable.ReadXml(Path)
+                    _JsonData.ItemTouchMasterTable.TableName = "ItemTouchMasterTable"
+                    If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function getMainMaster() As Boolean
         Try
-            _JsonData.MainGroupTable.TableName = "MainTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=16")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.MainGroupTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.MainGroupTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "MainGroupTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.MainGroupTable.TableName = "MainGroupTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=16")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.MainGroupTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                    _JsonData.MainGroupTable.TableName = "MainGroupTable"
+                    _JsonData.MainGroupTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.MainGroupTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.MainGroupTable.ReadXml(Path)
+                    _JsonData.MainGroupTable.TableName = "MainGroupTable"
+                    If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -317,14 +669,32 @@ Module functionModule
     End Function
     Public Function getCategoryMaster() As Boolean
         Try
-            _JsonData.CategoryTable.TableName = "CateTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=20")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.CategoryTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.CategoryTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "CategoryTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.CategoryTable.TableName = "CategoryTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=20")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.CategoryTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.CategoryTable.Rows.Count > 0 Then
+                    _JsonData.CategoryTable.TableName = "CategoryTable"
+                    _JsonData.CategoryTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.CategoryTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.CategoryTable.ReadXml(Path)
+                    _JsonData.CategoryTable.TableName = "CategoryTable"
+                    If _JsonData.CategoryTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -496,8 +866,8 @@ Module functionModule
             If Msg.ToString = "True" Then
                 billDtl = Userparsejson("DTL").ToObject(Of DataTable)()
                 billHdr = Userparsejson("HDR").ToObject(Of DataTable)()
-                _Ds.Tables.Add(billDtl)
-                _Ds.Tables.Add(billHdr)
+                _ds.Tables.Add(billDtl)
+                _ds.Tables.Add(billHdr)
                 _
             End If
             Return True
@@ -859,16 +1229,6 @@ Module functionModule
             Return Nothing
         End Try
     End Function
-    Public Function _DateConversion(ByRef recDate As DateTime, ByRef ColDate As String) As Boolean
-        Try
-            Dim reformatted As String = ""
-            Dim _dateTime As DateTime = DateTime.Parse(recDate)
-            ColDate = _dateTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
     Public Function _DateConversionMonthYear(ByRef recDate As DateTime, ByRef ColDate As String) As Boolean
         Try
             Dim reformatted As String = ""
@@ -879,29 +1239,7 @@ Module functionModule
             Return False
         End Try
     End Function
-    Public Function _DateConversion(ByRef recDate As DateTime, ByRef ColDate As String, ByRef dateFormat As String) As Boolean
-        Try
-            Dim reformatted As String = ""
-            Dim _dateTime As DateTime = DateTime.Parse(recDate)
-            ColDate = _dateTime.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
-            dateFormat = _dateTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-    Public Function _DateConversion(ByRef fromDate As DateTime, ByRef toDate As DateTime, ByRef retfromdate As String, ByRef rettodate As String) As Boolean
-        Try
-            Dim reformatted As String = ""
-            Dim _dateTimefrom As DateTime = DateTime.Parse(fromDate)
-            Dim _dateTimeto As DateTime = DateTime.Parse(toDate)
-            retfromdate = _dateTimefrom.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-            rettodate = _dateTimeto.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
+
     Function NumberToText(ByVal n As Double) As String
 
         Select Case n
@@ -1188,6 +1526,18 @@ Module functionModule
             Return Nothing
         End Try
     End Function
+    Dim strMsg As String
+    Public Sub updateStr(ByRef str As String)
+        Try
+            'Threading.Thread.Sleep(1000)
+            ' timer.Interval = 1000
+            strMsg = DateAndTime.Now.ToString & ": " & str & vbNewLine
+            LogFileText._richTextBox.AppendText(strMsg.ToString)
+            'timer.Enabled = False
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 
 End Module
 

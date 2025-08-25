@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="LocationTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="LocationTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="plm_id" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_name" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_active" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_create" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_default" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <LocationTable>
+    <plm_id>1</plm_id>
+    <plm_name>@KL</plm_name>
+    <plm_active>1</plm_active>
+    <plm_create>2024-10-02 20:29:40</plm_create>
+    <plm_default>1</plm_default>
+  </LocationTable>
+  <LocationTable>
+    <plm_id>2</plm_id>
+    <plm_name>@MASJID INDIA</plm_name>
+    <plm_active>1</plm_active>
+    <plm_create>2024-10-02 20:29:51</plm_create>
+    <plm_default>1</plm_default>
+  </LocationTable>
+</NewDataSet>

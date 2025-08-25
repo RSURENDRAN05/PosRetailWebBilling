@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Test>
+    <LogoPath>-</LogoPath>
+    <LogoState>1</LogoState>
+    <ShopName>RAMALINGAM SHOP</ShopName>
+    <Address>INDRA NAGAR
+PERAVURANI
+THANJAVUR
+GST:000000000000000</Address>
+    <BottomMsg>3</BottomMsg>
+    <Empty>3</Empty>
+  </Test>
+</DocumentElement>

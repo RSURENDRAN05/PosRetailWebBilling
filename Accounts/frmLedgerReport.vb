@@ -17,8 +17,8 @@ Public Class frmLedgerReport
 
         Try
             r = New Ledgerreport
-            If File.Exists(M_Details.AppPath & "\Reports\ledgerReport.repx") Then
-                r.LoadLayout(M_Details.AppPath & "\Reports\ledgerReport.repx")
+            If File.Exists(M_Details._appPath & "\Reports\ledgerReport.repx") Then
+                r.LoadLayout(M_Details._appPath & "\Reports\ledgerReport.repx")
             End If
             PrintControlJournalrpt.PrintingSystem = r.PrintingSystem
             r.CreateDocument()
@@ -72,18 +72,18 @@ Public Class frmLedgerReport
 
             If Getdata(Errorstr) IsNot Nothing Then
                 r = New Ledgerreport
-                If File.Exists(M_Details.AppPath & "\Reports\ledgerReport.repx") Then
-                    r.LoadLayout(M_Details.AppPath & "\Reports\ledgerReport.repx")
+                If File.Exists(M_Details._appPath & "\Reports\ledgerReport.repx") Then
+                    r.LoadLayout(M_Details._appPath & "\Reports\ledgerReport.repx")
                 End If
                 Dim DatTab As New DataTable
 
                 DatTab = _dataSet.Copy
                 DatTab.TableName = "DataTable1"
-                If File.Exists(M_Details.AppPath & "\Reports\ledgerReport.xml") Then
+                If File.Exists(M_Details._appPath & "\Reports\ledgerReport.xml") Then
 
-                    DatTab.WriteXml(M_Details.AppPath & "\Reports\ledgerReport.xml", XmlWriteMode.WriteSchema, True)
+                    DatTab.WriteXml(M_Details._appPath & "\Reports\ledgerReport.xml", XmlWriteMode.WriteSchema, True)
                 Else
-                    DatTab.WriteXml(M_Details.AppPath & "\Reports\ledgerReport.xml", XmlWriteMode.WriteSchema, True)
+                    DatTab.WriteXml(M_Details._appPath & "\Reports\ledgerReport.xml", XmlWriteMode.WriteSchema, True)
                 End If
                 r.DataSource = _dataSet '.Tables(0)
                 PrintControlJournalrpt.PrintingSystem = r.PrintingSystem

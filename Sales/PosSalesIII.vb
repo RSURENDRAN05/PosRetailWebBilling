@@ -12,7 +12,7 @@ Imports System.IO
 ' - Reset to default layout functionality
 ' - Export/Import layout to/from external files
 ' - Layout files stored in: %AppData%\PosRetailWebBilling\Layouts\
-Public Class PosSalesII
+Public Class PosSalesIII
     Dim GridDataTble_Insert As DataTable
     Dim Errstr As String
     Dim _SnoCount As Integer = 0
@@ -85,13 +85,15 @@ Public Class PosSalesII
         Try
             barbtnposstatus.Caption = "PMID-" & _companyInfo.CompanyPMId & "-" & _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
             BarDate.Caption = DateTime.Now
-            Barshiftno.Caption = "ShiftNo : " & _companyInfo.CurShiftNo
-            Bardayno.Caption = "DayNo : " & _companyInfo.CurDayNo
+            Barshiftno.Caption = "ShiftNo : " & _saleSetting._curShiftno
+            Bardayno.Caption = "DayNo : " & _saleSetting._curDayno
             baruserinfomation.Caption = "UserName : " & _companyInfo.UserId & " - " & _companyInfo.UserName
             lblinvoicedate.Text = DateTime.Now.ToString("dd-MM-yyyy")
             ClearCurrentBill()
-            LoadItemMaster()
-            LoadTouchItemMaster()
+            If _JsonData.ItemMasterTable.Rows.Count > 0 Then
+                GridControl2.DataSource = _JsonData.ItemMasterTable.DefaultView
+                dtview = _JsonData.ItemMasterTable.DefaultView
+            End If
             subMenu()
             If _globalSetting.SearchProductCode = True Then
                 barSearchProductCode.Checked = True
@@ -103,11 +105,11 @@ Public Class PosSalesII
             Else
                 barstatustaxtype.Caption = "Tax Inclusive"
             End If
-            If _JsonData.PaymentTerm.Rows.Count = 0 Then
+            If _JsonData.PaymentTermTable.Rows.Count = 0 Then
                 getPaymentTermTable()
             Else
                 CmbPaymentTerm.Properties.Items.Clear()
-                For Each cmbpayment In _JsonData.PaymentTerm.Rows
+                For Each cmbpayment In _JsonData.PaymentTermTable.Rows
                     Dim values = cmbpayment("Name")
                     CmbPaymentTerm.Properties.Items.Add(values)
                 Next
@@ -123,10 +125,10 @@ Public Class PosSalesII
 
     Public Function _printProfileLoad() As Boolean
         Try
-            If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+            If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
                 Dim str() As String = {"Sales"}
                 Dim _dsPrintProfile As New DataSet
-                _dsPrintProfile.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+                _dsPrintProfile.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
                 Dim sas = From profile In _dsPrintProfile.Tables(0).AsEnumerable Where profile.Field(Of String)("ProfileType") = "Sales" Select profile
 
                 Dim tabl As New DataTable
@@ -303,51 +305,7 @@ Public Class PosSalesII
     End Sub
 #End Region
 #Region "LoadMenu"
-    Dim ItemTable As DataTable
-    Function LoadTouchItemMaster() As Boolean
-        Try
-
-            ItemTable = New DataTable
-            ItemTable.TableName = "ItemTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=27")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            ItemTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If ItemTable.Rows.Count > 0 Then
-                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In ItemTable Where dtrow("LocationName") = _companyInfo.LocationName
-                If dtrows.Any Then
-                    Return True
-                End If
-            Else
-                Return False
-            End If
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-    Private Sub LoadItemMaster()
-        Try
-            If getItemMaster() = True Then
-                If _JsonData.ItemMasterTable.Rows.Count > 0 Then
-                    GridControl2.DataSource = _JsonData.ItemMasterTable.DefaultView
-                    dtview = _JsonData.ItemMasterTable.DefaultView
-                End If
-            End If
-            'If getLedgerListTable() = True Then
-            '    If _JsonData.LedgerListTable.Rows.Count > 0 Then
-            '        'txtclientname.Properties.DataSource = _JsonData.LedgerListTable
-
-            '    End If
-            'End If
-            '' getClientInfo()
-            'If _JsonData.ClientTable.Rows.Count > 0 Then
-            '    GridControl1.DataSource = _JsonData.ClientTable
-            'End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
+     
     Dim hoverColors() As Color = { _
                Color.FromArgb(41, 128, 185), _
                Color.FromArgb(39, 174, 96), _
@@ -470,9 +428,9 @@ Public Class PosSalesII
             ' Clear existing product buttons
             FlowLayoutPanelProduct.Controls.Clear()
 
-            If ItemTable.Rows.Count > 0 Then
+            If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
                 ' Filter items by category ID and update the item grid
-                Dim filteredItems = From item In ItemTable.AsEnumerable() _
+                Dim filteredItems = From item In _JsonData.ItemTouchMasterTable.AsEnumerable() _
                                    Where IsNumeric(item("CateId")) AndAlso Convert.ToInt32(item("CateId")) = Cateid _
                                    Select item
 
@@ -834,12 +792,12 @@ Public Class PosSalesII
             ' Prepare parameters for delete log
             Dim billno As String = If(String.IsNullOrEmpty(lblinvoiceno.Text), "TEMP-" & DateTime.Now.ToString("yyyyMMddHHmmss"), lblinvoiceno.Text)
             Dim pcname As String = Environment.MachineName
-            Dim shiftno As Integer = _companyInfo.CurShiftNo
-            Dim dayno As Integer = _companyInfo.CurDayNo
+            Dim shiftno As Integer = _saleSetting._curShiftno
+            Dim dayno As Integer = _saleSetting._curDayno
             Dim comid As Integer = _companyInfo.ComId
             Dim locid As Integer = _companyInfo.LocId
             Dim userid As Integer = _companyInfo.UserId
-
+            
             ' Build URL parameters
             Dim url As String = M_Details.LinkAjaxRequest & "SalesRequest=14" &
                                "&billno=" & Uri.EscapeDataString(billno) &
@@ -1663,7 +1621,7 @@ Public Class PosSalesII
 
             ' Set focus to search field for quick item entry
             cmbMaterialSearch.Focus()
- 
+
         Catch ex As Exception
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -2457,8 +2415,8 @@ Public Class PosSalesII
                 ' Set basic fields
                 detail.psid_invoice_date = DateTime.Now
                 detail.psid_invoice_trno = lblinvoiceno.Text
-                detail.psid_invoice_shiftno = _companyInfo.CurShiftNo
-                detail.psid_invoice_dayno = _companyInfo.CurDayNo
+                detail.psid_invoice_shiftno = _saleSetting._curShiftno
+                detail.psid_invoice_dayno = _saleSetting._curDayno
                 detail.psid_invoice_salid = 0
                 salesList.Add(detail)
             Next
@@ -2576,8 +2534,8 @@ Public Class PosSalesII
                         Else
                             _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
                         End If
-                        _saleData.psih_invoice_shiftno = _companyInfo.CurShiftNo
-                        _saleData.psih_invoice_dayno = _companyInfo.CurDayNo
+                        _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
+                        _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
@@ -2687,8 +2645,8 @@ Public Class PosSalesII
                         Else
                             _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
                         End If
-                        _saleData.psih_invoice_shiftno = _companyInfo.CurShiftNo
-                        _saleData.psih_invoice_dayno = _companyInfo.CurDayNo
+                        _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
+                        _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
 
                         ' Basic validation - check if we have items
@@ -2880,7 +2838,7 @@ Public Class PosSalesII
             Dim _receDs As New DataSet
             If (GetSalesByBill(barstatuslastbillno.Caption, _receDs)) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
-                    _receDs.WriteXml(M_Details.AppPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
 
                 If clsBillPrint.BillPrintMin(_receDs, Errstr, txtprintprofile.Text) = False Then

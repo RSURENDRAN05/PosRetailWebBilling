@@ -45,10 +45,10 @@ Public Class frmPrintProfile
         End Try
     End Sub
     Private Sub _dxmlLoad()
-        If File.Exists(M_Details.AppPath & "\Settings\PrintProfileSetting.xml") Then
+        If File.Exists(M_Details._appPath & "\Settings\PrintProfileSetting.xml") Then
             PrintTable.Rows.Clear()
             _pCSettingDs = New DataSet
-            _pCSettingDs.ReadXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml")
+            _pCSettingDs.ReadXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml")
             PrintTable.BeginInit()
             For Each ROW In _pCSettingDs.Tables(0).Rows
                 PrintTable.Rows.Add(ROW(0), ROW(1), ROW(2), ROW(3), ROW(4), ROW(5))
@@ -94,7 +94,7 @@ Public Class frmPrintProfile
                     PrintTable.Rows.Add(Id, txtproname.Text, txtfilename.Text, txtCmbtype.Text, txtsinglemulti.Text, state)
                     PrintTable.AcceptChanges()
                     PrintTable.EndInit()
-                    PrintTable.WriteXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml", Data.XmlWriteMode.WriteSchema, True)
+                    PrintTable.WriteXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml", Data.XmlWriteMode.WriteSchema, True)
                     _dxmlLoad()
                     _clear()
                     enb(False)
@@ -112,7 +112,7 @@ Public Class frmPrintProfile
                     PrintTable.AcceptChanges()
                     PrintTable.EndInit()
                     GridControl1.DataSource = PrintTable
-                    PrintTable.WriteXml(M_Details.AppPath & "\Settings\PrintProfileSetting.xml", Data.XmlWriteMode.WriteSchema, True)
+                    PrintTable.WriteXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml", Data.XmlWriteMode.WriteSchema, True)
                     _dxmlLoad()
                     _clear()
                     enb(False)
@@ -204,7 +204,7 @@ Public Class frmPrintProfile
         Try
             Dim OpenFileDialog1 As New OpenFileDialog
             OpenFileDialog1.Title = "Please select a Print profile"
-            OpenFileDialog1.InitialDirectory = M_Details.AppPath & "\Reports\"
+            OpenFileDialog1.InitialDirectory = M_Details._appPath & "\Reports\"
             OpenFileDialog1.Filter = "Profile Files|*.repx"
             OpenFileDialog1.FileName = ""
             ' OpenFileDialog1.ShowDialog()
@@ -220,7 +220,7 @@ Public Class frmPrintProfile
 
     Private Sub btnprintdesign_Click(sender As Object, e As EventArgs) Handles btnprintdesign.Click
         Try
-            frmreportdesign.Show()
+            frmPrintDesign.Show()
         Catch ex As Exception
 
         End Try

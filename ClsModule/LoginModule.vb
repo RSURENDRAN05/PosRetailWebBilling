@@ -161,14 +161,14 @@ Module LoginModule
             ' Update ShiftNo
             If resultData.ShiftNo IsNot Nothing Then
                 If IsNumeric(resultData.ShiftNo.ToString()) Then
-                    _companyInfo.CurShiftNo = Convert.ToInt32(resultData.ShiftNo.ToString())
+                    _saleSetting._curShiftno = Convert.ToInt32(resultData.ShiftNo.ToString())
                 End If
             End If
 
             ' Update DayNo
             If resultData.DayNo IsNot Nothing Then
                 If IsNumeric(resultData.DayNo.ToString()) Then
-                    _companyInfo.CurDayNo = Convert.ToInt32(resultData.DayNo.ToString())
+                    _saleSetting._curDayno = Convert.ToInt32(resultData.DayNo.ToString())
                 End If
             End If
         Catch ex As Exception
@@ -186,14 +186,14 @@ Module LoginModule
             ' Update DayNo
             If resultData.DayNo IsNot Nothing Then
                 If IsNumeric(resultData.DayNo.ToString()) Then
-                    _companyInfo.CurDayNo = Convert.ToInt32(resultData.DayNo.ToString())
+                    _saleSetting._curDayno = Convert.ToInt32(resultData.DayNo.ToString())
                 End If
             End If
 
             ' Update ShiftNo (days may also contain shift information)
             If resultData.ShiftNo IsNot Nothing Then
                 If IsNumeric(resultData.ShiftNo.ToString()) Then
-                    _companyInfo.CurShiftNo = Convert.ToInt32(resultData.ShiftNo.ToString())
+                    _saleSetting._curShiftno = Convert.ToInt32(resultData.ShiftNo.ToString())
                 End If
             End If
 

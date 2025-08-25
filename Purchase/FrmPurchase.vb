@@ -25,7 +25,7 @@ Public Class FrmPurchase
             _Clear()
             _LoadInvoiceNo()
             _ScanClear()
-            GridViewPOS.RestoreLayoutFromXml(M_Details.AppPath & "\LayOut\GridPurchaseLayout.xml")
+            GridViewPOS.RestoreLayoutFromXml(M_Details._appPath & "\LayOut\GridPurchaseLayout.xml")
         Catch ex As Exception
 
         End Try
@@ -738,7 +738,7 @@ Public Class FrmPurchase
 
     Private Sub btnSaveGridViewPosLayout_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveGridViewPosLayout.ItemClick
         Try
-            GridViewPOS.SaveLayoutToXml(M_Details.AppPath & "\LayOut\GridPurchaseLayout.xml")
+            GridViewPOS.SaveLayoutToXml(M_Details._appPath & "\LayOut\GridPurchaseLayout.xml")
         Catch ex As Exception
 
         End Try

@@ -6,8 +6,8 @@ Module clsBillPrint
         Try
             Dim billrpt As New Billing_rpt
 
-            If File.Exists(M_Details.AppPath & "\Reports\" & SalesProfile) Then
-                billrpt.LoadLayout(M_Details.AppPath & "\Reports\" & SalesProfile)
+            If File.Exists(M_Details._appPath & "\Reports\" & SalesProfile) Then
+                billrpt.LoadLayout(M_Details._appPath & "\Reports\" & SalesProfile)
             End If
             billrpt.DataSource = ds
             billrpt.ShowPrintMarginsWarning = False
@@ -22,8 +22,8 @@ Module clsBillPrint
         Try
             Dim billrpt As New rpta5print
 
-            If File.Exists(M_Details.AppPath & "\Reports\" & SalesProfile) Then
-                billrpt.LoadLayout(M_Details.AppPath & "\Reports\" & SalesProfile)
+            If File.Exists(M_Details._appPath & "\Reports\" & SalesProfile) Then
+                billrpt.LoadLayout(M_Details._appPath & "\Reports\" & SalesProfile)
             End If
             billrpt.DataSource = ds
             billrpt.ShowPrintMarginsWarning = False

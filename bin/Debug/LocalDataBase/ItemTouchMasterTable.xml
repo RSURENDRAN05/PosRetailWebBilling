@@ -1,0 +1,383 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="ItemTouchMasterTable" msdata:Locale="en-IN">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ItemTouchMasterTable" msdata:Locale="en-IN">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:string" minOccurs="0" />
+                <xs:element name="BarCode" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
+                <xs:element name="Remarks" type="xs:string" minOccurs="0" />
+                <xs:element name="MainName" type="xs:string" minOccurs="0" />
+                <xs:element name="CateId" type="xs:string" minOccurs="0" />
+                <xs:element name="CateName" type="xs:string" minOccurs="0" />
+                <xs:element name="TaxName" type="xs:string" minOccurs="0" />
+                <xs:element name="SellPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="CostPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="MinPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="MaxPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowDiscount" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowNegStock" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowMultiPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="OpeningStock" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="Active" type="xs:string" minOccurs="0" />
+                <xs:element name="ComId" type="xs:string" minOccurs="0" />
+                <xs:element name="LocId" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <ItemTouchMasterTable>
+    <Id>1</Id>
+    <BarCode>1</BarCode>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 6%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>145.00</CostPrice>
+    <MinPrice>300.00</MinPrice>
+    <MaxPrice>320.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>2</Id>
+    <BarCode>2</BarCode>
+    <ItemName>HAIR CUT CHILDRAN</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 6%</TaxName>
+    <SellPrice>600.00</SellPrice>
+    <CostPrice>235.00</CostPrice>
+    <MinPrice>550.00</MinPrice>
+    <MaxPrice>600.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>3</Id>
+    <BarCode>3</BarCode>
+    <ItemName>HAIR CUT</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>18.00</SellPrice>
+    <CostPrice>60.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>25.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>4</Id>
+    <BarCode>4</BarCode>
+    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>TAX 9%</TaxName>
+    <SellPrice>1.95</SellPrice>
+    <CostPrice>1.25</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>5</Id>
+    <BarCode>5</BarCode>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <Remarks>15.6  11.6 i5 5300U 8 128 WIFI SPEAKER TERMINAL</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>4200.00</SellPrice>
+    <CostPrice>2400.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>6</Id>
+    <BarCode>6</BarCode>
+    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
+    <Remarks>RT AX57</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>451.00</SellPrice>
+    <CostPrice>450.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>7</Id>
+    <BarCode>7</BarCode>
+    <ItemName>CAT 6 CABLE OT011</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>31.00</SellPrice>
+    <CostPrice>30.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>8</Id>
+    <BarCode>8</BarCode>
+    <ItemName>CYBERPOWER UT800EGUN </ItemName>
+    <Remarks>GREENVA 400W UPS</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>151.00</SellPrice>
+    <CostPrice>150.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>9</Id>
+    <BarCode>9</BarCode>
+    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>81.00</SellPrice>
+    <CostPrice>80.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>10</Id>
+    <BarCode>10</BarCode>
+    <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>54.00</SellPrice>
+    <CostPrice>53.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>11</Id>
+    <BarCode>11</BarCode>
+    <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
+    <Remarks>DUALBAND WIRELESS USB ADAPTER </Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>64.00</SellPrice>
+    <CostPrice>63.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>12</Id>
+    <BarCode>12</BarCode>
+    <ItemName>UGREEN CAT6 RJ45 </ItemName>
+    <Remarks>Unsheilded Modular Plugs 1pcs</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>1.00</SellPrice>
+    <CostPrice>0.30</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>13</Id>
+    <BarCode>13</BarCode>
+    <ItemName>MINI KEYBOARD SLIM</ItemName>
+    <Remarks>MN903 </Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>19.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>14</Id>
+    <BarCode>14</BarCode>
+    <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
+    <Remarks>SENSONIC K250 </Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>1</CateId>
+    <CateName>SERVICES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>17.00</SellPrice>
+    <CostPrice>16.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>15</Id>
+    <BarCode>15</BarCode>
+    <ItemName>MINI PC</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>HARDWARE</MainName>
+    <CateId>5</CateId>
+    <CateName>OTHERS</CateName>
+    <TaxName>TAX 9%</TaxName>
+    <SellPrice>5000.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>4900.00</MinPrice>
+    <MaxPrice>4950.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+  </ItemTouchMasterTable>
+</NewDataSet>
