@@ -94,7 +94,8 @@ Public Class PosSalesII
                 GridControl2.DataSource = _JsonData.ItemMasterTable.DefaultView
                 dtview = _JsonData.ItemMasterTable.DefaultView
             End If
-            subMenu()
+            LoadButtonStyles()
+            mainMenu()
             If _globalSetting.SearchProductCode = True Then
                 barSearchProductCode.Checked = True
             Else
@@ -118,6 +119,7 @@ Public Class PosSalesII
             'If _printProfileLoad() = False Then
 
             'End If
+
         Catch ex As Exception
 
         End Try
@@ -303,117 +305,305 @@ Public Class PosSalesII
             MessageBox.Show("Error importing grid layout: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-#End Region
-#Region "LoadMenu"
-     
-    Dim hoverColors() As Color = { _
-               Color.FromArgb(41, 128, 185), _
-               Color.FromArgb(39, 174, 96), _
-               Color.FromArgb(142, 68, 173), _
-               Color.FromArgb(211, 84, 0), _
-               Color.FromArgb(192, 57, 43), _
-               Color.FromArgb(22, 160, 133), _
-               Color.FromArgb(243, 156, 18), _
-               Color.FromArgb(44, 62, 80), _
-               Color.FromArgb(125, 60, 152), _
-               Color.FromArgb(34, 153, 84) _
-           }
-    Private Sub subMenu()
+
+    ''' <summary>
+    ''' Simplified method to load button styles from ButtonStyleTable
+    ''' </summary>
+    Private Sub LoadButtonStyles()
         Try
-           
-            FlowLayoutPanelMain.Controls.Clear()
-
-
-            Dim buttonWidth As Integer = 150 ' Perfect division with no remainder
-            Dim buttonHeight As Integer = 70 ' Increased height for better appearance
-
-
-
-            ' Set FlowLayoutPanel properties for perfect layout
-            FlowLayoutPanelMain.FlowDirection = FlowDirection.LeftToRight
-            FlowLayoutPanelMain.WrapContents = True
-            FlowLayoutPanelMain.AutoScroll = True
-
-            ' Color palette for buttons - different colors for variety
-            Dim buttonColors() As Color = { _
-                Color.FromArgb(52, 152, 219), _
-                Color.FromArgb(46, 204, 113), _
-                Color.FromArgb(155, 89, 182), _
-                Color.FromArgb(230, 126, 34), _
-                Color.FromArgb(231, 76, 60), _
-                Color.FromArgb(26, 188, 156), _
-                Color.FromArgb(241, 196, 15), _
-                Color.FromArgb(52, 73, 94), _
-                Color.FromArgb(142, 68, 173), _
-                Color.FromArgb(39, 174, 96) _
-            }
-
-
-
-            ' Add dynamic SimpleButtons for each category with perfect fit styling
-            Dim colorIndex As Integer = 0
-            Dim firstCategoryId As Integer = 0 ' Store first category ID for initial load
-
-            For Each row As DataRow In _JsonData.CategoryTable.Rows
-                Dim btn As New DevExpress.XtraEditors.SimpleButton()
-
-                ' Button text and data
-                btn.Text = row("CateName").ToString()
-                btn.Tag = row("CateID")
-
-                ' Store first category ID for initial product load
-                If colorIndex = 0 Then
-                    firstCategoryId = Convert.ToInt32(row("CateID"))
-                End If
-
-                ' Button styling and dimensions for perfect fit with even padding
-                btn.Size = New Size(buttonWidth, buttonHeight)
-                btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
-
-                ' Get color for this button
-                Dim buttonColor As Color = buttonColors(colorIndex Mod buttonColors.Length)
-                Dim hoverColor As Color = hoverColors(colorIndex Mod hoverColors.Length)
-
-                ' DevExpress SimpleButton specific properties with enhanced styling
-                btn.Appearance.BackColor = buttonColor
-                btn.Appearance.ForeColor = Color.White
-                btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
-                btn.Appearance.Options.UseBackColor = True
-                btn.Appearance.Options.UseForeColor = True
-                btn.Appearance.Options.UseFont = True
-                btn.Appearance.Options.UseTextOptions = True
-                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
-
-                ' Hover effects with corresponding darker color
-                btn.Appearance.BackColor2 = hoverColor
-                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-                btn.LookAndFeel.UseDefaultLookAndFeel = False
-
-                ' Add border for better visual separation
-                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
-                btn.Appearance.Options.UseBorderColor = True
-
-                ' Event handler
-                AddHandler btn.Click, AddressOf CategoryButton_Click
-
-                ' Add to panel
-                FlowLayoutPanelMain.Controls.Add(btn)
-
-                ' Increment color index for next button
-                colorIndex += 1
-            Next
-
-            ' Force layout update to ensure proper sizing
-            FlowLayoutPanelMain.PerformLayout()
-
-            ' Load products for the first category initially
-            If firstCategoryId > 0 Then
-                LoadProductMenu(firstCategoryId)
+            If _JsonData.ButtonStyleTable Is Nothing OrElse _JsonData.ButtonStyleTable.Rows.Count = 0 Then
+                Exit Sub
             End If
 
+            ' Create a dictionary for faster lookups
+            Dim styleDict As New Dictionary(Of String, DataRow)
+
+            For Each row As DataRow In _JsonData.ButtonStyleTable.Rows
+                Dim styleName As String = row("Name").ToString().ToUpper()
+                If Not styleDict.ContainsKey(styleName) Then
+                    styleDict.Add(styleName, row)
+                End If
+            Next
+
+            ' Apply button styles using the dictionary - access shared properties directly
+            If styleDict.ContainsKey("MAINH") Then
+                ButtonStyleWH.MAINH = GetStyleValue(styleDict("MAINH"), "Value", 70).ToString() ' Default height 70
+            End If
+
+            If styleDict.ContainsKey("MAINW") Then
+                ButtonStyleWH.MAINW = GetStyleValue(styleDict("MAINW"), "Value", 150).ToString() ' Default width 150
+            End If
+
+            If styleDict.ContainsKey("SUBH") Then
+                ButtonStyleWH.SUBH = GetStyleValue(styleDict("SUBH"), "Value", 60).ToString() ' Default height 60
+            End If
+
+            If styleDict.ContainsKey("SUBW") Then
+                ButtonStyleWH.SUBW = GetStyleValue(styleDict("SUBW"), "Value", 120).ToString() ' Default width 120
+            End If
+
+            If styleDict.ContainsKey("ITEMH") Then
+                ButtonStyleWH.ITEMH = GetStyleValue(styleDict("ITEMH"), "Value", 80).ToString() ' Default height 80
+            End If
+
+            If styleDict.ContainsKey("ITEMW") Then
+                ButtonStyleWH.ITEMW = GetStyleValue(styleDict("ITEMW"), "Value", 200).ToString() ' Default width 200
+            End If
+
+            If styleDict.ContainsKey("MAINLOAD") Then
+                ButtonStyleWH.MAINLOAD = GetStyleValue(styleDict("MAINLOAD"), "Value", 10).ToString() ' Default load count
+            End If
+
+            If styleDict.ContainsKey("SUBLOAD") Then
+                ButtonStyleWH.SUBLOAD = GetStyleValue(styleDict("SUBLOAD"), "Value", 15).ToString() ' Default load count
+            End If
+
+            If styleDict.ContainsKey("ITEMLOAD") Then
+                ButtonStyleWH.ITEMLOAD = GetStyleValue(styleDict("ITEMLOAD"), "Value", 20).ToString() ' Default load count
+            End If
+
+        Catch ex As Exception
+            ' Log error or handle silently - don't break the form loading
+            System.Diagnostics.Debug.WriteLine("Error loading button styles: " & ex.Message)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Helper method to safely get style values with default fallback
+    ''' </summary>
+    Private Function GetStyleValue(row As DataRow, columnName As String, defaultValue As Integer) As Integer
+        Try
+            If row Is Nothing Then Return defaultValue
+
+            Dim value As Object = row(columnName)
+            If value Is Nothing OrElse value Is DBNull.Value Then Return defaultValue
+
+            Dim result As Integer
+            If Integer.TryParse(value.ToString(), result) Then
+                Return If(result > 0, result, defaultValue)
+            Else
+                Return defaultValue
+            End If
+        Catch
+            Return defaultValue
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Helper method to safely convert database color values to System.Drawing.Color with fallback
+    ''' Supports both hex codes (#FF0000, FF0000) and color names (Red, Blue, Green, etc.)
+    ''' </summary>
+    Private Function GetSafeColor(row As DataRow, columnName As String, defaultColor As Color) As Color
+        Try
+            If row Is Nothing Then Return defaultColor
+
+            Dim colorValue As Object = row(columnName)
+            If colorValue Is Nothing OrElse colorValue Is DBNull.Value Then Return defaultColor
+
+            Dim colorString As String = colorValue.ToString().Trim()
+            If String.IsNullOrWhiteSpace(colorString) Then Return defaultColor
+
+            ' First, try to handle hex colors
+            If colorString.StartsWith("#") OrElse System.Text.RegularExpressions.Regex.IsMatch(colorString, "^[0-9A-Fa-f]{6}$") Then
+                ' Ensure color string starts with # for hex colors
+                If Not colorString.StartsWith("#") Then
+                    ' Try to add # if it looks like hex without it
+                    If colorString.Length = 6 AndAlso System.Text.RegularExpressions.Regex.IsMatch(colorString, "^[0-9A-Fa-f]{6}$") Then
+                        colorString = "#" & colorString
+                    Else
+                        Return defaultColor
+                    End If
+                End If
+
+                ' Try to convert the hex color
+                Return ColorTranslator.FromHtml(colorString)
+            Else
+                ' Try to handle named colors (Red, Blue, Green, etc.)
+                Try
+                    ' Use Color.FromName to convert color names
+                    Dim namedColor As Color = Color.FromName(colorString)
+
+                    ' Check if the color name is valid (not a system color with ARGB = 0)
+                    If namedColor.IsKnownColor OrElse namedColor.ToArgb() <> 0 Then
+                        Return namedColor
+                    Else
+                        ' If it's not a valid color name, return default
+                        Return defaultColor
+                    End If
+                Catch ex As Exception
+                    ' If named color conversion fails, return default
+                    Return defaultColor
+                End Try
+            End If
+
+        Catch ex As Exception
+            ' Return default color if any conversion fails
+            Return defaultColor
+        End Try
+    End Function
+#End Region
+#Region "LoadMenu"
+    Private Sub mainMenu()
+        Try
+            Try
+
+                FlowLayoutPanelMain.Controls.Clear()
+                ' Set FlowLayoutPanel properties for perfect layout
+                FlowLayoutPanelMain.FlowDirection = FlowDirection.LeftToRight
+                FlowLayoutPanelMain.WrapContents = True
+                FlowLayoutPanelMain.AutoScroll = True
+                ' Add dynamic SimpleButtons for each category with perfect fit styling
+
+                ' For initial load, use ButtonStyleWH.SUBLOAD as default index
+                Dim firstMainGroupId As Integer = Convert.ToInt32(ButtonStyleWH.SUBLOAD)
+                If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                    For Each row As DataRow In _JsonData.MainGroupTable.Rows
+                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+                        ' Button text and data
+                        btn.Text = row("MainName").ToString()
+                        btn.Tag = row("MainId")
+
+                        ' Button styling and dimensions for perfect fit with even padding
+                        btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
+                        btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
+
+
+
+                        ' DevExpress SimpleButton specific properties with enhanced styling
+                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(52, 152, 219)) ' Blue default for MainGroup
+                        btn.Appearance.ForeColor = Color.Black
+                        btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
+                        btn.Appearance.Options.UseBackColor = True
+                        btn.Appearance.Options.UseForeColor = True
+                        btn.Appearance.Options.UseFont = True
+                        btn.Appearance.Options.UseTextOptions = True
+                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                        btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+
+
+                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                        btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                        ' Add border for better visual separation
+                        btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                        btn.Appearance.Options.UseBorderColor = True
+
+                        ' Event handler
+                        AddHandler btn.Click, AddressOf MainGroupButton_Click
+
+                        ' Add to panel
+                        FlowLayoutPanelMain.Controls.Add(btn)
+
+                    Next
+
+                    ' Force layout update to ensure proper sizing
+                    FlowLayoutPanelMain.PerformLayout()
+
+                    ' Load submenu for the initial default main group ID
+                    If firstMainGroupId > 0 Then
+                        subMenu(firstMainGroupId, True) ' True indicates initial load
+                    End If
+
+                End If
+
+            Catch ex As Exception
+                ' Handle error silently or log if needed
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub subMenu(ByRef DefaultMainId As Integer, Optional ByVal isInitialLoad As Boolean = False)
+        Try
+
+            FlowLayoutPanelSubMenu.Controls.Clear()
+            ' Set FlowLayoutPanel properties for perfect layout
+            FlowLayoutPanelSubMenu.FlowDirection = FlowDirection.TopDown
+            FlowLayoutPanelSubMenu.WrapContents = True
+            FlowLayoutPanelSubMenu.AutoScroll = True
+            ' Add dynamic SimpleButtons for each category with perfect fit styling
+
+            Dim selectedMainId As Integer = DefaultMainId ' Store selected main group ID
+            Dim firstCategoryId As Integer = 0 ' Will store the first category ID for product loading
+
+            If _JsonData.CategoryTable.Rows.Count > 0 Then
+                Dim filteredCate = From item In _JsonData.CategoryTable.AsEnumerable() _
+                                  Where IsNumeric(item("MainId")) AndAlso Convert.ToInt32(item("MainId")) = selectedMainId _
+                                  Select item
+
+                If filteredCate.Any() Then
+                    Dim filteredTable As DataTable = filteredCate.CopyToDataTable()
+
+                    ' Determine which category to load for products
+                    If isInitialLoad Then
+                        ' For initial load, use ButtonStyleWH.ITEMLOAD as index
+                        Dim itemLoadIndex As Integer = Convert.ToInt32(ButtonStyleWH.ITEMLOAD)
+                        If itemLoadIndex < filteredTable.Rows.Count Then
+                            firstCategoryId = Convert.ToInt32(filteredTable.Rows(itemLoadIndex)("CateID"))
+                        Else
+                            ' If index is out of range, use first category
+                            firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
+                        End If
+                    Else
+                        ' For user clicks, always use first category (index 0)
+                        firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
+                    End If
+                    For Each row As DataRow In filteredTable.Rows
+                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+                        ' Button text and data
+                        btn.Text = row("CateName").ToString()
+                        btn.Tag = row("CateID")
+
+
+                        ' Button styling and dimensions for perfect fit with even padding
+                        btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
+                        btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
+
+
+
+                        ' DevExpress SimpleButton specific properties with enhanced styling
+                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(46, 204, 113)) ' Green default for SubMenu
+                        btn.Appearance.ForeColor = Color.Black
+                        btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
+                        btn.Appearance.Options.UseBackColor = True
+                        btn.Appearance.Options.UseForeColor = True
+                        btn.Appearance.Options.UseFont = True
+                        btn.Appearance.Options.UseTextOptions = True
+                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                        btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+
+
+                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                        btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                        ' Add border for better visual separation
+                        btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                        btn.Appearance.Options.UseBorderColor = True
+
+                        ' Event handler
+                        AddHandler btn.Click, AddressOf CategoryButton_Click
+
+                        ' Add to panel
+                        FlowLayoutPanelSubMenu.Controls.Add(btn)
+
+                        ' Increment color index for next button
+
+                    Next
+                End If
+
+                ' Force layout update to ensure proper sizing
+                FlowLayoutPanelSubMenu.PerformLayout()
+
+                LoadProductMenu(firstCategoryId)
+
+            End If
         Catch ex As Exception
             ' Handle error silently or log if needed
         End Try
@@ -435,23 +625,6 @@ Public Class PosSalesII
                 If filteredItems.Any() Then
                     ' Create a new DataTable with filtered items
                     Dim filteredTable As DataTable = filteredItems.CopyToDataTable()
-
-
-                    Dim buttonWidth As Integer = 200
-                    Dim buttonHeight As Integer = 80 ' Taller buttons for product display
-
-                    ' Color palette for product buttons
-                    Dim productColors() As Color = { _
-                        Color.FromArgb(70, 130, 180), _
-                        Color.FromArgb(60, 179, 113), _
-                        Color.FromArgb(255, 140, 0), _
-                        Color.FromArgb(218, 112, 214), _
-                        Color.FromArgb(255, 99, 71), _
-                        Color.FromArgb(32, 178, 170) _
-                    }
-
-                    'Create styled product buttons
-                    Dim colorIndex As Integer = 0
                     For Each row As DataRow In filteredTable.Rows
                         Dim btn As New DevExpress.XtraEditors.SimpleButton()
 
@@ -471,13 +644,12 @@ Public Class PosSalesII
                         End If
 
                         ' Enhanced button styling
-                        btn.Size = New Size(buttonWidth, buttonHeight)
+                        btn.Size = New Size(ButtonStyleWH.ITEMW, ButtonStyleWH.ITEMH)
                         btn.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                        Dim hoverColor As Color = hoverColors(colorIndex Mod hoverColors.Length)
-                        ' Color styling with rotation
-                        Dim btnColor As Color = productColors(colorIndex Mod productColors.Length)
-                        btn.Appearance.BackColor = btnColor
-                        btn.Appearance.ForeColor = Color.White
+
+                        ' Safe color handling using helper function
+                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(70, 130, 180)) ' Steel Blue default for Products
+                        btn.Appearance.ForeColor = Color.Black
                         btn.Appearance.Font = New Font("Segoe UI", 9, FontStyle.Bold)
                         btn.Appearance.Options.UseBackColor = True
                         btn.Appearance.Options.UseForeColor = True
@@ -487,8 +659,7 @@ Public Class PosSalesII
                         btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
                         btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
 
-                        ' Hover and visual effects
-                        btn.Appearance.BackColor2 = hoverColor
+
                         btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
                         btn.LookAndFeel.UseDefaultLookAndFeel = False
 
@@ -499,8 +670,6 @@ Public Class PosSalesII
                         ' Event handler
                         AddHandler btn.Click, AddressOf ItemButton_Click
                         FlowLayoutPanelProduct.Controls.Add(btn)
-
-                        colorIndex += 1
                     Next
                 End If
             End If
@@ -508,7 +677,27 @@ Public Class PosSalesII
 
         End Try
     End Sub
-  
+    Private Sub MainGroupButton_Click(sender As Object, e As EventArgs)
+        Try
+            ' Get the clicked button and extract the category ID from its Tag
+            Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
+            Dim selectedMainGroupId As Integer = 0
+
+            ' Safely convert the Tag to Integer
+            If IsNumeric(clickedButton.Tag) Then
+                selectedMainGroupId = Convert.ToInt32(clickedButton.Tag)
+            End If
+
+            ' Load submenu for the selected main group (user click - use first index)
+            If selectedMainGroupId > 0 Then
+                subMenu(selectedMainGroupId, False) ' False indicates user click, not initial load
+            End If
+
+        Catch ex As Exception
+            ' Handle error silently or log if needed
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error loading category: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub CategoryButton_Click(sender As Object, e As EventArgs)
         Try
             ' Get the clicked button and extract the category ID from its Tag
@@ -1174,6 +1363,7 @@ Public Class PosSalesII
             ' lblitemdiscountonly.Text = ItemDiscountAmt.ToString("0.00")
             ' lblbilldiscountonly.Text = BillDiscountAmt.ToString("0.00")
             lblservcharge.Text = _globalSettingValues.ServiceTaxValue
+            barselectsalesman_ItemClick(Nothing, Nothing)
             Return True
 
         Catch ex As Exception
@@ -1595,23 +1785,23 @@ Public Class PosSalesII
 #Region "New Bill"
     Private Sub barbtnNewBill_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnNewBill.ItemClick
         Try
-            ' Confirm with user if there are items in the current bill
-            If GridDataTble_Insert.Rows.Count > 0 Then
-                Dim result As DialogResult = MessageBox.Show("Are you sure you want to start a new bill? All current items will be cleared.", _
-                                                           "New Bill Confirmation", _
-                                                           MessageBoxButtons.YesNo, _
-                                                           MessageBoxIcon.Question)
-                If result = DialogResult.No Then
-                    Exit Sub
-                End If
-            End If
+            '' Confirm with user if there are items in the current bill
+            'If GridDataTble_Insert.Rows.Count > 0 Then
+            '    Dim result As DialogResult = MessageBox.Show("Are you sure you want to start a new bill? All current items will be cleared.", _
+            '                                               "New Bill Confirmation", _
+            '                                               MessageBoxButtons.YesNo, _
+            '                                               MessageBoxIcon.Question)
+            '    If result = DialogResult.No Then
+            '        Exit Sub
+            '    End If
+            'End If
 
             ' Clear the current bill and start fresh
             ClearCurrentBill()
 
             ' Set focus to search field for quick item entry
             cmbMaterialSearch.Focus()
- 
+
         Catch ex As Exception
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1639,7 +1829,7 @@ Public Class PosSalesII
             'End If
             Dim dt As DataTable
             dt = New DataTable
-            dt = GetPosMasterByID(_companyInfo.CompanyPMId, _companyInfo.ComId, _companyInfo.LocId)
+            dt = GetPosMasterByID(_companyInfo.CompanyPMID, _companyInfo.ComId, _companyInfo.LocId)
             If dt.Rows.Count > 0 Then
                 lblinvoiceno.Text = dt.Rows(0)("PSR_BILL_NUMBER").ToString
                 billPrefix = dt.Rows(0)("PM_PREFIX").ToString
@@ -2223,7 +2413,7 @@ Public Class PosSalesII
 
             ' Check if any item is selected in the grid
             If GridViewPOS.FocusedRowHandle < 0 Then
-                MessageBox.Show("Please select an item to assign a salesman.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'MessageBox.Show("Please select an item to assign a salesman.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
 
@@ -2444,7 +2634,7 @@ Public Class PosSalesII
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         Dim _saleData As New SalesHeader
-                        _saleData.psih_invoice_pmid = _companyInfo.CompanyPMId
+                        _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
                         _saleData.psih_invoice_trno = 0
                         Dim invoicedate As String = ""
                         _DateConversion(lblinvoicedate.Text, invoicedate)
@@ -2555,7 +2745,7 @@ Public Class PosSalesII
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         Dim _saleData As New SalesHeader
-                        _saleData.psih_invoice_pmid = _companyInfo.CompanyPMId
+                        _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
                         Dim invoicedate As String = ""
                         _DateConversion(lblinvoicedate.Text, invoicedate)
                         _saleData.psih_invoice_date = invoicedate
@@ -2851,4 +3041,7 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+
+
+
 End Class

@@ -46,6 +46,18 @@ Public Class FrmCateMaster
     Private Sub btnsave_Click(sender As Object, e As EventArgs) Handles btnsave.Click
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
+            If txtcatename.Text = "" OrElse txtcatename.EditValue Is Nothing Then
+                txtcatename.Properties.Appearance.BackColor = Color.Red
+                Exit Sub
+            Else
+                txtcatename.Properties.Appearance.BackColor = Color.White
+            End If
+            If txtposition.Text = "" OrElse txtposition.EditValue Is Nothing Then
+                txtposition.Properties.Appearance.BackColor = Color.Red
+                Exit Sub
+            Else
+                txtposition.Properties.Appearance.BackColor = Color.White
+            End If
             Dim comp As New clscatemaster
             If btnsave.Text = "Save" Then
                 dialog.Caption = "Connecting To Server"
@@ -53,6 +65,8 @@ Public Class FrmCateMaster
                     comp.cateid = 0
                     comp.catename = txtcatename.Text
                     comp.mainid = txtmainname.EditValue
+                    comp.color = ColorTranslator.ToHtml(colorEdit1.Color)
+                    comp.position = txtposition.Text
                     comp.active = chkactive.CheckState
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=17&json=" & PostString) = True Then
@@ -62,6 +76,7 @@ Public Class FrmCateMaster
                     txtcateid.Text = ""
                     txtcatename.Text = ""
                     txtmainname.Text = ""
+                    txtposition.Text = "0"
                     btnsave.Text = "Save"
                 End If
             Else
@@ -69,6 +84,8 @@ Public Class FrmCateMaster
                 If txtcatename.Text.Length > 0 Then
                     comp.cateid = txtcateid.Text
                     comp.catename = txtcatename.Text
+                    comp.color = ColorTranslator.ToHtml(colorEdit1.Color)
+                    comp.position = txtposition.Text
                     comp.mainid = txtmainname.EditValue
                     comp.active = chkactive.CheckState
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
@@ -80,6 +97,7 @@ Public Class FrmCateMaster
                 txtcateid.Text = ""
                 txtcatename.Text = ""
                 txtmainname.Text = ""
+                txtposition.Text = "0"
                 btnsave.Text = "Save"
             End If
 
@@ -95,12 +113,24 @@ Public Class FrmCateMaster
             Dim id = GridView1.GetFocusedRowCellValue("CateId")
             Dim catename = GridView1.GetFocusedRowCellValue("CateName")
             Dim mainname = GridView1.GetFocusedRowCellValue("MainName")
+            Dim mainposition = GridView1.GetFocusedRowCellValue("Position")
+            Dim maincolor = GridView1.GetFocusedRowCellValue("Color")
             Dim chkvalue = GridView1.GetFocusedRowCellValue("Active")
 
             txtcateid.Text = id
             txtcatename.Text = catename
             txtmainname.Text = mainname
+            txtposition.Text = mainposition
             chkactive.Checked = chkvalue
+            If maincolor IsNot Nothing AndAlso maincolor.ToString() <> "" Then
+                Try
+                    colorEdit1.EditValue = ColorTranslator.FromHtml(maincolor.ToString())
+                Catch
+                    colorEdit1.EditValue = Color.LightBlue
+                End Try
+            Else
+                colorEdit1.EditValue = Color.LightBlue
+            End If
         Catch ex As Exception
 
         End Try
@@ -111,5 +141,7 @@ Public Class clscatemaster
     Public Property catename As String
     Public Property mainid As String
     Public Property mainname As String
+    Public Property color As String
+    Public Property position As String
     Public Property active As String
 End Class

@@ -12,6 +12,8 @@
                 <xs:element name="MainId" type="xs:string" minOccurs="0" />
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
                 <xs:element name="Active" type="xs:string" minOccurs="0" />
+                <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="Position" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -23,8 +25,10 @@
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <MainId>1</MainId>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <Active>1</Active>
+    <Color>LightBlue</Color>
+    <Position>1</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>2</CateId>
@@ -32,6 +36,8 @@
     <MainId>2</MainId>
     <MainName>SOFTWARE</MainName>
     <Active>1</Active>
+    <Color>DeepSkyBlue</Color>
+    <Position>2</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>3</CateId>
@@ -39,6 +45,8 @@
     <MainId>2</MainId>
     <MainName>SOFTWARE</MainName>
     <Active>1</Active>
+    <Color>SteelBlue</Color>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>4</CateId>
@@ -46,13 +54,17 @@
     <MainId>2</MainId>
     <MainName>SOFTWARE</MainName>
     <Active>1</Active>
+    <Color>SteelBlue</Color>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>5</CateId>
     <CateName>OTHERS</CateName>
     <MainId>1</MainId>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <Active>1</Active>
+    <Color>SteelBlue</Color>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>6</CateId>
@@ -60,5 +72,25 @@
     <MainId>2</MainId>
     <MainName>SOFTWARE</MainName>
     <Active>1</Active>
+    <Color>SteelBlue</Color>
+    <Position>6</Position>
+  </CategoryTable>
+  <CategoryTable>
+    <CateId>7</CateId>
+    <CateName>XX</CateName>
+    <MainId>2</MainId>
+    <MainName>SOFTWARE</MainName>
+    <Active>0</Active>
+    <Color>DodgerBlue</Color>
+    <Position>0</Position>
+  </CategoryTable>
+  <CategoryTable>
+    <CateId>8</CateId>
+    <CateName>X</CateName>
+    <MainId>2</MainId>
+    <MainName>SOFTWARE</MainName>
+    <Active>0</Active>
+    <Color>LightBlue</Color>
+    <Position>0</Position>
   </CategoryTable>
 </NewDataSet>

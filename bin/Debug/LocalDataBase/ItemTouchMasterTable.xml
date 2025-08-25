@@ -28,6 +28,8 @@
                 <xs:element name="Active" type="xs:string" minOccurs="0" />
                 <xs:element name="ComId" type="xs:string" minOccurs="0" />
                 <xs:element name="LocId" type="xs:string" minOccurs="0" />
+                <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="Position" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -40,7 +42,7 @@
     <BarCode>1</BarCode>
     <ItemName>HAIR CUT ADULT</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 6%</TaxName>
@@ -57,13 +59,15 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>2</Id>
     <BarCode>2</BarCode>
     <ItemName>HAIR CUT CHILDRAN</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 6%</TaxName>
@@ -80,13 +84,15 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
+    <Color>Teal</Color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>3</Id>
     <BarCode>3</BarCode>
     <ItemName>HAIR CUT</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -103,13 +109,15 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
+    <Color>Yellow</Color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>4</Id>
     <BarCode>4</BarCode>
     <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>TAX 9%</TaxName>
@@ -126,13 +134,15 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
+    <Color>Red</Color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>5</Id>
     <BarCode>5</BarCode>
     <ItemName>VPOS TERMINAL</ItemName>
     <Remarks>15.6  11.6 i5 5300U 8 128 WIFI SPEAKER TERMINAL</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -149,13 +159,15 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>6</Id>
     <BarCode>6</BarCode>
     <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
     <Remarks>RT AX57</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -178,7 +190,7 @@
     <BarCode>7</BarCode>
     <ItemName>CAT 6 CABLE OT011</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -201,7 +213,7 @@
     <BarCode>8</BarCode>
     <ItemName>CYBERPOWER UT800EGUN </ItemName>
     <Remarks>GREENVA 400W UPS</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -224,7 +236,7 @@
     <BarCode>9</BarCode>
     <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -247,7 +259,7 @@
     <BarCode>10</BarCode>
     <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -270,7 +282,7 @@
     <BarCode>11</BarCode>
     <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
     <Remarks>DUALBAND WIRELESS USB ADAPTER </Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -293,7 +305,7 @@
     <BarCode>12</BarCode>
     <ItemName>UGREEN CAT6 RJ45 </ItemName>
     <Remarks>Unsheilded Modular Plugs 1pcs</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -316,7 +328,7 @@
     <BarCode>13</BarCode>
     <ItemName>MINI KEYBOARD SLIM</ItemName>
     <Remarks>MN903 </Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -339,7 +351,7 @@
     <BarCode>14</BarCode>
     <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
     <Remarks>SENSONIC K250 </Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>1</CateId>
     <CateName>SERVICES</CateName>
     <TaxName>Tax 0%</TaxName>
@@ -362,7 +374,7 @@
     <BarCode>15</BarCode>
     <ItemName>MINI PC</ItemName>
     <Remarks>-</Remarks>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <CateId>5</CateId>
     <CateName>OTHERS</CateName>
     <TaxName>TAX 9%</TaxName>

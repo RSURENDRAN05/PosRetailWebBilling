@@ -81,6 +81,18 @@ Module functionModule
     Public Structure LogFileText
         Public Shared _richTextBox As New RichTextBox
     End Structure
+    Public Structure ButtonStyleWH
+        Public Shared MAINH As String = "50"
+        Public Shared MAINW As String = "50"
+        Public Shared SUBH As String = "50"
+        Public Shared SUBW As String = "50"
+        Public Shared ITEMH As String = "50"
+        Public Shared ITEMW As String = "50"
+        Public Shared MAINLOAD As String = "1"
+        Public Shared SUBLOAD As String = "1"
+        Public Shared ITEMLOAD As String = "1"
+    End Structure
+    
     Public Structure PrintProfile
         Shared _salesFilename As String = ""
         Shared _purchaseFilename As String = ""
@@ -212,6 +224,7 @@ Module functionModule
         Public Shared PosSettingsTable As New DataTable
         Public Shared SalesManCommissionTable As New DataTable
         Public Shared PaymentTermTable As New DataTable
+        Public Shared ButtonStyleTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -543,7 +556,40 @@ Module functionModule
             Return False
         End Try
     End Function
+    Public Function getButtonStyleTable() As Boolean
+        Try
+            Dim Path As String = filePath & "ButtonStyleTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.ButtonStyleTable.TableName = "ButtonStyleTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=26&groupid=014")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.ButtonStyleTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.ButtonStyleTable.Rows.Count > 0 Then
+                    _JsonData.ButtonStyleTable.TableName = "ButtonStyleTable"
+                    _JsonData.ButtonStyleTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.ButtonStyleTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.ButtonStyleTable.ReadXml(Path)
+                    _JsonData.ButtonStyleTable.TableName = "ButtonStyleTable"
+                    If _JsonData.ButtonStyleTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
 
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Function getTaxMaster() As Boolean
         Try
             _JsonData.TaxTable.TableName = "TaxTable"

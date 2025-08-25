@@ -15,7 +15,7 @@ Partial Class FrmMainGroup
     Private components As System.ComponentModel.IContainer
 
     'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'It can be modified using the Windows Form Designer.
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
@@ -38,6 +38,7 @@ Partial Class FrmMainGroup
         Me.chkactive = New DevExpress.XtraEditors.CheckEdit()
         Me.txtmainname = New DevExpress.XtraEditors.TextEdit()
         Me.txtmainid = New DevExpress.XtraEditors.TextEdit()
+        Me.colorEdit1 = New DevExpress.XtraEditors.ColorEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.labletaxname1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -45,6 +46,8 @@ Partial Class FrmMainGroup
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItemColor = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +60,7 @@ Partial Class FrmMainGroup
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtmainid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.colorEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,15 +68,17 @@ Partial Class FrmMainGroup
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItemColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.CustomizationFormText = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(134, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(158, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(204, 34)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(10, 46)
         Me.EmptySpaceItem2.Text = "EmptySpaceItem2"
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -80,20 +86,22 @@ Partial Class FrmMainGroup
         '
         Me.LayoutControlItem7.Control = Me.GridControl1
         Me.LayoutControlItem7.CustomizationFormText = "Details :"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 110)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 174)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(459, 505)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(698, 715)
         Me.LayoutControlItem7.Text = "Details :"
         Me.LayoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(101, 19)
         '
         'GridControl1
         '
-        Me.GridControl1.Location = New System.Drawing.Point(12, 138)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 208)
         Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImagetaxactive})
-        Me.GridControl1.Size = New System.Drawing.Size(455, 485)
+        Me.GridControl1.Size = New System.Drawing.Size(694, 689)
         Me.GridControl1.TabIndex = 10
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -154,9 +162,9 @@ Partial Class FrmMainGroup
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 615)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 889)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(459, 37)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(698, 73)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -164,9 +172,10 @@ Partial Class FrmMainGroup
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.LabelControl1.Location = New System.Drawing.Point(350, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(180, 12)
+        Me.LabelControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(117, 24)
+        Me.LabelControl1.Size = New System.Drawing.Size(174, 36)
         Me.LabelControl1.StyleController = Me.LayoutControl1
         Me.LabelControl1.TabIndex = 11
         Me.LabelControl1.Text = "Main Group"
@@ -180,12 +189,14 @@ Partial Class FrmMainGroup
         Me.LayoutControl1.Controls.Add(Me.chkactive)
         Me.LayoutControl1.Controls.Add(Me.txtmainname)
         Me.LayoutControl1.Controls.Add(Me.txtmainid)
+        Me.LayoutControl1.Controls.Add(Me.colorEdit1)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(569, 387, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(479, 672)
+        Me.LayoutControl1.Size = New System.Drawing.Size(718, 982)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -195,9 +206,10 @@ Partial Class FrmMainGroup
         Me.btnsave.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnsave.Appearance.Options.UseBackColor = True
         Me.btnsave.Image = CType(resources.GetObject("btnsave.Image"), System.Drawing.Image)
-        Me.btnsave.Location = New System.Drawing.Point(126, 80)
+        Me.btnsave.Location = New System.Drawing.Point(159, 144)
+        Me.btnsave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnsave.Name = "btnsave"
-        Me.btnsave.Size = New System.Drawing.Size(162, 38)
+        Me.btnsave.Size = New System.Drawing.Size(99, 38)
         Me.btnsave.StyleController = Me.LayoutControl1
         Me.btnsave.TabIndex = 9
         Me.btnsave.Text = "Save"
@@ -208,55 +220,72 @@ Partial Class FrmMainGroup
         Me.btncancel.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.Options.UseBackColor = True
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
-        Me.btncancel.Location = New System.Drawing.Point(292, 80)
+        Me.btncancel.Location = New System.Drawing.Point(262, 144)
+        Me.btncancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btncancel.Name = "btncancel"
-        Me.btncancel.Size = New System.Drawing.Size(175, 38)
+        Me.btncancel.Size = New System.Drawing.Size(92, 38)
         Me.btncancel.StyleController = Me.LayoutControl1
         Me.btncancel.TabIndex = 8
         Me.btncancel.Text = "Cancel"
         '
         'chkactive
         '
-        Me.chkactive.Location = New System.Drawing.Point(12, 80)
+        Me.chkactive.Location = New System.Drawing.Point(12, 144)
+        Me.chkactive.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.chkactive.Name = "chkactive"
         Me.chkactive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.chkactive.Properties.Caption = "Active"
-        Me.chkactive.Size = New System.Drawing.Size(110, 21)
+        Me.chkactive.Size = New System.Drawing.Size(143, 26)
         Me.chkactive.StyleController = Me.LayoutControl1
         Me.chkactive.TabIndex = 7
         '
         'txtmainname
         '
-        Me.txtmainname.Location = New System.Drawing.Point(81, 46)
+        Me.txtmainname.Location = New System.Drawing.Point(116, 58)
+        Me.txtmainname.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtmainname.Name = "txtmainname"
         Me.txtmainname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtmainname.Properties.Appearance.Options.UseFont = True
         Me.txtmainname.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.txtmainname.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtmainname.Size = New System.Drawing.Size(386, 30)
+        Me.txtmainname.Size = New System.Drawing.Size(238, 42)
         Me.txtmainname.StyleController = Me.LayoutControl1
         Me.txtmainname.TabIndex = 5
         '
         'txtmainid
         '
-        Me.txtmainid.Location = New System.Drawing.Point(81, 12)
+        Me.txtmainid.Location = New System.Drawing.Point(116, 12)
+        Me.txtmainid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtmainid.Name = "txtmainid"
         Me.txtmainid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtmainid.Properties.Appearance.Options.UseFont = True
         Me.txtmainid.Properties.ReadOnly = True
-        Me.txtmainid.Size = New System.Drawing.Size(61, 30)
+        Me.txtmainid.Size = New System.Drawing.Size(50, 42)
         Me.txtmainid.StyleController = Me.LayoutControl1
         Me.txtmainid.TabIndex = 4
+        '
+        'colorEdit1
+        '
+        Me.colorEdit1.EditValue = System.Drawing.Color.Empty
+        Me.colorEdit1.Location = New System.Drawing.Point(116, 104)
+        Me.colorEdit1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.colorEdit1.Name = "colorEdit1"
+        Me.colorEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.colorEdit1.Properties.Appearance.Options.UseFont = True
+        Me.colorEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.colorEdit1.Size = New System.Drawing.Size(238, 36)
+        Me.colorEdit1.StyleController = Me.LayoutControl1
+        Me.colorEdit1.TabIndex = 12
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.labletaxname1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.EmptySpaceItem2})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.labletaxname1, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.EmptySpaceItem2, Me.LayoutControlItemColor, Me.LayoutControlItem5, Me.EmptySpaceItem3})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(479, 672)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(718, 982)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -266,27 +295,27 @@ Partial Class FrmMainGroup
         Me.LayoutControlItem1.CustomizationFormText = "Tax Id :"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(134, 34)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(158, 46)
         Me.LayoutControlItem1.Text = "Group Id:"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(101, 19)
         '
         'labletaxname1
         '
         Me.labletaxname1.Control = Me.txtmainname
         Me.labletaxname1.CustomizationFormText = "Tax Name :"
-        Me.labletaxname1.Location = New System.Drawing.Point(0, 34)
+        Me.labletaxname1.Location = New System.Drawing.Point(0, 46)
         Me.labletaxname1.Name = "labletaxname1"
-        Me.labletaxname1.Size = New System.Drawing.Size(459, 34)
+        Me.labletaxname1.Size = New System.Drawing.Size(346, 46)
         Me.labletaxname1.Text = "Group Name :"
-        Me.labletaxname1.TextSize = New System.Drawing.Size(66, 13)
+        Me.labletaxname1.TextSize = New System.Drawing.Size(101, 19)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.chkactive
         Me.LayoutControlItem4.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 68)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 132)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(114, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(147, 42)
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextToControlDistance = 0
@@ -296,9 +325,9 @@ Partial Class FrmMainGroup
         '
         Me.LayoutControlItem5.Control = Me.btncancel
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(280, 68)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(250, 132)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(179, 42)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(96, 42)
         Me.LayoutControlItem5.Text = "LayoutControlItem5"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextToControlDistance = 0
@@ -308,9 +337,9 @@ Partial Class FrmMainGroup
         '
         Me.LayoutControlItem6.Control = Me.btnsave
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(114, 68)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(147, 132)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(166, 42)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(103, 42)
         Me.LayoutControlItem6.Text = "LayoutControlItem6"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextToControlDistance = 0
@@ -322,21 +351,42 @@ Partial Class FrmMainGroup
         Me.LayoutControlItem8.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem8.Control = Me.LabelControl1
         Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem8"
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(338, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(168, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(121, 34)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(178, 46)
         Me.LayoutControlItem8.Text = "LayoutControlItem8"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextToControlDistance = 0
         Me.LayoutControlItem8.TextVisible = False
         '
+        'LayoutControlItemColor
+        '
+        Me.LayoutControlItemColor.Control = Me.colorEdit1
+        Me.LayoutControlItemColor.CustomizationFormText = "Group Color:"
+        Me.LayoutControlItemColor.Location = New System.Drawing.Point(0, 92)
+        Me.LayoutControlItemColor.Name = "LayoutControlItemColor"
+        Me.LayoutControlItemColor.Size = New System.Drawing.Size(346, 40)
+        Me.LayoutControlItemColor.Text = "Group Color:"
+        Me.LayoutControlItemColor.TextSize = New System.Drawing.Size(101, 19)
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.CustomizationFormText = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(346, 0)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(352, 174)
+        Me.EmptySpaceItem3.Text = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
         'FrmMainGroup
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(479, 672)
+        Me.ClientSize = New System.Drawing.Size(718, 982)
         Me.Controls.Add(Me.LayoutControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FrmMainGroup"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FrmMainGroup"
@@ -352,6 +402,7 @@ Partial Class FrmMainGroup
         CType(Me.chkactive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtmainname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtmainid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.colorEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.labletaxname1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -359,6 +410,8 @@ Partial Class FrmMainGroup
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItemColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -379,6 +432,7 @@ Partial Class FrmMainGroup
     Friend WithEvents chkactive As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents txtmainname As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtmainid As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents colorEdit1 As DevExpress.XtraEditors.ColorEdit
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents labletaxname1 As DevExpress.XtraLayout.LayoutControlItem
@@ -386,4 +440,6 @@ Partial Class FrmMainGroup
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItemColor As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

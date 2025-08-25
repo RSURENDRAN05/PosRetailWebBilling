@@ -9,6 +9,7 @@
               <xs:sequence>
                 <xs:element name="Id" type="xs:string" minOccurs="0" />
                 <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Value" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -18,10 +19,12 @@
   </xs:schema>
   <PaymentTermTable>
     <Id>72</Id>
-    <Name>CASH</Name>
+    <Name>PAYMENTERM</Name>
+    <Value>CASH</Value>
   </PaymentTermTable>
   <PaymentTermTable>
     <Id>73</Id>
-    <Name>CREDIT</Name>
+    <Name>PAYMENTERM</Name>
+    <Value>CREDIT</Value>
   </PaymentTermTable>
 </NewDataSet>

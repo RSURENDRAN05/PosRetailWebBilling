@@ -562,8 +562,8 @@ Public Class MainMaster
     Private Sub barpossales_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barpossales.ItemClick
         Try
             ' Show the new DevExpress LayoutControl-based POS form
-            Dim frmPos As New PosSalesII()
-            frmPos.ShowDialog()
+            PosSalesII.MdiParent = Me
+            PosSalesII.Show()
         Catch ex As Exception
 
         End Try

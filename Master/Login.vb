@@ -1,8 +1,7 @@
 ﻿Imports DevExpress.XtraEditors
 Public Class Login
     'Public ini As New IniFile(M_Details.AppPath & "\Settings\" & "Settings.ini")
-    Dim LocationId As Integer = 0
-    Dim CompanyId As Integer = 0
+   
 
     Public Sub New()
         'Dim dta As New DataTable
@@ -10,69 +9,12 @@ Public Class Login
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
             InitializeComponent()
-
             ' Apply the current skin to Login form (don't reload, just apply what's already set)
             SkinManager.LoadSkinSetting()
-
-            M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
-            M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
-            M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
-            LocationId = ini.ReadValue("Bank", "LocationId")
-            CompanyId = ini.ReadValue("Bank", "CompanyId")
-           
-            If chkRegistryKey(M_Details.licenceActive) = False Then
-                End
-            End If
-            If CheckForInternetConnection() = False Then
-                XtraMessageBox.Show("No Internet Connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End
-            Else
-                dialog.Caption = "Getting User Information"
-                If getUserInfo() = True Then
-                    txtusername.Properties.DataSource = _JsonData.USerTable
-                    dialog.Caption = "User Data Received"
-                Else
-                    dialog.Caption = "User Data Not Received"
-                End If
-                dialog.Caption = "Getting Company Information"
-                If getComapnyLocationInfo() = True Then
-                    dialog.Caption = "Company Data Received"
-                    GridLookUuCompany.Properties.DataSource = _JsonData.CompanyLocationTable
-                Else
-                    dialog.Caption = "Company Data Not Received"
-                End If
-                If getComapnyInfo() = True Then
-                    dialog.Caption = "Company Data Received"
-
-                Else
-                    dialog.Caption = "Company Data Not Received"
-                End If
-                dialog.Caption = "Getting Location Information"
-                If getLocationInfo() = True Then
-                    dialog.Caption = "Location Data Received"
-                Else
-                    dialog.Caption = "Location Data Not Received"
-                End If
-                If getPosSettingsInfo() = True Then
-                    LoadPosSettings()
-                    dialog.Caption = "Loading Pos Settings"
-                Else
-                    dialog.Caption = "Pos Setting Data Not Received"
-                End If
-                If getSalesManCommissionInfo() = True Then
-
-                    dialog.Caption = "Loading SalesCommission"
-                Else
-                    dialog.Caption = "SalesCommission Data Not Received"
-                End If
-                If getPaymentTermTable() = True Then
-                    dialog.Caption = "Loading Payment Term"
-                Else
-                    dialog.Caption = "Payment Term Data Not Received"
-                End If
-                GridLookUuCompany.EditValue = LocationId
-
-
+            If _ReadSyncLocalCloud() Then
+                txtusername.Properties.DataSource = _JsonData.UserTable
+                GridLookUuCompany.Properties.DataSource = _JsonData.CompanyLocationTable
+                GridLookUuCompany.EditValue = _companyInfo.LocId
             End If
         Catch ex As Exception
             dialog.Close()
@@ -100,9 +42,9 @@ Public Class Login
                 If _validateUserLogin(Trim(txtusername.Text), Trim(txtpassword.Text)) = True Then
                     'XtraMessageBox.Show("Welcome " & txtusername.Text & "!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Dim _SELECTEDROW = GridLookUuCompany.GetSelectedDataRow
-                    _companyInfo.ComId = CompanyId
+
                     _companyInfo.CompanyName = GridLookUuCompany.GetSelectedDataRow(1).ToString
-                    _companyInfo.LocId = LocationId
+
                     _companyInfo.LocationName = GridLookUuCompany.GetSelectedDataRow(3).ToString
                     'ValidationProcess()
                     Me.Hide()

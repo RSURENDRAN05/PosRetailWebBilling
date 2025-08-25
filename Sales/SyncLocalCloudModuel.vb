@@ -47,66 +47,68 @@ Module SyncLocalCloudModuel
             If Not Directory.Exists(localDbPath) Then
                 Directory.CreateDirectory(localDbPath)
             End If
-            dialog.Caption = "Getting User Information"
             If getUserInfo() = True Then
                 dialog.Caption = "User Data Received"
             Else
-                dialog.Caption = "User Data Not Received"
+                dialog.Caption = "User  Not Received"
             End If
-            dialog.Caption = "Getting Company Information"
             If getComapnyLocationInfo() = True Then
                 dialog.Caption = "Company Data Received"
             Else
-                dialog.Caption = "Company Data Not Received"
+                dialog.Caption = "Company  Not Received"
             End If
             If getComapnyInfo() = True Then
                 dialog.Caption = "Company Data Received"
 
             Else
-                dialog.Caption = "Company Data Not Received"
+                dialog.Caption = "Company  Not Received"
             End If
-            dialog.Caption = "Getting Location Information"
             If getLocationInfo() = True Then
                 dialog.Caption = "Location Data Received"
             Else
-                dialog.Caption = "Location Data Not Received"
+                dialog.Caption = "Location Not Received"
             End If
             If getPosSettingsInfo() = True Then
                 LoadPosSettings()
                 dialog.Caption = "Loading Pos Settings"
             Else
-                dialog.Caption = "Pos Setting Data Not Received"
+                dialog.Caption = "Pos Setting Not Received"
             End If
             If getSalesManCommissionInfo() = True Then
 
                 dialog.Caption = "Loading SalesCommission"
             Else
-                dialog.Caption = "SalesCommission Data Not Received"
+                dialog.Caption = "SalesCommission Not Received"
             End If
             If getPaymentTermTable() = True Then
                 dialog.Caption = "Loading Payment Term"
             Else
-                dialog.Caption = "Payment Term Data Not Received"
+                dialog.Caption = "PaymentTerm  Not Received"
             End If
             If getCategoryMaster() = True Then
                 dialog.Caption = "Loading CategoryMaster"
             Else
-                dialog.Caption = "CategoryMaster Data Not Received"
+                dialog.Caption = "CategoryMaster Not Received"
             End If
             If getMainMaster() = True Then
                 dialog.Caption = "Loading MainMaster"
             Else
-                dialog.Caption = "MainMaster Data Not Received"
+                dialog.Caption = "MainMaster Not Received"
             End If
             If getItemMaster() = True Then
                 dialog.Caption = "Loading ItemMaster"
             Else
-                dialog.Caption = "ItemMaster Data Not Received"
+                dialog.Caption = "ItemMaster Not Received"
             End If
             If getTouchItemMaster() = True Then
                 dialog.Caption = "Loading TouchItemMaster"
             Else
-                dialog.Caption = "TouchItemMaster Data Not Received"
+                dialog.Caption = "TouchItemMaster Not Received"
+            End If
+            If getButtonStyleTable() = True Then
+                dialog.Caption = "Loading ButtonStyleTable"
+            Else
+                dialog.Caption = "ButtonStyleTable Not Received"
             End If
             Return True
         Catch ex As Exception

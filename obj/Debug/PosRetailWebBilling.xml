@@ -372,6 +372,19 @@ PosRetailWebBilling
 	<param name="section">The section of the file to write in</param>
 	<param name="key">The key in the section to write</param>
 	<param name="value">The value to write for the key</param>
+</member><member name="M:PosRetailWebBilling.PosSalesII.LoadButtonStyles">
+	<summary>
+ Simplified method to load button styles from ButtonStyleTable
+ </summary>
+</member><member name="M:PosRetailWebBilling.PosSalesII.GetStyleValue(System.Data.DataRow,System.String,System.Int32)">
+	<summary>
+ Helper method to safely get style values with default fallback
+ </summary>
+</member><member name="M:PosRetailWebBilling.PosSalesII.GetSafeColor(System.Data.DataRow,System.String,System.Drawing.Color)">
+	<summary>
+ Helper method to safely convert database color values to System.Drawing.Color with fallback
+ Supports both hex codes (#FF0000, FF0000) and color names (Red, Blue, Green, etc.)
+ </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>
  Centralized method to update shift information from JSON response

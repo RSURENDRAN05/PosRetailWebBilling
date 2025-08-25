@@ -2,7 +2,7 @@
 
 include_once 'clsfunctionmgmt.php';
 $clsfunreq = new funcProcessMgmt();
- 
+
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials:true");
@@ -172,8 +172,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $getjson = $_GET['json'];
         $row = json_decode($getjson, true);
         $mainname = $row['mainname'];
+        $groupcolor = $row['groupcolor'];
         $mainstatus = $row['active'];
-        $RequestInsert = $clsfunreq->_InsertMainMastrer($mainname, $mainstatus);
+        $RequestInsert = $clsfunreq->_InsertMainMastrer($mainname, $mainstatus, $groupcolor);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true));
         } else {
@@ -186,8 +187,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $row = json_decode($getjson, true);
         $mainid = $row['id'];
         $mainname = $row['mainname'];
+        $groupcolor = $row['groupcolor'];
         $mainstatus = $row['active'];
-        $RequestInsert = $clsfunreq->_UpdateMainMastrer($mainid, $mainname, $mainstatus);
+        $RequestInsert = $clsfunreq->_UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true));
         } else {
@@ -227,8 +229,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $row = json_decode($getjson, true);
         $catename = $row['catename'];
         $mainid = $row['mainid'];
+        $color = $row['color'];
+        $position = $row['position'];
         $catestatus = $row['active'];
-        $RequestInsert = $clsfunreq->_InsertCateMastrer($catename, $mainid, $catestatus);
+        $RequestInsert = $clsfunreq->_InsertCateMastrer($catename, $mainid, $catestatus, $color, $position);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true));
         } else {
@@ -240,9 +244,11 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $row = json_decode($getjson, true);
         $cateid = $row['cateid'];
         $catename = $row['catename'];
+        $color = $row['color'];
+        $position = $row['position'];
         $mainid = $row['mainid'];
         $catestatus = $row['active'];
-        $RequestInsert = $clsfunreq->_UpdateCateMastrer($cateid, $catename, $mainid, $catestatus);
+        $RequestInsert = $clsfunreq->_UpdateCateMastrer($cateid, $catename, $mainid, $catestatus, $color, $position);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true));
         } else {
@@ -333,7 +339,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $dim_loc_id = $row['itemlocid'];
         $dim_status = $row['itemactive'];
         $dim_op_stock = $row['itemopstock'];
-        $RequestInsert = $clsfunreq->_InsertProductMaster($dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
+        $color = $row['itemcolor'];
+        $position = $row['itemposition'];
+        $RequestInsert = $clsfunreq->_InsertProductMaster($dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark, $color, $position);
+        //   $RequestInsert = $clsfunreq->_InsertProductMaster($dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
         if ($RequestInsert) {
             $productCode = $clsfunreq->_GetProductCode($dim_item_barcode, $dim_item_name, $dim_com_id, $dim_loc_id);
             if (strlen($productCode) > 0) {
@@ -372,7 +381,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $dim_loc_id = $row['itemlocid'];
         $dim_status = $row['itemactive'];
         $dim_op_stock = $row['itemopstock'];
-        $RequestInsert = $clsfunreq->_UpdateProductMaster($dim_item_id, $dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark);
+        $color = $row['itemcolor'];
+        $position = $row['itemposition'];
+        $RequestInsert = $clsfunreq->_UpdateProductMaster($dim_item_id, $dim_item_barcode, $dim_item_name, $dim_business_type, $dim_main_id, $dim_cate_id, $dim_tax_id, $dim_cost_price, $dim_sell_price, $dim_min_price, $dim_max_price, $dim_allow_disc, $dim_allow_negstock, $dim_allow_multiprice, $dim_op_stock, $dim_com_id, $dim_loc_id, $dim_status, $dim_remark, $color, $position);
         if ($RequestInsert) {
             $RequestLiveStock = $clsfunreq->_InsertLiveStock($dim_item_id, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_op_stock, $dim_com_id, $dim_loc_id);
             if ($RequestLiveStock) {

@@ -165,7 +165,7 @@ class funcProcessMgmt
     public function _SelectMainMastrer()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active FROM `di_main_group` WHERE 1");
+        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color FROM `di_main_group` WHERE 1");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -173,23 +173,23 @@ class funcProcessMgmt
     public function _SelectMainMastrerById($id)
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active FROM `di_main_group` WHERE `mainid`='" . $id . "'");
+        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color FROM `di_main_group` WHERE `mainid`='" . $id . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return mysqli_fetch_assoc($result);
     }
 
-    public function _InsertMainMastrer($mainname, $mainstatus)
+    public function _InsertMainMastrer($mainname, $mainstatus, $groupcolor)
     {
         $conn = $this->conn;
-        $sqlSelect = ("INSERT INTO `di_main_group`(`mainname`, `mainstatus`)VALUES ('" . $mainname . "','" . $mainstatus . "')");
+        $sqlSelect = ("INSERT INTO `di_main_group`(`mainname`, `mainstatus`, `groupcolor`)VALUES ('" . $mainname . "','" . $mainstatus . "','" . $groupcolor . "')");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
 
-    public function _UpdateMainMastrer($mainid, $mainname, $mainstatus)
+    public function _UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor)
     {
         $conn = $this->conn;
-        $sqlSelect = ("UPDATE `di_main_group` SET `mainid`='" . $mainid . "',`mainname`='" . $mainname . "',`mainstatus`='" . $mainstatus . "' WHERE `mainid`='" . $mainid . "'");
+        $sqlSelect = ("UPDATE `di_main_group` SET `mainid`='" . $mainid . "',`mainname`='" . $mainname . "',`mainstatus`='" . $mainstatus . "', `groupcolor`='" . $groupcolor . "' WHERE `mainid`='" . $mainid . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -198,7 +198,7 @@ class funcProcessMgmt
     public function _SelectCateMastrer()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT sg.dcm_id as CateId,sg.dcm_name as CateName,mg.mainid as MainId,mg.mainname as MainName,sg.dcm_active as Active FROM `di_category_master` as sg INNER JOIN `di_main_group` as mg ON sg.di_main_id=mg.mainid WHERE 1");
+        $sqlSelect = ("SELECT sg.dcm_id as CateId,sg.dcm_name as CateName,mg.mainid as MainId,mg.mainname as MainName,sg.dcm_active as Active, sg.color as Color, sg.position as Position FROM `di_category_master` as sg INNER JOIN `di_main_group` as mg ON sg.di_main_id=mg.mainid WHERE 1");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -206,23 +206,23 @@ class funcProcessMgmt
     public function _SelectCateMastrerById($id)
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `dcm_id`, `dcm_name`, `di_main_id`, `dcm_active` FROM `di_category_master` WHERE  `dcm_id`='" . $id . "'");
+        $sqlSelect = ("SELECT `dcm_id`, `dcm_name`, `di_main_id`, `dcm_active`, `color`, `position` FROM `di_category_master` WHERE  `dcm_id`='" . $id . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return mysqli_fetch_assoc($result);
     }
 
-    public function _InsertCateMastrer($catename, $mainid, $catestatus)
+    public function _InsertCateMastrer($catename, $mainid, $catestatus, $color, $position)
     {
         $conn = $this->conn;
-        $sqlSelect = ("INSERT INTO `di_category_master`(`dcm_name`, `di_main_id`, `dcm_active`) VALUES  ('" . $catename . "','" . $mainid . "','" . $catestatus . "')");
+        $sqlSelect = ("INSERT INTO `di_category_master`(`dcm_name`, `di_main_id`, `dcm_active`, `color`, `position`) VALUES  ('" . $catename . "','" . $mainid . "','" . $catestatus . "','" . $color . "','" . $position . "')");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
 
-    public function _UpdateCateMastrer($cateid, $catename, $mainid, $catestatus)
+    public function _UpdateCateMastrer($cateid, $catename, $mainid, $catestatus, $color, $position)
     {
         $conn = $this->conn;
-        $sqlSelect = ("UPDATE `di_category_master` SET `dcm_name`='" . $catename . "',`di_main_id`='" . $mainid . "',`dcm_active`='" . $catestatus . "' WHERE `dcm_id`='" . $cateid . "'");
+        $sqlSelect = ("UPDATE `di_category_master` SET `dcm_name`='" . $catename . "',`di_main_id`='" . $mainid . "',`dcm_active`='" . $catestatus . "', `color`='" . $color . "', `position`='" . $position . "' WHERE `dcm_id`='" . $cateid . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -231,7 +231,7 @@ class funcProcessMgmt
     public function _tablegroupmasterbycode($groupid)
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT tma_group_id as Id,tma_group_value as Name FROM tb_master_all WHERE tma_group_code='" . $groupid . "'");
+        $sqlQuery = ("SELECT tma_group_id as Id,tma_group_name as Name,tma_group_value as Value FROM tb_master_all WHERE tma_group_code='" . $groupid . "'");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -239,7 +239,7 @@ class funcProcessMgmt
     public function _SelectProductJoin()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim.dim_remark as Remarks,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id WHERE 1;");
+        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim.dim_remark as Remarks,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId, dim.dim_color as Color, dim.dim_position as Position FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id WHERE 1;");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -262,14 +262,16 @@ class funcProcessMgmt
         $dim_com_id,
         $dim_loc_id,
         $dim_status,
-        $dim_remark
+        $dim_remark,
+        $dim_color,
+        $dim_position
     ) {
         $conn = $this->conn;
         $sqlQuery = ("INSERT INTO `di_item_mast`( `dim_item_barcode`, `dim_item_name`, `dim_business_type`, `dim_main_id`, `dim_cate_id`, `dim_tax_id`, `dim_cost_price`"
-            . ", `dim_sell_price`, `dim_min_price`, `dim_max_price`, `dim_allow_disc`, `dim_allow_negstock`, `dim_allow_multiprice`, `dim_op_stock`, `dim_com_id`, `dim_loc_id`, `dim_status`,`dim_remark`,`created`) VALUES "
+            . ", `dim_sell_price`, `dim_min_price`, `dim_max_price`, `dim_allow_disc`, `dim_allow_negstock`, `dim_allow_multiprice`, `dim_op_stock`, `dim_com_id`, `dim_loc_id`, `dim_status`,`dim_remark`,`created`, `dim_color`, `dim_position`) VALUES "
             . " ('" . $dim_item_barcode . "','" . $dim_item_name . "','" . $dim_business_type . "','" . $dim_main_id . "','" . $dim_cate_id . "','" . $dim_tax_id . "','" . $dim_cost_price . "'"
             . ",'" . $dim_sell_price . "','" . $dim_min_price . "','" . $dim_max_price . "','" . $dim_allow_disc . "','" . $dim_allow_negstock . "','" . $dim_allow_multiprice . "','" . $dim_op_stock . "','" . $dim_com_id . "','" . $dim_loc_id . "','" . $dim_status . "'"
-            . ",'" . $dim_remark . "','" . date('Y/m/d') . "')");
+            . ",'" . $dim_remark . "','" . date('Y/m/d') . "','" . $dim_color . "','" . $dim_position . "')");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -326,14 +328,16 @@ class funcProcessMgmt
         $dim_com_id,
         $dim_loc_id,
         $dim_status,
-        $dim_remark
+        $dim_remark,
+        $dim_color,
+        $dim_position
     ) {
         $conn = $this->conn;
         $sqlQuery = ("UPDATE `di_item_mast` SET `dim_item_barcode`='" . $dim_item_barcode . "',`dim_item_name`='" . $dim_item_name . "',`dim_business_type`='" . $dim_business_type . "'"
             . ",`dim_main_id`='" . $dim_main_id . "',`dim_cate_id`='" . $dim_cate_id . "',`dim_tax_id`='" . $dim_tax_id . "',`dim_cost_price`='" . $dim_cost_price . "',`dim_sell_price`='" . $dim_sell_price . "'"
             . ",`dim_min_price`='" . $dim_min_price . "',`dim_max_price`='" . $dim_max_price . "',`dim_allow_disc`='" . $dim_allow_disc . "',`dim_allow_negstock`='" . $dim_allow_negstock . "',`dim_allow_multiprice`='" . $dim_allow_multiprice . "'"
             . ",`dim_op_stock`='" . $dim_op_stock . "',`dim_com_id`='" . $dim_com_id . "'"
-            . ",`dim_loc_id`='" . $dim_loc_id . "',`dim_status`='" . $dim_status . "',`dim_remark`='" . $dim_remark . "' WHERE `dim_item_id`='" . $dim_item_id . "'");
+            . ",`dim_loc_id`='" . $dim_loc_id . "',`dim_status`='" . $dim_status . "',`dim_remark`='" . $dim_remark . "',`dim_color`='" . $dim_color . "',`dim_position`='" . $dim_position . "' WHERE `dim_item_id`='" . $dim_item_id . "'");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -615,7 +619,7 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlquery = ("SELECT dim.dim_item_id as ITEMCODE,pls.pl_barcode as BARCODE,dim.dim_item_name as ITEMNAME,taxs.taxid as TAXID,taxs.taxname as TAXNAME,taxs.taxvalue as TAXVALUE,
                       pls.pl_cost as COST,pls.pl_sell as SELL,(pls.pl_opstok + pls.pl_stockin - pls.pl_stockout) as LIVESTOCK,pls.pl_comid as COMID,pls.pl_locid as LOCID, dim.dim_remark as Remarks
-                      FROM `di_item_mast` as dim
+                       FROM `di_item_mast` as dim
                       INNER JOIN `pos_livestock` as pls ON dim.dim_item_id =pls.pl_itemcode INNER JOIN `taxmaster` AS taxs ON taxs.taxid=dim.dim_tax_id");
         $result = mysqli_query($conn, $sqlquery);
         return $result;

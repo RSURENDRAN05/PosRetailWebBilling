@@ -9,6 +9,8 @@ Public Class FrmSalesmanList
     Private _selectedSalesmanPercentage As Decimal = 0
     Private salesmanDataTable As DataTable
 
+
+
     ' Properties to get selected salesman information
     Public ReadOnly Property SelectedSalesmanId As Integer
         Get
@@ -37,41 +39,45 @@ Public Class FrmSalesmanList
     Private Sub FrmSalesmanList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Initialize the form
-            SetupForm()
+            InitializeRepositoryItems()
             LoadSalesmanData()
             LoadSalesmanDataFromAPI()
+
+            '' Debug message to check if we're in selection mode
+            'If _isSelectionMode Then
+            '    Me.Text = "Select Salesman (Selection Mode ON)"
+            'Else
+            '    Me.Text = "Salesman Management (Selection Mode OFF)"
+            'End If
         Catch ex As Exception
             MessageBox.Show("Error loading salesman list: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    Private Sub SetupForm()
+    Private Sub InitializeRepositoryItems()
         Try
-            If _isSelectionMode Then
-                Me.Text = "Select Salesman"
-                ' Add Select and Cancel buttons if in selection mode
-                Dim btnSelect As New Button()
-                btnSelect.Text = "Select"
-                btnSelect.Size = New Size(80, 30)
-                btnSelect.Location = New Point(Me.Width - 180, Me.Height - 60)
-                btnSelect.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-                AddHandler btnSelect.Click, AddressOf btnSelect_Click
-                Me.Controls.Add(btnSelect)
+            ' Create and configure the Select button repository item
+            RepositoryItemButtonEditSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
 
-                Dim btnCancel As New Button()
-                btnCancel.Text = "Cancel"
-                btnCancel.Size = New Size(80, 30)
-                btnCancel.Location = New Point(Me.Width - 90, Me.Height - 60)
-                btnCancel.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-                AddHandler btnCancel.Click, AddressOf btnCancel_Click
-                Me.Controls.Add(btnCancel)
-            Else
-                Me.Text = "Salesman Management"
-            End If
+            ' Configure the repository item
+            With RepositoryItemButtonEditSelect
+                .Name = "RepositoryItemButtonEditSelect"
+                .TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+                .Buttons.Clear()
+
+                ' Create the Select button
+                Dim selectButton As New DevExpress.XtraEditors.Controls.EditorButton()
+                selectButton.Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.OK
+                selectButton.Caption = "Select"
+                .Buttons.Add(selectButton)
+            End With
+
         Catch ex As Exception
-            MessageBox.Show("Error setting up form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error initializing repository items: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 
     Private Sub LoadSalesmanData()
         Try
@@ -79,7 +85,9 @@ Public Class FrmSalesmanList
             salesmanDataTable = New DataTable()
             salesmanDataTable.Columns.Add("Id", GetType(Integer))
             salesmanDataTable.Columns.Add("SalesMan", GetType(String))
-          
+            ' Add a select column for button display
+            salesmanDataTable.Columns.Add("Select", GetType(String))
+
             ' Bind to grid
             If Me.Controls.ContainsKey("GridControlSalesman") Then
                 Dim gridControl As DevExpress.XtraGrid.GridControl = CType(Me.Controls("GridControlSalesman"), DevExpress.XtraGrid.GridControl)
@@ -108,8 +116,16 @@ Public Class FrmSalesmanList
                     ' Add salesman with simplified structure
                     salesmanDataTable.Rows.Add(
                         Convert.ToInt32(salesman("Id")),
-                        salesman("SalesMan").ToString())
+                        salesman("SalesMan").ToString(),
+                        If(_isSelectionMode, "Select", "")) ' Add Select text only in selection mode
                 Next
+
+                ' Setup grid columns after data is loaded
+                If Me.Controls.ContainsKey("GridControlSalesman") Then
+                    Dim gridControl As DevExpress.XtraGrid.GridControl = CType(Me.Controls("GridControlSalesman"), DevExpress.XtraGrid.GridControl)
+                    SetupGridViewColumns(gridControl)
+                    gridControl.RefreshDataSource()
+                End If
 
                 Return True
             Else
@@ -124,54 +140,53 @@ Public Class FrmSalesmanList
         End Try
     End Function
 
-    ' Private Function LoadUniqueSalesmenFromCommissions() As Boolean
-    '     Try
-    '         ' Load commission data and extract unique salesmen
-    '         Dim commissionUrl As String = M_Details.LinkAjaxRequest & "SalesManCommission=1" ' Get all commissions
-    '         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-    '         Dim json As String = New System.Net.WebClient().DownloadString(commissionUrl)
-    '         Dim parsejson As JObject = JObject.Parse(json)
-    '         Dim success = parsejson("Success")
+    Private Sub SetupGridViewColumns(gridControl As DevExpress.XtraGrid.GridControl)
+        Try
+            Dim gridView As DevExpress.XtraGrid.Views.Grid.GridView = CType(gridControl.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
 
-    '         If success.ToString = "True" Then
-    '             Dim commissionsData As JArray = CType(parsejson("Data"), JArray)
-    '             Dim uniqueSalesmen As New Dictionary(Of Integer, Object)
+            ' Configure columns
+            If gridView.Columns("Id") IsNot Nothing Then
+                gridView.Columns("Id").Visible = False ' Hide ID column
+            End If
 
-    '             For Each commission As JObject In commissionsData
-    '                 Dim empId As Integer = Convert.ToInt32(commission("EmpId"))
+            If gridView.Columns("SalesMan") IsNot Nothing Then
+                gridView.Columns("SalesMan").Caption = "Salesman Name"
+                gridView.Columns("SalesMan").Width = 200
+                gridView.Columns("SalesMan").OptionsColumn.AllowEdit = False
+                gridView.Columns("SalesMan").OptionsColumn.AllowFocus = False
+            End If
 
-    '                 If Not uniqueSalesmen.ContainsKey(empId) Then
-    '                     ' Add unique salesman with average commission percentage
-    '                     uniqueSalesmen.Add(empId, New With {
-    '                         .EmpId = empId,
-    '                         .SalesmanName = commission("SalesmanName").ToString(),
-    '                         .CommissionPercentage = Convert.ToDecimal(commission("CommissionPercentage"))
-    '                     })
-    '                 End If
-    '             Next
+            ' Setup Select button column only in selection mode
+            If _isSelectionMode AndAlso gridView.Columns("Select") IsNot Nothing Then
+                gridView.Columns("Select").Caption = "Action"
+                gridView.Columns("Select").Width = 80
+                gridView.Columns("Select").Visible = True
+                gridView.Columns("Select").OptionsColumn.AllowEdit = True
+                gridView.Columns("Select").OptionsColumn.AllowFocus = True
 
-    '             ' Add unique salesmen to DataTable with simplified structure
-    '             For Each kvp As KeyValuePair(Of Integer, Object) In uniqueSalesmen
-    '                 Dim salesman = kvp.Value
-    '                 salesmanDataTable.Rows.Add(
-    '                     salesman.EmpId,
-    '                     salesman.SalesmanName,
-    '                     salesman.CommissionPercentage
-    '                 )
-    '             Next
+                ' Use the pre-created repository item
+                gridView.Columns("Select").ColumnEdit = RepositoryItemButtonEditSelect
+                gridControl.RepositoryItems.Add(RepositoryItemButtonEditSelect)
 
-    '             Return True
-    '         Else
-    '             Return False
-    '         End If
+                ' Move Select column to the end
+                gridView.Columns("Select").VisibleIndex = gridView.Columns.Count - 1
+            Else
+                ' Hide select column if not in selection mode
+                If gridView.Columns("Select") IsNot Nothing Then
+                    gridView.Columns("Select").Visible = False
+                End If
+            End If
 
-    '     Catch ex As Exception
-    '         Return False
-    '     End Try
-    ' End Function
+            ' General grid settings
+            gridView.OptionsView.ShowGroupPanel = False
+            gridView.OptionsBehavior.Editable = _isSelectionMode ' Allow editing only in selection mode for buttons
+            gridView.OptionsSelection.EnableAppearanceFocusedCell = False
+            gridView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
 
-
- 
+        Catch ex As Exception
+            MessageBox.Show("Error setting up grid columns: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
     Private Sub btnSelect_Click(sender As Object, e As EventArgs)
         Try
@@ -181,7 +196,7 @@ Public Class FrmSalesmanList
         End Try
     End Sub
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs)
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Try
             Me.DialogResult = DialogResult.Cancel
             Me.Close()
@@ -189,14 +204,27 @@ Public Class FrmSalesmanList
             MessageBox.Show("Error canceling selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
- 
-    Private Sub GridViewSalesman_DoubleClick(sender As Object, e As EventArgs) Handles GridViewSalesman.DoubleClick
+
+
+    Private Sub SelectCurrentSalesmanFromRow(rowHandle As Integer)
         Try
-            If _isSelectionMode Then
-                SelectCurrentSalesman()
+            If Me.Controls.ContainsKey("GridControlSalesman") Then
+                Dim gridControl As DevExpress.XtraGrid.GridControl = CType(Me.Controls("GridControlSalesman"), DevExpress.XtraGrid.GridControl)
+                Dim gridView As DevExpress.XtraGrid.Views.Grid.GridView = CType(gridControl.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
+
+                If rowHandle >= 0 Then
+                    ' Updated to use new column names from API
+                    _selectedSalesmanId = Convert.ToInt32(gridView.GetRowCellValue(rowHandle, "Id"))
+                    _selectedSalesmanName = gridView.GetRowCellValue(rowHandle, "SalesMan").ToString()
+
+                    Me.DialogResult = DialogResult.OK
+                    Me.Close()
+                Else
+                    MessageBox.Show("Please select a salesman from the list.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
         Catch ex As Exception
-            MessageBox.Show("Error on double-click: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error selecting salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub SelectCurrentSalesman()
@@ -209,7 +237,7 @@ Public Class FrmSalesmanList
                     ' Updated to use new column names from API
                     _selectedSalesmanId = Convert.ToInt32(gridView.GetRowCellValue(gridView.FocusedRowHandle, "Id"))
                     _selectedSalesmanName = gridView.GetRowCellValue(gridView.FocusedRowHandle, "SalesMan").ToString()
-                   
+
                     Me.DialogResult = DialogResult.OK
                     Me.Close()
                 Else
@@ -230,33 +258,29 @@ Public Class FrmSalesmanList
         End Try
     End Sub
 
-    ' ' Method to add new salesman (for management mode)
-    ' Public Sub AddNewSalesman(empId As Integer, name As String, percentage As Decimal)
-    '     Try
-    '         If salesmanDataTable IsNot Nothing Then
-    '             salesmanDataTable.Rows.Add(empId, name, percentage)
-    '             salesmanDataTable.AcceptChanges()
-    '         End If
-    '     Catch ex As Exception
-    '         MessageBox.Show("Error adding new salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '     End Try
-    ' End Sub
+    ' Repository button click event - this is the correct event for DevExpress repository buttons
+    Private Sub RepositoryItemButtonEditSelect_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepositoryItemButtonEditSelect.ButtonClick
+        Try
+            ' Debug message to confirm button click
+            ' MessageBox.Show("Button clicked! Selection mode: " & _isSelectionMode.ToString(), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-    ' ' Method to update salesman information
-    ' Public Sub UpdateSalesman(empId As Integer, name As String, percentage As Decimal)
-    '     Try
-    '         If salesmanDataTable IsNot Nothing Then
-    '             Dim row As DataRow = salesmanDataTable.Select("EmpId = " & empId).FirstOrDefault()
-    '             If row IsNot Nothing Then
-    '                 row("SalesmanName") = name
-    '                 row("CommissionPercentage") = percentage
-    '                 salesmanDataTable.AcceptChanges()
-    '             End If
-    '         End If
-    '     Catch ex As Exception
-    '         MessageBox.Show("Error updating salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '     End Try
-    ' End Sub
+            If _isSelectionMode Then
+                ' Get the grid view from the focused control
+                If Me.Controls.ContainsKey("GridControlSalesman") Then
+                    Dim gridControl As DevExpress.XtraGrid.GridControl = CType(Me.Controls("GridControlSalesman"), DevExpress.XtraGrid.GridControl)
+                    Dim gridView As DevExpress.XtraGrid.Views.Grid.GridView = CType(gridControl.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
 
-   
+                    ' Use the focused row handle to select the salesman
+                    If gridView.FocusedRowHandle >= 0 Then
+                        SelectCurrentSalesmanFromRow(gridView.FocusedRowHandle)
+                    Else
+                        MessageBox.Show("Please select a salesman from the list.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error on repository button click: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class

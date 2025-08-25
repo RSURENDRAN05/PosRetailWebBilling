@@ -10,6 +10,7 @@
                 <xs:element name="MainId" type="xs:string" minOccurs="0" />
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
                 <xs:element name="Active" type="xs:string" minOccurs="0" />
+                <xs:element name="Color" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -19,17 +20,20 @@
   </xs:schema>
   <MainGroupTable>
     <MainId>1</MainId>
-    <MainName>HARDWARE</MainName>
+    <MainName>SERVICE</MainName>
     <Active>1</Active>
+    <Color>CadetBlue</Color>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>2</MainId>
     <MainName>SOFTWARE</MainName>
     <Active>1</Active>
+    <Color>RoyalBlue</Color>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>3</MainId>
     <MainName>TESTS</MainName>
     <Active>1</Active>
+    <Color>CornflowerBlue</Color>
   </MainGroupTable>
 </NewDataSet>

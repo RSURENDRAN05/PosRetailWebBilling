@@ -15,6 +15,8 @@ Public Class FrmMainGroup
         Try
             txtmainname.Select()
             chkactive.CheckState = CheckState.Checked
+            ' Set default color
+            colorEdit1.EditValue = Color.LightBlue
             _DataLoad()
         Catch ex As Exception
 
@@ -35,6 +37,13 @@ Public Class FrmMainGroup
     Private Sub btnsave_Click(sender As Object, e As EventArgs) Handles btnsave.Click
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
+            If txtmainname.Text = "" OrElse txtmainname.EditValue Is Nothing Then
+                txtmainname.Properties.Appearance.BackColor = Color.Red
+                Exit Sub
+            Else
+                txtmainname.Properties.Appearance.BackColor = Color.White
+            End If
+           
             Dim comp As New clsmainmaster
             If btnsave.Text = "Save" Then
                 dialog.Caption = "Connecting To Server"
@@ -42,6 +51,7 @@ Public Class FrmMainGroup
                     comp.id = 0
                     comp.mainname = txtmainname.Text
                     comp.active = chkactive.CheckState
+                    comp.groupcolor = ColorTranslator.ToHtml(colorEdit1.Color)
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=13&json=" & PostString) = True Then
                         dialog.Caption = "Data Saved Success.."
@@ -49,6 +59,7 @@ Public Class FrmMainGroup
                     End If
                     txtmainid.Text = ""
                     txtmainname.Text = ""
+                    colorEdit1.EditValue = Color.LightBlue
                     btnsave.Text = "Save"
                 End If
             Else
@@ -57,6 +68,7 @@ Public Class FrmMainGroup
                     comp.id = txtmainid.Text
                     comp.mainname = txtmainname.Text
                     comp.active = chkactive.CheckState
+                    comp.groupcolor = ColorTranslator.ToHtml(colorEdit1.Color)
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=14&json=" & PostString) = True Then
                         dialog.Caption = "Data Saved Success.."
@@ -65,6 +77,7 @@ Public Class FrmMainGroup
                 End If
                 txtmainid.Text = ""
                 txtmainname.Text = ""
+                colorEdit1.EditValue = Color.LightBlue
                 btnsave.Text = "Save"
             End If
 
@@ -81,12 +94,32 @@ Public Class FrmMainGroup
             Dim id = GridView1.GetFocusedRowCellValue("MainId")
             Dim mainname = GridView1.GetFocusedRowCellValue("MainName")
             Dim chkvalue = GridView1.GetFocusedRowCellValue("Active")
+            Dim groupColor = GridView1.GetFocusedRowCellValue("GroupColor")
 
             txtmainid.Text = id
             txtmainname.Text = mainname
             chkactive.Checked = chkvalue
+
+            ' Load color if available
+            If groupColor IsNot Nothing AndAlso groupColor.ToString() <> "" Then
+                Try
+                    colorEdit1.EditValue = ColorTranslator.FromHtml(groupColor.ToString())
+                Catch
+                    colorEdit1.EditValue = Color.LightBlue
+                End Try
+            Else
+                colorEdit1.EditValue = Color.LightBlue
+            End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub colorEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles colorEdit1.EditValueChanged
+        Try
+            ' Optional: You can add code here to respond to color changes
+            ' For example, update the form's appearance or validate the color selection
+        Catch ex As Exception
         End Try
     End Sub
 End Class
@@ -94,4 +127,5 @@ Public Class clsmainmaster
     Public Property id As String
     Public Property mainname As String
     Public Property active As String
+    Public Property groupcolor As String
 End Class

@@ -1,0 +1,488 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="UserPolicyTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="UserPolicyTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="permission_id" type="xs:string" minOccurs="0" />
+                <xs:element name="group_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_type" type="xs:string" minOccurs="0" />
+                <xs:element name="header_menu_id" type="xs:string" minOccurs="0" />
+                <xs:element name="sub_menu_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_active" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_name" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_code" type="xs:string" minOccurs="0" />
+                <xs:element name="group_name" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>18</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>18</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>ChequeEntry</menu_name>
+    <menu_code>S1018</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>1</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>1</header_menu_id>
+    <sub_menu_id>1</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>Company</menu_name>
+    <menu_code>S1001</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>14</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>14</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>CreateGroup</menu_name>
+    <menu_code>S1014</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>23</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>23</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>CreateMonth</menu_name>
+    <menu_code>S1023</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>15</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>15</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>CreateParent</menu_name>
+    <menu_code>S1015</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>31</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>31</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>DiscountMaster</menu_name>
+    <menu_code>S1031</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>22</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>22</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>EmployeeInfo</menu_name>
+    <menu_code>S1022</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>24</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>24</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>GenerateMonth</menu_name>
+    <menu_code>S1024</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>25</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>25</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>GenerateSalary</menu_name>
+    <menu_code>S1025</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>21</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>5</header_menu_id>
+    <sub_menu_id>21</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>GroupPolicy</menu_name>
+    <menu_code>S1021</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>17</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>17</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>LedgerEntry</menu_name>
+    <menu_code>S1017</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>19</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>19</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>LedgerReport</menu_name>
+    <menu_code>S1019</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>2</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>1</header_menu_id>
+    <sub_menu_id>2</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>Location</menu_name>
+    <menu_code>S1002</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>8</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>8</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MainGroup</menu_name>
+    <menu_code>S1008</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>30</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>7</header_menu_id>
+    <sub_menu_id>30</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MainMenuList</menu_name>
+    <menu_code>S1030</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>5</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>2</header_menu_id>
+    <sub_menu_id>5</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MasterPurchaseReport</menu_name>
+    <menu_code>S1005</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>12</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>12</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MasterSalesReport</menu_name>
+    <menu_code>S1012</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>4</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuAccounts</menu_name>
+    <menu_code>M1004</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>6</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuEmployee</menu_name>
+    <menu_code>M1005</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>1</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>1</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuMaster</menu_name>
+    <menu_code>M1001</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>2</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>2</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuPurchase</menu_name>
+    <menu_code>M1002</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>3</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuSales</menu_name>
+    <menu_code>M1003</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>7</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>7</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuSettings</menu_name>
+    <menu_code>M1006</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>5</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>5</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuUser</menu_name>
+    <menu_code>M1004</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>13</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>13</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>NewCustomer</menu_name>
+    <menu_code>S1013</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>16</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>4</header_menu_id>
+    <sub_menu_id>16</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>NewLedger</menu_name>
+    <menu_code>S1016</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>4</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>2</header_menu_id>
+    <sub_menu_id>4</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>NewPurchase</menu_name>
+    <menu_code>S1004</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>3</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>2</header_menu_id>
+    <sub_menu_id>3</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>NewSupplier</menu_name>
+    <menu_code>S1003</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>20</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>5</header_menu_id>
+    <sub_menu_id>20</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>NewUser</menu_name>
+    <menu_code>S1020</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>26</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>26</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>PaySlipPrint</menu_name>
+    <menu_code>S1026</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>11</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>11</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>PosSales</menu_name>
+    <menu_code>S1011</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>28</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>7</header_menu_id>
+    <sub_menu_id>28</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>PrintDesign</menu_name>
+    <menu_code>S1028</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>10</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>10</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>ProductMaster</menu_name>
+    <menu_code>S1010</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>32</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>32</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>SalesCommission</menu_name>
+    <menu_code>S1032</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>29</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>7</header_menu_id>
+    <sub_menu_id>29</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>SalesProfile</menu_name>
+    <menu_code>S1029</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>9</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>9</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>SubGroup</menu_name>
+    <menu_code>S1009</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>27</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>7</header_menu_id>
+    <sub_menu_id>27</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>SystemSettings</menu_name>
+    <menu_code>S1027</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>6</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>6</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>TaxMaster</menu_name>
+    <menu_code>S1006</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>7</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>3</header_menu_id>
+    <sub_menu_id>7</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>Unitmaster</menu_name>
+    <menu_code>S1007</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+</NewDataSet>

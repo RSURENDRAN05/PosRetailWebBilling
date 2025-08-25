@@ -34,6 +34,8 @@ Public Class FrmItemMaster
             txtopeningstock.EditValue = 0.0
             txtminprice.EditValue = 0.0
             txtmaxprice.EditValue = 0.0
+            txtposition.Text = "0"
+            colorEdit1.EditValue = Color.LightBlue
             _ClearMultiplePriceGrid()
             _ClearPriceInputs()
             _DataLoad()
@@ -126,6 +128,12 @@ Public Class FrmItemMaster
             Else
                 txtlocation.Properties.Appearance.BackColor = Color.White
             End If
+            If txtposition.Text = "" OrElse txtposition.EditValue Is Nothing Then
+                txtposition.Properties.Appearance.BackColor = Color.Red
+                Exit Sub
+            Else
+                txtposition.Properties.Appearance.BackColor = Color.White
+            End If
             Dim itemdata As New itemmaster
             If btnsave.Text = "Save" Then
                 dialog.Caption = "Connecting To Server"
@@ -148,6 +156,8 @@ Public Class FrmItemMaster
                 itemdata.itemallowdiscount = chkallowitemdiscount.CheckState
                 itemdata.itemallownegativestock = chkallownegativestock.CheckState
                 itemdata.itemallowmultipleprice = chkallowmultipleprice.CheckState
+                itemdata.itemcolor = ColorTranslator.ToHtml(colorEdit1.Color)
+                itemdata.itemposition = txtposition.Text
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=23&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
@@ -174,6 +184,8 @@ Public Class FrmItemMaster
                 itemdata.itemallowdiscount = chkallowitemdiscount.CheckState
                 itemdata.itemallownegativestock = chkallownegativestock.CheckState
                 itemdata.itemallowmultipleprice = chkallowmultipleprice.CheckState
+                itemdata.itemcolor = ColorTranslator.ToHtml(colorEdit1.Color)
+                itemdata.itemposition = txtposition.Text
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=24&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
@@ -207,6 +219,8 @@ Public Class FrmItemMaster
             Dim chkdiscount = GridView1.GetFocusedRowCellValue("AllowDiscount")
             Dim chknegstock = GridView1.GetFocusedRowCellValue("AllowNegStock")
             Dim chkmultiprice = GridView1.GetFocusedRowCellValue("AllowMultiPrice")
+            Dim color = GridView1.GetFocusedRowCellValue("Color")
+            Dim position = GridView1.GetFocusedRowCellValue("Positioin")
             If chk = 1 Then
                 chkactive.CheckState = CheckState.Checked
             Else
@@ -242,7 +256,16 @@ Public Class FrmItemMaster
             txtcompany.Text = comp
             txtlocation.Text = loc
             txtopeningstock.EditValue = 0
-
+            txtposition.Text = position
+            If color IsNot Nothing AndAlso color.ToString() <> "" Then
+                Try
+                    colorEdit1.EditValue = ColorTranslator.FromHtml(color.ToString())
+                Catch
+                    colorEdit1.EditValue = color.LightBlue
+                End Try
+            Else
+                colorEdit1.EditValue = color.LightBlue
+            End If
             ' Load multiple prices for this item
             _LoadMultiplePricesForItem(id.ToString())
         Catch ex As Exception
@@ -652,6 +675,8 @@ Public Class itemmaster
     Public Property itemallowdiscount As String
     Public Property itemallownegativestock As String
     Public Property itemallowmultipleprice As String
+    Public Property itemcolor As String
+    Public Property itemposition As String
 End Class
 Public Class multiprice
     Public Property itemid As String
