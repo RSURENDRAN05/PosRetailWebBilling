@@ -4,83 +4,103 @@
     <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
       <xs:complexType>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element name="Table1">
+          <xs:element name="Table">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="psid_invoice_id" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_salid" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_sno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_date" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_trno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_barcode" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_procode" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_description" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_serialno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_uom" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_proqty" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_rate" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_amt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_itemdisp" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_itemdisamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_billdisp" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_billdisamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_totdper" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_totdamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_gross" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_taxinex" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_taxvalue" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_taxamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_netamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_remarks" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_batchno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_salesmanid" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_salemanper" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_shiftno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_dayno" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_created" type="xs:string" minOccurs="0" />
-                <xs:element name="psid_invoice_modified" type="xs:string" minOccurs="0" />
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="Table2">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="psih_invoice_id" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_trno" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_date" type="xs:string" minOccurs="0" />
+                <xs:element name="psih_invoice_id" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_trno" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_date" type="xs:dateTime" minOccurs="0" />
                 <xs:element name="psih_invoice_prefix" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tqty" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tamount" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_titemdisper" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_titemdisamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tbilldiscper" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tbilldiscamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_totdiscper" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_totdiscamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tgrossamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_ttaxamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_sercharge" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_roundoff" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_tnetamt" type="xs:string" minOccurs="0" />
+                <xs:element name="psih_invoice_tqty" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_tamount" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_titemdisper" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_titemdisamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_tbilldiscper" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_tbilldiscamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_totdiscper" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_totdiscamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_tgrossamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_ttaxamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_sercharge" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_roundoff" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_tnetamt" type="xs:decimal" minOccurs="0" />
                 <xs:element name="psih_invoice_saletype" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_billtype" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_billstatus" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_paymode" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_customerid" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_description" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_userid" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_comid" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_locid" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_billremarks" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_advamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_outstanding" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_givenamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_balamt" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_shiftno" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_dayno" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_created" type="xs:string" minOccurs="0" />
-                <xs:element name="psih_invoice_modified" type="xs:string" minOccurs="0" />
                 <xs:element name="psih_invoice_countername" type="xs:string" minOccurs="0" />
+                <xs:element name="psih_invoice_userid" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_comid" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_locid" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_pmid" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_print" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_billremarks" type="xs:string" minOccurs="0" />
+                <xs:element name="psih_invoice_advamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_outstanding" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_givenamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_balamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psih_invoice_shiftno" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_dayno" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_webhost" type="xs:int" minOccurs="0" />
+                <xs:element name="psih_invoice_created" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="psih_invoice_modified" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="UserName" type="xs:string" minOccurs="0" />
+                <xs:element name="Customer" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Table1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="psid_invoice_id" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_salid" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_sno" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_date" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="psid_invoice_trno" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_barcode" type="xs:string" minOccurs="0" />
+                <xs:element name="psid_invoice_procode" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_description" type="xs:string" minOccurs="0" />
+                <xs:element name="psid_invoice_serialno" type="xs:string" minOccurs="0" />
+                <xs:element name="psid_invoice_uom" type="xs:string" minOccurs="0" />
+                <xs:element name="psid_invoice_proqty" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_rate" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_amt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_itemdisp" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_itemdisamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_billdisp" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_billdisamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_totdper" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_totdamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_gross" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_taxinex" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_taxvalue" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_taxamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_netamt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_remarks" type="xs:string" minOccurs="0" />
+                <xs:element name="psid_invoice_batchno" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_salesmanid" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_salemanper" type="xs:decimal" minOccurs="0" />
+                <xs:element name="psid_invoice_shiftno" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_dayno" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_webhost" type="xs:int" minOccurs="0" />
+                <xs:element name="psid_invoice_created" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="psid_invoice_modified" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="SalesmanName" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Table2">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="S_ID" type="xs:int" minOccurs="0" />
+                <xs:element name="Sal_ID" type="xs:int" minOccurs="0" />
+                <xs:element name="Paymode" type="xs:int" minOccurs="0" />
+                <xs:element name="Amount" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ShiftNo" type="xs:int" minOccurs="0" />
+                <xs:element name="Dayno" type="xs:int" minOccurs="0" />
+                <xs:element name="Created" type="xs:dateTime" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -88,12 +108,55 @@
       </xs:complexType>
     </xs:element>
   </xs:schema>
+  <Table>
+    <psih_invoice_id>7</psih_invoice_id>
+    <psih_invoice_trno>12</psih_invoice_trno>
+    <psih_invoice_date>2025-08-26T00:00:00+08:00</psih_invoice_date>
+    <psih_invoice_prefix>Inv-25</psih_invoice_prefix>
+    <psih_invoice_tqty>1.00</psih_invoice_tqty>
+    <psih_invoice_tamount>20.00</psih_invoice_tamount>
+    <psih_invoice_titemdisper>0.00</psih_invoice_titemdisper>
+    <psih_invoice_titemdisamt>0.00</psih_invoice_titemdisamt>
+    <psih_invoice_tbilldiscper>0.00</psih_invoice_tbilldiscper>
+    <psih_invoice_tbilldiscamt>0.00</psih_invoice_tbilldiscamt>
+    <psih_invoice_totdiscper>0.00</psih_invoice_totdiscper>
+    <psih_invoice_totdiscamt>0.00</psih_invoice_totdiscamt>
+    <psih_invoice_tgrossamt>20.00</psih_invoice_tgrossamt>
+    <psih_invoice_ttaxamt>1.20</psih_invoice_ttaxamt>
+    <psih_invoice_sercharge>0.00</psih_invoice_sercharge>
+    <psih_invoice_roundoff>0.00</psih_invoice_roundoff>
+    <psih_invoice_tnetamt>21.20</psih_invoice_tnetamt>
+    <psih_invoice_saletype>Invoice</psih_invoice_saletype>
+    <psih_invoice_billtype>Cash</psih_invoice_billtype>
+    <psih_invoice_billstatus>Closed</psih_invoice_billstatus>
+    <psih_invoice_paymode>cash</psih_invoice_paymode>
+    <psih_invoice_customerid>1</psih_invoice_customerid>
+    <psih_invoice_description>Default Customer</psih_invoice_description>
+    <psih_invoice_countername>OFFICE-PC</psih_invoice_countername>
+    <psih_invoice_userid>1</psih_invoice_userid>
+    <psih_invoice_comid>1</psih_invoice_comid>
+    <psih_invoice_locid>1</psih_invoice_locid>
+    <psih_invoice_pmid>1</psih_invoice_pmid>
+    <psih_invoice_print>1</psih_invoice_print>
+    <psih_invoice_billremarks>-</psih_invoice_billremarks>
+    <psih_invoice_advamt>0.00</psih_invoice_advamt>
+    <psih_invoice_outstanding>0.00</psih_invoice_outstanding>
+    <psih_invoice_givenamt>21.20</psih_invoice_givenamt>
+    <psih_invoice_balamt>0.00</psih_invoice_balamt>
+    <psih_invoice_shiftno>1</psih_invoice_shiftno>
+    <psih_invoice_dayno>1</psih_invoice_dayno>
+    <psih_invoice_webhost>0</psih_invoice_webhost>
+    <psih_invoice_created>2025-08-26T16:21:45.077+08:00</psih_invoice_created>
+    <psih_invoice_modified>2025-08-26T16:21:45.077+08:00</psih_invoice_modified>
+    <UserName>superadmin@mypos</UserName>
+    <Customer>Surendran</Customer>
+  </Table>
   <Table1>
-    <psid_invoice_id>12</psid_invoice_id>
-    <psid_invoice_salid>3</psid_invoice_salid>
+    <psid_invoice_id>7</psid_invoice_id>
+    <psid_invoice_salid>7</psid_invoice_salid>
     <psid_invoice_sno>1</psid_invoice_sno>
-    <psid_invoice_date>2025-08-23</psid_invoice_date>
-    <psid_invoice_trno>3</psid_invoice_trno>
+    <psid_invoice_date>2025-08-26T00:00:00+08:00</psid_invoice_date>
+    <psid_invoice_trno>12</psid_invoice_trno>
     <psid_invoice_barcode>1</psid_invoice_barcode>
     <psid_invoice_procode>1</psid_invoice_procode>
     <psid_invoice_description>HAIR CUT ADULT</psid_invoice_description>
@@ -115,83 +178,22 @@
     <psid_invoice_netamt>21.20</psid_invoice_netamt>
     <psid_invoice_remarks>Remarks</psid_invoice_remarks>
     <psid_invoice_batchno>0</psid_invoice_batchno>
-    <psid_invoice_salesmanid>1</psid_invoice_salesmanid>
-    <psid_invoice_salemanper>0.00</psid_invoice_salemanper>
-    <psid_invoice_shiftno>3</psid_invoice_shiftno>
-    <psid_invoice_dayno>2</psid_invoice_dayno>
-    <psid_invoice_created>2025-08-23 21:19:45</psid_invoice_created>
-    <psid_invoice_modified>2025-08-23 21:19:45</psid_invoice_modified>
-  </Table1>
-  <Table1>
-    <psid_invoice_id>13</psid_invoice_id>
-    <psid_invoice_salid>3</psid_invoice_salid>
-    <psid_invoice_sno>2</psid_invoice_sno>
-    <psid_invoice_date>2025-08-23</psid_invoice_date>
-    <psid_invoice_trno>3</psid_invoice_trno>
-    <psid_invoice_barcode>2</psid_invoice_barcode>
-    <psid_invoice_procode>2</psid_invoice_procode>
-    <psid_invoice_description>HAIR CUT CHILDRAN</psid_invoice_description>
-    <psid_invoice_serialno>1</psid_invoice_serialno>
-    <psid_invoice_uom>1</psid_invoice_uom>
-    <psid_invoice_proqty>1.00</psid_invoice_proqty>
-    <psid_invoice_rate>600.00</psid_invoice_rate>
-    <psid_invoice_amt>600.00</psid_invoice_amt>
-    <psid_invoice_itemdisp>0.00</psid_invoice_itemdisp>
-    <psid_invoice_itemdisamt>0.00</psid_invoice_itemdisamt>
-    <psid_invoice_billdisp>0.00</psid_invoice_billdisp>
-    <psid_invoice_billdisamt>0.00</psid_invoice_billdisamt>
-    <psid_invoice_totdper>0.00</psid_invoice_totdper>
-    <psid_invoice_totdamt>0.00</psid_invoice_totdamt>
-    <psid_invoice_gross>600.00</psid_invoice_gross>
-    <psid_invoice_taxinex>0</psid_invoice_taxinex>
-    <psid_invoice_taxvalue>6</psid_invoice_taxvalue>
-    <psid_invoice_taxamt>36.00</psid_invoice_taxamt>
-    <psid_invoice_netamt>636.00</psid_invoice_netamt>
-    <psid_invoice_remarks>Remarks</psid_invoice_remarks>
-    <psid_invoice_batchno>0</psid_invoice_batchno>
-    <psid_invoice_salesmanid>1</psid_invoice_salesmanid>
-    <psid_invoice_salemanper>0.00</psid_invoice_salemanper>
-    <psid_invoice_shiftno>3</psid_invoice_shiftno>
-    <psid_invoice_dayno>2</psid_invoice_dayno>
-    <psid_invoice_created>2025-08-23 21:19:45</psid_invoice_created>
-    <psid_invoice_modified>2025-08-23 21:19:45</psid_invoice_modified>
+    <psid_invoice_salesmanid>3</psid_invoice_salesmanid>
+    <psid_invoice_salemanper>10.00</psid_invoice_salemanper>
+    <psid_invoice_shiftno>1</psid_invoice_shiftno>
+    <psid_invoice_dayno>1</psid_invoice_dayno>
+    <psid_invoice_webhost>0</psid_invoice_webhost>
+    <psid_invoice_created>2025-08-26T16:21:45.083+08:00</psid_invoice_created>
+    <psid_invoice_modified>2025-08-26T16:21:45.083+08:00</psid_invoice_modified>
+    <SalesmanName>TEST</SalesmanName>
   </Table1>
   <Table2>
-    <psih_invoice_id>3</psih_invoice_id>
-    <psih_invoice_trno>3</psih_invoice_trno>
-    <psih_invoice_date>2025-08-23</psih_invoice_date>
-    <psih_invoice_prefix>Inv-25</psih_invoice_prefix>
-    <psih_invoice_tqty>2.00</psih_invoice_tqty>
-    <psih_invoice_tamount>620.00</psih_invoice_tamount>
-    <psih_invoice_titemdisper>0.00</psih_invoice_titemdisper>
-    <psih_invoice_titemdisamt>0.00</psih_invoice_titemdisamt>
-    <psih_invoice_tbilldiscper>0.00</psih_invoice_tbilldiscper>
-    <psih_invoice_tbilldiscamt>0.00</psih_invoice_tbilldiscamt>
-    <psih_invoice_totdiscper>0.00</psih_invoice_totdiscper>
-    <psih_invoice_totdiscamt>0.00</psih_invoice_totdiscamt>
-    <psih_invoice_tgrossamt>620.00</psih_invoice_tgrossamt>
-    <psih_invoice_ttaxamt>37.20</psih_invoice_ttaxamt>
-    <psih_invoice_sercharge>0.00</psih_invoice_sercharge>
-    <psih_invoice_roundoff>0.00</psih_invoice_roundoff>
-    <psih_invoice_tnetamt>657.20</psih_invoice_tnetamt>
-    <psih_invoice_saletype>Invoice</psih_invoice_saletype>
-    <psih_invoice_billtype>Cash Bill</psih_invoice_billtype>
-    <psih_invoice_billstatus>Closed</psih_invoice_billstatus>
-    <psih_invoice_paymode>cash</psih_invoice_paymode>
-    <psih_invoice_customerid>1</psih_invoice_customerid>
-    <psih_invoice_description>Surendran</psih_invoice_description>
-    <psih_invoice_userid>1</psih_invoice_userid>
-    <psih_invoice_comid>1</psih_invoice_comid>
-    <psih_invoice_locid>1</psih_invoice_locid>
-    <psih_invoice_billremarks>-</psih_invoice_billremarks>
-    <psih_invoice_advamt>0.00</psih_invoice_advamt>
-    <psih_invoice_outstanding>0.00</psih_invoice_outstanding>
-    <psih_invoice_givenamt>700.00</psih_invoice_givenamt>
-    <psih_invoice_balamt>42.80</psih_invoice_balamt>
-    <psih_invoice_shiftno>3</psih_invoice_shiftno>
-    <psih_invoice_dayno>2</psih_invoice_dayno>
-    <psih_invoice_created>2025-08-23 21:19:45</psih_invoice_created>
-    <psih_invoice_modified>2025-08-23 21:19:45</psih_invoice_modified>
-    <psih_invoice_countername>OFFICE-PC</psih_invoice_countername>
+    <S_ID>9</S_ID>
+    <Sal_ID>7</Sal_ID>
+    <Paymode>1</Paymode>
+    <Amount>21.20</Amount>
+    <ShiftNo>1</ShiftNo>
+    <Dayno>1</Dayno>
+    <Created>2025-08-26T16:21:45.103+08:00</Created>
   </Table2>
 </NewDataSet>

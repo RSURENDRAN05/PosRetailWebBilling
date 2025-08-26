@@ -3,15 +3,15 @@ Imports Newtonsoft.Json.Linq
 Imports System.IO
 
 Public Class frmSelectBill
-    Dim SaleTabale As New DataTable
+    Dim SaleTabale As DataSet
     Dim dats As String = ""
     Dim Errstr As String = ""
     Private Sub frmSelectBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-
-            _DateConversion(Date.Now, Date.Now, dats)
-            If GetSalesBill(dats) = False Then
-
+            SaleTabale = New DataSet
+            _DateConversion(Date.Now, dats)
+            If GetAllSales(dats, SaleTabale) = True Then
+                GridControlGRNSelector.DataSource = SaleTabale.Tables(0)
             End If
             If _printProfileLoad() = False Then
 
@@ -43,48 +43,30 @@ Public Class frmSelectBill
             Return False
         End Try
     End Function
-    Public Function GetSalesBill(ByVal getdate As String) As Boolean
-        Try
-            SaleTabale.TableName = "SaleTabale"
-            SaleTabale.Rows.Clear()
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=5&date=" & getdate)
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            SaleTabale = Userparsejson("GetSalesBill").ToObject(Of DataTable)()
-            If SaleTabale.Rows.Count > 0 Then
-                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In SaleTabale Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
-                If dtrows.Any Then
-                    GridControlGRNSelector.DataSource = dtrows.CopyToDataTable
-                End If
-            End If
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-    Public Function GetSalesQuoteBill(ByVal getdate As String) As Boolean
-        Try
-            SaleTabale.TableName = "SaleTabale"
-            SaleTabale.Rows.Clear()
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=11&date=" & getdate)
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            SaleTabale = Userparsejson("GetSalesBill").ToObject(Of DataTable)()
-            If SaleTabale.Rows.Count > 0 Then
-                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In SaleTabale Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
-                If dtrows.Any Then
-                    GridControlGRNSelector.DataSource = dtrows.CopyToDataTable
-                End If
-            End If
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
+    
+    'Public Function GetSalesQuoteBill(ByVal getdate As String) As Boolean
+    '    Try
+    '        SaleTabale.TableName = "SaleTabale"
+    '        SaleTabale.Rows.Clear()
+    '        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+    '        Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=11&date=" & getdate)
+    '        Dim Userparsejson As JObject = JObject.Parse(json)
+    '        SaleTabale = Userparsejson("GetSalesBill").ToObject(Of DataTable)()
+    '        If SaleTabale.Rows.Count > 0 Then
+    '            Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In SaleTabale Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
+    '            If dtrows.Any Then
+    '                GridControlGRNSelector.DataSource = dtrows.CopyToDataTable
+    '            End If
+    '        End If
+    '        Return True
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+    'End Function
     Private Sub btnget_Click(sender As Object, e As EventArgs) Handles btnget.Click
         Try
-            _DateConversion(txtdatetimer.Text, txtdatetimer.Text, dats)
-            If GetSalesBill(dats) = False Then
+            _DateConversion(txtdatetimer.Text, dats)
+            If GetAllSales(dats, SaleTabale) = False Then
 
             End If
         Catch ex As Exception
@@ -141,43 +123,43 @@ Public Class frmSelectBill
     Private Sub btna4print_Click(sender As Object, e As EventArgs) Handles btna4print.Click
         Try
             Dim _receDs As New DataSet
-            If _globalSetting.QuoteBill = True Then
-                If (GetSalesByQuoteBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
-                    If (_receDs.Tables(0).Rows.Count > 0) Then
-                        _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
-                        _globalSetting.QuoteBill = False
-                    End If
-                    If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
+            'If _globalSetting.QuoteBill = True Then
+            '    If (GetSalesByQuoteBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
+            '        If (_receDs.Tables(0).Rows.Count > 0) Then
+            '            _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+            '            _globalSetting.QuoteBill = False
+            '        End If
+            '        If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
 
-                    End If
+            '        End If
+            '    End If
+            'Else
+            If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
+                If (_receDs.Tables(0).Rows.Count > 0) Then
+                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
-            Else
-                If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
-                    If (_receDs.Tables(0).Rows.Count > 0) Then
-                        _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
-                    End If
-                    If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
+                If clsBillPrint.Billa4Print(_receDs, "er", txtprintprofile.Text) = False Then
 
-                    End If
                 End If
             End If
-           
+            'End If
+
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub btngetquotebill_Click(sender As Object, e As EventArgs) Handles btngetquotebill.Click
-        Try
-            _globalSetting.QuoteBill = True
-            _DateConversion(txtdatetimer.Text, txtdatetimer.Text, dats)
-            If GetSalesQuoteBill(dats) = False Then
+    'Private Sub btngetquotebill_Click(sender As Object, e As EventArgs) Handles btngetquotebill.Click
+    '    Try
+    '        _globalSetting.QuoteBill = True
+    '        _DateConversion(txtdatetimer.Text, txtdatetimer.Text, dats)
+    '        If GetSalesQuoteBill(dats) = False Then
 
-            End If
-        Catch ex As Exception
+    '        End If
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Try

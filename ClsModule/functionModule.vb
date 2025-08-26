@@ -211,9 +211,6 @@ Module functionModule
         Public Shared ItemMasterTable As New DataTable
         Public Shared ItemTouchMasterTable As New DataTable
         Public Shared PurchaseViewTable As New DataTable
-        Public Shared ClientTable As New DataTable
-        Public Shared AgentTable As New DataTable
-        'Public Shared InsuranceTable As New DataTable
         Public Shared BankListTable As New DataTable
         Public Shared LedgerListTable As New DataTable
         Public Shared PaymodeList As New DataTable
@@ -762,14 +759,32 @@ Module functionModule
     End Function
     Public Function getCustomerMaster() As Boolean
         Try
-            _JsonData.CustomerTable.TableName = "CustomerTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=30")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.CustomerTable = Userparsejson("Data").ToObject(Of DataTable)()
-            If _JsonData.CustomerTable.Rows.Count > 0 Then
-                Return True
+            Dim Path As String = filePath & "CustomerTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.CustomerTable.TableName = "CustomerTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=71")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.CustomerTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.CustomerTable.Rows.Count > 0 Then
+                    _JsonData.CustomerTable.TableName = "CustomerTable"
+                    _JsonData.CustomerTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.CustomerTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.CustomerTable.ReadXml(Path)
+                    _JsonData.CustomerTable.TableName = "CustomerTable"
+                    If _JsonData.CustomerTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
             End If
+           
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -873,6 +888,7 @@ Module functionModule
     '        Return False
     '    End Try
     'End Function
+    
     Public Function getBankList() As Boolean
         Try
             _JsonData.BankListTable.TableName = "BankListTable"
@@ -933,7 +949,7 @@ Module functionModule
             Return False
         End Try
     End Function
-    Public Function GetSalesByBill(ByVal Billno As Integer, ByRef _ds As DataSet) As Boolean
+    Public Function GetSalesByBillWeb(ByVal Billno As Integer, ByRef _ds As DataSet) As Boolean
         Try
             Dim billDtl As New DataTable
             Dim billHdr As New DataTable
@@ -956,7 +972,7 @@ Module functionModule
             Return False
         End Try
     End Function
-    Public Function GetSalesByQuoteBill(ByVal Billno As Integer, ByRef _ds As DataSet) As Boolean
+    Public Function GetSalesByQuoteBillWeb(ByVal Billno As Integer, ByRef _ds As DataSet) As Boolean
         Try
             Dim billDtl As New DataTable
             Dim billHdr As New DataTable

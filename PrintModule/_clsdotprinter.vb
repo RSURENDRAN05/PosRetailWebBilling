@@ -88,18 +88,6 @@ Public Class _clsdotprinter
             _dsshiftClose.Tables(0).TableName = "ShiftClose"
             _dsshiftClose.Tables(1).TableName = "InvoiceHdr"
             _dsshiftClose.Tables(2).TableName = "InvoiceDtl"
-            _dsshiftClose.Tables(3).TableName = "MainGroup"
-            _dsshiftClose.Tables(4).TableName = "SubGroup"
-            _dsshiftClose.Tables(5).TableName = "SalesMethod"
-            _dsshiftClose.Tables(6).TableName = "Payouts"
-            _dsshiftClose.Tables(7).TableName = "DeleteItem"
-            _dsshiftClose.Tables(8).TableName = "Staffwise"
-            _dsshiftClose.Tables(9).TableName = "Tablewise"
-            _dsshiftClose.Tables(10).TableName = "Counter"
-            _dsshiftClose.Tables(11).TableName = "PendingTable"
-            _dsshiftClose.Tables(12).TableName = "HourlySales"
-            _dsshiftClose.Tables(13).TableName = "PrintNotes"
-            _dsshiftClose.Tables(14).TableName = "CurrentStock"
             If _dsshiftClose.Tables(0).Rows.Count > 0 Then
                 Dim _content As New StringBuilder
                 Dim _ItemList As New StringBuilder

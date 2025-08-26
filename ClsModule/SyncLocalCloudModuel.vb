@@ -115,6 +115,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "PaymentList Not Received"
             End If
+            If getCustomerMaster() = True Then
+                dialog.Caption = "Loading CustomerMaster"
+            Else
+                dialog.Caption = "CustomerMaster Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()
@@ -183,6 +188,38 @@ Module SyncLocalCloudModuel
                     Dim storedPassword As String = userRow.Field(Of String)("Password")
                     _companyInfo.UserId = userRow.Field(Of String)("Id")
                     _companyInfo.UserName = userRow.Field(Of String)("UserName")
+                    ' Check if stored password is already hashed (32 characters = MD5 hash)
+                    If storedPassword.Length = 32 Then
+                        ' Stored password is MD5 hash - compare with hashed input
+                        Return VerifyMD5Password(password, storedPassword)
+                    Else
+                        ' Stored password is plain text - direct comparison
+                        Return String.Equals(password, storedPassword, StringComparison.Ordinal)
+                    End If
+                Else
+                    ' User not found
+                    Return False
+                End If
+            End If
+
+            Return False
+
+        Catch ex As Exception
+            MessageBox.Show("Error authenticating user: " & ex.Message)
+            Return False
+        End Try
+    End Function
+    Public Function AuthenticateUser(ByVal password As String) As Boolean
+        Try
+            If _JsonData.UserTable.Rows.Count > 0 Then
+                ' Find user by username using LINQ
+                Dim userRows = From row In _JsonData.UserTable.AsEnumerable()
+                              Where row.Field(Of String)("GroupId").Equals("1", StringComparison.OrdinalIgnoreCase)
+                              Select row
+
+                If userRows.Any Then
+                    Dim userRow As DataRow = userRows.First()
+                    Dim storedPassword As String = userRow.Field(Of String)("Password")
                     ' Check if stored password is already hashed (32 characters = MD5 hash)
                     If storedPassword.Length = 32 Then
                         ' Stored password is MD5 hash - compare with hashed input

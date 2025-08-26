@@ -110,6 +110,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -231,6 +232,12 @@
     <Compile Include="Controller\frmbusinessDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Controller\frmDeleteReason.designer.vb">
+      <DependentUpon>frmDeleteReason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmDeleteReason.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controller\frmDeno.designer.vb">
       <DependentUpon>frmDeno.vb</DependentUpon>
     </Compile>
@@ -241,6 +248,24 @@
       <DependentUpon>frmKeyAmt.vb</DependentUpon>
     </Compile>
     <Compile Include="Controller\frmKeyAmt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassUser.designer.vb">
+      <DependentUpon>frmKeyPassUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassIIAdmin.designer.vb">
+      <DependentUpon>frmKeyPassIIAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassIIAdmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassIIIMaster.designer.vb">
+      <DependentUpon>frmKeyPassIIIMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyPassIIIMaster.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controller\frmKeyQty.designer.vb">
@@ -259,6 +284,12 @@
       <DependentUpon>frmMsgBoxOk.vb</DependentUpon>
     </Compile>
     <Compile Include="Controller\frmMsgBoxOk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\xkeyboard.designer.vb">
+      <DependentUpon>xkeyboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\xkeyboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Employee\frmcreatemonth.Designer.vb">
@@ -511,6 +542,12 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmShiftcloseII.designer.vb">
+      <DependentUpon>frmShiftcloseII.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmShiftcloseII.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\PosSalesIII.Designer.vb">
       <DependentUpon>PosSalesIII.vb</DependentUpon>
     </Compile>
@@ -577,7 +614,7 @@
     <Compile Include="Master\FrmDiscountMaster.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\SyncLocalCloudModuel.vb" />
+    <Compile Include="ClsModule\SyncLocalCloudModuel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Accounts\frmGroup.resx">
@@ -625,21 +662,35 @@
     <EmbeddedResource Include="Controller\frmbusinessDate.resx">
       <DependentUpon>frmbusinessDate.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmDeleteReason.resx">
+      <DependentUpon>frmDeleteReason.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmDeno.resx">
       <DependentUpon>frmDeno.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmKeyAmt.resx">
       <DependentUpon>frmKeyAmt.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyPassUser.resx">
+      <DependentUpon>frmKeyPassUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyPassIIAdmin.resx">
+      <DependentUpon>frmKeyPassIIAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyPassIIIMaster.resx">
+      <DependentUpon>frmKeyPassIIIMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmKeyQty.resx">
       <DependentUpon>frmKeyQty.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\frmKeyQtyAmt.resx" />
     <EmbeddedResource Include="Controller\frmMsgBox.resx">
       <DependentUpon>frmMsgBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmMsgBoxOk.resx">
       <DependentUpon>frmMsgBoxOk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\xkeyboard.resx">
+      <DependentUpon>xkeyboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmcreatemonth.resx">
       <DependentUpon>frmcreatemonth.vb</DependentUpon>
@@ -756,6 +807,9 @@
       <DependentUpon>FrmPosSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmShiftcloseII.resx">
+      <DependentUpon>frmShiftcloseII.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosSalesIII.resx">
       <DependentUpon>PosSalesIII.vb</DependentUpon>
     </EmbeddedResource>
@@ -816,7 +870,17 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

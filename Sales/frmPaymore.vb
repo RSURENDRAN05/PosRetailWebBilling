@@ -68,7 +68,7 @@ Public Class frmPaymore
             GridControlPaymore.DataSource = PaymentDetailTable
 
             lblpaymode.Text = "Cash"
-
+            numstr = ""
            
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Form Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

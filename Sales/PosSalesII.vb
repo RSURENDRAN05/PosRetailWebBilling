@@ -2978,7 +2978,7 @@ Public Class PosSalesII
     End Sub
 #End Region
 #Region "ViewEdit"
-    Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs)
+    Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
         Try
             Dim modeofbill As String = ""
             frmSelectBill.ShowDialog()
@@ -3132,7 +3132,7 @@ Public Class PosSalesII
         End Try
     End Sub
 
-    Private Sub btnlastprint_Click(sender As Object, e As EventArgs)
+    Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.ItemClick
         Try
             Dim _receDs As New DataSet
             If (GetSalesByBill(barstatuslastbillno.Caption, _receDs)) = True Then
@@ -3149,6 +3149,7 @@ Public Class PosSalesII
         End Try
     End Sub
 
+  
 
 
     Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
@@ -3197,4 +3198,15 @@ Public Class PosSalesII
         End Try
     End Function
 
+  
+    Private Sub barbtncounterclose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtncounterclose.ItemClick
+        Try
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmShiftcloseII.ShowDialog()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

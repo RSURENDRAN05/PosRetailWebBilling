@@ -6,7 +6,27 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
+<member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
+	<summary>
+ Generates MD5 hash of the input string (same as PHP's md5() function)
+ </summary>
+	<param name="input">The string to hash</param>
+	<returns>MD5 hash as lowercase hex string</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
+	<summary>
+ Verifies password against stored MD5 hash
+ </summary>
+	<param name="password">Plain text password to verify</param>
+	<param name="storedHash">Stored MD5 hash from database</param>
+	<returns>True if password matches, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
+	<summary>
+ Authenticates user with username and password using MD5 hash comparison
+ </summary>
+	<param name="username">Username</param>
+	<param name="password">Plain text password</param>
+	<returns>True if authentication successful, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
 	<summary>
  Safe conversion helper to handle DBNull and empty strings for Integer values
  </summary>
@@ -72,6 +92,24 @@ PosRetailWebBilling
 	<param name="amount">Payment amount</param>
 	<param name="shiftNo">Shift number</param>
 	<param name="dayNo">Day number</param>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion helper for the module
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetSalesByBill(System.String,System.Data.DataSet@)">
+	<summary>
+ Get sales data by bill number for printing/viewing
+ </summary>
+	<param name="BillNo">Bill number to retrieve</param>
+	<param name="receDs">DataSet to populate with bill data</param>
+	<returns>True if bill data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetAllSales(System.String,System.Data.DataSet@)">
+	<summary>
+ Get all sales data for a specific date
+ </summary>
+	<param name="getdate">Date to retrieve sales for</param>
+	<param name="receDs">DataSet to populate with sales data</param>
+	<returns>True if sales data found and populated, False otherwise</returns>
 </member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
@@ -364,26 +402,6 @@ PosRetailWebBilling
 	<param name="userId">User ID</param>
 	<param name="pcName">PC Name</param>
 	<returns>Success status, action, message and result data</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
-	<summary>
- Generates MD5 hash of the input string (same as PHP's md5() function)
- </summary>
-	<param name="input">The string to hash</param>
-	<returns>MD5 hash as lowercase hex string</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
-	<summary>
- Verifies password against stored MD5 hash
- </summary>
-	<param name="password">Plain text password to verify</param>
-	<param name="storedHash">Stored MD5 hash from database</param>
-	<returns>True if password matches, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
-	<summary>
- Authenticates user with username and password using MD5 hash comparison
- </summary>
-	<param name="username">Username</param>
-	<param name="password">Plain text password</param>
-	<returns>True if authentication successful, False otherwise</returns>
 </member><member name="M:PosRetailWebBilling.SkinManager.Initialize(System.String)">
 	<summary>
  Initialize skins for the entire application

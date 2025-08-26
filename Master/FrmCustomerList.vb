@@ -2,9 +2,6 @@ Imports System.Net
 Imports Newtonsoft.Json.Linq
 
 Public Class FrmCustomerList
-    Private _customerTable As DataTable
-    Private _companyInfo As Object
-
     ' Properties for customer selection
     Public Property SelectedCustomerId As Integer = 0
     Public Property SelectedCustomerName As String = ""
@@ -39,20 +36,8 @@ Public Class FrmCustomerList
 
     Private Sub LoadCustomers()
         Try
-            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=71" ' Get all customers
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(url)
-
-            Dim parseJson As JObject = JObject.Parse(json)
-            Dim success = parseJson("Success").ToString()
-
-            If success = "True" Then
-                _customerTable = parseJson("Data").ToObject(Of DataTable)()
-                GridControlCustomers.DataSource = _customerTable
-
-            Else
-                Dim errorMsg As String = If(parseJson("Msg") IsNot Nothing, parseJson("Msg").ToString(), "Failed to load customer data")
-                MessageBox.Show("API Error: " & errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If _JsonData.CustomerTable.Rows.Count > 0 Then
+                GridControlCustomers.DataSource = _JsonData.CustomerTable
             End If
 
         Catch ex As Exception

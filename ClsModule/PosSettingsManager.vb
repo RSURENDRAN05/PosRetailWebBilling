@@ -26,7 +26,7 @@ Module PosSettingsManager
         Public Shared _AutoDayClose As Boolean = False
         Public Shared _AutoShiftOpen As Boolean = True
         Public Shared _AutoDayOpen As Boolean = True
-        Public Shared _ShiftPrintDos As Boolean
+        Public Shared _ShiftPrintDos As Boolean = True
         Public Shared ProductWithBarcode As Boolean = False
         Public Shared PrintShiftClose As Boolean = True
         Public Shared PrintDayClose As Boolean = True

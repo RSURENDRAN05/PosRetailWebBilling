@@ -2836,7 +2836,7 @@ Public Class PosSalesIII
     Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.Click
         Try
             Dim _receDs As New DataSet
-            If (GetSalesByBill(barstatuslastbillno.Caption, _receDs)) = True Then
+            If (GetSalesByBillWeb(barstatuslastbillno.Caption, _receDs)) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
@@ -2850,8 +2850,6 @@ Public Class PosSalesIII
         End Try
     End Sub
 
-
-
     Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
         Try
             frmPrintProfile.ShowDialog()
@@ -2861,4 +2859,5 @@ Public Class PosSalesIII
         End Try
     End Sub
 #End Region
+
 End Class

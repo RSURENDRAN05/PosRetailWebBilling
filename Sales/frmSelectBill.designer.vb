@@ -312,6 +312,7 @@ Partial Class frmSelectBill
         Me.btngetquotebill.StyleController = Me.LayoutControl1
         Me.btngetquotebill.TabIndex = 17
         Me.btngetquotebill.Text = "Get Quote Bill"
+        Me.btngetquotebill.Visible = False
         '
         'txtprintprofile
         '
@@ -358,6 +359,7 @@ Partial Class frmSelectBill
         '
         'btnOk
         '
+        Me.btnOk.Enabled = False
         Me.btnOk.Image = CType(resources.GetObject("btnOk.Image"), System.Drawing.Image)
         Me.btnOk.Location = New System.Drawing.Point(679, 638)
         Me.btnOk.Name = "btnOk"

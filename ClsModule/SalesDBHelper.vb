@@ -53,7 +53,7 @@ Public Class SalesDBHelper
     ''' <summary>
     ''' Safe string conversion to handle DBNull values
     ''' </summary>
-    Private Function SafeToString(value As Object, defaultValue As String) As String
+    Public Function SafeToString(value As Object, defaultValue As String) As String
         If value Is Nothing OrElse value Is DBNull.Value Then
             Return defaultValue
         End If
@@ -663,3 +663,194 @@ Public Class SalesDBHelper
     End Function
 
 End Class
+
+Module PrintViewReport
+#Region "Print Or View Bill"
+    ''' <summary>
+    ''' Safe string conversion helper for the module
+    ''' </summary>
+    Private Function SafeToString(value As Object, defaultValue As String) As String
+        If value Is Nothing OrElse value Is DBNull.Value Then
+            Return defaultValue
+        End If
+        Return value.ToString().Trim()
+    End Function
+
+    ''' <summary>
+    ''' Get sales data by bill number for printing/viewing
+    ''' </summary>
+    ''' <param name="BillNo">Bill number to retrieve</param>
+    ''' <param name="receDs">DataSet to populate with bill data</param>
+    ''' <returns>True if bill data found and populated, False otherwise</returns>
+    Public Function GetSalesByBill(BillNo As String, ByRef receDs As DataSet) As Boolean
+        Try
+            ' Validate input parameters
+            If String.IsNullOrEmpty(BillNo) Then
+                Return False
+            End If
+
+            ' Prepare parameters for stored procedure
+            Dim SqlViewPrint(2) As SqlParameter
+            SqlViewPrint(0) = New SqlParameter("@mode", "P")
+            SqlViewPrint(1) = New SqlParameter("@trno", BillNo)
+            SqlViewPrint(2) = New SqlParameter("@date", Date.Now)
+            ' Initialize dataset
+            receDs = New DataSet
+
+            ' Execute stored procedure to get bill data
+            receDs = _sqlDataAdapter2("sp_printtaxinvoice", SqlViewPrint)
+
+            ' Check if dataset has data
+            If receDs IsNot Nothing AndAlso receDs.Tables.Count > 0 AndAlso receDs.Tables(0).Rows.Count > 0 Then
+
+                ' Add username based on user ID matching customer ID
+                If _JsonData.UserTable.Rows.Count > 0 Then
+                    ' Add username column if it doesn't exist
+                    If Not receDs.Tables(0).Columns.Contains("UserName") Then
+                        receDs.Tables(0).Columns.Add("UserName", GetType(String))
+                    End If
+
+                    ' Update each row with matching username
+                    For Each billRow As DataRow In receDs.Tables(0).Rows
+                        Dim UserId As String = SafeToString(billRow("psih_invoice_userid"), "")
+                        If Not String.IsNullOrEmpty(UserId) Then
+                            For Each userRow As DataRow In _JsonData.UserTable.Rows
+                                If SafeToString(userRow("Id"), "") = UserId Then
+                                    billRow("UserName") = SafeToString(userRow("UserName"), "")
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+
+                ' Add customer name based on customer ID
+                If _JsonData.CustomerTable.Rows.Count > 0 Then
+                    ' Add customername column if it doesn't exist
+                    If Not receDs.Tables(0).Columns.Contains("Customer") Then
+                        receDs.Tables(0).Columns.Add("Customer", GetType(String))
+                    End If
+
+                    ' Update each row with matching customer name
+                    For Each billRow As DataRow In receDs.Tables(0).Rows
+                        Dim customerId As String = SafeToString(billRow("psih_invoice_customerid"), "")
+                        If Not String.IsNullOrEmpty(customerId) Then
+                            For Each customerRow As DataRow In _JsonData.CustomerTable.Rows
+                                If SafeToString(customerRow("CustomerId"), "") = customerId Then
+                                    billRow("Customer") = SafeToString(customerRow("CustomerName"), "")
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+
+                ' Add salesman name based on salesman ID
+                If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                    ' Add empname column if it doesn't exist
+                    If Not receDs.Tables(1).Columns.Contains("SalesmanName") Then
+                        receDs.Tables(1).Columns.Add("SalesmanName", GetType(String))
+                    End If
+
+                    ' Check if we have detail records or need to get from detail table
+                    If receDs.Tables.Count > 1 AndAlso receDs.Tables(1).Rows.Count > 0 Then
+                        ' Update detail rows with matching salesman name
+                        For Each detailRow As DataRow In receDs.Tables(1).Rows
+                            Dim salesmanId As String = SafeToString(detailRow("psid_invoice_salesmanid"), "")
+                            If Not String.IsNullOrEmpty(salesmanId) AndAlso salesmanId <> "0" Then
+                                For Each salesmanRow As DataRow In _JsonData.SalesManCommissionTable.Rows
+                                    If SafeToString(salesmanRow("EmpId"), "") = salesmanId Then
+                                        detailRow("SalesmanName") = SafeToString(salesmanRow("SalesmanName"), "")
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        Next
+                    Else
+                        ' If no detail table, try to match with header data
+                        For Each billRow As DataRow In receDs.Tables(0).Rows
+                            ' Assuming there might be a salesman ID in header, otherwise leave empty
+                            billRow("empname") = ""
+                        Next
+                    End If
+                End If
+
+                Return True
+            Else
+                ' No data found for the bill number
+                Return False
+            End If
+
+        Catch ex As Exception
+            ' Log error for debugging
+            System.Diagnostics.Debug.WriteLine("GetSalesByBill Error: " & ex.Message)
+
+            ' Initialize empty dataset on error
+            receDs = New DataSet
+            Return False
+        End Try
+    End Function
+    ''' <summary>
+    ''' Get all sales data for a specific date
+    ''' </summary>
+    ''' <param name="getdate">Date to retrieve sales for</param>
+    ''' <param name="receDs">DataSet to populate with sales data</param>
+    ''' <returns>True if sales data found and populated, False otherwise</returns>
+    Public Function GetAllSales(ByVal getdate As String, ByRef receDs As DataSet) As Boolean
+        Try
+            ' Validate input parameters
+            If String.IsNullOrEmpty(getdate) Then
+                Return False
+            End If
+
+            ' Prepare parameters for stored procedure
+            Dim SqlViewPrint(2) As SqlParameter
+            SqlViewPrint(0) = New SqlParameter("@mode", "D")
+            SqlViewPrint(1) = New SqlParameter("@trno", "0")
+            SqlViewPrint(2) = New SqlParameter("@date", getdate)
+
+            ' Initialize dataset
+            receDs = New DataSet
+
+            ' Execute stored procedure to get sales data
+            receDs = _sqlDataAdapter2("sp_printtaxinvoice", SqlViewPrint)
+
+            ' Check if dataset has data
+            If receDs IsNot Nothing AndAlso receDs.Tables.Count > 0 AndAlso receDs.Tables(0).Rows.Count > 0 Then
+                ' Add customer name based on customer ID
+                If _JsonData.CustomerTable.Rows.Count > 0 Then
+                    ' Add customername column if it doesn't exist
+                    If Not receDs.Tables(0).Columns.Contains("Customer") Then
+                        receDs.Tables(0).Columns.Add("Customer", GetType(String))
+                    End If
+
+                    ' Update each row with matching customer name
+                    For Each billRow As DataRow In receDs.Tables(0).Rows
+                        Dim customerId As String = SafeToString(billRow("psih_invoice_customerid"), "")
+                        If Not String.IsNullOrEmpty(customerId) Then
+                            For Each customerRow As DataRow In _JsonData.CustomerTable.Rows
+                                If SafeToString(customerRow("CustomerId"), "") = customerId Then
+                                    billRow("Customer") = SafeToString(customerRow("CustomerName"), "")
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+                Return True
+            Else
+                ' No data found for the date
+                Return False
+            End If
+
+        Catch ex As Exception
+            ' Log error for debugging
+            System.Diagnostics.Debug.WriteLine("GetAllSales Error: " & ex.Message)
+
+            ' Initialize empty dataset on error
+            receDs = New DataSet
+            Return False
+        End Try
+    End Function
+#End Region
+End Module
