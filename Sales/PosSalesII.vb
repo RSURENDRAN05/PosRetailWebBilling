@@ -22,6 +22,7 @@ Public Class PosSalesII
     Private selectedCustomerName As String = String.Empty
     Private selectedCustomerPhone As String = String.Empty
     Private customerDisplayTable As DataTable
+
 #Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
         Try
@@ -2633,6 +2634,62 @@ Public Class PosSalesII
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
+                        ' Get payment details from PaymentDetailTable
+                        Dim paymentModeSelections As New List(Of String)()
+                        Dim paymentModes As New List(Of String)()
+
+                        ' Check if multiple payments or single payment
+                        If frmPaymore.PaymentDetailTable.Rows.Count > 1 Then
+                            ' Multiple payments - combine all payment modes
+                            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                                Dim paymentName As String = paymentRow("pmode_name").ToString()
+                                Dim paymentType As String = paymentRow("pmode_type").ToString()
+                                paymentModeSelections.Add(paymentName)
+
+                                ' Map payment names to payment modes
+                                Select Case paymentType.ToLower()
+                                    Case "cash"
+                                        paymentModes.Add("cash")
+                                    Case "credit card", "debit card", "card", "bank card"
+                                        paymentModes.Add("card")
+                                    Case "bank transfer", "upi", "online", "bank"
+                                        paymentModes.Add("bank")
+                                    Case "credit"
+                                        paymentModes.Add("credit")
+                                    Case Else
+                                        paymentModes.Add("cash") ' Default to cash
+                                End Select
+                            Next
+
+                            ' Set combined payment modes
+                            _PaymentDtl.paymentModeSelection = String.Join(",", paymentModeSelections)
+                            _PaymentDtl.paymentMode = String.Join(",", paymentModes.Distinct())
+
+                        ElseIf frmPaymore.PaymentDetailTable.Rows.Count = 1 Then
+                            ' Single payment mode
+                            Dim paymentRow As DataRow = frmPaymore.PaymentDetailTable.Rows(0)
+                            Dim paymentName As String = paymentRow("pmode_name").ToString()
+                            _PaymentDtl.paymentModeSelection = paymentName
+
+                            ' Map payment name to payment mode
+                            Select Case paymentName.ToLower()
+                                Case "cash"
+                                    _PaymentDtl.paymentMode = "cash"
+                                Case "credit card", "debit card", "card", "bank card"
+                                    _PaymentDtl.paymentMode = "card"
+                                Case "bank transfer", "upi", "online", "bank"
+                                    _PaymentDtl.paymentMode = "bank"
+                                Case "credit"
+                                    _PaymentDtl.paymentMode = "credit"
+                                Case Else
+                                    _PaymentDtl.paymentMode = "cash" ' Default to cash
+                            End Select
+                        Else
+                            ' No payments in table, use default cash
+                            _PaymentDtl.paymentModeSelection = "Cash Bill"
+                            _PaymentDtl.paymentMode = "cash"
+                        End If
+
                         Dim _saleData As New SalesHeader
                         _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
                         _saleData.psih_invoice_trno = 0
@@ -2664,17 +2721,16 @@ Public Class PosSalesII
                         _saleData.psih_invoice_tnetamt = nettotal
                         _saleData.psih_invoice_saletype = "Invoice"
                         _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
-                        If _PaymentDtl.paymentModeSelection = "" Then
-                            _PaymentDtl.paymentModeSelection = "Cash Bill"
-                            _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
-                        End If
-                        If _PaymentDtl.paymentMode = "cash" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        ElseIf _PaymentDtl.paymentMode = "credit" Then
+
+                        ' Handle both single and multiple payment modes for bill status
+                        If _PaymentDtl.paymentMode.Contains("credit") Then
+                            ' If any payment includes credit, bill remains open
                             _saleData.psih_invoice_billstatus = "Open"
-                        ElseIf _PaymentDtl.paymentMode = "card" Then
+                        Else
+                            ' If no credit payment (cash, card, bank, etc.), bill is closed
                             _saleData.psih_invoice_billstatus = "Closed"
                         End If
+
                         _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
                         If String.IsNullOrEmpty(selectedCustomerName) Then
                             _saleData.psih_invoice_customerid = 1
@@ -2689,15 +2745,16 @@ Public Class PosSalesII
                         _saleData.psih_invoice_countername = Environment.MachineName
                         _saleData.psih_invoice_billremarks = "-"
 
-                        If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
+                        ' Advance amount validation - only allow advance for credit bills
+                        If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
-                            DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can't Be Accepted For Cash Bill,", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
                             If frmPaymore.txtadvanceamt.EditValue > 0 Then
                                 _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
-                            ElseIf _PaymentDtl.paymentMode = "credit" Then
+                            ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
                             Else
                                 _saleData.psih_invoice_advamt = 0
@@ -2717,20 +2774,23 @@ Public Class PosSalesII
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
+                        _saleData.psih_invoice_print = "0"
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         End If
 
-                        ' Convert to JSON
-                        Dim jsondtl As String = GetSalesDetailJson()
-                        Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
+                        ' Save to database using stored procedure with payment modes
+                        Dim salesHelper As New SalesDBHelper(M_Details._Conn)
+                        Dim salesDetailsList As List(Of SalesDetails) = salesHelper.ConvertDataTableToSalesDetails(GridDataTble_Insert)
                         Dim _errMsgResult As String = ""
                         Dim ReturnBill As String = "0"
-                        If _JsonSendSales(M_Details.LinkAjaxRequest & "SalesRequest=4&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult, ReturnBill) = True Then
+
+                        ' Always use Dictionary method for both single and multiple payments
+                        If salesHelper.SaveSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
-                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved ", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -2744,6 +2804,63 @@ Public Class PosSalesII
                     Dim _givenAmt As Decimal = 0.0
                     Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
+                        ' Get payment details from PaymentDetailTable
+                        Dim paymentModeSelections As New List(Of String)()
+                        Dim paymentModes As New List(Of String)()
+
+                        ' Check if multiple payments or single payment
+                        If frmPaymore.PaymentDetailTable.Rows.Count > 1 Then
+                            ' Multiple payments - combine all payment modes
+                            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                                Dim paymentName As String = paymentRow("pmode_name").ToString()
+                                Dim paymentType As String = paymentRow("pmode_type").ToString()
+                                paymentModeSelections.Add(paymentName)
+
+                                ' Map payment types to payment modes
+                                Select Case paymentType.ToLower()
+                                    Case "cash"
+                                        paymentModes.Add("cash")
+                                    Case "credit card", "debit card", "card", "bank card"
+                                        paymentModes.Add("card")
+                                    Case "bank transfer", "upi", "online", "bank"
+                                        paymentModes.Add("bank")
+                                    Case "credit"
+                                        paymentModes.Add("credit")
+                                    Case Else
+                                        paymentModes.Add("cash") ' Default to cash
+                                End Select
+                            Next
+
+                            ' Set combined payment modes
+                            _PaymentDtl.paymentModeSelection = String.Join(",", paymentModeSelections)
+                            _PaymentDtl.paymentMode = String.Join(",", paymentModes.Distinct())
+
+                        ElseIf frmPaymore.PaymentDetailTable.Rows.Count = 1 Then
+                            ' Single payment mode
+                            Dim paymentRow As DataRow = frmPaymore.PaymentDetailTable.Rows(0)
+                            Dim paymentName As String = paymentRow("pmode_name").ToString()
+                            Dim paymentType As String = paymentRow("pmode_type").ToString()
+                            _PaymentDtl.paymentModeSelection = paymentName
+
+                            ' Map payment type to payment mode
+                            Select Case paymentType.ToLower()
+                                Case "cash"
+                                    _PaymentDtl.paymentMode = "cash"
+                                Case "credit card", "debit card", "card", "bank card"
+                                    _PaymentDtl.paymentMode = "card"
+                                Case "bank transfer", "upi", "online", "bank"
+                                    _PaymentDtl.paymentMode = "bank"
+                                Case "credit"
+                                    _PaymentDtl.paymentMode = "credit"
+                                Case Else
+                                    _PaymentDtl.paymentMode = "cash" ' Default to cash
+                            End Select
+                        Else
+                            ' No payments in table, use default cash
+                            _PaymentDtl.paymentModeSelection = "Cash Bill"
+                            _PaymentDtl.paymentMode = "cash"
+                        End If
+
                         Dim _saleData As New SalesHeader
                         _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
                         Dim invoicedate As String = ""
@@ -2776,17 +2893,16 @@ Public Class PosSalesII
                         _saleData.psih_invoice_tnetamt = nettotal
                         _saleData.psih_invoice_saletype = "Invoice"
                         _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
-                        If _PaymentDtl.paymentModeSelection = "" Then
-                            _PaymentDtl.paymentModeSelection = "Cash Bill"
-                            _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
-                        End If
-                        If _PaymentDtl.paymentMode = "cash" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        ElseIf _PaymentDtl.paymentMode = "credit" Then
+
+                        ' Handle both single and multiple payment modes for bill status
+                        If _PaymentDtl.paymentMode.Contains("credit") Then
+                            ' If any payment includes credit, bill remains open
                             _saleData.psih_invoice_billstatus = "Open"
-                        ElseIf _PaymentDtl.paymentMode = "card" Then
+                        Else
+                            ' If no credit payment (cash, card, bank, etc.), bill is closed
                             _saleData.psih_invoice_billstatus = "Closed"
                         End If
+
                         _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
                         If String.IsNullOrEmpty(selectedCustomerName) Then
                             _saleData.psih_invoice_customerid = 1
@@ -2800,15 +2916,16 @@ Public Class PosSalesII
                         _saleData.psih_invoice_locid = _companyInfo.LocId
                         _saleData.psih_invoice_billremarks = "-"
 
-                        If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
+                        ' Advance amount validation - only allow advance for credit bills
+                        If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
-                            DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can't Be Accepted For Cash Bill,", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
                             If frmPaymore.txtadvanceamt.EditValue > 0 Then
                                 _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
-                            ElseIf _PaymentDtl.paymentMode = "credit" Then
+                            ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
                             Else
                                 _saleData.psih_invoice_advamt = 0
@@ -2828,24 +2945,26 @@ Public Class PosSalesII
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
-
+                        _saleData.psih_invoice_print = "0"
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to update", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         End If
 
-                        ' Convert to JSON
-                        Dim jsondtl As String = GetSalesDetailJson()
-                        Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
+                        ' Update to database using stored procedure with payment modes
+                        Dim salesHelper As New SalesDBHelper(M_Details._Conn)
+                        Dim salesDetailsList As List(Of SalesDetails) = salesHelper.ConvertDataTableToSalesDetails(GridDataTble_Insert)
                         Dim _errMsgResult As String = ""
                         Dim ReturnBill As String = "0"
-                        If _JsonSendSales(M_Details.LinkAjaxRequest & "SalesRequest=7&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&pm_id=" & _saleData.psih_invoice_pmid & "&comid=" & _saleData.psih_invoice_comid & "&locid=" & _saleData.psih_invoice_locid, _errMsgResult, ReturnBill) = True Then
+
+                        ' Always use Dictionary method for both single and multiple payments
+                        If salesHelper.UpdateSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
-                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                         Else
-                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
                     End If
                 End If
@@ -3043,5 +3162,39 @@ Public Class PosSalesII
 #End Region
 
 
+
+    ''' <summary>
+    ''' Convert PaymentDetailTable to Dictionary for database operations
+    ''' </summary>
+    Private Function GetPaymentModesDictionary() As Dictionary(Of Integer, Decimal)
+        Try
+            Dim paymentModes As New Dictionary(Of Integer, Decimal)()
+
+            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                Dim paymentId As Integer = Convert.ToInt32(paymentRow("pmode_id"))
+                Dim amount As Decimal = ConvertDecimal(paymentRow("pmode_amount"))
+                paymentModes.Add(paymentId, amount)
+            Next
+
+            Return paymentModes
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error creating payment modes: " & ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return New Dictionary(Of Integer, Decimal)()
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Safely convert object to decimal, handling DBNull and empty values
+    ''' </summary>
+    Private Function ConvertDecimal(value As Object) As Decimal
+        Try
+            If value Is Nothing OrElse value Is DBNull.Value OrElse String.IsNullOrEmpty(value.ToString()) Then
+                Return 0D
+            End If
+            Return Convert.ToDecimal(value)
+        Catch ex As Exception
+            Return 0D
+        End Try
+    End Function
 
 End Class

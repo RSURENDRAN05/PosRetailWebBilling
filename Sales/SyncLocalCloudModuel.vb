@@ -110,6 +110,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "ButtonStyleTable Not Received"
             End If
+            If getPaymentList() = True Then
+                dialog.Caption = "Loading PaymentList"
+            Else
+                dialog.Caption = "PaymentList Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

@@ -223,6 +223,7 @@
     <Compile Include="ClsModule\mangementModule.vb" />
     <Compile Include="ClsModule\mySqlConnection.vb" />
     <Compile Include="ClsModule\M_CONNECT.vb" />
+    <Compile Include="ClsModule\SalesDBHelper.vb" />
     <Compile Include="ClsModule\shiftclosecheck.vb" />
     <Compile Include="Controller\frmbusinessDate.designer.vb">
       <DependentUpon>frmbusinessDate.vb</DependentUpon>

@@ -1332,6 +1332,7 @@ Public Class SalesHeader
     Public Property psih_invoice_userid As String
     Public Property psih_invoice_comid As String
     Public Property psih_invoice_locid As String
+    Public Property psih_invoice_print As String = "0"
     Public Property psih_invoice_billremarks As String
     Public Property psih_invoice_advamt As Decimal
     Public Property psih_invoice_outstanding As Decimal

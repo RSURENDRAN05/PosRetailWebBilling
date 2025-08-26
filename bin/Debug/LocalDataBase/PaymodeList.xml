@@ -1,0 +1,40 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="PaymodeList" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="PaymodeList">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="pmode_id" type="xs:string" minOccurs="0" />
+                <xs:element name="pmode_name" type="xs:string" minOccurs="0" />
+                <xs:element name="pmode_type" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <PaymodeList>
+    <pmode_id>1</pmode_id>
+    <pmode_name>Cash Bill</pmode_name>
+    <pmode_type>cash</pmode_type>
+  </PaymodeList>
+  <PaymodeList>
+    <pmode_id>2</pmode_id>
+    <pmode_name>Credit Bill</pmode_name>
+    <pmode_type>credit</pmode_type>
+  </PaymodeList>
+  <PaymodeList>
+    <pmode_id>3</pmode_id>
+    <pmode_name>Bank Card</pmode_name>
+    <pmode_type>card</pmode_type>
+  </PaymodeList>
+  <PaymodeList>
+    <pmode_id>4</pmode_id>
+    <pmode_name>Qr Sales</pmode_name>
+    <pmode_type>card</pmode_type>
+  </PaymodeList>
+</NewDataSet>

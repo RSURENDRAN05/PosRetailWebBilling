@@ -92,7 +92,7 @@ Module functionModule
         Public Shared SUBLOAD As String = "1"
         Public Shared ITEMLOAD As String = "1"
     End Structure
-    
+
     Public Structure PrintProfile
         Shared _salesFilename As String = ""
         Shared _purchaseFilename As String = ""
@@ -233,8 +233,21 @@ Module functionModule
     Public Structure _PaymentDtl
         Public Shared paymentModeSelection As String = ""
         Public Shared paymentMode As String = ""
+        Public Shared paymentId As String = ""
+        Public Shared paymentAmount As Decimal = 0
     End Structure
-
+    Public Function CreateTablePaymore() As DataTable
+        Try
+            Dim PayMoreTable = New DataTable
+            PayMoreTable.Columns.Add("pmode_id", GetType(Integer)) '0
+            PayMoreTable.Columns.Add("pmode_name", GetType(String)) '0
+            PayMoreTable.Columns.Add("pmode_type", GetType(String)) '0
+            PayMoreTable.Columns.Add("pmode_amount", GetType(Decimal))
+            Return PayMoreTable
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Public Structure saveMode
         Shared _newMode As String = "New"
         Shared _saveMode As String = "Save"
@@ -329,7 +342,7 @@ Module functionModule
                     End If
                 End If
             End If
-           
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -363,7 +376,7 @@ Module functionModule
                     End If
                 End If
             End If
-           
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -397,7 +410,7 @@ Module functionModule
                     End If
                 End If
             End If
-            
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -431,7 +444,7 @@ Module functionModule
                     End If
                 End If
             End If
-            
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -465,7 +478,7 @@ Module functionModule
                     End If
                 End If
             End If
-           
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -499,7 +512,7 @@ Module functionModule
                     End If
                 End If
             End If
-           
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -549,7 +562,7 @@ Module functionModule
                     End If
                 End If
             End If
-          
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -888,11 +901,32 @@ Module functionModule
     End Function
     Public Function getPaymentList() As Boolean
         Try
-            _JsonData.PaymodeList.TableName = "PaymodeList"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=3")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.PaymodeList = Userparsejson("Data").ToObject(Of DataTable)()
+            Dim Path As String = filePath & "PaymodeList.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.PaymodeList.TableName = "PaymodeList"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=3")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.PaymodeList = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.PaymodeList.Rows.Count > 0 Then
+                    _JsonData.PaymodeList.TableName = "PaymodeList"
+                    _JsonData.PaymodeList.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.PaymodeList.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.PaymodeList.ReadXml(Path)
+                    _JsonData.PaymodeList.TableName = "PaymodeList"
+                    If _JsonData.PaymodeList.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
