@@ -278,54 +278,67 @@ class clsfuncsync
 
         return trim($cleaned);
     }
-
-    /**
-     * Process large datasets in batches to avoid memory and timeout issues
-     */
-    public function SaveInvoiceDataBatch($data, $batchSize = 50)
+    public function GetSalesReport($comid, $locid, $startDate, $endDate)
     {
-        try {
-            $results = array('success' => true, 'message' => '', 'processed' => 0, 'errors' => array());
+        $sql = "SELECT * FROM sales_report WHERE comid = '" . mysqli_real_escape_string($this->conn, $comid) . "'
+                AND locid = '" . mysqli_real_escape_string($this->conn, $locid) . "'
+                AND sale_date BETWEEN '" . mysqli_real_escape_string($this->conn, $startDate) . "' AND '" . mysqli_real_escape_string($this->conn, $endDate) . "'";
 
-            // Process headers in batches
-            if (isset($data['invoice_hdr']) && count($data['invoice_hdr']) > $batchSize) {
-                $hdrBatches = array_chunk($data['invoice_hdr'], $batchSize);
-                foreach ($hdrBatches as $batch) {
-                    $batchData = array('invoice_hdr' => $batch, 'invoice_dtl' => array());
-                    $result = $this->SaveInvoiceData($batchData);
-                    if (!$result['success']) {
-                        $results['errors'][] = 'Header batch error: ' . $result['message'];
-                    }
-                    $results['processed'] += count($batch);
-                }
-            }
-
-            // Process details in batches
-            if (isset($data['invoice_dtl']) && count($data['invoice_dtl']) > $batchSize) {
-                $dtlBatches = array_chunk($data['invoice_dtl'], $batchSize);
-                foreach ($dtlBatches as $batch) {
-                    $batchData = array('invoice_hdr' => array(), 'invoice_dtl' => $batch);
-                    $result = $this->SaveInvoiceData($batchData);
-                    if (!$result['success']) {
-                        $results['errors'][] = 'Detail batch error: ' . $result['message'];
-                    }
-                    $results['processed'] += count($batch);
-                }
-            } else {
-                // Process normally if not too large
-                return $this->SaveInvoiceData($data);
-            }
-
-            if (!empty($results['errors'])) {
-                $results['success'] = false;
-                $results['message'] = 'Batch processing completed with errors: ' . implode(', ', $results['errors']);
-            } else {
-                $results['message'] = 'Batch processing completed successfully. Processed ' . $results['processed'] . ' records.';
-            }
-
-            return $results;
-        } catch (Exception $e) {
-            return array('success' => false, 'message' => 'Batch processing error: ' . $e->getMessage());
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching sales report: " . mysqli_error($this->conn));
         }
     }
+
+
+
+    // /**
+    //  * Process large datasets in batches to avoid memory and timeout issues
+    //  */
+    // public function SaveInvoiceDataBatch($data, $batchSize = 50)
+    // {
+    //     try {
+    //         $results = array('success' => true, 'message' => '', 'processed' => 0, 'errors' => array());
+
+    //         // Process headers in batches
+    //         if (isset($data['invoice_hdr']) && count($data['invoice_hdr']) > $batchSize) {
+    //             $hdrBatches = array_chunk($data['invoice_hdr'], $batchSize);
+    //             foreach ($hdrBatches as $batch) {
+    //                 $batchData = array('invoice_hdr' => $batch, 'invoice_dtl' => array());
+    //                 $result = $this->SaveInvoiceData($batchData);
+    //                 if (!$result['success']) {
+    //                     $results['errors'][] = 'Header batch error: ' . $result['message'];
+    //                 }
+    //                 $results['processed'] += count($batch);
+    //             }
+    //         }
+
+    //         // Process details in batches
+    //         if (isset($data['invoice_dtl']) && count($data['invoice_dtl']) > $batchSize) {
+    //             $dtlBatches = array_chunk($data['invoice_dtl'], $batchSize);
+    //             foreach ($dtlBatches as $batch) {
+    //                 $batchData = array('invoice_hdr' => array(), 'invoice_dtl' => $batch);
+    //                 $result = $this->SaveInvoiceData($batchData);
+    //                 if (!$result['success']) {
+    //                     $results['errors'][] = 'Detail batch error: ' . $result['message'];
+    //                 }
+    //                 $results['processed'] += count($batch);
+    //             }
+    //         } else {
+    //             // Process normally if not too large
+    //             return $this->SaveInvoiceData($data);
+    //         }
+
+    //         if (!empty($results['errors'])) {
+    //             $results['success'] = false;
+    //             $results['message'] = 'Batch processing completed with errors: ' . implode(', ', $results['errors']);
+    //         } else {
+    //             $results['message'] = 'Batch processing completed successfully. Processed ' . $results['processed'] . ' records.';
+    //         }
+
+    //         return $results;
+    //     } catch (Exception $e) {
+    //         return array('success' => false, 'message' => 'Batch processing error: ' . $e->getMessage());
+    //     }
+    // }
 }

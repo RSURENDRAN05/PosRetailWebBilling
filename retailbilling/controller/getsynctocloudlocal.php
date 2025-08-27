@@ -122,6 +122,34 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 3) { //get sales report
+        try {
+            // Get parameters from URL - match VB.NET parameter names
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
+            $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
+            $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters: comid, locid, startDate, or endDate");
+            }
+
+            // Fetch sales report data
+            $salesReport = $clsfunreq->GetSalesReport($comid, $locid, $startDate, $endDate);
+            $arr = array();
+            if ($salesReport) {
+                while ($row = mysqli_fetch_assoc($salesReport)) {
+                    $arr[] = $row;
+                }
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No sales data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Msg" => "Request 3 Error: " . $e->getMessage(), "Data" => ""));
+        }
+    }
 }
 
 // Fallback for invalid requests

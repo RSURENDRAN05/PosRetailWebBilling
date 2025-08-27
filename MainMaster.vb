@@ -49,7 +49,7 @@ Public Class MainMaster
         ' Initialize the skin gallery
         InitializeSkinGallery()
 
-        
+
     End Sub
     Private Sub MenuReading()
         Try
@@ -569,6 +569,18 @@ Public Class MainMaster
         End Try
     End Sub
 
+    Private Sub barmastersalesreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barmastersalesreport.ItemClick
+        Try
+            ' Show the Sales Report form
+            Dim salesReportForm As New frmSalesReport()
+            salesReportForm.MdiParent = Me
+            salesReportForm.Show()
+        Catch ex As Exception
+            MessageBox.Show("Error opening Sales Report: " & ex.Message, "Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub barcreategroup_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barcreategroup.ItemClick
         Try
             frmGroup.ShowDialog()
@@ -836,10 +848,10 @@ Public Class MainMaster
                 End If
 
                 If Not String.IsNullOrEmpty(skinName) Then
-                   
+
                     ' Save the skin setting (when using SkinHelper, skin is applied automatically)
                     SkinManager.SaveSkinSetting(skinName)
- 
+
                     DevExpress.XtraEditors.XtraMessageBox.Show(
                         "Skin '" & skinName & "' applied and saved!" & vbCrLf &
                         "Check Debug Output for persistence test results.",
@@ -858,7 +870,7 @@ Public Class MainMaster
         End Try
     End Sub
 
-   
+
     Private Sub barnewdiscountmaster_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barnewdiscountmaster.ItemClick
         Try
             FrmDiscountMaster.MdiParent = Me

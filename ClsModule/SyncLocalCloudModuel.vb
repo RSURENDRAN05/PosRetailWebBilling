@@ -3,6 +3,8 @@ Imports System.Data.SqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.IO
+Imports System.Net
+Imports Newtonsoft.Json.Linq
 
 Module SyncLocalCloudModuel
     Public Function _ReadSyncLocalCloud() As Boolean
@@ -302,5 +304,24 @@ Module SyncLocalCloudModuel
             MessageBox.Show("Error authenticating user: " & ex.Message)
             Return False
         End Try
+    End Function
+    Public Function GetSalesDataFromAPI(comId As String, locId As String, startDate As String, endDate As String) As DataTable
+        Try
+            Dim SalesData As New DataTable
+            If CheckForInternetConnection() Then
+                ' Internet available - fetch from server
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=3&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate)
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                SalesData = Userparsejson("Data").ToObject(Of DataTable)()
+                If SalesData.Rows.Count > 0 Then
+                    Return SalesData
+                End If
+            End If
+            Return SalesData
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
     End Function
 End Module
