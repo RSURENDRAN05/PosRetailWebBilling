@@ -80,6 +80,10 @@ Public Class frmEmployee
                 txtsocso.Text = "0.00"
                 MessageBox.Show("Socso Missing", "Warrning", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
+            ElseIf txtsocso.Text = "0" Then
+                txtsocso.Text = "0.00"
+                MessageBox.Show("Date Of Birth Missing", "Warrning", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
             End If
             Return True
         Catch ex As Exception
@@ -129,15 +133,15 @@ Public Class frmEmployee
             txtvisaexpire.Text = Date.Now.ToString("dd-MM-yyyy")
             txtjoindate.Text = Date.Now.ToString("dd-MM-yyyy")
 
-            txtcurrentpermit.Text = "-"
-            txtnextpermit.Text = "-"
-            txtmonthexpire.Text = "-"
+            txtcurrentpermit.Text = "1"
+            txtnextpermit.Text = "1"
+            txtmonthexpire.Text = "1111-11-11"
 
-            txtphoneno.Text = "-"
-            txtcontactname.Text = "-"
-            txtemergencyno.Text = "-"
-            txtaccountname.Text = "-"
-            txtbankname.Text = "-"
+            txtphoneno.Text = "0"
+            txtcontactname.Text = "0"
+            txtemergencyno.Text = "0"
+            txtaccountname.Text = "0"
+            txtbankname.Text = "0"
             txtaccountno.Text = "0"
             txtremarks.Text = "-"
 
@@ -153,8 +157,8 @@ Public Class frmEmployee
             txtallowance.EditValue = 0.0
             txtepf.Text = "00.0"
             txtsocso.Text = "00.0"
-            _emp_oldsalary = ""
-            btnBrowse.Text = ""
+            _emp_oldsalary = "0"
+            btnBrowse.Text = "0"
             _rtData.Rows.Clear()
         Catch ex As Exception
 

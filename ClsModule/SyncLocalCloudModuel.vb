@@ -33,6 +33,31 @@ Module SyncLocalCloudModuel
             Return False
         End Try
     End Function
+    Public Function _ReadSyncLocalCloudWebService() As Boolean
+        Try
+
+            M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
+            M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
+            M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
+            M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
+            M_Details.LocationId = ini.ReadValue("Bank", "LocationId")
+            M_Details.CompanyId = ini.ReadValue("Bank", "CompanyId")
+            M_Details.LocationName = ini.ReadValue("Bank", "LocationName")
+            M_Details.CompanyName = ini.ReadValue("Bank", "CompanyName")
+            M_Details.PMID = ini.ReadValue("Bank", "PMID")
+            _companyInfo.ComId = M_Details.CompanyId
+            _companyInfo.CompanyName = M_Details.CompanyName
+            _companyInfo.LocId = M_Details.LocationId
+            _companyInfo.LocationName = M_Details.LocationName
+            _companyInfo.CompanyPMID = M_Details.PMID
+            If chkRegistryKey(M_Details.licenceActive) = False Then
+                End
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function _ReadDefaultLocalData() As Boolean
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try

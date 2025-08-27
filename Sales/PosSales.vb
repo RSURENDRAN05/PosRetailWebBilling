@@ -1063,7 +1063,7 @@ Public Class PosSales
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Try
             Dim _receDs As New DataSet
-            If (GetSalesByBill(txtinvoiceno.EditValue - 1, _receDs)) = True Then
+            If (GetSalesByBillLocal(txtinvoiceno.EditValue - 1, _receDs, "P")) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
@@ -1071,7 +1071,7 @@ Public Class PosSales
                 If clsBillPrint.Billa4Print(_receDs, Errstr, txtprintprofile.Text) = False Then
 
                 End If
-                End If
+            End If
         Catch ex As Exception
 
         End Try

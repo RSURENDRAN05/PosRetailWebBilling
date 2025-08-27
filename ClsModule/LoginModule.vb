@@ -68,19 +68,19 @@ Module LoginModule
                 End Try
             End If
 
-            ' After POS Master validation, validate shift status
-            If ValidationForShiftClose() Then
-                dialog.Caption = "Shift validation completed successfully"
-            Else
-                dialog.Caption = "Shift validation failed"
-            End If
+            '' After POS Master validation, validate shift status
+            'If ValidationForShiftClose() Then
+            '    dialog.Caption = "Shift validation completed successfully"
+            'Else
+            '    dialog.Caption = "Shift validation failed"
+            'End If
 
-            ' After shift validation, validate day status
-            If ValidationForDayClose() Then
-                dialog.Caption = "Day validation completed successfully"
-            Else
-                dialog.Caption = "Day validation failed"
-            End If
+            '' After shift validation, validate day status
+            'If ValidationForDayClose() Then
+            '    dialog.Caption = "Day validation completed successfully"
+            'Else
+            '    dialog.Caption = "Day validation failed"
+            'End If
 
         Catch ex As Exception
             dialog.Caption = "Error during validation process"

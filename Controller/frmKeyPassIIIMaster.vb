@@ -39,9 +39,7 @@ Public Class frmKeyPassIIIMaster
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
-                Me.DialogResult = Windows.Forms.DialogResult.No
-                WriteErroLog(errMsg.ToString)
-                Me.Close()
+                WriteErroLog("Master - Password Wrong")
             End If
             'If _TXTPASS.Text = "786786" Then
             '    Dim frmregis As New frmRegistration
@@ -71,9 +69,8 @@ Public Class frmKeyPassIIIMaster
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        properClass.R_BooleanStatus = False
-        '  eLog.WriteErroLog(errMsg.ToString)
-        Me.Dispose()
+        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.Close()
     End Sub
  
 End Class

@@ -95,15 +95,7 @@ Public Class PosLogin
                 updateStr("Please Check File Name \LoyOut\SerSettings.xml")
                 Me.BeginInvoke(Sub() btn_close_Click(Nothing, Nothing))
             End If
-            '_lodaItemMast()
-            '_lodaMaingroup()
-            '_lodasubCate()
-            '_lodaProdcutKit()
-            '_DscUSTOMERLoad()
-            'dataDiscountLoad()
-            'paymentNotesLoad()
-            '_lodaAddOnData()
-            '_txtPass.Select()
+             
 
             lblDateTime.Text = Date.Now
             If File.Exists(M_Details._appPath & "mypos.jpg") Then
@@ -418,19 +410,18 @@ Public Class PosLogin
     End Function
     Public Sub _processStart()
         Try
-            'If Running("Print Server") = False Then
-            '    If _checkSystemSetting("EXE001") = True Then
-            '        If File.Exists(M_Details._appPath & "Print Server.exe") Then
-            '            info.FileName = M_Details._appPath & "Print Server.exe"
-            '            info.WorkingDirectory = M_Details._appPath
-            '            Process.Start(info)
-            '        Else
-            '            properClass.R_Msgstring = "File Not Found :" & M_Details._appPath & "\Print Server.exe"
-            '            Dim frmsgOk As New frmMsgBoxOk
-            '            frmsgOk.ShowDialog()
-            '        End If
-            '    End If
-            'End If
+            If Running("AutoSyncSales") = False Then
+                If File.Exists(M_Details._appPath & "\AutoSyncSales.exe") Then
+                    info.FileName = M_Details._appPath & "\AutoSyncSales.exe"
+                    info.WorkingDirectory = M_Details._appPath & "\"
+                    Process.Start(info)
+                Else
+                    properClass.R_Msgstring = "File Not Found :" & M_Details._appPath & "\AutoSyncSales.exe"
+                    Dim frmsgOk As New frmMsgBoxOk
+                    frmsgOk.ShowDialog()
+                End If
+            End If
+
             'If Running("Mail Server") = False Then
             '    If _checkSystemSetting("EXE002") = True Then
             '        If File.Exists(M_Details._appPath & "Mail Server.exe") Then

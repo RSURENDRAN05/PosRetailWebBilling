@@ -94,6 +94,7 @@
     <Reference Include="DevExpress.XtraPrinting.v13.1, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v13.1, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v13.1.Extensions, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v13.1, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=8.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector NET 8.3.0\MySql.Data.dll</HintPath>
@@ -615,6 +616,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsModule\SyncLocalCloudModuel.vb" />
+    <Compile Include="WebService\FrmWebService.Designer.vb">
+      <DependentUpon>FrmWebService.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WebService\FrmWebService.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Accounts\frmGroup.resx">
@@ -842,6 +849,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmDiscountMaster.resx">
       <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebService\FrmWebService.resx">
+      <DependentUpon>FrmWebService.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

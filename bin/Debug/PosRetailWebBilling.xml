@@ -6,110 +6,42 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
+<member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanJsonString(System.String)">
 	<summary>
- Generates MD5 hash of the input string (same as PHP's md5() function)
+ Clean JSON string to remove control characters that cause parsing errors
  </summary>
-	<param name="input">The string to hash</param>
-	<returns>MD5 hash as lowercase hex string</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanDataSetForJson(System.Data.DataSet)">
 	<summary>
- Verifies password against stored MD5 hash
+ Clean DataSet string fields to remove control characters before JSON serialization
  </summary>
-	<param name="password">Plain text password to verify</param>
-	<param name="storedHash">Stored MD5 hash from database</param>
-	<returns>True if password matches, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanStringField(System.String)">
 	<summary>
- Authenticates user with username and password using MD5 hash comparison
+ Clean individual string field to remove control characters
  </summary>
-	<param name="username">Username</param>
-	<param name="password">Plain text password</param>
-	<returns>True if authentication successful, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionSuccess(System.String,System.String)">
 	<summary>
- Safe conversion helper to handle DBNull and empty strings for Integer values
+ Log successful transaction to RichTextBox with real-time display
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDecimal(System.Object,System.Decimal)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionFailure(System.String,System.String)">
 	<summary>
- Safe conversion helper to handle DBNull and empty strings for Decimal values
+ Log failed transaction to RichTextBox with real-time display
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToString(System.Object,System.String)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionInfo(System.String,System.String)">
 	<summary>
- Safe string conversion to handle DBNull values
+ Log informational transaction message to RichTextBox with real-time display
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDateTime(System.Object,System.DateTime)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionProcessing(System.String)">
 	<summary>
- Safe date conversion to handle DBNull and invalid date strings
+ Log transaction processing start to RichTextBox
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncStart(System.Int32)">
 	<summary>
- Save sales bill directly to database (replaces _JsonSendSales)
+ Log sync process start
  </summary>
-	<param name="salesHeader">SalesHeader object</param>
-	<param name="salesDetailsList">List of SalesDetails objects</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncComplete">
 	<summary>
- Save sales bill with payment mode information
+ Log sync process completion
  </summary>
-	<param name="salesHeader">Sales header data</param>
-	<param name="salesDetailsList">List of sales details</param>
-	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentModesWithTransaction(System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.Int32,System.Int32,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)">
-	<summary>
- Save payment modes within a transaction
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
-	<summary>
- Update existing sales bill (for edit mode)
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
-	<summary>
- Update existing sales bill with payment mode information (for edit mode)
- </summary>
-	<param name="salesHeader">Sales header data</param>
-	<param name="salesDetailsList">List of sales details</param>
-	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.ConvertDataTableToSalesDetails(System.Data.DataTable)">
-	<summary>
- Convert DataTable to List of SalesDetails
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentMode(System.Int32,System.Int32,System.Decimal,System.Int32,System.Int32)">
-	<summary>
- Save payment mode for a sales transaction
- </summary>
-	<param name="salId">Sales ID from pos_sale_invoicehdr</param>
-	<param name="paymode">Payment mode ID (1=Cash, 2=Card, etc.)</param>
-	<param name="amount">Payment amount</param>
-	<param name="shiftNo">Shift number</param>
-	<param name="dayNo">Day number</param>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
-	<summary>
- Safe string conversion helper for the module
- </summary>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.GetSalesByBill(System.String,System.Data.DataSet@)">
-	<summary>
- Get sales data by bill number for printing/viewing
- </summary>
-	<param name="BillNo">Bill number to retrieve</param>
-	<param name="receDs">DataSet to populate with bill data</param>
-	<returns>True if bill data found and populated, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.GetAllSales(System.String,System.Data.DataSet@)">
-	<summary>
- Get all sales data for a specific date
- </summary>
-	<param name="getdate">Date to retrieve sales for</param>
-	<param name="receDs">DataSet to populate with sales data</param>
-	<returns>True if sales data found and populated, False otherwise</returns>
 </member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
@@ -477,6 +409,90 @@ PosRetailWebBilling
 	<summary>
  Safely convert object to decimal, handling DBNull and empty values
  </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Integer values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDecimal(System.Object,System.Decimal)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Decimal values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion to handle DBNull values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDateTime(System.Object,System.DateTime)">
+	<summary>
+ Safe date conversion to handle DBNull and invalid date strings
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
+	<summary>
+ Save sales bill directly to database (replaces _JsonSendSales)
+ </summary>
+	<param name="salesHeader">SalesHeader object</param>
+	<param name="salesDetailsList">List of SalesDetails objects</param>
+	<param name="errorMessage">Error message output</param>
+	<param name="returnBillNo">Generated bill number output</param>
+	<returns>True if successful, False if failed</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
+	<summary>
+ Save sales bill with payment mode information
+ </summary>
+	<param name="salesHeader">Sales header data</param>
+	<param name="salesDetailsList">List of sales details</param>
+	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
+	<param name="errorMessage">Error message output</param>
+	<param name="returnBillNo">Generated bill number output</param>
+	<returns>True if successful, False if failed</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentModesWithTransaction(System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.Int32,System.Int32,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)">
+	<summary>
+ Save payment modes within a transaction
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
+	<summary>
+ Update existing sales bill (for edit mode)
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
+	<summary>
+ Update existing sales bill with payment mode information (for edit mode)
+ </summary>
+	<param name="salesHeader">Sales header data</param>
+	<param name="salesDetailsList">List of sales details</param>
+	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
+	<param name="errorMessage">Error message output</param>
+	<param name="returnBillNo">Generated bill number output</param>
+	<returns>True if successful, False if failed</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.ConvertDataTableToSalesDetails(System.Data.DataTable)">
+	<summary>
+ Convert DataTable to List of SalesDetails
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentMode(System.Int32,System.Int32,System.Decimal,System.Int32,System.Int32)">
+	<summary>
+ Save payment mode for a sales transaction
+ </summary>
+	<param name="salId">Sales ID from pos_sale_invoicehdr</param>
+	<param name="paymode">Payment mode ID (1=Cash, 2=Card, etc.)</param>
+	<param name="amount">Payment amount</param>
+	<param name="shiftNo">Shift number</param>
+	<param name="dayNo">Day number</param>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion helper for the module
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetSalesByBillLocal(System.String,System.Data.DataSet@,System.String@)">
+	<summary>
+ Get sales data by bill number for printing/viewing
+ </summary>
+	<param name="BillNo">Bill number to retrieve</param>
+	<param name="receDs">DataSet to populate with bill data</param>
+	<returns>True if bill data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetAllSales(System.String,System.Data.DataSet@)">
+	<summary>
+ Get all sales data for a specific date
+ </summary>
+	<param name="getdate">Date to retrieve sales for</param>
+	<param name="receDs">DataSet to populate with sales data</param>
+	<returns>True if sales data found and populated, False otherwise</returns>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>
  Centralized method to update shift information from JSON response
@@ -487,6 +503,26 @@ PosRetailWebBilling
  Centralized method to update day information from JSON response
  This ensures consistent handling and avoids duplicate code
  </summary>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
+	<summary>
+ Generates MD5 hash of the input string (same as PHP's md5() function)
+ </summary>
+	<param name="input">The string to hash</param>
+	<returns>MD5 hash as lowercase hex string</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
+	<summary>
+ Verifies password against stored MD5 hash
+ </summary>
+	<param name="password">Plain text password to verify</param>
+	<param name="storedHash">Stored MD5 hash from database</param>
+	<returns>True if password matches, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
+	<summary>
+ Authenticates user with username and password using MD5 hash comparison
+ </summary>
+	<param name="username">Username</param>
+	<param name="password">Plain text password</param>
+	<returns>True if authentication successful, False otherwise</returns>
 </member><member name="M:PosRetailWebBilling.frmPaymore.ConvertDecimal(System.Object)">
 	<summary>
  Safely convert object to decimal, handling DBNull and empty values

@@ -131,7 +131,9 @@ Public Class SalesDBHelper
                 detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
                 detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
                 detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
-
+                detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
+                detail.psid_invoice_locid = salesHeader.psih_invoice_locid
+                detail.psid_invoice_comid = salesHeader.psih_invoice_comid
                 Dim detailId As Integer = 0
                 If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
                     transaction.Rollback()
@@ -213,7 +215,9 @@ Public Class SalesDBHelper
                 detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
                 detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
                 detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
-
+                detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
+                detail.psid_invoice_locid = salesHeader.psih_invoice_locid
+                detail.psid_invoice_comid = salesHeader.psih_invoice_comid
                 Dim detailId As Integer = 0
                 If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
                     transaction.Rollback()
@@ -322,7 +326,9 @@ Public Class SalesDBHelper
                 detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
                 detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
                 detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
-
+                detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
+                detail.psid_invoice_locid = salesHeader.psih_invoice_locid
+                detail.psid_invoice_comid = salesHeader.psih_invoice_comid
                 Dim detailId As Integer = 0
                 If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
                     transaction.Rollback()
@@ -394,7 +400,9 @@ Public Class SalesDBHelper
                 detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
                 detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
                 detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
-
+                detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
+                detail.psid_invoice_locid = salesHeader.psih_invoice_locid
+                detail.psid_invoice_comid = salesHeader.psih_invoice_comid
                 Dim detailId As Integer = 0
                 If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
                     transaction.Rollback()
@@ -550,7 +558,9 @@ Public Class SalesDBHelper
                 command.Parameters.AddWithValue("@psid_invoice_shiftno", SafeToInt32(salesDetail.psid_invoice_shiftno, 1))
                 command.Parameters.AddWithValue("@psid_invoice_dayno", SafeToInt32(salesDetail.psid_invoice_dayno, 1))
                 command.Parameters.AddWithValue("@psid_invoice_webhost", 0)
-
+                command.Parameters.AddWithValue("@psid_invoice_pmid", SafeToInt32(salesDetail.psid_invoice_pmid, 0))
+                command.Parameters.AddWithValue("@psid_invoice_comid", SafeToInt32(salesDetail.psid_invoice_comid, 0))
+                command.Parameters.AddWithValue("@psid_invoice_locid", SafeToInt32(salesDetail.psid_invoice_locid, 0))
                 Dim prmDetailId As New SqlParameter("@psid_invoice_id", SqlDbType.Int)
                 prmDetailId.Direction = ParameterDirection.Output
                 command.Parameters.Add(prmDetailId)
@@ -596,7 +606,7 @@ Public Class SalesDBHelper
                 command.Parameters.AddWithValue("@psih_invoice_outstanding", salesHeader.psih_invoice_outstanding)
                 command.Parameters.AddWithValue("@psih_invoice_givenamt", salesHeader.psih_invoice_givenamt)
                 command.Parameters.AddWithValue("@psih_invoice_balamt", salesHeader.psih_invoice_balamt)
-
+                command.Parameters.AddWithValue("@psih_invoice_webhost", salesHeader.psih_invoice_webhost)
                 command.ExecuteNonQuery()
                 Return True
             End Using
@@ -682,7 +692,7 @@ Module PrintViewReport
     ''' <param name="BillNo">Bill number to retrieve</param>
     ''' <param name="receDs">DataSet to populate with bill data</param>
     ''' <returns>True if bill data found and populated, False otherwise</returns>
-    Public Function GetSalesByBill(BillNo As String, ByRef receDs As DataSet) As Boolean
+    Public Function GetSalesByBillLocal(BillNo As String, ByRef receDs As DataSet, ByRef Mode As String) As Boolean
         Try
             ' Validate input parameters
             If String.IsNullOrEmpty(BillNo) Then
@@ -691,7 +701,7 @@ Module PrintViewReport
 
             ' Prepare parameters for stored procedure
             Dim SqlViewPrint(2) As SqlParameter
-            SqlViewPrint(0) = New SqlParameter("@mode", "P")
+            SqlViewPrint(0) = New SqlParameter("@mode", Mode)
             SqlViewPrint(1) = New SqlParameter("@trno", BillNo)
             SqlViewPrint(2) = New SqlParameter("@date", Date.Now)
             ' Initialize dataset

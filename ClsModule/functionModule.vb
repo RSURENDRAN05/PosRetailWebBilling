@@ -626,10 +626,17 @@ Module functionModule
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                 Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
                 Dim Userparsejson As JObject = JObject.Parse(json)
-                _dt = Userparsejson("Data").ToObject(Of DataTable)()
-                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
-                If dtrows.Any Then
-                    _JsonData.ItemMasterTable = dtrows.CopyToDataTable
+
+                'Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
+                'If dtrows.Any Then
+                '    _JsonData.ItemMasterTable = dtrows.CopyToDataTable
+                '    _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+                '    _JsonData.ItemMasterTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                '    Return True
+                'End If
+
+                _JsonData.ItemMasterTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.ItemMasterTable.Rows.Count > 0 Then
                     _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
                     _JsonData.ItemMasterTable.WriteXml(Path, XmlWriteMode.WriteSchema)
                     Return True
@@ -662,16 +669,12 @@ Module functionModule
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                 Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=27")
                 Dim Userparsejson As JObject = JObject.Parse(json)
-                _dt = Userparsejson("Data").ToObject(Of DataTable)()
-
-                Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("ComId") = _companyInfo.ComId And dtrow("LocId") = _companyInfo.LocId
-                If dtrows.Any Then
-                    _JsonData.ItemTouchMasterTable = dtrows.CopyToDataTable
+                _JsonData.ItemTouchMasterTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
                     _JsonData.ItemTouchMasterTable.TableName = "ItemTouchMasterTable"
                     _JsonData.ItemTouchMasterTable.WriteXml(Path, XmlWriteMode.WriteSchema)
                     Return True
                 End If
-
             Else
                 If File.Exists(Path) Then
                     ' Clear existing data

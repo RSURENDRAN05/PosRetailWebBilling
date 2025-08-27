@@ -42,6 +42,7 @@ Module PosSettingsManager
         Public Shared _dualscreenoption As Boolean = False
         Public Shared ItemCancelPrint As Boolean = False
         Public Shared ChangeToCash As Boolean = False
+        Public Shared AutoSyncSales As Boolean = True
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"

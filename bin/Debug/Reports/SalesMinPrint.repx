@@ -303,7 +303,7 @@ namespace XtraReportSerialization {
             // tableCell10
             // 
             this.tableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psid_invoice_proqty", "{0:#.00}")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table1.psid_invoice_proqty", "{0:#.00}")});
             this.tableCell10.Name = "tableCell10";
             this.tableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
             this.tableCell10.StylePriority.UseBorders = false;
@@ -482,7 +482,7 @@ namespace XtraReportSerialization {
             // tableCell2
             // 
             this.tableCell2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_prefix")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_prefix")});
             this.tableCell2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StylePriority.UseFont = false;
@@ -503,7 +503,7 @@ namespace XtraReportSerialization {
             // 
             this.tableCell7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.tableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_trno")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_trno")});
             this.tableCell7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.tableCell7.Name = "tableCell7";
             this.tableCell7.StylePriority.UseBorders = false;
@@ -574,7 +574,7 @@ namespace XtraReportSerialization {
             // tableCell5
             // 
             this.tableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_modified")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_created")});
             this.tableCell5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StylePriority.UseBorders = false;
@@ -608,6 +608,8 @@ namespace XtraReportSerialization {
             // tableCell18
             // 
             this.tableCell18.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.tableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_countername")});
             this.tableCell18.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.tableCell18.Name = "tableCell18";
             this.tableCell18.StylePriority.UseBorders = false;
@@ -715,7 +717,7 @@ namespace XtraReportSerialization {
             // tableCell22
             // 
             this.tableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_tnetamt")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_tnetamt")});
             this.tableCell22.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
             this.tableCell22.Name = "tableCell22";
             this.tableCell22.StylePriority.UseFont = false;
@@ -746,7 +748,7 @@ namespace XtraReportSerialization {
             // tableCell29
             // 
             this.tableCell29.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_balamt")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_balamt")});
             this.tableCell29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell29.Name = "tableCell29";
             this.tableCell29.StylePriority.UseFont = false;
@@ -777,7 +779,7 @@ namespace XtraReportSerialization {
             // tableCell27
             // 
             this.tableCell27.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_givenamt")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_givenamt")});
             this.tableCell27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell27.Name = "tableCell27";
             this.tableCell27.StylePriority.UseFont = false;
@@ -905,6 +907,7 @@ namespace XtraReportSerialization {
             this.XrSubreport1.Id = 0;
             this.XrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(0.2305031F, 18.99999F);
             this.XrSubreport1.Name = "XrSubreport1";
+            this.XrSubreport1.ReportSourceUrl = "~\\Reports\\SalesPrint1.repx";
             this.XrSubreport1.SizeF = new System.Drawing.SizeF(275.7695F, 23F);
             // 
             // FormattingRule1

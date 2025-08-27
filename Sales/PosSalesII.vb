@@ -1145,11 +1145,9 @@ Public Class PosSalesII
             End If
             Dim dtrows As System.Data.EnumerableRowCollection(Of DataRow) = Nothing
 
-            If _Mode = "ItemCode" Then
-
+            If _Mode = "BarCode" Then
                 dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("BARCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
-            ElseIf _Mode = "BarCode" Then
-
+            ElseIf _Mode = "ItemCode" Then
                 dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("ITEMCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
             Else
                 ' Handle invalid mode
@@ -2599,6 +2597,7 @@ Public Class PosSalesII
                 detail.psid_invoice_shiftno = _saleSetting._curShiftno
                 detail.psid_invoice_dayno = _saleSetting._curDayno
                 detail.psid_invoice_salid = 0
+                detail.psid_invoice_pmid = _companyInfo.CompanyPMID
                 salesList.Add(detail)
             Next
 
@@ -2775,6 +2774,7 @@ Public Class PosSalesII
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
                         _saleData.psih_invoice_print = "0"
+                        _saleData.psih_invoice_webhost = "0"
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2946,6 +2946,7 @@ Public Class PosSalesII
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
                         _saleData.psih_invoice_countername = Environment.MachineName
                         _saleData.psih_invoice_print = "0"
+                        _saleData.psih_invoice_webhost = "0"
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to update", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2993,6 +2994,116 @@ Public Class PosSalesII
         End Try
     End Sub
     Public Function GetSalesBySalID(ByVal Sal_id As Integer, ByRef ModeOfBill As String) As Boolean
+        Try
+            Dim resData As New DataSet
+            If GetSalesByBillLocal(Sal_id, resData, "V") = True Then
+
+                ModeOfBill = "View"
+                If resData.Tables(0).Rows.Count > 0 Then
+                    Dim billno = resData.Tables(0).Rows(0)("psih_invoice_trno")
+                    lblinvoiceno.Text = billno
+                    Dim CustomerId = resData.Tables(0).Rows(0)("psih_invoice_customerid")
+                    selectedCustomerId = CustomerId
+                    If _JsonData.CustomerTable.Rows.Count = 0 Then
+                        getCustomerMaster()
+                    End If
+                    If _JsonData.CustomerTable.Rows.Count > 0 Then
+                        Dim custonerRow = _JsonData.CustomerTable.AsEnumerable().
+                                           FirstOrDefault(Function(row) Convert.ToInt32(row("CustomerId")) = CustomerId)
+
+                        If custonerRow IsNot Nothing Then
+                            selectedCustomerName = custonerRow("CustomerName").ToString()
+                            selectedCustomerPhone = custonerRow("CustomerPhone").ToString()
+                            UpdateCustomerGrid()
+                        End If
+                    End If
+                    Dim Remarks = resData.Tables(0).Rows(0)("psih_invoice_billremarks")
+                    barbtnbilltype.Caption = "Bill Type : " & resData.Tables(0).Rows(0)("psih_invoice_billtype")
+                End If
+                If resData.Tables(1).Rows.Count > 0 Then
+                    _SnoCount = 0
+                    GridDataTble_Insert.Rows.Clear()
+                    GridDataTble_Insert.NewRow()
+                    GridDataTble_Insert.BeginInit()
+                    For Each rData In resData.Tables(1).Rows
+                        _SnoCount = _SnoCount + 1
+                        ' Declare variables for data mapping
+                        Dim barcode As Object = If(rData.Table.Columns.Contains("psid_invoice_barcode"), rData("psid_invoice_barcode"), 0)
+                        Dim itemCode As Object = rData("psid_invoice_procode")
+                        Dim itemName As String = Trim(rData("psid_invoice_description"))
+                        Dim serialNo As String = If(rData.Table.Columns.Contains("psid_invoice_serialno"), rData("psid_invoice_serialno"), "0")
+                        Dim uom As String = If(rData.Table.Columns.Contains("psid_invoice_uom"), rData("psid_invoice_uom"), "PCS")
+                        Dim rate As Object = rData("psid_invoice_rate")
+                        Dim qty As Object = rData("psid_invoice_proqty")
+                        Dim amount As Object = rData("psid_invoice_amt")
+                        Dim itemDiscPer As Object = rData("psid_invoice_itemdisp")
+                        Dim itemDiscAmt As Object = rData("psid_invoice_itemdisamt")
+                        Dim billDiscPer As Object = rData("psid_invoice_billdisp")
+                        Dim billDiscAmt As Object = rData("psid_invoice_billdisamt")
+                        Dim totalDiscPer As Object = rData("psid_invoice_totdper")
+                        Dim totalDiscAmt As Object = rData("psid_invoice_totdamt")
+                        Dim grossAmount As Object = rData("psid_invoice_gross")
+                        Dim taxValue As Object = rData("psid_invoice_taxvalue")
+                        Dim taxAmount As Object = rData("psid_invoice_taxamt")
+                        Dim netAmount As Decimal = _RoundOff(rData("psid_invoice_netamt"))
+                        Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
+                        Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
+                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salespersonid"), Convert.ToInt32(rData("psid_invoice_salespersonid")), 1)
+                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
+                        Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
+                        Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
+                        Dim psid As Object = If(rData.Table.Columns.Contains("psid_invoice_id"), rData("psid_invoice_id"), 0)
+
+                        ' Get salesperson name from _JsonData.SalesManCommissionTable using LINQ
+                        Dim salesPersonName As String = "Default"
+                        Try
+                            If _JsonData.SalesManCommissionTable.Rows.Count = 0 Then
+                                getSalesManCommissionInfo()
+                            End If
+
+                            If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                                Dim salesPersonRow = _JsonData.SalesManCommissionTable.AsEnumerable().
+                                                   FirstOrDefault(Function(row) Convert.ToInt32(row("EmpId")) = salesPersonId)
+
+                                If salesPersonRow IsNot Nothing Then
+                                    salesPersonName = salesPersonRow("SalesManName").ToString()
+                                End If
+                            End If
+                        Catch ex As Exception
+                            ' If error getting salesperson name, use default or from database if available
+                            If rData.Table.Columns.Contains("psid_invoice_salesperson") AndAlso rData("psid_invoice_salesperson") IsNot DBNull.Value Then
+                                salesPersonName = rData("psid_invoice_salesperson").ToString()
+                            End If
+                        End Try
+
+                        ' Map database fields to DataTable columns with PSID support
+                        ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
+                        '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
+                        '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE, ITEMLOCK, PSID
+                        GridDataTble_Insert.Rows.Add(_SnoCount, barcode, itemCode, itemName, serialNo, uom, rate, qty, amount, _
+                                                    itemDiscPer, itemDiscAmt, billDiscPer, billDiscAmt, totalDiscPer, totalDiscAmt, _
+                                                    grossAmount, taxValue, taxAmount, netAmount, remarks, batchNo, _
+                                                    salesPersonId, salesPersonName, salesManPer, deleteFlag, itemLock, psid)
+                    Next
+                    GridDataTble_Insert.AcceptChanges()
+                    GridDataTble_Insert.EndInit()
+                    GridControlSalesData.DataSource = GridDataTble_Insert
+                    GridViewPOS.MoveNext()
+
+                    ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
+                    'txtnotes.Text = "-"
+                    If SalesGrandtotal("ER") = False Then
+
+                    End If
+                End If
+            End If
+            
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Public Function GetSalesBySalIDWeb(ByVal Sal_id As Integer, ByRef ModeOfBill As String) As Boolean
         Try
             Dim billDtl As New DataTable
             Dim billHdr As New DataTable
@@ -3107,16 +3218,20 @@ Public Class PosSalesII
     End Function
     Private Sub barbtnbilledit_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnbilledit.ItemClick
         Try
-            If modeOfSale = "View" Then
-                modeOfSale = "Edit"
-                barbtnstatus.Caption = "Sales Mode : " & modeOfSale
-            ElseIf modeOfSale = "Quote" Then
-                modeOfSale = "New"
-                barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                If modeOfSale = "View" Then
+                    modeOfSale = "Edit"
+                    barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+                ElseIf modeOfSale = "Quote" Then
+                    modeOfSale = "New"
+                    barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+                Else
+                    DevExpress.XtraEditors.XtraMessageBox.Show("New Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             Else
-                DevExpress.XtraEditors.XtraMessageBox.Show("New Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                DevExpress.XtraEditors.XtraMessageBox.Show("You Dont Have Rights Edit Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-
         Catch ex As Exception
 
         End Try
@@ -3135,7 +3250,7 @@ Public Class PosSalesII
     Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.ItemClick
         Try
             Dim _receDs As New DataSet
-            If (GetSalesByBill(barstatuslastbillno.Caption, _receDs)) = True Then
+            If (GetSalesByBillLocal(barstatuslastbillno.Caption, _receDs, "P")) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If

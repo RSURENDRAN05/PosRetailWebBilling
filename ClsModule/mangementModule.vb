@@ -1341,6 +1341,7 @@ Public Class SalesHeader
     Public Property psih_invoice_shiftno As String
     Public Property psih_invoice_dayno As String
     Public Property psih_invoice_countername As String
+    Public Property psih_invoice_webhost As String = "0"
 End Class
 Public Class SalesDetails
     Public Property psid_invoice_id As String
@@ -1373,6 +1374,9 @@ Public Class SalesDetails
     Public Property psid_invoice_salemanper As Decimal
     Public Property psid_invoice_shiftno As String
     Public Property psid_invoice_dayno As String
+    Public Property psid_invoice_pmid As String
+    Public Property psid_invoice_comid As String
+    Public Property psid_invoice_locid As String
     Public Sub New(dataRow As DataRow)
         psid_invoice_sno = If(dataRow("SNO") IsNot DBNull.Value, dataRow("SNO").ToString(), "")
         psid_invoice_barcode = If(dataRow("BARCODE") IsNot DBNull.Value, dataRow("BARCODE").ToString(), "")

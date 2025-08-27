@@ -134,7 +134,7 @@ Public Class frmSelectBill
             '        End If
             '    End If
             'Else
-            If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
+            If (GetSalesByBillLocal(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs, "P")) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
@@ -164,7 +164,7 @@ Public Class frmSelectBill
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Try
             Dim _receDs As New DataSet
-            If (GetSalesByBill(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs)) = True Then
+            If (GetSalesByBillLocal(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs, "P")) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
