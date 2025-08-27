@@ -12,6 +12,8 @@ Public Class frmSelectBill
             _DateConversion(Date.Now, dats)
             If GetAllSales(dats, SaleTabale) = True Then
                 GridControlGRNSelector.DataSource = SaleTabale.Tables(0)
+            Else
+                GridControlGRNSelector.DataSource = Nothing
             End If
             If _printProfileLoad() = False Then
 

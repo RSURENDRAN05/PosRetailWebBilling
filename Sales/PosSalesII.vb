@@ -22,7 +22,7 @@ Public Class PosSalesII
     Private selectedCustomerName As String = String.Empty
     Private selectedCustomerPhone As String = String.Empty
     Private customerDisplayTable As DataTable
-
+    Private _CashDraw As New RawPrinter
 #Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
         Try
@@ -2790,6 +2790,7 @@ Public Class PosSalesII
                         ' Always use Dictionary method for both single and multiple payments
                         If salesHelper.SaveSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
+                            _CashDraw.OpenCashdrawer(True)
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                         Else
@@ -2962,6 +2963,7 @@ Public Class PosSalesII
                         ' Always use Dictionary method for both single and multiple payments
                         If salesHelper.UpdateSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
+                            _CashDraw.OpenCashdrawer(True)
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                         Else
@@ -3255,8 +3257,8 @@ Public Class PosSalesII
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
 
-                If clsBillPrint.BillPrintMin(_receDs, Errstr, "SaleMiniPrint.repx") = False Then
-
+                If clsBillPrint.BillPrintMin(_receDs, Errstr, "SalesMinPrint.repx") = True Then
+                    _CashDraw._paperCut(True)
                 End If
             End If
         Catch ex As Exception
@@ -3316,9 +3318,56 @@ Public Class PosSalesII
   
     Private Sub barbtncounterclose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtncounterclose.ItemClick
         Try
+            If CheckSalesBeforeCounterClose() = False Then
+                Return
+            End If
             frmKeyPassIIIMaster.ShowDialog()
             If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
                 frmShiftcloseII.ShowDialog()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnstaffadvance_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnstaffadvance.ItemClick
+        Try
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmPayouts.Show()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnrefreshdata_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnrefreshdata.ItemClick
+        Try
+            If _ReadDefaultLocalData() = False Then
+                Return
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtncashdraweropen_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtncashdraweropen.ItemClick
+        Try
+            frmKeyPassUser.ShowDialog()
+            If frmKeyPassUser.DialogResult = Windows.Forms.DialogResult.OK Then
+                _CashDraw.OpenCashdrawer(True)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnPrintShiftClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnPrintShiftClose.ItemClick
+        Try
+            Dim printcmd As New PrintCommand
+            Dim input As Integer = InputBox("Enter Shift No")
+            If input > 0 Then
+                printcmd._printShiftClose(input, "S", Date.Now)
             End If
         Catch ex As Exception
 

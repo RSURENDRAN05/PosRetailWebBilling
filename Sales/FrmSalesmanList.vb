@@ -101,26 +101,15 @@ Public Class FrmSalesmanList
 
     Private Function LoadSalesmanDataFromAPI() As Boolean
         Try
-            ' Use the new endpoint to get salesmen by company and location
-            Dim salesmanListUrl As String = M_Details.LinkAjaxRequest & "SalesManCommission=13&Comid=" & _companyInfo.ComId & "&Locid=" & _companyInfo.LocId
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(salesmanListUrl)
-            Dim parsejson As JObject = JObject.Parse(json)
-            Dim success = parsejson("Success")
-
-            If success.ToString = "True" Then
-                Dim salesmenData As JArray = CType(parsejson("Data"), JArray)
-
-                ' Process each salesman record
-                For Each salesman As JObject In salesmenData
-                    ' Add salesman with simplified structure
+            If _JsonData.SalesManDataTable.Rows.Count = 0 Then
+                GetSalesmanData()
+            Else
+                For Each salesman In _JsonData.SalesManDataTable.Rows
                     salesmanDataTable.Rows.Add(
-                        Convert.ToInt32(salesman("Id")),
-                        salesman("SalesMan").ToString(),
-                        If(_isSelectionMode, "Select", "")) ' Add Select text only in selection mode
+                      Convert.ToInt32(salesman("Id")),
+                      salesman("SalesMan").ToString(),
+                      If(_isSelectionMode, "Select", "")) ' Add Select text only in selection mode
                 Next
-
-                ' Setup grid columns after data is loaded
                 If Me.Controls.ContainsKey("GridControlSalesman") Then
                     Dim gridControl As DevExpress.XtraGrid.GridControl = CType(Me.Controls("GridControlSalesman"), DevExpress.XtraGrid.GridControl)
                     SetupGridViewColumns(gridControl)
@@ -128,10 +117,6 @@ Public Class FrmSalesmanList
                 End If
 
                 Return True
-            Else
-                ' If the new endpoint doesn't exist, fall back to loading commission data
-                ' and extracting unique salesmen
-                'Return LoadUniqueSalesmenFromCommissions()
             End If
             Return True
         Catch ex As Exception

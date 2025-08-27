@@ -65,6 +65,10 @@ Partial Class frmMsgBoxOk
         '
         Me.lblmsg.Location = New System.Drawing.Point(12, 29)
         Me.lblmsg.Name = "lblmsg"
+        Me.lblmsg.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.lblmsg.Properties.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.lblmsg.Properties.Appearance.Options.UseFont = True
+        Me.lblmsg.Properties.Appearance.Options.UseForeColor = True
         Me.lblmsg.Size = New System.Drawing.Size(335, 122)
         Me.lblmsg.TabIndex = 4
         '

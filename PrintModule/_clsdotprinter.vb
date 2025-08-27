@@ -88,6 +88,9 @@ Public Class _clsdotprinter
             _dsshiftClose.Tables(0).TableName = "ShiftClose"
             _dsshiftClose.Tables(1).TableName = "InvoiceHdr"
             _dsshiftClose.Tables(2).TableName = "InvoiceDtl"
+            _dsshiftClose.Tables(3).TableName = "SalPaymode"
+            _dsshiftClose.Tables(4).TableName = "PayOuts"
+            _dsshiftClose.Tables(5).TableName = "PrintNotes"
             If _dsshiftClose.Tables(0).Rows.Count > 0 Then
                 Dim _content As New StringBuilder
                 Dim _ItemList As New StringBuilder
@@ -100,7 +103,6 @@ Public Class _clsdotprinter
                 Dim _dot3 As String = "++++++++++++++++++++++++++++++++++++++"
                 Dim _dot4 As String = "======================================"
                 Dim _ShopName As String = M_Details._shopName & vbNewLine & _printHeaderDesign._address
-                Dim _sumManagment As Double = 0
 
                 'Dim _shiftcloseDate As String = _dsshiftClose.Tables("ShiftClose").Rows(0)("psc_updated").ToString
                 'Dim _sales As Double = _dsshiftClose.Tables("ShiftClose").Rows(0)("psc_todaysales")
@@ -115,10 +117,7 @@ Public Class _clsdotprinter
                 Dim _taxsales As Double = _dsshiftClose.Tables("ShiftClose").AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("psc_tottax"))
                 Dim _totalsales As Double = _dsshiftClose.Tables("ShiftClose").AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("psc_netamt"))
                 Dim _serviceTax As Double = _dsshiftClose.Tables("ShiftClose").AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("psc_servicetax"))
-                Dim CashSales As Decimal = _dsshiftClose.Tables("InvoiceHdr").AsEnumerable().Where(Function(row) row.Field(Of String)("psih_invoice_paymode") = "CASH").Sum(Function(row) row.Field(Of Decimal)("psih_invoice_tnetamt"))
-                _sumManagment = _dsshiftClose.Tables("InvoiceHdr").AsEnumerable().Where(Function(row) row.Field(Of String)("psih_invoice_paymode") = "MGMT").Sum(Function(row) row.Field(Of Decimal)("psih_invoice_tnetamt"))
-                Dim _sumManagmentTaxamt As Double = 0
-                _sumManagmentTaxamt = _dsshiftClose.Tables("InvoiceHdr").AsEnumerable().Where(Function(row) row.Field(Of String)("psih_invoice_paymode") = "MGMT").Sum(Function(row) row.Field(Of Decimal)("psih_invoice_ttaxamt"))
+                Dim CashSales As Decimal = _dsshiftClose.Tables("InvoiceHdr").AsEnumerable().Where(Function(row) row.Field(Of String)("psih_invoice_paymode") = "cash").Sum(Function(row) row.Field(Of Decimal)("psih_invoice_tnetamt"))
                 '------------------------------Payout Summary--------------------------------
                 Dim _sumPayout As Double = 0
                 If _dsshiftClose.Tables("Payouts").Rows.Count > 0 Then
@@ -137,13 +136,13 @@ Public Class _clsdotprinter
                 End If
                 '------------------------------Net Sales--------------------------------
                 Dim _sumNetSales As Double = 0.0
-                _sumNetSales = CashSales - _sumPayout - _sumManagment
+                _sumNetSales = CashSales - _sumPayout
 
                 Dim _sumGrossSales As Double = 0.0
-                _sumGrossSales = _sales - (_discount + _sumManagment - _sumManagmentTaxamt)
+                _sumGrossSales = _sales - (_discount)
 
                 Dim _sumTotalSales As Double = 0.0
-                _sumTotalSales = _sumGrossSales + (_taxsales - _sumManagmentTaxamt) + _serviceTax
+                _sumTotalSales = _sumGrossSales + (_taxsales) + _serviceTax
                 '------------------------------Header Design--------------------------------
                 _content.AppendLine(_dot2)
                 _content.AppendLine(_TXT1.ToString.PadRight(30))
@@ -158,17 +157,16 @@ Public Class _clsdotprinter
                 _content.AppendLine("Shift No :" & shiftno)
                 _content.AppendLine("CurDate  :" & _shiftDate)
                 _content.AppendLine("Sales                :   " & Format(_sales, "###0.00").ToString.PadLeft(10))
-                _content.AppendLine("Discount         (-) :   " & Format(_discount + _sumManagment - _sumManagmentTaxamt, "###0.00").ToString.PadLeft(10))
+                _content.AppendLine("Discount         (-) :   " & Format(_discount, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine("                     ----------------------")
                 _content.AppendLine("TotalGrossAmt    (=) :   " & Format(_sumGrossSales, "###0.00").ToString.PadLeft(10))
-                _content.AppendLine("Tax Sales        (+) :   " & Format(_taxsales - _sumManagmentTaxamt, "###0.00").ToString.PadLeft(10))
+                _content.AppendLine("Tax Sales        (+) :   " & Format(_taxsales, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine("Service Charge   (+) :   " & Format(_serviceTax, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine(_dot1)
                 _content.AppendLine("Total Sales          :   " & Format(_RoundOff(_sumTotalSales), "###0.00").ToString.PadLeft(10))
                 _content.AppendLine(_dot4)
                 _content.AppendLine("Total Cash Sales     :   " & Format(CashSales, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine("Payout Amount    (-) :   " & Format(_sumPayout, "###0.00").ToString.PadLeft(10))
-                _content.AppendLine("Managment/Run    (-) :   " & Format(_sumManagment, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine("Net Cash Sales       :   " & Format(_sumNetSales, "###0.00").ToString.PadLeft(10))
                 _content.AppendLine(_dot4)
                 _content.AppendLine(_EMPTY)
@@ -191,14 +189,35 @@ Public Class _clsdotprinter
                     _content.AppendLine(_dot4)
                     Dim _sumSalemethod As Double = 0.0
                     Dim _RowsSaleslist As String = ""
-                    If _dsshiftClose.Tables("SalesMethod").Rows.Count > 0 Then
-                        For Each _rowSalesmethod As DataRow In _dsshiftClose.Tables("SalesMethod").Rows
-                            _RowsSaleslist = _rowSalesmethod("psih_invoice_description").ToString.PadRight(20) & " :  " & _rowSalesmethod("netamt").ToString.PadLeft(10)
-                            _content.AppendLine(_RowsSaleslist.ToString)
-                            _sumSalemethod += _rowSalesmethod("netamt")
+
+                    ' Dictionary to store bill type totals - Key: BillType, Value: NetAmt as string
+                    Dim billTypeTotals As New Dictionary(Of String, String)
+
+                    If _dsshiftClose.Tables("InvoiceHdr").Rows.Count > 0 Then
+                        ' Process each invoice to group by bill type
+                        For Each _rowSalesmethod As DataRow In _dsshiftClose.Tables("InvoiceHdr").Rows
+                            Dim billType As String = _rowSalesmethod("psih_invoice_billtype").ToString
+                            Dim netAmt As Double = CDbl(_rowSalesmethod("psih_invoice_tnetamt"))
+
+                            ' Add or update totals for this bill type
+                            If billTypeTotals.ContainsKey(billType) Then
+                                Dim existingNet As Double = CDbl(billTypeTotals(billType))
+                                billTypeTotals(billType) = (existingNet + netAmt).ToString
+                            Else
+                                billTypeTotals.Add(billType, netAmt.ToString)
+                            End If
                         Next
+
+                        ' Display grouped results
+                        For Each kvp In billTypeTotals
+                            Dim groupNet As Double = CDbl(kvp.Value)
+                            _RowsSaleslist = kvp.Key.PadRight(20) & " :  " & groupNet.ToString("0.00").PadLeft(10)
+                            _content.AppendLine(_RowsSaleslist.ToString)
+                            _sumSalemethod += groupNet
+                        Next
+
                         _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Sales  :      " & _sumSalemethod.ToString("0.00"))
+                        _content.AppendLine("Total Sales  :             " & _sumSalemethod.ToString("0.00"))
                         _content.AppendLine(_dot4)
                     End If
                 End If
@@ -211,29 +230,27 @@ Public Class _clsdotprinter
                     _content.AppendLine(_dot4)
                     Dim _RowsPayoutlist As String = ""
                     If _dsshiftClose.Tables("Payouts").Rows.Count > 0 Then
-                        Dim dt As New DataTable
-                        If _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'SUPPLIER'").Count > 0 Then
-                            dt = _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'SUPPLIER'").CopyToDataTable
-                            For Each _rowPayout As DataRow In dt.Rows
-                                _RowsPayoutlist = _rowPayout("payd_name").ToString.PadRight(20) & " :   " & _rowPayout("payd_amount").ToString.PadLeft(10)
-                                _sumPayouts = _sumPayouts + _rowPayout("payd_amount")
-                                _content.AppendLine(_RowsPayoutlist.ToString)
-                            Next
-                            _content.AppendLine(_dot4)
-                            _content.AppendLine("Total Amount Paid :           " & _sumPayouts.ToString("0.00"))
-                            _content.AppendLine(_dot4)
-                        End If
+                        'Dim dt As New DataTable
+                        'If _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'SUPPLIER'").Count > 0 Then
+                        '    dt = _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'SUPPLIER'").CopyToDataTable
+                        '    For Each _rowPayout As DataRow In dt.Rows
+                        '        _RowsPayoutlist = _rowPayout("payd_name").ToString.PadRight(20) & " :   " & _rowPayout("payd_amount").ToString.PadLeft(10)
+                        '        _sumPayouts = _sumPayouts + _rowPayout("payd_amount")
+                        '        _content.AppendLine(_RowsPayoutlist.ToString)
+                        '    Next
+                        '    _content.AppendLine(_dot4)
+                        '    _content.AppendLine("Total Amount Paid :           " & _sumPayouts.ToString("0.00"))
+                        '    _content.AppendLine(_dot4)
+                        'End If
                         'Payout Salary
                         _content.AppendLine(_EMPTY)
-                        Dim dts As New DataTable
-                        If _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'STAFF'").Count > 0 Then
-                            dts = _dsshiftClose.Tables("Payouts").Select("pcus_supcust = 'STAFF'").CopyToDataTable
-                            If dts.Rows.Count > 0 Then
+                        If _dsshiftClose.Tables("Payouts").Rows.Count > 0 Then
+                            If _dsshiftClose.Tables("Payouts").Rows.Count > 0 Then
                                 _sumPayouts = 0
-                                _content.AppendLine("       Payout Salary")
+                                _content.AppendLine("       Advance Payment")
                                 _content.AppendLine(_dot4)
                                 Dim _RowsPayoutSalarylist As String = ""
-                                For Each _rowPayout As DataRow In dts.Rows
+                                For Each _rowPayout As DataRow In _dsshiftClose.Tables("Payouts").Rows
                                     _RowsPayoutSalarylist = _rowPayout("payd_name").ToString.PadRight(20) & " :  " & _rowPayout("payd_amount").ToString.PadLeft(10)
                                     _sumPayouts = _sumPayouts + _rowPayout("payd_amount")
                                     _content.AppendLine(_RowsPayoutSalarylist.ToString)
@@ -246,6 +263,7 @@ Public Class _clsdotprinter
                     End If
                 End If
                 _content.AppendLine(_EMPTY)
+
                 '------------------------------Main Group Sales 3--------------------------------
                 If _checkPrintOption("S012", Mode) = True Then
                     _content.AppendLine("       Main Group")
@@ -253,16 +271,52 @@ Public Class _clsdotprinter
                     Dim _RowsGrouplist As String = ""
                     Dim _sumgrpnet As Double = 0
                     Dim _sumgrptax As Double = 0
-                    If _dsshiftClose.Tables("MainGroup").Rows.Count > 0 Then
-                        For Each _rowGroup As DataRow In _dsshiftClose.Tables("MainGroup").Rows
-                            _RowsGrouplist = _rowGroup("pbm_name").ToString.PadRight(20) & "" & _rowGroup("netamt").ToString.PadLeft(8) & " " & _rowGroup("taxamt").ToString.PadLeft(7)
-                            _content.AppendLine(_RowsGrouplist.ToString)
-                            _sumgrpnet += _rowGroup("netamt")
-                            _sumgrptax += _rowGroup("taxamt")
+
+                    ' Dictionary to store main group totals - Key: MainName, Value: NetAmt|TaxAmt as string
+                    Dim mainGroupTotals As New Dictionary(Of String, String)
+
+                    If _dsshiftClose.Tables("InvoiceDtl").Rows.Count > 0 AndAlso _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+                        ' Process each sale item to group by main name
+                        For Each _SaleitemRow In _dsshiftClose.Tables("InvoiceDtl").Rows
+                            Dim SaleItemId As String = _SaleitemRow("psid_invoice_procode").ToString
+                            If Not String.IsNullOrEmpty(SaleItemId) AndAlso SaleItemId <> "0" Then
+                                ' Find matching product in ItemTouchMasterTable
+                                For Each ProductRow As DataRow In _JsonData.ItemTouchMasterTable.Rows
+                                    If ProductRow("Id").ToString = SaleItemId Then
+                                        Dim mainName As String = ProductRow("MainName").ToString
+                                        Dim netAmt As Double = CDbl(_SaleitemRow("psid_invoice_netamt"))
+                                        Dim taxAmt As Double = CDbl(_SaleitemRow("psid_invoice_taxamt"))
+
+                                        ' Add or update totals for this main group
+                                        If mainGroupTotals.ContainsKey(mainName) Then
+                                            Dim existingValues() As String = mainGroupTotals(mainName).Split("|"c)
+                                            Dim existingNet As Double = CDbl(existingValues(0))
+                                            Dim existingTax As Double = CDbl(existingValues(1))
+                                            mainGroupTotals(mainName) = (existingNet + netAmt).ToString & "|" & (existingTax + taxAmt).ToString
+                                        Else
+                                            mainGroupTotals.Add(mainName, netAmt.ToString & "|" & taxAmt.ToString)
+                                        End If
+                                        Exit For
+                                    End If
+                                Next
+                            End If
                         Next
+
+                        ' Display grouped results
+                        For Each kvp In mainGroupTotals
+                            Dim values() As String = kvp.Value.Split("|"c)
+                            Dim groupNet As Double = CDbl(values(0))
+                            Dim groupTax As Double = CDbl(values(1))
+                            _RowsGrouplist = kvp.Key.PadRight(20) & "" & groupNet.ToString("0.00").PadLeft(8) & " " & groupTax.ToString("0.00").PadLeft(7)
+                            _content.AppendLine(_RowsGrouplist.ToString)
+                            _sumgrpnet += groupNet
+                            _sumgrptax += groupTax
+                        Next
+
                         _content.AppendLine(_dot4)
                         _content.AppendLine("Total Amount  :    " & _sumgrpnet.ToString("0.00") & "  " & _sumgrptax.ToString("0.00"))
                         _content.AppendLine(_dot4)
+
                     End If
                 End If
                 _content.AppendLine(_EMPTY)
@@ -273,16 +327,51 @@ Public Class _clsdotprinter
                     Dim _RowsSubGrouplist As String = ""
                     Dim _sumsubgrpnet As Double = 0
                     Dim _sumsubgrptax As Double = 0
-                    If _dsshiftClose.Tables("SubGroup").Rows.Count > 0 Then
-                        For Each _rowsubGroup As DataRow In _dsshiftClose.Tables("SubGroup").Rows
-                            _RowsSubGrouplist = _rowsubGroup("pcam_name").ToString.PadRight(20) & "" & _rowsubGroup("netamt").ToString.PadLeft(8) & "" & _rowsubGroup("taxamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsSubGrouplist.ToString)
-                            _sumsubgrpnet += _rowsubGroup("netamt")
-                            _sumsubgrptax += _rowsubGroup("taxamt")
+                    ' Dictionary to store main group totals - Key: MainName, Value: NetAmt|TaxAmt as string
+                    Dim subGroupTotals As New Dictionary(Of String, String)
+
+                    If _dsshiftClose.Tables("InvoiceDtl").Rows.Count > 0 AndAlso _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+                        ' Process each sale item to group by main name
+                        For Each _SaleitemRow In _dsshiftClose.Tables("InvoiceDtl").Rows
+                            Dim SaleItemId As String = _SaleitemRow("psid_invoice_procode").ToString
+                            If Not String.IsNullOrEmpty(SaleItemId) AndAlso SaleItemId <> "0" Then
+                                ' Find matching product in ItemTouchMasterTable
+                                For Each ProductRow As DataRow In _JsonData.ItemTouchMasterTable.Rows
+                                    If ProductRow("Id").ToString = SaleItemId Then
+                                        Dim mainName As String = ProductRow("CateName").ToString
+                                        Dim netAmt As Double = CDbl(_SaleitemRow("psid_invoice_netamt"))
+                                        Dim taxAmt As Double = CDbl(_SaleitemRow("psid_invoice_taxamt"))
+
+                                        ' Add or update totals for this main group
+                                        If subGroupTotals.ContainsKey(mainName) Then
+                                            Dim existingValues() As String = subGroupTotals(mainName).Split("|"c)
+                                            Dim existingNet As Double = CDbl(existingValues(0))
+                                            Dim existingTax As Double = CDbl(existingValues(1))
+                                            subGroupTotals(mainName) = (existingNet + netAmt).ToString & "|" & (existingTax + taxAmt).ToString
+                                        Else
+                                            subGroupTotals.Add(mainName, netAmt.ToString & "|" & taxAmt.ToString)
+                                        End If
+                                        Exit For
+                                    End If
+                                Next
+                            End If
                         Next
+
+                        ' Display grouped results
+                        For Each kvp In subGroupTotals
+                            Dim values() As String = kvp.Value.Split("|"c)
+                            Dim groupNet As Double = CDbl(values(0))
+                            Dim groupTax As Double = CDbl(values(1))
+                            _RowsSubGrouplist = kvp.Key.PadRight(20) & "" & groupNet.ToString("0.00").PadLeft(8) & " " & groupTax.ToString("0.00").PadLeft(7)
+                            _content.AppendLine(_RowsSubGrouplist.ToString)
+                            _sumsubgrpnet += groupNet
+                            _sumsubgrptax += groupTax
+                        Next
+
                         _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Amount  :    " & _sumsubgrpnet.ToString("0.00") & "    " & _sumsubgrptax.ToString("0.00"))
+                        _content.AppendLine("Total Amount  :    " & _sumsubgrpnet.ToString("0.00") & "  " & _sumsubgrptax.ToString("0.00"))
                         _content.AppendLine(_dot4)
+
                     End If
                 End If
                 _content.AppendLine(_EMPTY)
@@ -298,7 +387,7 @@ Public Class _clsdotprinter
                         For Each _rowItem As DataRow In _dsshiftClose.Tables("InvoiceDtl").Rows
                             Dim itemName As String = ""
                             itemName = _rowItem("psid_invoice_description").ToString
-                            _RowsItemlist = itemName.ToString.PadRight(25).Substring(0, 20) & "  " & CInt(CDbl(_rowItem("qty"))).ToString.PadLeft(2) & "  " & _rowItem("netamt").ToString.PadLeft(10) '& "    " & _rowItem("taxamt").ToString.PadLeft(7)
+                            _RowsItemlist = itemName.ToString.PadRight(25).Substring(0, 20) & "  " & CInt(CDbl(_rowItem("psid_invoice_proqty"))).ToString.PadLeft(2) & "  " & _rowItem("psid_invoice_netamt").ToString.PadLeft(10) '& "    " & _rowItem("taxamt").ToString.PadLeft(7)
 
                             _content.AppendLine(_RowsItemlist.ToString)
                             If _rowItem("psid_invoice_description").ToString.Length > 19 Then
@@ -308,9 +397,9 @@ Public Class _clsdotprinter
                                     _content.AppendLine(itemName.ToString.PadRight(25).Substring(20, len))
                                 End If
                             End If
-                            _sumItemnet += _rowItem("netamt")
-                            _sumItemtax += _rowItem("taxamt")
-                            _sumItemQty += _rowItem("qty")
+                            _sumItemnet += _rowItem("psid_invoice_netamt")
+                            _sumItemtax += _rowItem("psid_invoice_taxamt")
+                            _sumItemQty += _rowItem("psid_invoice_proqty")
                         Next
                         _content.AppendLine(_dot4)
                         _content.AppendLine("Total Sales     :   " & _sumItemQty.ToString("0.00") & " " & _sumItemnet.ToString("0.00")) ' & "  " & _sumItemtax.ToString("0.00"))
@@ -319,159 +408,159 @@ Public Class _clsdotprinter
                     End If
                 End If
                 _content.AppendLine(_EMPTY)
-                '------------------------------StaffWise Sales 6--------------------------------
-                If _checkPrintOption("S004", Mode) = True Then
-                    _content.AppendLine("       Staffwise Sales")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsStafflist As String = ""
-                    Dim _sumStaffnet As Double = 0
-                    Dim _sumStafftax As Double = 0
-                    Dim _sumStaffQty As Double = 0
-                    If _dsshiftClose.Tables("Staffwise").Rows.Count > 0 Then
-                        For Each _rowStaff As DataRow In _dsshiftClose.Tables("Staffwise").Rows
-                            _RowsStafflist = _rowStaff("pusm_name").ToString.PadRight(25) & "  " & _rowStaff("netamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsStafflist.ToString)
-                            _sumStaffnet += _rowStaff("netamt")
-                            _sumStafftax += _rowStaff("taxamt")
-                            _sumStaffQty += _rowStaff("qty")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Sales              :" & _sumStaffnet.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
-                '------------------------------Tablewise Sales 7--------------------------------
-                If _checkPrintOption("S013", Mode) = True Then
-                    _content.AppendLine("       Tablewise Sales")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsTablewiselist As String = ""
-                    Dim _sumTablewisenet As Double = 0
-                    Dim _sumTablewisetax As Double = 0
-                    Dim _sumTablewiseQty As Double = 0
-                    If _dsshiftClose.Tables("Tablewise").Rows.Count > 0 Then
-                        For Each _rowTablewise As DataRow In _dsshiftClose.Tables("Tablewise").Rows
-                            _RowsTablewiselist = _rowTablewise("psid_invoice_tableno").ToString.PadRight(25) & "  " & _rowTablewise("netamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsTablewiselist.ToString)
-                            _sumTablewisenet += _rowTablewise("netamt")
-                            _sumTablewisetax += _rowTablewise("taxamt")
-                            _sumTablewiseQty += _rowTablewise("qty")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Sales               :" & _sumTablewisenet.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
-                '------------------------------Counter Sales 8--------------------------------
-                If _checkPrintOption("S006", Mode) = True Then
-                    _content.AppendLine("       Counter Sales")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsCounterlist As String = ""
-                    Dim _sumCounternet As Double = 0
-                    Dim _sumCountertax As Double = 0
-                    Dim _sumCounterQty As Double = 0
-                    If _dsshiftClose.Tables("Counter").Rows.Count > 0 Then
-                        For Each _rowCounter As DataRow In _dsshiftClose.Tables("Counter").Rows
-                            _RowsCounterlist = _rowCounter("psid_invoice_countername").ToString.PadRight(25) & "  " & _rowCounter("netamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsCounterlist.ToString)
-                            _sumCounternet += _rowCounter("netamt")
-                            _sumCountertax += _rowCounter("taxamt")
-                            _sumCounterQty += _rowCounter("qty")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Sales              :" & _sumCounternet.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
-                '------------------------------Deleted Item 9--------------------------------
-                If _checkPrintOption("S005", Mode) = True Then
-                    _content.AppendLine("       Deleted Details")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsDellist As String = ""
-                    Dim _sumDel As Double = 0
-                    If _dsshiftClose.Tables("DeleteItem").Rows.Count > 0 Then
-                        For Each _rowDel As DataRow In _dsshiftClose.Tables("DeleteItem").Rows
-                            _RowsDellist = _rowDel("psdl_invoice_description").ToString.PadRight(20) & " " & _rowDel("pusm_name").ToString.PadRight(8) & "" & _rowDel("psdl_invoice_netamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsDellist.ToString)
-                            _sumDel += _rowDel("psdl_invoice_netamt")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Amount               :" & _sumDel.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
-                '------------------------------PendingTable--------------------------------
-                If _checkPrintOption("S014", Mode) = True Then
-                    _content.AppendLine("       Pending Bill Details")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsPendinglist As String = ""
-                    Dim _sumPending As Double = 0
-                    If _dsshiftClose.Tables("PendingTable").Rows.Count > 0 Then
-                        For Each _rowPending As DataRow In _dsshiftClose.Tables("PendingTable").Rows
-                            _RowsPendinglist = _rowPending("shiftno").ToString.PadRight(5) & "    " & _rowPending("tableno").ToString.PadRight(10) & "    " & _rowPending("grossamt").ToString.PadLeft(8)
-                            _content.AppendLine(_RowsPendinglist.ToString)
-                            _sumPending += _rowPending("grossamt")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Amount Pending               :" & _sumPending.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
+                ''------------------------------StaffWise Sales 6--------------------------------
+                'If _checkPrintOption("S004", Mode) = True Then
+                '    _content.AppendLine("       Staffwise Sales")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsStafflist As String = ""
+                '    Dim _sumStaffnet As Double = 0
+                '    Dim _sumStafftax As Double = 0
+                '    Dim _sumStaffQty As Double = 0
+                '    If _dsshiftClose.Tables("Staffwise").Rows.Count > 0 Then
+                '        For Each _rowStaff As DataRow In _dsshiftClose.Tables("Staffwise").Rows
+                '            _RowsStafflist = _rowStaff("pusm_name").ToString.PadRight(25) & "  " & _rowStaff("netamt").ToString.PadLeft(8)
+                '            _content.AppendLine(_RowsStafflist.ToString)
+                '            _sumStaffnet += _rowStaff("netamt")
+                '            _sumStafftax += _rowStaff("taxamt")
+                '            _sumStaffQty += _rowStaff("qty")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Sales              :" & _sumStaffnet.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
+                ''------------------------------Tablewise Sales 7--------------------------------
+                'If _checkPrintOption("S013", Mode) = True Then
+                '    _content.AppendLine("       Tablewise Sales")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsTablewiselist As String = ""
+                '    Dim _sumTablewisenet As Double = 0
+                '    Dim _sumTablewisetax As Double = 0
+                '    Dim _sumTablewiseQty As Double = 0
+                '    If _dsshiftClose.Tables("Tablewise").Rows.Count > 0 Then
+                '        For Each _rowTablewise As DataRow In _dsshiftClose.Tables("Tablewise").Rows
+                '            _RowsTablewiselist = _rowTablewise("psid_invoice_tableno").ToString.PadRight(25) & "  " & _rowTablewise("netamt").ToString.PadLeft(8)
+                '            _content.AppendLine(_RowsTablewiselist.ToString)
+                '            _sumTablewisenet += _rowTablewise("netamt")
+                '            _sumTablewisetax += _rowTablewise("taxamt")
+                '            _sumTablewiseQty += _rowTablewise("qty")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Sales               :" & _sumTablewisenet.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
+                ''------------------------------Counter Sales 8--------------------------------
+                'If _checkPrintOption("S006", Mode) = True Then
+                '    _content.AppendLine("       Counter Sales")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsCounterlist As String = ""
+                '    Dim _sumCounternet As Double = 0
+                '    Dim _sumCountertax As Double = 0
+                '    Dim _sumCounterQty As Double = 0
+                '    If _dsshiftClose.Tables("Counter").Rows.Count > 0 Then
+                '        For Each _rowCounter As DataRow In _dsshiftClose.Tables("Counter").Rows
+                '            _RowsCounterlist = _rowCounter("psid_invoice_countername").ToString.PadRight(25) & "  " & _rowCounter("netamt").ToString.PadLeft(8)
+                '            _content.AppendLine(_RowsCounterlist.ToString)
+                '            _sumCounternet += _rowCounter("netamt")
+                '            _sumCountertax += _rowCounter("taxamt")
+                '            _sumCounterQty += _rowCounter("qty")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Sales              :" & _sumCounternet.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
+                ''------------------------------Deleted Item 9--------------------------------
+                'If _checkPrintOption("S005", Mode) = True Then
+                '    _content.AppendLine("       Deleted Details")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsDellist As String = ""
+                '    Dim _sumDel As Double = 0
+                '    If _dsshiftClose.Tables("DeleteItem").Rows.Count > 0 Then
+                '        For Each _rowDel As DataRow In _dsshiftClose.Tables("DeleteItem").Rows
+                '            _RowsDellist = _rowDel("psdl_invoice_description").ToString.PadRight(20) & " " & _rowDel("pusm_name").ToString.PadRight(8) & "" & _rowDel("psdl_invoice_netamt").ToString.PadLeft(8)
+                '            _content.AppendLine(_RowsDellist.ToString)
+                '            _sumDel += _rowDel("psdl_invoice_netamt")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Amount               :" & _sumDel.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
+                ''------------------------------PendingTable--------------------------------
+                'If _checkPrintOption("S014", Mode) = True Then
+                '    _content.AppendLine("       Pending Bill Details")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsPendinglist As String = ""
+                '    Dim _sumPending As Double = 0
+                '    If _dsshiftClose.Tables("PendingTable").Rows.Count > 0 Then
+                '        For Each _rowPending As DataRow In _dsshiftClose.Tables("PendingTable").Rows
+                '            _RowsPendinglist = _rowPending("shiftno").ToString.PadRight(5) & "    " & _rowPending("tableno").ToString.PadRight(10) & "    " & _rowPending("grossamt").ToString.PadLeft(8)
+                '            _content.AppendLine(_RowsPendinglist.ToString)
+                '            _sumPending += _rowPending("grossamt")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Amount Pending               :" & _sumPending.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
 
-                '------------------------------CurrentStock--------------------------------
-                If _checkPrintOption("S009", Mode) = True Then
-                    _content.AppendLine("       CurrentStock Details")
-                    _content.AppendLine(_dot4)
-                    Dim _RowsCurrentStocklist As String = ""
-                    Dim _sumCurrentStock As Double = 0
-                    If _dsshiftClose.Tables("CurrentStock").Rows.Count > 0 Then
-                        For Each _rowCurr As DataRow In _dsshiftClose.Tables("CurrentStock").Rows
-                            _RowsCurrentStocklist = _rowCurr("ppm_name").ToString.PadRight(25) & "  " & _rowCurr("pss_curstock").ToString.PadLeft(10)
-                            _content.AppendLine(_RowsCurrentStocklist.ToString)
-                            _sumCurrentStock += _rowCurr("pss_curstock")
-                        Next
-                        _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Current Stock            :" & _sumCurrentStock.ToString("0.00"))
-                        _content.AppendLine(_dot4)
-                    End If
-                End If
-                _content.AppendLine(_EMPTY)
+                ''------------------------------CurrentStock--------------------------------
+                'If _checkPrintOption("S009", Mode) = True Then
+                '    _content.AppendLine("       CurrentStock Details")
+                '    _content.AppendLine(_dot4)
+                '    Dim _RowsCurrentStocklist As String = ""
+                '    Dim _sumCurrentStock As Double = 0
+                '    If _dsshiftClose.Tables("CurrentStock").Rows.Count > 0 Then
+                '        For Each _rowCurr As DataRow In _dsshiftClose.Tables("CurrentStock").Rows
+                '            _RowsCurrentStocklist = _rowCurr("ppm_name").ToString.PadRight(25) & "  " & _rowCurr("pss_curstock").ToString.PadLeft(10)
+                '            _content.AppendLine(_RowsCurrentStocklist.ToString)
+                '            _sumCurrentStock += _rowCurr("pss_curstock")
+                '        Next
+                '        _content.AppendLine(_dot4)
+                '        _content.AppendLine("Total Current Stock            :" & _sumCurrentStock.ToString("0.00"))
+                '        _content.AppendLine(_dot4)
+                '    End If
+                'End If
+                '_content.AppendLine(_EMPTY)
 
-                '------------------------------HourLy Sales--------------------------------
-                If _checkPrintOption("S007", Mode) = True Then
-                    _content.AppendLine("       Hourly Bill Details")
-                    _content.AppendLine(_dot4)
+                ''------------------------------HourLy Sales--------------------------------
+                'If _checkPrintOption("S007", Mode) = True Then
+                '    _content.AppendLine("       Hourly Bill Details")
+                '    _content.AppendLine(_dot4)
 
-                    Dim result As DataTable = _dsshiftClose.Tables("HourlySales").AsEnumerable().GroupBy(Function(r) r.Field(Of String)("HourTime"), Function(key, rows) rows.OrderByDescending(Function(r) r.Field(Of String)("HourTime")).First()).CopyToDataTable()
+                '    Dim result As DataTable = _dsshiftClose.Tables("HourlySales").AsEnumerable().GroupBy(Function(r) r.Field(Of String)("HourTime"), Function(key, rows) rows.OrderByDescending(Function(r) r.Field(Of String)("HourTime")).First()).CopyToDataTable()
 
-                    If result.Rows.Count > 0 Then
-                        For Each _rowHourTimer In result.Rows
-                            Dim _RowsHourlylist As String = ""
-                            Dim _sumHoruly As Double = 0
-                            Dim linqPrint = From itemlist In _dsshiftClose.Tables("HourlySales").AsEnumerable Where itemlist.Field(Of String)("HourTime") = _rowHourTimer("HourTime") Select itemlist
+                '    If result.Rows.Count > 0 Then
+                '        For Each _rowHourTimer In result.Rows
+                '            Dim _RowsHourlylist As String = ""
+                '            Dim _sumHoruly As Double = 0
+                '            Dim linqPrint = From itemlist In _dsshiftClose.Tables("HourlySales").AsEnumerable Where itemlist.Field(Of String)("HourTime") = _rowHourTimer("HourTime") Select itemlist
 
-                            Dim copyTable As DataTable
-                            If linqPrint.Count > 0 Then
-                                _content.AppendLine(" Hour By   " & _rowHourTimer("HourTime"))
-                                _content.AppendLine(_dot1)
-                                copyTable = linqPrint.CopyToDataTable
-                                For Each _rowHourly In copyTable.Rows
-                                    _RowsHourlylist = _rowHourly("bname").ToString.PadRight(20) & "" & _rowHourly("shiftno").ToString.PadRight(5) & " " & _rowHourly("netamt").ToString.PadLeft(8)
-                                    _content.AppendLine(_RowsHourlylist.ToString)
-                                    _sumHoruly += _rowHourly("netamt")
-                                Next
-                                _content.AppendLine(_dot4)
-                                _content.AppendLine("Total Amount Hourly     :" & _sumHoruly.ToString("0.00"))
-                                _content.AppendLine(_dot3)
+                '            Dim copyTable As DataTable
+                '            If linqPrint.Count > 0 Then
+                '                _content.AppendLine(" Hour By   " & _rowHourTimer("HourTime"))
+                '                _content.AppendLine(_dot1)
+                '                copyTable = linqPrint.CopyToDataTable
+                '                For Each _rowHourly In copyTable.Rows
+                '                    _RowsHourlylist = _rowHourly("bname").ToString.PadRight(20) & "" & _rowHourly("shiftno").ToString.PadRight(5) & " " & _rowHourly("netamt").ToString.PadLeft(8)
+                '                    _content.AppendLine(_RowsHourlylist.ToString)
+                '                    _sumHoruly += _rowHourly("netamt")
+                '                Next
+                '                _content.AppendLine(_dot4)
+                '                _content.AppendLine("Total Amount Hourly     :" & _sumHoruly.ToString("0.00"))
+                '                _content.AppendLine(_dot3)
 
-                            End If
-                        Next
-                    End If
-                End If
+                '            End If
+                '        Next
+                '    End If
+                'End If
                 _content.AppendLine(_EMPTY)
                 '------------------------------PrintNotes Sales--------------------------------
                 If _checkPrintOption("S008", Mode) = True Then

@@ -282,6 +282,7 @@ Public Class frmShiftcloseII
                             _dialog.Caption = "Preparing Pdf File.."
                             sendMailShiftDosMode(_validShiftnoPrintNote, True, _dateTime)
                             _dialog.Caption = "Mail Sent Processing.."
+                            Application.Exit()
                             'Me.Close()
                             'Me.Dispose()
                         End If

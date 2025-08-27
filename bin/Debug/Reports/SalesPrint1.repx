@@ -99,7 +99,7 @@ namespace XtraReportSerialization {
             // 
             this.tableCell9.CanShrink = true;
             this.tableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.pph_name")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.Paymode")});
             this.tableCell9.KeepTogether = true;
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.SnapLineMargin = new DevExpress.XtraPrinting.PaddingInfo(1, 1, 1, 1, 100F);
@@ -160,8 +160,8 @@ namespace XtraReportSerialization {
             this.Watermark.PageRange = "1";
             this.Watermark.Text = "SINGAPORE NASI KANDAR";
             this.Watermark.TextDirection = DevExpress.XtraPrinting.Drawing.DirectionMode.BackwardDiagonal;
-            this.XmlDataPath = "D:\\Software Delevop\\MyposServerSystem2022V1.0\\RestoranProject\\MyposClientNew2024\\" +
-                "POSRestaurant\\POSRestaurant\\bin\\Debug\\Reports\\SalesPrint.xml";
+            this.XmlDataPath = "D:\\Software Delevop\\MyposServerSystem2022V1.0\\Retail Project\\PosRetailWebBilling\\" +
+                "PosRetailWebBilling\\PosRetailWebBilling\\bin\\Debug\\Reports\\Sales.xml";
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
         }

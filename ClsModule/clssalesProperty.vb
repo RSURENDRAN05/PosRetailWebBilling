@@ -13,6 +13,9 @@
         Public Shared R_MenuCode As Integer
         Public Shared R_BooleanStatus As Boolean
         Public Shared R_CardScan As Boolean = False
+        Public Shared MKeyQtyAmt As Decimal = 0
+        Public Shared mkeynostatus As Boolean = False
+          
         Private Property _CardScan As Boolean
             Get
                 Return R_CardScan

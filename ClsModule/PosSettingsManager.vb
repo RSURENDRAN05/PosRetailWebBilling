@@ -49,7 +49,10 @@ Module PosSettingsManager
     End Structure
     Public Sub LoadPosSettings()
         Try
-            getPosSettingsInfo()
+            If _JsonData.PosSettingsTable.Rows.Count = 0 Then
+                getPosSettingsInfo()
+            End If
+
             If _JsonData.PosSettingsTable.Rows.Count > 0 Then
 
                 For Each _setRow In _JsonData.PosSettingsTable.Select("Type = '0'") 'Status

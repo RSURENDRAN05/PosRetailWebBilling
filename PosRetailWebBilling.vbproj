@@ -275,6 +275,12 @@
     <Compile Include="Controller\frmKeyQty.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Controller\frmKeyQtyAmt.designer.vb">
+      <DependentUpon>frmKeyQtyAmt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmKeyQtyAmt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controller\frmMsgBox.designer.vb">
       <DependentUpon>frmMsgBox.vb</DependentUpon>
     </Compile>
@@ -543,6 +549,12 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmPayouts.designer.vb">
+      <DependentUpon>frmPayouts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmPayouts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\frmShiftcloseII.designer.vb">
       <DependentUpon>frmShiftcloseII.vb</DependentUpon>
     </Compile>
@@ -690,6 +702,9 @@
     <EmbeddedResource Include="Controller\frmKeyQty.resx">
       <DependentUpon>frmKeyQty.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmKeyQtyAmt.resx">
+      <DependentUpon>frmKeyQtyAmt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmMsgBox.resx">
       <DependentUpon>frmMsgBox.vb</DependentUpon>
     </EmbeddedResource>
@@ -813,6 +828,9 @@
     <EmbeddedResource Include="Master\FrmPosSettings.resx">
       <DependentUpon>FrmPosSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmPayouts.resx">
+      <DependentUpon>frmPayouts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmShiftcloseII.resx">
       <DependentUpon>frmShiftcloseII.vb</DependentUpon>

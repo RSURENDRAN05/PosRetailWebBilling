@@ -8,8 +8,6 @@ Public Class frmKeyPassUser
     Dim menuCode As Integer
     Dim _Title As String = "User"
     Private Sub frmKeyPass_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        menuCode = properClass.R_MenuCode
-        properClass.R_BooleanStatus = False
         lbltitle.Text = _Title
     End Sub
 
@@ -35,14 +33,25 @@ Public Class frmKeyPassUser
             If String.IsNullOrEmpty(_TXTPASS.Text) OrElse _TXTPASS.Text = "" Then
                 Exit Sub
             End If
-            If _userMenuRightsCheckWithPass(_TXTPASS.EditValue, menuCode, errMsg) = True Then 'Company Master Menu ID :2
-                properClass.R_BooleanStatus = True
-                Me.Dispose()
+            If AuthenticateUser(_TXTPASS.Text) = True Then
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.Close()
             Else
-                properClass.R_BooleanStatus = False
-                WriteErroLog(errMsg.ToString)
-                Me.Dispose()
+                WriteErroLog("User - Password Wrong")
             End If
+            'If _TXTPASS.Text = "786786" Then
+            '    Dim frmregis As New frmRegistration
+            '    frmregis.ShowDialog()
+            '    Me.Close()
+            'End If
+            'If clfun._userMenuRightsCheckWithPass(_TXTPASS.EditValue, menuCode, errMsg) = True Then 'Company Master Menu ID :2
+            '    properClass.R_BooleanStatus = True
+            '    Me.Close()
+            'Else
+            '    properClass.R_BooleanStatus = False
+            '    eLog.WriteErroLog(errMsg.ToString)
+            '    Me.Close()
+            'End If
         Catch ex As Exception
             WriteErroLog("btn_ok_Click" & ex.Message)
         End Try
@@ -58,28 +67,7 @@ Public Class frmKeyPassUser
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        properClass.R_BooleanStatus = False
-        'eLog.WriteErroLog(errMsg.ToString)
-        Me.Dispose()
-    End Sub
-
-    Private Sub _TXTPASS_KeyDown(sender As Object, e As KeyEventArgs) Handles _TXTPASS.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            Try
-                If String.IsNullOrEmpty(_TXTPASS.Text) OrElse _TXTPASS.Text = "" Then
-                    Exit Sub
-                End If
-                If _userMenuRightsCheckWithPass(_TXTPASS.EditValue, menuCode, errMsg) = True Then 'Company Master Menu ID :2
-                    properClass.R_BooleanStatus = True
-                    Me.Dispose()
-                Else
-                    properClass.R_BooleanStatus = False
-                    WriteErroLog(errMsg.ToString)
-                    Me.Dispose()
-                End If
-            Catch ex As Exception
-                WriteErroLog("btn_ok_Click" & ex.Message)
-            End Try
-        End If
+        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.Close()
     End Sub
 End Class

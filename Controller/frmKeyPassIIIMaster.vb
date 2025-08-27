@@ -4,7 +4,7 @@ Imports PosRetailWebBilling.clssalesProperty
 Public Class frmKeyPassIIIMaster
     Dim errMsg As String
     Dim menuCode As Integer
-    Dim _Title As String = "Master"
+    Dim _Title As String = "Admin"
 
     Private Sub frmKeyPass_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         menuCode = properClass.R_MenuCode
@@ -35,7 +35,7 @@ Public Class frmKeyPassIIIMaster
             If String.IsNullOrEmpty(_TXTPASS.Text) OrElse _TXTPASS.Text = "" Then
                 Exit Sub
             End If
-            If AuthenticateUser(_TXTPASS.Text) = True Then
+            If AuthenticateMasterAdmin(_TXTPASS.Text) = True Then
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Else

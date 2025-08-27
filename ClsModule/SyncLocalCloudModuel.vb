@@ -145,6 +145,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "CustomerMaster Not Received"
             End If
+            If GetSalesmanData() = True Then
+                dialog.Caption = "Loading SalesmanData"
+            Else
+                dialog.Caption = "SalesmanData Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()
@@ -239,7 +244,7 @@ Module SyncLocalCloudModuel
             If _JsonData.UserTable.Rows.Count > 0 Then
                 ' Find user by username using LINQ
                 Dim userRows = From row In _JsonData.UserTable.AsEnumerable()
-                              Where row.Field(Of String)("GroupId").Equals("1", StringComparison.OrdinalIgnoreCase)
+                              Where row.Field(Of String)("GroupId").Equals("3", StringComparison.OrdinalIgnoreCase) OrElse row.Field(Of String)("GroupId").Equals("4", StringComparison.OrdinalIgnoreCase)
                               Select row
 
                 If userRows.Any Then
@@ -266,5 +271,36 @@ Module SyncLocalCloudModuel
             Return False
         End Try
     End Function
+    Public Function AuthenticateMasterAdmin(ByVal password As String) As Boolean
+        Try
+            If _JsonData.UserTable.Rows.Count > 0 Then
+                ' Find user by username using LINQ
+                Dim userRows = From row In _JsonData.UserTable.AsEnumerable()
+                              Where row.Field(Of String)("GroupId").Equals("1", StringComparison.OrdinalIgnoreCase) OrElse row.Field(Of String)("GroupId").Equals("2", StringComparison.OrdinalIgnoreCase)
+                              Select row
 
+                If userRows.Any Then
+                    Dim userRow As DataRow = userRows.First()
+                    Dim storedPassword As String = userRow.Field(Of String)("Password")
+                    ' Check if stored password is already hashed (32 characters = MD5 hash)
+                    If storedPassword.Length = 32 Then
+                        ' Stored password is MD5 hash - compare with hashed input
+                        Return VerifyMD5Password(password, storedPassword)
+                    Else
+                        ' Stored password is plain text - direct comparison
+                        Return String.Equals(password, storedPassword, StringComparison.Ordinal)
+                    End If
+                Else
+                    ' User not found
+                    Return False
+                End If
+            End If
+
+            Return False
+
+        Catch ex As Exception
+            MessageBox.Show("Error authenticating user: " & ex.Message)
+            Return False
+        End Try
+    End Function
 End Module

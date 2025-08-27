@@ -220,6 +220,7 @@ Module functionModule
         Public Shared MonthOfSalary As New DataTable
         Public Shared PosSettingsTable As New DataTable
         Public Shared SalesManCommissionTable As New DataTable
+        Public Shared SalesManDataTable As New DataTable
         Public Shared PaymentTermTable As New DataTable
         Public Shared ButtonStyleTable As New DataTable
     End Structure
@@ -794,6 +795,40 @@ Module functionModule
             Return False
         End Try
     End Function
+    Public Function GetSalesmanData() As Boolean
+        Try
+            Dim Path As String = filePath & "SalesManDataTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.CustomerTable.TableName = "CustomerTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=13&Comid=" & _companyInfo.ComId & "&Locid=" & _companyInfo.LocId)
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.SalesManDataTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.SalesManDataTable.Rows.Count > 0 Then
+                    _JsonData.SalesManDataTable.TableName = "SalesManDataTable"
+                    _JsonData.SalesManDataTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.SalesManDataTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.SalesManDataTable.ReadXml(Path)
+                    _JsonData.SalesManDataTable.TableName = "SalesManDataTable"
+                    If _JsonData.SalesManDataTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Function getBranchTableMaster() As Boolean
         Try
             _JsonData.BranchTable.TableName = "BranchTable"
@@ -891,7 +926,7 @@ Module functionModule
     '        Return False
     '    End Try
     'End Function
-    
+
     Public Function getBankList() As Boolean
         Try
             _JsonData.BankListTable.TableName = "BankListTable"

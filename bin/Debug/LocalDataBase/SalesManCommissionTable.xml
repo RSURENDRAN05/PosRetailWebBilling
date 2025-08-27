@@ -33,7 +33,7 @@
   <SalesManCommissionTable>
     <CommissionId>5</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>4</ItemId>
     <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
@@ -51,7 +51,7 @@
   <SalesManCommissionTable>
     <CommissionId>2</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>6</ItemId>
     <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
@@ -69,7 +69,7 @@
   <SalesManCommissionTable>
     <CommissionId>7</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>7</ItemId>
     <ItemName>CAT 6 CABLE OT011</ItemName>
@@ -87,7 +87,7 @@
   <SalesManCommissionTable>
     <CommissionId>8</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>8</ItemId>
     <ItemName>CYBERPOWER UT800EGUN </ItemName>
@@ -105,7 +105,7 @@
   <SalesManCommissionTable>
     <CommissionId>6</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>3</ItemId>
     <ItemName>HAIR CUT</ItemName>
@@ -123,7 +123,7 @@
   <SalesManCommissionTable>
     <CommissionId>4</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>1</ItemId>
     <ItemName>HAIR CUT ADULT</ItemName>
@@ -141,7 +141,7 @@
   <SalesManCommissionTable>
     <CommissionId>9</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
     <ItemName>MINI KEYBOARD SLIM</ItemName>
@@ -159,7 +159,7 @@
   <SalesManCommissionTable>
     <CommissionId>10</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
     <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
@@ -177,7 +177,7 @@
   <SalesManCommissionTable>
     <CommissionId>11</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>11</ItemId>
     <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
@@ -195,7 +195,7 @@
   <SalesManCommissionTable>
     <CommissionId>12</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>10</ItemId>
     <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
@@ -213,7 +213,7 @@
   <SalesManCommissionTable>
     <CommissionId>13</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>9</ItemId>
     <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
@@ -231,7 +231,7 @@
   <SalesManCommissionTable>
     <CommissionId>14</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
     <ItemName>UGREEN CAT6 RJ45 </ItemName>
@@ -249,7 +249,7 @@
   <SalesManCommissionTable>
     <CommissionId>15</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZUL</SalesmanName>
+    <SalesmanName>FZULS</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>5</ItemId>
     <ItemName>VPOS TERMINAL</ItemName>

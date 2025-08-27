@@ -1,5 +1,6 @@
 Imports System.Data.SqlClient
 Imports System.Data
+Imports PosRetailWebBilling.clssalesProperty
 
 Public Class SalesDBHelper
     Private _connectionString As String = M_Details._Conn
@@ -862,5 +863,30 @@ Module PrintViewReport
             Return False
         End Try
     End Function
+    Public Function CheckSalesBeforeCounterClose() As Boolean
+        Try
+            Dim dds As New DataSet
+            Dim _sqlShitclose(4) As SqlParameter
+            _sqlShitclose(0) = New SqlParameter("@mode", "s")
+            _sqlShitclose(1) = New SqlParameter("@psc_opbalance", "0")
+            _sqlShitclose(2) = New SqlParameter("@psc_pcname", RegistrationDetails._localPcname)
+            _sqlShitclose(3) = New SqlParameter("@psc_machineid", RegistrationDetails._machineId)
+            _sqlShitclose(4) = New SqlParameter("@psc_machinename", RegistrationDetails._localPcname)
+            dds = _sqlDataAdapter2("sp_createshiftclose", _sqlShitclose)
+            If dds.Tables(0).Rows.Count > 0 Then
+                Dim countBill = dds.Tables(0).Rows(0)(1).ToString
+                If String.IsNullOrEmpty(countBill) OrElse countBill = "0.00" Then
+                    properClass.R_Msgstring = "No Sales Found"
+                    Dim frmmsgOk As New frmMsgBoxOk
+                    frmmsgOk.ShowDialog()
+                    Return False
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 #End Region
 End Module

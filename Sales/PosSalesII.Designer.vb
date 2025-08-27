@@ -21,7 +21,7 @@ Partial Class PosSalesII
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PosSalesII))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.FlowLayoutPanelProduct = New System.Windows.Forms.FlowLayoutPanel()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -62,6 +62,7 @@ Partial Class PosSalesII
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnviewbill = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnbilledit = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnstaffadvance = New DevExpress.XtraBars.BarButtonItem()
         Me.btnSaveLayout = New DevExpress.XtraBars.BarButtonItem()
         Me.Barfromlayoutsave = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem7 = New DevExpress.XtraBars.BarSubItem()
@@ -80,8 +81,8 @@ Partial Class PosSalesII
         Me.barselectsalesman = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem15 = New DevExpress.XtraBars.BarButtonItem()
         Me.btnlastprint = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem17 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem18 = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtncashdraweropen = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnrefreshdata = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnhome = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barbtnposstatus = New DevExpress.XtraBars.BarStaticItem()
@@ -164,6 +165,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.barbtnPrintShiftClose = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -638,8 +640,8 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.BarButtonItem17, Me.BarButtonItem18})
-        Me.BarManager1.MaxItemId = 54
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.barbtncashdraweropen, Me.barbtnrefreshdata, Me.barbtnstaffadvance, Me.barbtnPrintShiftClose})
+        Me.BarManager1.MaxItemId = 56
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -648,7 +650,7 @@ Partial Class PosSalesII
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem2, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem3, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem4, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem5, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem15, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnlastprint, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem17, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem18, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnhome, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem2, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem3, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem4, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarSubItem5, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem15, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnlastprint, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtncashdraweropen, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnrefreshdata, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnhome, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.MultiLine = True
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -683,7 +685,7 @@ Partial Class PosSalesII
         Me.BarSubItem6.ItemInMenuAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BarSubItem6.ItemInMenuAppearance.Normal.Options.UseFont = True
         Me.BarSubItem6.LargeGlyph = CType(resources.GetObject("BarSubItem6.LargeGlyph"), System.Drawing.Image)
-        Me.BarSubItem6.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem1, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnviewbill, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnbilledit, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.BarSubItem6.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem1, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnviewbill, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnbilledit, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnstaffadvance, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.BarSubItem6.Name = "BarSubItem6"
         '
         'BarButtonItem1
@@ -713,6 +715,15 @@ Partial Class PosSalesII
         Me.barbtnbilledit.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnbilledit.Name = "barbtnbilledit"
         '
+        'barbtnstaffadvance
+        '
+        Me.barbtnstaffadvance.Caption = "Staff Advance"
+        Me.barbtnstaffadvance.Glyph = CType(resources.GetObject("barbtnstaffadvance.Glyph"), System.Drawing.Image)
+        Me.barbtnstaffadvance.Id = 54
+        Me.barbtnstaffadvance.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnstaffadvance.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnstaffadvance.Name = "barbtnstaffadvance"
+        '
         'btnSaveLayout
         '
         Me.btnSaveLayout.Caption = "Save LayOut"
@@ -738,7 +749,7 @@ Partial Class PosSalesII
         Me.BarSubItem7.Id = 48
         Me.BarSubItem7.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BarSubItem7.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnprintprofiledesign)})
+        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintprofiledesign, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrintShiftClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.BarSubItem7.Name = "BarSubItem7"
         '
         'barbtnprintprofiledesign
@@ -889,23 +900,23 @@ Partial Class PosSalesII
         Me.btnlastprint.LargeGlyph = CType(resources.GetObject("btnlastprint.LargeGlyph"), System.Drawing.Image)
         Me.btnlastprint.Name = "btnlastprint"
         '
-        'BarButtonItem17
+        'barbtncashdraweropen
         '
-        Me.BarButtonItem17.Caption = "Cash Drawer"
-        Me.BarButtonItem17.Glyph = CType(resources.GetObject("BarButtonItem17.Glyph"), System.Drawing.Image)
-        Me.BarButtonItem17.Id = 52
-        Me.BarButtonItem17.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BarButtonItem17.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarButtonItem17.Name = "BarButtonItem17"
+        Me.barbtncashdraweropen.Caption = "Cash Drawer"
+        Me.barbtncashdraweropen.Glyph = CType(resources.GetObject("barbtncashdraweropen.Glyph"), System.Drawing.Image)
+        Me.barbtncashdraweropen.Id = 52
+        Me.barbtncashdraweropen.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtncashdraweropen.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtncashdraweropen.Name = "barbtncashdraweropen"
         '
-        'BarButtonItem18
+        'barbtnrefreshdata
         '
-        Me.BarButtonItem18.Caption = "Refresh Data"
-        Me.BarButtonItem18.Glyph = CType(resources.GetObject("BarButtonItem18.Glyph"), System.Drawing.Image)
-        Me.BarButtonItem18.Id = 53
-        Me.BarButtonItem18.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BarButtonItem18.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarButtonItem18.Name = "BarButtonItem18"
+        Me.barbtnrefreshdata.Caption = "Refresh Data"
+        Me.barbtnrefreshdata.Glyph = CType(resources.GetObject("barbtnrefreshdata.Glyph"), System.Drawing.Image)
+        Me.barbtnrefreshdata.Id = 53
+        Me.barbtnrefreshdata.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnrefreshdata.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnrefreshdata.Name = "barbtnrefreshdata"
         '
         'barbtnhome
         '
@@ -1570,7 +1581,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditDelete
         '
         Me.RepositoryItemButtonEditDelete.AutoHeight = False
-        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditDelete.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditDelete.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.RepositoryItemButtonEditDelete.Name = "RepositoryItemButtonEditDelete"
@@ -1720,6 +1731,15 @@ Partial Class PosSalesII
         Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
         Me.LayoutControlItem13.TextToControlDistance = 5
+        '
+        'barbtnPrintShiftClose
+        '
+        Me.barbtnPrintShiftClose.Caption = "Print Shift Close"
+        Me.barbtnPrintShiftClose.Glyph = CType(resources.GetObject("barbtnPrintShiftClose.Glyph"), System.Drawing.Image)
+        Me.barbtnPrintShiftClose.Id = 55
+        Me.barbtnPrintShiftClose.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnPrintShiftClose.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnPrintShiftClose.Name = "barbtnPrintShiftClose"
         '
         'PosSalesII
         '
@@ -1911,11 +1931,13 @@ Partial Class PosSalesII
     Friend WithEvents barbtnprintprofiledesign As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents FlowLayoutPanelSubMenu As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents btnlastprint As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem17 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtncashdraweropen As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents BarButtonItem18 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnrefreshdata As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents barbtnstaffadvance As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnPrintShiftClose As DevExpress.XtraBars.BarButtonItem
 End Class
