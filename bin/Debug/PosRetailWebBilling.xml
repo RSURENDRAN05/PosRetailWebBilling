@@ -6,43 +6,7 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanJsonString(System.String)">
-	<summary>
- Clean JSON string to remove control characters that cause parsing errors
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanDataSetForJson(System.Data.DataSet)">
-	<summary>
- Clean DataSet string fields to remove control characters before JSON serialization
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanStringField(System.String)">
-	<summary>
- Clean individual string field to remove control characters
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionSuccess(System.String,System.String)">
-	<summary>
- Log successful transaction to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionFailure(System.String,System.String)">
-	<summary>
- Log failed transaction to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionInfo(System.String,System.String)">
-	<summary>
- Log informational transaction message to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionProcessing(System.String)">
-	<summary>
- Log transaction processing start to RichTextBox
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncStart(System.Int32)">
-	<summary>
- Log sync process start
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncComplete">
-	<summary>
- Log sync process completion
- </summary>
-</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>
@@ -523,6 +487,42 @@ PosRetailWebBilling
 	<param name="username">Username</param>
 	<param name="password">Plain text password</param>
 	<returns>True if authentication successful, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanJsonString(System.String)">
+	<summary>
+ Clean JSON string to remove control characters that cause parsing errors
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanDataSetForJson(System.Data.DataSet)">
+	<summary>
+ Clean DataSet string fields to remove control characters before JSON serialization
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanStringField(System.String)">
+	<summary>
+ Clean individual string field to remove control characters
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionSuccess(System.String,System.String)">
+	<summary>
+ Log successful transaction to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionFailure(System.String,System.String)">
+	<summary>
+ Log failed transaction to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionInfo(System.String,System.String)">
+	<summary>
+ Log informational transaction message to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionProcessing(System.String)">
+	<summary>
+ Log transaction processing start to RichTextBox
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncStart(System.Int32)">
+	<summary>
+ Log sync process start
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncComplete">
+	<summary>
+ Log sync process completion
+ </summary>
 </member><member name="M:PosRetailWebBilling.frmPaymore.ConvertDecimal(System.Object)">
 	<summary>
  Safely convert object to decimal, handling DBNull and empty values

@@ -122,8 +122,46 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 4) { //get salesman by Comid,Locid,SalesmanId,From Date,To Date , This Month
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=4 called with parameters: " . print_r($_GET, true));
+
+            // Get parameters from URL - match VB.NET parameter names
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
+            $salesmanId = isset($_GET['salesmanId']) ? $_GET['salesmanId'] : '';
+            $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
+            $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($salesmanId) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
+            }
+
+            // Fetch sales report data
+            $salesReport = $clsfunreq->GetSalesManReport($comid, $locid, $salesmanId, $startDate, $endDate);
+            $arr = array();
+            if ($salesReport) {
+                while ($row = mysqli_fetch_assoc($salesReport)) {
+                    $arr[] = $row;
+                }
+                error_log("Sales report fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No sales data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 3 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 3 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
     if ((int) $_REQUEST['AjaxRequest'] == 3) { //get sales report
         try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=3 called with parameters: " . print_r($_GET, true));
+
             // Get parameters from URL - match VB.NET parameter names
             $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
             $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
@@ -132,7 +170,7 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
 
             // Validate required parameters
             if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
-                throw new Exception("Missing required parameters: comid, locid, startDate, or endDate");
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
             }
 
             // Fetch sales report data
@@ -142,13 +180,121 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                 while ($row = mysqli_fetch_assoc($salesReport)) {
                     $arr[] = $row;
                 }
+                error_log("Sales report fetched successfully. Records found: " . count($arr));
                 echo json_encode(array("Success" => true, "Data" => $arr));
             } else {
                 echo json_encode(array("Success" => false, "Msg" => "No sales data found", "Data" => ""));
             }
         } catch (Exception $e) {
+            error_log("Request 3 Error: " . $e->getMessage());
             echo json_encode(array("Success" => false, "Msg" => "Request 3 Error: " . $e->getMessage(), "Data" => ""));
         }
+        exit;
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 5) { //get salesman commission report - detailed
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=5 called with parameters: " . print_r($_GET, true));
+
+            // Get parameters from URL
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
+            $salesmanId = isset($_GET['salesmanId']) ? $_GET['salesmanId'] : '';
+            $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
+            $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
+            }
+
+            // Fetch salesman commission report data (detailed)
+            $salesmanReport = $clsfunreq->GetSalesManReport($comid, $locid, $salesmanId, $startDate, $endDate);
+            $arr = array();
+            if ($salesmanReport) {
+                while ($row = mysqli_fetch_assoc($salesmanReport)) {
+                    $arr[] = $row;
+                }
+                error_log("Salesman commission report fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No salesman commission data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 4 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 4 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 6) { //get salesman commission report - summary
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=6 called with parameters: " . print_r($_GET, true));
+
+            // Get parameters from URL
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
+            $salesmanId = isset($_GET['salesmanId']) ? $_GET['salesmanId'] : '';
+            $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
+            $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
+            }
+
+            // Fetch salesman commission report summary
+            $salesmanSummary = $clsfunreq->GetSalesManReportSummary($comid, $locid, $salesmanId, $startDate, $endDate);
+            $arr = array();
+            if ($salesmanSummary) {
+                while ($row = mysqli_fetch_assoc($salesmanSummary)) {
+                    $arr[] = $row;
+                }
+                error_log("Salesman commission summary fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No salesman commission summary found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 5 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 5 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 7) { //get salesman commission report - all records
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=7 called with parameters: " . print_r($_GET, true));
+
+            // Get parameters from URL
+            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
+            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid");
+            }
+
+            // Fetch all salesman commission data
+            $salesmanAll = $clsfunreq->GetSalesManReportAll($comid, $locid);
+            $arr = array();
+            if ($salesmanAll) {
+                while ($row = mysqli_fetch_assoc($salesmanAll)) {
+                    $arr[] = $row;
+                }
+                error_log("All salesman commission data fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No salesman commission data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 6 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 6 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
     }
 }
 

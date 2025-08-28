@@ -27,7 +27,7 @@
     <MainId>1</MainId>
     <MainName>SERVICE</MainName>
     <Active>1</Active>
-    <Color>LightBlue</Color>
+    <Color>Red</Color>
     <Position>1</Position>
   </CategoryTable>
   <CategoryTable>

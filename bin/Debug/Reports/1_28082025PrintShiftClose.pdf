@@ -1,0 +1,239 @@
+%PDF-1.4
+%”ÙÃ·
+% PDFsharp Version 1.0.898.0 (verbose mode)
+% Creation date: 28-08-2025 16:21:24             
+% Creation time: 0.118 seconds                   
+% File size: 8966 bytes                          
+% Pages: 1                                       
+% Objects: 9                                     
+%--------------------------------------------------------------------------------------------------
+1 0 obj   % PdfSharp.Pdf.PdfDocumentInformation
+<<
+  /CreationDate (D:20250828162124+08'00')
+  /Creator (PDFsharp 1.0.898 \(www.pdfsharp.com\))
+  /Producer (PDFsharp 1.0.898 \(www.pdfsharp.com\))
+  /Title (PrintShiftClose)
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+2 0 obj   % PdfSharp.Pdf.Advanced.PdfCatalog
+<<
+  /Pages 3 0 R
+  /Type /Catalog
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+3 0 obj   % PdfSharp.Pdf.PdfPages
+<<
+  /Count 1
+  /Kids [4 0 R]
+  /Type /Pages
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+4 0 obj   % PdfSharp.Pdf.PdfPage
+<<
+  /Contents 5 0 R
+  /Group
+  <<
+    /CS /DeviceRGB
+    /S /Transparency
+  >>
+  /MediaBox [0 0 400 9999]
+  /Parent 3 0 R
+  /Resources 6 0 R
+  /Type /Page
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+5 0 obj   % PdfSharp.Pdf.Advanced.PdfContent
+<<
+  /Length 4850
+>>
+stream
+q
+1 0 0 -1 0 9999 cm -100 Tz
+q
+BT
+/GS0 gs
+/F0 -11 Tf
+30 10.119 Td (**************************************) Tj
+0 10 Td (Shift Close Report            ) Tj
+0 10 Td (RESTORAN1 ALIFF BISTRO) Tj
+0 10 Td (INDRA NAGAR) Tj
+0 10 Td (PERAVURANI) Tj
+0 10 Td (THANJAVUR) Tj
+0 10 Td (GST:000000000000000) Tj
+0 10 Td (**************************************) Tj
+0 20 Td (Shift Open  :27-08-2025 14:06:49) Tj
+0 10 Td (Shift Close :28-08-2025 16:21:21) Tj
+0 10 Td (Print Date  :28-08-2025 16:21:24) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Shift No :1) Tj
+0 10 Td (CurDate  :28-08-2025 00:00:00) Tj
+0 10 Td (Sales                :     90038.00) Tj
+0 10 Td (Discount         \(-\) :         0.00) Tj
+0 10 Td (                     ----------------------) Tj
+0 10 Td (TotalGrossAmt    \(=\) :     90038.00) Tj
+0 10 Td (Tax Sales        \(+\) :      8101.20) Tj
+0 10 Td (Service Charge   \(+\) :         0.00) Tj
+0 10 Td (--------------------------------------) Tj
+0 10 Td (Total Sales          :     98139.20) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Cash Sales     :     76339.20) Tj
+0 10 Td (Payout Amount    \(-\) :       750.00) Tj
+0 10 Td (Net Cash Sales       :     75589.20) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       ------Details----) Tj
+0 10 Td (Total BillCount      :        19.00) Tj
+0 10 Td (Average Bill         :      5165.22) Tj
+0 10 Td (Tot Cash Sales       :     75589.20) Tj
+0 10 Td (Cash On Hand \(-\)     :       251.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Balance  \(+/-\)       :    -75338.20) Tj
+0 20 Td (       Sales Method) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Cash Bill            :    21800.00) Tj
+0 10 Td (Qr Sales,Cash Bill   :     5450.00) Tj
+0 10 Td (Qr Sales             :     5450.00) Tj
+0 10 Td (Cash Bill,Qr Sales   :    10900.00) Tj
+0 10 Td (Cash                 :    49089.20) Tj
+0 10 Td (Bank Card            :     5450.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Sales  :             98139.20) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Payout Details) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Advance Payment) Tj
+0 10 Td (======================================) Tj
+0 10 Td (FZULS                :      500.00) Tj
+0 10 Td (SUREN                :      250.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Amount Paid :         750.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Main Group) Tj
+0 10 Td (======================================) Tj
+0 10 Td (SERVICE             98139.20 8101.20) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Amount  :    98139.20  8101.20) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Sub Group) Tj
+0 10 Td (======================================) Tj
+0 10 Td (OTHERS              98100.00 8100.00) Tj
+0 10 Td (SERVICES               39.20    1.20) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Amount  :    98139.20  8101.20) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Itemwise Sales) Tj
+0 10 Td (======================================) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (MINI PC                1     5450.00) Tj
+0 10 Td (HAIR CUT ADULT         1       21.20) Tj
+0 10 Td (HAIR CUT               1       18.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Sales     :   20.00 98139.20) Tj
+0 10 Td (++++++++++++++++++++++++++++++++++++++) Tj
+0 30 Td (       PrintNotes Details) Tj
+0 10 Td (======================================) Tj
+0 10 Td (|Coins| * |       251 =     251.00 |) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Note         :    251.00) Tj
+0 10 Td (Tot Cash Sales \(-\) :  76339.20) Tj
+0 10 Td (Balance In Hand    : -75338.20) Tj
+0 10 Td (======================================) Tj
+0 30 Td (.) Tj
+0 10 Td (.) Tj
+0 20 Td (.) Tj
+ET
+Q
+Q
+endstream
+endobj
+%--------------------------------------------------------------------------------------------------
+6 0 obj   % PdfSharp.Pdf.Advanced.PdfResources
+<<
+  /ExtGState
+  <<
+    /GS0 7 0 R
+  >>
+  /Font
+  <<
+    /F0 9 0 R
+  >>
+  /ProcSet [/PDF/Text/ImageB/ImageC/ImageI]
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+7 0 obj   % PdfSharp.Pdf.Advanced.PdfExtGState
+<<
+  /ca 1
+  /Type /ExtGState
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+8 0 obj   % PdfSharp.Pdf.Advanced.PdfFontDescriptor
+<<
+  /Ascent 743
+  /CapHeight 638
+  /Descent -257
+  /Flags 32
+  /FontBBox [-432 -302 677 1011]
+  /FontName /Consolas
+  /ItalicAngle 0
+  /StemV 0
+  /Type /FontDescriptor
+  /XHeight 490
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+9 0 obj   % PdfSharp.Pdf.Advanced.PdfTrueTypeFont
+<<
+  /BaseFont /Consolas
+  /Encoding /WinAnsiEncoding
+  /FirstChar 0
+  /FontDescriptor 8 0 R
+  /LastChar 255
+  /Subtype /TrueType
+  /Type /Font
+  /Widths [549 549 549 549 549 549 549 549 549 549 549 549 549 0 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549]
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+xref
+0 10
+0000000000 65535 f 
+0000000409 00000 n 
+0000000742 00000 n 
+0000000932 00000 n 
+0000001121 00000 n 
+0000001420 00000 n 
+0000006460 00000 n 
+0000006734 00000 n 
+0000006921 00000 n 
+0000007267 00000 n 
+trailer
+<<
+  /ID [<055A80A6443E684B9CD93EE037810101><055A80A6443E684B9CD93EE037810101>]
+  /Info 1 0 R
+  /Root 2 0 R
+  /Size 10
+>>
+startxref
+8605
+%%EOF

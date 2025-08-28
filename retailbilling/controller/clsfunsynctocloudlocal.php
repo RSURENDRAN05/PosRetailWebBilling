@@ -280,16 +280,191 @@ class clsfuncsync
     }
     public function GetSalesReport($comid, $locid, $startDate, $endDate)
     {
-        $sql = "SELECT * FROM sales_report WHERE comid = '" . mysqli_real_escape_string($this->conn, $comid) . "'
-                AND locid = '" . mysqli_real_escape_string($this->conn, $locid) . "'
-                AND sale_date BETWEEN '" . mysqli_real_escape_string($this->conn, $startDate) . "' AND '" . mysqli_real_escape_string($this->conn, $endDate) . "'";
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+
+        // Add time component to date range for proper filtering
+        $startDateTime = $startDate . ' 00:00:00';
+        $endDateTime = $endDate . ' 23:59:59';
+
+        // Build query with proper date range
+        $sql = "
+        SELECT *
+        FROM pos_sale_invoicehdr
+        WHERE psih_invoice_comid = '$comid'
+          AND psih_invoice_locid = '$locid'
+          AND psih_invoice_created >= '$startDateTime'
+          AND psih_invoice_created <= '$endDateTime'
+        ORDER BY psih_invoice_created DESC
+         ";
+
+        // Log the query for debugging (remove in production)
+        error_log("Sales Report Query: " . $sql);
 
         $result = mysqli_query($this->conn, $sql);
         if (!$result) {
             throw new Exception("Error fetching sales report: " . mysqli_error($this->conn));
         }
+        return $result;
+    }
+    public function GetSalesReportDetails($comid, $locid, $startDate, $endDate)
+    {
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+
+        // Add time component to date range for proper filtering
+        $startDateTime = $startDate . ' 00:00:00';
+        $endDateTime = $endDate . ' 23:59:59';
+
+        // Build query with proper date range
+        $sql = "
+        SELECT *
+        FROM pos_sale_invoicedtl
+        WHERE psid_invoice_comid = '$comid'
+          AND psid_invoice_locid = '$locid'
+          AND psid_invoice_created >= '$startDateTime'
+          AND psid_invoice_created <= '$endDateTime'
+        ORDER BY psid_invoice_created DESC
+         ";
+
+        // Log the query for debugging (remove in production)
+        error_log("Sales Report Details Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching sales report details: " . mysqli_error($this->conn));
+        }
+        return $result;
+    }
+    public function GetSalesManReport($comid, $locid, $salesmanId, $startDate, $endDate)
+    {
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $salesmanId = mysqli_real_escape_string($this->conn, $salesmanId);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+
+        // Add time component to date range for proper filtering
+        $startDateTime = $startDate . ' 00:00:00';
+        $endDateTime = $endDate . ' 23:59:59';
+
+        // Build detailed commission report query
+        $sql = "
+        SELECT
+            pe.emp_id AS ID,
+            pe.emp_printname AS Name,
+            psid.psid_invoice_description AS ItemName,
+            CAST(psid.psid_invoice_netamt AS DECIMAL(18,2)) AS NetAmt,
+            psid.psid_invoice_salemanper AS Percentage,
+            CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission,
+            psid.psid_invoice_date AS Date,
+            psid.psid_invoice_trno AS TransactionNo
+        FROM pos_sale_invoicedtl AS psid
+        INNER JOIN pos_employeeinfo AS pe
+            ON psid.psid_invoice_salesmanid = pe.emp_id
+        WHERE psid.psid_invoice_date BETWEEN '$startDate' AND '$endDate'
+          AND psid.psid_invoice_comid = '$comid'
+          AND psid.psid_invoice_locid = '$locid'";
+
+        // Add salesman filter if not 'ALL' or '0'
+        if (!empty($salesmanId) && $salesmanId != '0' && strtoupper($salesmanId) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_salesmanid = '$salesmanId'";
+        }
+
+        $sql .= " ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
+
+        // Log the query for debugging (remove in production)
+        error_log("Salesman Report Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching salesman report: " . mysqli_error($this->conn));
+        }
+        return $result;
     }
 
+    public function GetSalesManReportSummary($comid, $locid, $salesmanId, $startDate, $endDate)
+    {
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $salesmanId = mysqli_real_escape_string($this->conn, $salesmanId);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+
+        // Build summary commission report query (grouped by salesman)
+        $sql = "
+        SELECT
+            pe.emp_id AS ID,
+            pe.emp_printname AS Name,
+            COUNT(psid.psid_invoice_netamt) AS TotalItems,
+            CAST(SUM(psid.psid_invoice_netamt) AS DECIMAL(18,2)) AS TotalNetAmt,
+            CAST(AVG(psid.psid_invoice_salemanper) AS DECIMAL(5,2)) AS AvgPercentage,
+            CAST(SUM((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100) AS DECIMAL(18,2)) AS TotalCommission
+        FROM pos_sale_invoicedtl AS psid
+        INNER JOIN pos_employeeinfo AS pe
+            ON psid.psid_invoice_salesmanid = pe.emp_id
+        WHERE psid.psid_invoice_date BETWEEN '$startDate' AND '$endDate'
+          AND psid.psid_invoice_comid = '$comid'
+          AND psid.psid_invoice_locid = '$locid'";
+
+        // Add salesman filter if not 'ALL' or '0'
+        if (!empty($salesmanId) && $salesmanId != '0' && strtoupper($salesmanId) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_salesmanid = '$salesmanId'";
+        }
+
+        $sql .= " GROUP BY pe.emp_id, pe.emp_printname ORDER BY TotalCommission DESC";
+
+        // Log the query for debugging (remove in production)
+        error_log("Salesman Report Summary Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching salesman report summary: " . mysqli_error($this->conn));
+        }
+        return $result;
+    }
+
+    public function GetSalesManReportAll($comid, $locid)
+    {
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+
+        // Build query to get all salesman commission data (no date filter)
+        $sql = "
+        SELECT
+            pe.emp_id AS ID,
+            pe.emp_printname AS Name,
+            psid.psid_invoice_description AS ItemName,
+            CAST(psid.psid_invoice_netamt AS DECIMAL(18,2)) AS NetAmt,
+            psid.psid_invoice_salemanper AS Percentage,
+            CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission,
+            psid.psid_invoice_date AS Date,
+            psid.psid_invoice_trno AS TransactionNo
+        FROM pos_sale_invoicedtl AS psid
+        INNER JOIN pos_employeeinfo AS pe
+            ON psid.psid_invoice_salesmanid = pe.emp_id
+        WHERE psid.psid_invoice_comid = '$comid'
+          AND psid.psid_invoice_locid = '$locid'
+        ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
+
+        // Log the query for debugging (remove in production)
+        error_log("Salesman Report All Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching all salesman report: " . mysqli_error($this->conn));
+        }
+        return $result;
+    }
 
 
     // /**

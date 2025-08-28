@@ -14,9 +14,9 @@ Public Class frmSalesReport
         dtStartDate.DateTime = DateTime.Today
         dtEndDate.DateTime = DateTime.Today
 
-        ' Set default values
-        txtComId.Text = "1"
-        txtLocId.Text = "1"
+        ' Initialize status
+        lblStatusResults.Text = "Ready to load data..."
+        lblFillterDetails.Text = "Filter Details: No data loaded"
 
         ' Initialize grid
         InitializeGrid()
@@ -87,22 +87,39 @@ Public Class frmSalesReport
     Private Sub LoadSalesData()
         Try
             Cursor = Cursors.WaitCursor
+            lblStatusResults.Text = "Loading data..."
 
             ' Get parameters
-            Dim comId As String = txtComId.Text.Trim()
-            Dim locId As String = txtLocId.Text.Trim()
+            Dim comId As String = _companyInfo.ComId
+            Dim locId As String = _companyInfo.LocId
             Dim startDate As String = dtStartDate.DateTime.ToString("yyyy-MM-dd")
             Dim endDate As String = dtEndDate.DateTime.ToString("yyyy-MM-dd")
 
+            ' Update filter details label with company, location and date range
+            lblFillterDetails.Text = "Filter Details: " & _companyInfo.CompanyName & " (" & _companyInfo.ComId & ") - " & _companyInfo.LocationName & " (" & _companyInfo.LocId & ") | From: " & dtStartDate.DateTime.ToString("dd/MM/yyyy") & " To: " & dtEndDate.DateTime.ToString("dd/MM/yyyy")
+
             ' Validate parameters
             If String.IsNullOrEmpty(comId) OrElse String.IsNullOrEmpty(locId) Then
+                lblStatusResults.Text = "Error: Company ID and Location ID are required."
                 MessageBox.Show("Company ID and Location ID are required.", "Validation Error",
                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
+
+            lblStatusResults.Text = "Fetching data from server..."
+
             ' Call API to get sales data
             Dim DataTable As DataTable = GetSalesDataFromAPI(comId, locId, startDate, endDate)
-            GridControl1.DataSource = DataTable
+
+            If DataTable IsNot Nothing AndAlso DataTable.Rows.Count > 0 Then
+                GridControl1.DataSource = DataTable
+                dtSalesData = DataTable ' Store for summary calculations
+                lblStatusResults.Text = "Data loaded successfully. Records: " & DataTable.Rows.Count.ToString()
+            Else
+                GridControl1.DataSource = Nothing
+                dtSalesData = Nothing
+                lblStatusResults.Text = "No sales data found for the selected criteria."
+            End If
 
             ' Update summary labels
             UpdateSummaryLabels()
@@ -111,6 +128,7 @@ Public Class frmSalesReport
             GridView1.BestFitColumns()
 
         Catch ex As Exception
+            lblStatusResults.Text = "Error: " & ex.Message
             MessageBox.Show("Error loading sales data: " & ex.Message, "Error",
                            MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
@@ -144,17 +162,22 @@ Public Class frmSalesReport
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        lblStatusResults.Text = "Searching..."
         LoadSalesData()
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        lblStatusResults.Text = "Refreshing data..."
         LoadSalesData()
     End Sub
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Try
+            lblStatusResults.Text = "Preparing print preview..."
             GridControl1.ShowPrintPreview()
+            lblStatusResults.Text = "Print preview opened successfully."
         Catch ex As Exception
+            lblStatusResults.Text = "Error: Failed to open print preview."
             MessageBox.Show("Error printing report: " & ex.Message, "Print Error",
                            MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -162,6 +185,7 @@ Public Class frmSalesReport
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
         Try
+            lblStatusResults.Text = "Preparing export..."
             Dim saveDialog As New SaveFileDialog()
             saveDialog.Filter = "Excel Files|*.xlsx|CSV Files|*.csv|All Files|*.*"
             saveDialog.DefaultExt = "xlsx"
@@ -170,17 +194,23 @@ Public Class frmSalesReport
             If saveDialog.ShowDialog() = DialogResult.OK Then
                 Dim extension As String = System.IO.Path.GetExtension(saveDialog.FileName).ToLower()
 
+                lblStatusResults.Text = "Exporting to " & extension.ToUpper() & "..."
+
                 If extension = ".xlsx" Then
                     GridView1.ExportToXlsx(saveDialog.FileName)
                 ElseIf extension = ".csv" Then
                     GridView1.ExportToCsv(saveDialog.FileName)
                 End If
 
+                lblStatusResults.Text = "Export completed successfully to " & saveDialog.FileName
                 MessageBox.Show("Report exported successfully!", "Export Complete",
                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                lblStatusResults.Text = "Export cancelled by user."
             End If
 
         Catch ex As Exception
+            lblStatusResults.Text = "Error: Export failed - " & ex.Message
             MessageBox.Show("Error exporting report: " & ex.Message, "Export Error",
                            MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -215,17 +245,17 @@ Public Class frmSalesReport
         End If
     End Sub
 
-    Private Sub frmSalesReport_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        ' Add keyboard shortcuts
-        Select Case e.KeyCode
-            Case Keys.F5
-                btnRefresh_Click(Nothing, Nothing)
-            Case Keys.F3
-                btnSearch_Click(Nothing, Nothing)
-            Case Keys.F4
-                btnExport_Click(Nothing, Nothing)
-            Case Keys.Escape
-                Me.Close()
-        End Select
-    End Sub
+    ' Private Sub frmSalesReport_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    '     ' Add keyboard shortcuts
+    '     Select Case e.KeyCode
+    '         Case Keys.F5
+    '             btnRefresh_Click(Nothing, Nothing)
+    '         Case Keys.F3
+    '             btnSearch_Click(Nothing, Nothing)
+    '         Case Keys.F4
+    '             btnExport_Click(Nothing, Nothing)
+    '         Case Keys.Escape
+    '             Me.Close()
+    '     End Select
+    ' End Sub
 End Class

@@ -5,6 +5,7 @@ Imports System.Text
 Imports System.IO
 Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports Newtonsoft.Json
 
 Module SyncLocalCloudModuel
     Public Function _ReadSyncLocalCloud() As Boolean
@@ -311,15 +312,42 @@ Module SyncLocalCloudModuel
             If CheckForInternetConnection() Then
                 ' Internet available - fetch from server
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=3&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate)
+
+                ' Build the URL properly - check if base URL already has parameters
+                Dim baseUrl As String = M_Details.LinkAjaxRequestSyncLocalCloud.TrimEnd("/"c)
+                Dim separator As String = If(baseUrl.Contains("?"), "&", "?")
+                Dim fullUrl As String = baseUrl & separator & "AjaxRequest=3&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate
+
+
+                Dim json As String = New System.Net.WebClient().DownloadString(fullUrl)
+
+                ' Handle concatenated JSON responses
+                If json.Contains("}{") Then
+                    ' Multiple JSON responses concatenated - take the first one
+                    Dim firstJsonEnd As Integer = json.IndexOf("}{") + 1
+                    json = json.Substring(0, firstJsonEnd)
+                End If
+
                 Dim Userparsejson As JObject = JObject.Parse(json)
-                SalesData = Userparsejson("Data").ToObject(Of DataTable)()
-                If SalesData.Rows.Count > 0 Then
-                    Return SalesData
+
+                ' Check if the response was successful
+                If Userparsejson("Success").ToString().ToLower() = "true" Then
+                    If Userparsejson("Data") IsNot Nothing Then
+                        SalesData = Userparsejson("Data").ToObject(Of DataTable)()
+                        Return SalesData
+                    End If
+                Else
+                    ' Show error message from API
+                    Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
+                    MessageBox.Show("API Error: " & errorMsg, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             End If
             Return SalesData
+        Catch jex As JsonException
+            MessageBox.Show("JSON parsing error: " & jex.Message & vbCrLf & "Raw response might be malformed.", "JSON Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
         Catch ex As Exception
+            MessageBox.Show("API call error: " & ex.Message, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
         End Try
 
