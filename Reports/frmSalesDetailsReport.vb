@@ -1,15 +1,21 @@
-Imports System.Data
+﻿Imports System.Data
 Imports System.Net
 Imports System.Text
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraPrinting.BrickAlignment
+Imports DevExpress.XtraPrinting.PageHeaderFooter
 
-Public Class frmSalesReport
+Public Class frmSalesDetailsReport
     Private dtSalesData As DataTable
 
     Private Sub frmSalesReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Initialize company info first
+
+
         ' Set default dates
         dtStartDate.DateTime = DateTime.Today
         dtEndDate.DateTime = DateTime.Today
@@ -42,47 +48,10 @@ Public Class frmSalesReport
 
         ' Enable footer for calculations
         GridView1.OptionsView.ShowFooter = True
-
-        ' Set column formats
-        SetColumnFormats()
+         
     End Sub
 
-    Private Sub SetColumnFormats()
-        ' Set numeric columns format
-        colTotalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTotalQty.DisplayFormat.FormatString = "n2"
-
-        colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTotalAmount.DisplayFormat.FormatString = "n2"
-
-        colItemDiscAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colItemDiscAmt.DisplayFormat.FormatString = "n2"
-
-        colBillDiscAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colBillDiscAmt.DisplayFormat.FormatString = "n2"
-
-        colTotDiscAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTotDiscAmt.DisplayFormat.FormatString = "n2"
-
-        colGrossAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colGrossAmt.DisplayFormat.FormatString = "n2"
-
-        colTaxAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTaxAmt.DisplayFormat.FormatString = "n2"
-
-        colNetAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colNetAmt.DisplayFormat.FormatString = "n2"
-
-        ' Set date columns format
-        colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        colDate.DisplayFormat.FormatString = "dd/MM/yyyy"
-
-        colCreated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        colCreated.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
-
-        colModified.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        colModified.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
-    End Sub
+     
 
     Private Sub LoadSalesData()
         Try
@@ -109,7 +78,7 @@ Public Class frmSalesReport
             lblStatusResults.Text = "Fetching data from server..."
 
             ' Call API to get sales data
-            Dim DataTable As DataTable = GetSalesDataFromAPI(comId, locId, startDate, endDate)
+            Dim DataTable As DataTable = GetSalesDataFromAPI(4, comId, locId, startDate, endDate)
 
             If DataTable IsNot Nothing AndAlso DataTable.Rows.Count > 0 Then
                 GridControl1.DataSource = DataTable
@@ -144,8 +113,8 @@ Public Class frmSalesReport
 
                 ' Calculate total net amount
                 For Each row As DataRow In dtSalesData.Rows
-                    If Not IsDBNull(row("psih_invoice_tnetamt")) Then
-                        totalAmount += Convert.ToDecimal(row("psih_invoice_tnetamt"))
+                    If Not IsDBNull(row("psid_invoice_netamt")) Then
+                        totalAmount += Convert.ToDecimal(row("psid_invoice_netamt"))
                     End If
                 Next
 
@@ -169,18 +138,6 @@ Public Class frmSalesReport
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         lblStatusResults.Text = "Refreshing data..."
         LoadSalesData()
-    End Sub
-
-    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-        Try
-            lblStatusResults.Text = "Preparing print preview..."
-            GridControl1.ShowPrintPreview()
-            lblStatusResults.Text = "Print preview opened successfully."
-        Catch ex As Exception
-            lblStatusResults.Text = "Error: Failed to open print preview."
-            MessageBox.Show("Error printing report: " & ex.Message, "Print Error",
-                           MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
     End Sub
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
@@ -258,4 +215,118 @@ Public Class frmSalesReport
     '             Me.Close()
     '     End Select
     ' End Sub
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        Try
+            lblStatusResults.Text = "Preparing print preview..."
+            CreatePrintableComponentLinkPreview()
+            lblStatusResults.Text = "Print preview opened successfully."
+        Catch ex As Exception
+            lblStatusResults.Text = "Error: Failed to open print preview."
+            MessageBox.Show("Error printing report: " & ex.Message, "Print Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' ======================================================
+    ' 🟢 Create Report Header (Company Profile Section)
+    ' ======================================================
+    Private Sub CreatePrintableComponentLinkPreview()
+        Try
+            ' Create PrintableComponentLink for advanced printing
+            Dim ps As New PrintingSystem
+            Dim printableComponentLink As New PrintableComponentLink(ps)
+
+            ' Set the component to print
+            printableComponentLink.Component = GridControl1
+
+            ' Configure the page header and footer
+            Dim phf As PageHeaderFooter = CType(printableComponentLink.PageHeaderFooter, PageHeaderFooter)
+
+            ' Clear the existing content before adding new strings
+            phf.Header.Content.Clear()
+            phf.Footer.Content.Clear()
+
+            ' Setup Header
+            Dim headerLeft As String = "Report"
+            Dim headerCenter As String = vbCrLf & M_Details._shopName & vbCrLf & "SALES DETAILS REPORT" & vbCrLf & lblFillterDetails.Text
+            Dim headerRight As String = "Page [Page # of Pages #]"
+            phf.Header.Content.AddRange(New String() {headerLeft, headerCenter, headerRight})
+            phf.Header.LineAlignment = BrickAlignment.Near ' Can be changed as needed
+            phf.Header.Font = New Font("Arial", 10, FontStyle.Bold)
+
+            ' Setup Footer with detailed information
+            Dim footerLeft As String = "Period: " & dtStartDate.DateTime.ToString("dd/MM/yyyy") & " - " & dtEndDate.DateTime.ToString("dd/MM/yyyy")
+            Dim footerCenter As String = "Generated: [Date Printed] by " & _companyInfo.UserName
+            Dim footerRight As String = GetSummaryInfo()
+            phf.Footer.Content.AddRange(New String() {footerLeft, footerCenter, footerRight})
+            phf.Footer.LineAlignment = BrickAlignment.Far ' Can be changed as needed
+            phf.Footer.Font = New Font("Arial", 8, FontStyle.Regular)
+
+            ' Create the document and show preview
+            printableComponentLink.CreateDocument(ps)
+            printableComponentLink.ShowPreview()
+
+        Catch ex As Exception
+            ' Fallback to basic print if PrintableComponentLink fails
+            MessageBox.Show("Advanced printing not available. Using basic print preview." & vbCrLf & "Error: " & ex.Message,
+                          "Print Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End Try
+    End Sub
+
+    Private Function GetSummaryInfo() As String
+        Try
+            If dtSalesData IsNot Nothing AndAlso dtSalesData.Rows.Count > 0 Then
+                Dim totalAmount As Decimal = 0
+                Dim amountColumnName As String = "psid_invoice_netamt"
+
+                ' Ensure the column exists before trying to access it
+                If dtSalesData.Columns.Contains(amountColumnName) Then
+                    For Each row As DataRow In dtSalesData.Rows
+                        If Not IsDBNull(row(amountColumnName)) Then
+                            totalAmount += Convert.ToDecimal(row(amountColumnName))
+                        End If
+                    Next
+                    Return String.Format("Records: {0:n0} | Total: {1:c}", dtSalesData.Rows.Count, totalAmount)
+                Else
+                    Return "Summary unavailable (Column missing)"
+                End If
+            Else
+                Return "No data available"
+            End If
+        Catch ex As Exception
+            Return "Summary unavailable (Error)"
+        End Try
+    End Function
+
+    Private Sub SetBasicPrintSettings()
+        Try
+            ' Very basic, universally compatible settings
+            With GridView1.OptionsPrint
+                .PrintHeader = True
+                .PrintFooter = True
+            End With
+
+            ' Simple title that should work in all DevExpress versions
+            GridView1.ViewCaption = "SALES REPORT - " & _companyInfo.CompanyName & " - " &
+                                  dtStartDate.DateTime.ToString("dd/MM/yyyy") & " to " &
+                                  dtEndDate.DateTime.ToString("dd/MM/yyyy")
+
+        Catch ex As Exception
+            MessageBox.Show("Error setting print options: " & ex.Message, "Configuration Error")
+        End Try
+    End Sub
+
+
+    ' ======================================================
+    ' 🟢 Helper Function (Address)
+    ' ======================================================
+    Private Function GetCompanyAddress() As String
+        Try
+            ' Replace with actual data source
+            Return "123 Business Street, Business City, State 12345, Phone: (123) 456-7890"
+        Catch ex As Exception
+            Return "Address Not Available"
+        End Try
+    End Function
 End Class

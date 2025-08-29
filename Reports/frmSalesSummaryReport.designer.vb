@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmSalesReport
+Partial Class frmSalesSummaryReport
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,7 @@ Partial Class frmSalesReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesReport))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesSummaryReport))
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colInvoiceId = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,6 +64,7 @@ Partial Class frmSalesReport
         Me.colCreated = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colModified = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -77,7 +78,8 @@ Partial Class frmSalesReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
-        Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,20 +109,20 @@ Partial Class frmSalesReport
         'GridView1
         '
         Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.DarkBlue
-        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GridView1.Appearance.HeaderPanel.Options.UseBackColor = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseForeColor = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.Row.Options.UseFont = True
         Me.GridView1.Appearance.SelectedRow.BackColor = System.Drawing.Color.Orange
         Me.GridView1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Black
         Me.GridView1.Appearance.SelectedRow.Options.UseBackColor = True
         Me.GridView1.Appearance.SelectedRow.Options.UseForeColor = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colInvoiceId, Me.colRefId, Me.colTrNo, Me.colDate, Me.colPrefix, Me.colTotalQty, Me.colTotalAmount, Me.colItemDiscPer, Me.colItemDiscAmt, Me.colBillDiscPer, Me.colBillDiscAmt, Me.colTotDiscPer, Me.colTotDiscAmt, Me.colGrossAmt, Me.colTaxAmt, Me.colServiceCharge, Me.colRoundOff, Me.colNetAmt, Me.colSaleType, Me.colBillType, Me.colBillStatus, Me.colPayMode, Me.colCustomerId, Me.colDescription, Me.colCounterName, Me.colUserId, Me.colComId, Me.colLocId, Me.colPmId, Me.colPrint, Me.colBillRemarks, Me.colAdvAmt, Me.colOutstanding, Me.colGivenAmt, Me.colBalAmt, Me.colShiftNo, Me.colDayNo, Me.colCreated, Me.colModified})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colInvoiceId, Me.colRefId, Me.colTrNo, Me.colDate, Me.colPrefix, Me.colTotalQty, Me.colTotalAmount, Me.colItemDiscPer, Me.colItemDiscAmt, Me.colBillDiscPer, Me.colBillDiscAmt, Me.colTotDiscPer, Me.colTotDiscAmt, Me.colGrossAmt, Me.colTaxAmt, Me.colServiceCharge, Me.colRoundOff, Me.colNetAmt, Me.colSaleType, Me.colBillType, Me.colBillStatus, Me.colPayMode, Me.colCustomerId, Me.colDescription, Me.colCounterName, Me.colUserId, Me.colComId, Me.colLocId, Me.colPmId, Me.colPrint, Me.colBillRemarks, Me.colAdvAmt, Me.colOutstanding, Me.colGivenAmt, Me.colBalAmt, Me.colShiftNo, Me.colDayNo, Me.colCreated, Me.colModified, Me.GridColumn1, Me.GridColumn2})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "psih_invoice_tnetamt", Me.colNetAmt, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "psih_invoice_id", Nothing, "Count: {0}")})
         Me.GridView1.Name = "GridView1"
@@ -148,6 +150,8 @@ Partial Class frmSalesReport
         '
         'colTrNo
         '
+        Me.colTrNo.AppearanceCell.Options.UseTextOptions = True
+        Me.colTrNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.colTrNo.Caption = "Transaction No"
         Me.colTrNo.FieldName = "psih_invoice_trno"
         Me.colTrNo.Name = "colTrNo"
@@ -157,6 +161,8 @@ Partial Class frmSalesReport
         '
         'colDate
         '
+        Me.colDate.AppearanceCell.Options.UseTextOptions = True
+        Me.colDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.colDate.Caption = "Date"
         Me.colDate.ColumnEdit = Me.RepositoryItemDateEdit1
         Me.colDate.FieldName = "psih_invoice_date"
@@ -298,7 +304,7 @@ Partial Class frmSalesReport
         Me.colNetAmt.Name = "colNetAmt"
         Me.colNetAmt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "psih_invoice_tnetamt", "{0:n2}")})
         Me.colNetAmt.Visible = True
-        Me.colNetAmt.VisibleIndex = 5
+        Me.colNetAmt.VisibleIndex = 4
         Me.colNetAmt.Width = 100
         '
         'colSaleType
@@ -453,8 +459,6 @@ Partial Class frmSalesReport
         Me.colShiftNo.Caption = "Shift No"
         Me.colShiftNo.FieldName = "psih_invoice_shiftno"
         Me.colShiftNo.Name = "colShiftNo"
-        Me.colShiftNo.Visible = True
-        Me.colShiftNo.VisibleIndex = 7
         Me.colShiftNo.Width = 70
         '
         'colDayNo
@@ -499,10 +503,19 @@ Partial Class frmSalesReport
         Me.PanelControl1.Size = New System.Drawing.Size(1200, 80)
         Me.PanelControl1.TabIndex = 1
         '
+        'btnSaveLayout
+        '
+        Me.btnSaveLayout.Image = CType(resources.GetObject("btnSaveLayout.Image"), System.Drawing.Image)
+        Me.btnSaveLayout.Location = New System.Drawing.Point(692, 9)
+        Me.btnSaveLayout.Name = "btnSaveLayout"
+        Me.btnSaveLayout.Size = New System.Drawing.Size(95, 23)
+        Me.btnSaveLayout.TabIndex = 12
+        Me.btnSaveLayout.Text = "SaveLayout"
+        '
         'btnExport
         '
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(551, 10)
+        Me.btnExport.Location = New System.Drawing.Point(606, 10)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(75, 23)
         Me.btnExport.TabIndex = 11
@@ -511,16 +524,16 @@ Partial Class frmSalesReport
         'btnPrint
         '
         Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-        Me.btnPrint.Location = New System.Drawing.Point(470, 10)
+        Me.btnPrint.Location = New System.Drawing.Point(480, 10)
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.btnPrint.Size = New System.Drawing.Size(115, 23)
         Me.btnPrint.TabIndex = 10
-        Me.btnPrint.Text = "Print"
+        Me.btnPrint.Text = "Grid Preview"
         '
         'btnRefresh
         '
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(389, 10)
+        Me.btnRefresh.Location = New System.Drawing.Point(394, 10)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
         Me.btnRefresh.TabIndex = 9
@@ -631,16 +644,23 @@ Partial Class frmSalesReport
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
-        'btnSaveLayout
+        'GridColumn1
         '
-        Me.btnSaveLayout.Image = CType(resources.GetObject("btnSaveLayout.Image"), System.Drawing.Image)
-        Me.btnSaveLayout.Location = New System.Drawing.Point(632, 9)
-        Me.btnSaveLayout.Name = "btnSaveLayout"
-        Me.btnSaveLayout.Size = New System.Drawing.Size(95, 23)
-        Me.btnSaveLayout.TabIndex = 12
-        Me.btnSaveLayout.Text = "SaveLayout"
+        Me.GridColumn1.Caption = "Company"
+        Me.GridColumn1.FieldName = "pcm_name"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
         '
-        'frmSalesReport
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Location"
+        Me.GridColumn2.FieldName = "plm_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 8
+        '
+        'frmSalesSummaryReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -648,7 +668,7 @@ Partial Class frmSalesReport
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Name = "frmSalesReport"
+        Me.Name = "frmSalesSummaryReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Report"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -731,4 +751,6 @@ Partial Class frmSalesReport
     Friend WithEvents colModified As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents lblStatusResults As DevExpress.XtraEditors.LabelControl
     Friend WithEvents btnSaveLayout As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

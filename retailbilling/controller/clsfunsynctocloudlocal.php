@@ -278,7 +278,7 @@ class clsfuncsync
 
         return trim($cleaned);
     }
-    public function GetSalesReport($comid, $locid, $startDate, $endDate)
+    public function GetSalesReportSummary($comid, $locid, $startDate, $endDate)
     {
         // Escape variables first
         $comid     = mysqli_real_escape_string($this->conn, $comid);
@@ -287,18 +287,18 @@ class clsfuncsync
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
         // Add time component to date range for proper filtering
-        $startDateTime = $startDate . ' 00:00:00';
-        $endDateTime = $endDate . ' 23:59:59';
+        // $startDateTime = $startDate . ' 00:00:00';
+        // $endDateTime = $endDate . ' 23:59:59';
 
         // Build query with proper date range
         $sql = "
-        SELECT *
-        FROM pos_sale_invoicehdr
+        SELECT `psih_invoice_id`, `psih_invoice_refid`, `psih_invoice_trno`, `psih_invoice_date`, `psih_invoice_prefix`, `psih_invoice_tqty`, `psih_invoice_tamount`, `psih_invoice_titemdisper`, `psih_invoice_titemdisamt`, `psih_invoice_tbilldiscper`, `psih_invoice_tbilldiscamt`, `psih_invoice_totdiscper`, `psih_invoice_totdiscamt`, `psih_invoice_tgrossamt`, `psih_invoice_ttaxamt`, `psih_invoice_sercharge`, `psih_invoice_roundoff`, `psih_invoice_tnetamt`, `psih_invoice_saletype`, `psih_invoice_billtype`, `psih_invoice_billstatus`, `psih_invoice_paymode`, `psih_invoice_customerid`, `psih_invoice_description`, `psih_invoice_countername`, `psih_invoice_userid`, `psih_invoice_comid`, `psih_invoice_locid`, `psih_invoice_pmid`, `psih_invoice_print`, `psih_invoice_billremarks`, `psih_invoice_advamt`, `psih_invoice_outstanding`, `psih_invoice_givenamt`, `psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`, `psih_invoice_modified`,pm.pcm_name,pl.plm_name FROM `pos_sale_invoicehdr` as ph  INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ph.psih_invoice_comid
+        INNER JOIN pos_location_mast AS pl ON pl.plm_id = ph.psih_invoice_locid
         WHERE psih_invoice_comid = '$comid'
           AND psih_invoice_locid = '$locid'
-          AND psih_invoice_created >= '$startDateTime'
-          AND psih_invoice_created <= '$endDateTime'
-        ORDER BY psih_invoice_created DESC
+          AND psih_invoice_date >= '$startDate'
+          AND psih_invoice_date <= '$endDate'
+        ORDER BY psih_invoice_date DESC
          ";
 
         // Log the query for debugging (remove in production)
@@ -318,19 +318,44 @@ class clsfuncsync
         $startDate = mysqli_real_escape_string($this->conn, $startDate);
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
-        // Add time component to date range for proper filtering
-        $startDateTime = $startDate . ' 00:00:00';
-        $endDateTime = $endDate . ' 23:59:59';
-
-        // Build query with proper date range
+        // Build query with proper date range and JOINs for detailed information
         $sql = "
-        SELECT *
-        FROM pos_sale_invoicedtl
-        WHERE psid_invoice_comid = '$comid'
-          AND psid_invoice_locid = '$locid'
-          AND psid_invoice_created >= '$startDateTime'
-          AND psid_invoice_created <= '$endDateTime'
-        ORDER BY psid_invoice_created DESC
+        SELECT
+            psid.psid_invoice_date,
+            psid.psid_invoice_trno,
+            psid.psid_invoice_barcode,
+            psid.psid_invoice_procode,
+            psid.psid_invoice_description,
+            psid.psid_invoice_proqty,
+            psid.psid_invoice_rate,
+            psid.psid_invoice_amt,
+            psid.psid_invoice_totdper,
+            psid.psid_invoice_totdamt,
+            psid.psid_invoice_gross,
+            psid.psid_invoice_taxamt,
+            psid.psid_invoice_netamt,
+            psid.psid_invoice_salesmanid,
+            CONCAT(CAST(ROUND(psid_invoice_salemanper, 0) AS UNSIGNED), '%') AS psid_invoice_salemanper,
+            psid.psid_invoice_shiftno,
+            psid.psid_invoice_dayno,
+            psid.psid_invoice_created,
+            psid.psid_invoice_modified,
+            psid.psid_invoice_comid,
+            psid.psid_invoice_locid,
+            psid.psid_invoice_pmid,
+            pe.emp_printname,
+            pm.pcm_name,
+            pl.plm_name,
+            CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission
+        FROM pos_sale_invoicedtl AS psid
+        INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
+        INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
+        INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
+        WHERE psid.psid_invoice_comid = '$comid'
+          AND psid.psid_invoice_locid = '$locid'
+          AND psid.psid_invoice_created >= '$startDate'
+          AND psid.psid_invoice_created <= '$endDate'
+        ORDER BY psid.psid_invoice_date DESC
          ";
 
         // Log the query for debugging (remove in production)
@@ -342,7 +367,7 @@ class clsfuncsync
         }
         return $result;
     }
-    public function GetSalesManReport($comid, $locid, $salesmanId, $startDate, $endDate)
+    public function GetSalesManDetailReport($comid, $locid, $salesmanId, $startDate, $endDate)
     {
         // Escape variables first
         $comid     = mysqli_real_escape_string($this->conn, $comid);
@@ -350,10 +375,6 @@ class clsfuncsync
         $salesmanId = mysqli_real_escape_string($this->conn, $salesmanId);
         $startDate = mysqli_real_escape_string($this->conn, $startDate);
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
-
-        // Add time component to date range for proper filtering
-        $startDateTime = $startDate . ' 00:00:00';
-        $endDateTime = $endDate . ' 23:59:59';
 
         // Build detailed commission report query
         $sql = "

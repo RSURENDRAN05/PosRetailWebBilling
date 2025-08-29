@@ -306,7 +306,7 @@ Module SyncLocalCloudModuel
             Return False
         End Try
     End Function
-    Public Function GetSalesDataFromAPI(comId As String, locId As String, startDate As String, endDate As String) As DataTable
+    Public Function GetSalesDataFromAPI(AjaxRequest As String, comId As String, locId As String, startDate As String, endDate As String) As DataTable
         Try
             Dim SalesData As New DataTable
             If CheckForInternetConnection() Then
@@ -315,8 +315,8 @@ Module SyncLocalCloudModuel
 
                 ' Build the URL properly - check if base URL already has parameters
                 Dim baseUrl As String = M_Details.LinkAjaxRequestSyncLocalCloud.TrimEnd("/"c)
-                Dim separator As String = If(baseUrl.Contains("?"), "&", "?")
-                Dim fullUrl As String = baseUrl & separator & "AjaxRequest=3&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate
+
+                Dim fullUrl As String = baseUrl & "AjaxRequest=" & AjaxRequest & "&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate
 
 
                 Dim json As String = New System.Net.WebClient().DownloadString(fullUrl)

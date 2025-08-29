@@ -77,7 +77,7 @@ Public Class MainMaster
                 barunitmaster.Enabled = False
                 barmaingroup.Enabled = False
                 barnewcustomer.Enabled = False
-                barmastersalesreport.Enabled = False
+                barsalessummaryreport.Enabled = False
                 barmaterial.Enabled = False
                 barsubgroup.Enabled = False
                 barpossales.Enabled = False
@@ -220,9 +220,9 @@ Public Class MainMaster
                     Dim MasterSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSalesReport"
                     If MasterSalesReport.Any Then
                         If MasterSalesReport(0)("menu_active") = "1" Then
-                            barmastersalesreport.Enabled = True
+                            barsalessummaryreport.Enabled = True
                         Else
-                            barmastersalesreport.Enabled = False
+                            barsalessummaryreport.Enabled = False
 
                         End If
                     End If
@@ -569,10 +569,10 @@ Public Class MainMaster
         End Try
     End Sub
 
-    Private Sub barmastersalesreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barmastersalesreport.ItemClick
+    Private Sub barmastersalesreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barsalessummaryreport.ItemClick
         Try
             ' Show the Sales Report form
-            Dim salesReportForm As New frmSalesReport()
+            Dim salesReportForm As New frmSalesSummaryReport()
             salesReportForm.MdiParent = Me
             salesReportForm.Show()
         Catch ex As Exception
@@ -884,6 +884,24 @@ Public Class MainMaster
         Try
             FrmSalesCommission.MdiParent = Me
             FrmSalesCommission.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barsalesdetailsreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barsalesdetailsreport.ItemClick
+        Try
+            frmSalesDetailsReport.MdiParent = Me
+            frmSalesDetailsReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnchronicalreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnchronicalreport.ItemClick
+        Try
+            frmSalesChronicalReport.MdiParent = Me
+            frmSalesChronicalReport.Show()
         Catch ex As Exception
 
         End Try

@@ -41,7 +41,7 @@ Partial Class MainMaster
         Me.barnewpurchase = New DevExpress.XtraBars.BarButtonItem()
         Me.barmasterpurchasereport = New DevExpress.XtraBars.BarButtonItem()
         Me.barpossales = New DevExpress.XtraBars.BarButtonItem()
-        Me.barmastersalesreport = New DevExpress.XtraBars.BarButtonItem()
+        Me.barsalessummaryreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barcreategroup = New DevExpress.XtraBars.BarButtonItem()
         Me.barparentgroup = New DevExpress.XtraBars.BarButtonItem()
         Me.barnewledger = New DevExpress.XtraBars.BarButtonItem()
@@ -63,6 +63,11 @@ Partial Class MainMaster
         Me.skinRibbonGalleryBarItem = New DevExpress.XtraBars.RibbonGalleryBarItem()
         Me.barnewdiscountmaster = New DevExpress.XtraBars.BarButtonItem()
         Me.barSalesCommission = New DevExpress.XtraBars.BarButtonItem()
+        Me.barcurshiftno = New DevExpress.XtraBars.BarStaticItem()
+        Me.bardayno = New DevExpress.XtraBars.BarStaticItem()
+        Me.barsalesdetailsreport = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnchronicalreport = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -72,6 +77,8 @@ Partial Class MainMaster
         Me.RibbonPageGroup6 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup7 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonReports = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup12 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageAccounts = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup8 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -93,8 +100,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barcurshiftno = New DevExpress.XtraBars.BarStaticItem()
-        Me.bardayno = New DevExpress.XtraBars.BarStaticItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,11 +119,11 @@ Partial Class MainMaster
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barmastersalesreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.BarButtonItem5})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 49
+        Me.RibbonControl.MaxItemId = 52
         Me.RibbonControl.Name = "RibbonControl"
-        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
+        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
         Me.RibbonControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show
         Me.RibbonControl.ShowToolbarCustomizeItem = False
         Me.RibbonControl.Size = New System.Drawing.Size(1183, 144)
@@ -270,13 +275,13 @@ Partial Class MainMaster
         Me.barpossales.LargeGlyph = CType(resources.GetObject("barpossales.LargeGlyph"), System.Drawing.Image)
         Me.barpossales.Name = "barpossales"
         '
-        'barmastersalesreport
+        'barsalessummaryreport
         '
-        Me.barmastersalesreport.Caption = "Sales Report"
-        Me.barmastersalesreport.Glyph = CType(resources.GetObject("barmastersalesreport.Glyph"), System.Drawing.Image)
-        Me.barmastersalesreport.Id = 21
-        Me.barmastersalesreport.LargeGlyph = CType(resources.GetObject("barmastersalesreport.LargeGlyph"), System.Drawing.Image)
-        Me.barmastersalesreport.Name = "barmastersalesreport"
+        Me.barsalessummaryreport.Caption = "Sales Summary Report"
+        Me.barsalessummaryreport.Glyph = CType(resources.GetObject("barsalessummaryreport.Glyph"), System.Drawing.Image)
+        Me.barsalessummaryreport.Id = 21
+        Me.barsalessummaryreport.LargeGlyph = CType(resources.GetObject("barsalessummaryreport.LargeGlyph"), System.Drawing.Image)
+        Me.barsalessummaryreport.Name = "barsalessummaryreport"
         '
         'barcreategroup
         '
@@ -445,6 +450,42 @@ Partial Class MainMaster
         Me.barSalesCommission.LargeGlyph = CType(resources.GetObject("barSalesCommission.LargeGlyph"), System.Drawing.Image)
         Me.barSalesCommission.Name = "barSalesCommission"
         '
+        'barcurshiftno
+        '
+        Me.barcurshiftno.Caption = "shiftno"
+        Me.barcurshiftno.Id = 47
+        Me.barcurshiftno.Name = "barcurshiftno"
+        Me.barcurshiftno.TextAlignment = System.Drawing.StringAlignment.Near
+        '
+        'bardayno
+        '
+        Me.bardayno.Caption = "dayno"
+        Me.bardayno.Id = 48
+        Me.bardayno.Name = "bardayno"
+        Me.bardayno.TextAlignment = System.Drawing.StringAlignment.Near
+        '
+        'barsalesdetailsreport
+        '
+        Me.barsalesdetailsreport.Caption = "Sales Details Report"
+        Me.barsalesdetailsreport.Glyph = CType(resources.GetObject("barsalesdetailsreport.Glyph"), System.Drawing.Image)
+        Me.barsalesdetailsreport.Id = 49
+        Me.barsalesdetailsreport.LargeGlyph = CType(resources.GetObject("barsalesdetailsreport.LargeGlyph"), System.Drawing.Image)
+        Me.barsalesdetailsreport.Name = "barsalesdetailsreport"
+        '
+        'barbtnchronicalreport
+        '
+        Me.barbtnchronicalreport.Caption = "Sales Chronical Report"
+        Me.barbtnchronicalreport.Glyph = CType(resources.GetObject("barbtnchronicalreport.Glyph"), System.Drawing.Image)
+        Me.barbtnchronicalreport.Id = 50
+        Me.barbtnchronicalreport.LargeGlyph = CType(resources.GetObject("barbtnchronicalreport.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnchronicalreport.Name = "barbtnchronicalreport"
+        '
+        'BarButtonItem5
+        '
+        Me.BarButtonItem5.Caption = "Monthly Collection Report"
+        Me.BarButtonItem5.Id = 51
+        Me.BarButtonItem5.Name = "BarButtonItem5"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -504,7 +545,6 @@ Partial Class MainMaster
         'RibbonPageGroup7
         '
         Me.RibbonPageGroup7.ItemLinks.Add(Me.barpossales)
-        Me.RibbonPageGroup7.ItemLinks.Add(Me.barmastersalesreport)
         Me.RibbonPageGroup7.ItemLinks.Add(Me.barnewcustomer)
         Me.RibbonPageGroup7.Name = "RibbonPageGroup7"
         Me.RibbonPageGroup7.Text = "Point Of Sales"
@@ -515,6 +555,23 @@ Partial Class MainMaster
         Me.RibbonPageGroup3.ItemLinks.Add(Me.barSalesCommission)
         Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
         Me.RibbonPageGroup3.Text = "Discount Master"
+        '
+        'RibbonReports
+        '
+        Me.RibbonReports.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.RibbonReports.Appearance.Options.UseFont = True
+        Me.RibbonReports.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup12})
+        Me.RibbonReports.Name = "RibbonReports"
+        Me.RibbonReports.Text = "Reports"
+        '
+        'RibbonPageGroup12
+        '
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barsalessummaryreport)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barsalesdetailsreport)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnchronicalreport)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.BarButtonItem5)
+        Me.RibbonPageGroup12.Name = "RibbonPageGroup12"
+        Me.RibbonPageGroup12.Text = "Report"
         '
         'RibbonPageAccounts
         '
@@ -715,20 +772,6 @@ Partial Class MainMaster
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
         '
-        'barcurshiftno
-        '
-        Me.barcurshiftno.Caption = "shiftno"
-        Me.barcurshiftno.Id = 47
-        Me.barcurshiftno.Name = "barcurshiftno"
-        Me.barcurshiftno.TextAlignment = System.Drawing.StringAlignment.Near
-        '
-        'bardayno
-        '
-        Me.bardayno.Caption = "dayno"
-        Me.bardayno.Id = 48
-        Me.bardayno.Name = "bardayno"
-        Me.bardayno.TextAlignment = System.Drawing.StringAlignment.Near
-        '
         'MainMaster
         '
         Me.AllowMdiBar = True
@@ -792,7 +835,7 @@ Partial Class MainMaster
     Friend WithEvents RibbonPageGroup6 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup7 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents barpossales As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents barmastersalesreport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barsalessummaryreport As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barcreategroup As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barparentgroup As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barnewledger As DevExpress.XtraBars.BarButtonItem
@@ -837,6 +880,11 @@ Partial Class MainMaster
     Friend WithEvents barSalesCommission As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barcurshiftno As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents bardayno As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents RibbonReports As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup12 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents barsalesdetailsreport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnchronicalreport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
 
 
 End Class
