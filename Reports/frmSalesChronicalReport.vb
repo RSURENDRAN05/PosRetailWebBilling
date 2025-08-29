@@ -12,6 +12,7 @@ Imports DevExpress.XtraPrinting.PageHeaderFooter
 Public Class frmSalesChronicalReport
     Private dtSalesData As DataTable
     Private dtSalesManData As DataTable
+    Dim Errstr As String
 #Region "InitialLoad"
     Private Sub frmSalesReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize company info first
@@ -70,10 +71,7 @@ Public Class frmSalesChronicalReport
 
         ' Add available report options
         ListBoxControlReportList.Items.Add("Sales by Salesman")
-        ListBoxControlReportList.Items.Add("Sales Summary Report")
-        ListBoxControlReportList.Items.Add("Detailed Sales Report")
-        ListBoxControlReportList.Items.Add("Commission Report")
-        ListBoxControlReportList.Items.Add("Performance Report")
+        ListBoxControlReportList.Items.Add("Sales by All Branch")
 
         ' Set default selection
         If ListBoxControlReportList.Items.Count > 0 Then
@@ -148,33 +146,22 @@ Public Class frmSalesChronicalReport
             Return Nothing
         End Try
     End Function
- 
+
 #End Region
 #Region "ConfigureColumn"
     Private Sub ConfigureGridColumns(reportType As String, reportName As String)
         Try
             ' Clear existing columns
             GridView1.Columns.Clear()
-
             Select Case reportName.ToUpper()
-                Case "SALES BY SALESMAN", "COMMISSION REPORT", "PERFORMANCE REPORT"
+                Case "SALES BY SALESMAN", "SALES BY ALL BRANCH"
                     If reportType.ToUpper() = "SUMMARY" Then
                         ConfigureSalesManSummaryColumns()
                     Else
                         ConfigureSalesManDetailedColumns()
                     End If
-
-                Case "SALES SUMMARY REPORT"
-                    ConfigureSalesSummaryColumns()
-
-                Case "DETAILED SALES REPORT"
-                    ConfigureSalesDetailedColumns()
-
-                Case Else
-                    ' Default configuration
-                    ConfigureDefaultColumns()
             End Select
-
+            RearrangeSalesManSummaryColumns()
             ' Auto size all columns
             GridView1.BestFitColumns()
 
@@ -182,7 +169,22 @@ Public Class frmSalesChronicalReport
             System.Diagnostics.Debug.WriteLine("Error configuring grid columns: " & ex.Message)
         End Try
     End Sub
+    Private Sub RearrangeSalesManSummaryColumns()
+        Try
+            For Each col As DevExpress.XtraGrid.Columns.GridColumn In GridView1.Columns
+                If col.FieldName = "ID" OrElse col.FieldName = "TotalItems" OrElse col.FieldName = "Percentage" _
+                 OrElse col.FieldName = "Date" OrElse col.FieldName = "TransactionNo" OrElse col.FieldName = "CompanyName" _
+                  OrElse col.FieldName = "LocationName" Then
+                    col.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
+                End If
+                If col.FieldName = "TotalNetAmt" OrElse col.FieldName = "AvgPercentage" OrElse col.FieldName = "TotalCommission" OrElse col.FieldName = "NetAmt" OrElse col.FieldName = "Commission" Then
+                    col.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Far
+                End If
+            Next
+        Catch ex As Exception
 
+        End Try
+    End Sub
     Private Sub ConfigureSalesManSummaryColumns()
         ' Configure columns for SalesMan Summary Report
         ' Based on SQL: emp_id AS ID, emp_printname AS Name, TotalItems, TotalNetAmt, AvgPercentage, TotalCommission
@@ -193,6 +195,8 @@ Public Class frmSalesChronicalReport
         colID.Caption = "Sales ID"
         colID.Visible = True
         colID.Width = 80
+        colID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colID.DisplayFormat.FormatString = "d"
         GridView1.Columns.Add(colID)
 
         ' Name Column
@@ -222,9 +226,9 @@ Public Class frmSalesChronicalReport
         colTotalNetAmt.Visible = True
         colTotalNetAmt.Width = 120
         colTotalNetAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTotalNetAmt.DisplayFormat.FormatString = "c2"
+        colTotalNetAmt.DisplayFormat.FormatString = "n2"
         colTotalNetAmt.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-        colTotalNetAmt.SummaryItem.DisplayFormat = "Total: {0:c2}"
+        colTotalNetAmt.SummaryItem.DisplayFormat = "Total: {0:n2}"
         GridView1.Columns.Add(colTotalNetAmt)
 
         ' Average Percentage Column
@@ -246,62 +250,36 @@ Public Class frmSalesChronicalReport
         colTotalCommission.Visible = True
         colTotalCommission.Width = 130
         colTotalCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colTotalCommission.DisplayFormat.FormatString = "c2"
+        colTotalCommission.DisplayFormat.FormatString = "n2"
         colTotalCommission.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-        colTotalCommission.SummaryItem.DisplayFormat = "Total: {0:c2}"
+        colTotalCommission.SummaryItem.DisplayFormat = "Total: {0:n2}"
         GridView1.Columns.Add(colTotalCommission)
+
+        Dim colCompanyName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colCompanyName.FieldName = "CompanyName"
+        colCompanyName.Caption = "Company Name"
+        colCompanyName.Visible = True
+        colCompanyName.Width = 150
+        GridView1.Columns.Add(colCompanyName)
+
+        Dim colLocationName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colLocationName.FieldName = "LocationName"
+        colLocationName.Caption = "Location Name"
+        colLocationName.Visible = True
+        colLocationName.Width = 150
+        GridView1.Columns.Add(colLocationName)
+
     End Sub
 
     Private Sub ConfigureSalesManDetailedColumns()
         ' Configure columns for SalesMan Detailed Report
         ' Based on detailed commission report structure
 
-        Dim colID As New DevExpress.XtraGrid.Columns.GridColumn()
-        colID.FieldName = "ID"
-        colID.Caption = "Sales ID"
-        colID.Width = 80
-        GridView1.Columns.Add(colID)
-
-        Dim colName As New DevExpress.XtraGrid.Columns.GridColumn()
-        colName.FieldName = "Name"
-        colName.Caption = "Salesman Name"
-        colName.Width = 150
-        GridView1.Columns.Add(colName)
-
-        Dim colItemName As New DevExpress.XtraGrid.Columns.GridColumn()
-        colItemName.FieldName = "ItemName"
-        colItemName.Caption = "Item Name"
-        colItemName.Width = 200
-        GridView1.Columns.Add(colItemName)
-
-        Dim colNetAmt As New DevExpress.XtraGrid.Columns.GridColumn()
-        colNetAmt.FieldName = "NetAmt"
-        colNetAmt.Caption = "Net Amount"
-        colNetAmt.Width = 100
-        colNetAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colNetAmt.DisplayFormat.FormatString = "c2"
-        GridView1.Columns.Add(colNetAmt)
-
-        Dim colPercentage As New DevExpress.XtraGrid.Columns.GridColumn()
-        colPercentage.FieldName = "Percentage"
-        colPercentage.Caption = "Commission %"
-        colPercentage.Width = 100
-        colPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colPercentage.DisplayFormat.FormatString = "n2"
-        GridView1.Columns.Add(colPercentage)
-
-        Dim colCommission As New DevExpress.XtraGrid.Columns.GridColumn()
-        colCommission.FieldName = "Commission"
-        colCommission.Caption = "Commission"
-        colCommission.Width = 100
-        colCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        colCommission.DisplayFormat.FormatString = "c2"
-        GridView1.Columns.Add(colCommission)
-
         Dim colDate As New DevExpress.XtraGrid.Columns.GridColumn()
         colDate.FieldName = "Date"
         colDate.Caption = "Date"
         colDate.Width = 100
+        colDate.Visible = True
         colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         colDate.DisplayFormat.FormatString = "dd/MM/yyyy"
         GridView1.Columns.Add(colDate)
@@ -310,40 +288,76 @@ Public Class frmSalesChronicalReport
         colTransactionNo.FieldName = "TransactionNo"
         colTransactionNo.Caption = "Transaction No"
         colTransactionNo.Width = 120
+        colTransactionNo.Visible = True
         GridView1.Columns.Add(colTransactionNo)
-    End Sub
+        Dim colID As New DevExpress.XtraGrid.Columns.GridColumn()
+        colID.FieldName = "ID"
+        colID.Caption = "Sales ID"
+        colID.Width = 80
+        colID.Visible = True
+        GridView1.Columns.Add(colID)
 
-    Private Sub ConfigureSalesSummaryColumns()
-        ' Configure columns for Sales Summary Report
-        ConfigureDefaultColumns() ' Use default for now
-    End Sub
+        Dim colName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colName.FieldName = "Name"
+        colName.Caption = "Salesman Name"
+        colName.Width = 150
+        colName.Visible = True
+        GridView1.Columns.Add(colName)
 
-    Private Sub ConfigureSalesDetailedColumns()
-        ' Configure columns for Sales Detailed Report
-        ConfigureDefaultColumns() ' Use default for now
-    End Sub
+        Dim colItemName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colItemName.FieldName = "ItemName"
+        colItemName.Caption = "Item Name"
+        colItemName.Width = 200
+        colItemName.Visible = True
+        GridView1.Columns.Add(colItemName)
 
-    Private Sub ConfigureDefaultColumns()
-        ' Configure default columns - let DevExpress auto-generate from DataTable
-        GridView1.PopulateColumns()
+        Dim colNetAmt As New DevExpress.XtraGrid.Columns.GridColumn()
+        colNetAmt.FieldName = "NetAmt"
+        colNetAmt.Caption = "Net Amount"
+        colNetAmt.Width = 100
+        colNetAmt.Visible = True
+        colNetAmt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colNetAmt.DisplayFormat.FormatString = "n2"
+        colNetAmt.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colNetAmt.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colNetAmt)
 
-        ' Apply some common formatting to known columns
-        For Each col As DevExpress.XtraGrid.Columns.GridColumn In GridView1.Columns
-            Select Case col.FieldName.ToLower()
-                Case "psid_invoice_netamt", "totalnetamt", "netamt", "commission", "totalcommission"
-                    col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    col.DisplayFormat.FormatString = "c2"
-                Case "psid_invoice_proqty", "totalitems"
-                    col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    col.DisplayFormat.FormatString = "n2"
-                Case "psid_invoice_salemanper", "percentage", "avgpercentage"
-                    col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    col.DisplayFormat.FormatString = "n2"
-                Case "psid_invoice_date", "psid_invoice_created", "date"
-                    col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                    col.DisplayFormat.FormatString = "dd/MM/yyyy"
-            End Select
-        Next
+        Dim colPercentage As New DevExpress.XtraGrid.Columns.GridColumn()
+        colPercentage.FieldName = "Percentage"
+        colPercentage.Caption = "Commission %"
+        colPercentage.Width = 100
+        colPercentage.Visible = True
+        colPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colPercentage.DisplayFormat.FormatString = "n2"
+        colPercentage.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Average
+        colPercentage.SummaryItem.DisplayFormat = "Avg: {0:n2}%"
+        GridView1.Columns.Add(colPercentage)
+
+        Dim colCommission As New DevExpress.XtraGrid.Columns.GridColumn()
+        colCommission.FieldName = "Commission"
+        colCommission.Caption = "Commission"
+        colCommission.Width = 100
+        colCommission.Visible = True
+        colCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colCommission.DisplayFormat.FormatString = "n2"
+        colCommission.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colCommission.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colCommission)
+
+        Dim colCompanyName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colCompanyName.FieldName = "CompanyName"
+        colCompanyName.Caption = "Company Name"
+        colCompanyName.Visible = True
+        colCompanyName.Width = 150
+        GridView1.Columns.Add(colCompanyName)
+
+        Dim colLocationName As New DevExpress.XtraGrid.Columns.GridColumn()
+        colLocationName.FieldName = "LocationName"
+        colLocationName.Caption = "Location Name"
+        colLocationName.Visible = True
+        colLocationName.Width = 150
+        GridView1.Columns.Add(colLocationName)
+
     End Sub
 
 #End Region
@@ -440,7 +454,7 @@ Public Class frmSalesChronicalReport
                 Dim amountColumnName As String = ""
 
                 Select Case reportName.ToUpper()
-                    Case "SALES BY SALESMAN", "COMMISSION REPORT", "PERFORMANCE REPORT"
+                    Case "SALES BY SALESMAN", "SALES BY ALL BRANCH"
                         If reportType.ToUpper() = "SUMMARY" Then
                             amountColumnName = "TotalNetAmt" ' For summary report
                         Else
@@ -474,6 +488,44 @@ Public Class frmSalesChronicalReport
     End Sub
 #End Region
 #Region "Load Report Data"
+    Private Sub print(reportType As String, reportName As String)
+        Try
+            Dim _receDs As New DataSet
+            Dim copiedTable As DataTable = dtSalesData.Copy()
+            copiedTable.TableName = "SalesData" ' Give it a meaningful name
+            _receDs.Tables.Add(copiedTable)
+            If (_receDs.Tables(0).Rows.Count > 0) Then
+                _receDs.WriteXml(M_Details._appPath & "\Reports\ReportChronical.xml", Data.XmlWriteMode.WriteSchema)
+            End If
+            Select Case reportName.ToUpper()
+                Case "SALES BY SALESMAN"
+                    If reportType.ToUpper() = "SUMMARY" Then
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        End If
+                    Else
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        End If
+                    End If
+                Case "SALES BY ALL BRANCH"
+                    If reportType.ToUpper() = "SUMMARY" Then
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        End If
+                    Else
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        End If
+                    End If
+            End Select
+
+        Catch ex As Exception
+            lblStatusResults.Text = "Error: " & ex.Message
+            MessageBox.Show("Error loading sales data: " & ex.Message, "Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub LoadSalesData()
         Try
             Cursor = Cursors.WaitCursor
@@ -538,19 +590,18 @@ Public Class frmSalesChronicalReport
         Try
             ' Determine API endpoint based on report type and name
             Select Case reportName.ToUpper()
-                Case "SALES BY SALESMAN", "COMMISSION REPORT", "PERFORMANCE REPORT"
+                Case "SALES BY SALESMAN"
                     If reportType.ToUpper() = "SUMMARY" Then
                         Return GetSalesManReportSummaryFromAPI(comId, locId, salesManId, startDate, endDate)
                     Else
                         Return GetSalesManReportDetailedFromAPI(comId, locId, salesManId, startDate, endDate)
                     End If
-
-                Case "SALES SUMMARY REPORT"
-                    Return GetSalesSummaryReportFromAPI(comId, locId, startDate, endDate)
-
-                Case "DETAILED SALES REPORT"
-                    Return GetSalesDetailedReportFromAPI(comId, locId, startDate, endDate)
-
+                Case "SALES BY ALL BRANCH"
+                    If reportType.ToUpper() = "SUMMARY" Then
+                        Return GetSalesManReportSummaryFromAPI(0, 0, salesManId, startDate, endDate)
+                    Else
+                        Return GetSalesManReportDetailedFromAPI(0, 0, salesManId, startDate, endDate)
+                    End If
                 Case Else
                     ' Default to detailed sales data
                     Return GetSalesDataFromAPI(4, comId, locId, startDate, endDate)
@@ -634,7 +685,7 @@ Public Class frmSalesChronicalReport
     End Sub
 
 
-    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrintPreview.Click
         Try
             lblStatusResults.Text = "Preparing print preview..."
             CreatePrintableComponentLinkPreview()
@@ -647,6 +698,7 @@ Public Class frmSalesChronicalReport
     End Sub
 #End Region
 #Region "PrintViewReport"
+
     Private Sub CreatePrintableComponentLinkPreview()
         Try
             ' Create PrintableComponentLink for advanced printing
@@ -681,7 +733,7 @@ Public Class frmSalesChronicalReport
 
             ' Create the document and show preview
             printableComponentLink.CreateDocument(ps)
-            printableComponentLink.ShowPreview()
+            printableComponentLink.ShowPreviewDialog()
 
         Catch ex As Exception
             ' Fallback to basic print if PrintableComponentLink fails
@@ -695,6 +747,21 @@ Public Class frmSalesChronicalReport
             If dtSalesData IsNot Nothing AndAlso dtSalesData.Rows.Count > 0 Then
                 Dim totalAmount As Decimal = 0
                 Dim amountColumnName As String = "psid_invoice_netamt"
+                ' Get selected report info to determine which column to sum
+                Dim reportType As String = GetSelectedReportType()
+                Dim reportName As String = GetSelectedReportName()
+
+
+                Select Case reportName.ToUpper()
+                    Case "SALES BY SALESMAN", "SALES BY ALL BRANCH"
+                        If reportType.ToUpper() = "SUMMARY" Then
+                            amountColumnName = "TotalNetAmt" ' For summary report
+                        Else
+                            amountColumnName = "NetAmt" ' For detailed report
+                        End If
+                    Case Else
+                        amountColumnName = "psid_invoice_netamt" ' Default for other reports
+                End Select
 
                 ' Ensure the column exists before trying to access it
                 If dtSalesData.Columns.Contains(amountColumnName) Then
@@ -714,14 +781,16 @@ Public Class frmSalesChronicalReport
             Return "Summary unavailable (Error)"
         End Try
     End Function
-    Private Function GetCompanyAddress() As String
+    Private Sub btnprintreport_Click(sender As Object, e As EventArgs) Handles btnprintreport.Click
         Try
-            ' Replace with actual data source
-            Return "123 Business Street, Business City, State 12345, Phone: (123) 456-7890"
+            Dim reportType As String = GetSelectedReportType()
+            Dim reportName As String = GetSelectedReportName()
+            print(reportType, reportName)
         Catch ex As Exception
-            Return "Address Not Available"
+
         End Try
-    End Function
+    End Sub
+
 #End Region
 #Region "Api Get Data"
     Private Function GetSalesManReportSummaryFromAPI(comId As String, locId As String, salesManId As String, startDate As String, endDate As String) As DataTable
@@ -729,15 +798,28 @@ Public Class frmSalesChronicalReport
             Dim url As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=5"
             Dim postData As String = String.Format("comid={0}&locid={1}&salesmanId={2}&startDate={3}&endDate={4}",
                                                   comId, locId, salesManId, startDate, endDate)
-
+            Dim SalesData As New DataTable
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Using client As New WebClient()
                 client.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
                 Dim jsonResponse As String = client.UploadString(url, postData)
-
+                Dim Userparsejson As JObject = JObject.Parse(jsonResponse)
                 If Not String.IsNullOrEmpty(jsonResponse) Then
-                    Return ConvertJsonToDataTable(jsonResponse)
+                    If Userparsejson("Success").ToString().ToLower() = "true" Then
+                        If Userparsejson("Data") IsNot Nothing Then
+                            SalesData = Userparsejson("Data").ToObject(Of DataTable)()
+                            Return SalesData
+                        End If
+                    Else
+                        ' Show error message from API
+                        Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
+                        MessageBox.Show("API Error: " & errorMsg, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+
                 End If
             End Using
+            ' Check if the response was successful
+
 
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine("Error fetching salesman summary report: " & ex.Message)
@@ -748,21 +830,34 @@ Public Class frmSalesChronicalReport
 
     Private Function GetSalesManReportDetailedFromAPI(comId As String, locId As String, salesManId As String, startDate As String, endDate As String) As DataTable
         Try
-            Dim url As String = "http://localhost/retailbilling/controller/getsynctocloudlocal.php"
-            Dim postData As String = String.Format("comid={0}&locid={1}&salesmanid={2}&startdate={3}&enddate={4}&reporttype=salesmandetailed",
+            Dim url As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=6"
+            Dim postData As String = String.Format("comid={0}&locid={1}&salesmanId={2}&startDate={3}&endDate={4}",
                                                   comId, locId, salesManId, startDate, endDate)
-
+            Dim SalesData As New DataTable
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Using client As New WebClient()
                 client.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
                 Dim jsonResponse As String = client.UploadString(url, postData)
-
+                Dim Userparsejson As JObject = JObject.Parse(jsonResponse)
                 If Not String.IsNullOrEmpty(jsonResponse) Then
-                    Return ConvertJsonToDataTable(jsonResponse)
+                    If Userparsejson("Success").ToString().ToLower() = "true" Then
+                        If Userparsejson("Data") IsNot Nothing Then
+                            SalesData = Userparsejson("Data").ToObject(Of DataTable)()
+                            Return SalesData
+                        End If
+                    Else
+                        ' Show error message from API
+                        Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
+                        MessageBox.Show("API Error: " & errorMsg, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+
                 End If
             End Using
+            ' Check if the response was successful
+
 
         Catch ex As Exception
-            System.Diagnostics.Debug.WriteLine("Error fetching salesman detailed report: " & ex.Message)
+            System.Diagnostics.Debug.WriteLine("Error fetching salesman summary report: " & ex.Message)
         End Try
 
         Return Nothing
@@ -779,7 +874,7 @@ Public Class frmSalesChronicalReport
                 Dim jsonResponse As String = client.UploadString(url, postData)
 
                 If Not String.IsNullOrEmpty(jsonResponse) Then
-                    Return ConvertJsonToDataTable(jsonResponse)
+                    ' Return ConvertJsonToDataTable(jsonResponse)
                 End If
             End Using
 
@@ -801,7 +896,7 @@ Public Class frmSalesChronicalReport
                 Dim jsonResponse As String = client.UploadString(url, postData)
 
                 If Not String.IsNullOrEmpty(jsonResponse) Then
-                    Return ConvertJsonToDataTable(jsonResponse)
+                    '  Return ConvertJsonToDataTable(jsonResponse)
                 End If
             End Using
 
@@ -812,29 +907,6 @@ Public Class frmSalesChronicalReport
         Return Nothing
     End Function
 
-    Private Function ConvertJsonToDataTable(jsonResponse As String) As DataTable
-        Try
-            ' Clean the JSON response
-            Dim cleanJson As String = CleanJsonString(jsonResponse)
-
-            ' Parse JSON to DataTable
-            If cleanJson.StartsWith("{") AndAlso cleanJson.Contains("data") Then
-                ' Parse as object with data property
-                Dim jsonObj As JObject = JObject.Parse(cleanJson)
-                Dim dataArray As JArray = CType(jsonObj("data"), JArray)
-                Return JsonArrayToDataTable(dataArray)
-            ElseIf cleanJson.StartsWith("[") Then
-                ' Parse as direct array
-                Dim jsonArray As JArray = JArray.Parse(cleanJson)
-                Return JsonArrayToDataTable(jsonArray)
-            End If
-
-        Catch ex As Exception
-            System.Diagnostics.Debug.WriteLine("Error converting JSON to DataTable: " & ex.Message)
-        End Try
-
-        Return Nothing
-    End Function
 
     Private Function JsonArrayToDataTable(jsonArray As JArray) As DataTable
         Try
@@ -895,4 +967,6 @@ Public Class frmSalesChronicalReport
         End Try
     End Function
 #End Region
+
+
 End Class

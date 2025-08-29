@@ -386,19 +386,25 @@ class clsfuncsync
             psid.psid_invoice_salemanper AS Percentage,
             CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission,
             psid.psid_invoice_date AS Date,
-            psid.psid_invoice_trno AS TransactionNo
+            psid.psid_invoice_trno AS TransactionNo,
+            pm.pcm_name AS CompanyName,
+            pl.plm_name AS LocationName
         FROM pos_sale_invoicedtl AS psid
-        INNER JOIN pos_employeeinfo AS pe
-            ON psid.psid_invoice_salesmanid = pe.emp_id
-        WHERE psid.psid_invoice_date BETWEEN '$startDate' AND '$endDate'
-          AND psid.psid_invoice_comid = '$comid'
-          AND psid.psid_invoice_locid = '$locid'";
+        INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
+        INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
+        INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
+        WHERE psid.psid_invoice_date >= '$startDate' AND psid.psid_invoice_date <=  '$endDate'";
 
         // Add salesman filter if not 'ALL' or '0'
         if (!empty($salesmanId) && $salesmanId != '0' && strtoupper($salesmanId) != 'ALL') {
             $sql .= " AND psid.psid_invoice_salesmanid = '$salesmanId'";
         }
-
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_locid = '$locid'";
+        }
         $sql .= " ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
 
         // Log the query for debugging (remove in production)
@@ -428,20 +434,26 @@ class clsfuncsync
             COUNT(psid.psid_invoice_netamt) AS TotalItems,
             CAST(SUM(psid.psid_invoice_netamt) AS DECIMAL(18,2)) AS TotalNetAmt,
             CAST(AVG(psid.psid_invoice_salemanper) AS DECIMAL(5,2)) AS AvgPercentage,
-            CAST(SUM((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100) AS DECIMAL(18,2)) AS TotalCommission
+            CAST(SUM((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100) AS DECIMAL(18,2)) AS TotalCommission,
+            pm.pcm_name AS CompanyName,
+            pl.plm_name AS LocationName
         FROM pos_sale_invoicedtl AS psid
-        INNER JOIN pos_employeeinfo AS pe
-            ON psid.psid_invoice_salesmanid = pe.emp_id
-        WHERE psid.psid_invoice_date BETWEEN '$startDate' AND '$endDate'
-          AND psid.psid_invoice_comid = '$comid'
-          AND psid.psid_invoice_locid = '$locid'";
+        INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
+        INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
+        INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
+        WHERE psid.psid_invoice_date BETWEEN '$startDate' AND '$endDate'";
 
         // Add salesman filter if not 'ALL' or '0'
         if (!empty($salesmanId) && $salesmanId != '0' && strtoupper($salesmanId) != 'ALL') {
             $sql .= " AND psid.psid_invoice_salesmanid = '$salesmanId'";
         }
-
-        $sql .= " GROUP BY pe.emp_id, pe.emp_printname ORDER BY TotalCommission DESC";
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_locid = '$locid'";
+        }
+        $sql .= " GROUP BY pe.emp_id, pe.emp_printname,pm.pcm_name, pl.plm_name ORDER BY TotalCommission DESC";
 
         // Log the query for debugging (remove in production)
         error_log("Salesman Report Summary Query: " . $sql);

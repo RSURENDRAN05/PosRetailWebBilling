@@ -207,8 +207,8 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
             $startDate = isset($_REQUEST['startDate']) ? $_REQUEST['startDate'] : '';
             $endDate = isset($_REQUEST['endDate']) ? $_REQUEST['endDate'] : '';
 
-            // Validate required parameters
-            if (empty($comid) || empty($locid) || empty($salesmanId) || empty($startDate) || empty($endDate)) {
+            // Validate required parameters - use isset() for numeric fields to allow 0 values
+            if (!isset($_REQUEST['comid']) || !isset($_REQUEST['locid']) || !isset($_REQUEST['salesmanId']) || empty($startDate) || empty($endDate)) {
                 throw new Exception("Missing required parameters: comid=$comid, locid=$locid, salesmanId=$salesmanId, startDate=$startDate, endDate=$endDate");
             }
 
@@ -237,14 +237,14 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
             error_log("AjaxRequest=6 called with parameters: " . print_r($_GET, true));
 
             // Get parameters from URL
-            $comid = isset($_GET['comid']) ? $_GET['comid'] : '';
-            $locid = isset($_GET['locid']) ? $_GET['locid'] : '';
-            $salesmanId = isset($_GET['salesmanId']) ? $_GET['salesmanId'] : '';
-            $startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
-            $endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
+            $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
+            $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
+            $salesmanId = isset($_REQUEST['salesmanId']) ? $_REQUEST['salesmanId'] : '';
+            $startDate = isset($_REQUEST['startDate']) ? $_REQUEST['startDate'] : '';
+            $endDate = isset($_REQUEST['endDate']) ? $_REQUEST['endDate'] : '';
 
             // Validate required parameters
-            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+            if (!isset($_REQUEST['comid']) || !isset($_REQUEST['locid']) || !isset($_REQUEST['salesmanId']) || empty($startDate) || empty($endDate)) {
                 throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
             }
 

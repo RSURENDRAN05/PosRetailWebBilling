@@ -52,9 +52,8 @@ Partial Class frmSalesChronicalReport
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.dtStartDate = New DevExpress.XtraEditors.DateEdit()
         Me.dtEndDate = New DevExpress.XtraEditors.DateEdit()
-        Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
-        Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnPrintPreview = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.lblStatusResults = New DevExpress.XtraEditors.LabelControl()
@@ -62,6 +61,7 @@ Partial Class frmSalesChronicalReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
+        Me.btnprintreport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCurrencyEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +89,7 @@ Partial Class frmSalesChronicalReport
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCurrencyEdit1, Me.RepositoryItemDateEdit1})
-        Me.GridControl1.Size = New System.Drawing.Size(1200, 499)
+        Me.GridControl1.Size = New System.Drawing.Size(1266, 499)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -113,6 +113,8 @@ Partial Class frmSalesChronicalReport
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "psih_invoice_id", Nothing, "Count: {0}")})
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsSelection.MultiSelect = True
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
         Me.GridView1.OptionsView.EnableAppearanceOddRow = True
@@ -322,25 +324,25 @@ Partial Class frmSalesChronicalReport
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.btnprintreport)
         Me.PanelControl1.Controls.Add(Me.ListBoxControlSalemanList)
         Me.PanelControl1.Controls.Add(Me.ListBoxControlReportList)
         Me.PanelControl1.Controls.Add(Me.GroupControl1)
-        Me.PanelControl1.Controls.Add(Me.btnSaveLayout)
         Me.PanelControl1.Controls.Add(Me.btnExport)
-        Me.PanelControl1.Controls.Add(Me.btnPrint)
+        Me.PanelControl1.Controls.Add(Me.btnPrintPreview)
         Me.PanelControl1.Controls.Add(Me.btnRefresh)
         Me.PanelControl1.Controls.Add(Me.btnSearch)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1200, 124)
+        Me.PanelControl1.Size = New System.Drawing.Size(1266, 124)
         Me.PanelControl1.TabIndex = 1
         '
         'ListBoxControlSalemanList
         '
         Me.ListBoxControlSalemanList.Location = New System.Drawing.Point(460, 5)
         Me.ListBoxControlSalemanList.Name = "ListBoxControlSalemanList"
-        Me.ListBoxControlSalemanList.Size = New System.Drawing.Size(249, 115)
+        Me.ListBoxControlSalemanList.Size = New System.Drawing.Size(186, 115)
         Me.ListBoxControlSalemanList.TabIndex = 15
         '
         'ListBoxControlReportList
@@ -429,37 +431,28 @@ Partial Class frmSalesChronicalReport
         Me.dtEndDate.Size = New System.Drawing.Size(100, 20)
         Me.dtEndDate.TabIndex = 7
         '
-        'btnSaveLayout
-        '
-        Me.btnSaveLayout.Image = CType(resources.GetObject("btnSaveLayout.Image"), System.Drawing.Image)
-        Me.btnSaveLayout.Location = New System.Drawing.Point(1099, 96)
-        Me.btnSaveLayout.Name = "btnSaveLayout"
-        Me.btnSaveLayout.Size = New System.Drawing.Size(95, 23)
-        Me.btnSaveLayout.TabIndex = 12
-        Me.btnSaveLayout.Text = "SaveLayout"
-        '
         'btnExport
         '
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(1013, 97)
+        Me.btnExport.Location = New System.Drawing.Point(1079, 5)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(75, 23)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
-        'btnPrint
+        'btnPrintPreview
         '
-        Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-        Me.btnPrint.Location = New System.Drawing.Point(887, 97)
-        Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(115, 23)
-        Me.btnPrint.TabIndex = 10
-        Me.btnPrint.Text = "Grid Preview"
+        Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(825, 5)
+        Me.btnPrintPreview.Name = "btnPrintPreview"
+        Me.btnPrintPreview.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrintPreview.TabIndex = 10
+        Me.btnPrintPreview.Text = "Grid Preview"
         '
         'btnRefresh
         '
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(801, 97)
+        Me.btnRefresh.Location = New System.Drawing.Point(738, 5)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
         Me.btnRefresh.TabIndex = 9
@@ -468,7 +461,7 @@ Partial Class frmSalesChronicalReport
         'btnSearch
         '
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
-        Me.btnSearch.Location = New System.Drawing.Point(715, 97)
+        Me.btnSearch.Location = New System.Drawing.Point(651, 5)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 23)
         Me.btnSearch.TabIndex = 8
@@ -501,7 +494,7 @@ Partial Class frmSalesChronicalReport
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 623)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1200, 30)
+        Me.PanelControl2.Size = New System.Drawing.Size(1266, 30)
         Me.PanelControl2.TabIndex = 2
         '
         'lblTotalRecords
@@ -522,11 +515,20 @@ Partial Class frmSalesChronicalReport
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
+        'btnprintreport
+        '
+        Me.btnprintreport.Image = CType(resources.GetObject("btnprintreport.Image"), System.Drawing.Image)
+        Me.btnprintreport.Location = New System.Drawing.Point(952, 5)
+        Me.btnprintreport.Name = "btnprintreport"
+        Me.btnprintreport.Size = New System.Drawing.Size(115, 23)
+        Me.btnprintreport.TabIndex = 16
+        Me.btnprintreport.Text = "Print"
+        '
         'frmSalesChronicalReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1200, 653)
+        Me.ClientSize = New System.Drawing.Size(1266, 653)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -569,7 +571,7 @@ Partial Class frmSalesChronicalReport
     Friend WithEvents dtStartDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents btnSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnRefresh As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents btnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnPrintPreview As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnExport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents lblTotalAmount As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lblTotalRecords As DevExpress.XtraEditors.LabelControl
@@ -578,7 +580,6 @@ Partial Class frmSalesChronicalReport
 
     ' Grid Columns
     Friend WithEvents lblStatusResults As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents btnSaveLayout As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -602,4 +603,5 @@ Partial Class frmSalesChronicalReport
     Friend WithEvents ListBoxControlSalemanList As DevExpress.XtraEditors.ListBoxControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ListBoxControlReportType As DevExpress.XtraEditors.ListBoxControl
+    Friend WithEvents btnprintreport As DevExpress.XtraEditors.SimpleButton
 End Class

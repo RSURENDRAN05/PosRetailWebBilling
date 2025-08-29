@@ -1,0 +1,111 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SalesData">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:string" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
+                <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="Percentage" type="xs:string" minOccurs="0" />
+                <xs:element name="Commission" type="xs:string" minOccurs="0" />
+                <xs:element name="Date" type="xs:string" minOccurs="0" />
+                <xs:element name="TransactionNo" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SalesData>
+    <ID>1</ID>
+    <Name>FZULS</Name>
+    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
+    <NetAmt>2.15</NetAmt>
+    <Percentage>2.00</Percentage>
+    <Commission>0.04</Commission>
+    <Date>2025-08-28</Date>
+    <TransactionNo>21</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>1</ID>
+    <Name>FZULS</Name>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <NetAmt>21.20</NetAmt>
+    <Percentage>3.00</Percentage>
+    <Commission>0.64</Commission>
+    <Date>2025-08-27</Date>
+    <TransactionNo>2</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>1</ID>
+    <Name>FZULS</Name>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <NetAmt>4200.00</NetAmt>
+    <Percentage>2.00</Percentage>
+    <Commission>84.00</Commission>
+    <Date>2025-08-27</Date>
+    <TransactionNo>2</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>1</ID>
+    <Name>FZULS</Name>
+    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
+    <NetAmt>451.00</NetAmt>
+    <Percentage>2.00</Percentage>
+    <Commission>9.02</Commission>
+    <Date>2025-08-27</Date>
+    <TransactionNo>3</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>2</ID>
+    <Name>SUREN</Name>
+    <ItemName>MINI PC</ItemName>
+    <NetAmt>5450.00</NetAmt>
+    <Percentage>0.00</Percentage>
+    <Commission>0.00</Commission>
+    <Date>2025-08-28</Date>
+    <TransactionNo>21</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>2</ID>
+    <Name>SUREN</Name>
+    <ItemName>HAIR CUT ADULT</ItemName>
+    <NetAmt>21.20</NetAmt>
+    <Percentage>10.00</Percentage>
+    <Commission>2.12</Commission>
+    <Date>2025-08-28</Date>
+    <TransactionNo>22</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+  <SalesData>
+    <ID>2</ID>
+    <Name>SUREN</Name>
+    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
+    <NetAmt>81.00</NetAmt>
+    <Percentage>10.00</Percentage>
+    <Commission>8.10</Commission>
+    <Date>2025-08-27</Date>
+    <TransactionNo>3</TransactionNo>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+  </SalesData>
+</NewDataSet>
