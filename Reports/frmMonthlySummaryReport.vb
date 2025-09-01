@@ -422,7 +422,7 @@ Public Class frmMonthlySummaryReport
                         End If
                     Else
                         ' Show error message from API
-                        Dim errorMsg As String = If(Userparsejson("message") IsNot Nothing, Userparsejson("message").ToString(), "Unknown API error")
+                        Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
                         Throw New Exception(String.Format("API Error: {0}", errorMsg))
                     End If
                 End If
@@ -563,14 +563,14 @@ Public Class frmMonthlySummaryReport
     Private Sub dtMonthYear_EditValueChanged(sender As Object, e As EventArgs) Handles dtMonthYear.EditValueChanged
         ' Reload data when month/year changes
         If Not Me.Disposing AndAlso Me.Visible Then
-            LoadMonthlySummaryData()
+            'LoadMonthlySummaryData()
         End If
     End Sub
 
     Private Sub ListBoxControlReportType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxControlReportType.SelectedIndexChanged
         ' Reload data when report type changes
         If Not Me.Disposing AndAlso Me.Visible Then
-            LoadMonthlySummaryData()
+            ' LoadMonthlySummaryData()
         End If
     End Sub
  
