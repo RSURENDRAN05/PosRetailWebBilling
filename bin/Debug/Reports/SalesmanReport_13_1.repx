@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XRReportLayoutSerializer Version="13.1">
+  <XtraReport>
+    <Bands>
+      <DetailBand HeightF="0" />
+      <GroupHeaderBand Name="SalesmanHeader" HeightF="40">
+        <Controls>
+          <XRLabel Text="Salesman: [SalesmanData.Name]" LocationF="0,0" SizeF="300,20" />
+          <XRLabel Text="Company: [SalesmanData.CompanyName]" LocationF="0,20" SizeF="300,20" />
+          <XRLabel Text="Location: [SalesmanData.LocationName]" LocationF="300,20" SizeF="300,20" />
+        </Controls>
+      </GroupHeaderBand>
+      <DetailReport DataMember="SalesmanData">
+        <Bands>
+          <DetailBand HeightF="20">
+            <Controls>
+              <XRTable LocationF="0,0" SizeF="600,20">
+                <Rows>
+                  <XRTableRow>
+                    <XRTableCell Text="[MonYear]" />
+                    <XRTableCell Text="[NetAmt]" TextFormatString="{0:n2}" />
+                    <XRTableCell Text="[Commision]" TextFormatString="{0:n2}" />
+                  </XRTableRow>
+                </Rows>
+              </XRTable>
+            </Controls>
+          </DetailBand>
+        </Bands>
+      </DetailReport>
+      <DetailReport DataMember="ItemwiseData">
+        <Bands>
+          <GroupHeaderBand HeightF="20">
+            <Controls>
+              <XRLabel Text="Itemwise Sales" />
+            </Controls>
+          </GroupHeaderBand>
+          <DetailBand HeightF="20">
+            <Controls>
+              <XRTable LocationF="0,0" SizeF="600,20">
+                <Rows>
+                  <XRTableRow>
+                    <XRTableCell Text="[ItemName]" />
+                    <XRTableCell Text="[NetAmt]" TextFormatString="{0:n2}" />
+                    <XRTableCell Text="[Commision]" TextFormatString="{0:n2}" />
+                  </XRTableRow>
+                </Rows>
+              </XRTable>
+            </Controls>
+          </DetailBand>
+        </Bands>
+      </DetailReport>
+      <DetailReport DataMember="AdvanceData">
+        <Bands>
+          <GroupHeaderBand HeightF="20">
+            <Controls>
+              <XRLabel Text="Advance Payments" />
+            </Controls>
+          </GroupHeaderBand>
+          <DetailBand HeightF="20">
+            <Controls>
+              <XRTable LocationF="0,0" SizeF="600,20">
+                <Rows>
+                  <XRTableRow>
+                    <XRTableCell Text="[TotalAmount]" TextFormatString="{0:n2}" />
+                  </XRTableRow>
+                </Rows>
+              </XRTable>
+            </Controls>
+          </DetailBand>
+        </Bands>
+      </DetailReport>
+    </Bands>
+  </XtraReport>
+</XRReportLayoutSerializer>

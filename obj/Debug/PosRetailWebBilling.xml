@@ -389,15 +389,6 @@ PosRetailWebBilling
 	<summary>
  Safe date conversion to handle DBNull and invalid date strings
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
-	<summary>
- Save sales bill directly to database (replaces _JsonSendSales)
- </summary>
-	<param name="salesHeader">SalesHeader object</param>
-	<param name="salesDetailsList">List of SalesDetails objects</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
 </member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
 	<summary>
  Save sales bill with payment mode information
@@ -430,15 +421,6 @@ PosRetailWebBilling
 	<summary>
  Convert DataTable to List of SalesDetails
  </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentMode(System.Int32,System.Int32,System.Decimal,System.Int32,System.Int32)">
-	<summary>
- Save payment mode for a sales transaction
- </summary>
-	<param name="salId">Sales ID from pos_sale_invoicehdr</param>
-	<param name="paymode">Payment mode ID (1=Cash, 2=Card, etc.)</param>
-	<param name="amount">Payment amount</param>
-	<param name="shiftNo">Shift number</param>
-	<param name="dayNo">Day number</param>
 </member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
 	<summary>
  Safe string conversion helper for the module

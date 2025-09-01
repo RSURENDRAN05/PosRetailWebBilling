@@ -906,4 +906,22 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnadvancepaymentreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnadvancepaymentreport.ItemClick
+        Try
+            frmAdvancePaymentReport.MdiParent = Me
+            frmAdvancePaymentReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnmonthlysummaryreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmonthlysummaryreport.ItemClick
+        Try
+            frmMonthlySummaryReport.MdiParent = Me
+            frmMonthlySummaryReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

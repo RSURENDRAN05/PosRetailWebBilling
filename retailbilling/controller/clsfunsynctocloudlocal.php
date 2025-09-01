@@ -78,6 +78,10 @@ class clsfuncsync
         try {
             // Start transaction
             mysqli_autocommit($this->conn, false);
+            $pm_id = isset($data['invoice_hdr'][0]['psih_invoice_pmid']) ? $data['invoice_hdr'][0]['psih_invoice_pmid'] : '0';
+            $trno = isset($data['invoice_hdr'][0]['psih_invoice_trno']) ? $data['invoice_hdr'][0]['psih_invoice_trno'] : '0';
+            $comid = isset($data['invoice_hdr'][0]['psih_invoice_comid']) ? $data['invoice_hdr'][0]['psih_invoice_comid'] : '0';
+            $locid = isset($data['invoice_hdr'][0]['psih_invoice_locid']) ? $data['invoice_hdr'][0]['psih_invoice_locid'] : '0';
 
             // First, delete existing records if they exist
             foreach ($data['invoice_hdr'] as $hdr) {
@@ -98,6 +102,14 @@ class clsfuncsync
                                AND psih_invoice_locid = '" . mysqli_real_escape_string($this->conn, isset($hdr['psih_invoice_locid']) ? $hdr['psih_invoice_locid'] : '0') . "'";
 
                 mysqli_query($this->conn, $deleteHdrSql);
+                // Delete existing salpaymode
+                $deletePaymodeSql = "DELETE FROM pos_sale_paymode
+                                   WHERE PmId = '" . mysqli_real_escape_string($this->conn, isset($hdr['psih_invoice_pmid']) ? $hdr['psih_invoice_pmid'] : '0') . "'
+                                   AND Sal_ID = '" . mysqli_real_escape_string($this->conn, isset($hdr['psih_invoice_trno']) ? $hdr['psih_invoice_trno'] : '') . "'
+                                   AND ComId = '" . mysqli_real_escape_string($this->conn, isset($hdr['psih_invoice_comid']) ? $hdr['psih_invoice_comid'] : '0') . "'
+                                   AND LocId = '" . mysqli_real_escape_string($this->conn, isset($hdr['psih_invoice_locid']) ? $hdr['psih_invoice_locid'] : '0') . "'";
+
+                mysqli_query($this->conn, $deletePaymodeSql);
             }
 
             // Insert Invoice Header
@@ -233,7 +245,26 @@ class clsfuncsync
                     throw new Exception("Error inserting invoice detail: " . mysqli_error($this->conn));
                 }
             }
+            // Insert Payment Modes
+            foreach ($data['payment_mode'] as $paymode) {
+                $sql = "INSERT INTO pos_sale_paymode (Sal_ID, Paymode, Amount, ShiftNo, Dayno, Created, PmId, ComId, LocId)
+                        VALUES (
+                            '" . mysqli_real_escape_string($this->conn, $trno) . "',
+                            '" . mysqli_real_escape_string($this->conn, $paymode['Paymode']) . "',
+                            '" . mysqli_real_escape_string($this->conn, $paymode['Amount']) . "',
+                            '" . mysqli_real_escape_string($this->conn, $paymode['ShiftNo']) . "',
+                            '" . mysqli_real_escape_string($this->conn, $paymode['Dayno']) . "',
+                            '" . mysqli_real_escape_string($this->conn, $paymode['Created']) . "',
+                            '" . mysqli_real_escape_string($this->conn, $pm_id) . "',
+                            '" . mysqli_real_escape_string($this->conn, $comid) . "',
+                            '" . mysqli_real_escape_string($this->conn, $locid) . "'
+                        )";
 
+                $result = mysqli_query($this->conn, $sql);
+                if (!$result) {
+                    throw new Exception("Error inserting payment mode: " . mysqli_error($this->conn));
+                }
+            }
             // Commit transaction
             mysqli_commit($this->conn);
             mysqli_autocommit($this->conn, true);
@@ -498,7 +529,257 @@ class clsfuncsync
         }
         return $result;
     }
+    public function SavePayoutData($data, $comid, $locid, $pm_id)
+    {
+        try {
+            // Start transaction
+            mysqli_autocommit($this->conn, false);
+            // Get the actual payout data array
+            $payoutData = isset($data['payout_dtl']) ? $data['payout_dtl'] : $data;
 
+            // Insert new payout records
+            foreach ($payoutData as $payout) {
+                // Check delete status for each individual record
+                $deleteState = isset($payout['payd_deletestatus']) ? $payout['payd_deletestatus'] : 'I';
+                //if exists previous record
+                $deleteitem = "DELETE FROM pos_payout_dtl WHERE payd_refid = '" . mysqli_real_escape_string($this->conn, $payout['payd_id']) . "' AND ComId = '" . mysqli_real_escape_string($this->conn, $comid) . "' AND LocId = '" . mysqli_real_escape_string($this->conn, $locid) . "' AND PmId = '" . mysqli_real_escape_string($this->conn, $pm_id) . "'";
+                mysqli_query($this->conn, $deleteitem);
+                if (mysqli_affected_rows($this->conn) > 0) {
+                    // Record was deleted
+                    error_log("Deleted payout record: " . $payout['payd_id']);
+                }
+
+                if ($deleteState == 'D') {
+                    $payd_id = isset($payout['payd_id']) ? $payout['payd_id'] : '';
+                    if (!empty($payd_id)) {
+                        $deleteResult = $this->DeletePayoutRecord($payd_id, $comid, $locid, $pm_id);
+                        if (!$deleteResult['success']) {
+                            throw new Exception("Failed to delete payout record with ID: $payd_id. " . $deleteResult['message']);
+                        }
+                    }
+                } else {
+                    // Insert the record
+                    // Handle payd_id - use the actual value from JSON
+                    $payd_refid = isset($payout['payd_id']) && !empty($payout['payd_id']) ?
+                        "'" . mysqli_real_escape_string($this->conn, $payout['payd_id']) . "'" :
+                        'NULL';
+
+                    $sql = "INSERT INTO pos_payout_dtl (
+                        payd_refid, payd_ledgerid, payd_name,
+                        payd_amount, payd_remarks, payd_shiftno,
+                        payd_dayno, payd_user, payd_datetime,
+                        PmId, ComId, LocId
+                    )
+                    VALUES (
+                        " . $payd_refid . ",
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_ledgerid']) ? $payout['payd_ledgerid'] : '0') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_name']) ? $payout['payd_name'] : '') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_amount']) ? $payout['payd_amount'] : '0') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_remarks']) ? $payout['payd_remarks'] : '') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_shiftno']) ? $payout['payd_shiftno'] : '0') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_dayno']) ? $payout['payd_dayno'] : '0') . "',
+                        '" . mysqli_real_escape_string($this->conn, isset($payout['payd_user']) ? $payout['payd_user'] : '0') . "',
+                        NOW(),
+                        '" . mysqli_real_escape_string($this->conn, $pm_id) . "',
+                        '" . mysqli_real_escape_string($this->conn, $comid) . "',
+                        '" . mysqli_real_escape_string($this->conn, $locid) . "'
+                    )";
+
+                    $result = mysqli_query($this->conn, $sql);
+                    if (!$result) {
+                        throw new Exception("Error inserting payout record: " . mysqli_error($this->conn) . " SQL: " . $sql);
+                    }
+                }
+            }
+
+            // Commit transaction
+            mysqli_commit($this->conn);
+            mysqli_autocommit($this->conn, true);
+            return array('success' => true, 'message' => 'Payout data saved successfully');
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            mysqli_rollback($this->conn);
+            mysqli_autocommit($this->conn, true);
+            return array('success' => false, 'message' => 'Error saving payout data: ' . $e->getMessage());
+        }
+    }
+
+
+
+    /**
+     * Delete a payout record by ID, company, location, and pm_id.
+     * Returns array('success' => bool, 'message' => string)
+     */
+    public function DeletePayoutRecord($payd_id, $comid, $locid, $pm_id)
+    {
+        $payd_id = mysqli_real_escape_string($this->conn, $payd_id);
+        $comid   = mysqli_real_escape_string($this->conn, $comid);
+        $locid   = mysqli_real_escape_string($this->conn, $locid);
+        $pm_id   = mysqli_real_escape_string($this->conn, $pm_id);
+
+        $sql = "DELETE FROM pos_payout_dtl WHERE paydref_id = '$payd_id' AND ComId = '$comid' AND LocId = '$locid' AND PmId = '$pm_id'";
+        $result = mysqli_query($this->conn, $sql);
+
+        if ($result) {
+            return array('success' => true, 'message' => 'Payout record deleted successfully.');
+        } else {
+            return array('success' => false, 'message' => 'Error deleting payout record: ' . mysqli_error($this->conn));
+        }
+    }
+
+    public function GetAdvanceReport($comid, $locid, $startDate, $endDate, $salesmanId, $OperationType, $OptionsSalesMan, $OptionComidLocid)
+    {
+        // (Operation Type = 1: Summary, 2: Detailed), (OptionsSalesMan : 1: All, 2: By SalesManId as Payd_LedgerId)
+        // (OptionComidLocid : 1: All, 2: By ComId and LocId)
+
+        // Escape variables first
+        $comid = mysqli_real_escape_string($this->conn, $comid);
+        $locid = mysqli_real_escape_string($this->conn, $locid);
+        $salesmanId = mysqli_real_escape_string($this->conn, $salesmanId);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate = mysqli_real_escape_string($this->conn, $endDate);
+
+        // Base query structure based on Operation Type
+        if ($OperationType == 1) {
+            // Summary Report - Group by employee
+            $sql = "SELECT
+                        pe.emp_id AS ID,
+                        pe.emp_printname AS Name,
+                        pm.pcm_name AS CompanyName,
+                        pl.plm_name AS LocationName,
+                        COUNT(ppd.payd_refid) AS TotalTransactions,
+                        SUM(ppd.payd_amount) AS TotalAmount,
+                        MIN(ppd.payd_datetime) AS FirstAdvance,
+                        MAX(ppd.payd_datetime) AS LastAdvance
+                    FROM pos_payout_dtl AS ppd
+                    INNER JOIN pos_employeeinfo AS pe ON ppd.payd_ledgerid = pe.emp_id
+                    INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
+                    INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
+                    WHERE DATE(ppd.payd_datetime) BETWEEN '$startDate' AND '$endDate'";
+        } else {
+            // Detailed Report - Show all records
+            $sql = "SELECT
+                        ppd.payd_refid AS ID,
+                        pe.emp_id AS EmployeeID,
+                        pe.emp_printname AS Name,
+                        ppd.payd_amount AS Amount,
+                        ppd.payd_remarks AS Remarks,
+                        ppd.payd_datetime AS DateTime,
+                        ppd.payd_shiftno AS ShiftNo,
+                        ppd.payd_dayno AS DayNo,
+                        pm.pcm_name AS CompanyName,
+                        pl.plm_name AS LocationName,
+                        ppd.PmId,
+                        ppd.ComId,
+                        ppd.LocId
+                    FROM pos_payout_dtl AS ppd
+                    INNER JOIN pos_employeeinfo AS pe ON ppd.payd_ledgerid = pe.emp_id
+                    INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
+                    INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
+                    WHERE DATE(ppd.payd_datetime) BETWEEN '$startDate' AND '$endDate'";
+        }
+
+        // Apply SalesMan filter based on OptionsSalesMan
+        if ($OptionsSalesMan == 2 && !empty($salesmanId) && $salesmanId != '0') {
+            // Filter by specific SalesMan ID
+            $sql .= " AND ppd.payd_ledgerid = '$salesmanId'";
+        }
+        // If OptionsSalesMan == 1, show all salesmen (no additional filter needed)
+
+        // Apply Company and Location filter based on OptionComidLocid
+        if ($OptionComidLocid == 2) {
+            // Filter by specific Company and Location
+            if (!empty($comid) && $comid != '0') {
+                $sql .= " AND ppd.ComId = '$comid'";
+            }
+            if (!empty($locid) && $locid != '0') {
+                $sql .= " AND ppd.LocId = '$locid'";
+            }
+        }
+        // If OptionComidLocid == 1, show all companies and locations (no additional filter needed)
+
+        // Add GROUP BY for summary report
+        if ($OperationType == 1) {
+            $sql .= " GROUP BY pe.emp_id, pe.emp_printname, pm.pcm_name, pl.plm_name, ppd.ComId, ppd.LocId";
+            $sql .= " ORDER BY TotalAmount DESC, pe.emp_printname";
+        } else {
+            $sql .= " ORDER BY ppd.payd_datetime DESC, pe.emp_printname";
+        }
+
+        // Log the query for debugging (remove in production)
+        error_log("Advance Report Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+
+        if ($result) {
+            $data = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = $row;
+            }
+            return array('success' => true, 'data' => $data);
+        } else {
+            return array('success' => false, 'message' => 'Error fetching advance report: ' . mysqli_error($this->conn));
+        }
+    }
+ 
+    public function GetMonthlySummaryReportAll($year, $month)
+    {
+        try {
+            // Escape variables for security
+            $year = (int)mysqli_real_escape_string($this->conn, $year);
+            $month = (int)mysqli_real_escape_string($this->conn, $month);
+
+            // Call stored procedure to get all result sets
+            $sql = "CALL sp_monthly_sales_report($year, $month)";
+
+            // Log the query for debugging
+            error_log("Monthly Summary Report Query: " . $sql);
+
+            // Execute the stored procedure
+            if (!mysqli_multi_query($this->conn, $sql)) {
+                throw new Exception("Error executing stored procedure: " . mysqli_error($this->conn));
+            }
+
+            $resultSets = array(
+                'SalesmanData' => array(),
+                'ItemwiseData' => array(),
+                'AdvanceData' => array()
+            );
+
+            $resultIndex = 0;
+            $resultNames = array('SalesmanData', 'ItemwiseData', 'AdvanceData');
+
+            // Process each result set
+            do {
+                $result = mysqli_store_result($this->conn);
+                if ($result) {
+                    $data = array();
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $data[] = $row;
+                    }
+
+                    if ($resultIndex < count($resultNames)) {
+                        $resultSets[$resultNames[$resultIndex]] = $data;
+                    }
+
+                    mysqli_free_result($result);
+                }
+                $resultIndex++;
+            } while (mysqli_next_result($this->conn));
+
+            // Check if we have any data
+            $totalRecords = count($resultSets['SalesmanData']) + count($resultSets['ItemwiseData']) + count($resultSets['AdvanceData']);
+
+            if ($totalRecords > 0) {
+                return array('success' => true, 'data' => $resultSets);
+            } else {
+                return array('success' => false, 'message' => 'No data found for the specified month and year');
+            }
+        } catch (Exception $e) {
+            error_log("GetMonthlySummaryReportAll Error: " . $e->getMessage());
+            return array('success' => false, 'message' => 'Error fetching monthly summary report: ' . $e->getMessage());
+        }
+    }
 
     // /**
     //  * Process large datasets in batches to avoid memory and timeout issues

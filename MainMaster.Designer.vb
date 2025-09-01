@@ -19,7 +19,6 @@ Partial Class MainMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMaster))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.barcompany = New DevExpress.XtraBars.BarButtonItem()
@@ -67,7 +66,8 @@ Partial Class MainMaster
         Me.bardayno = New DevExpress.XtraBars.BarStaticItem()
         Me.barsalesdetailsreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnchronicalreport = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnadvancepaymentreport = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnmonthlysummaryreport = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -90,8 +90,8 @@ Partial Class MainMaster
         Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroupAppearance = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
+        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager()
+        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
         Me.cmbCompany = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmbLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -119,9 +119,9 @@ Partial Class MainMaster
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.BarButtonItem5})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 52
+        Me.RibbonControl.MaxItemId = 53
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
         Me.RibbonControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show
@@ -480,11 +480,21 @@ Partial Class MainMaster
         Me.barbtnchronicalreport.LargeGlyph = CType(resources.GetObject("barbtnchronicalreport.LargeGlyph"), System.Drawing.Image)
         Me.barbtnchronicalreport.Name = "barbtnchronicalreport"
         '
-        'BarButtonItem5
+        'barbtnadvancepaymentreport
         '
-        Me.BarButtonItem5.Caption = "Monthly Collection Report"
-        Me.BarButtonItem5.Id = 51
-        Me.BarButtonItem5.Name = "BarButtonItem5"
+        Me.barbtnadvancepaymentreport.Caption = "Advance Payment Report"
+        Me.barbtnadvancepaymentreport.Glyph = CType(resources.GetObject("barbtnadvancepaymentreport.Glyph"), System.Drawing.Image)
+        Me.barbtnadvancepaymentreport.Id = 51
+        Me.barbtnadvancepaymentreport.LargeGlyph = CType(resources.GetObject("barbtnadvancepaymentreport.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnadvancepaymentreport.Name = "barbtnadvancepaymentreport"
+        '
+        'barbtnmonthlysummaryreport
+        '
+        Me.barbtnmonthlysummaryreport.Caption = "Monthly Summary Report"
+        Me.barbtnmonthlysummaryreport.Glyph = CType(resources.GetObject("barbtnmonthlysummaryreport.Glyph"), System.Drawing.Image)
+        Me.barbtnmonthlysummaryreport.Id = 52
+        Me.barbtnmonthlysummaryreport.LargeGlyph = CType(resources.GetObject("barbtnmonthlysummaryreport.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnmonthlysummaryreport.Name = "barbtnmonthlysummaryreport"
         '
         'RibbonPageMaster
         '
@@ -569,7 +579,8 @@ Partial Class MainMaster
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barsalessummaryreport)
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barsalesdetailsreport)
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnchronicalreport)
-        Me.RibbonPageGroup12.ItemLinks.Add(Me.BarButtonItem5)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnadvancepaymentreport)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnmonthlysummaryreport)
         Me.RibbonPageGroup12.Name = "RibbonPageGroup12"
         Me.RibbonPageGroup12.Text = "Report"
         '
@@ -884,7 +895,8 @@ Partial Class MainMaster
     Friend WithEvents RibbonPageGroup12 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents barsalesdetailsreport As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnchronicalreport As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnadvancepaymentreport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnmonthlysummaryreport As DevExpress.XtraBars.BarButtonItem
 
 
 End Class

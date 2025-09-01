@@ -82,88 +82,81 @@ Public Class SalesDBHelper
         End If
     End Function
 
-    ''' <summary>
-    ''' Save sales bill directly to database (replaces _JsonSendSales)
-    ''' </summary>
-    ''' <param name="salesHeader">SalesHeader object</param>
-    ''' <param name="salesDetailsList">List of SalesDetails objects</param>
-    ''' <param name="errorMessage">Error message output</param>
-    ''' <param name="returnBillNo">Generated bill number output</param>
-    ''' <returns>True if successful, False if failed</returns>
-    Public Function SaveSalesBill(salesHeader As SalesHeader, salesDetailsList As List(Of SalesDetails), ByRef errorMessage As String, ByRef returnBillNo As String) As Boolean
-        Dim connection As SqlConnection = Nothing
-        Dim transaction As SqlTransaction = Nothing
+  
+    'Public Function SaveSalesBill(salesHeader As SalesHeader, salesDetailsList As List(Of SalesDetails), ByRef errorMessage As String, ByRef returnBillNo As String) As Boolean
+    '    Dim connection As SqlConnection = Nothing
+    '    Dim transaction As SqlTransaction = Nothing
 
-        Try
-            connection = New SqlConnection(_connectionString)
-            connection.Open()
-            transaction = connection.BeginTransaction()
+    '    Try
+    '        connection = New SqlConnection(_connectionString)
+    '        connection.Open()
+    '        transaction = connection.BeginTransaction()
 
-            ' Save header and get transaction number
-            Dim headerId As Integer = 0
-            Dim transactionNumber As Integer = 0
+    '        ' Save header and get transaction number
+    '        Dim headerId As Integer = 0
+    '        Dim transactionNumber As Integer = 0
 
-            If Not SaveSalesHeader(salesHeader, connection, transaction, transactionNumber, headerId) Then
-                transaction.Rollback()
-                errorMessage = "Failed to save sales header. Transaction Number: " & transactionNumber.ToString() & ", Header ID: " & headerId.ToString()
-                returnBillNo = "0"
-                Return False
-            End If
+    '        If Not SaveSalesHeader(salesHeader, connection, transaction, transactionNumber, headerId) Then
+    '            transaction.Rollback()
+    '            errorMessage = "Failed to save sales header. Transaction Number: " & transactionNumber.ToString() & ", Header ID: " & headerId.ToString()
+    '            returnBillNo = "0"
+    '            Return False
+    '        End If
 
-            ' Validate that we got valid IDs
-            If transactionNumber <= 0 Then
-                transaction.Rollback()
-                errorMessage = "Invalid transaction number generated: " & transactionNumber.ToString()
-                returnBillNo = "0"
-                Return False
-            End If
+    '        ' Validate that we got valid IDs
+    '        If transactionNumber <= 0 Then
+    '            transaction.Rollback()
+    '            errorMessage = "Invalid transaction number generated: " & transactionNumber.ToString()
+    '            returnBillNo = "0"
+    '            Return False
+    '        End If
 
-            If headerId <= 0 Then
-                transaction.Rollback()
-                errorMessage = "Invalid header ID generated: " & headerId.ToString()
-                returnBillNo = "0"
-                Return False
-            End If
+    '        If headerId <= 0 Then
+    '            transaction.Rollback()
+    '            errorMessage = "Invalid header ID generated: " & headerId.ToString()
+    '            returnBillNo = "0"
+    '            Return False
+    '        End If
 
-            ' Save all details
-            For Each detail In salesDetailsList
-                detail.psid_invoice_salid = headerId
-                detail.psid_invoice_trno = transactionNumber.ToString()
-                detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
-                detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
-                detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
-                detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
-                detail.psid_invoice_locid = salesHeader.psih_invoice_locid
-                detail.psid_invoice_comid = salesHeader.psih_invoice_comid
-                Dim detailId As Integer = 0
-                If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
-                    transaction.Rollback()
-                    errorMessage = "Failed to save sales detail"
-                    returnBillNo = "0"
-                    Return False
-                End If
-            Next
+    '        ' Save all details
+    '        For Each detail In salesDetailsList
+    '            detail.psid_invoice_salid = headerId
+    '            detail.psid_invoice_trno = transactionNumber.ToString()
+    '            detail.psid_invoice_date = SafeToDateTime(salesHeader.psih_invoice_date, DateTime.Now)
+    '            detail.psid_invoice_shiftno = salesHeader.psih_invoice_shiftno
+    '            detail.psid_invoice_dayno = salesHeader.psih_invoice_dayno
+    '            detail.psid_invoice_pmid = salesHeader.psih_invoice_pmid
+    '            detail.psid_invoice_locid = salesHeader.psih_invoice_locid
+    '            detail.psid_invoice_comid = salesHeader.psih_invoice_comid
+    '            Dim detailId As Integer = 0
+    '            If Not SaveSalesDetail(detail, connection, transaction, detailId) Then
+    '                transaction.Rollback()
+    '                errorMessage = "Failed to save sales detail"
+    '                returnBillNo = "0"
+    '                Return False
+    '            End If
+    '        Next
 
-            transaction.Commit()
+    '        transaction.Commit()
 
-            errorMessage = "Sales bill saved successfully"
-            returnBillNo = transactionNumber.ToString()
-            Return True
+    '        errorMessage = "Sales bill saved successfully"
+    '        returnBillNo = transactionNumber.ToString()
+    '        Return True
 
-        Catch ex As Exception
-            If transaction IsNot Nothing Then
-                transaction.Rollback()
-            End If
+    '    Catch ex As Exception
+    '        If transaction IsNot Nothing Then
+    '            transaction.Rollback()
+    '        End If
 
-            errorMessage = "Error saving sales bill: " & ex.Message & " | Stack Trace: " & ex.StackTrace
-            returnBillNo = "0"
-            Return False
-        Finally
-            If connection IsNot Nothing Then
-                connection.Close()
-            End If
-        End Try
-    End Function
+    '        errorMessage = "Error saving sales bill: " & ex.Message & " | Stack Trace: " & ex.StackTrace
+    '        returnBillNo = "0"
+    '        Return False
+    '    Finally
+    '        If connection IsNot Nothing Then
+    '            connection.Close()
+    '        End If
+    '    End Try
+    'End Function
 
     ''' <summary>
     ''' Save sales bill with payment mode information
@@ -280,7 +273,7 @@ Public Class SalesDBHelper
                     command.Parameters.AddWithValue("@Amount", paymentMode.Value)
                     command.Parameters.AddWithValue("@ShiftNo", shiftNo)
                     command.Parameters.AddWithValue("@Dayno", dayNo)
-
+                    command.Parameters.AddWithValue("@Webhost", 0)
                     command.ExecuteNonQuery()
                 End Using
             Next
@@ -415,7 +408,7 @@ Public Class SalesDBHelper
 
             ' Save payment modes if provided
             If paymentModes IsNot Nothing AndAlso paymentModes.Count > 0 Then
-                If Not SavePaymentModesWithTransaction(SafeToInt32(salesHeader.psih_invoice_id, 0), paymentModes, SafeToInt32(salesHeader.psih_invoice_shiftno, 1), SafeToInt32(salesHeader.psih_invoice_dayno, 1), connection, transaction) Then
+                If Not SavePaymentModesWithTransaction(SafeToInt32(salesHeader.psih_invoice_trno, 0), paymentModes, SafeToInt32(salesHeader.psih_invoice_shiftno, 1), SafeToInt32(salesHeader.psih_invoice_dayno, 1), connection, transaction) Then
                     transaction.Rollback()
                     errorMessage = "Failed to save payment modes"
                     returnBillNo = "0"
@@ -516,7 +509,7 @@ Public Class SalesDBHelper
             End Using
         Catch ex As Exception
             ' Log the specific error for debugging
-            System.Diagnostics.Debug.WriteLine("SaveSalesHeader Error: " & ex.Message)
+            MsgBox("SaveSalesHeader Error: " & ex.Message)
             ' Reset output parameters on error
             transactionNumber = 0
             headerId = 0
@@ -627,6 +620,7 @@ Public Class SalesDBHelper
             Return False
         End Try
     End Function
+  
 
     ''' <summary>
     ''' Convert DataTable to List of SalesDetails
@@ -640,39 +634,6 @@ Public Class SalesDBHelper
 
         Return salesDetailsList
     End Function
-
-    ''' <summary>
-    ''' Save payment mode for a sales transaction
-    ''' </summary>
-    ''' <param name="salId">Sales ID from pos_sale_invoicehdr</param>
-    ''' <param name="paymode">Payment mode ID (1=Cash, 2=Card, etc.)</param>
-    ''' <param name="amount">Payment amount</param>
-    ''' <param name="shiftNo">Shift number</param>
-    ''' <param name="dayNo">Day number</param>
-    Public Function SavePaymentMode(salId As Integer, paymode As Integer, amount As Decimal, Optional shiftNo As Integer = 1, Optional dayNo As Integer = 1) As Boolean
-        Try
-            Using connection As New SqlConnection(_connectionString)
-                connection.Open()
-
-                Using command As New SqlCommand("SP_SavePaymentMode", connection)
-                    command.CommandType = CommandType.StoredProcedure
-
-                    command.Parameters.AddWithValue("@Sal_ID", salId)
-                    command.Parameters.AddWithValue("@Paymode", paymode)
-                    command.Parameters.AddWithValue("@Amount", amount)
-                    command.Parameters.AddWithValue("@ShiftNo", shiftNo)
-                    command.Parameters.AddWithValue("@Dayno", dayNo)
-
-                    command.ExecuteNonQuery()
-                    Return True
-                End Using
-            End Using
-        Catch ex As Exception
-            System.Diagnostics.Debug.WriteLine("SavePaymentMode Error: " & ex.Message)
-            Return False
-        End Try
-    End Function
-
 End Class
 
 Module PrintViewReport

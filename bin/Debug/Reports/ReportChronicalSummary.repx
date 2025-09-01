@@ -330,7 +330,7 @@ namespace XtraReportSerialization {
             this.pageInfo2.Format = "{0:dd-MM-yy hh:mm tt}";
             this.pageInfo2.LocationFloat = new DevExpress.Utils.PointFloat(489.5833F, 0F);
             this.pageInfo2.Name = "pageInfo2";
-            this.pageInfo2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.pageInfo2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.pageInfo2.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
             this.pageInfo2.SizeF = new System.Drawing.SizeF(172.4358F, 23F);
             this.pageInfo2.StylePriority.UseTextAlignment = false;
@@ -342,7 +342,7 @@ namespace XtraReportSerialization {
                         new DevExpress.XtraReports.UI.XRBinding("Text", null, "SalesData.LocationName")});
             this.label8.LocationFloat = new DevExpress.Utils.PointFloat(261.4583F, 0F);
             this.label8.Name = "label8";
-            this.label8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.label8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label8.SizeF = new System.Drawing.SizeF(157.2917F, 23F);
             this.label8.Text = "label8";
             // 
@@ -352,7 +352,7 @@ namespace XtraReportSerialization {
                         new DevExpress.XtraReports.UI.XRBinding("Text", null, "SalesData.CompanyName")});
             this.label7.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.label7.Name = "label7";
-            this.label7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.label7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label7.SizeF = new System.Drawing.SizeF(218.75F, 23F);
             this.label7.Text = "label7";
             // 
@@ -360,7 +360,7 @@ namespace XtraReportSerialization {
             // 
             this.pageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(674.3333F, 0F);
             this.pageInfo1.Name = "pageInfo1";
-            this.pageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.pageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.pageInfo1.SizeF = new System.Drawing.SizeF(116.6667F, 23F);
             this.pageInfo1.StylePriority.UseTextAlignment = false;
             this.pageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -382,7 +382,7 @@ namespace XtraReportSerialization {
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
             this.label5.LocationFloat = new DevExpress.Utils.PointFloat(350F, 23.00002F);
             this.label5.Name = "label5";
-            this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label5.SizeF = new System.Drawing.SizeF(100F, 23F);
             this.label5.StylePriority.UseFont = false;
             this.label5.StylePriority.UseTextAlignment = false;

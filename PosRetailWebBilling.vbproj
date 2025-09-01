@@ -561,6 +561,12 @@
     <Compile Include="Master\Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\frmAdvancePaymentReport.designer.vb">
+      <DependentUpon>frmAdvancePaymentReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmAdvancePaymentReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\frmSalesChronicalReport.designer.vb">
       <DependentUpon>frmSalesChronicalReport.vb</DependentUpon>
     </Compile>
@@ -577,6 +583,12 @@
       <DependentUpon>frmSalesSummaryReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\frmSalesSummaryReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmMonthlySummaryReport.Designer.vb">
+      <DependentUpon>frmMonthlySummaryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmMonthlySummaryReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\frmPayouts.designer.vb">
@@ -859,6 +871,10 @@
       <DependentUpon>FrmPosSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmAdvancePaymentReport.resx">
+      <DependentUpon>frmAdvancePaymentReport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmSalesChronicalReport.resx">
       <DependentUpon>frmSalesChronicalReport.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -869,6 +885,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmSalesSummaryReport.resx">
       <DependentUpon>frmSalesSummaryReport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmMonthlySummaryReport.resx">
+      <DependentUpon>frmMonthlySummaryReport.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPayouts.resx">

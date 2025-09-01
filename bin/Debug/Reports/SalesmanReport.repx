@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XtraReport Version="22.1" ScriptLanguage="VB" Landscape="false" PageWidth="827" PageHeight="1169" Dpi="100">
+  <DataSources>
+    <DataSource Name="ReportDataSource">
+      <DataSourceComponent Name="SalesmanData" />
+      <DataSourceComponent Name="ItemwiseData" />
+      <DataSourceComponent Name="AdvanceData" />
+    </DataSource>
+  </DataSources>
+  <Bands>
+    <DetailBand Name="Detail" HeightF="0" />
+    <GroupHeaderBand Name="GroupHeaderSalesman" HeightF="50" Level="0">
+      <GroupFields>
+        <GroupField FieldName="emp_id" SortOrder="Ascending" />
+      </GroupFields>
+      <Controls>
+        <XRLabel Name="lblSalesmanName" Text="[emp_printname]" LocationF="10,10" Font="Arial,12,Bold"/>
+        <XRLabel Name="lblCompany" Text="[CompanyName]" LocationF="200,10" Font="Arial,10"/>
+        <XRLabel Name="lblLocation" Text="[LocationName]" LocationF="400,10" Font="Arial,10"/>
+        <XRLabel Name="lblMonthYear" Text="[MonYear]" LocationF="600,10" Font="Arial,10"/>
+      </Controls>
+    </GroupHeaderBand>
+
+    <!-- Sales Summary -->
+    <DetailReportBand Name="DetailReportSalesman" DataMember="SalesmanData">
+      <DetailBand Name="DetailSalesman" HeightF="25">
+        <Controls>
+          <XRLabel Name="lblTotalSales" Text="Total Sales: [NetAmt!n2]" LocationF="10,0" Font="Arial,10,Bold"/>
+          <XRLabel Name="lblCommission" Text="Commission: [Commision!n2]" LocationF="300,0" Font="Arial,10,Bold"/>
+        </Controls>
+      </DetailBand>
+    </DetailReportBand>
+
+    <!-- Itemwise Sales -->
+    <DetailReportBand Name="DetailReportItemwise" DataMember="ItemwiseData" DataSource="ReportDataSource">
+      <DetailBand Name="DetailItemwise" HeightF="20">
+        <Controls>
+          <XRLabel Name="lblItemName" Text="[ItemName]" LocationF="10,0" WidthF="200"/>
+          <XRLabel Name="lblItemNet" Text="[NetAmt!n2]" LocationF="250,0" WidthF="100" TextAlignment="TopRight"/>
+          <XRLabel Name="lblItemComm" Text="[Commision!n2]" LocationF="400,0" WidthF="100" TextAlignment="TopRight"/>
+        </Controls>
+      </DetailBand>
+    </DetailReportBand>
+
+    <!-- Advances -->
+    <DetailReportBand Name="DetailReportAdvance" DataMember="AdvanceData" DataSource="ReportDataSource">
+      <DetailBand Name="DetailAdvance" HeightF="20">
+        <Controls>
+          <XRLabel Name="lblAdvanceDate" Text="[payd_datetime!MM/dd/yyyy]" LocationF="10,0" WidthF="150"/>
+          <XRLabel Name="lblAdvanceAmt" Text="[TotalAmount!n2]" LocationF="200,0" WidthF="100" TextAlignment="TopRight"/>
+        </Controls>
+      </DetailBand>
+    </DetailReportBand>
+
+    <GroupFooterBand Name="GroupFooterSalesman" HeightF="20">
+      <XRPageBreak Name="pageBreakSalesman" />
+    </GroupFooterBand>
+  </Bands>
+</XtraReport>

@@ -3,6 +3,7 @@ Imports Newtonsoft.Json.Linq
 Imports System.Drawing
 Imports Newtonsoft.Json
 Imports System.IO
+Imports System.Data.SqlClient
 
 ' PosSalesII Form - Enhanced with Grid Layout Management
 ' Features:
@@ -23,6 +24,7 @@ Public Class PosSalesII
     Private selectedCustomerPhone As String = String.Empty
     Private customerDisplayTable As DataTable
     Private _CashDraw As New RawPrinter
+    Dim salesHelper As New SalesDBHelper(M_Details._Conn)
 #Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
         Try
@@ -84,7 +86,7 @@ Public Class PosSalesII
     End Sub
     Private Sub InitialLoad()
         Try
-            barbtnposstatus.Caption = "PMID-" & _companyInfo.CompanyPMId & "-" & _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
+            barbtnposstatus.Caption = "PMID-" & _companyInfo.CompanyPMID & "-" & _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
             BarDate.Caption = DateTime.Now
             Barshiftno.Caption = "ShiftNo : " & _saleSetting._curShiftno
             Bardayno.Caption = "DayNo : " & _saleSetting._curDayno
@@ -822,11 +824,18 @@ Public Class PosSalesII
         Try
             If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
                 ' Show confirmation dialog
+                Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
                 Dim itemLock = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMLOCK")
-
+                If modeOfSale = "View" Then
+                    MessageBox.Show("You Can't Delete This Item Or Count = 1 -> " & itemName & "?", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Question)
+                    Return
+                ElseIf modeOfSale = "Edit" AndAlso GridDataTble_Insert.Rows.Count = 1 Then
+                    MessageBox.Show("You Can't Delete This Item Or Count = 1 -> " & itemName & "?", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Question)
+                    Return
+                End If
                 If itemLock.ToString = "2" Then
                     If _globalSetting.ItemDeleteActive = True Then
-                        Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+
                         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
                                                                    "Confirm Delete", _
                                                                    MessageBoxButtons.YesNo, _
@@ -836,18 +845,18 @@ Public Class PosSalesII
                         End If
                     Else
                         If _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
-                            Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
+
                             Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
                                                                        "Confirm Delete", _
                                                                        MessageBoxButtons.YesNo, _
                                                                        MessageBoxIcon.Question)
+
                             If result = DialogResult.Yes Then
                                 DeleteSelectedRow(focusedRowHandle)
                             End If
                         End If
                     End If
                 Else
-                    Dim itemName = GridDataTble_Insert.Rows(focusedRowHandle)("ITEMNAME")
                     Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
                                                                "Confirm Delete", _
                                                                MessageBoxButtons.YesNo, _
@@ -919,6 +928,7 @@ Public Class PosSalesII
     ' Method to delete a specific row
     Private Sub DeleteSelectedRow(rowHandle As Integer)
         Try
+
             ' Validate row handle
             If rowHandle < 0 OrElse rowHandle >= GridDataTble_Insert.Rows.Count Then
                 Exit Sub
@@ -931,11 +941,20 @@ Public Class PosSalesII
             Dim rate = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("RATE"))
             Dim qty = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("QTY"))
             Dim psid = Convert.ToDecimal(GridDataTble_Insert.Rows(rowHandle)("PSID"))
-
+            Dim trno = lblinvoiceno.Text
             ' Send delete log to server before removing from grid
             Try
-                SendDeleteLogToServer(itemCode, itemName, qty, netAmount, "Item deleted by user", psid)
-
+                Dim trnoInt As Integer = 0
+                Integer.TryParse(trno, trnoInt)
+                If psid > 0 AndAlso trnoInt > 0 Then
+                    Dim SqlDel(2) As SqlParameter
+                    SqlDel(0) = New SqlParameter("@mode", "D")
+                    SqlDel(1) = New SqlParameter("@psid", psid)
+                    SqlDel(2) = New SqlParameter("@trno", trno)
+                    If _ExecuteNonQuery("sp_DeleteSaleDetails", SqlDel, Errstr) = True Then
+                        SendDeleteLogToServer(itemCode, itemName, qty, netAmount, "Item deleted by user", psid)
+                    End If
+                End If
                 ' Only remove the row if server logging was successful
                 ' Remove the row from DataTable
                 GridDataTble_Insert.Rows.RemoveAt(rowHandle)
@@ -1362,9 +1381,10 @@ Public Class PosSalesII
             ' lblitemdiscountonly.Text = ItemDiscountAmt.ToString("0.00")
             ' lblbilldiscountonly.Text = BillDiscountAmt.ToString("0.00")
             lblservcharge.Text = _globalSettingValues.ServiceTaxValue
-            barselectsalesman_ItemClick(Nothing, Nothing)
+            If modeOfSale = "New" Then
+                barselectsalesman_ItemClick(Nothing, Nothing)
+            End If
             Return True
-
         Catch ex As Exception
             ERR = "Error in SalesGrandtotal: " & ex.Message
             Return False
@@ -2955,7 +2975,7 @@ Public Class PosSalesII
                         End If
 
                         ' Update to database using stored procedure with payment modes
-                        Dim salesHelper As New SalesDBHelper(M_Details._Conn)
+
                         Dim salesDetailsList As List(Of SalesDetails) = salesHelper.ConvertDataTableToSalesDetails(GridDataTble_Insert)
                         Dim _errMsgResult As String = ""
                         Dim ReturnBill As String = "0"
@@ -2979,6 +2999,39 @@ Public Class PosSalesII
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Convert PaymentDetailTable to Dictionary for database operations
+    ''' </summary>
+    Private Function GetPaymentModesDictionary() As Dictionary(Of Integer, Decimal)
+        Try
+            Dim paymentModes As New Dictionary(Of Integer, Decimal)()
+
+            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                Dim paymentId As Integer = Convert.ToInt32(paymentRow("pmode_id"))
+                Dim amount As Decimal = ConvertDecimal(paymentRow("pmode_amount"))
+                paymentModes.Add(paymentId, amount)
+            Next
+
+            Return paymentModes
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error creating payment modes: " & ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return New Dictionary(Of Integer, Decimal)()
+        End Try
+    End Function
+    ''' <summary>
+    ''' Safely convert object to decimal, handling DBNull and empty values
+    ''' </summary>
+    Private Function ConvertDecimal(value As Object) As Decimal
+        Try
+            If value Is Nothing OrElse value Is DBNull.Value OrElse String.IsNullOrEmpty(value.ToString()) Then
+                Return 0D
+            End If
+            Return Convert.ToDecimal(value)
+        Catch ex As Exception
+            Return 0D
+        End Try
+    End Function
 #End Region
 #Region "ViewEdit"
     Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
@@ -2986,6 +3039,7 @@ Public Class PosSalesII
             Dim modeofbill As String = ""
             frmSelectBill.ShowDialog()
             If frmSelectBill.DialogResult = Windows.Forms.DialogResult.OK Then
+                modeOfSale = "View"
                 If GetSalesBySalID(G_SalID, modeofbill) = True Then
                     modeOfSale = modeofbill
                     barbtnstatus.Caption = "Sales Mode : " & modeOfSale
@@ -3099,7 +3153,7 @@ Public Class PosSalesII
                     End If
                 End If
             End If
-            
+
             Return True
         Catch ex As Exception
             Return False
@@ -3266,7 +3320,7 @@ Public Class PosSalesII
         End Try
     End Sub
 
-  
+
 
 
     Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
@@ -3278,44 +3332,7 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
-
-
-
-    ''' <summary>
-    ''' Convert PaymentDetailTable to Dictionary for database operations
-    ''' </summary>
-    Private Function GetPaymentModesDictionary() As Dictionary(Of Integer, Decimal)
-        Try
-            Dim paymentModes As New Dictionary(Of Integer, Decimal)()
-
-            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
-                Dim paymentId As Integer = Convert.ToInt32(paymentRow("pmode_id"))
-                Dim amount As Decimal = ConvertDecimal(paymentRow("pmode_amount"))
-                paymentModes.Add(paymentId, amount)
-            Next
-
-            Return paymentModes
-        Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show("Error creating payment modes: " & ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return New Dictionary(Of Integer, Decimal)()
-        End Try
-    End Function
-
-    ''' <summary>
-    ''' Safely convert object to decimal, handling DBNull and empty values
-    ''' </summary>
-    Private Function ConvertDecimal(value As Object) As Decimal
-        Try
-            If value Is Nothing OrElse value Is DBNull.Value OrElse String.IsNullOrEmpty(value.ToString()) Then
-                Return 0D
-            End If
-            Return Convert.ToDecimal(value)
-        Catch ex As Exception
-            Return 0D
-        End Try
-    End Function
-
-  
+#Region "ShiftClose/Staff/CashDrawer"
     Private Sub barbtncounterclose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtncounterclose.ItemClick
         Try
             If CheckSalesBeforeCounterClose() = False Then
@@ -3373,4 +3390,5 @@ Public Class PosSalesII
 
         End Try
     End Sub
+#End Region
 End Class

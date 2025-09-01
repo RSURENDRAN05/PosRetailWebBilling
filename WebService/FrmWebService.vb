@@ -8,9 +8,10 @@ Imports Newtonsoft.Json.Linq
 
 Public Class FrmUploadSalesAutoSync
     Dim errMsg As String = ""
+#Region "InitailProcess"
     Private Sub FrmUploadSalesAutoSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Me.Text = "Web Ver 25.0.0.1 270825"
+            Me.Text = "Web Ver 25.0.0.2 300825"
         Catch ex As Exception
 
         End Try
@@ -21,12 +22,15 @@ Public Class FrmUploadSalesAutoSync
             LoadPosSettings()
             If _globalSetting.AutoSyncSales = True Then
                 UploadSalesToCloud()
-
+                Threading.Thread.Sleep(5000)
+                UploadPayoutToCloud()
             End If
         Catch ex As Exception
             WriteErroLog("UploadSalesToCloud()", ex.Message)
         End Try
     End Sub
+#End Region
+#Region "UploadSalesData"
     Private Sub UploadSalesToCloud()
         Try
             Dim _results As Boolean
@@ -60,14 +64,16 @@ Public Class FrmUploadSalesAutoSync
 
                         Dim HdrData As String = JsonConvert.SerializeObject(_dsBill.Tables(0))
                         Dim DtlData As String = JsonConvert.SerializeObject(_dsBill.Tables(1))
-
+                        Dim PaymodeData As String = JsonConvert.SerializeObject(_dsBill.Tables(2))
                         ' Additional cleaning of JSON strings to remove control characters
                         HdrData = CleanJsonString(HdrData)
                         DtlData = CleanJsonString(DtlData)
+                        PaymodeData = CleanJsonString(PaymodeData)
 
-                        Dim postData As String = String.Format("hdrdata={0}&dtldata={1}",
+                        Dim postData As String = String.Format("hdrdata={0}&dtldata={1}&paymodedata={2}",
                                                              Uri.EscapeDataString(HdrData),
-                                                             Uri.EscapeDataString(DtlData))
+                                                             Uri.EscapeDataString(DtlData),
+                                                             Uri.EscapeDataString(PaymodeData))
                         If JsonPostSales(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=" & 2 & "&pm_id=" & _companyInfo.CompanyPMID & "&trno=" & trno & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId, "POST", postData, _results, _msg, _data) = True Then
                             Dim _SqlPar2(2) As SqlParameter
                             _SqlPar2(0) = New SqlParameter("@mode", "TrnoUpdate")
@@ -119,7 +125,8 @@ Public Class FrmUploadSalesAutoSync
             LogTransactionFailure("SYSTEM", "UploadSalesToCloud Error: " & ex.Message)
         End Try
     End Sub
-
+#End Region
+#Region "JsonConversion"
     ''' <summary>
     ''' Clean JSON string to remove control characters that cause parsing errors
     ''' </summary>
@@ -179,6 +186,8 @@ Public Class FrmUploadSalesAutoSync
 
         Return cleanValue
     End Function
+#End Region
+#Region "PostDataCloud"
     Public Function JsonPostSales(ByVal url As String, ByVal method As String, ByVal data As String, ByRef _results As Boolean, ByRef _msg As String, ByRef _data As String) As Boolean
         Try
             LogTransactionFailure("Post Sales Url :", url)
@@ -271,6 +280,8 @@ Public Class FrmUploadSalesAutoSync
         End Try
     End Function
 
+#End Region
+#Region "ErrorLog"
     ''' <summary>
     ''' Log successful transaction to RichTextBox with real-time display
     ''' </summary>
@@ -500,6 +511,8 @@ Public Class FrmUploadSalesAutoSync
     End Sub
 
 
+#End Region
+#Region "ButtonAction"
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         Try
             RichTextBoxErrorLoadReader.Text = ""
@@ -523,4 +536,52 @@ Public Class FrmUploadSalesAutoSync
 
         End Try
     End Sub
+#End Region
+#Region "UploadPayoutData"
+    Private Function UploadPayoutToCloud() As Boolean
+        Try
+            Dim _results As Boolean
+            Dim _msg As String = ""
+            Dim _data As String = ""
+            Dim _ds As New DataSet
+            Dim _SqlPar(2) As SqlParameter
+            _SqlPar(0) = New SqlParameter("@mode", "SD")
+            _SqlPar(1) = New SqlParameter("@deleteSatus", "0")
+            _SqlPar(2) = New SqlParameter("@payd_id", "0")
+            _ds = _sqlDataAdapter("sp_uploadpayout", _SqlPar, errMsg)
+            LogTransactionInfo("Getting The Payout Details", errMsg)
+            If _ds.Tables(0).Rows.Count > 0 Then
+                LogTransactionInfo("Get Record The Payout Details", _ds.Tables(0).Rows.Count)
+                Dim HdrData As String = JsonConvert.SerializeObject(_ds.Tables(0))
+                HdrData = CleanJsonString(HdrData)
+                Dim postData As String = String.Format("payoutdata={0}", Uri.EscapeDataString(HdrData))
+                For Each _rowHdr In _ds.Tables(0).Rows
+                    Dim trno = _rowHdr("payd_id")
+                    Dim deleteSt = _rowHdr("payd_deletestatus")
+                    If JsonPostSales(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=" & 8 & "&pm_id=" & _companyInfo.CompanyPMID & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId, "POST", postData, _results, _msg, _data) = True Then
+                        Dim _SqlPar2(2) As SqlParameter
+                        _SqlPar2(0) = New SqlParameter("@mode", "UD")
+                        _SqlPar2(1) = New SqlParameter("@deleteSatus", deleteSt) ' if "D" delete record
+                        _SqlPar2(2) = New SqlParameter("@payd_id", trno)
+                        If _ExecuteNonQuery("sp_uploadpayout", _SqlPar2, errMsg) = True Then
+                            LogTransactionSuccess("Post Payout :" & "Data Saved Trno Updated : ", trno)
+
+                        Else
+                            LogTransactionFailure("Post Payout :" & "Data Saved Not Trno Updated : ", trno)
+                        End If
+
+                    Else
+                        LogTransactionFailure("Post Payout :" & "Data Not Saved,Trno Already Exists : ", _msg)
+                    End If
+                Next
+            End If
+            ' Log sync completion
+            LogSyncComplete()
+            Return True
+        Catch ex As Exception
+            LogTransactionFailure("UploadPayoutToCloud Error", ex.Message)
+        End Try
+        Return False
+    End Function
+#End Region
 End Class

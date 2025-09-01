@@ -60,27 +60,28 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
             if (empty($pm_id) || empty($trno) || empty($comid) || empty($locid)) {
                 throw new Exception("Missing required parameters: pm_id, trno, comid, or locid");
             }
-
-            // Check if invoice already exists
-            $GetSaleInvoiceHdr = $clsfunreq->GetSaleInvoiceHdr($pm_id, $trno, $comid, $locid);
             $hdrExists = 0;
-            if ($GetSaleInvoiceHdr && mysqli_num_rows($GetSaleInvoiceHdr) > 0) {
-                $hdrRow = mysqli_fetch_array($GetSaleInvoiceHdr);
-                $hdrExists = isset($hdrRow[0]) ? (int)$hdrRow[0] : 0;
-            }
-
-            $GetSaleInvoiceDtl = $clsfunreq->GetSaleInvoiceDtl($pm_id, $trno, $comid, $locid);
             $dtlExists = 0;
-            if ($GetSaleInvoiceDtl && mysqli_num_rows($GetSaleInvoiceDtl) > 0) {
-                $dtlRow = mysqli_fetch_array($GetSaleInvoiceDtl);
-                $dtlExists = isset($dtlRow[0]) ? (int)$dtlRow[0] : 0;
-            }
+            // // Check if invoice already exists
+            // $GetSaleInvoiceHdr = $clsfunreq->GetSaleInvoiceHdr($pm_id, $trno, $comid, $locid);
+            // $hdrExists = 0;
+            // if ($GetSaleInvoiceHdr && mysqli_num_rows($GetSaleInvoiceHdr) > 0) {
+            //     $hdrRow = mysqli_fetch_array($GetSaleInvoiceHdr);
+            //     $hdrExists = isset($hdrRow[0]) ? (int)$hdrRow[0] : 0;
+            // }
+
+            // $GetSaleInvoiceDtl = $clsfunreq->GetSaleInvoiceDtl($pm_id, $trno, $comid, $locid);
+            // $dtlExists = 0;
+            // if ($GetSaleInvoiceDtl && mysqli_num_rows($GetSaleInvoiceDtl) > 0) {
+            //     $dtlRow = mysqli_fetch_array($GetSaleInvoiceDtl);
+            //     $dtlExists = isset($dtlRow[0]) ? (int)$dtlRow[0] : 0;
+            // }
 
             if ($hdrExists == 0 && $dtlExists == 0) {
                 // Get form data from VB.NET POST request
                 $hdrdata = isset($_POST['hdrdata']) ? $_POST['hdrdata'] : '';
                 $dtldata = isset($_POST['dtldata']) ? $_POST['dtldata'] : '';
-
+                $paymodedata = isset($_POST['paymodedata']) ? $_POST['paymodedata'] : '';
                 if (empty($hdrdata) || empty($dtldata)) {
                     throw new Exception("No header or detail data received in POST");
                 }
@@ -88,10 +89,12 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                 // URL decode the data (VB.NET sends it URL-encoded)
                 $hdrdata = urldecode($hdrdata);
                 $dtldata = urldecode($dtldata);
+                $paymodedata = urldecode($paymodedata);
 
                 // Decode JSON data
                 $hdrArray = json_decode($hdrdata, true);
                 $dtlArray = json_decode($dtldata, true);
+                $paymodeArray = json_decode($paymodedata, true);
 
                 if (!$hdrArray || !$dtlArray) {
                     $hdrError = json_last_error_msg();
@@ -103,7 +106,8 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                 // Prepare data structure for SaveInvoiceData
                 $data = array(
                     'invoice_hdr' => $hdrArray,
-                    'invoice_dtl' => $dtlArray
+                    'invoice_dtl' => $dtlArray,
+                    'payment_mode' => $paymodeArray
                 );
 
                 $result = $clsfunreq->SaveInvoiceData($data);
@@ -296,6 +300,140 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         } catch (Exception $e) {
             error_log("Request 6 Error: " . $e->getMessage());
             echo json_encode(array("Success" => false, "Msg" => "Request 6 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+    //payout Details
+    if ((int)$_REQUEST['AjaxRequest'] == 8) { //PayoutDetails Delete And Save
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=8 called with POST parameters: " . print_r($_POST, true));
+
+            $comid = isset($_POST['comid']) ? $_POST['comid'] : (isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '');
+            $locid = isset($_POST['locid']) ? $_POST['locid'] : (isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '');
+            $pm_id = isset($_POST['pm_id']) ? $_POST['pm_id'] : (isset($_REQUEST['pm_id']) ? $_REQUEST['pm_id'] : '');
+            $payoutdata = isset($_POST['payoutdata']) ? $_POST['payoutdata'] : '';
+
+            // Validate required parameters - use isset() for numeric fields to allow 0 values
+            if (!isset($_POST['comid']) && !isset($_REQUEST['comid'])) {
+                throw new Exception("Missing required parameter: comid");
+            }
+            if (!isset($_POST['locid']) && !isset($_REQUEST['locid'])) {
+                throw new Exception("Missing required parameter: locid");
+            }
+            if (empty($payoutdata)) {
+                throw new Exception("Missing required parameter: payoutdata");
+            }
+            if (!isset($_POST['pm_id']) && !isset($_REQUEST['pm_id'])) {
+                throw new Exception("Missing required parameter: pm_id");
+            }
+
+            // URL decode the data (VB.NET sends it URL-encoded)
+            $payoutdata = urldecode($payoutdata);
+
+            // Decode JSON data
+            $payoutArray = json_decode($payoutdata, true);
+
+            if (!$payoutArray) {
+                $payoutError = json_last_error_msg();
+                throw new Exception("Invalid JSON data - Payout: $payoutError");
+            }
+
+            // Prepare data structure for SavePayoutData
+            $data = array(
+                'payout_dtl' => $payoutArray
+            );
+            $result = $clsfunreq->SavePayoutData($data, $comid, $locid, $pm_id);
+            if ($result['success']) {
+                echo json_encode(array("Success" => true, "Msg" => $result['message'], "Data" => "Payout data saved successfully."));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => $result['message'], "Data" => "Failed to save payout data."));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Msg" => "Request 8 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+    if ((int)$_REQUEST['AjaxRequest'] == 9) { //get advance report with parameters
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=9 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=9 called with POST parameters: " . print_r($_POST, true));
+
+            // Get parameters from REQUEST (works for both GET and POST)
+            $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
+            $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
+            $startDate = isset($_REQUEST['startDate']) ? $_REQUEST['startDate'] : '';
+            $endDate = isset($_REQUEST['endDate']) ? $_REQUEST['endDate'] : '';
+            $salesmanId = isset($_REQUEST['salesmanId']) ? $_REQUEST['salesmanId'] : '';
+            $OperationType = isset($_REQUEST['OperationType']) ? $_REQUEST['OperationType'] : '';
+            $OptionsSalesMan = isset($_REQUEST['OptionsSalesMan']) ? $_REQUEST['OptionsSalesMan'] : '';
+            $OptionComidLocid = isset($_REQUEST['OptionComidLocid']) ? $_REQUEST['OptionComidLocid'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, startDate=$startDate, endDate=$endDate");
+            }
+
+            // Fetch advance report data
+            $advanceReportResult = $clsfunreq->GetAdvanceReport($comid, $locid, $startDate, $endDate, $salesmanId, $OperationType, $OptionsSalesMan, $OptionComidLocid);
+
+            if ($advanceReportResult['success']) {
+                $arr = $advanceReportResult['data'];
+                error_log("Advance report data fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                error_log("Advance report error: " . $advanceReportResult['message']);
+                echo json_encode(array("Success" => false, "Msg" => $advanceReportResult['message'], "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 9 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 9 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+    if ((int)$_REQUEST['AjaxRequest'] == 10) { // Monthly Summary Report using Stored Procedure
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=10 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=10 called with POST parameters: " . print_r($_POST, true));
+
+            // Get parameters from REQUEST (works for both GET and POST)
+            $month = isset($_REQUEST['month']) ? (int)$_REQUEST['month'] : 0;
+            $year = isset($_REQUEST['year']) ? (int)$_REQUEST['year'] : 0;
+
+            // Validate required parameters
+            if (empty($month) || empty($year) || $month < 1 || $month > 12 || $year < 2020) {
+                throw new Exception("Invalid parameters: month=$month, year=$year. Month must be 1-12, year must be >= 2020");
+            }
+
+            // Call stored procedure for monthly summary report - get all result sets at once
+            $monthlySummaryResult = $clsfunreq->GetMonthlySummaryReportAll($year, $month);
+
+            if ($monthlySummaryResult['success']) {
+                $data = $monthlySummaryResult['data'];
+                error_log("Monthly summary report data fetched successfully. SalesmanData: " . count($data['SalesmanData']) .
+                    ", ItemwiseData: " . count($data['ItemwiseData']) .
+                    ", AdvanceData: " . count($data['AdvanceData']));
+
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data" => array(
+                        "SalesmanData" => $data['SalesmanData'],
+                        "ItemwiseData" => $data['ItemwiseData'],
+                        "AdvanceData" => $data['AdvanceData'],
+                        "Month" => $month,
+                        "Year" => $year,
+                        "MonthYear" => date('M-Y', mktime(0, 0, 0, $month, 1, $year))
+                    )
+                ));
+            } else {
+                error_log("Monthly summary report error: " . $monthlySummaryResult['message']);
+                echo json_encode(array("Success" => false, "Msg" => $monthlySummaryResult['message'], "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 10 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 10 Error: " . $e->getMessage(), "Data" => ""));
         }
         exit;
     }

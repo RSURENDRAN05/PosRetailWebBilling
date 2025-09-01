@@ -411,7 +411,7 @@ Public Class PosLogin
     Public Sub _processStart()
         Try
             If Running("AutoSyncSales") = False Then
-                If File.Exists(M_Details._appPath & "\AutoSyncSales.exe") Then
+                If File.Exists(M_Details._appPath & "\1AutoSyncSales.exe") Then
                     info.FileName = M_Details._appPath & "\AutoSyncSales.exe"
                     info.WorkingDirectory = M_Details._appPath & "\"
                     Process.Start(info)
