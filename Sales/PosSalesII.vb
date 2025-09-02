@@ -452,7 +452,7 @@ Public Class PosSalesII
 
                 FlowLayoutPanelMain.Controls.Clear()
                 ' Set FlowLayoutPanel properties for perfect layout
-                FlowLayoutPanelMain.FlowDirection = FlowDirection.LeftToRight
+
                 FlowLayoutPanelMain.WrapContents = True
                 FlowLayoutPanelMain.AutoScroll = True
                 ' Add dynamic SimpleButtons for each category with perfect fit styling
@@ -522,11 +522,6 @@ Public Class PosSalesII
         Try
 
             FlowLayoutPanelSubMenu.Controls.Clear()
-            ' Set FlowLayoutPanel properties for perfect layout
-            FlowLayoutPanelSubMenu.FlowDirection = FlowDirection.TopDown
-            FlowLayoutPanelSubMenu.WrapContents = True
-            FlowLayoutPanelSubMenu.AutoScroll = True
-            ' Add dynamic SimpleButtons for each category with perfect fit styling
 
             Dim selectedMainId As Integer = DefaultMainId ' Store selected main group ID
             Dim firstCategoryId As Integer = 0 ' Will store the first category ID for product loading

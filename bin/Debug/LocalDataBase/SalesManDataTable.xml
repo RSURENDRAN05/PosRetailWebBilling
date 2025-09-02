@@ -18,18 +18,14 @@
   </xs:schema>
   <SalesManDataTable>
     <Id>1</Id>
-    <SalesMan>FZULS</SalesMan>
+    <SalesMan>RAJKUMAR</SalesMan>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>2</Id>
-    <SalesMan>SUREN</SalesMan>
+    <SalesMan>SUVATHI</SalesMan>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>3</Id>
-    <SalesMan>TEST</SalesMan>
-  </SalesManDataTable>
-  <SalesManDataTable>
-    <Id>4</Id>
-    <SalesMan>RA</SalesMan>
+    <SalesMan>KILI FORN</SalesMan>
   </SalesManDataTable>
 </NewDataSet>

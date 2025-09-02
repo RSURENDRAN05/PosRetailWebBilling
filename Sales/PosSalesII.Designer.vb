@@ -21,7 +21,7 @@ Partial Class PosSalesII
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PosSalesII))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.FlowLayoutPanelProduct = New System.Windows.Forms.FlowLayoutPanel()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -571,8 +571,8 @@ Partial Class PosSalesII
         '
         'FlowLayoutPanelSubMenu
         '
+        Me.FlowLayoutPanelSubMenu.AutoScroll = True
         Me.FlowLayoutPanelSubMenu.BackColor = System.Drawing.Color.BlanchedAlmond
-        Me.FlowLayoutPanelSubMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanelSubMenu.Location = New System.Drawing.Point(1141, 125)
         Me.FlowLayoutPanelSubMenu.Margin = New System.Windows.Forms.Padding(2)
         Me.FlowLayoutPanelSubMenu.Name = "FlowLayoutPanelSubMenu"
@@ -1600,7 +1600,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditDelete
         '
         Me.RepositoryItemButtonEditDelete.AutoHeight = False
-        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditDelete.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditDelete.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.RepositoryItemButtonEditDelete.Name = "RepositoryItemButtonEditDelete"

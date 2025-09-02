@@ -208,4 +208,102 @@
     <LOCID>1</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>14</ITEMCODE>
+    <BARCODE>14</BARCODE>
+    <ITEMNAME>GOLD FACIAL</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>120.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>15</ITEMCODE>
+    <BARCODE>15</BARCODE>
+    <ITEMNAME>HAIR MASSAGE</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>16</ITEMCODE>
+    <BARCODE>16</BARCODE>
+    <ITEMNAME>HAIR MASSAGE STEAMING WASH</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>50.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>17</ITEMCODE>
+    <BARCODE>17</BARCODE>
+    <ITEMNAME>KERATIN TREATMENT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>100.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>18</ITEMCODE>
+    <BARCODE>18</BARCODE>
+    <ITEMNAME>HAIR STYLING</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>5.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>19</ITEMCODE>
+    <BARCODE>19</BARCODE>
+    <ITEMNAME>FACE WAX</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>20</ITEMCODE>
+    <BARCODE>20</BARCODE>
+    <ITEMNAME>FACE PACK</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
 </NewDataSet>

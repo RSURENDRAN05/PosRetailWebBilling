@@ -38,138 +38,13 @@
     </xs:element>
   </xs:schema>
   <ItemTouchMasterTable>
-    <Id>1</Id>
-    <BarCode>0</BarCode>
-    <ItemName>ADULT</ItemName>
+    <Id>20</Id>
+    <BarCode>20</BarCode>
+    <ItemName>FACE PACK</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>18.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>15.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>Gold</Color>
-    <Position>1</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>2</Id>
-    <BarCode>2</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>28.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>23.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>LightBlue</Color>
-    <Position>2</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>3</Id>
-    <BarCode>3</BarCode>
-    <ItemName>CHILDREN</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>15.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>12.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>GreenYellow</Color>
-    <Position>3</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>4</Id>
-    <BarCode>4</BarCode>
-    <ItemName>SHAVING</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>12.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>10.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>LightBlue</Color>
-    <Position>4</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>5</Id>
-    <BarCode>5</BarCode>
-    <ItemName>SHAMPOO</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>10.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>0</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>LightBlue</Color>
-    <Position>5</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>6</Id>
-    <BarCode>6</BarCode>
-    <ItemName>BALDING</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>1</CateId>
-    <CateName>HAIR CUT</CateName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -184,71 +59,146 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>Cyan</Color>
+    <Color>RoyalBlue</Color>
     <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>7</Id>
-    <BarCode>7</BarCode>
-    <ItemName>POWDER</ItemName>
+    <Id>19</Id>
+    <BarCode>19</BarCode>
+    <ItemName>FACE WAX</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
-    <CateId>2</CateId>
-    <CateName>HAIR DYE</CateName>
+    <CateId>6</CateId>
+    <CateName>FACE WAX</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>40.00</SellPrice>
+    <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>30.00</MinPrice>
+    <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
+    <AllowMultiPrice>0</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>Blue</Color>
+    <Color>Fuchsia</Color>
     <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>8</Id>
-    <BarCode>8</BarCode>
-    <ItemName>CREAM</ItemName>
+    <Id>18</Id>
+    <BarCode>18</BarCode>
+    <ItemName>HAIR STYLING</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
-    <CateId>2</CateId>
-    <CateName>HAIR DYE</CateName>
+    <CateId>7</CateId>
+    <CateName>OTHERS</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>60.00</SellPrice>
+    <SellPrice>5.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>50.00</MinPrice>
+    <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>1</AllowMultiPrice>
+    <AllowMultiPrice>0</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>RoyalBlue</Color>
+    <Color>LightBlue</Color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>17</Id>
+    <BarCode>17</BarCode>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Turquoise</Color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>16</Id>
+    <BarCode>16</BarCode>
+    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>4</CateId>
+    <CateName>HAIR MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Pink</Color>
     <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>9</Id>
-    <BarCode>9</BarCode>
-    <ItemName>HAIR COLOURING</ItemName>
+    <Id>15</Id>
+    <BarCode>15</BarCode>
+    <ItemName>HAIR MASSAGE</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
-    <CateId>2</CateId>
-    <CateName>HAIR DYE</CateName>
+    <CateId>4</CateId>
+    <CateName>HAIR MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>80.00</SellPrice>
+    <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>80.00</MinPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Lime</Color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>14</Id>
+    <BarCode>14</BarCode>
+    <ItemName>GOLD FACIAL</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>1</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -259,19 +209,19 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>OrangeRed</Color>
-    <Position>3</Position>
+    <Color>SandyBrown</Color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>10</Id>
-    <BarCode>10</BarCode>
-    <ItemName>FACE WASH</ItemName>
+    <Id>13</Id>
+    <BarCode>13</BarCode>
+    <ItemName>FACIAL</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>80.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -284,33 +234,8 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>Brown</Color>
-    <Position>1</Position>
-  </ItemTouchMasterTable>
-  <ItemTouchMasterTable>
-    <Id>11</Id>
-    <BarCode>11</BarCode>
-    <ItemName>FACE MASSAGE</ItemName>
-    <Remarks>-</Remarks>
-    <MainName>BARBER</MainName>
-    <CateId>3</CateId>
-    <CateName>FACIAL</CateName>
-    <TaxName>Tax 0%</TaxName>
-    <SellPrice>40.00</SellPrice>
-    <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
-    <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
-    <AllowMultiPrice>0</AllowMultiPrice>
-    <OpeningStock>0.00</OpeningStock>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-    <ComId>1</ComId>
-    <LocId>1</LocId>
-    <Color>LightCoral</Color>
-    <Position>2</Position>
+    <Color>Ivory</Color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>12</Id>
@@ -338,15 +263,15 @@
     <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>13</Id>
-    <BarCode>13</BarCode>
-    <ItemName>FACIAL</ItemName>
+    <Id>11</Id>
+    <BarCode>11</BarCode>
+    <ItemName>FACE MASSAGE</ItemName>
     <Remarks>-</Remarks>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>80.00</SellPrice>
+    <SellPrice>40.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -359,7 +284,257 @@
     <Active>1</Active>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <Color>Ivory</Color>
+    <Color>LightCoral</Color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>10</Id>
+    <BarCode>10</BarCode>
+    <ItemName>FACE WASH</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Brown</Color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>9</Id>
+    <BarCode>9</BarCode>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>OrangeRed</Color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>8</Id>
+    <BarCode>8</BarCode>
+    <ItemName>CREAM</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>RoyalBlue</Color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>7</Id>
+    <BarCode>7</BarCode>
+    <ItemName>POWDER</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Blue</Color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>6</Id>
+    <BarCode>6</BarCode>
+    <ItemName>BALDING</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Cyan</Color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>5</Id>
+    <BarCode>5</BarCode>
+    <ItemName>SHAMPOO</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>0</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>4</Id>
+    <BarCode>4</BarCode>
+    <ItemName>SHAVING</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>12.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
     <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>3</Id>
+    <BarCode>3</BarCode>
+    <ItemName>CHILDREN</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>12.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>GreenYellow</Color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>2</Id>
+    <BarCode>2</BarCode>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>28.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>23.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>1</Id>
+    <BarCode>0</BarCode>
+    <ItemName>ADULT</ItemName>
+    <Remarks>-</Remarks>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>18.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Gold</Color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
 </NewDataSet>
