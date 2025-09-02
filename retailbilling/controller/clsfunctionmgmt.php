@@ -2862,10 +2862,10 @@ class funcProcessMgmt
         return $result;
     }
 
-    public function _GetMultiplePricesByItem($item_id)
+    public function _GetMultiplePricesByItem()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT `price_id`, `item_id`, `price_name`, `price_value`, `status`, `created` FROM `item_multiple_price` WHERE `item_id`='" . $item_id . "' AND `status`='1' ORDER BY `price_id` ASC");
+        $sqlQuery = ("SELECT `price_id`, `item_id`, `price_name`, `price_value`, `status`, `created` FROM `item_multiple_price` WHERE  `status`='1' ORDER BY `price_id` ASC");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -3348,7 +3348,7 @@ class funcProcessMgmt
     /**
      * Get POS Master records by company and location ID
      */
-    public function GetPosMasterByComidLocid($comid, $locid)
+    public function GetPosMasterByComidLocid($comid, $locid, $PMID)
     {
         $conn = $this->conn;
 
@@ -3364,6 +3364,7 @@ class funcProcessMgmt
                         FROM `POS_MASTER`
                         WHERE `PM_COMID` = '" . intval($comid) . "'
                         AND `PM_LOCID` = '" . intval($locid) . "'
+                        AND `PM_ID` = '" . intval($PMID) . "'
                         ORDER BY `PM_CREATED` DESC";
         } else {
             $sqlQuery = "SELECT `PM_ID`, `PM_MACHINE_NAME`, `PM_BUINESS_DATE`, `PM_TRANS_NO`, `PM_USER_ID`,
@@ -3373,6 +3374,7 @@ class funcProcessMgmt
                         FROM `POS_MASTER`
                         WHERE `PM_COMID` = '" . intval($comid) . "'
                         AND `PM_LOCID` = '" . intval($locid) . "'
+                        AND `PM_ID` = '" . intval($PMID) . "'
                         ORDER BY `PM_CREATED` DESC";
         }
 

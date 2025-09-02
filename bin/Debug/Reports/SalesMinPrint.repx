@@ -810,7 +810,7 @@ namespace XtraReportSerialization {
             // tableCell24
             // 
             this.tableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.psih_invoice_roundoff")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_roundoff", "{0:#.00}")});
             this.tableCell24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell24.Name = "tableCell24";
             this.tableCell24.StylePriority.UseFont = false;
@@ -841,14 +841,12 @@ namespace XtraReportSerialization {
             // tableCell15
             // 
             this.tableCell15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table1.psid_invoice_amt")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table.psih_invoice_tamount")});
             this.tableCell15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell15.Name = "tableCell15";
             this.tableCell15.StylePriority.UseFont = false;
             this.tableCell15.StylePriority.UseTextAlignment = false;
             summary2.FormatString = "{0:#.00}";
-            summary2.IgnoreNullValues = true;
-            summary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.tableCell15.Summary = summary2;
             this.tableCell15.Text = "tableCell15";
             this.tableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;

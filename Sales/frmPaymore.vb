@@ -72,6 +72,7 @@ Public Class frmPaymore
             boolMultiplePayment = False
             Label2.Text = "MultiplePayment-No"
             txtentermultipleamount.Enabled = False
+            btnpopCash.Enabled = False
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Form Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -168,6 +169,7 @@ Public Class frmPaymore
 
     Private Sub GridControl3_Click(sender As Object, e As EventArgs) Handles GridControl3.Click
         Try
+            btnpopCash.Enabled = True
             Dim balanceamt As Decimal = 0.0
             Dim paidamt As Decimal = 0.0
             paidamt = GetTotalPaymentAmount()
@@ -302,11 +304,11 @@ Public Class frmPaymore
             'PaymentDetailTable.AcceptChanges()
 
             ' Clear the amount field for next entry
-           
 
 
 
-           
+
+
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -319,6 +321,7 @@ Public Class frmPaymore
             txttpopenamt.EditValue = 0
             txtpopbalamt.EditValue = -Billamt.ToString("###0.00")
             ' Clear multiple payment fields
+            btnpopCash.Enabled = False
             ClearMultiplePaymentFields()
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Clear Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

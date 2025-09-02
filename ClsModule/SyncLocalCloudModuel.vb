@@ -153,6 +153,16 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "SalesmanData Not Received"
             End If
+            If GetMultiplePricesFromServer() = True Then
+                dialog.Caption = "Loading Multiprice"
+            Else
+                dialog.Caption = "Multiprice Not Received"
+            End If
+            If _funMailConfiguration("ER") = True Then
+                dialog.Caption = "Loading Mail"
+            Else
+                dialog.Caption = "Mail Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()
@@ -161,7 +171,61 @@ Module SyncLocalCloudModuel
             dialog.Close()
         End Try
     End Function
+    Public Function _funMailConfiguration(ByRef ERR As String) As Boolean
+        Try
+            If File.Exists(M_Details._appPath & "\LayOut\MailConfiguration.xml") Then
+                'Dim str() As String = {"Sales", "Guest Print", "Purchase", "Inventory", "Shift Close", "Day Close", "Tax Report", "Payouts"}
+                MailProfile._dsMailPrintProfile = New DataSet
+                MailProfile._dsMailPrintProfile.ReadXml(M_Details._appPath & "\LayOut\MailConfiguration.xml")
+                'For Each _Drows As DataRow In MailProfile._dsMailPrintProfile.Tables(0).Rows
+                '    MailConfiguration._myMailID = _Drows("MYMAILID")
+                '    MailConfiguration._myPassword = _Drows("MYPASS")
+                '    MailConfiguration._myHostID = _Drows("MYHOST")
+                '    MailConfiguration._custMailID1 = _Drows("CUSTMAIL1")
+                '    MailConfiguration._custMailID2 = _Drows("CUSTMAIL2")
+                '    MailConfiguration._custAddress = _Drows("CUSTADDR")
+                '    MailConfiguration._custPhone = _Drows("CUSTPHONE")
+                'Next
+            End If
 
+            Dim link As String = "http://sam.myposqr.com/model/webcrm.php?"
+            Dim MailConfig As New DataTable
+            MailConfig.TableName = "MailConfiguration"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(link & "WebCrmRequest=204")
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dim dtresults = Userparsejson("Success")
+            If dtresults.ToString = "True" Then
+                MailConfig = Userparsejson("Data").ToObject(Of DataTable)()
+                If MailConfig.Rows.Count > 0 Then
+                    MailProfile._dsMailPrintProfile.Tables(0).Rows(0)("MYMAILID") = MailConfig.Rows(0)(0).ToString
+                    MailProfile._dsMailPrintProfile.Tables(0).Rows(0)("MYPASS") = MailConfig.Rows(0)(1).ToString
+                    MailProfile._dsMailPrintProfile.Tables(0).Rows(0)("MYHOST") = MailConfig.Rows(0)(2).ToString
+                    MailProfile._dsMailPrintProfile.AcceptChanges()
+                    MailProfile._dsMailPrintProfile.Tables(0).WriteXml(M_Details._appPath & "\LayOut\MailConfiguration.xml", Data.XmlWriteMode.WriteSchema, True)
+                End If
+            End If
+            If File.Exists(M_Details._appPath & "\LayOut\MailConfiguration.xml") Then
+                'Dim str() As String = {"Sales", "Guest Print", "Purchase", "Inventory", "Shift Close", "Day Close", "Tax Report", "Payouts"}
+                MailProfile._dsMailPrintProfile = New DataSet
+                MailProfile._dsMailPrintProfile.ReadXml(M_Details._appPath & "\LayOut\MailConfiguration.xml")
+                For Each _Drows As DataRow In MailProfile._dsMailPrintProfile.Tables(0).Rows
+                    MailConfiguration._myMailID = _Drows("MYMAILID")
+                    MailConfiguration._myPassword = _Drows("MYPASS")
+                    MailConfiguration._myHostID = _Drows("MYHOST")
+                    MailConfiguration._custMailID1 = _Drows("CUSTMAIL1")
+                    MailConfiguration._custMailID2 = _Drows("CUSTMAIL2")
+                    MailConfiguration._custAddress = _Drows("CUSTADDR")
+                    MailConfiguration._custPhone = _Drows("CUSTPHONE")
+                Next
+            End If
+            Return True
+        Catch ex As Exception
+            ERR = ex.Message
+            Return False
+
+        End Try
+    End Function
     ''' <summary>
     ''' Generates MD5 hash of the input string (same as PHP's md5() function)
     ''' </summary>

@@ -1256,9 +1256,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
     }
     if ((int) $_REQUEST['AjaxRequest'] == 66) {
         // Multiple Price Management - Get by Item ID
-        $dim_item_id = $_GET['itemid'];
+        // $dim_item_id = $_GET['itemid'];
 
-        $RequestSelect = $clsfunreq->_GetMultiplePricesByItem($dim_item_id);
+        $RequestSelect = $clsfunreq->_GetMultiplePricesByItem();
         $MultiplePricesRes = array();
         if ($RequestSelect) {
             while ($rows = mysqli_fetch_assoc($RequestSelect)) {
@@ -4349,7 +4349,7 @@ elseif (isset($_REQUEST['MgmtRequest'])) {
         if ((int) $_REQUEST['MgmtRequest'] == 1) { // Get Management Process Related
             $comid = $_REQUEST['Comid'] ?? 0;
             $locid = $_REQUEST['Locid'] ?? 0;
-
+            $PMID = $_REQUEST['PmId'] ?? 0;
             error_log("Processing MgmtRequest=1 with Comid: $comid, Locid: $locid");
 
             // Check if this is a POS Master operation
@@ -4462,7 +4462,7 @@ elseif (isset($_REQUEST['MgmtRequest'])) {
                     }
                 } elseif (isset($_REQUEST['Operation']) && $_REQUEST['Operation'] == 'GET') {
                     // Get POS Master records by company and location
-                    $GetPosMaster = $clsfunreq->GetPosMasterByComidLocid($comid, $locid);
+                    $GetPosMaster = $clsfunreq->GetPosMasterByComidLocid($comid, $locid, $PMID);
                     $GetPosMasterRes = array();
 
                     if ($GetPosMaster && mysqli_num_rows($GetPosMaster) > 0) {

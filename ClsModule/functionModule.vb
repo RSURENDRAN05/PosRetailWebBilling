@@ -223,6 +223,7 @@ Module functionModule
         Public Shared SalesManDataTable As New DataTable
         Public Shared PaymentTermTable As New DataTable
         Public Shared ButtonStyleTable As New DataTable
+        Public Shared MultiPriceTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -378,6 +379,39 @@ Module functionModule
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function GetMultiplePricesFromServer() As Boolean
+        Try
+            Dim Path As String = filePath & "MultiPriceTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.MultiPriceTable.TableName = "MultiPriceTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=66"
+                Dim json As String = New System.Net.WebClient().DownloadString(url)
+                Dim parseJson As JObject = JObject.Parse(json)
+                _JsonData.MultiPriceTable = parseJson("Data").ToObject(Of DataTable)()
+                If _JsonData.MultiPriceTable.Rows.Count > 0 Then
+                    _JsonData.MultiPriceTable.TableName = "MultiPriceTable"
+                    _JsonData.MultiPriceTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.MultiPriceTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.MultiPriceTable.ReadXml(Path)
+                    _JsonData.MultiPriceTable.TableName = "MultiPriceTable"
+                    If _JsonData.MultiPriceTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+            Return True
+        Catch ex As Exception
             Return False
         End Try
     End Function

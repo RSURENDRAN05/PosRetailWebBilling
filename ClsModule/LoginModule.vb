@@ -11,7 +11,7 @@ Module LoginModule
             dialog.Show()
 
             ' Validate Company and Location - this checks if POS Master data exists
-            Dim validationResult = managementModule.ValidateCompanyLocation(_companyInfo.ComId, _companyInfo.LocId)
+            Dim validationResult = managementModule.ValidateCompanyLocation(_companyInfo.ComId, _companyInfo.LocId, _companyInfo.CompanyPMID)
 
             If validationResult.Item1 = False Then
                 ' No POS Master data found - create new record

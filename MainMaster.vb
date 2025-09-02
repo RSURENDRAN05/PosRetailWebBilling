@@ -65,7 +65,7 @@ Public Class MainMaster
                 RibbonPageUser.Visible = False
                 RibbonPageEmployee.Visible = False
                 RibbonPageSettings.Visible = False
-
+                RibbonReports.Visible = False
 
                 'SubMen
                 barcompany.Enabled = False
@@ -100,6 +100,10 @@ Public Class MainMaster
                 barsystemsettings.Enabled = False
                 barnewdiscountmaster.Enabled = False
                 barSalesCommission.Enabled = False
+                barsalesdetailsreport.Enabled = False
+                barbtnchronicalreport.Enabled = False
+                barbtnadvancepaymentreport.Enabled = False
+                barbtnmonthlysummaryreport.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -217,15 +221,7 @@ Public Class MainMaster
                             barpossales.Enabled = False
                         End If
                     End If
-                    Dim MasterSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSalesReport"
-                    If MasterSalesReport.Any Then
-                        If MasterSalesReport(0)("menu_active") = "1" Then
-                            barsalessummaryreport.Enabled = True
-                        Else
-                            barsalessummaryreport.Enabled = False
-
-                        End If
-                    End If
+                 
                     Dim NewCustomer As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewCustomer"
                     If NewCustomer.Any Then
                         If PosSales1(0)("menu_active") = "1" Then
@@ -439,8 +435,57 @@ Public Class MainMaster
 
                         End If
                     End If
-                End If
 
+                    'SalesReport
+                    Dim MenuSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuSalesReport"
+                    If MenuSalesReport.Any Then
+                        If MenuSalesReport(0)("menu_active") = "1" Then
+                            RibbonReports.Visible = True
+                        Else
+                            RibbonReports.Visible = False
+                        End If
+                    End If
+                    Dim MasterSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSalesReport"
+                    If MasterSalesReport.Any Then
+                        If MasterSalesReport(0)("menu_active") = "1" Then
+                            barsalessummaryreport.Enabled = True
+                        Else
+                            barsalessummaryreport.Enabled = False
+                        End If
+                    End If
+                    Dim SalesDetailReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SalesDetailReport"
+                    If SalesDetailReport.Any Then
+                        If SalesDetailReport(0)("menu_active") = "1" Then
+                            barsalesdetailsreport.Enabled = True
+                        Else
+                            barsalesdetailsreport.Enabled = False
+                        End If
+                    End If
+                    Dim ChronicalReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "ChronicalReport"
+                    If ChronicalReport.Any Then
+                        If ChronicalReport(0)("menu_active") = "1" Then
+                            barbtnchronicalreport.Enabled = True
+                        Else
+                            barbtnchronicalreport.Enabled = False
+                        End If
+                    End If
+                    Dim AdvancePayReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "AdvancePayReport"
+                    If AdvancePayReport.Any Then
+                        If AdvancePayReport(0)("menu_active") = "1" Then
+                            barbtnadvancepaymentreport.Enabled = True
+                        Else
+                            barbtnadvancepaymentreport.Enabled = False
+                        End If
+                    End If
+                    Dim MonthlySummaryReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MonthlySummaryReport"
+                    If MonthlySummaryReport.Any Then
+                        If MonthlySummaryReport(0)("menu_active") = "1" Then
+                            barbtnmonthlysummaryreport.Enabled = True
+                        Else
+                            barbtnmonthlysummaryreport.Enabled = False
+                        End If
+                    End If
+                End If
             End If
         Catch ex As Exception
 

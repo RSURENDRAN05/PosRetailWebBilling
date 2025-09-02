@@ -19,11 +19,11 @@ Public Class frmKeyQtyAmt
         Try
             If _TXTPASS.EditValue Is Nothing OrElse _TXTPASS.Text = "" Then
                 properClass.MKeyQtyAmt = 0.0
-                properClass.mkeynostatus = False
+                Me.DialogResult = Windows.Forms.DialogResult.Cancel
                 Me.Hide()
             Else
                 properClass.MKeyQtyAmt = _TXTPASS.EditValue
-                properClass.mkeynostatus = True
+                Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Hide()
             End If
 
@@ -43,7 +43,7 @@ Public Class frmKeyQtyAmt
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Try
-            properClass.mkeynostatus = False
+            Me.DialogResult = Windows.Forms.DialogResult.Cancel
             properClass.MKeyQtyAmt = 0.0
             Me.Hide()
 
@@ -55,6 +55,7 @@ Public Class frmKeyQtyAmt
     Private Sub frmKeyQtyAmt_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             _TXTPASS.Text = ""
+            numstr = ""
             _TXTPASS.SelectAll()
         Catch ex As Exception
 

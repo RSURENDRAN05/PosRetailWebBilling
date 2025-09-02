@@ -69,7 +69,7 @@ PosRetailWebBilling
  Show error message
  </summary>
 	<param name="message">Error message to show</param>
-</member><member name="M:PosRetailWebBilling.managementModule.ValidateCompanyLocation(System.Int32,System.Int32)">
+</member><member name="M:PosRetailWebBilling.managementModule.ValidateCompanyLocation(System.Int32,System.Int32,System.Int32)">
 	<summary>
  Validate if Company ID and Location ID exist and are active before insert/update
  </summary>

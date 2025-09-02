@@ -790,18 +790,29 @@ L:          Dim dtrow As Data.EnumerableRowCollection(Of DataRow) = From dtrows 
             Smtp_Server.Port = 587
             Smtp_Server.EnableSsl = True
             Smtp_Server.Host = MailConfiguration._myHostID
+
             e_mail = New MailMessage()
             e_mail.From = New MailAddress(MailConfiguration._myMailID)
-            If File.Exists(M_Details._appPath & "Reports\" & _mailFileName) Then
-                Dim FileName As String = Path.Combine(M_Details._appPath & "Reports\" & _mailFileName)
-                e_mail.Attachments.Add(New Attachment(FileName))
+
+            Dim FilePath As String = Path.Combine(M_Details._appPath, "Reports", _mailFileName)
+            If File.Exists(FilePath) Then
+                e_mail.Attachments.Add(New Attachment(FilePath))
             End If
+
             e_mail.To.Add(MAILID)
             e_mail.CC.Add("mypos.cashier@gmail.com")
             e_mail.Subject = _mailSubject
             e_mail.IsBodyHtml = False
             e_mail.Body = _mailSubject
+
+            ' Send mail
             Smtp_Server.Send(e_mail)
+
+            ' ✅ Delete file after successful send
+            If File.Exists(FilePath) Then
+                File.Delete(FilePath)
+            End If
+
             WriteErroLog("Mail Sent " & _mailFileName)
             printstr &= "........................." & vbNewLine
             printstr &= "Mail Sent Successfully " & vbNewLine
@@ -826,6 +837,7 @@ L:          Dim dtrow As Data.EnumerableRowCollection(Of DataRow) = From dtrows 
             csh._paperCut(True)
         End Try
     End Sub
+
     Public Sub _shiftClosePrint(ByRef clsdShiftno As Integer, ByRef print As Boolean, ByRef mail As Boolean)
         Try
             _dsshiftClose = New DataSet

@@ -5,7 +5,7 @@ Public Class FrmMultiplePriceSelection
     Private _itemId As Integer
     Private _itemName As String
     Private _selectedPriceInfo As Object
-    Private _multiplePriceTable As DataTable
+
 
     Public Property SelectedPriceInfo As Object
         Get
@@ -37,18 +37,26 @@ Public Class FrmMultiplePriceSelection
 
     Private Sub LoadMultiplePrices()
         Try
+            If _JsonData.MultiPriceTable.Rows.Count = 0 Then
+                GetMultiplePricesFromServer()
+            End If
+
             ' Get multiple prices from server
-            If GetMultiplePricesFromServer() Then
-                If _multiplePriceTable IsNot Nothing AndAlso _multiplePriceTable.Rows.Count > 0 Then
-                    GridControlPrices.DataSource = _multiplePriceTable
+
+            If _JsonData.MultiPriceTable IsNot Nothing AndAlso _JsonData.MultiPriceTable.Rows.Count > 0 Then
+              Dim dt As DataTable = Nothing
+
+                Dim query = _JsonData.MultiPriceTable.AsEnumerable().
+                 Where(Function(rs) Convert.ToInt32(If(rs("RefId"), 0)) = _itemId)
+
+
+                If query.Any() Then
+                    dt = query.CopyToDataTable()
+                    GridControlPrices.DataSource = dt
                     SetupPriceGrid()
-                Else
-                    MessageBox.Show("No multiple prices found for this item.", "No Prices", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Me.DialogResult = DialogResult.Cancel
-                    Me.Close()
                 End If
             Else
-                MessageBox.Show("Failed to load multiple prices.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("No multiple prices found for this item.", "No Prices", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Me.DialogResult = DialogResult.Cancel
                 Me.Close()
             End If
@@ -56,28 +64,6 @@ Public Class FrmMultiplePriceSelection
             MessageBox.Show("Error loading multiple prices: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-    Private Function GetMultiplePricesFromServer() As Boolean
-        Try
-            Dim url As String = M_Details.LinkAjaxRequest & "AjaxRequest=66&itemid=" & _itemId
-
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(url)
-            Dim parseJson As JObject = JObject.Parse(json)
-            Dim success = parseJson("Success").ToString()
-
-            If success = "True" Then
-                _multiplePriceTable = parseJson("Data").ToObject(Of DataTable)()
-                Return True
-            Else
-                Return False
-            End If
-
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-
     Private Sub SetupPriceGrid()
         Try
             ' Configure grid columns

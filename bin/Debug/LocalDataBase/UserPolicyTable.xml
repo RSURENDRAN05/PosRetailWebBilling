@@ -27,6 +27,18 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>35</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>35</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>AdvancePayReport</menu_name>
+    <menu_code>S1033</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>18</menu_id>
     <menu_type>sub</menu_type>
     <header_menu_id>4</header_menu_id>
@@ -34,6 +46,18 @@
     <menu_active>1</menu_active>
     <menu_name>ChequeEntry</menu_name>
     <menu_code>S1018</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>34</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>34</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>ChronicalReport</menu_name>
+    <menu_code>S1032</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -221,7 +245,7 @@
     <group_id>1</group_id>
     <menu_id>12</menu_id>
     <menu_type>sub</menu_type>
-    <header_menu_id>3</header_menu_id>
+    <header_menu_id>8</header_menu_id>
     <sub_menu_id>12</sub_menu_id>
     <menu_active>1</menu_active>
     <menu_name>MasterSalesReport</menu_name>
@@ -247,7 +271,7 @@
     <header_menu_id>6</header_menu_id>
     <menu_active>1</menu_active>
     <menu_name>MenuEmployee</menu_name>
-    <menu_code>M1005</menu_code>
+    <menu_code>M1006</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -286,12 +310,23 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>8</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuSalesReport</menu_name>
+    <menu_code>M1008</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>7</menu_id>
     <menu_type>header</menu_type>
     <header_menu_id>7</header_menu_id>
     <menu_active>1</menu_active>
     <menu_name>MenuSettings</menu_name>
-    <menu_code>M1006</menu_code>
+    <menu_code>M1007</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -302,7 +337,19 @@
     <header_menu_id>5</header_menu_id>
     <menu_active>1</menu_active>
     <menu_name>MenuUser</menu_name>
-    <menu_code>M1004</menu_code>
+    <menu_code>M1005</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>36</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>36</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MonthlySummaryReport</menu_name>
+    <menu_code>S1034</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -423,6 +470,18 @@
     <menu_active>1</menu_active>
     <menu_name>SalesCommission</menu_name>
     <menu_code>S1032</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>33</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>33</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>SalesDetailReport</menu_name>
+    <menu_code>S1031</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>

@@ -99,7 +99,7 @@ namespace XtraReportSerialization {
             // 
             this.tableCell9.CanShrink = true;
             this.tableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.Paymode")});
+                        new DevExpress.XtraReports.UI.XRBinding("Text", null, "Table2.PaymodeName")});
             this.tableCell9.KeepTogether = true;
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.SnapLineMargin = new DevExpress.XtraPrinting.PaddingInfo(1, 1, 1, 1, 100F);

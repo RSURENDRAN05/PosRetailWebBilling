@@ -967,7 +967,7 @@ Public Class PosSalesII
                 GridControlSalesData.DataSource = GridDataTble_Insert
 
                 ' Update grand totals
-                SalesGrandtotal("OK")
+                SalesGrandtotal(False)
 
                 ' Set focus back to search for next item entry
                 cmbMaterialSearch.Focus()
@@ -1301,7 +1301,7 @@ Public Class PosSalesII
 
             ' Reset quantity input to 1 for next item
             txtMqty.EditValue = 1
-            If SalesGrandtotal("ER") = False Then
+            If SalesGrandtotal(True) = False Then
 
             End If
         Catch ex As Exception
@@ -1326,7 +1326,7 @@ Public Class PosSalesII
         End Try
     End Function
 
-    Public Function SalesGrandtotal(ByRef ERR As String) As Boolean
+    Public Function SalesGrandtotal(SalesManModeShow As Boolean) As Boolean
         Try
 
             Dim TAmount As Decimal = 0.0
@@ -1381,12 +1381,12 @@ Public Class PosSalesII
             ' lblitemdiscountonly.Text = ItemDiscountAmt.ToString("0.00")
             ' lblbilldiscountonly.Text = BillDiscountAmt.ToString("0.00")
             lblservcharge.Text = _globalSettingValues.ServiceTaxValue
-            If modeOfSale = "New" Then
+            If SalesManModeShow = True Then
                 barselectsalesman_ItemClick(Nothing, Nothing)
             End If
             Return True
         Catch ex As Exception
-            ERR = "Error in SalesGrandtotal: " & ex.Message
+            MsgBox("Error in SalesGrandtotal: " & ex.Message)
             Return False
         End Try
     End Function
@@ -1561,7 +1561,7 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = GridDataTble_Insert
 
             ' Update grand totals
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             MessageBox.Show("Bill discount of " & discountName & " applied successfully." & Environment.NewLine &
                           "Total Bill Discount: " & discountAmount.ToString("0.00"),
@@ -1625,7 +1625,7 @@ Public Class PosSalesII
             _RecalculateRowTotals(selectedRow)
 
             ' Update grand totals
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             MessageBox.Show("Item discount of " & discountName & " applied successfully." & Environment.NewLine &
                           "Item Discount: " & discountAmount.ToString("0.00") & Environment.NewLine &
@@ -1735,7 +1735,7 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = GridDataTble_Insert
 
             ' Update grand totals
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             MessageBox.Show("All discounts cleared successfully.", "Discounts Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -1790,7 +1790,7 @@ Public Class PosSalesII
                 GridControlSalesData.DataSource = GridDataTble_Insert
 
                 ' Update grand totals
-                SalesGrandtotal("OK")
+                SalesGrandtotal(False)
 
                 'MessageBox.Show("Existing bill discount of " & billDiscountPer.ToString("F2") & "% applied to new items.", _
                 '              "Bill Discount Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1854,7 +1854,7 @@ Public Class PosSalesII
                 billPrefix = dt.Rows(0)("PM_PREFIX").ToString
             End If
             ' Clear all totals by recalculating with empty data
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             ' Clear search fields
             cmbMaterialSearch.Text = ""
@@ -2079,7 +2079,7 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = GridDataTble_Insert
 
             ' Update grand totals
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             ' Focus on the updated row
             GridViewPOS.FocusedRowHandle = rowIndex
@@ -2184,8 +2184,12 @@ Public Class PosSalesII
             If _globalSetting.SelectMultiplePriceActive = False Then
                 MessageBox.Show("You Dont Have Rights To opening multiple price selection: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
+            ElseIf _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                ShowMultiplePriceSelection()
+            Else
+                ShowMultiplePriceSelection()
             End If
-            ShowMultiplePriceSelection()
+
         Catch ex As Exception
             MessageBox.Show("Error opening multiple price selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -2209,18 +2213,25 @@ Public Class PosSalesII
 
             Dim itemId As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowHandle)("ITEMCODE"))
             Dim itemName As String = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME").ToString()
+            If _JsonData.MultiPriceTable.Rows.Count > 0 Then
+                Dim dt As DataTable = Nothing
+                Dim query = _JsonData.MultiPriceTable.AsEnumerable().
+                 Where(Function(rs) Convert.ToInt32(If(rs("RefId"), 0)) = itemId)
 
-            ' Show multiple price selection form
-            Dim priceSelectionForm As New FrmMultiplePriceSelection(itemId, itemName)
-            If priceSelectionForm.ShowDialog() = DialogResult.OK Then
-                Dim selectedPriceInfo = priceSelectionForm.SelectedPriceInfo
 
-                If selectedPriceInfo IsNot Nothing Then
-                    ' Apply the selected price to the item
-                    ApplyMultiplePrice(rowHandle, selectedPriceInfo)
+                If query.Any() Then
+                    ' Show multiple price selection form
+                    Dim priceSelectionForm As New FrmMultiplePriceSelection(itemId, itemName)
+                    If priceSelectionForm.ShowDialog() = DialogResult.OK Then
+                        Dim selectedPriceInfo = priceSelectionForm.SelectedPriceInfo
+
+                        If selectedPriceInfo IsNot Nothing Then
+                            ' Apply the selected price to the item
+                            ApplyMultiplePrice(rowHandle, selectedPriceInfo)
+                        End If
+                    End If
                 End If
             End If
-
         Catch ex As Exception
             MessageBox.Show("Error showing multiple price selection: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -2247,11 +2258,11 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = GridDataTble_Insert
 
             ' Update grand totals
-            SalesGrandtotal("OK")
+            SalesGrandtotal(False)
 
             ' Show confirmation message
-            MessageBox.Show("Price updated to " & priceName & ": " & newPrice.ToString("0.00"), _
-                          "Price Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'MessageBox.Show("Price updated to " & priceName & ": " & newPrice.ToString("0.00"), _
+            '"Price Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' Keep focus on the updated row
             GridViewPOS.FocusedRowHandle = rowIndex
@@ -2260,7 +2271,71 @@ Public Class PosSalesII
             MessageBox.Show("Error applying multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub barbtnmaualprice_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmaualprice.ItemClick
+        Try
+            ' Check if any item is selected in the grid
+            If GridViewPOS.FocusedRowHandle < 0 Then
+                MessageBox.Show("Please select an item to change price.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
 
+            ' Get selected item information
+            Dim rowHandle As Integer = GridViewPOS.FocusedRowHandle
+            If rowHandle >= GridDataTble_Insert.Rows.Count Then
+                MessageBox.Show("Invalid item selection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim newPrice As Decimal = 0D
+
+            ' Only allow admin/manager
+            If _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                frmKeyPassIIIMaster.ShowDialog()
+                If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                    frmKeyQtyAmt.ShowDialog()
+                    If frmKeyQtyAmt.DialogResult = Windows.Forms.DialogResult.OK Then
+
+                        ' Safer parsing
+                        If Decimal.TryParse(frmKeyQtyAmt._TXTPASS.EditValue.ToString(), newPrice) AndAlso newPrice > 0D Then
+                            ' Update the price in DataTable
+                            GridDataTble_Insert.Rows(rowHandle)("RATE") = newPrice
+                            'If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+
+                            'End If
+                            ' Recalculate all amounts for this row
+                            RecalculateRowAmounts(rowHandle)
+
+                            ' Accept changes
+                            GridDataTble_Insert.AcceptChanges()
+
+                            ' Refresh grid without resetting DataSource
+                            GridViewPOS.RefreshData()
+
+                            ' Update grand totals
+                            SalesGrandtotal(False)
+
+                            ' Keep focus on the updated row
+                            GridViewPOS.FocusedRowHandle = rowHandle
+                        Else
+                            MessageBox.Show("Invalid price entered. Please enter a valid numeric value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    Else
+                        Exit Sub
+                    End If
+                Else
+                    Exit Sub
+                End If
+            Else
+                MessageBox.Show("You don't have rights to edit the price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error applying multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
     ' Public method to apply specific price by price ID
     Public Sub ApplyPriceById(itemId As Integer, priceId As Integer)
         Try
@@ -3148,7 +3223,7 @@ Public Class PosSalesII
 
                     ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
                     'txtnotes.Text = "-"
-                    If SalesGrandtotal("ER") = False Then
+                    If SalesGrandtotal(False) = False Then
 
                     End If
                 End If
@@ -3262,7 +3337,7 @@ Public Class PosSalesII
 
                     ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
                     'txtnotes.Text = "-"
-                    If SalesGrandtotal("ER") = False Then
+                    If SalesGrandtotal(False) = False Then
 
                     End If
                 End If
@@ -3391,4 +3466,6 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+
+  
 End Class

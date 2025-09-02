@@ -813,7 +813,7 @@ Public Class frmAdvancePaymentReport
                     End If
                 End If
             End Using
-
+            Return New DataTable()
         Catch ex As Exception
             lblStatusResults.Text = "Error: " & ex.Message
             MessageBox.Show("Error loading sales data: " & ex.Message, "Error",

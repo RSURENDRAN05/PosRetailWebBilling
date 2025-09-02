@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <DocumentElement>
   <xs:schema id="DocumentElement" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xs:element name="DocumentElement" msdata:IsDataSet="true" msdata:MainDataTable="MailConfiguration" msdata:Locale="en-US">
+    <xs:element name="DocumentElement" msdata:IsDataSet="true" msdata:MainDataTable="MailConfiguration" msdata:UseCurrentLocale="true">
       <xs:complexType>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="MailConfiguration">
@@ -23,10 +23,10 @@
   </xs:schema>
   <MailConfiguration>
     <MYMAILID>murifatechnologies@gmail.com</MYMAILID>
-    <MYPASS>fgon xvrc jeuu gsfb</MYPASS>
+    <MYPASS>fnzl tegr ftzz feiu</MYPASS>
     <MYHOST>smtp.gmail.com</MYHOST>
-    <CUSTMAIL1>alshiffasp@yahoo.com,mypos.web@gmail.com</CUSTMAIL1>
-    <CUSTMAIL2>surendcta@gmail.com,alshiffasp@yahoo.com</CUSTMAIL2>
+    <CUSTMAIL1>surendcta@gmail.com</CUSTMAIL1>
+    <CUSTMAIL2>surendcta@gmail.com</CUSTMAIL2>
     <CUSTADDR>.</CUSTADDR>
     <CUSTPHONE>.</CUSTPHONE>
   </MailConfiguration>

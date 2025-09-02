@@ -307,14 +307,14 @@ Module managementModule
     ''' <param name="comId">Company ID</param>
     ''' <param name="locId">Location ID</param>
     ''' <returns>Success status and message</returns>
-    Public Function ValidateCompanyLocation(comId As Integer, locId As Integer) As Tuple(Of Boolean, String)
+    Public Function ValidateCompanyLocation(comId As Integer, locId As Integer, PmId As Integer) As Tuple(Of Boolean, String)
         Try
             Dim url As String = functionModule.M_Details.LinkAjaxRequest
 
             ' Prepare POST data for GET operation to validate company/location
             Dim postData As String = String.Format(
-                "MgmtRequest=1&Action=POS_MASTER&Operation=GET&Comid={0}&Locid={1}",
-                comId, locId
+                "MgmtRequest=1&Action=POS_MASTER&Operation=GET&Comid={0}&Locid={1}&PmId={2}",
+                comId, locId, PmId
             )
 
             ' Send POST request
@@ -365,7 +365,7 @@ Module managementModule
         Try
             ' Validate company and location first (unless skipped)
             If Not skipValidation Then
-                Dim validation = ValidateCompanyLocation(comId, locId)
+                Dim validation = ValidateCompanyLocation(comId, locId, _companyInfo.CompanyPMID)
                 If Not validation.Item1 Then
                     Return New Tuple(Of Boolean, String)(False, "Validation failed: " & validation.Item2)
                 End If
@@ -391,7 +391,7 @@ Module managementModule
         Try
             ' Validate company and location first (unless skipped)
             If Not skipValidation Then
-                Dim validation = ValidateCompanyLocation(comId, locId)
+                Dim validation = ValidateCompanyLocation(comId, locId, _companyInfo.CompanyPMID)
                 If Not validation.Item1 Then
                     Return New Tuple(Of Boolean, String)(False, "Validation failed: " & validation.Item2)
                 End If

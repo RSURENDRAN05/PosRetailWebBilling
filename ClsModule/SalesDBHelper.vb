@@ -274,6 +274,8 @@ Public Class SalesDBHelper
                     command.Parameters.AddWithValue("@ShiftNo", shiftNo)
                     command.Parameters.AddWithValue("@Dayno", dayNo)
                     command.Parameters.AddWithValue("@Webhost", 0)
+                    command.Parameters.AddWithValue("@ComId", _companyInfo.ComId)
+                    command.Parameters.AddWithValue("@LocId", _companyInfo.LocId)
                     command.ExecuteNonQuery()
                 End Using
             Next
@@ -740,9 +742,36 @@ Module PrintViewReport
                         Next
                     Else
                         ' If no detail table, try to match with header data
-                        For Each billRow As DataRow In receDs.Tables(0).Rows
+                        For Each billRow As DataRow In receDs.Tables(1).Rows
                             ' Assuming there might be a salesman ID in header, otherwise leave empty
-                            billRow("empname") = ""
+                            billRow("SalesmanName") = ""
+                        Next
+                    End If
+                End If
+                If _JsonData.PaymodeList.Rows.Count > 0 Then
+                    ' Add empname column if it doesn't exist
+                    If Not receDs.Tables(2).Columns.Contains("PaymodeName") Then
+                        receDs.Tables(2).Columns.Add("PaymodeName", GetType(String))
+                    End If
+                    ' Check if we have detail records or need to get from detail table
+                    If receDs.Tables.Count > 1 AndAlso receDs.Tables(2).Rows.Count > 0 Then
+                        ' Update detail rows with matching salesman name
+                        For Each detailRow As DataRow In receDs.Tables(2).Rows
+                            Dim PmodeId As String = SafeToString(detailRow("Paymode"), "")
+                            If Not String.IsNullOrEmpty(PmodeId) AndAlso PmodeId <> "0" Then
+                                For Each paymodeRow As DataRow In _JsonData.PaymodeList.Rows
+                                    If SafeToString(paymodeRow("pmode_id"), "") = PmodeId Then
+                                        detailRow("PaymodeName") = SafeToString(paymodeRow("pmode_name"), "")
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        Next
+                    Else
+                        ' If no detail table, try to match with header data
+                        For Each billRow As DataRow In receDs.Tables(2).Rows
+                            ' Assuming there might be a salesman ID in header, otherwise leave empty
+                            billRow("PaymodeName") = ""
                         Next
                     End If
                 End If
