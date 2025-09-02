@@ -73,6 +73,7 @@ Partial Class PosSalesII
         Me.barbilldiscount = New DevExpress.XtraBars.BarButtonItem()
         Me.baritemdiscount = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnselectprice = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnmaualprice = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnprintonoff = New DevExpress.XtraBars.BarCheckItem()
         Me.BarSubItem4 = New DevExpress.XtraBars.BarSubItem()
         Me.barbtncounterclose = New DevExpress.XtraBars.BarButtonItem()
@@ -166,7 +167,6 @@ Partial Class PosSalesII
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.barbtnmaualprice = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -227,7 +227,7 @@ Partial Class PosSalesII
         '
         'FlowLayoutPanelProduct
         '
-        Me.FlowLayoutPanelProduct.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.FlowLayoutPanelProduct.BackColor = System.Drawing.Color.Wheat
         Me.FlowLayoutPanelProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FlowLayoutPanelProduct.Location = New System.Drawing.Point(607, 125)
         Me.FlowLayoutPanelProduct.Name = "FlowLayoutPanelProduct"
@@ -571,7 +571,7 @@ Partial Class PosSalesII
         '
         'FlowLayoutPanelSubMenu
         '
-        Me.FlowLayoutPanelSubMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.FlowLayoutPanelSubMenu.BackColor = System.Drawing.Color.BlanchedAlmond
         Me.FlowLayoutPanelSubMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanelSubMenu.Location = New System.Drawing.Point(1141, 125)
         Me.FlowLayoutPanelSubMenu.Margin = New System.Windows.Forms.Padding(2)
@@ -820,6 +820,15 @@ Partial Class PosSalesII
         Me.barbtnselectprice.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnselectprice.ItemShortcut = New DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S))
         Me.barbtnselectprice.Name = "barbtnselectprice"
+        '
+        'barbtnmaualprice
+        '
+        Me.barbtnmaualprice.Caption = "Manual Price"
+        Me.barbtnmaualprice.Glyph = CType(resources.GetObject("barbtnmaualprice.Glyph"), System.Drawing.Image)
+        Me.barbtnmaualprice.Id = 56
+        Me.barbtnmaualprice.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnmaualprice.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnmaualprice.Name = "barbtnmaualprice"
         '
         'barbtnprintonoff
         '
@@ -1205,7 +1214,7 @@ Partial Class PosSalesII
         Me.GridView2.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.GridView2.Appearance.SelectedRow.Options.UseBackColor = True
         Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnProduct, Me.GridColumnSalesPriceSearch, Me.GridColumnWholesaleRate, Me.GridColumnProductCode, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
-        Me.GridView2.CustomizationFormBounds = New System.Drawing.Rectangle(2880, 486, 210, 172)
+        Me.GridView2.CustomizationFormBounds = New System.Drawing.Rectangle(1710, 486, 210, 172)
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -1358,7 +1367,7 @@ Partial Class PosSalesII
         '
         'FlowLayoutPanelMain
         '
-        Me.FlowLayoutPanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.FlowLayoutPanelMain.BackColor = System.Drawing.Color.Silver
         Me.FlowLayoutPanelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FlowLayoutPanelMain.Location = New System.Drawing.Point(607, 12)
         Me.FlowLayoutPanelMain.Name = "FlowLayoutPanelMain"
@@ -1741,15 +1750,6 @@ Partial Class PosSalesII
         Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
         Me.LayoutControlItem13.TextToControlDistance = 5
-        '
-        'barbtnmaualprice
-        '
-        Me.barbtnmaualprice.Caption = "Manual Price"
-        Me.barbtnmaualprice.Glyph = CType(resources.GetObject("barbtnmaualprice.Glyph"), System.Drawing.Image)
-        Me.barbtnmaualprice.Id = 56
-        Me.barbtnmaualprice.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.barbtnmaualprice.ItemAppearance.Normal.Options.UseFont = True
-        Me.barbtnmaualprice.Name = "barbtnmaualprice"
         '
         'PosSalesII
         '

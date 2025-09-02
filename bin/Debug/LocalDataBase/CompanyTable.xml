@@ -22,9 +22,4 @@
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <Active>1</Active>
   </CompanyTable>
-  <CompanyTable>
-    <COID>4</COID>
-    <CompanyName>Murifa Enterprise</CompanyName>
-    <Active>1</Active>
-  </CompanyTable>
 </NewDataSet>

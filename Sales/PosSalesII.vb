@@ -468,15 +468,13 @@ Public Class PosSalesII
                         btn.Tag = row("MainId")
 
                         ' Button styling and dimensions for perfect fit with even padding
-                        btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
-                        btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
-
-
+                        btn.Size = New Size(ButtonStyleWH.MAINW, ButtonStyleWH.MAINH)
+                       
 
                         ' DevExpress SimpleButton specific properties with enhanced styling
                         btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(52, 152, 219)) ' Blue default for MainGroup
                         btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
+                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
                         btn.Appearance.Options.UseBackColor = True
                         btn.Appearance.Options.UseForeColor = True
                         btn.Appearance.Options.UseFont = True
@@ -565,14 +563,11 @@ Public Class PosSalesII
 
                         ' Button styling and dimensions for perfect fit with even padding
                         btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
-                        btn.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Larger font for better readability
-
-
 
                         ' DevExpress SimpleButton specific properties with enhanced styling
                         btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(46, 204, 113)) ' Green default for SubMenu
                         btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Consistent larger font
+                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
                         btn.Appearance.Options.UseBackColor = True
                         btn.Appearance.Options.UseForeColor = True
                         btn.Appearance.Options.UseFont = True
@@ -648,12 +643,11 @@ Public Class PosSalesII
 
                         ' Enhanced button styling
                         btn.Size = New Size(ButtonStyleWH.ITEMW, ButtonStyleWH.ITEMH)
-                        btn.Font = New Font("Segoe UI", 9, FontStyle.Bold)
 
                         ' Safe color handling using helper function
                         btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(70, 130, 180)) ' Steel Blue default for Products
                         btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold)
                         btn.Appearance.Options.UseBackColor = True
                         btn.Appearance.Options.UseForeColor = True
                         btn.Appearance.Options.UseFont = True
@@ -3437,6 +3431,9 @@ Public Class PosSalesII
         Try
             If _ReadDefaultLocalData() = False Then
                 Return
+            Else
+                LoadButtonStyles()
+                mainMenu()
             End If
         Catch ex As Exception
 

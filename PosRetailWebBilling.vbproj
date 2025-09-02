@@ -14,7 +14,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>D:\Software Delevop\MyposServerSystem2022V1.0\MyposMgmt\Release\</PublishUrl>
+    <PublishUrl>D:\Software Delevop\MyposServerSystem2022V1.0\AMyposNewVer1.0 Setup\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

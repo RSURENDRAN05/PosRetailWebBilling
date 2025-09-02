@@ -33,14 +33,6 @@
           </xs:element>
           <xs:element name="AdvanceData">
             <xs:complexType>
-              <xs:sequence>
-                <xs:element name="MonYear" type="xs:string" minOccurs="0" />
-                <xs:element name="EmpID" type="xs:string" minOccurs="0" />
-                <xs:element name="Salesman" type="xs:string" minOccurs="0" />
-                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
-                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalAdvance" type="xs:string" minOccurs="0" />
-              </xs:sequence>
             </xs:complexType>
           </xs:element>
         </xs:choice>
@@ -48,67 +40,90 @@
     </xs:element>
   </xs:schema>
   <SalesmanData>
-    <MonYear>Aug-2025</MonYear>
+    <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>FZULS</Salesman>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
-    <NetAmt>52.20</NetAmt>
-    <Commission>0.62</Commission>
+    <NetAmt>9671.20</NetAmt>
+    <Commission>84.64</Commission>
   </SalesmanData>
   <SalesmanData>
-    <MonYear>Aug-2025</MonYear>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>TEST</Salesman>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <NetAmt>4221.20</NetAmt>
+    <Commission>2.12</Commission>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Sep-2025</MonYear>
     <EmpID>2</EmpID>
     <Salesman>SUREN</Salesman>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
-    <NetAmt>18.00</NetAmt>
-    <Commission>1.80</Commission>
+    <NetAmt>81.00</NetAmt>
+    <Commission>8.10</Commission>
   </SalesmanData>
   <ItemwiseData>
-    <MonYear>Aug-2025</MonYear>
+    <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>FZULS</Salesman>
-    <ItemName>CAT 6 CABLE OT011</ItemName>
+    <ItemName>MINI PC</ItemName>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
-    <NetAmt>31.00</NetAmt>
-    <Commission>0.62</Commission>
+    <NetAmt>5450.00</NetAmt>
+    <Commission>0.00</Commission>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Aug-2025</MonYear>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>FZULS</Salesman>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <NetAmt>4200.00</NetAmt>
+    <Commission>84.00</Commission>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>TEST</Salesman>
+    <ItemName>VPOS TERMINAL</ItemName>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <NetAmt>4200.00</NetAmt>
+    <Commission>0.00</Commission>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>2</EmpID>
+    <Salesman>SUREN</Salesman>
+    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
+    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <LocationName>@KL</LocationName>
+    <NetAmt>81.00</NetAmt>
+    <Commission>8.10</Commission>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>FZULS</Salesman>
     <ItemName>HAIR CUT ADULT</ItemName>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
     <NetAmt>21.20</NetAmt>
-    <Commission>0.00</Commission>
+    <Commission>0.64</Commission>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Aug-2025</MonYear>
-    <EmpID>2</EmpID>
-    <Salesman>SUREN</Salesman>
-    <ItemName>HAIR CUT</ItemName>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>TEST</Salesman>
+    <ItemName>HAIR CUT ADULT</ItemName>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LocationName>@KL</LocationName>
-    <NetAmt>18.00</NetAmt>
-    <Commission>1.80</Commission>
+    <NetAmt>21.20</NetAmt>
+    <Commission>2.12</Commission>
   </ItemwiseData>
-  <AdvanceData>
-    <MonYear>Aug-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>FZULS</Salesman>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <TotalAdvance>500.00</TotalAdvance>
-  </AdvanceData>
-  <AdvanceData>
-    <MonYear>Aug-2025</MonYear>
-    <EmpID>2</EmpID>
-    <Salesman>SUREN</Salesman>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <TotalAdvance>200.00</TotalAdvance>
-  </AdvanceData>
 </ReportData>

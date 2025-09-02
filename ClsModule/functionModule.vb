@@ -27,7 +27,7 @@ Module functionModule
     Public _PRINTDS, _SETTINGS As New DataSet
     Public _posPrintHeadDesign As DataSet
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "MGMT VER25.0.0.1 R1 23082025"
+        Public Shared SoftwareVersion As String = "MGMT VER25.0.0.1 R1 020925"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later

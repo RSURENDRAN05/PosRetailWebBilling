@@ -20,7 +20,7 @@
   <ButtonStyleTable>
     <Id>74</Id>
     <Name>MAINH</Name>
-    <Value>70</Value>
+    <Value>160</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>75</Id>
@@ -30,12 +30,12 @@
   <ButtonStyleTable>
     <Id>76</Id>
     <Name>SUBH</Name>
-    <Value>70</Value>
+    <Value>100</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>77</Id>
     <Name>SUBW</Name>
-    <Value>150</Value>
+    <Value>200</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>78</Id>
@@ -45,7 +45,7 @@
   <ButtonStyleTable>
     <Id>79</Id>
     <Name>ITEMW</Name>
-    <Value>150</Value>
+    <Value>170</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>80</Id>

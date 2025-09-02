@@ -20,24 +20,10 @@
     </xs:element>
   </xs:schema>
   <CompanyLocationTable>
-    <COID>4</COID>
-    <CompanyName>Murifa Enterprise</CompanyName>
-    <LID>1</LID>
-    <LocationName>@KL</LocationName>
-    <Active>1</Active>
-  </CompanyLocationTable>
-  <CompanyLocationTable>
     <COID>1</COID>
     <CompanyName>MURIFA TECHNOLOGY</CompanyName>
     <LID>1</LID>
     <LocationName>@KL</LocationName>
-    <Active>1</Active>
-  </CompanyLocationTable>
-  <CompanyLocationTable>
-    <COID>4</COID>
-    <CompanyName>Murifa Enterprise</CompanyName>
-    <LID>2</LID>
-    <LocationName>@MASJID INDIA</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
   <CompanyLocationTable>

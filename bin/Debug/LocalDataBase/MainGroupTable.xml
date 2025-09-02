@@ -20,20 +20,20 @@
   </xs:schema>
   <MainGroupTable>
     <MainId>1</MainId>
-    <MainName>SERVICE</MainName>
+    <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>CadetBlue</Color>
+    <Color>Yellow</Color>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
+    <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color>RoyalBlue</Color>
+    <Color>Yellow</Color>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>3</MainId>
-    <MainName>TESTS</MainName>
+    <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color>CornflowerBlue</Color>
+    <Color>Yellow</Color>
   </MainGroupTable>
 </NewDataSet>

@@ -23,74 +23,65 @@
   </xs:schema>
   <CategoryTable>
     <CateId>1</CateId>
-    <CateName>SERVICES</CateName>
+    <CateName>HAIR CUT</CateName>
     <MainId>1</MainId>
-    <MainName>SERVICE</MainName>
+    <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>Red</Color>
+    <Color>DarkOrange</Color>
     <Position>1</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>2</CateId>
-    <CateName>SALES</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
+    <CateName>HAIR DYE</CateName>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>DeepSkyBlue</Color>
+    <Color>DarkOrange</Color>
     <Position>2</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>3</CateId>
-    <CateName>OFFLINE SOFTWARE</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
-    <Active>1</Active>
-    <Color>SteelBlue</Color>
-    <Position>3</Position>
-  </CategoryTable>
-  <CategoryTable>
-    <CateId>4</CateId>
-    <CateName>TAB SOFTWARE</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
-    <Active>1</Active>
-    <Color>SteelBlue</Color>
-    <Position>4</Position>
-  </CategoryTable>
-  <CategoryTable>
-    <CateId>5</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>FACIAL</CateName>
     <MainId>1</MainId>
-    <MainName>SERVICE</MainName>
+    <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>SteelBlue</Color>
+    <Color>DarkOrange</Color>
     <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
-    <CateId>6</CateId>
-    <CateName>ONLINE SOFTWARE</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
+    <CateId>4</CateId>
+    <CateName>MASSAGE</CateName>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>SteelBlue</Color>
+    <Color>DarkOrange</Color>
+    <Position>3</Position>
+  </CategoryTable>
+  <CategoryTable>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <Active>1</Active>
+    <Color>DarkOrange</Color>
+    <Position>4</Position>
+  </CategoryTable>
+  <CategoryTable>
+    <CateId>6</CateId>
+    <CateName>FACE WAX</CateName>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <Active>1</Active>
+    <Color>DarkOrange</Color>
     <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>7</CateId>
-    <CateName>XX</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
-    <Active>0</Active>
-    <Color>DodgerBlue</Color>
-    <Position>0</Position>
-  </CategoryTable>
-  <CategoryTable>
-    <CateId>8</CateId>
-    <CateName>X</CateName>
-    <MainId>2</MainId>
-    <MainName>SOFTWARE</MainName>
-    <Active>0</Active>
-    <Color>LightBlue</Color>
-    <Position>0</Position>
+    <CateName>OTHERS</CateName>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <Active>1</Active>
+    <Color>DarkOrange</Color>
+    <Position>7</Position>
   </CategoryTable>
 </NewDataSet>

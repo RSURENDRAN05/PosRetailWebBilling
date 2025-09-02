@@ -7,7 +7,7 @@
       <property name="DefaultLayoutType">Vertical</property>
       <property name="ShowTabPageCloseButton">false</property>
       <property name="Padding">10, 10, 10, 10</property>
-      <property name="Size">@4,Width=1280@3,Height=698</property>
+      <property name="Size">@4,Width=1920@4,Height=1010</property>
       <property name="ExpandButtonVisible">false</property>
       <property name="ExpandButtonMode">Normal</property>
       <property name="Spacing">0, 0, 0, 0</property>
@@ -125,7 +125,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=628@3,Height=457</property>
+      <property name="Size">@3,Width=977@3,Height=667</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -134,7 +134,7 @@
         <property name="Font">Tahoma, 8.25pt</property>
         <property name="GradientMode">Horizontal</property>
       </property>
-      <property name="Location">@1,X=0@2,Y=44</property>
+      <property name="Location">@1,X=0@2,Y=64</property>
       <property name="ParentName">Root</property>
       <property name="TextVisible">false</property>
       <property name="TextSize">@1,Width=0@1,Height=0</property>
@@ -175,7 +175,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=632@3,Height=119</property>
+      <property name="Size">@3,Width=923@3,Height=174</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -184,7 +184,7 @@
         <property name="Font">Tahoma, 8.25pt</property>
         <property name="GradientMode">Horizontal</property>
       </property>
-      <property name="Location">@3,X=628@1,Y=0</property>
+      <property name="Location">@3,X=977@1,Y=0</property>
       <property name="ParentName">Root</property>
       <property name="TextVisible">false</property>
       <property name="TextSize">@1,Width=0@1,Height=0</property>
@@ -225,7 +225,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=628@2,Height=44</property>
+      <property name="Size">@3,Width=977@2,Height=64</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -275,7 +275,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=468@3,Height=559</property>
+      <property name="Size">@3,Width=712@3,Height=816</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -284,7 +284,7 @@
         <property name="Font">Tahoma, 8.25pt</property>
         <property name="GradientMode">Horizontal</property>
       </property>
-      <property name="Location">@3,X=628@3,Y=119</property>
+      <property name="Location">@3,X=977@3,Y=174</property>
       <property name="ParentName">Root</property>
       <property name="TextVisible">false</property>
       <property name="TextSize">@1,Width=0@1,Height=0</property>
@@ -325,7 +325,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=164@3,Height=559</property>
+      <property name="Size">@3,Width=211@3,Height=816</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -334,7 +334,7 @@
         <property name="Font">Tahoma, 8.25pt</property>
         <property name="GradientMode">Horizontal</property>
       </property>
-      <property name="Location">@4,X=1096@3,Y=119</property>
+      <property name="Location">@4,X=1689@3,Y=174</property>
       <property name="ParentName">Root</property>
       <property name="TextVisible">false</property>
       <property name="TextSize">@1,Width=0@1,Height=0</property>
@@ -375,7 +375,7 @@
         <property name="IconToolTipIconType">None</property>
         <property name="EnableIconToolTip">true</property>
       </property>
-      <property name="Size">@3,Width=628@3,Height=177</property>
+      <property name="Size">@3,Width=977@3,Height=259</property>
       <property name="AppearanceItemCaption" isnull="true" iskey="true">
         <property name="ForeColor" />
         <property name="BorderColor" />
@@ -384,7 +384,7 @@
         <property name="Font">Tahoma, 8.25pt</property>
         <property name="GradientMode">Horizontal</property>
       </property>
-      <property name="Location">@1,X=0@3,Y=501</property>
+      <property name="Location">@1,X=0@3,Y=731</property>
       <property name="ParentName">Root</property>
       <property name="TextVisible">false</property>
       <property name="TextSize">@1,Width=0@1,Height=0</property>

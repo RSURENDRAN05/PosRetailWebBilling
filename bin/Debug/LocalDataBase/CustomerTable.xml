@@ -22,8 +22,8 @@
   </xs:schema>
   <CustomerTable>
     <CustomerId>1</CustomerId>
-    <CustomerName>Surendran</CustomerName>
-    <CustomerPhone>01254502544</CustomerPhone>
+    <CustomerName>Customer</CustomerName>
+    <CustomerPhone>0</CustomerPhone>
     <CustomerPointsEarned>0</CustomerPointsEarned>
     <Status>1</Status>
     <Created>2025-08-20 15:54:52</Created>
