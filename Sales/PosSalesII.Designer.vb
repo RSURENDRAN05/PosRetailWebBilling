@@ -21,6 +21,8 @@ Partial Class PosSalesII
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PosSalesII))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.FlowLayoutPanelProduct = New System.Windows.Forms.FlowLayoutPanel()
@@ -150,7 +152,9 @@ Partial Class PosSalesII
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEditPrice = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEditSelectSp = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -190,6 +194,8 @@ Partial Class PosSalesII
         CType(Me.cmbMaterialSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControlSalesData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPOS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEditPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEditSelectSp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEditDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1159,7 +1165,7 @@ Partial Class PosSalesII
         Me.PopConSales.Controls.Add(Me.LayoutControl3)
         Me.PopConSales.Location = New System.Drawing.Point(103, 88)
         Me.PopConSales.Name = "PopConSales"
-        Me.PopConSales.Size = New System.Drawing.Size(501, 294)
+        Me.PopConSales.Size = New System.Drawing.Size(95, 33)
         Me.PopConSales.TabIndex = 45
         '
         'LayoutControl3
@@ -1171,7 +1177,7 @@ Partial Class PosSalesII
         Me.LayoutControl3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup3
-        Me.LayoutControl3.Size = New System.Drawing.Size(501, 294)
+        Me.LayoutControl3.Size = New System.Drawing.Size(95, 33)
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -1186,7 +1192,7 @@ Partial Class PosSalesII
         Me.txtMqty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.txtMqty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtMqty.Properties.ReadOnly = True
-        Me.txtMqty.Size = New System.Drawing.Size(84, 30)
+        Me.txtMqty.Size = New System.Drawing.Size(50, 30)
         Me.txtMqty.StyleController = Me.LayoutControl3
         Me.txtMqty.TabIndex = 6
         '
@@ -1195,7 +1201,7 @@ Partial Class PosSalesII
         Me.GridControl2.Location = New System.Drawing.Point(2, 36)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(497, 256)
+        Me.GridControl2.Size = New System.Drawing.Size(132, 20)
         Me.GridControl2.TabIndex = 5
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1293,11 +1299,11 @@ Partial Class PosSalesII
         '
         'txtsearch2
         '
-        Me.txtsearch2.Location = New System.Drawing.Point(118, 2)
+        Me.txtsearch2.Location = New System.Drawing.Point(84, 2)
         Me.txtsearch2.Name = "txtsearch2"
         Me.txtsearch2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
         Me.txtsearch2.Properties.Appearance.Options.UseFont = True
-        Me.txtsearch2.Size = New System.Drawing.Size(381, 30)
+        Me.txtsearch2.Size = New System.Drawing.Size(50, 30)
         Me.txtsearch2.StyleController = Me.LayoutControl3
         Me.txtsearch2.TabIndex = 4
         '
@@ -1311,7 +1317,7 @@ Partial Class PosSalesII
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem18})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup3.Size = New System.Drawing.Size(501, 294)
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(136, 58)
         Me.LayoutControlGroup3.Text = "LayoutControlGroup2"
         Me.LayoutControlGroup3.TextVisible = False
         '
@@ -1319,9 +1325,9 @@ Partial Class PosSalesII
         '
         Me.LayoutControlItem7.Control = Me.txtsearch2
         Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(116, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(82, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem3"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(385, 34)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(54, 34)
         Me.LayoutControlItem7.Text = "LayoutControlItem3"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextToControlDistance = 0
@@ -1333,7 +1339,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem4"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 34)
         Me.LayoutControlItem8.Name = "LayoutControlItem4"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(501, 260)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(136, 24)
         Me.LayoutControlItem8.Text = "LayoutControlItem4"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextToControlDistance = 0
@@ -1347,7 +1353,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem18.CustomizationFormText = "Qty :"
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(116, 34)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(82, 34)
         Me.LayoutControlItem18.Text = "Qty :"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(25, 13)
         '
@@ -1380,7 +1386,7 @@ Partial Class PosSalesII
         Me.GridControlSalesData.MainView = Me.GridViewPOS
         Me.GridControlSalesData.MenuManager = Me.BarManager1
         Me.GridControlSalesData.Name = "GridControlSalesData"
-        Me.GridControlSalesData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEditDelete})
+        Me.GridControlSalesData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEditDelete, Me.RepositoryItemButtonEditSelectSp, Me.RepositoryItemButtonEditPrice})
         Me.GridControlSalesData.Size = New System.Drawing.Size(591, 395)
         Me.GridControlSalesData.TabIndex = 4
         Me.GridControlSalesData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPOS})
@@ -1550,24 +1556,45 @@ Partial Class PosSalesII
         Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn14.Caption = "AMT"
+        Me.GridColumn14.ColumnEdit = Me.RepositoryItemButtonEditPrice
         Me.GridColumn14.DisplayFormat.FormatString = "{0:n2}"
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "NETAMT"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 6
         Me.GridColumn14.Width = 49
+        '
+        'RepositoryItemButtonEditPrice
+        '
+        Me.RepositoryItemButtonEditPrice.AutoHeight = False
+        Me.RepositoryItemButtonEditPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditPrice.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditPrice.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.RepositoryItemButtonEditPrice.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
+        Me.RepositoryItemButtonEditPrice.Name = "RepositoryItemButtonEditPrice"
         '
         'GridColumn15
         '
         Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.Caption = "SP"
+        Me.GridColumn15.ColumnEdit = Me.RepositoryItemButtonEditSelectSp
         Me.GridColumn15.FieldName = "SALESPERSON"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 66
+        '
+        'RepositoryItemButtonEditSelectSp
+        '
+        SerializableAppearanceObject2.Options.UseTextOptions = True
+        SerializableAppearanceObject2.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RepositoryItemButtonEditSelectSp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditSelectSp.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditSelectSp.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.RepositoryItemButtonEditSelectSp.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
+        Me.RepositoryItemButtonEditSelectSp.Name = "RepositoryItemButtonEditSelectSp"
         '
         'GridColumn16
         '
@@ -1602,7 +1629,7 @@ Partial Class PosSalesII
         Me.RepositoryItemButtonEditDelete.AutoHeight = False
         Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditDelete.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.RepositoryItemButtonEditDelete.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.RepositoryItemButtonEditDelete.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditDelete.Name = "RepositoryItemButtonEditDelete"
         Me.RepositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -1791,6 +1818,8 @@ Partial Class PosSalesII
         CType(Me.cmbMaterialSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControlSalesData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewPOS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEditPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEditSelectSp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEditDelete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1951,4 +1980,6 @@ Partial Class PosSalesII
     Friend WithEvents barbtnstaffadvance As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnPrintShiftClose As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnmaualprice As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RepositoryItemButtonEditSelectSp As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemButtonEditPrice As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

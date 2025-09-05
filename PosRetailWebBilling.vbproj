@@ -603,12 +603,6 @@
     <Compile Include="Sales\frmShiftcloseII.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\PosSalesIII.Designer.vb">
-      <DependentUpon>PosSalesIII.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\PosSalesIII.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Sales\frmDiscount.designer.vb">
       <DependentUpon>frmDiscount.vb</DependentUpon>
     </Compile>
@@ -637,6 +631,12 @@
       <DependentUpon>frmSelectBill.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\frmSelectBill.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\frmTest.Designer.vb">
+      <DependentUpon>frmTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\PosLogin.designer.vb">
@@ -897,9 +897,6 @@
     <EmbeddedResource Include="Sales\frmShiftcloseII.resx">
       <DependentUpon>frmShiftcloseII.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\PosSalesIII.resx">
-      <DependentUpon>PosSalesIII.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmDiscount.resx">
       <DependentUpon>frmDiscount.vb</DependentUpon>
     </EmbeddedResource>
@@ -914,6 +911,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmSelectBill.resx">
       <DependentUpon>frmSelectBill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmTest.resx">
+      <DependentUpon>frmTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosLogin.resx">
       <DependentUpon>PosLogin.vb</DependentUpon>

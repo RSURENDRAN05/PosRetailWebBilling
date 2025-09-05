@@ -1,11 +1,12 @@
 Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports DevExpress.XtraEditors
 
 Public Class FrmMultiplePriceSelection
     Private _itemId As Integer
     Private _itemName As String
     Private _selectedPriceInfo As Object
-
+    Dim numstr As String = ""
 
     Public Property SelectedPriceInfo As Object
         Get
@@ -25,8 +26,8 @@ Public Class FrmMultiplePriceSelection
     Private Sub FrmMultiplePriceSelection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Me.Text = "Select Price for: " & _itemName
-            lblItemName.Text = _itemName
-
+            numstr = ""
+            _TXTPASS.Text = ""
             ' Load multiple prices for this item
             LoadMultiplePrices()
 
@@ -44,7 +45,7 @@ Public Class FrmMultiplePriceSelection
             ' Get multiple prices from server
 
             If _JsonData.MultiPriceTable IsNot Nothing AndAlso _JsonData.MultiPriceTable.Rows.Count > 0 Then
-              Dim dt As DataTable = Nothing
+                Dim dt As DataTable = Nothing
 
                 Dim query = _JsonData.MultiPriceTable.AsEnumerable().
                  Where(Function(rs) Convert.ToInt32(If(rs("RefId"), 0)) = _itemId)
@@ -55,10 +56,10 @@ Public Class FrmMultiplePriceSelection
                     GridControlPrices.DataSource = dt
                     SetupPriceGrid()
                 End If
-            Else
-                MessageBox.Show("No multiple prices found for this item.", "No Prices", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Me.DialogResult = DialogResult.Cancel
-                Me.Close()
+                'Else
+                '    MessageBox.Show("No multiple prices found for this item.", "No Prices", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                '    Me.DialogResult = DialogResult.Cancel
+                '    Me.Close()
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading multiple prices: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -110,7 +111,35 @@ Public Class FrmMultiplePriceSelection
                 .PriceId = priceId,
                 .PriceName = priceName,
                 .PriceValue = priceValue,
-                .ItemId = _itemId
+                .ItemId = _itemId,
+                .SelectedPrice = True
+            }
+
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+
+        Catch ex As Exception
+            MessageBox.Show("Error selecting price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
+        Try
+            ' Validate input
+            If _TXTPASS.EditValue Is Nothing OrElse _
+               String.IsNullOrWhiteSpace(_TXTPASS.EditValue.ToString()) OrElse Not IsNumeric(_TXTPASS.EditValue) OrElse Convert.ToDecimal(_TXTPASS.EditValue) <= 0 Then
+                MessageBox.Show("Please enter a valid price greater than zero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                _TXTPASS.EditValue = Nothing   ' Clear invalid input
+                _TXTPASS.Focus()               ' Put cursor back for re-entry
+                Return
+            End If
+
+            ' Assign selected price info
+            _selectedPriceInfo = New With {
+                .PriceId = 0,
+                .PriceName = "Manual",
+                .PriceValue = Convert.ToDecimal(_TXTPASS.EditValue),
+                .ItemId = _itemId,
+                .SelectedPrice = False
             }
 
             Me.DialogResult = DialogResult.OK
@@ -149,6 +178,29 @@ Public Class FrmMultiplePriceSelection
             End If
         Catch ex As Exception
             MessageBox.Show("Error in key down: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+
+    Private Sub btn_7_Click(sender As Object, e As EventArgs) Handles btn_dot.Click, btn_7.Click, btn_8.Click, btn_9.Click, btn_6.Click, btn_5.Click, btn_4.Click, btn_3.Click, btn_2.Click, btn_1.Click, btn_0.Click
+        Try
+            Dim _btnnum As New SimpleButton
+            _btnnum = CType(sender, SimpleButton)
+            _TXTPASS.EditValue = _TXTPASS.EditValue + _btnnum.Text.ToString
+            numstr = numstr + _btnnum.Text
+            _TXTPASS.EditValue = Format(Val(numstr) / 100, "#####.00")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btn_numclear_Click(sender As Object, e As EventArgs) Handles btn_numclear.Click
+        Try
+            _TXTPASS.Text = Nothing
+            numstr = ""
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class

@@ -21,16 +21,23 @@
   </xs:schema>
   <LocationTable>
     <plm_id>1</plm_id>
-    <plm_name>@KL</plm_name>
+    <plm_name>BANGSAR</plm_name>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:40</plm_create>
     <plm_default>1</plm_default>
   </LocationTable>
   <LocationTable>
     <plm_id>2</plm_id>
-    <plm_name>@MASJID INDIA</plm_name>
+    <plm_name>BRICKFIELDS</plm_name>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:51</plm_create>
+    <plm_default>1</plm_default>
+  </LocationTable>
+  <LocationTable>
+    <plm_id>3</plm_id>
+    <plm_name>LUCKY GARDEN</plm_name>
+    <plm_active>1</plm_active>
+    <plm_create>2025-09-02 21:18:01</plm_create>
     <plm_default>1</plm_default>
   </LocationTable>
 </NewDataSet>

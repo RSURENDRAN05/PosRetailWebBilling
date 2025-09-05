@@ -54,4 +54,18 @@
     <GroupActive>1</GroupActive>
     <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
   </UserTable>
+  <UserTable>
+    <Id>3</Id>
+    <UserName>CASHIER</UserName>
+    <Password>81dc9bdb52d04dc20036dbd8313ed055</Password>
+    <GroupName>Super Admin</GroupName>
+    <Status>Active</Status>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <GroupId>1</GroupId>
+    <Created>2025-09-02 22:29:47</Created>
+    <GroupDescription>Full system access with all permissions</GroupDescription>
+    <GroupActive>1</GroupActive>
+    <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
+  </UserTable>
 </NewDataSet>

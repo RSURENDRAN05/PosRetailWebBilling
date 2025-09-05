@@ -61,7 +61,7 @@ Namespace My
             ' This overrides the method in Application.Designer.vb
             ' At this point, settings should already be loaded from Startup event
             Try
-                Me.MainForm = New FrmUploadSalesAutoSync()
+                Me.MainForm = New frmTest()
                 'If _globalSetting.PosBillScreenActive = False Then
                 '    Me.MainForm = New PosLogin() 'PosLogin() 'FrmUploadSalesAutoSync()
                 'Else

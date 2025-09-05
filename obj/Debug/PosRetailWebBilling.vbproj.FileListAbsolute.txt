@@ -65,7 +65,6 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmPosSettings.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmPayouts.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmShiftcloseII.resources
-D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.PosSalesIII.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmDiscount.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmPaymore.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmPosRetailBilling.resources
@@ -98,3 +97,4 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbprojResolveAssemblyReference.cache
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmAdvancePaymentReport.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmMonthlySummaryReport.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmTest.resources

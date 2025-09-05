@@ -21,16 +21,23 @@
   </xs:schema>
   <CompanyLocationTable>
     <COID>1</COID>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LID>1</LID>
-    <LocationName>@KL</LocationName>
+    <LocationName>BANGSAR</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
   <CompanyLocationTable>
     <COID>1</COID>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LID>2</LID>
-    <LocationName>@MASJID INDIA</LocationName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+  </CompanyLocationTable>
+  <CompanyLocationTable>
+    <COID>1</COID>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LID>3</LID>
+    <LocationName>LUCKY GARDEN</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
 </NewDataSet>

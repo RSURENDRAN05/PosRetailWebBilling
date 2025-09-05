@@ -31,525 +31,489 @@
     </xs:element>
   </xs:schema>
   <SalesManCommissionTable>
+    <CommissionId>4</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>19</ItemId>
+    <ItemName>FACE WAX</ItemName>
+    <Barcode>19</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 21:21:59</Created>
+    <Updated>2025-09-02 21:21:59</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>5</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>4</ItemId>
-    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
-    <Barcode>4</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>12</ItemId>
+    <ItemName>FACE BLEACH</ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:11</Created>
-    <Updated>2025-08-21 11:16:11</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>2</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>6</ItemId>
-    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
-    <Barcode>6</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-21 10:26:01</Created>
-    <Updated>2025-08-21 02:46:59</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>7</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>7</ItemId>
-    <ItemName>CAT 6 CABLE OT011</ItemName>
-    <Barcode>7</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-21 11:16:11</Created>
-    <Updated>2025-08-21 11:16:11</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>8</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>CYBERPOWER UT800EGUN </ItemName>
-    <Barcode>8</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:09</Created>
+    <Updated>2025-09-02 21:22:09</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>6</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>3</ItemId>
-    <ItemName>HAIR CUT</ItemName>
-    <Barcode>3</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>11</ItemId>
+    <ItemName>FACE MASSAGE</ItemName>
+    <Barcode>11</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:11</Created>
-    <Updated>2025-08-21 11:16:11</Updated>
+    <Created>2025-09-02 21:22:09</Created>
+    <Updated>2025-09-02 21:22:09</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>4</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <CommissionId>7</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>1</ItemId>
-    <ItemName>HAIR CUT ADULT</ItemName>
-    <Barcode>1</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>3.00</CommissionPercentage>
+    <ItemId>20</ItemId>
+    <ItemName>FACE PACK</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 10:47:35</Created>
-    <Updated>2025-08-21 10:47:35</Updated>
+    <Created>2025-09-02 21:22:09</Created>
+    <Updated>2025-09-02 21:22:09</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>8</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>FACE WASH</ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 21:22:09</Created>
+    <Updated>2025-09-02 21:22:09</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>9</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>MINI KEYBOARD SLIM</ItemName>
+    <ItemName>FACIAL</ItemName>
     <Barcode>13</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:10</Created>
+    <Updated>2025-09-02 21:22:10</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>10</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
+    <ItemName>GOLD FACIAL</ItemName>
     <Barcode>14</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:10</Created>
+    <Updated>2025-09-02 21:22:10</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>1</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>CREAM</ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 21:21:29</Created>
+    <Updated>2025-09-02 21:21:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>2</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 21:21:29</Created>
+    <Updated>2025-09-02 21:21:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>3</CommissionId>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>POWDER</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 21:21:29</Created>
+    <Updated>2025-09-02 21:21:29</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>11</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>11</ItemId>
-    <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
-    <Barcode>11</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>15</ItemId>
+    <ItemName>HAIR MASSAGE</ItemName>
+    <Barcode>15</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>HAIR MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:36</Created>
+    <Updated>2025-09-02 21:22:36</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>12</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>10</ItemId>
-    <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
-    <Barcode>10</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>16</ItemId>
+    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <Barcode>16</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>HAIR MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:36</Created>
+    <Updated>2025-09-02 21:22:36</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>13</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
-    <Barcode>9</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>17</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>17</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:48</Created>
+    <Updated>2025-09-02 21:22:48</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>14</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <EmpId>3</EmpId>
+    <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>12</ItemId>
-    <ItemName>UGREEN CAT6 RJ45 </ItemName>
-    <Barcode>12</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>18</ItemId>
+    <ItemName>HAIR STYLING</ItemName>
+    <Barcode>18</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 21:22:58</Created>
+    <Updated>2025-09-02 21:22:58</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>20</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>19</ItemId>
+    <ItemName>FACE WAX</ItemName>
+    <Barcode>19</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:48:07</Created>
+    <Updated>2025-09-02 22:48:07</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>22</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>FACE BLEACH</ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:13</Created>
+    <Updated>2025-09-02 22:49:13</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>23</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>11</ItemId>
+    <ItemName>FACE MASSAGE</ItemName>
+    <Barcode>11</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:13</Created>
+    <Updated>2025-09-02 22:49:13</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>24</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>20</ItemId>
+    <ItemName>FACE PACK</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:14</Created>
+    <Updated>2025-09-02 22:49:14</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>25</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>FACE WASH</ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:14</Created>
+    <Updated>2025-09-02 22:49:14</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>26</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>FACIAL</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:15</Created>
+    <Updated>2025-09-02 22:49:15</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>27</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>GOLD FACIAL</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:49:15</Created>
+    <Updated>2025-09-02 22:49:15</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>17</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>CREAM</ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:47:44</Created>
+    <Updated>2025-09-02 22:47:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>18</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:47:44</Created>
+    <Updated>2025-09-02 22:47:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>19</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>POWDER</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-02 22:47:44</Created>
+    <Updated>2025-09-02 22:47:44</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>15</CommissionId>
     <EmpId>1</EmpId>
-    <SalesmanName>FZULS</SalesmanName>
+    <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>5</ItemId>
-    <ItemName>VPOS TERMINAL</ItemName>
-    <Barcode>5</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>2.00</CommissionPercentage>
+    <ItemId>15</ItemId>
+    <ItemName>HAIR MASSAGE</ItemName>
+    <Barcode>15</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>HAIR MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>12.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 11:16:12</Created>
-    <Updated>2025-08-21 11:16:12</Updated>
+    <Created>2025-09-02 22:47:24</Created>
+    <Updated>2025-09-02 22:47:24</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>3</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>4</ItemId>
-    <ItemName>80-60MM THERMAL RECEIPT PAPER BOX 100PCS</ItemName>
-    <Barcode>4</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>5.00</CommissionPercentage>
+    <CommissionId>16</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>16</ItemId>
+    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <Barcode>16</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>HAIR MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>12.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-21 10:28:50</Created>
-    <Updated>2025-08-21 10:28:50</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>17</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>6</ItemId>
-    <ItemName>ASUS AX3000 DUALBAND SMART WIFI 6 ROUTER</ItemName>
-    <Barcode>6</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:18</Created>
-    <Updated>2025-08-23 20:00:18</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>18</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>7</ItemId>
-    <ItemName>CAT 6 CABLE OT011</ItemName>
-    <Barcode>7</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:18</Created>
-    <Updated>2025-08-23 20:00:18</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>19</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>CYBERPOWER UT800EGUN </ItemName>
-    <Barcode>8</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:18</Created>
-    <Updated>2025-08-23 20:00:18</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>20</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>3</ItemId>
-    <ItemName>HAIR CUT</ItemName>
-    <Barcode>3</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:19</Created>
-    <Updated>2025-08-23 20:00:19</Updated>
+    <Created>2025-09-02 22:47:24</Created>
+    <Updated>2025-09-02 22:47:24</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>21</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>1</ItemId>
-    <ItemName>HAIR CUT ADULT</ItemName>
-    <Barcode>1</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:20</Created>
-    <Updated>2025-08-23 20:00:20</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>22</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>2</ItemId>
-    <ItemName>HAIR CUT CHILDRAN</ItemName>
-    <Barcode>2</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:21</Created>
-    <Updated>2025-08-23 20:00:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>23</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>13</ItemId>
-    <ItemName>MINI KEYBOARD SLIM</ItemName>
-    <Barcode>13</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:21</Created>
-    <Updated>2025-08-23 20:00:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>24</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>14</ItemId>
-    <ItemName>STANDARD KEYBOARD WITH 102 KEYS</ItemName>
-    <Barcode>14</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:21</Created>
-    <Updated>2025-08-23 20:00:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>25</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>11</ItemId>
-    <ItemName>TPLINK ARCHER T2U AC600 </ItemName>
-    <Barcode>11</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:22</Created>
-    <Updated>2025-08-23 20:00:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>26</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>10</ItemId>
-    <ItemName>TPLINK TLSG1005D 5 PORT GIGABIT SWITCH </ItemName>
-    <Barcode>10</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:22</Created>
-    <Updated>2025-08-23 20:00:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>27</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
-    <Barcode>9</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:22</Created>
-    <Updated>2025-08-23 20:00:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>28</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>12</ItemId>
-    <ItemName>UGREEN CAT6 RJ45 </ItemName>
-    <Barcode>12</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:22</Created>
-    <Updated>2025-08-23 20:00:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>29</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUREN</SalesmanName>
-    <Designation>ADMIN</Designation>
-    <ItemId>5</ItemId>
-    <ItemName>VPOS TERMINAL</ItemName>
-    <Barcode>5</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:00:22</Created>
-    <Updated>2025-08-23 20:00:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>30</CommissionId>
-    <EmpId>3</EmpId>
-    <SalesmanName>TEST</SalesmanName>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>1</ItemId>
-    <ItemName>HAIR CUT ADULT</ItemName>
-    <Barcode>1</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
+    <ItemId>17</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>17</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-08-23 20:03:24</Created>
-    <Updated>2025-08-23 20:03:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>31</CommissionId>
-    <EmpId>3</EmpId>
-    <SalesmanName>TEST</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>2</ItemId>
-    <ItemName>HAIR CUT CHILDRAN</ItemName>
-    <Barcode>2</Barcode>
-    <SubGroupId>1</SubGroupId>
-    <SubGroupName>SERVICES</SubGroupName>
-    <MainGroupName>SERVICE</MainGroupName>
-    <CommissionPercentage>5.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-08-23 20:04:33</Created>
-    <Updated>2025-08-23 20:04:33</Updated>
+    <Created>2025-09-02 22:48:37</Created>
+    <Updated>2025-09-02 22:48:37</Updated>
   </SalesManCommissionTable>
 </NewDataSet>

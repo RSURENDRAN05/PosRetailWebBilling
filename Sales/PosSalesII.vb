@@ -25,6 +25,15 @@ Public Class PosSalesII
     Private customerDisplayTable As DataTable
     Private _CashDraw As New RawPrinter
     Dim salesHelper As New SalesDBHelper(M_Details._Conn)
+    Private _isSelectionMode As Boolean = False
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
 #Region "InialLoad"
     Public Function CreateSalesDataTable() As DataTable
         Try
@@ -74,16 +83,19 @@ Public Class PosSalesII
     Private Sub PosSalesII_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             GridControlSalesData.DataSource = CreateSalesDataTable()
+ 
             ' Load grid layout after setting data source
             LoadGridLayout()
             ' Load complete form layout
             RestoreFormLayout()
             InitializeCustomerGrid()
             InitialLoad()
+            
         Catch ex As Exception
 
         End Try
     End Sub
+     
     Private Sub InitialLoad()
         Try
             barbtnposstatus.Caption = "PMID-" & _companyInfo.CompanyPMID & "-" & _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
@@ -469,7 +481,7 @@ Public Class PosSalesII
 
                         ' Button styling and dimensions for perfect fit with even padding
                         btn.Size = New Size(ButtonStyleWH.MAINW, ButtonStyleWH.MAINH)
-                       
+
 
                         ' DevExpress SimpleButton specific properties with enhanced styling
                         btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(52, 152, 219)) ' Blue default for MainGroup
@@ -803,6 +815,17 @@ Public Class PosSalesII
             If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "SALESPERSON" Then
                 If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
                     barselectsalesman_ItemClick(Nothing, Nothing)
+                End If
+            End If
+
+            If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "NETAMT" Then
+                If _globalSetting.SelectMultiplePriceActive = False Then
+                    MessageBox.Show("You Don't Have Rights To opening multiple price selection", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
+                ElseIf _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                    ShowMultiplePriceSelection()
+                Else
+                    ShowMultiplePriceSelection()
                 End If
             End If
         Catch ex As Exception
@@ -2202,13 +2225,18 @@ Public Class PosSalesII
 
             Dim itemId As Integer = Convert.ToInt32(GridDataTble_Insert.Rows(rowHandle)("ITEMCODE"))
             Dim itemName As String = GridDataTble_Insert.Rows(rowHandle)("ITEMNAME").ToString()
-            If _JsonData.MultiPriceTable.Rows.Count > 0 Then
+            If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
                 Dim dt As DataTable = Nothing
-                Dim query = _JsonData.MultiPriceTable.AsEnumerable().
-                 Where(Function(rs) Convert.ToInt32(If(rs("RefId"), 0)) = itemId)
+                Dim query = _JsonData.ItemTouchMasterTable.AsEnumerable().
+                 Where(Function(rs) Convert.ToInt32(If(rs("Id"), 0)) = itemId)
 
 
                 If query.Any() Then
+                    Dim row = query.First()
+
+                    Dim minPrice As Decimal = If(IsDBNull(row("MinPrice")), 0D, Convert.ToDecimal(row("MinPrice")))
+                    Dim maxPrice As Decimal = If(IsDBNull(row("MaxPrice")), 0D, Convert.ToDecimal(row("MaxPrice")))
+
                     ' Show multiple price selection form
                     Dim priceSelectionForm As New FrmMultiplePriceSelection(itemId, itemName)
                     If priceSelectionForm.ShowDialog() = DialogResult.OK Then
@@ -2216,7 +2244,7 @@ Public Class PosSalesII
 
                         If selectedPriceInfo IsNot Nothing Then
                             ' Apply the selected price to the item
-                            ApplyMultiplePrice(rowHandle, selectedPriceInfo)
+                            ApplyMultiplePrice(rowHandle, selectedPriceInfo, minPrice, maxPrice)
                         End If
                     End If
                 End If
@@ -2227,16 +2255,41 @@ Public Class PosSalesII
     End Sub
 
     ' Apply selected multiple price to item
-    Private Sub ApplyMultiplePrice(rowIndex As Integer, priceInfo As Object)
+    Private Sub ApplyMultiplePrice(rowIndex As Integer, priceInfo As Object, minPrice As Decimal, maxPrice As Decimal)
         Try
             If rowIndex < 0 OrElse rowIndex >= GridDataTble_Insert.Rows.Count Then
+                Exit Sub
+            End If
+
+            ' Basic validation
+            If priceInfo Is Nothing OrElse _
+               priceInfo.PriceValue Is Nothing OrElse _
+               Not IsNumeric(priceInfo.PriceValue) OrElse _
+               Convert.ToDecimal(priceInfo.PriceValue) <= 0 Then
+                MessageBox.Show("Invalid price. Please select a valid price greater than zero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
 
             Dim newPrice As Decimal = Convert.ToDecimal(priceInfo.PriceValue)
             Dim priceName As String = priceInfo.PriceName.ToString()
 
-            ' Update the price in DataTable
+            ' If SelectedPrice is False, then check min/max range
+            If priceInfo.SelectedPrice IsNot Nothing AndAlso priceInfo.SelectedPrice = False Then
+
+                ' Always check minimum
+                If newPrice < minPrice Then
+                    MessageBox.Show(String.Format("Price must be between {0:0.00} and {1:0.00}.", minPrice, maxPrice), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+                ' Only check maximum if it's not zero
+                If maxPrice > 0 AndAlso newPrice > maxPrice Then
+                    MessageBox.Show(String.Format("Price must be between {0:0.00} and {1:0.00}.", minPrice, maxPrice), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+            End If
+
+            ' ✅ Passed all checks → update the price
             GridDataTble_Insert.Rows(rowIndex)("RATE") = newPrice
 
             ' Recalculate all amounts for this row
@@ -2249,10 +2302,6 @@ Public Class PosSalesII
             ' Update grand totals
             SalesGrandtotal(False)
 
-            ' Show confirmation message
-            'MessageBox.Show("Price updated to " & priceName & ": " & newPrice.ToString("0.00"), _
-            '"Price Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
             ' Keep focus on the updated row
             GridViewPOS.FocusedRowHandle = rowIndex
 
@@ -2260,6 +2309,8 @@ Public Class PosSalesII
             MessageBox.Show("Error applying multiple price: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
     Private Sub barbtnmaualprice_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmaualprice.ItemClick
         Try
             ' Check if any item is selected in the grid
@@ -3459,5 +3510,5 @@ Public Class PosSalesII
     End Sub
 #End Region
 
-  
+
 End Class
