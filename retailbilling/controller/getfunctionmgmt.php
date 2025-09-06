@@ -4336,6 +4336,16 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
             }
         }
     }
+    if ((int) $_REQUEST['SalesManCommission'] == 14) { // Delete Commission
+        $salesman_id = $_GET['salesman_id'];
+
+        $RequestDelete = $clsfunreq->DeleteSalesmanById($salesman_id);
+        if ($RequestDelete) {
+            echo json_encode(array("Success" => true, "Msg" => 'Commission deleted successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to delete commission'));
+        }
+    }
 }
 //Mgmt Request
 elseif (isset($_REQUEST['MgmtRequest'])) {
@@ -4610,6 +4620,121 @@ elseif (isset($_REQUEST['MgmtRequest'])) {
                 }
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'POS Master record not found or access denied'));
+            }
+        }
+        if ((int) $_REQUEST['MgmtRequest'] === 9) {
+            // Main Group Policy management request
+            $comid = $_REQUEST['Comid'] ?? 0;
+            $locid = $_REQUEST['Locid'] ?? 0;
+            $operation = $_REQUEST['Operation'] ?? '';
+
+            switch (strtoupper($operation)) {
+                case 'GET':
+                    // Get Main Groups by ComId, LocId
+                    $mainid = $_REQUEST['MainId'] ?? 0;
+                    $GetMainGroups = $clsfunreq->GetMainGroupsByComidLocid($comid, $locid, $mainid);
+                    $GetMainGroupsRes = array();
+
+                    if ($GetMainGroups && mysqli_num_rows($GetMainGroups) > 0) {
+                        while ($rows = mysqli_fetch_assoc($GetMainGroups)) {
+                            $GetMainGroupsRes[] = $rows;
+                        }
+                        echo json_encode(array("Success" => true, "Data" => $GetMainGroupsRes, "Msg" => "Main Groups retrieved successfully"));
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'No Main Groups found', "Data" => array()));
+                    }
+                    break;
+
+                case 'INSERT':
+                    // Insert new Main Group
+                    $mainname = $_REQUEST['MainName'] ?? '';
+                    $mainstatus = $_REQUEST['MainStatus'] ?? 1;
+
+                    if (empty($mainname)) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group Name is required'));
+                        break;
+                    }
+
+                    // Check if main group already exists
+                    if ($clsfunreq->CheckMainGroupExists($mainname, $comid, $locid)) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group with this name already exists'));
+                    } else {
+                        $insertResult = $clsfunreq->InsertMainGroup($mainname, $mainstatus, $comid, $locid);
+                        if ($insertResult) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Main Group created successfully', "Data" => $insertResult));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to create Main Group'));
+                        }
+                    }
+                    break;
+
+                case 'UPDATE':
+                    // Update existing Main Group
+                    $mainid = $_REQUEST['MainId'] ?? 0;
+                    $mainname = $_REQUEST['MainName'] ?? '';
+                    $mainstatus = $_REQUEST['MainStatus'] ?? 1;
+
+                    if ($mainid <= 0) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group ID is required'));
+                        break;
+                    }
+
+                    if (empty($mainname)) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group Name is required'));
+                        break;
+                    }
+
+                    // Check if record exists and belongs to the specified ComId, LocId
+                    if ($clsfunreq->CheckMainGroupOwnership($mainid, $comid, $locid)) {
+                        $updateResult = $clsfunreq->UpdateMainGroup($mainid, $mainname, $mainstatus, $comid, $locid);
+                        if ($updateResult) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Main Group updated successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to update Main Group'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group not found or access denied'));
+                    }
+                    break;
+
+                case 'DELETE':
+                    // Delete Main Group
+                    $mainid = $_REQUEST['MainId'] ?? 0;
+
+                    if ($mainid <= 0) {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group ID is required'));
+                        break;
+                    }
+
+                    // Check if record exists and belongs to the specified ComId, LocId
+                    if ($clsfunreq->CheckMainGroupOwnership($mainid, $comid, $locid)) {
+                        $deleteResult = $clsfunreq->DeleteMainGroup($mainid, $comid, $locid);
+                        if ($deleteResult) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Main Group deleted successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to delete Main Group'));
+                        }
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'Main Group not found or access denied'));
+                    }
+                    break;
+                case 'SELECTACTIVE':
+                    // Get Main Groups for Select2 Dropdown by ComId, LocId
+                    $GetMainGroups = $clsfunreq->GetMainGroupsForSelectActive($comid, $locid);
+                    $GetMainGroupsRes = array();
+
+                    if ($GetMainGroups && mysqli_num_rows($GetMainGroups) > 0) {
+                        while ($rows = mysqli_fetch_assoc($GetMainGroups)) {
+                            $GetMainGroupsRes[] = $rows;
+                        }
+                        echo json_encode(array("Success" => true, "Data" => $GetMainGroupsRes, "Msg" => "Main Groups retrieved successfully"));
+                    } else {
+                        echo json_encode(array("Success" => false, "Msg" => 'No Main Groups found', "Data" => array()));
+                    }
+                    break;
+                default:
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid Operation specified. Use GET, INSERT, UPDATE, or DELETE'));
+                    break;
             }
         }
     } catch (Exception $e) {

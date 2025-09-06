@@ -224,6 +224,7 @@ Module functionModule
         Public Shared PaymentTermTable As New DataTable
         Public Shared ButtonStyleTable As New DataTable
         Public Shared MultiPriceTable As New DataTable
+        public shared MainGroupPolicyTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -761,6 +762,40 @@ Module functionModule
             Return False
         End Try
     End Function
+    Public Function getMainGroupPolicy() As Boolean
+        Try
+            Dim Path As String = filePath & "MainGroupPolicyTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                _JsonData.MainGroupPolicyTable.TableName = "MainGroupPolicyTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=16")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.MainGroupPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+                    _JsonData.MainGroupPolicyTable.TableName = "MainGroupPolicyTable"
+                    _JsonData.MainGroupPolicyTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.MainGroupPolicyTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.MainGroupPolicyTable.ReadXml(Path)
+                    _JsonData.MainGroupPolicyTable.TableName = "MainGroupPolicyTable"
+                    If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Function getCategoryMaster() As Boolean
         Try
             Dim Path As String = filePath & "CategoryTable.xml"
@@ -822,7 +857,7 @@ Module functionModule
                     End If
                 End If
             End If
-           
+
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)

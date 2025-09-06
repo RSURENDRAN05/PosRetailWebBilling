@@ -3009,7 +3009,13 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
-
+    public function DeleteSalesmanById($salesman_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("DELETE FROM `salesman_commission` WHERE `emp_id`='" . $salesman_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
     /**
      * Get all salesman commissions with details
      */
@@ -4242,5 +4248,278 @@ class funcProcessMgmt
             'exists' => false,
             'data' => null
         );
+    }
+
+    // ===================================================================
+    // MAIN GROUP POLICY MANAGEMENT FUNCTIONS
+    // ===================================================================
+
+    /**
+     * Get Main Groups by Company ID, Location ID, and PM ID
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @param int $mainid Optional specific Main Group ID (0 for all)
+     * @return mysqli_result|false
+     */
+    public function GetMainGroupsByComidLocid($comid, $locid, $mainid = 0)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT p.`mainpolicyid`, p.`mainrefid` as mainid, mg.`mainname`, p.`mainstatus`,
+                             p.`comid`, p.`locid`, p.`created_date`, p.`updated_date`,c.`pcm_name` as companyname, l.`plm_name` as locationname
+                      FROM `di_main_group_policy` p
+                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      inner JOIN `pos_company_mast` c ON p.`comid` = c.`pcm_id`
+                      INNER JOIN `pos_location_mast` l ON p.`locid` = l.`plm_id`
+                      WHERE p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+
+        if ($mainid > 0) {
+            $sqlSelect .= " AND p.`mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'";
+        }
+
+        $sqlSelect .= " ORDER BY mg.`mainname` ASC";
+
+        $result = mysqli_query($conn, $sqlSelect);
+        return $result;
+    }
+
+    /**
+     * Check if Main Group exists with the same name in the same company/location/pm context
+     * @param string $mainname Main Group Name
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @param int $excludeId Optional ID to exclude from check (for updates)
+     * @return bool
+     */
+    public function CheckMainGroupExists($mainname, $comid, $locid, $excludeId = 0)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT COUNT(*) as count
+                      FROM `di_main_group_policy` p
+                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      WHERE mg.`mainname` = '" . mysqli_real_escape_string($conn, $mainname) . "'
+                        AND p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+
+        if ($excludeId > 0) {
+            $sqlSelect .= " AND p.`mainrefid` != '" . mysqli_real_escape_string($conn, $excludeId) . "'";
+        }
+
+        $result = mysqli_query($conn, $sqlSelect);
+        $row = mysqli_fetch_assoc($result);
+
+        return ($row['count'] > 0);
+    }
+
+    /**
+     * Insert new Main Group
+     * @param string $mainname Main Group Name
+     * @param int $mainstatus Status (1=Active, 0=Inactive)
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @return int|false Insert ID on success, false on failure
+     */
+    public function InsertMainGroup($mainname, $mainstatus, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // First, find the mainid from di_main_group table based on mainname only
+        $sqlSelect = "SELECT `mainid` FROM `di_main_group`
+                     WHERE `mainname` = '" . mysqli_real_escape_string($conn, $mainname) . "'";
+
+        $selectResult = mysqli_query($conn, $sqlSelect);
+
+        if (!$selectResult || mysqli_num_rows($selectResult) == 0) {
+            return false; // Main group not found in di_main_group table
+        }
+
+        $row = mysqli_fetch_assoc($selectResult);
+        $mainrefid = $row['mainid'];
+
+        // Now insert into di_main_group_policy table
+        $sqlInsert = "INSERT INTO `di_main_group_policy`
+                     (`mainrefid`, `mainstatus`, `comid`, `locid`)
+                     VALUES (
+                         '" . mysqli_real_escape_string($conn, $mainrefid) . "',
+                         '" . mysqli_real_escape_string($conn, $mainstatus) . "',
+                         '" . mysqli_real_escape_string($conn, $comid) . "',
+                         '" . mysqli_real_escape_string($conn, $locid) . "'
+                     )";
+
+        $result = mysqli_query($conn, $sqlInsert);
+
+        if ($result) {
+            return mysqli_insert_id($conn);
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if Main Group belongs to the specified company/location/pm (ownership validation)
+     * @param int $mainid Main Group ID
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @return bool
+     */
+    public function CheckMainGroupOwnership($mainid, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT COUNT(*) as count
+                      FROM `di_main_group_policy` p
+                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      WHERE p.`mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'
+                        AND p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+
+        $result = mysqli_query($conn, $sqlSelect);
+        $row = mysqli_fetch_assoc($result);
+
+        return ($row['count'] > 0);
+    }
+
+    /**
+     * Update existing Main Group
+     * @param int $mainid Main Group ID
+     * @param string $mainname Main Group Name
+     * @param int $mainstatus Status (1=Active, 0=Inactive)
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @return bool
+     */
+    public function UpdateMainGroup($mainid, $mainname, $mainstatus, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // Find the new mainrefid from di_main_group table based on mainname only
+        $sqlSelect = "SELECT `mainid` FROM `di_main_group`
+                     WHERE `mainname` = '" . mysqli_real_escape_string($conn, $mainname) . "'";
+
+        $selectResult = mysqli_query($conn, $sqlSelect);
+
+        if (!$selectResult || mysqli_num_rows($selectResult) == 0) {
+            return false; // Main group not found in di_main_group table
+        }
+
+        $row = mysqli_fetch_assoc($selectResult);
+        $mainrefid = $row['mainid'];
+
+        $sqlUpdate = "UPDATE `di_main_group_policy`
+                      SET `mainrefid` = '" . mysqli_real_escape_string($conn, $mainrefid) . "',
+                          `mainstatus` = '" . mysqli_real_escape_string($conn, $mainstatus) . "',
+                          `updated_date` = CURRENT_TIMESTAMP
+                      WHERE `mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'
+                        AND `comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND `locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+
+        $result = mysqli_query($conn, $sqlUpdate);
+        return $result;
+    }
+
+    /**
+     * Delete Main Group (with ownership validation)
+     * @param int $mainid Main Group ID
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @return bool
+     */
+    public function DeleteMainGroup($mainid, $comid, $locid)
+    {
+        $conn = $this->conn;
+
+        // First verify ownership
+        if (!$this->CheckMainGroupOwnership($mainid, $comid, $locid)) {
+            return false; // Not authorized to delete this record
+        }
+
+        $sqlDelete = "DELETE FROM `di_main_group_policy`
+                      WHERE `mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'
+                        AND `comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND `locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+
+        $result = mysqli_query($conn, $sqlDelete);
+        return $result;
+    }
+
+    /**
+     * Get Main Group by ID with ownership validation
+     * @param int $mainid Main Group ID
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @return array|null
+     */
+    public function GetMainGroupById($mainid, $comid, $locid, $pmid)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT p.`mainpolicyid`, p.`mainrefid` as mainid, mg.`mainname`, p.`mainstatus`,
+                             p.`comid`, p.`locid`, p.`pmid`, p.`created_date`, p.`updated_date`
+                      FROM `di_main_group_policy` p
+                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      WHERE p.`mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'
+                        AND p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'
+                        AND p.`pmid` = '" . mysqli_real_escape_string($conn, $pmid) . "'";
+
+        $result = mysqli_query($conn, $sqlSelect);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+
+        return null;
+    }
+
+    /**
+     * Get Main Groups count by status
+     * @param int $comid Company ID
+     * @param int $locid Location ID
+     * @param int $pmid PM ID
+     * @param int $status Optional status filter (1=Active, 0=Inactive)
+     * @return int
+     */
+    public function GetMainGroupsCount($comid, $locid, $pmid, $status = -1)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT COUNT(*) as count
+                      FROM `di_main_group_policy`
+                      WHERE `comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND `locid` = '" . mysqli_real_escape_string($conn, $locid) . "'
+                        AND `pmid` = '" . mysqli_real_escape_string($conn, $pmid) . "'";
+
+        if ($status >= 0) {
+            $sqlSelect .= " AND `mainstatus` = '" . mysqli_real_escape_string($conn, $status) . "'";
+        }
+
+        $result = mysqli_query($conn, $sqlSelect);
+        $row = mysqli_fetch_assoc($result);
+
+        return (int)$row['count'];
+    }
+    public function  GetMainGroupsForSelectActive($comid, $locid)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT p.`mainrefid` as mainid, mg.`mainname`
+                      FROM `di_main_group_policy` p
+                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      WHERE p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'
+                        AND p.`mainstatus` = '1'
+                      ORDER BY mg.`mainname` ASC";
+
+        $result = mysqli_query($conn, $sqlSelect);
+        return $result;
     }
 }

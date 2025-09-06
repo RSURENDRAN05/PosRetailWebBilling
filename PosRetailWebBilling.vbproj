@@ -371,6 +371,12 @@
     <Compile Include="Master\FrmGroupPolicyManagerSimple.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmMainGroupPolicy.designer.vb">
+      <DependentUpon>FrmMainGroupPolicy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmMainGroupPolicy.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Master\FrmMenuManager.designer.vb">
       <DependentUpon>FrmMenuManager.vb</DependentUpon>
     </Compile>
@@ -785,6 +791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmGroupPolicyManagerSimple.resx">
       <DependentUpon>FrmGroupPolicyManagerSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmMainGroupPolicy.resx">
+      <DependentUpon>FrmMainGroupPolicy.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmMenuManager.resx">
       <DependentUpon>FrmMenuManager.vb</DependentUpon>

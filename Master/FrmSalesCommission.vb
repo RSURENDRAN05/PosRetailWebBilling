@@ -18,6 +18,12 @@ Public Class FrmSalesCommission
     Private bulkItemsTable As DataTable
     Private selectedItemIds As New List(Of Integer)
 
+    ' Bulk selection variables
+    Private selectedSalesmenIds As New List(Of Integer)
+    Private selectedSubGroupIds As New List(Of Integer)
+    Private selectedSalesmenNames As New List(Of String)
+    Private selectedSubGroupNames As New List(Of String)
+
     Public Sub New()
         InitializeComponent()
         ' Set form properties
@@ -40,14 +46,31 @@ Public Class FrmSalesCommission
         Return selectedItems
     End Function
 
+    ' New method to get selected items with their sub-group information
+    Private Function GetSelectedItemsWithSubGroups() As List(Of Tuple(Of Integer, Integer))
+        Dim selectedItems As New List(Of Tuple(Of Integer, Integer)) ' (ItemId, SubGroupId)
+        Try
+            For Each row As DataRow In bulkItemsTable.Rows
+                If Convert.ToBoolean(row("Selected")) Then
+                    Dim itemId As Integer = Convert.ToInt32(row("ItemId"))
+                    Dim subGroupId As Integer = Convert.ToInt32(row("SubGroupId"))
+                    selectedItems.Add(New Tuple(Of Integer, Integer)(itemId, subGroupId))
+                End If
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Error collecting selected items with sub-groups: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Return selectedItems
+    End Function
+
     Private Function ValidateBulkInput(empId As Integer, subGroupId As Integer, selectedItems As List(Of Integer)) As Boolean
-        If empId = 0 Then
-            MessageBox.Show("Please select an employee for bulk update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If empId = 0 AndAlso selectedSalesmenIds.Count = 0 Then
+            MessageBox.Show("Please select at least one employee for bulk update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return False
         End If
 
-        If subGroupId = 0 Then
-            MessageBox.Show("Please select a sub group for bulk update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If subGroupId = 0 AndAlso selectedSubGroupIds.Count = 0 Then
+            MessageBox.Show("Please select at least one sub group for bulk update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return False
         End If
 
@@ -59,46 +82,277 @@ Public Class FrmSalesCommission
         Return True
     End Function
 
+    ' Bulk Salesman Selection Methods
+    Private Sub AddSelectedSalesman()
+        Try
+            If cmbBulkSalesman.EditValue IsNot Nothing AndAlso Not IsDBNull(cmbBulkSalesman.EditValue) Then
+                Dim empId As Integer = Convert.ToInt32(cmbBulkSalesman.EditValue)
+                Dim empName As String = cmbBulkSalesman.Text
+
+                If Not selectedSalesmenIds.Contains(empId) Then
+                    selectedSalesmenIds.Add(empId)
+                    selectedSalesmenNames.Add(empName)
+                    UpdateSelectedSalesmenDisplay()
+                    MessageBox.Show("Added: " & empName, "Salesman Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Salesman '" & empName & "' is already selected.", "Already Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error adding salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub RemoveSelectedSalesman()
+        Try
+            If cmbBulkSalesman.EditValue IsNot Nothing AndAlso Not IsDBNull(cmbBulkSalesman.EditValue) Then
+                Dim empId As Integer = Convert.ToInt32(cmbBulkSalesman.EditValue)
+                Dim empName As String = cmbBulkSalesman.Text
+
+                If selectedSalesmenIds.Contains(empId) Then
+                    Dim index As Integer = selectedSalesmenIds.IndexOf(empId)
+                    selectedSalesmenIds.RemoveAt(index)
+                    selectedSalesmenNames.RemoveAt(index)
+                    UpdateSelectedSalesmenDisplay()
+                    MessageBox.Show("Removed: " & empName, "Salesman Removed", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Salesman '" & empName & "' is not selected.", "Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error removing salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ClearSelectedSalesmen()
+        Try
+            selectedSalesmenIds.Clear()
+            selectedSalesmenNames.Clear()
+            UpdateSelectedSalesmenDisplay()
+            MessageBox.Show("All selected salesmen cleared.", "Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show("Error clearing salesmen: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Bulk SubGroup Selection Methods
+    Private Sub AddSelectedSubGroup()
+        Try
+            If cmbBulkSubGroup.EditValue IsNot Nothing AndAlso Not IsDBNull(cmbBulkSubGroup.EditValue) Then
+                Dim subGroupId As Integer = Convert.ToInt32(cmbBulkSubGroup.EditValue)
+                Dim subGroupName As String = cmbBulkSubGroup.Text
+
+                If Not selectedSubGroupIds.Contains(subGroupId) Then
+                    selectedSubGroupIds.Add(subGroupId)
+                    selectedSubGroupNames.Add(subGroupName)
+                    UpdateSelectedSubGroupsDisplay()
+                    MessageBox.Show("Added: " & subGroupName, "Sub Group Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Sub Group '" & subGroupName & "' is already selected.", "Already Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error adding sub group: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub RemoveSelectedSubGroup()
+        Try
+            If cmbBulkSubGroup.EditValue IsNot Nothing AndAlso Not IsDBNull(cmbBulkSubGroup.EditValue) Then
+                Dim subGroupId As Integer = Convert.ToInt32(cmbBulkSubGroup.EditValue)
+                Dim subGroupName As String = cmbBulkSubGroup.Text
+
+                If selectedSubGroupIds.Contains(subGroupId) Then
+                    Dim index As Integer = selectedSubGroupIds.IndexOf(subGroupId)
+                    selectedSubGroupIds.RemoveAt(index)
+                    selectedSubGroupNames.RemoveAt(index)
+                    UpdateSelectedSubGroupsDisplay()
+                    MessageBox.Show("Removed: " & subGroupName, "Sub Group Removed", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Sub Group '" & subGroupName & "' is not selected.", "Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error removing sub group: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ClearSelectedSubGroups()
+        Try
+            selectedSubGroupIds.Clear()
+            selectedSubGroupNames.Clear()
+            UpdateSelectedSubGroupsDisplay()
+            MessageBox.Show("All selected sub groups cleared.", "Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show("Error clearing sub groups: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Update Display Methods (These will need UI controls to display selected items)
+    Private Sub UpdateSelectedSalesmenDisplay()
+        ' This method will update a label or text box showing selected salesmen
+        ' You'll need to add a label control to your form for this
+        Try
+            Dim displayText As String = If(selectedSalesmenNames.Count > 0,
+                                         "Selected (" & selectedSalesmenNames.Count.ToString() & "): " & String.Join(", ", selectedSalesmenNames),
+                                         "No salesmen selected")
+            ' Assuming you have a label called lblSelectedSalesmen
+            ' lblSelectedSalesmen.Text = displayText
+            Console.WriteLine("Selected Salesmen: " & displayText)
+        Catch ex As Exception
+            Console.WriteLine("Error updating salesmen display: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub UpdateSelectedSubGroupsDisplay()
+        ' This method will update a label or text box showing selected sub groups
+        ' You'll need to add a label control to your form for this
+        Try
+            Dim displayText As String = If(selectedSubGroupNames.Count > 0,
+                                         "Selected (" & selectedSubGroupNames.Count.ToString() & "): " & String.Join(", ", selectedSubGroupNames),
+                                         "No sub groups selected")
+            ' Assuming you have a label called lblSelectedSubGroups
+            ' lblSelectedSubGroups.Text = displayText
+            Console.WriteLine("Selected Sub Groups: " & displayText)
+        Catch ex As Exception
+            Console.WriteLine("Error updating sub groups display: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Helper methods for CheckedComboBoxEdit checkbox functionality
+    Private Sub UpdateSelectedSalesmenFromComboBox()
+        ' This method works with CheckedComboBoxEdit controls with checkboxes
+        Try
+            selectedSalesmenIds.Clear()
+            selectedSalesmenNames.Clear()
+
+            ' Get checked values from CheckedComboBoxEdit (using EditValue for multi-select)
+            If cmbBulkSalesman.EditValue IsNot Nothing Then
+                Dim editValue As String = cmbBulkSalesman.EditValue.ToString()
+                If Not String.IsNullOrEmpty(editValue) Then
+                    ' Split the comma-separated values
+                    Dim valueStrings As String() = editValue.Split(","c)
+                    For Each valueStr As String In valueStrings
+                        If Not String.IsNullOrEmpty(valueStr.Trim()) Then
+                            Dim empId As Integer = Convert.ToInt32(valueStr.Trim())
+                            selectedSalesmenIds.Add(empId)
+
+                            ' Find the corresponding name from the data source
+                            For Each row As DataRow In salesmenTable.Rows
+                                If Convert.ToInt32(row("emp_id")) = empId Then
+                                    selectedSalesmenNames.Add(row("emp_printname").ToString())
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            Console.WriteLine("Error updating selected salesmen from combo box: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub UpdateSelectedSubGroupsFromComboBox()
+        ' This method works with CheckedComboBoxEdit controls with checkboxes
+        Try
+            selectedSubGroupIds.Clear()
+            selectedSubGroupNames.Clear()
+
+            ' Get checked values from CheckedComboBoxEdit (using EditValue for multi-select)
+            If cmbBulkSubGroup.EditValue IsNot Nothing Then
+                Dim editValue As String = cmbBulkSubGroup.EditValue.ToString()
+                If Not String.IsNullOrEmpty(editValue) Then
+                    ' Split the comma-separated values
+                    Dim valueStrings As String() = editValue.Split(","c)
+                    For Each valueStr As String In valueStrings
+                        If Not String.IsNullOrEmpty(valueStr.Trim()) Then
+                            Dim subGroupId As Integer = Convert.ToInt32(valueStr.Trim())
+                            selectedSubGroupIds.Add(subGroupId)
+
+                            ' Find the corresponding name from the data source
+                            For Each row As DataRow In subGroupsTable.Rows
+                                If Convert.ToInt32(row("SubGroupId")) = subGroupId Then
+                                    selectedSubGroupNames.Add(row("SubGroupName").ToString())
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            Console.WriteLine("Error updating selected sub groups from combo box: " & ex.Message)
+        End Try
+    End Sub
+
     Private Sub BulkUpdateCommissions(empId As Integer, subGroupId As Integer, selectedItems As List(Of Integer),
                                       commissionType As String, commissionPercentage As Decimal, fixedAmount As Decimal, status As Boolean)
         Try
             Dim successCount As Integer = 0
             Dim errorCount As Integer = 0
             Dim errors As New List(Of String)
+            Dim totalOperations As Integer = 0
 
-            For Each itemId As Integer In selectedItems
-                Try
-                    Dim commissionData As New Dictionary(Of String, Object)
-                    commissionData("emp_id") = empId
-                    commissionData("item_id") = itemId
-                    commissionData("sub_group_id") = subGroupId
-                    commissionData("commission_percentage") = commissionPercentage
-                    commissionData("commission_type") = commissionType
-                    commissionData("fixed_amount") = fixedAmount
-                    commissionData("status") = If(status, 1, 0)
+            ' Get selected items with their sub-group information
+            Dim selectedItemsWithSubGroups As List(Of Tuple(Of Integer, Integer)) = GetSelectedItemsWithSubGroups()
 
-                    Dim jsonString As String = JsonConvert.SerializeObject(commissionData)
-                    Dim url As String = M_Details.LinkAjaxRequest & "SalesManCommission=4&json=" & Uri.EscapeDataString(jsonString)
+            ' Determine which salesmen to use
+            Dim salesmenToProcess As List(Of Integer) = If(selectedSalesmenIds.Count > 0, selectedSalesmenIds, New List(Of Integer) From {empId})
 
-                    Dim json As String = New WebClient().DownloadString(url)
-                    Dim parsedJson As JObject = JObject.Parse(json)
+            ' Calculate total operations for progress tracking
+            ' Each item is processed only with its own sub-group, for each selected salesman
+            totalOperations = salesmenToProcess.Count * selectedItemsWithSubGroups.Count
 
-                    If parsedJson("Success").ToString() = "True" Then
-                        successCount += 1
-                    Else
+            Dim currentOperation As Integer = 0
+
+            ' Process each combination of salesman and item (with its correct sub-group)
+            For Each salesmanId As Integer In salesmenToProcess
+                For Each itemWithSubGroup In selectedItemsWithSubGroups
+                    Try
+                        currentOperation += 1
+
+                        Dim itemId As Integer = itemWithSubGroup.Item1
+                        Dim itemSubGroupId As Integer = itemWithSubGroup.Item2
+
+                        ' Update progress (optional - you can add a progress bar)
+                        Console.WriteLine("Processing " & currentOperation.ToString() & "/" & totalOperations.ToString() & ": Salesman " & salesmanId.ToString() & ", SubGroup " & itemSubGroupId.ToString() & ", Item " & itemId.ToString())
+
+                        Dim commissionData As New Dictionary(Of String, Object)
+                        commissionData("emp_id") = salesmanId
+                        commissionData("item_id") = itemId
+                        commissionData("sub_group_id") = itemSubGroupId
+                        commissionData("commission_percentage") = commissionPercentage
+                        commissionData("commission_type") = commissionType
+                        commissionData("fixed_amount") = fixedAmount
+                        commissionData("status") = If(status, 1, 0)
+
+                        Dim jsonString As String = JsonConvert.SerializeObject(commissionData)
+                        Dim url As String = M_Details.LinkAjaxRequest & "SalesManCommission=4&json=" & Uri.EscapeDataString(jsonString)
+
+                        Dim json As String = New WebClient().DownloadString(url)
+                        Dim parsedJson As JObject = JObject.Parse(json)
+
+                        If parsedJson("Success").ToString() = "True" Then
+                            successCount += 1
+                        Else
+                            errorCount += 1
+                            errors.Add("S:" & salesmanId.ToString() & ", SG:" & itemSubGroupId.ToString() & ", I:" & itemId.ToString() & " - " & parsedJson("Msg").ToString())
+                        End If
+
+                    Catch ex As Exception
                         errorCount += 1
-                        errors.Add("Item ID " & itemId & ": " & parsedJson("Msg").ToString())
-                    End If
-
-                Catch ex As Exception
-                    errorCount += 1
-                    errors.Add("Item ID " & itemId & ": " & ex.Message)
-                End Try
+                        Dim itemId As Integer = itemWithSubGroup.Item1
+                        Dim itemSubGroupId As Integer = itemWithSubGroup.Item2
+                        errors.Add("S:" & salesmanId.ToString() & ", SG:" & itemSubGroupId.ToString() & ", I:" & itemId.ToString() & " - " & ex.Message)
+                    End Try
+                Next
             Next
 
             ' Show result summary
-            Dim message As String = String.Format("Bulk Update Complete!{0}Success: {1}{0}Errors: {2}",
-                                                  vbCrLf, successCount, errorCount)
+            Dim message As String = String.Format("Bulk Update Complete!{0}Total Operations: {1}{0}Success: {2}{0}Errors: {3}{0}Salesmen: {4}{0}Items: {5}",
+                                                 Environment.NewLine, totalOperations, successCount, errorCount,
+                                                 salesmenToProcess.Count, selectedItemsWithSubGroups.Count)
 
             If errors.Count > 0 AndAlso errors.Count <= 5 Then
                 message += vbCrLf & vbCrLf & "Errors:" & vbCrLf & String.Join(vbCrLf, errors)
@@ -178,6 +432,7 @@ Public Class FrmSalesCommission
         bulkItemsTable.Columns.Add("Selected", GetType(Boolean))
         bulkItemsTable.Columns.Add("ItemId", GetType(Integer))
         bulkItemsTable.Columns.Add("ItemName", GetType(String))
+        bulkItemsTable.Columns.Add("SubGroupId", GetType(Integer)) ' Track which sub-group each item belongs to
     End Sub
 
     Private Sub SetupFormControls()
@@ -218,15 +473,23 @@ Public Class FrmSalesCommission
         ' Setup Bulk Items Grid
         dgvBulkItems.DataSource = bulkItemsTable
 
-        ' Setup Bulk Salesman ComboBox
+        ' Setup Bulk Salesman CheckedComboBoxEdit with checkboxes
         cmbBulkSalesman.Properties.DataSource = salesmenTable
         cmbBulkSalesman.Properties.DisplayMember = "emp_printname"
         cmbBulkSalesman.Properties.ValueMember = "emp_id"
+        ' Enable checkbox functionality
+        cmbBulkSalesman.Properties.SelectAllItemVisible = True
+        cmbBulkSalesman.Properties.AllowMultiSelect = True
 
-        ' Setup Bulk Sub Group ComboBox
+        ' Setup Bulk Sub Group CheckedComboBoxEdit with checkboxes
         cmbBulkSubGroup.Properties.DataSource = subGroupsTable
         cmbBulkSubGroup.Properties.DisplayMember = "SubGroupName"
         cmbBulkSubGroup.Properties.ValueMember = "SubGroupId"
+        ' Enable checkbox functionality
+        cmbBulkSubGroup.Properties.SelectAllItemVisible = True
+        cmbBulkSubGroup.Properties.AllowMultiSelect = True
+
+        ' Note: CheckedComboBoxEdit uses EditValueChanged event instead of ItemCheck
 
         ' Setup Bulk Commission Type ComboBox
         cmbBulkCommissionType.Properties.Items.Clear()
@@ -430,7 +693,7 @@ Public Class FrmSalesCommission
                             itemName = item("item_name").ToString()
                         End If
 
-                        bulkItemsTable.Rows.Add(False, itemId, itemName)
+                        bulkItemsTable.Rows.Add(False, itemId, itemName, subGroupId)
                     Next
 
                     MessageBox.Show("Loaded " & bulkItemsTable.Rows.Count & " items for bulk selection.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -440,16 +703,101 @@ Public Class FrmSalesCommission
 
                 ' Refresh the grid to display the updated data
                 dgvBulkItems.RefreshDataSource()
-                dgvBulkItems.Refresh()
-            Else
-                bulkItemsTable.Clear()
-                dgvBulkItems.RefreshDataSource()
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading bulk items: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
+    ' New method to load items for multiple selected sub-groups
+    Private Sub LoadBulkItemsForSelectedSubGroups()
+        Try
+            If selectedSubGroupIds.Count = 0 Then
+                bulkItemsTable.Clear()
+                dgvBulkItems.RefreshDataSource()
+                Return
+            End If
+
+            bulkItemsTable.Clear()
+            Dim allItemIds As New HashSet(Of Integer) ' To avoid duplicate items
+            Dim totalItemsLoaded As Integer = 0
+
+            For Each subGroupId As Integer In selectedSubGroupIds
+                Try
+                    Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=3&sub_group_id=" & subGroupId)
+                    Dim parsedJson As JObject = JObject.Parse(json)
+
+                    If parsedJson("Success").ToString() = "True" Then
+                        Dim dataArray = parsedJson("Data")
+
+                        For Each item In dataArray
+                            Dim itemId As Integer = 0
+                            Dim itemName As String = ""
+
+                            ' Try multiple possible field name variations for ItemId
+                            If item("ItemId") IsNot Nothing AndAlso Not IsDBNull(item("ItemId")) Then
+                                itemId = Convert.ToInt32(item("ItemId"))
+                            ElseIf item("itemid") IsNot Nothing AndAlso Not IsDBNull(item("itemid")) Then
+                                itemId = Convert.ToInt32(item("itemid"))
+                            ElseIf item("item_id") IsNot Nothing AndAlso Not IsDBNull(item("item_id")) Then
+                                itemId = Convert.ToInt32(item("item_id"))
+                            End If
+
+                            ' Try multiple possible field name variations for ItemName
+                            If item("ItemName") IsNot Nothing Then
+                                itemName = item("ItemName").ToString()
+                            ElseIf item("itemname") IsNot Nothing Then
+                                itemName = item("itemname").ToString()
+                            ElseIf item("item_name") IsNot Nothing Then
+                                itemName = item("item_name").ToString()
+                            End If
+
+                            ' Only add if not already added (avoid duplicates)
+                            If itemId > 0 AndAlso Not allItemIds.Contains(itemId) Then
+                                bulkItemsTable.Rows.Add(False, itemId, itemName, subGroupId)
+                                allItemIds.Add(itemId)
+                                totalItemsLoaded += 1
+                            End If
+                        Next
+                    End If
+                Catch subEx As Exception
+                    Console.WriteLine("Error loading items for sub group " & subGroupId & ": " & subEx.Message)
+                End Try
+            Next
+
+            ' Refresh the grid to display the updated data
+            dgvBulkItems.RefreshDataSource()
+
+            If totalItemsLoaded > 0 Then
+                MessageBox.Show("Loaded " & totalItemsLoaded & " items from " & selectedSubGroupIds.Count & " selected sub-groups for bulk selection.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("No items found for the selected sub-groups.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading bulk items for multiple sub-groups: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Helper method to refresh bulk items display whenever selections change
+    Private Sub RefreshBulkItemsDisplay()
+        Try
+            ' Always reload items based on current sub-group selections
+            LoadBulkItemsForSelectedSubGroups()
+        Catch ex As Exception
+            Console.WriteLine("Error refreshing bulk items display: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Method to clear bulk items display
+    Private Sub ClearBulkItemsDisplay()
+        Try
+            bulkItemsTable.Clear()
+            dgvBulkItems.RefreshDataSource()
+        Catch ex As Exception
+            Console.WriteLine("Error clearing bulk items display: " & ex.Message)
+        End Try
+    End Sub
     Private Sub LoadAllCommissions()
         Try
             Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=7")
@@ -848,15 +1196,173 @@ Public Class FrmSalesCommission
         End Try
     End Sub
 
+    ' Bulk Selection Button Event Handlers
+    ' Note: You'll need to add these buttons to your form design
+
+    ' Helper method to clear all checkbox selections
+    Private Sub ClearAllComboBoxSelections()
+        Try
+            ' Clear CheckedComboBoxEdit selections (reset EditValue to Nothing)
+            cmbBulkSalesman.EditValue = Nothing
+            cmbBulkSubGroup.EditValue = Nothing
+
+            ' Clear our internal lists
+            selectedSalesmenIds.Clear()
+            selectedSalesmenNames.Clear()
+            selectedSubGroupIds.Clear()
+            selectedSubGroupNames.Clear()
+
+            ' Update displays
+            UpdateSelectedSalesmenDisplay()
+            UpdateSelectedSubGroupsDisplay()
+        Catch ex As Exception
+            Console.WriteLine("Error clearing selections: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Helper methods to programmatically check/uncheck specific items
+    Private Sub CheckSalesmanById(empId As Integer)
+        Try
+            ' Add specific salesman to CheckedComboBoxEdit selection
+            Dim currentValue As String = If(cmbBulkSalesman.EditValue Is Nothing, "", cmbBulkSalesman.EditValue.ToString())
+            Dim values As New List(Of String)
+
+            ' Parse existing values
+            If Not String.IsNullOrEmpty(currentValue) Then
+                values.AddRange(currentValue.Split(","c).Select(Function(v) v.Trim()).Where(Function(v) Not String.IsNullOrEmpty(v)))
+            End If
+
+            ' Add new value if not already present
+            Dim empIdStr As String = empId.ToString()
+            If Not values.Contains(empIdStr) Then
+                values.Add(empIdStr)
+                cmbBulkSalesman.EditValue = String.Join(",", values)
+            End If
+
+            UpdateSelectedSalesmenFromComboBox()
+            UpdateSelectedSalesmenDisplay()
+        Catch ex As Exception
+            Console.WriteLine("Error checking salesman: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub UncheckSalesmanById(empId As Integer)
+        Try
+            ' Remove specific salesman from CheckedComboBoxEdit selection
+            Dim currentValue As String = If(cmbBulkSalesman.EditValue Is Nothing, "", cmbBulkSalesman.EditValue.ToString())
+            If Not String.IsNullOrEmpty(currentValue) Then
+                Dim values As New List(Of String)
+                values.AddRange(currentValue.Split(","c).Select(Function(v) v.Trim()).Where(Function(v) Not String.IsNullOrEmpty(v)))
+
+                ' Remove the value
+                Dim empIdStr As String = empId.ToString()
+                values.Remove(empIdStr)
+
+                cmbBulkSalesman.EditValue = If(values.Count > 0, String.Join(",", values), Nothing)
+            End If
+
+            UpdateSelectedSalesmenFromComboBox()
+            UpdateSelectedSalesmenDisplay()
+        Catch ex As Exception
+            Console.WriteLine("Error unchecking salesman: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub CheckSubGroupById(subGroupId As Integer)
+        Try
+            ' Add specific sub group to CheckedComboBoxEdit selection
+            Dim currentValue As String = If(cmbBulkSubGroup.EditValue Is Nothing, "", cmbBulkSubGroup.EditValue.ToString())
+            Dim values As New List(Of String)
+
+            ' Parse existing values
+            If Not String.IsNullOrEmpty(currentValue) Then
+                values.AddRange(currentValue.Split(","c).Select(Function(v) v.Trim()).Where(Function(v) Not String.IsNullOrEmpty(v)))
+            End If
+
+            ' Add new value if not already present
+            Dim subGroupIdStr As String = subGroupId.ToString()
+            If Not values.Contains(subGroupIdStr) Then
+                values.Add(subGroupIdStr)
+                cmbBulkSubGroup.EditValue = String.Join(",", values)
+            End If
+
+            UpdateSelectedSubGroupsFromComboBox()
+            UpdateSelectedSubGroupsDisplay()
+        Catch ex As Exception
+            Console.WriteLine("Error checking sub group: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub UncheckSubGroupById(subGroupId As Integer)
+        Try
+            ' Remove specific sub group from CheckedComboBoxEdit selection
+            Dim currentValue As String = If(cmbBulkSubGroup.EditValue Is Nothing, "", cmbBulkSubGroup.EditValue.ToString())
+            If Not String.IsNullOrEmpty(currentValue) Then
+                Dim values As New List(Of String)
+                values.AddRange(currentValue.Split(","c).Select(Function(v) v.Trim()).Where(Function(v) Not String.IsNullOrEmpty(v)))
+
+                ' Remove the value
+                Dim subGroupIdStr As String = subGroupId.ToString()
+                values.Remove(subGroupIdStr)
+
+                cmbBulkSubGroup.EditValue = If(values.Count > 0, String.Join(",", values), Nothing)
+            End If
+
+            UpdateSelectedSubGroupsFromComboBox()
+            UpdateSelectedSubGroupsDisplay()
+        Catch ex As Exception
+            Console.WriteLine("Error unchecking sub group: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Optional convenience buttons (checkboxes work automatically now)
+    ' These buttons are now optional since users can directly check/uncheck in the ComboBoxes
+    '
+    ' TO ENABLE BUTTONS: Add these button controls to your form design, then uncomment the Handles clauses:
+    ' - btnAddSalesman, btnRemoveSalesman, btnClearSalesmen
+    ' - btnAddSubGroup, btnRemoveSubGroup, btnClearSubGroups
+    '
+    Private Sub btnAddSalesman_Click(sender As Object, e As EventArgs) ' Handles btnAddSalesman.Click
+        ' This button is now optional - users can directly check items in cmbBulkSalesman
+        AddSelectedSalesman()
+    End Sub
+
+    Private Sub btnRemoveSalesman_Click(sender As Object, e As EventArgs) ' Handles btnRemoveSalesman.Click
+        ' This button is now optional - users can directly uncheck items in cmbBulkSalesman
+        RemoveSelectedSalesman()
+    End Sub
+
+    Private Sub btnClearSalesmen_Click(sender As Object, e As EventArgs) ' Handles btnClearSalesmen.Click
+        ' Clear all selected salesmen checkboxes
+        ClearAllComboBoxSelections()
+    End Sub
+
+    ' SubGroup bulk selection buttons (optional convenience methods)
+    Private Sub btnAddSubGroup_Click(sender As Object, e As EventArgs) ' Handles btnAddSubGroup.Click
+        ' This button is now optional - users can directly check items in cmbBulkSubGroup
+        AddSelectedSubGroup()
+    End Sub
+
+    Private Sub btnRemoveSubGroup_Click(sender As Object, e As EventArgs) ' Handles btnRemoveSubGroup.Click
+        ' This button is now optional - users can directly uncheck items in cmbBulkSubGroup
+        RemoveSelectedSubGroup()
+    End Sub
+
+    Private Sub btnClearSubGroups_Click(sender As Object, e As EventArgs) ' Handles btnClearSubGroups.Click
+        ' Clear all selected sub group checkboxes
+        ClearAllComboBoxSelections()
+    End Sub
+
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         Try
+            ' Clear all bulk selections when refreshing using the new method
+            ClearAllComboBoxSelections()
+
+            ' Refresh data
+            LoadAllCommissions()
             LoadSalesmen()
             LoadSubGroups()
-            If selectedEmpId > 0 Then
-                LoadCommissionsBySalesman(selectedEmpId)
-            Else
-                LoadAllCommissions()
-            End If
+            ' Note: LoadItems needs a subGroupId parameter, so we'll skip it here
         Catch ex As Exception
             MessageBox.Show("Error refreshing data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -932,19 +1438,40 @@ Public Class FrmSalesCommission
         End Try
     End Sub
 
-    ' Bulk Update Event Handlers
-    Private Sub cmbBulkSubGroup_EditValueChanged(sender As Object, e As EventArgs) Handles cmbBulkSubGroup.EditValueChanged
+    ' Bulk Update Event Handlers with Checkbox Selection
+    Private Sub cmbBulkSalesman_EditValueChanged(sender As Object, e As EventArgs) Handles cmbBulkSalesman.EditValueChanged
         Try
-            If cmbBulkSubGroup.EditValue IsNot Nothing AndAlso Not IsDBNull(cmbBulkSubGroup.EditValue) Then
-                Dim subGroupId As Integer = Convert.ToInt32(cmbBulkSubGroup.EditValue)
-                LoadBulkItemsBySubGroup(subGroupId)
-            Else
-                bulkItemsTable.Clear()
-            End If
+            ' Update selected salesmen based on checked items
+            UpdateSelectedSalesmenFromComboBox()
+            UpdateSelectedSalesmenDisplay()
+
+            ' Refresh items display - items depend on sub-group selections primarily
+            RefreshBulkItemsDisplay()
+
         Catch ex As Exception
-            MessageBox.Show("Error loading bulk items for sub group: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error updating selected salesmen: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    ' Note: CheckedComboBoxEdit doesn't support ItemCheck events
+    ' Using EditValueChanged event instead for checkbox change detection
+
+    Private Sub cmbBulkSubGroup_EditValueChanged(sender As Object, e As EventArgs) Handles cmbBulkSubGroup.EditValueChanged
+        Try
+            ' Update selected sub groups based on checked items
+            UpdateSelectedSubGroupsFromComboBox()
+            UpdateSelectedSubGroupsDisplay()
+
+            ' Load items for ALL selected sub groups to populate the bulk items grid
+            RefreshBulkItemsDisplay()
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating selected sub groups: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Note: CheckedComboBoxEdit uses EditValueChanged event instead of ItemCheck
+    ' The cmbBulkSubGroup_EditValueChanged event handles selection changes for sub groups
 
     Private Sub btnBulkSelectAll_Click(sender As Object, e As EventArgs) Handles btnBulkSelectAll.Click
         Try
@@ -970,25 +1497,39 @@ Public Class FrmSalesCommission
 
     Private Sub btnBulkUpdate_Click(sender As Object, e As EventArgs) Handles btnBulkUpdate.Click
         Try
-            ' Validate bulk input
-            Dim empId As Integer = If(cmbBulkSalesman.EditValue Is Nothing, 0, Convert.ToInt32(cmbBulkSalesman.EditValue))
-            Dim subGroupId As Integer = If(cmbBulkSubGroup.EditValue Is Nothing, 0, Convert.ToInt32(cmbBulkSubGroup.EditValue))
+            ' Get selected items from grid
             Dim selectedItems As List(Of Integer) = GetSelectedItemIds()
 
-            If ValidateBulkInput(empId, subGroupId, selectedItems) Then
-                Dim result As DialogResult = MessageBox.Show(
-                    String.Format("Are you sure you want to update commission for {0} items?", selectedItems.Count),
+            ' Validate bulk input using the new multi-selection system
+            If ValidateBulkInput(0, 0, selectedItems) Then
+                ' Determine what will be processed based on actual selections
+                Dim salesmenCount As Integer = If(selectedSalesmenIds.Count > 0, selectedSalesmenIds.Count, 0)
+                Dim subGroupsCount As Integer = If(selectedSubGroupIds.Count > 0, selectedSubGroupIds.Count, 0)
+                Dim totalOperations As Integer = salesmenCount * subGroupsCount * selectedItems.Count
+
+                ' Build confirmation message with selected details
+                Dim confirmMessage As String = String.Format(
+                    "Are you sure you want to update commission for:{0}" &
+                    "• {1} Selected Salesmen: {2}{0}" &
+                    "• {3} Selected Sub Groups: {4}{0}" &
+                    "• {5} Selected Items{0}" &
+                    "Total Operations: {6}",
+                    Environment.NewLine,
+                    salesmenCount, String.Join(", ", selectedSalesmenNames),
+                    subGroupsCount, String.Join(", ", selectedSubGroupNames),
+                    selectedItems.Count, totalOperations)
+
+                Dim result As DialogResult = MessageBox.Show(confirmMessage,
                     "Confirm Bulk Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If result = DialogResult.Yes Then
-                    BulkUpdateCommissions(
-                        empId,
-                        subGroupId,
-                        selectedItems,
-                        cmbBulkCommissionType.Text,
-                        Convert.ToDecimal(txtBulkCommissionPercentage.Text),
-                        Convert.ToDecimal(txtBulkFixedAmount.Text),
-                        chkBulkStatus.Checked
+                    ' The existing BulkUpdateCommissions method already handles multi-selection
+                    ' It checks selectedSalesmenIds and selectedSubGroupIds internally
+                    BulkUpdateCommissions(0, 0, selectedItems,
+                    cmbBulkCommissionType.Text,
+                    Convert.ToDecimal(txtBulkCommissionPercentage.Text),
+                    Convert.ToDecimal(txtBulkFixedAmount.Text),
+                    chkBulkStatus.Checked
                     )
                 End If
             End If
@@ -1013,4 +1554,28 @@ Public Class FrmSalesCommission
         End If
     End Sub
 
+    Private Sub btnbulkdeletebysalesmanid_Click(sender As Object, e As EventArgs) Handles btnbulkdeletebysalesmanid.Click
+        Try
+            If selectedEmpId > 0 Then
+                Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this salesman?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim url As String = M_Details.LinkAjaxRequest & "SalesManCommission=14&salesman_id=" & selectedEmpId
+                    Dim json As String = New WebClient().DownloadString(url)
+                    Dim parsedJson As JObject = JObject.Parse(json)
+
+                    If parsedJson("Success").ToString() = "True" Then
+                        MessageBox.Show(parsedJson("Msg").ToString(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ClearForm()
+                        LoadAllCommissions()
+                    Else
+                        MessageBox.Show(parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                End If
+            Else
+                MessageBox.Show("Please select a commission to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error deleting commission: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

@@ -104,6 +104,7 @@ Public Class MainMaster
                 barbtnchronicalreport.Enabled = False
                 barbtnadvancepaymentreport.Enabled = False
                 barbtnmonthlysummaryreport.Enabled = False
+                barbtnmaingrouppolicy.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -196,6 +197,15 @@ Public Class MainMaster
                             barmaingroup.Enabled = False
                         End If
                     End If
+                    Dim MainGroupPolicy As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MainGroupPolicy"
+                    If MainGroupPolicy.Any Then
+                        If MainGroupPolicy(0)("menu_active") = "1" Then
+                            barbtnmaingrouppolicy.Enabled = True
+                        Else
+                            barbtnmaingrouppolicy.Enabled = False
+                        End If
+                    End If
+
                     Dim SubGroup As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SubGroup"
                     If SubGroup.Any Then
                         If SubGroup(0)("menu_active") = "1" Then
@@ -965,6 +975,15 @@ Public Class MainMaster
         Try
             frmMonthlySummaryReport.MdiParent = Me
             frmMonthlySummaryReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnmaingrouppolicy_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmaingrouppolicy.ItemClick
+        Try
+            FrmMainGroupPolicy.MdiParent = Me
+            FrmMainGroupPolicy.Show()
         Catch ex As Exception
 
         End Try
