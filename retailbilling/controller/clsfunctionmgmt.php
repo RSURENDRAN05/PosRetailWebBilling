@@ -4511,7 +4511,7 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
 
-        $sqlSelect = "SELECT p.`mainrefid` as mainid, mg.`mainname`
+        $sqlSelect = "SELECT p.`mainrefid` as MainId, mg.`mainname` as MainName
                       FROM `di_main_group_policy` p
                       INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
                       WHERE p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'

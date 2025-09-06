@@ -163,6 +163,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "Mail Not Received"
             End If
+            If getMainGroupPolicy() = True Then
+                dialog.Caption = "Loading MainGroupPolicy"
+            Else
+                dialog.Caption = "MainGroupPolicy Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

@@ -471,8 +471,8 @@ Public Class PosSalesII
 
                 ' For initial load, use ButtonStyleWH.SUBLOAD as default index
                 Dim firstMainGroupId As Integer = Convert.ToInt32(ButtonStyleWH.SUBLOAD)
-                If _JsonData.MainGroupTable.Rows.Count > 0 Then
-                    For Each row As DataRow In _JsonData.MainGroupTable.Rows
+                If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+                    For Each row As DataRow In _JsonData.MainGroupPolicyTable.Rows
                         Dim btn As New DevExpress.XtraEditors.SimpleButton()
 
                         ' Button text and data

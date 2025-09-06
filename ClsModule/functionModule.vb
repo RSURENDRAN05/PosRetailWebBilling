@@ -767,9 +767,10 @@ Module functionModule
             Dim Path As String = filePath & "MainGroupPolicyTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
+                Dim url As String = M_Details.LinkAjaxRequest & "MgmtRequest=9&Operation=SELECTACTIVE&Comid=" & _companyInfo.ComId & "&Locid=" & _companyInfo.LocId
                 _JsonData.MainGroupPolicyTable.TableName = "MainGroupPolicyTable"
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=16")
+                Dim json As String = New System.Net.WebClient().DownloadString(url)
                 Dim Userparsejson As JObject = JObject.Parse(json)
                 _JsonData.MainGroupPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
                 If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
