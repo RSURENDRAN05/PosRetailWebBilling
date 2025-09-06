@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTest
+Partial Class FrmMenuDesign
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,7 @@ Partial Class frmTest
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTest))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenuDesign))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.PanelSettings = New DevExpress.XtraEditors.PanelControl()
         Me.colorEditBackColor = New DevExpress.XtraEditors.ColorEdit()
@@ -33,7 +33,6 @@ Partial Class frmTest
         Me.lblPreview = New System.Windows.Forms.Label()
         Me.cmbFontStyle = New System.Windows.Forms.ComboBox()
         Me.cmbFontName = New System.Windows.Forms.ComboBox()
-        Me.lblSelectedItem = New System.Windows.Forms.Label()
         Me.numFontSize = New System.Windows.Forms.NumericUpDown()
         Me.numHeight = New System.Windows.Forms.NumericUpDown()
         Me.numWidth = New System.Windows.Forms.NumericUpDown()
@@ -59,6 +58,10 @@ Partial Class frmTest
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.btnrefreshtable = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnsavefordefault = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtcolumns = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PanelSettings, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +83,7 @@ Partial Class frmTest
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtcolumns.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -98,6 +102,10 @@ Partial Class frmTest
         '
         'PanelSettings
         '
+        Me.PanelSettings.Controls.Add(Me.Label4)
+        Me.PanelSettings.Controls.Add(Me.txtcolumns)
+        Me.PanelSettings.Controls.Add(Me.btnsavefordefault)
+        Me.PanelSettings.Controls.Add(Me.btnrefreshtable)
         Me.PanelSettings.Controls.Add(Me.colorEditBackColor)
         Me.PanelSettings.Controls.Add(Me.colorEditTextColor)
         Me.PanelSettings.Controls.Add(Me.btnApply)
@@ -109,7 +117,6 @@ Partial Class frmTest
         Me.PanelSettings.Controls.Add(Me.lblPreview)
         Me.PanelSettings.Controls.Add(Me.cmbFontStyle)
         Me.PanelSettings.Controls.Add(Me.cmbFontName)
-        Me.PanelSettings.Controls.Add(Me.lblSelectedItem)
         Me.PanelSettings.Controls.Add(Me.numFontSize)
         Me.PanelSettings.Controls.Add(Me.numHeight)
         Me.PanelSettings.Controls.Add(Me.numWidth)
@@ -153,7 +160,7 @@ Partial Class frmTest
         'btnApply
         '
         Me.btnApply.Image = CType(resources.GetObject("btnApply.Image"), System.Drawing.Image)
-        Me.btnApply.Location = New System.Drawing.Point(8, 426)
+        Me.btnApply.Location = New System.Drawing.Point(8, 541)
         Me.btnApply.Name = "btnApply"
         Me.btnApply.Size = New System.Drawing.Size(92, 35)
         Me.btnApply.TabIndex = 39
@@ -208,11 +215,12 @@ Partial Class frmTest
         '
         'lblPreview
         '
-        Me.lblPreview.Location = New System.Drawing.Point(28, 346)
+        Me.lblPreview.Location = New System.Drawing.Point(25, 343)
         Me.lblPreview.Name = "lblPreview"
         Me.lblPreview.Size = New System.Drawing.Size(60, 20)
         Me.lblPreview.TabIndex = 30
         Me.lblPreview.Text = "Preview:"
+        Me.lblPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmbFontStyle
         '
@@ -231,15 +239,6 @@ Partial Class frmTest
         Me.cmbFontName.Name = "cmbFontName"
         Me.cmbFontName.Size = New System.Drawing.Size(120, 21)
         Me.cmbFontName.TabIndex = 26
-        '
-        'lblSelectedItem
-        '
-        Me.lblSelectedItem.AutoSize = True
-        Me.lblSelectedItem.Location = New System.Drawing.Point(28, 391)
-        Me.lblSelectedItem.Name = "lblSelectedItem"
-        Me.lblSelectedItem.Size = New System.Drawing.Size(38, 13)
-        Me.lblSelectedItem.TabIndex = 25
-        Me.lblSelectedItem.Text = "Label3"
         '
         'numFontSize
         '
@@ -330,7 +329,7 @@ Partial Class frmTest
         'btnClear
         '
         Me.btnClear.Image = CType(resources.GetObject("btnClear.Image"), System.Drawing.Image)
-        Me.btnClear.Location = New System.Drawing.Point(128, 426)
+        Me.btnClear.Location = New System.Drawing.Point(131, 541)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(92, 35)
         Me.btnClear.TabIndex = 6
@@ -339,7 +338,7 @@ Partial Class frmTest
         'btnSave
         '
         Me.btnSave.Image = CType(resources.GetObject("btnSave.Image"), System.Drawing.Image)
-        Me.btnSave.Location = New System.Drawing.Point(248, 426)
+        Me.btnSave.Location = New System.Drawing.Point(250, 541)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(92, 35)
         Me.btnSave.TabIndex = 5
@@ -465,14 +464,51 @@ Partial Class frmTest
         Me.LayoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(48, 13)
         '
-        'frmTest
+        'btnrefreshtable
+        '
+        Me.btnrefreshtable.Image = CType(resources.GetObject("btnrefreshtable.Image"), System.Drawing.Image)
+        Me.btnrefreshtable.Location = New System.Drawing.Point(250, 500)
+        Me.btnrefreshtable.Name = "btnrefreshtable"
+        Me.btnrefreshtable.Size = New System.Drawing.Size(92, 35)
+        Me.btnrefreshtable.TabIndex = 42
+        Me.btnrefreshtable.Text = "Refresh"
+        '
+        'btnsavefordefault
+        '
+        Me.btnsavefordefault.Image = CType(resources.GetObject("btnsavefordefault.Image"), System.Drawing.Image)
+        Me.btnsavefordefault.Location = New System.Drawing.Point(232, 111)
+        Me.btnsavefordefault.Name = "btnsavefordefault"
+        Me.btnsavefordefault.Size = New System.Drawing.Size(113, 35)
+        Me.btnsavefordefault.TabIndex = 43
+        Me.btnsavefordefault.Text = "Save Default"
+        '
+        'Label4
+        '
+        Me.Label4.Location = New System.Drawing.Point(229, 88)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(72, 20)
+        Me.Label4.TabIndex = 45
+        Me.Label4.Text = "No Of Col :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtcolumns
+        '
+        Me.txtcolumns.EditValue = "5"
+        Me.txtcolumns.Location = New System.Drawing.Point(307, 88)
+        Me.txtcolumns.Name = "txtcolumns"
+        Me.txtcolumns.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtcolumns.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.txtcolumns.Size = New System.Drawing.Size(35, 20)
+        Me.txtcolumns.TabIndex = 44
+        '
+        'FrmMenuDesign
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1149, 621)
         Me.Controls.Add(Me.LayoutControl1)
-        Me.Name = "frmTest"
-        Me.Text = "frmTest"
+        Me.Name = "FrmMenuDesign"
+        Me.Text = "Menu Design"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.PanelSettings, System.ComponentModel.ISupportInitialize).EndInit()
@@ -495,6 +531,7 @@ Partial Class frmTest
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtcolumns.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -525,7 +562,6 @@ Partial Class frmTest
     Friend WithEvents numWidth As System.Windows.Forms.NumericUpDown
     Friend WithEvents numHeight As System.Windows.Forms.NumericUpDown
     Friend WithEvents numFontSize As System.Windows.Forms.NumericUpDown
-    Friend WithEvents lblSelectedItem As System.Windows.Forms.Label
     Private WithEvents cmbFontName As System.Windows.Forms.ComboBox
     Private WithEvents cmbFontStyle As System.Windows.Forms.ComboBox
     Friend WithEvents lblPreview As System.Windows.Forms.Label
@@ -537,4 +573,8 @@ Partial Class frmTest
     Friend WithEvents btnApply As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents colorEditBackColor As DevExpress.XtraEditors.ColorEdit
     Friend WithEvents colorEditTextColor As DevExpress.XtraEditors.ColorEdit
+    Friend WithEvents btnrefreshtable As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnsavefordefault As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents txtcolumns As DevExpress.XtraEditors.TextEdit
 End Class

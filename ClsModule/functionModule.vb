@@ -91,6 +91,9 @@ Module functionModule
         Public Shared MAINLOAD As String = "1"
         Public Shared SUBLOAD As String = "1"
         Public Shared ITEMLOAD As String = "1"
+        Public Shared MAINCOL As String = "5"
+        Public Shared SUBMENUCOL As String = "1"
+        Public Shared ITEMMENUCOL As String = "5"
     End Structure
 
     Public Structure PrintProfile

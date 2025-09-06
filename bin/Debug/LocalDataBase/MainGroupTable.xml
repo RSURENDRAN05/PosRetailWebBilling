@@ -11,6 +11,15 @@
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
                 <xs:element name="Active" type="xs:string" minOccurs="0" />
                 <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="id" type="xs:string" minOccurs="0" />
+                <xs:element name="item_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_type" type="xs:string" minOccurs="0" />
+                <xs:element name="font_size" type="xs:string" minOccurs="0" />
+                <xs:element name="font_name" type="xs:string" minOccurs="0" />
+                <xs:element name="font_style" type="xs:string" minOccurs="0" />
+                <xs:element name="text_color" type="xs:string" minOccurs="0" />
+                <xs:element name="back_color" type="xs:string" minOccurs="0" />
+                <xs:element name="position" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -22,18 +31,45 @@
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <Active>1</Active>
-    <Color>Yellow</Color>
+    <Color>LightBlue</Color>
+    <id>1</id>
+    <item_id>1</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <position>0</position>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color>Yellow</Color>
+    <Color>LightBlue</Color>
+    <id>2</id>
+    <item_id>2</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <position>0</position>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color>Yellow</Color>
+    <Color>LightBlue</Color>
+    <id>3</id>
+    <item_id>3</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <position>0</position>
   </MainGroupTable>
 </NewDataSet>

@@ -3757,6 +3757,112 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
         }
     }
+
+    if ((int) $_REQUEST['MenuRequest'] == 11) { //Button Properties Management - Accept both GET and POST
+        $data = null;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Handle POST request
+            $jsonData = file_get_contents("php://input");
+            $data = json_decode($jsonData, true);
+        } else {
+            // Handle GET request
+            if (isset($_GET['json'])) {
+                $data = json_decode($_GET['json'], true);
+            } else {
+                // Handle direct GET parameters
+                $data = $_GET;
+            }
+        }
+
+        if ($data && isset($data['operation'])) {
+            $operation = strtoupper($data['operation']);
+
+            switch ($operation) {
+                case 'SAVE':
+                    // Universal save operation - insert if new, update if exists
+                    $requiredFields = ['item_id', 'menu_type'];
+                    foreach ($requiredFields as $field) {
+                        if (!isset($data[$field]) || empty($data[$field])) {
+                            echo json_encode(array("Success" => false, "Msg" => "Required field missing: $field"));
+                            return;
+                        }
+                    }
+                    $item_id = $data['item_id'];
+                    $menu_type = $data['menu_type'];
+                    $font_size = isset($data['font_size']) ? $data['font_size'] : 10.0;
+                    $font_name = isset($data['font_name']) ? $data['font_name'] : 'Segoe UI';
+                    $font_style = isset($data['font_style']) ? $data['font_style'] : 'Regular';
+                    $text_color = isset($data['text_color']) ? $data['text_color'] : 'Argb(255,255,255,255)';
+                    $back_color = isset($data['back_color']) ? $data['back_color'] : 'Argb(255,72,61,139)';
+                    $position = isset($data['position']) ? $data['position'] : 0;
+                    $button_width = isset($data['button_width']) ? $data['button_width'] : 100;
+                    $button_height = isset($data['button_height']) ? $data['button_height'] : 50;
+                    // Check if button properties already exist for this item and menu type
+                    $exists = $clsfunreq->CheckButtonPropertiesExists($item_id, $menu_type);
+                    if ($exists) {
+                        // Update existing record
+                        $RequestUpdate = $clsfunreq->UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position);
+                        if ($RequestUpdate) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Button Properties Updated Successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to Update Button Properties'));
+                        }
+                    } else {
+                        // Insert new record
+                        $RequestInsert = $clsfunreq->InsertButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position);
+                        if ($RequestInsert) {
+                            echo json_encode(array("Success" => true, "Msg" => 'Button Properties Created Successfully'));
+                        } else {
+                            echo json_encode(array("Success" => false, "Msg" => 'Failed to Create Button Properties'));
+                        }
+                    }
+                    break;
+                default:
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid operation. Use SELECT, SAVE, or DELETE'));
+                    break;
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Operation parameter is required'));
+        }
+    }
+
+    if ((int) $_REQUEST['MenuRequest'] == 12) { //Button Dimension Settings - Accept both GET and POST
+        $operation = isset($_GET['operation']) ? $_GET['operation'] : '';
+
+        if ($operation == "SAVE_DIMENSION") {
+            $groupName = isset($_GET['group_name']) ? $_GET['group_name'] : '';
+            $groupValue = isset($_GET['group_value']) ? $_GET['group_value'] : '';
+
+            if (!empty($groupName) && !empty($groupValue)) {
+                $result = $clsfunreq->saveDimensionSetting($groupName, $groupValue);
+
+                if ($result) {
+                    echo json_encode([
+                        "Success" => true,
+                        "Message" => "Dimension setting saved successfully",
+                        "GroupName" => $groupName,
+                        "GroupValue" => $groupValue
+                    ]);
+                } else {
+                    echo json_encode([
+                        "Success" => false,
+                        "Message" => "Failed to save dimension setting"
+                    ]);
+                }
+            } else {
+                echo json_encode([
+                    "Success" => false,
+                    "Message" => "Invalid parameters"
+                ]);
+            }
+        } else {
+            echo json_encode([
+                "Success" => false,
+                "Message" => "Invalid operation"
+            ]);
+        }
+    }
 }
 //GroupPolicyRequest
 elseif (isset($_REQUEST['GroupPolicyRequest'])) {

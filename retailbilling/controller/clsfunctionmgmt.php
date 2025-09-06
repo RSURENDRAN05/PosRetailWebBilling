@@ -165,7 +165,7 @@ class funcProcessMgmt
     public function _SelectMainMastrer()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color FROM `di_main_group` WHERE 1");
+        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, `position` FROM `di_main_group` as dmg INNER JOIN `pos_button_properties` as pbp ON dmg.mainid=pbp.item_id WHERE pbp.menu_type='Main';");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -198,7 +198,7 @@ class funcProcessMgmt
     public function _SelectCateMastrer()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT sg.dcm_id as CateId,sg.dcm_name as CateName,mg.mainid as MainId,mg.mainname as MainName,sg.dcm_active as Active, sg.color as Color, sg.position as Position FROM `di_category_master` as sg INNER JOIN `di_main_group` as mg ON sg.di_main_id=mg.mainid WHERE 1");
+        $sqlSelect = ("SELECT sg.dcm_id as CateId,sg.dcm_name as CateName,mg.mainid as MainId,mg.mainname as MainName,sg.dcm_active as Active, sg.color as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, pbp.`position` as Position FROM `di_category_master` as sg INNER JOIN `di_main_group` as mg ON sg.di_main_id=mg.mainid INNER JOIN `pos_button_properties` as pbp ON sg.dcm_id=pbp.item_id WHERE pbp.menu_type='Sub';");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -239,7 +239,9 @@ class funcProcessMgmt
     public function _SelectProductJoin()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim.dim_remark as Remarks,dmg.mainid as MainId,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId, dim.dim_color as Color, dim.dim_position as Position FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id WHERE 1;");
+        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim_business_type as BusinessType,dim.dim_remark as Remarks,dmg.mainid as MainId,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId, dim.dim_color as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, pbp.`position` as Position FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id
+                      INNER JOIN `pos_button_properties`  as pbp ON dim.dim_item_id=pbp.item_id
+                      WHERE pbp.menu_type='Item';");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -4266,14 +4268,10 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
 
-        $sqlSelect = "SELECT p.`mainpolicyid`, p.`mainrefid` as mainid, mg.`mainname`, p.`mainstatus`,
-                             p.`comid`, p.`locid`, p.`created_date`, p.`updated_date`,c.`pcm_name` as companyname, l.`plm_name` as locationname
-                      FROM `di_main_group_policy` p
-                      INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
-                      inner JOIN `pos_company_mast` c ON p.`comid` = c.`pcm_id`
-                      INNER JOIN `pos_location_mast` l ON p.`locid` = l.`plm_id`
+        $sqlSelect = "SELECT p.`mainpolicyid`, p.`mainrefid` as mainid, mg.`mainname`, p.`mainstatus`, p.`comid`, p.`locid`, p.`created_date`, p.`updated_date`,c.`pcm_name` as companyname, l.`plm_name` as locationname, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, `position` FROM `di_main_group_policy` p INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid` inner JOIN `pos_company_mast` c ON p.`comid` = c.`pcm_id` INNER JOIN `pos_location_mast` l ON p.`locid` = l.`plm_id` INNER JOIN `pos_button_properties` as pbp ON mg.mainid=pbp.item_id
                       WHERE p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
-                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'";
+                        AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'
+                        AND pbp.menu_type='Main'";
 
         if ($mainid > 0) {
             $sqlSelect .= " AND p.`mainrefid` = '" . mysqli_real_escape_string($conn, $mainid) . "'";
@@ -4522,4 +4520,136 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
+
+    // ==================== Button Properties Methods ====================
+
+    /**
+     * Check if button properties exist for given item_id and menu_type
+     * @param int $item_id Item ID
+     * @param string $menu_type Menu type (Main, Sub, Item)
+     * @return bool True if exists, false otherwise
+     */
+    public function CheckButtonPropertiesExists($item_id, $menu_type)
+    {
+        $conn = $this->conn;
+
+        $sqlSelect = "SELECT COUNT(*) as count FROM `pos_button_properties`
+                      WHERE `item_id` = ? AND `menu_type` = ?";
+
+        $stmt = mysqli_prepare($conn, $sqlSelect);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "is", $item_id, $menu_type);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
+            return $row['count'] > 0;
+        }
+
+        return false;
+    }
+
+    /**
+     * Insert new button properties
+     * @param int $item_id Item ID
+     * @param string $menu_type Menu type (Main, Sub, Item)
+     * @param float $font_size Font size
+     * @param string $font_name Font name
+     * @param string $font_style Font style
+     * @param string $text_color Text color in ARGB format
+     * @param string $back_color Background color in ARGB format
+     * @param int $position Display position
+     * @return bool True on success, false on failure
+     */
+    public function InsertButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position)
+    {
+        $conn = $this->conn;
+
+        $sqlInsert = "INSERT INTO `pos_button_properties`
+                      (`item_id`, `menu_type`, `font_size`, `font_name`, `font_style`,
+                       `text_color`, `back_color`, `position`, `created_at`, `updated_at`)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+        $stmt = mysqli_prepare($conn, $sqlInsert);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "isdssssi", $item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            return $result;
+        }
+
+        return false;
+    }
+
+    /**
+     * Update existing button properties
+     * @param int $item_id Item ID
+     * @param string $menu_type Menu type (Main, Sub, Item)
+     * @param float $font_size Font size
+     * @param string $font_name Font name
+     * @param string $font_style Font style
+     * @param string $text_color Text color in ARGB format
+     * @param string $back_color Background color in ARGB format
+     * @param int $position Display position
+     * @return bool True on success, false on failure
+     */
+    public function UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position)
+    {
+        $conn = $this->conn;
+
+        $sqlUpdate = "UPDATE `pos_button_properties`
+                      SET `font_size` = ?, `font_name` = ?, `font_style` = ?,
+                          `text_color` = ?, `back_color` = ?, `position` = ?, `updated_at` = NOW()
+                      WHERE `item_id` = ? AND `menu_type` = ?";
+
+        $stmt = mysqli_prepare($conn, $sqlUpdate);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "dssssiis", $font_size, $font_name, $font_style, $text_color, $back_color, $position, $item_id, $menu_type);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            return $result;
+        }
+
+        return false;
+    }
+
+    public function saveDimensionSetting($groupName, $groupValue)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate group name
+            $validGroupNames = [
+                'MAINH',
+                'MAINW',
+                'MAINCOL',
+                'SUBH',
+                'SUBW',
+                'SUBMENUCOL',
+                'ITEMH',
+                'ITEMW',
+                'ITEMMENUCOL'
+            ];
+
+            if (!in_array($groupName, $validGroupNames)) {
+                return false;
+            }
+
+            // Update the dimension setting
+            $sqlUpdate = "UPDATE `tb_master_all` SET `tma_group_value` = ? WHERE `tma_group_name` = ?";
+            $stmt = $conn->prepare($sqlUpdate);
+            $stmt->bind_param("ss", $groupValue, $groupName);
+
+            if ($stmt->execute()) {
+                $stmt->close();
+                return true;
+            } else {
+                $stmt->close();
+                return false;
+            }
+        } catch (Exception $e) {
+            error_log("Error saving dimension setting: " . $e->getMessage());
+            return false;
+        }
+    }
+    // ==================== End Button Properties Methods ====================
 }

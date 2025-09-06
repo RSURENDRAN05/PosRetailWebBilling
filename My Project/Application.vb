@@ -63,7 +63,7 @@ Namespace My
             Try
                 Me.MainForm = New Login()
                 'If _globalSetting.PosBillScreenActive = False Then
-                '    Me.MainForm = New PosLogin() 'PosLogin() 'FrmUploadSalesAutoSync()
+                '    Me.MainForm = New PosLogin() 'PosLogin() 'FrmUploadSalesAutoSync() frmTest
                 'Else
                 '    Me.MainForm = New Login()
                 'End If

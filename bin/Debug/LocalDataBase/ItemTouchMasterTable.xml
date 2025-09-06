@@ -10,6 +10,7 @@
                 <xs:element name="Id" type="xs:string" minOccurs="0" />
                 <xs:element name="BarCode" type="xs:string" minOccurs="0" />
                 <xs:element name="ItemName" type="xs:string" minOccurs="0" />
+                <xs:element name="BusinessType" type="xs:string" minOccurs="0" />
                 <xs:element name="Remarks" type="xs:string" minOccurs="0" />
                 <xs:element name="MainId" type="xs:string" minOccurs="0" />
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
@@ -30,6 +31,13 @@
                 <xs:element name="ComId" type="xs:string" minOccurs="0" />
                 <xs:element name="LocId" type="xs:string" minOccurs="0" />
                 <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="item_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_type" type="xs:string" minOccurs="0" />
+                <xs:element name="font_size" type="xs:string" minOccurs="0" />
+                <xs:element name="font_name" type="xs:string" minOccurs="0" />
+                <xs:element name="font_style" type="xs:string" minOccurs="0" />
+                <xs:element name="text_color" type="xs:string" minOccurs="0" />
+                <xs:element name="back_color" type="xs:string" minOccurs="0" />
                 <xs:element name="Position" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
@@ -39,9 +47,10 @@
     </xs:element>
   </xs:schema>
   <ItemTouchMasterTable>
-    <Id>1</Id>
+    <Id>11</Id>
     <BarCode>0</BarCode>
     <ItemName>ADULT</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -62,12 +71,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Gold</Color>
-    <Position>1</Position>
+    <item_id>1</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>2</Id>
+    <Id>12</Id>
     <BarCode>2</BarCode>
     <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -88,12 +105,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightBlue</Color>
-    <Position>2</Position>
+    <item_id>2</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>3</Id>
+    <Id>13</Id>
     <BarCode>3</BarCode>
     <ItemName>CHILDREN</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -114,12 +139,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>GreenYellow</Color>
-    <Position>3</Position>
+    <item_id>3</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>4</Id>
+    <Id>14</Id>
     <BarCode>4</BarCode>
     <ItemName>SHAVING</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -140,12 +173,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightBlue</Color>
-    <Position>4</Position>
+    <item_id>4</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>5</Id>
+    <Id>15</Id>
     <BarCode>5</BarCode>
     <ItemName>SHAMPOO</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -166,12 +207,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightBlue</Color>
-    <Position>5</Position>
+    <item_id>5</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>6</Id>
+    <Id>16</Id>
     <BarCode>6</BarCode>
     <ItemName>BALDING</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -192,12 +241,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Cyan</Color>
-    <Position>6</Position>
+    <item_id>6</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>7</Id>
+    <Id>17</Id>
     <BarCode>7</BarCode>
     <ItemName>POWDER</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -218,12 +275,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Blue</Color>
-    <Position>1</Position>
+    <item_id>7</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>8</Id>
+    <Id>18</Id>
     <BarCode>8</BarCode>
     <ItemName>CREAM</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -244,12 +309,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>RoyalBlue</Color>
-    <Position>2</Position>
+    <item_id>8</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>9</Id>
+    <Id>19</Id>
     <BarCode>9</BarCode>
     <ItemName>HAIR COLOURING</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -270,12 +343,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>OrangeRed</Color>
-    <Position>3</Position>
+    <item_id>9</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>10</Id>
+    <Id>20</Id>
     <BarCode>10</BarCode>
     <ItemName>FACE WASH</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -296,12 +377,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Brown</Color>
-    <Position>1</Position>
+    <item_id>10</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>11</Id>
+    <Id>21</Id>
     <BarCode>11</BarCode>
     <ItemName>FACE MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -322,12 +411,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightCoral</Color>
-    <Position>2</Position>
+    <item_id>11</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>17.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,0,255,0)</text_color>
+    <back_color>Argb(255,0,192,192)</back_color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>12</Id>
+    <Id>22</Id>
     <BarCode>12</BarCode>
     <ItemName>FACE BLEACH</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -348,12 +445,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightYellow</Color>
+    <item_id>12</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>13.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
     <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>13</Id>
+    <Id>23</Id>
     <BarCode>13</BarCode>
     <ItemName>FACIAL</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -374,12 +479,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Ivory</Color>
-    <Position>4</Position>
+    <item_id>13</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>14</Id>
+    <Id>24</Id>
     <BarCode>14</BarCode>
     <ItemName>GOLD FACIAL</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -400,12 +513,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>SandyBrown</Color>
-    <Position>5</Position>
+    <item_id>14</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>15</Id>
+    <Id>25</Id>
     <BarCode>15</BarCode>
     <ItemName>HAIR MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -426,12 +547,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Lime</Color>
-    <Position>1</Position>
+    <item_id>15</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>16</Id>
+    <Id>26</Id>
     <BarCode>16</BarCode>
     <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -452,12 +581,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Pink</Color>
-    <Position>2</Position>
+    <item_id>16</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>17</Id>
+    <Id>27</Id>
     <BarCode>17</BarCode>
     <ItemName>KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -478,12 +615,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Turquoise</Color>
-    <Position>1</Position>
+    <item_id>17</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>18</Id>
+    <Id>28</Id>
     <BarCode>18</BarCode>
     <ItemName>HAIR STYLING</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -504,12 +649,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>LightBlue</Color>
-    <Position>1</Position>
+    <item_id>18</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>19</Id>
+    <Id>29</Id>
     <BarCode>19</BarCode>
     <ItemName>FACE WAX</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -530,12 +683,20 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>Fuchsia</Color>
-    <Position>1</Position>
+    <item_id>19</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
-    <Id>20</Id>
+    <Id>30</Id>
     <BarCode>20</BarCode>
     <ItemName>FACE PACK</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
@@ -556,6 +717,13 @@
     <ComId>1</ComId>
     <LocId>1</LocId>
     <Color>RoyalBlue</Color>
-    <Position>6</Position>
+    <item_id>20</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>8.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,139)</text_color>
+    <back_color>Argb(255,245,245,220)</back_color>
+    <Position>0</Position>
   </ItemTouchMasterTable>
 </NewDataSet>

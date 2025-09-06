@@ -14,6 +14,7 @@
                 <xs:element name="LocationName" type="xs:string" minOccurs="0" />
                 <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
                 <xs:element name="Commission" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -28,11 +29,20 @@
                 <xs:element name="LocationName" type="xs:string" minOccurs="0" />
                 <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
                 <xs:element name="Commission" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
           <xs:element name="AdvanceData">
             <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MonYear" type="xs:string" minOccurs="0" />
+                <xs:element name="EmpID" type="xs:string" minOccurs="0" />
+                <xs:element name="Salesman" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalAdvance" type="xs:string" minOccurs="0" />
+              </xs:sequence>
             </xs:complexType>
           </xs:element>
         </xs:choice>
@@ -42,88 +52,160 @@
   <SalesmanData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
-    <Salesman>FZULS</Salesman>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>9671.20</NetAmt>
-    <Commission>84.64</Commission>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>369.00</NetAmt>
+    <Commission>22.00</Commission>
+    <Qty>10.00</Qty>
   </SalesmanData>
   <SalesmanData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>TEST</Salesman>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>4221.20</NetAmt>
-    <Commission>2.12</Commission>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>2.00</Qty>
   </SalesmanData>
   <SalesmanData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>2</EmpID>
-    <Salesman>SUREN</Salesman>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>81.00</NetAmt>
-    <Commission>8.10</Commission>
+    <Salesman>SUVATHI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>35.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
   </SalesmanData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
-    <Salesman>FZULS</Salesman>
-    <ItemName>MINI PC</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>5450.00</NetAmt>
-    <Commission>0.00</Commission>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Sep-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>FZULS</Salesman>
-    <ItemName>VPOS TERMINAL</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>4200.00</NetAmt>
-    <Commission>84.00</Commission>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>TEST</Salesman>
-    <ItemName>VPOS TERMINAL</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>4200.00</NetAmt>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>FACIAL</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>POWDER</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>4.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>CREAM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
     <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>ADULT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>54.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>2</EmpID>
-    <Salesman>SUREN</Salesman>
-    <ItemName>TPLINK TLSG1008D 8 PORT GIGABIT SWITCH</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>81.00</NetAmt>
-    <Commission>8.10</Commission>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Sep-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>FZULS</Salesman>
-    <ItemName>HAIR CUT ADULT</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>21.20</NetAmt>
-    <Commission>0.64</Commission>
+    <Salesman>SUVATHI</Salesman>
+    <ItemName>HAIR STYLING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>TEST</Salesman>
-    <ItemName>HAIR CUT ADULT</ItemName>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <NetAmt>21.20</NetAmt>
-    <Commission>2.12</Commission>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>FACE WAX</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>2</EmpID>
+    <Salesman>SUVATHI</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>10.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR STYLING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>5.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <AdvanceData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <TotalAdvance>250.00</TotalAdvance>
+  </AdvanceData>
 </ReportData>

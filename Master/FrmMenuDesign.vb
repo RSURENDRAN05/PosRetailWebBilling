@@ -1,4 +1,4 @@
-﻿Public Class frmTest
+﻿Public Class FrmMenuDesign
 #Region "ButtonProperties"
     ' ================================
     ' === Button Properties Class ===
@@ -58,7 +58,8 @@
 #Region "InitalLoad"
     Private Sub frmTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            _ReadDefaultLocalData()
+
+            LoadButtonStyles()
             LoadMainMenu()
         Catch ex As Exception
 
@@ -71,28 +72,24 @@
         Try
             PanelMainMenu.Controls.Clear()
 
-            Dim btnWidth As Integer = 120
-            Dim btnHeight As Integer = 60
+            Dim btnWidth As Integer = ButtonStyleWH.MAINW
+            Dim btnHeight As Integer = ButtonStyleWH.MAINH
             Dim spacing As Integer = 5
-            Dim cols As Integer = 4
+            Dim cols As Integer = ButtonStyleWH.MAINCOL
             Dim marginLeft As Integer = 10
             Dim marginTop As Integer = 10
 
-            ' Group by MainId, MainName
-            Dim mains = _JsonData.ItemTouchMasterTable.AsEnumerable().
-                GroupBy(Function(r) New With {
-                    Key .MainId = Convert.ToInt32(r("MainId")),
-                    Key .MainName = r("MainName").ToString()
-                }).
-                Select(Function(g) g.Key).ToList()
 
-            For i As Integer = 0 To mains.Count - 1
+            For i As Integer = 0 To _JsonData.MainGroupTable.Rows.Count - 1
                 Dim row As Integer = i \ cols
                 Dim col As Integer = i Mod cols
 
+                ' Get current row data
+                Dim currentRow As DataRow = _JsonData.MainGroupTable.Rows(i)
+
                 ' Count how many buttons in this row
                 Dim countInRow As Integer =
-                    If(i + cols < mains.Count, cols, mains.Count - row * cols)
+                    If(i + cols < _JsonData.MainGroupTable.Rows.Count, cols, _JsonData.MainGroupTable.Rows.Count - row * cols)
 
                 ' Total width of this row
                 Dim rowWidth As Integer = (countInRow * btnWidth) + ((countInRow - 1) * spacing)
@@ -102,22 +99,53 @@
 
                 ' Create button
                 Dim btn As New DevExpress.XtraEditors.SimpleButton()
-                btn.Text = mains(i).MainName
-                btn.Tag = mains(i).MainId
+                btn.Text = currentRow("MainName").ToString()
+                btn.Tag = currentRow("MainId").ToString()
                 btn.Size = New Size(btnWidth, btnHeight)
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                              marginTop + row * (btnHeight + spacing))
 
-                ' Enable DevExpress appearance options
+                ' Get properties from API data with defaults
+                Dim fontSize As Single = GetSafeValue(currentRow, "font_size", 14.0F)
+                Dim fontName As String = GetSafeValue(currentRow, "font_name", "Segoe UI")
+                Dim fontStyleString As String = GetSafeValue(currentRow, "font_style", "Bold")
+                Dim textColor As Color = ParseARGBColor(GetSafeValue(currentRow, "text_color", ""), Color.White)
+                Dim backColor As Color = ParseARGBColor(GetSafeValue(currentRow, "back_color", ""), Color.FromArgb(52, 152, 219))
+
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
+                End If
+
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
                 btn.Appearance.Options.UseBackColor = True
                 btn.Appearance.Options.UseForeColor = True
                 btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
 
-                ' Apply default style
-                btn.Appearance.Font = New Font("Segoe UI", 10, FontStyle.Bold)
-                btn.Appearance.ForeColor = Color.White
-                btn.Appearance.BackColor = Color.DarkSlateBlue
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
 
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
                 ' Try to load saved properties from PHP
                 'Try
                 '    LoadButtonPropertiesFromPHP(mains(i).MainId, "Main")
@@ -138,8 +166,8 @@
             PanelMainMenu.AutoScroll = True
 
             ' Auto-load first MainId
-            If mains.Count > 0 Then
-                LoadSubMenu(mains(0).MainId)
+            If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                LoadSubMenu(Convert.ToInt32(_JsonData.MainGroupTable.Rows(0)("MainId")))
             End If
 
         Catch ex As Exception
@@ -153,20 +181,22 @@
         Try
             PanelSubMenu.Controls.Clear()
 
-            Dim btnWidth As Integer = 110
-            Dim btnHeight As Integer = 50
+            Dim btnWidth As Integer = ButtonStyleWH.SUBW
+            Dim btnHeight As Integer = ButtonStyleWH.SUBH
             Dim spacing As Integer = 5
-            Dim cols As Integer = 1
+            Dim cols As Integer = ButtonStyleWH.SUBMENUCOL
             Dim marginLeft As Integer = 10
             Dim marginTop As Integer = 10
             ' Group by CateId, CateName under selected MainId
-            Dim subs = _JsonData.ItemTouchMasterTable.AsEnumerable().
+            Dim subs = _JsonData.CategoryTable.AsEnumerable().
                 Where(Function(r) Convert.ToInt32(r("MainId")) = mainId).
                 GroupBy(Function(r) New With {
                     Key .CateId = Convert.ToInt32(r("CateId")),
-                    Key .CateName = r("CateName").ToString()
+                    Key .CateName = r("CateName").ToString(),
+                    Key .Position = Convert.ToInt32(r("Position"))
                 }).
-                Select(Function(g) g.Key).ToList()
+                Select(Function(g) g.Key).
+                OrderBy(Function(x) x.Position).ToList()
 
             For i As Integer = 0 To subs.Count - 1
                 Dim row As Integer = i \ cols
@@ -179,15 +209,69 @@
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                               marginTop + row * (btnHeight + spacing))
 
+                ' Try to find matching row in CategoryTable for this CateId
+                Dim matchingRow As DataRow = Nothing
+                Try
+                    Dim currentCateId As Integer = subs(i).CateId
+                    matchingRow = _JsonData.CategoryTable.AsEnumerable().
+                        Where(Function(r) Convert.ToInt32(r("CateId")) = currentCateId).
+                        FirstOrDefault()
+                Catch
+                    ' Continue with defaults if no matching row found
+                End Try
+
+                ' Get properties from API data with defaults for Sub menu
+                Dim fontSize As Single = 9.0F
+                Dim fontName As String = "Segoe UI"
+                Dim fontStyleString As String = "Regular"
+                Dim textColor As Color = Color.Black
+                Dim backColor As Color = Color.LightSteelBlue
+
+                ' If we found a matching row, try to get custom properties
+                If matchingRow IsNot Nothing Then
+                    fontSize = GetSafeValue(matchingRow, "font_size", 9.0F)
+                    fontName = GetSafeValue(matchingRow, "font_name", "Segoe UI")
+                    fontStyleString = GetSafeValue(matchingRow, "font_style", "Regular")
+                    textColor = ParseArgbColor(GetSafeValue(matchingRow, "text_color", ""), Color.Black)
+                    backColor = ParseArgbColor(GetSafeValue(matchingRow, "back_color", ""), Color.LightSteelBlue)
+                End If
+
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
+                End If
+
                 ' Enable DevExpress appearance options
                 btn.Appearance.Options.UseBackColor = True
                 btn.Appearance.Options.UseForeColor = True
                 btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
 
-                ' Apply default style
-                btn.Appearance.Font = New Font("Segoe UI", 9, FontStyle.Regular)
-                btn.Appearance.ForeColor = Color.Black
-                btn.Appearance.BackColor = Color.LightSteelBlue
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
+
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
 
                 '' Try to load saved properties from PHP
                 'Try
@@ -222,10 +306,10 @@
         Try
             PanelItemMenu.Controls.Clear()
 
-            Dim btnWidth As Integer = 100
-            Dim btnHeight As Integer = 45
+            Dim btnWidth As Integer = ButtonStyleWH.ITEMW
+            Dim btnHeight As Integer = ButtonStyleWH.ITEMH
             Dim spacing As Integer = 5
-            Dim cols As Integer = 5
+            Dim cols As Integer = ButtonStyleWH.ITEMMENUCOL
             Dim marginLeft As Integer = 10
             Dim marginTop As Integer = 10
             ' Items filtered by CateId
@@ -235,7 +319,7 @@
                     .Id = Convert.ToInt32(r("Id")),
                     .ItemName = r("ItemName").ToString(),
                     .Position = Convert.ToInt32(r("Position"))
-                }).OrderBy(Function(x) x.Position).ToList()
+                }).OrderBy(Function(x) x.Position).ToList() ' Ascending order by Position
 
             For i As Integer = 0 To items.Count - 1
                 Dim row As Integer = i \ cols
@@ -248,15 +332,69 @@
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                               marginTop + row * (btnHeight + spacing))
 
+                ' Try to find matching row in ItemTouchMasterTable for this Id
+                Dim matchingRow As DataRow = Nothing
+                Try
+                    Dim currentItemId As Integer = items(i).Id
+                    matchingRow = _JsonData.ItemTouchMasterTable.AsEnumerable().
+                        Where(Function(r) Convert.ToInt32(r("item_id")) = currentItemId).
+                        FirstOrDefault()
+                Catch
+                    ' Continue with defaults if no matching row found
+                End Try
+
+                ' Get properties from API data with defaults for Item menu
+                Dim fontSize As Single = 8.0F
+                Dim fontName As String = "Segoe UI"
+                Dim fontStyleString As String = "Regular"
+                Dim textColor As Color = Color.DarkBlue
+                Dim backColor As Color = Color.Beige
+
+                ' If we found a matching row, try to get custom properties
+                If matchingRow IsNot Nothing Then
+                    fontSize = GetSafeValue(matchingRow, "font_size", 8.0F)
+                    fontName = GetSafeValue(matchingRow, "font_name", "Segoe UI")
+                    fontStyleString = GetSafeValue(matchingRow, "font_style", "Regular")
+                    textColor = ParseARGBColor(GetSafeValue(matchingRow, "text_color", ""), Color.DarkBlue)
+                    backColor = ParseARGBColor(GetSafeValue(matchingRow, "back_color", ""), Color.Beige)
+                End If
+
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
+                End If
+
                 ' Enable DevExpress appearance options
                 btn.Appearance.Options.UseBackColor = True
                 btn.Appearance.Options.UseForeColor = True
                 btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
 
-                ' Apply default style
-                btn.Appearance.Font = New Font("Segoe UI", 8, FontStyle.Regular)
-                btn.Appearance.ForeColor = Color.DarkBlue
-                btn.Appearance.BackColor = Color.Beige
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
+
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
 
                 '' Try to load saved properties from PHP
                 'Try
@@ -299,7 +437,7 @@
                 LoadButtonProperties(btn, "Main")
 
                 ' Load properties from PHP if available
-                'LoadButtonPropertiesFromPHP(mainId, "Main")
+                LoadButtonPropertiesFromPHP(mainId, "Main")
             End If
 
             LoadSubMenu(mainId)
@@ -483,37 +621,37 @@
                 btnPreview.Invalidate()
 
 
-                ' --- Apply to selected button (if any) ---
-                If selectedButton IsNot Nothing Then
-                    selectedButton.Text = txtItemName.Text
-                    selectedButton.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
+                '' --- Apply to selected button (if any) ---
+                'If selectedButton IsNot Nothing Then
+                '    selectedButton.Text = txtItemName.Text
+                '    selectedButton.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
 
-                    selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
-                    selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                '    selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
+                '    selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
 
-                    selectedButton.Appearance.Options.UseBackColor = True
-                    selectedButton.Appearance.Options.UseForeColor = True
-                    selectedButton.Appearance.Options.UseFont = True
+                '    selectedButton.Appearance.Options.UseBackColor = True
+                '    selectedButton.Appearance.Options.UseForeColor = True
+                '    selectedButton.Appearance.Options.UseFont = True
 
-                    selectedButton.Appearance.BackColor = backColor
-                    selectedButton.Appearance.ForeColor = textColor
-                    selectedButton.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
+                '    selectedButton.Appearance.BackColor = backColor
+                '    selectedButton.Appearance.ForeColor = textColor
+                '    selectedButton.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
 
-                    selectedButton.Refresh()
-                    selectedButton.Invalidate()
+                '    selectedButton.Refresh()
+                '    selectedButton.Invalidate()
 
-                    ' --- Update property object if available ---
-                    If selectedButtonProperties IsNot Nothing Then
-                        selectedButtonProperties.SetTextColor(textColor)
-                        selectedButtonProperties.SetBackColor(backColor)
-                    End If
-                End If
+                '    ' --- Update property object if available ---
+                '    If selectedButtonProperties IsNot Nothing Then
+                '        selectedButtonProperties.SetTextColor(textColor)
+                '        selectedButtonProperties.SetBackColor(backColor)
+                '    End If
+                'End If
             End If
         Catch ex As Exception
             ' Ignore preview errors
         End Try
     End Sub
-  ' =======================================
+    ' =======================================
     ' === Color Picker Events ===
     ' =======================================
     Private Sub colorEditTextColor_EditValueChanged(sender As Object, e As EventArgs) Handles colorEditTextColor.EditValueChanged
@@ -550,7 +688,28 @@
     End Sub
 
 #End Region
-   
+#Region "RefreshTable"
+    Private Sub RefreshTable()
+        Try
+            getMainMaster()
+            getCategoryMaster()
+            getTouchItemMaster()
+            getButtonStyleTable()
+            LoadButtonStyles()
+            LoadMainMenu()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnrefreshtable_Click(sender As Object, e As EventArgs) Handles btnrefreshtable.Click
+        Try
+            RefreshTable()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
 #Region "ApplySave"
     Private Sub btnApply_Click(sender As Object, e As EventArgs) Handles btnApply.Click
         Try
@@ -580,7 +739,7 @@
                 ' Save to PHP
                 SaveButtonPropertiesToPHP()
 
-                MessageBox.Show("Properties saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'MessageBox.Show("Properties saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MessageBox.Show("Error saving properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -743,7 +902,7 @@
 
                 ' Apply appearance properties
                 btn.Appearance.Font = New Font(props.FontName, props.FontSize, fontStyle)
-                
+
             End If
         Catch ex As Exception
             ' Ignore errors and use default appearance
@@ -761,14 +920,12 @@
                 Return
             End If
 
-            ' Prepare PHP API URL
-            Dim phpUrl As String = "http://yourserver.com/api/save_button_properties.php"
-
-            ' Create POST data
+            ' Prepare PHP API URL with parameters for GET request
             Dim postData As String = CreatePostData()
+            Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
 
-            ' Send data to PHP
-            Dim response As String = SendToPHP(phpUrl, postData)
+            ' Send GET request to PHP
+            Dim response As String = SendGetToPHP(phpUrl)
 
             ' Handle response
             HandlePHPResponse(response)
@@ -782,8 +939,8 @@
     Private Function CreatePostData() As String
         Try
             Dim postData As String = ""
-            postData &= "action=save_button_properties"
-            postData &= "&id=" & Uri.EscapeDataString(selectedButtonProperties.Id.ToString())
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(selectedButtonProperties.Id.ToString())
             postData &= "&menu_type=" & Uri.EscapeDataString(selectedButtonProperties.MenuType)
             postData &= "&item_name=" & Uri.EscapeDataString(selectedButtonProperties.ItemName)
             postData &= "&button_width=" & Uri.EscapeDataString(selectedButtonProperties.ButtonWidth.ToString())
@@ -791,17 +948,31 @@
             postData &= "&font_size=" & Uri.EscapeDataString(selectedButtonProperties.FontSize.ToString())
             postData &= "&font_name=" & Uri.EscapeDataString(selectedButtonProperties.FontName)
             postData &= "&font_style=" & Uri.EscapeDataString(selectedButtonProperties.FontStyle)
-            postData &= "&text_color_r=" & Uri.EscapeDataString(selectedButtonProperties.TextColorR.ToString())
-            postData &= "&text_color_g=" & Uri.EscapeDataString(selectedButtonProperties.TextColorG.ToString())
-            postData &= "&text_color_b=" & Uri.EscapeDataString(selectedButtonProperties.TextColorB.ToString())
-            postData &= "&back_color_r=" & Uri.EscapeDataString(selectedButtonProperties.BackColorR.ToString())
-            postData &= "&back_color_g=" & Uri.EscapeDataString(selectedButtonProperties.BackColorG.ToString())
-            postData &= "&back_color_b=" & Uri.EscapeDataString(selectedButtonProperties.BackColorB.ToString())
-            postData &= "&position=" & Uri.EscapeDataString(selectedButtonProperties.Position.ToString())
+
+            ' Create ARGB format for colors
+            Dim textColor As Color = selectedButtonProperties.GetTextColor()
+            Dim backColor As Color = selectedButtonProperties.GetBackColor()
+
+            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
+            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
+            postData &= "&position=" & Uri.EscapeDataString(txtposition.Text)
 
             Return postData
         Catch ex As Exception
             Throw New Exception("Error creating POST data: " & ex.Message)
+        End Try
+    End Function
+
+    ' Send GET request to PHP server
+    Private Function SendGetToPHP(url As String) As String
+        Try
+            Using client As New System.Net.WebClient()
+                ' Send GET request
+                Dim response As String = client.DownloadString(url)
+                Return response
+            End Using
+        Catch ex As Exception
+            Throw New Exception("Error sending GET to PHP: " & ex.Message)
         End Try
     End Function
 
@@ -833,7 +1004,7 @@
             ' Parse JSON response (assuming PHP returns JSON)
             If Not String.IsNullOrEmpty(response) Then
                 ' Simple response parsing - you can use Newtonsoft.Json for complex parsing
-                If response.Contains("success") AndAlso response.Contains("true") Then
+                If response.Contains("Success") AndAlso response.Contains("true") Then
                     MessageBox.Show("Button properties saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 ElseIf response.Contains("error") Then
@@ -881,7 +1052,14 @@
                 selectedButtonProperties = New ButtonProperties()
             End If
 
-            ' Simple parsing example - use Newtonsoft.Json for production
+            ' Parse basic properties
+            If response.Contains("item_name") Then
+                Dim nameMatch As String = ExtractValueFromResponse(response, "item_name")
+                If Not String.IsNullOrEmpty(nameMatch) Then
+                    selectedButtonProperties.ItemName = nameMatch
+                End If
+            End If
+
             If response.Contains("button_width") Then
                 Dim widthMatch As String = ExtractValueFromResponse(response, "button_width")
                 If Not String.IsNullOrEmpty(widthMatch) Then
@@ -896,12 +1074,107 @@
                 End If
             End If
 
-            ' Add more parsing as needed...
+            If response.Contains("font_size") Then
+                Dim fontSizeMatch As String = ExtractValueFromResponse(response, "font_size")
+                If Not String.IsNullOrEmpty(fontSizeMatch) Then
+                    selectedButtonProperties.FontSize = Convert.ToSingle(fontSizeMatch)
+                End If
+            End If
+
+            If response.Contains("font_name") Then
+                Dim fontNameMatch As String = ExtractValueFromResponse(response, "font_name")
+                If Not String.IsNullOrEmpty(fontNameMatch) Then
+                    selectedButtonProperties.FontName = fontNameMatch
+                End If
+            End If
+
+            If response.Contains("font_style") Then
+                Dim fontStyleMatch As String = ExtractValueFromResponse(response, "font_style")
+                If Not String.IsNullOrEmpty(fontStyleMatch) Then
+                    selectedButtonProperties.FontStyle = fontStyleMatch
+                End If
+            End If
+
+            If response.Contains("position") Then
+                Dim positionMatch As String = ExtractValueFromResponse(response, "position")
+                If Not String.IsNullOrEmpty(positionMatch) Then
+                    selectedButtonProperties.Position = Convert.ToInt32(positionMatch)
+                End If
+            End If
+
+            ' Parse ARGB color format: Argb(255,255,255,255)
+            If response.Contains("text_color") Then
+                Dim textColorMatch As String = ExtractValueFromResponse(response, "text_color")
+                If Not String.IsNullOrEmpty(textColorMatch) Then
+                    Dim textColor As Color = ParseARGBColor(textColorMatch)
+                    selectedButtonProperties.SetTextColor(textColor)
+                End If
+            End If
+
+            If response.Contains("back_color") Then
+                Dim backColorMatch As String = ExtractValueFromResponse(response, "back_color")
+                If Not String.IsNullOrEmpty(backColorMatch) Then
+                    Dim backColor As Color = ParseARGBColor(backColorMatch)
+                    selectedButtonProperties.SetBackColor(backColor)
+                End If
+            End If
 
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine("Error parsing PHP response: " & ex.Message)
         End Try
     End Sub
+
+    ' Helper method to parse ARGB color format: Argb(255,255,255,255)
+    Private Function ParseARGBColor(argbString As String) As Color
+        Try
+            ' Remove "Argb(" and ")" and split by comma
+            Dim cleanString As String = argbString.Replace("Argb(", "").Replace(")", "").Trim()
+            Dim values() As String = cleanString.Split(","c)
+
+            If values.Length = 4 Then
+                Dim a As Integer = Convert.ToInt32(values(0).Trim())
+                Dim r As Integer = Convert.ToInt32(values(1).Trim())
+                Dim g As Integer = Convert.ToInt32(values(2).Trim())
+                Dim b As Integer = Convert.ToInt32(values(3).Trim())
+
+                Return Color.FromArgb(a, r, g, b)
+            End If
+
+            ' Return default color if parsing fails
+            Return Color.Black
+        Catch ex As Exception
+            ' Return default color if parsing fails
+            Return Color.Black
+        End Try
+    End Function
+
+    ' Helper function to safely get values from DataRow with default fallback
+    Private Function GetSafeValue(Of T)(row As DataRow, columnName As String, defaultValue As T) As T
+        Try
+            If row.Table.Columns.Contains(columnName) AndAlso Not IsDBNull(row(columnName)) Then
+                Dim value As Object = row(columnName)
+                If value IsNot Nothing Then
+                    Return DirectCast(Convert.ChangeType(value, GetType(T)), T)
+                End If
+            End If
+            Return defaultValue
+        Catch ex As Exception
+            Return defaultValue
+        End Try
+    End Function
+
+    ' Helper function to parse ARGB color with fallback
+    Private Function ParseArgbColor(argbString As String, defaultColor As Color) As Color
+        If String.IsNullOrEmpty(argbString) Then
+            Return defaultColor
+        End If
+
+        Dim result As Color = ParseARGBColor(argbString)
+        If result = Color.Black AndAlso argbString <> "Argb(255,0,0,0)" Then
+            Return defaultColor
+        End If
+        Return result
+    End Function
 
     ' Helper method to extract values from response
     Private Function ExtractValueFromResponse(response As String, key As String) As String
@@ -924,6 +1197,75 @@
 
 
 #End Region
+#Region "Save/Height/Width/Cols"
+    Private Sub btnsavefordefault_Click(sender As Object, e As EventArgs) Handles btnsavefordefault.Click
+        Try
+            Dim Width As String = ""
+            Dim Height As String = ""
+            Dim Columns As String = ""
+            Dim GroupNameH As String = ""
+            Dim GroupNameW As String = ""
+            Dim GroupNameCol As String = ""
 
-  
+            If RadioGroupSettings.SelectedIndex = 0 Then
+                GroupNameH = "MAINH"
+                Height = numHeight.Value.ToString()
+                GroupNameW = "MAINW"
+                Width = numWidth.Value.ToString()
+                GroupNameCol = "MAINCOL"
+                Columns = txtcolumns.EditValue.ToString()
+            ElseIf RadioGroupSettings.SelectedIndex = 1 Then
+                GroupNameH = "SUBH"
+                Height = numHeight.Value.ToString()
+                GroupNameW = "SUBW"
+                Width = numWidth.Value.ToString()
+                GroupNameCol = "SUBMENUCOL"
+                Columns = txtcolumns.EditValue.ToString()
+            Else
+                GroupNameH = "ITEMH"
+                Height = numHeight.Value.ToString()
+                GroupNameW = "ITEMW"
+                Width = numWidth.Value.ToString()
+                GroupNameCol = "ITEMMENUCOL"
+                Columns = txtcolumns.EditValue.ToString()
+            End If
+
+            ' Save Height setting
+            SaveButtonDimensionToPHP(GroupNameH, Height)
+
+            ' Save Width setting
+            SaveButtonDimensionToPHP(GroupNameW, Width)
+
+            ' Save Columns setting
+            SaveButtonDimensionToPHP(GroupNameCol, Columns)
+
+            MessageBox.Show("Default button settings saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving default settings: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Helper method to save button dimensions to PHP
+    Private Sub SaveButtonDimensionToPHP(groupName As String, groupValue As String)
+        Try
+            ' Create URL with parameters for GET request
+            Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=12&" &
+                                  "operation=SAVE_DIMENSION&" &
+                                  "group_name=" & Uri.EscapeDataString(groupName) &
+                                  "&group_value=" & Uri.EscapeDataString(groupValue)
+
+            ' Send GET request to PHP
+            Dim response As String = SendGetToPHP(phpUrl)
+
+            ' Show message box with response
+            MessageBox.Show("Response for " & groupName & ": " & response, "Dimension Save Response", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("Error saving dimension " & groupName & ": " & ex.Message)
+            MessageBox.Show("Error saving dimension " & groupName & ": " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+#End Region
+
 End Class

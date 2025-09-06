@@ -1,6 +1,4 @@
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.exe.config
-D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\Interop.SpeechLib.dll
-D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbproj.ResolveComReference.cache
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.exe.manifest
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.application
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.exe
@@ -9,6 +7,8 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\System.Memory.dll
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\bin\Debug\System.Numerics.Vectors.dll
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbprojResolveAssemblyReference.cache
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\Interop.SpeechLib.dll
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbproj.ResolveComReference.cache
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmGroup.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmLedgerCreate.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmLedgerEntry.resources
@@ -85,7 +85,7 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmPosRetailBilling.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmSalesmanList.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmSelectBill.resources
-D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmTest.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmMenuDesign.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.PosLogin.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.PosSales.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.PosSalesII.resources

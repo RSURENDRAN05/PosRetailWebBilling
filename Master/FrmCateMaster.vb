@@ -92,6 +92,9 @@ Public Class FrmCateMaster
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=18&json=" & PostString) = True Then
                         dialog.Caption = "Data Saved Success.."
                         _DataLoad()
+
+                        ' Save default button settings after successful update
+                        SaveDefaultButtonSettings()
                     End If
                 End If
                 txtcateid.Text = ""
@@ -135,6 +138,82 @@ Public Class FrmCateMaster
 
         End Try
     End Sub
+
+    ' Save default button settings for the newly created/updated category
+    Private Sub SaveDefaultButtonSettings()
+        Try
+            ' Get the CateId (either from txtcateid for updates or get the latest for new records)
+            Dim cateId As Integer = 0
+
+            If btnsave.Text = "Update" AndAlso Not String.IsNullOrEmpty(txtcateid.Text) Then
+                ' For updates, use the existing CateId
+                cateId = Convert.ToInt32(txtcateid.Text)
+            Else
+                ' For new records, get the latest CateId from the data
+                If _JsonData.CategoryTable IsNot Nothing AndAlso _JsonData.CategoryTable.Rows.Count > 0 Then
+                    ' Get the maximum CateId (assuming it's the newly inserted one)
+                    cateId = _JsonData.CategoryTable.AsEnumerable().Max(Function(row) Convert.ToInt32(row("CateId")))
+                End If
+            End If
+
+            If cateId > 0 Then
+                ' Create default button properties for Sub menu type
+                Dim buttonProperties As New ButtonPropertiesData()
+                buttonProperties.item_id = cateId
+                buttonProperties.menu_type = "Sub"
+                buttonProperties.font_size = 9.0
+                buttonProperties.font_name = "Segoe UI"
+                buttonProperties.font_style = "Regular"
+                buttonProperties.text_color = String.Format("Argb({0},{1},{2},{3})", 255, 0, 0, 0) ' Black text
+                buttonProperties.back_color = String.Format("Argb({0},{1},{2},{3})", 255, 176, 196, 222) ' LightSteelBlue background
+                buttonProperties.position = 0
+                buttonProperties.button_width = 110
+                buttonProperties.button_height = 50
+
+                ' Send to PHP API
+                Dim postData As String = CreateButtonPostData(buttonProperties)
+                Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
+
+                ' Send GET request to save button properties
+                Try
+                    Using client As New System.Net.WebClient()
+                        Dim response As String = client.DownloadString(phpUrl)
+                        ' Show success message to user
+                        MessageBox.Show("Default button settings saved for CateId: " & cateId, "Button Settings", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End Using
+                Catch ex As Exception
+                    ' Show error message to user
+                    MessageBox.Show("Error saving default button settings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
+
+        Catch ex As Exception
+            ' Show error message to user
+            MessageBox.Show("Error in SaveDefaultButtonSettings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Helper method to create POST data for button properties
+    Private Function CreateButtonPostData(props As ButtonPropertiesData) As String
+        Try
+            Dim postData As String = ""
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(props.item_id.ToString())
+            postData &= "&menu_type=" & Uri.EscapeDataString(props.menu_type)
+            postData &= "&font_size=" & Uri.EscapeDataString(props.font_size.ToString())
+            postData &= "&font_name=" & Uri.EscapeDataString(props.font_name)
+            postData &= "&font_style=" & Uri.EscapeDataString(props.font_style)
+            postData &= "&text_color=" & Uri.EscapeDataString(props.text_color)
+            postData &= "&back_color=" & Uri.EscapeDataString(props.back_color)
+            postData &= "&position=" & Uri.EscapeDataString(props.position.ToString())
+            postData &= "&button_width=" & Uri.EscapeDataString(props.button_width.ToString())
+            postData &= "&button_height=" & Uri.EscapeDataString(props.button_height.ToString())
+
+            Return postData
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
 End Class
 Public Class clscatemaster
     Public Property cateid As String
@@ -145,3 +224,5 @@ Public Class clscatemaster
     Public Property position As String
     Public Property active As String
 End Class
+
+ 

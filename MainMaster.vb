@@ -56,6 +56,8 @@ Public Class MainMaster
             If getUserPolicyInfo(_companyInfo.UserId) = True Then
                 'MainHear
                 If _companyInfo.UserRoleId.ToString = "1" Then
+                    ' Admin users - keep all tabs visible including Sales tab for Menu Design
+                    RibbonPageSales.Visible = True
                     Exit Sub
                 End If
                 RibbonPageMaster.Visible = False
@@ -172,6 +174,9 @@ Public Class MainMaster
                         Else
                             RibbonPageSales.Visible = False
                         End If
+                    Else
+                        ' Always show Sales tab if no permission record exists (for Menu Design access)
+                        RibbonPageSales.Visible = True
                     End If
                     Dim TaxMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "TaxMaster"
                     If TaxMaster.Any Then
@@ -231,7 +236,7 @@ Public Class MainMaster
                             barpossales.Enabled = False
                         End If
                     End If
-                 
+
                     Dim NewCustomer As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewCustomer"
                     If NewCustomer.Any Then
                         If PosSales1(0)("menu_active") = "1" Then
@@ -984,6 +989,14 @@ Public Class MainMaster
         Try
             FrmMainGroupPolicy.MdiParent = Me
             FrmMainGroupPolicy.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub barbtnMenuDesign1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnMenuDesign1.ItemClick
+        Try
+            FrmMenuDesign.MdiParent = Me
+            FrmMenuDesign.Show()
         Catch ex As Exception
 
         End Try

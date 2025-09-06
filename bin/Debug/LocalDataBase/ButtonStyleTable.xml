@@ -20,7 +20,7 @@
   <ButtonStyleTable>
     <Id>74</Id>
     <Name>MAINH</Name>
-    <Value>160</Value>
+    <Value>80</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>75</Id>
@@ -30,7 +30,7 @@
   <ButtonStyleTable>
     <Id>76</Id>
     <Name>SUBH</Name>
-    <Value>100</Value>
+    <Value>80</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>77</Id>
@@ -61,5 +61,20 @@
     <Id>82</Id>
     <Name>ITEMLOAD</Name>
     <Value>1</Value>
+  </ButtonStyleTable>
+  <ButtonStyleTable>
+    <Id>83</Id>
+    <Name>MAINCOL</Name>
+    <Value>5</Value>
+  </ButtonStyleTable>
+  <ButtonStyleTable>
+    <Id>84</Id>
+    <Name>SUBMENUCOL</Name>
+    <Value>1</Value>
+  </ButtonStyleTable>
+  <ButtonStyleTable>
+    <Id>85</Id>
+    <Name>ITEMMENUCOL</Name>
+    <Value>4</Value>
   </ButtonStyleTable>
 </NewDataSet>

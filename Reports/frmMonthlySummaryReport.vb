@@ -159,6 +159,19 @@ Public Class frmMonthlySummaryReport
         colCommission.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         colCommission.SummaryItem.DisplayFormat = "Total: {0:n2}"
         GridView1.Columns.Add(colCommission)
+
+        ' TotalQty Column
+        Dim colQty As New DevExpress.XtraGrid.Columns.GridColumn()
+        colQty.FieldName = "Qty"
+        colQty.Caption = "Total Qty"
+        colQty.Visible = True
+        colQty.Width = 100
+        colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colQty.DisplayFormat.FormatString = "n2"
+        colQty.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colQty.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colQty)
+
     End Sub
 
     Private Sub ConfigureItemwiseColumns()
@@ -227,6 +240,18 @@ Public Class frmMonthlySummaryReport
         colCommission.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         colCommission.SummaryItem.DisplayFormat = "Total: {0:n2}"
         GridView1.Columns.Add(colCommission)
+
+        ' TotalQty Column
+        Dim colQty As New DevExpress.XtraGrid.Columns.GridColumn()
+        colQty.FieldName = "Qty"
+        colQty.Caption = "Total Qty"
+        colQty.Visible = True
+        colQty.Width = 100
+        colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colQty.DisplayFormat.FormatString = "n2"
+        colQty.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colQty.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colQty)
     End Sub
 
     Private Sub ConfigureAdvanceColumns()
@@ -287,7 +312,7 @@ Public Class frmMonthlySummaryReport
     Private Sub RearrangeSalesManSummaryColumns()
         Try
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In GridView1.Columns
-                If col.FieldName = "TotalAdvance" OrElse col.FieldName = "Commission" OrElse col.FieldName = "NetAmt" Then
+                If col.FieldName = "TotalAdvance" OrElse col.FieldName = "Commission" OrElse col.FieldName = "NetAmt" OrElse col.FieldName = "Qty" Then
                     col.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Far
                 End If
             Next
@@ -573,7 +598,7 @@ Public Class frmMonthlySummaryReport
             ' LoadMonthlySummaryData()
         End If
     End Sub
- 
+
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs)
         Try
@@ -691,7 +716,7 @@ Public Class frmMonthlySummaryReport
                     lblStatus.Text = "Error: " & "ReportMonthlyIndv.repx"
                 End If
             End If
-           
+
         Catch ex As Exception
             lblStatus.Text = "Error: " & ex.Message
             MessageBox.Show("Error loading sales data: " & ex.Message, "Error",

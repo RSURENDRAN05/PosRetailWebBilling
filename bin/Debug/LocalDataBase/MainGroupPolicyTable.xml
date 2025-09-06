@@ -21,6 +21,10 @@
     <MainName>BARBER</MainName>
   </MainGroupPolicyTable>
   <MainGroupPolicyTable>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+  </MainGroupPolicyTable>
+  <MainGroupPolicyTable>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
   </MainGroupPolicyTable>

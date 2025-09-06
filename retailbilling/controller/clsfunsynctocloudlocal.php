@@ -413,13 +413,14 @@ class clsfuncsync
             pe.emp_id AS ID,
             pe.emp_printname AS Name,
             psid.psid_invoice_description AS ItemName,
-            CAST(psid.psid_invoice_netamt AS DECIMAL(18,2)) AS NetAmt,
+            SUM(CAST(psid.psid_invoice_netamt AS DECIMAL(18,2))) AS NetAmt,
             psid.psid_invoice_salemanper AS Percentage,
-            CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission,
+            SUM(CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2))) AS Commission,
             psid.psid_invoice_date AS Date,
             psid.psid_invoice_trno AS TransactionNo,
             pm.pcm_name AS CompanyName,
-            pl.plm_name AS LocationName
+            pl.plm_name AS LocationName,
+            SUM(CAST(psid.psid_invoice_proqty AS DECIMAL(18,2))) AS Qty
         FROM pos_sale_invoicedtl AS psid
         INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
         INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
@@ -436,6 +437,7 @@ class clsfuncsync
         if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
             $sql .= " AND psid.psid_invoice_locid = '$locid'";
         }
+        $sql .= " GROUP BY pe.emp_id, pe.emp_printname, psid.psid_invoice_description, psid.psid_invoice_salemanper, psid.psid_invoice_date, psid.psid_invoice_trno, pm.pcm_name, pl.plm_name";
         $sql .= " ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
 
         // Log the query for debugging (remove in production)
@@ -467,7 +469,8 @@ class clsfuncsync
             CAST(AVG(psid.psid_invoice_salemanper) AS DECIMAL(5,2)) AS AvgPercentage,
             CAST(SUM((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100) AS DECIMAL(18,2)) AS TotalCommission,
             pm.pcm_name AS CompanyName,
-            pl.plm_name AS LocationName
+            pl.plm_name AS LocationName,
+            CAST(SUM(psid.psid_invoice_proqty) AS DECIMAL(18,2)) AS Qty
         FROM pos_sale_invoicedtl AS psid
         INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
         INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
@@ -512,7 +515,8 @@ class clsfuncsync
             psid.psid_invoice_salemanper AS Percentage,
             CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission,
             psid.psid_invoice_date AS Date,
-            psid.psid_invoice_trno AS TransactionNo
+            psid.psid_invoice_trno AS TransactionNo,
+            CAST(SUM(psid.psid_invoice_proqty) AS DECIMAL(18,2)) AS Qty
         FROM pos_sale_invoicedtl AS psid
         INNER JOIN pos_employeeinfo AS pe
             ON psid.psid_invoice_salesmanid = pe.emp_id
@@ -721,7 +725,7 @@ class clsfuncsync
             return array('success' => false, 'message' => 'Error fetching advance report: ' . mysqli_error($this->conn));
         }
     }
- 
+
     public function GetMonthlySummaryReportAll($year, $month)
     {
         try {

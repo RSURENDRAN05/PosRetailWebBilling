@@ -177,7 +177,8 @@ Public Class frmSalesChronicalReport
                   OrElse col.FieldName = "LocationName" Then
                     col.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
                 End If
-                If col.FieldName = "TotalNetAmt" OrElse col.FieldName = "AvgPercentage" OrElse col.FieldName = "TotalCommission" OrElse col.FieldName = "NetAmt" OrElse col.FieldName = "Commission" Then
+                If col.FieldName = "TotalNetAmt" OrElse col.FieldName = "AvgPercentage" OrElse col.FieldName = "TotalCommission" OrElse col.FieldName = "NetAmt" _
+                    OrElse col.FieldName = "Commission" OrElse col.FieldName = "Qty" Then
                     col.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Far
                 End If
             Next
@@ -218,6 +219,18 @@ Public Class frmSalesChronicalReport
         colTotalItems.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         colTotalItems.SummaryItem.DisplayFormat = "Total: {0:n0}"
         GridView1.Columns.Add(colTotalItems)
+
+        ' TotalQty Column
+        Dim colQty As New DevExpress.XtraGrid.Columns.GridColumn()
+        colQty.FieldName = "Qty"
+        colQty.Caption = "Total Qty"
+        colQty.Visible = True
+        colQty.Width = 100
+        colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colQty.DisplayFormat.FormatString = "n2"
+        colQty.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colQty.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colQty)
 
         ' Total Net Amount Column
         Dim colTotalNetAmt As New DevExpress.XtraGrid.Columns.GridColumn()
@@ -269,6 +282,9 @@ Public Class frmSalesChronicalReport
         colLocationName.Width = 150
         GridView1.Columns.Add(colLocationName)
 
+
+
+
     End Sub
 
     Private Sub ConfigureSalesManDetailedColumns()
@@ -310,6 +326,17 @@ Public Class frmSalesChronicalReport
         colItemName.Width = 200
         colItemName.Visible = True
         GridView1.Columns.Add(colItemName)
+        ' TotalQty Column
+        Dim colQty As New DevExpress.XtraGrid.Columns.GridColumn()
+        colQty.FieldName = "Qty"
+        colQty.Caption = "Total Qty"
+        colQty.Visible = True
+        colQty.Width = 100
+        colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        colQty.DisplayFormat.FormatString = "n2"
+        colQty.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        colQty.SummaryItem.DisplayFormat = "Total: {0:n2}"
+        GridView1.Columns.Add(colQty)
 
         Dim colNetAmt As New DevExpress.XtraGrid.Columns.GridColumn()
         colNetAmt.FieldName = "NetAmt"

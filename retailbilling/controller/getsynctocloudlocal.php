@@ -265,7 +265,7 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                 echo json_encode(array("Success" => false, "Msg" => "No salesman commission summary found", "Data" => ""));
             }
         } catch (Exception $e) {
-            error_log("Request 5 Error: " . $e->getMessage());
+            error_log("Request 6 Error: " . $e->getMessage());
             echo json_encode(array("Success" => false, "Msg" => "Request 5 Error: " . $e->getMessage(), "Data" => ""));
         }
         exit;

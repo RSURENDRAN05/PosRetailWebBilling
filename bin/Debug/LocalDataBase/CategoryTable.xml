@@ -13,6 +13,14 @@
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
                 <xs:element name="Active" type="xs:string" minOccurs="0" />
                 <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="id" type="xs:string" minOccurs="0" />
+                <xs:element name="item_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_type" type="xs:string" minOccurs="0" />
+                <xs:element name="font_size" type="xs:string" minOccurs="0" />
+                <xs:element name="font_name" type="xs:string" minOccurs="0" />
+                <xs:element name="font_style" type="xs:string" minOccurs="0" />
+                <xs:element name="text_color" type="xs:string" minOccurs="0" />
+                <xs:element name="back_color" type="xs:string" minOccurs="0" />
                 <xs:element name="Position" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
@@ -28,7 +36,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>1</Position>
+    <id>4</id>
+    <item_id>1</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>19.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,0,0,255)</text_color>
+    <back_color>Argb(255,255,255,128)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>2</CateId>
@@ -37,7 +53,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>2</Position>
+    <id>5</id>
+    <item_id>2</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>17.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,0,0,255)</text_color>
+    <back_color>Argb(255,255,255,128)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>3</CateId>
@@ -46,7 +70,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>5</Position>
+    <id>6</id>
+    <item_id>3</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>9.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,0)</text_color>
+    <back_color>Argb(255,176,196,222)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>4</CateId>
@@ -55,7 +87,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>3</Position>
+    <id>7</id>
+    <item_id>4</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>9.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,0)</text_color>
+    <back_color>Argb(255,176,196,222)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>5</CateId>
@@ -64,7 +104,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>4</Position>
+    <id>8</id>
+    <item_id>5</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>9.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,0)</text_color>
+    <back_color>Argb(255,176,196,222)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>6</CateId>
@@ -73,7 +121,15 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>6</Position>
+    <id>9</id>
+    <item_id>6</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>9.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,0)</text_color>
+    <back_color>Argb(255,176,196,222)</back_color>
+    <Position>0</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>7</CateId>
@@ -82,6 +138,14 @@
     <MainName>BARBER</MainName>
     <Active>1</Active>
     <Color>DarkOrange</Color>
-    <Position>7</Position>
+    <id>10</id>
+    <item_id>7</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>9.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Regular</font_style>
+    <text_color>Argb(255,0,0,0)</text_color>
+    <back_color>Argb(255,176,196,222)</back_color>
+    <Position>0</Position>
   </CategoryTable>
 </NewDataSet>
