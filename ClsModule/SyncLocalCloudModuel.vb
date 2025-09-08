@@ -168,6 +168,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "MainGroupPolicy Not Received"
             End If
+            If ReadCustomerDisplayPole("r") = True Then
+                dialog.Caption = "Loading PoleDisplay"
+            Else
+                dialog.Caption = "PoleDisplay Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

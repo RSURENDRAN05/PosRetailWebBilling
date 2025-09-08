@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="COMSettings" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="COMSettings">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PortName" type="xs:string" default="0" minOccurs="0" />
+                <xs:element name="Parity" type="xs:string" default="0" minOccurs="0" />
+                <xs:element name="StopBits" type="xs:string" default="0" minOccurs="0" />
+                <xs:element name="DataBits" type="xs:string" default="0" minOccurs="0" />
+                <xs:element name="BaudRate" type="xs:string" default="0" minOccurs="0" />
+                <xs:element name="Startup" type="xs:int" default="2" minOccurs="0" />
+                <xs:element name="DefaultDisplay" type="xs:string" default="POSBean" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <COMSettings>
+    <PortName>COM3</PortName>
+    <Parity>None</Parity>
+    <StopBits>One</StopBits>
+    <DataBits>8</DataBits>
+    <BaudRate>9600</BaudRate>
+    <Startup>0</Startup>
+    <DefaultDisplay>CustomerDisplayPole</DefaultDisplay>
+  </COMSettings>
+</NewDataSet>

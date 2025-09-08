@@ -70,6 +70,7 @@ Partial Class PosSalesII
         Me.BarSubItem7 = New DevExpress.XtraBars.BarSubItem()
         Me.barbtnprintprofiledesign = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnPrintShiftClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnPoledisplaysetting = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem3 = New DevExpress.XtraBars.BarSubItem()
         Me.barSearchProductCode = New DevExpress.XtraBars.BarCheckItem()
         Me.barbilldiscount = New DevExpress.XtraBars.BarButtonItem()
@@ -77,6 +78,7 @@ Partial Class PosSalesII
         Me.barbtnselectprice = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnmaualprice = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnprintonoff = New DevExpress.XtraBars.BarCheckItem()
+        Me.barchkcustomerpole = New DevExpress.XtraBars.BarCheckItem()
         Me.BarSubItem4 = New DevExpress.XtraBars.BarSubItem()
         Me.barbtncounterclose = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem5 = New DevExpress.XtraBars.BarSubItem()
@@ -171,6 +173,7 @@ Partial Class PosSalesII
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.SerialPortCustomerPole = New System.IO.Ports.SerialPort(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -647,8 +650,8 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.barbtncashdraweropen, Me.barbtnrefreshdata, Me.barbtnstaffadvance, Me.barbtnPrintShiftClose, Me.barbtnmaualprice})
-        Me.BarManager1.MaxItemId = 57
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.barbtncashdraweropen, Me.barbtnrefreshdata, Me.barbtnstaffadvance, Me.barbtnPrintShiftClose, Me.barbtnmaualprice, Me.barchkcustomerpole, Me.btnPoledisplaysetting})
+        Me.BarManager1.MaxItemId = 60
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -756,7 +759,7 @@ Partial Class PosSalesII
         Me.BarSubItem7.Id = 48
         Me.BarSubItem7.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BarSubItem7.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintprofiledesign, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrintShiftClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintprofiledesign, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrintShiftClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnPoledisplaysetting)})
         Me.BarSubItem7.Name = "BarSubItem7"
         '
         'barbtnprintprofiledesign
@@ -777,6 +780,15 @@ Partial Class PosSalesII
         Me.barbtnPrintShiftClose.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnPrintShiftClose.Name = "barbtnPrintShiftClose"
         '
+        'btnPoledisplaysetting
+        '
+        Me.btnPoledisplaysetting.Caption = "Pole Display Settings"
+        Me.btnPoledisplaysetting.Glyph = CType(resources.GetObject("btnPoledisplaysetting.Glyph"), System.Drawing.Image)
+        Me.btnPoledisplaysetting.Id = 59
+        Me.btnPoledisplaysetting.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPoledisplaysetting.ItemAppearance.Normal.Options.UseFont = True
+        Me.btnPoledisplaysetting.Name = "btnPoledisplaysetting"
+        '
         'BarSubItem3
         '
         Me.BarSubItem3.Caption = "Options"
@@ -784,7 +796,7 @@ Partial Class PosSalesII
         Me.BarSubItem3.Id = 6
         Me.BarSubItem3.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BarSubItem3.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarSubItem3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSearchProductCode, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbilldiscount, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.baritemdiscount, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnselectprice, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnmaualprice, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintonoff, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.BarSubItem3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSearchProductCode, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbilldiscount, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.baritemdiscount, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnselectprice, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnmaualprice, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintonoff, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barchkcustomerpole, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.BarSubItem3.Name = "BarSubItem3"
         '
         'barSearchProductCode
@@ -844,6 +856,17 @@ Partial Class PosSalesII
         Me.barbtnprintonoff.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.barbtnprintonoff.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnprintonoff.Name = "barbtnprintonoff"
+        '
+        'barchkcustomerpole
+        '
+        Me.barchkcustomerpole.Caption = "Pole Display Active"
+        Me.barchkcustomerpole.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText
+        Me.barchkcustomerpole.Checked = True
+        Me.barchkcustomerpole.Glyph = CType(resources.GetObject("barchkcustomerpole.Glyph"), System.Drawing.Image)
+        Me.barchkcustomerpole.Id = 58
+        Me.barchkcustomerpole.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barchkcustomerpole.ItemAppearance.Normal.Options.UseFont = True
+        Me.barchkcustomerpole.Name = "barchkcustomerpole"
         '
         'BarSubItem4
         '
@@ -1780,7 +1803,7 @@ Partial Class PosSalesII
         '
         'PosSalesII
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1266, 719)
         Me.Controls.Add(Me.LayoutControl1)
@@ -1793,48 +1816,48 @@ Partial Class PosSalesII
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PosSalesII"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel2.PerformLayout()
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.GridControlCustomer, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewCustomer, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PopConSales, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PopConSales.ResumeLayout(False)
-        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl3.ResumeLayout(False)
-        CType(Me.txtMqty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtsearch2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbMaterialSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControlSalesData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewPOS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEditPrice, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEditSelectSp, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEditDelete, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.LayoutControl1.ResumeLayout(false)
+        Me.TableLayoutPanel3.ResumeLayout(false)
+        Me.TableLayoutPanel2.ResumeLayout(false)
+        Me.TableLayoutPanel2.PerformLayout
+        Me.TableLayoutPanel1.ResumeLayout(false)
+        Me.TableLayoutPanel1.PerformLayout
+        CType(Me.GridControlCustomer,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridViewCustomer,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.BarManager1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PopConSales,System.ComponentModel.ISupportInitialize).EndInit
+        Me.PopConSales.ResumeLayout(false)
+        CType(Me.LayoutControl3,System.ComponentModel.ISupportInitialize).EndInit
+        Me.LayoutControl3.ResumeLayout(false)
+        CType(Me.txtMqty.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridControl2,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridView2,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.txtsearch2.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlGroup3,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem7,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem8,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem18,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.cmbMaterialSearch.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridControlSalesData,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridViewPOS,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RepositoryItemButtonEditPrice,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RepositoryItemButtonEditSelectSp,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RepositoryItemButtonEditDelete,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem12,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem9,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem11,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem5,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem6,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem13,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
@@ -1982,4 +2005,8 @@ Partial Class PosSalesII
     Friend WithEvents barbtnmaualprice As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RepositoryItemButtonEditSelectSp As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemButtonEditPrice As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+
+    Friend WithEvents barchkcustomerpole As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents SerialPortCustomerPole As System.IO.Ports.SerialPort
+    Friend WithEvents btnPoledisplaysetting As DevExpress.XtraBars.BarButtonItem
 End Class

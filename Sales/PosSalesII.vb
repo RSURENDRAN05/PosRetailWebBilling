@@ -121,6 +121,12 @@ Public Class PosSalesII
             Else
                 barstatustaxtype.Caption = "Tax Inclusive"
             End If
+           
+            If CustomerDisplaySettings.Startup = 0 Then
+                barchkcustomerpole.Checked = True
+            Else
+                barchkcustomerpole.Checked = False
+            End If
             'If _JsonData.PaymentTermTable.Rows.Count = 0 Then
             '    getPaymentTermTable()
             'Else
@@ -1042,9 +1048,9 @@ Public Class PosSalesII
             Dim dtrows As System.Data.EnumerableRowCollection(Of DataRow) = Nothing
 
             If _Mode = "BarCode" Then
-                dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("BARCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
+                dtrows = From dtrow As DataRow In _JsonData.ItemTouchMasterTable Where String.Equals(dtrow("BARCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
             ElseIf _Mode = "ItemCode" Then
-                dtrows = From dtrow As DataRow In _JsonData.ItemMasterTable Where String.Equals(dtrow("ITEMCODE"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
+                dtrows = From dtrow As DataRow In _JsonData.ItemTouchMasterTable Where String.Equals(dtrow("Id"), ReceivedProCode, StringComparison.CurrentCultureIgnoreCase)
             Else
                 ' Handle invalid mode
                 ErrorMsg = "Invalid search mode: " & _Mode
@@ -1069,10 +1075,10 @@ Public Class PosSalesII
                 _dsMaterial = dtrows.CopyToDataTable
                 If _dsMaterial.Rows.Count > 0 Then
                     For Each _rows In _dsMaterial.Rows
-                        _barcode = _rows("BARCODE")
-                        _Code = _rows("ITEMCODE")
-                        _item = _rows("ITEMNAME")
-                        _srate = _rows("SELL")
+                        _barcode = _rows("BarCode")
+                        _Code = _rows("Id")
+                        _item = _rows("ItemName")
+                        _srate = _rows("SellPrice")
                         _taxValue = _rows("TAXVALUE")
                         _serialno = 1
                         _uom = 1
@@ -1214,7 +1220,7 @@ Public Class PosSalesII
             Dim GST As Decimal = 0.0
             Dim ServiceChargeAmount As Decimal = 0.0
             Dim NetTot As Decimal = 0.0
-
+            Dim stpole1 As String = M_Details._shopName
             TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
 
             ' Calculate separate discount totals
@@ -1260,6 +1266,24 @@ Public Class PosSalesII
             lblservcharge.Text = _globalSettingValues.ServiceTaxValue
             If SalesManModeShow = True Then
                 barselectsalesman_ItemClick(Nothing, Nothing)
+            End If
+            If barchkcustomerpole.Checked = True Then
+                If CustomerPoleOpen(Errstr) = True Then
+
+                    Dim stpole2 As String = ""
+                    stpole2 = "Total RM " & Format(NetTot, "0.00")
+                    If stpole1.Length > 19 Then
+                        If SetCustomerPole(stpole1.Substring(0, 19), stpole2, Errstr) = False Then
+
+                        End If
+                    Else
+                        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
+
+                        End If
+                    End If
+
+                    CustomerPoleClose(Errstr)
+                End If
             End If
             Return True
         Catch ex As Exception
@@ -2626,12 +2650,11 @@ Public Class PosSalesII
     End Sub
     Private Sub PaymentProcess()
         Try
-
+            Dim _givenAmt As Decimal = 0.0
+            Dim _BalanceAmt As Decimal = 0.0
             If modeOfSale = "New" Then
                 If GridViewPOS.RowCount > 0 Then
                     frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
-                    Dim _givenAmt As Decimal = 0.0
-                    Dim _BalanceAmt As Decimal = 0.0
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         ' Get payment details from PaymentDetailTable
                         Dim paymentModeSelections As New List(Of String)()
@@ -2764,11 +2787,13 @@ Public Class PosSalesII
                             _saleData.psih_invoice_givenamt = 0
                         Else
                             _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                            _givenAmt = _saleData.psih_invoice_givenamt
                         End If
                         If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_balamt = 0
                         Else
                             _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                            _BalanceAmt = _saleData.psih_invoice_balamt
                         End If
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
@@ -2802,8 +2827,7 @@ Public Class PosSalesII
             ElseIf modeOfSale = "Edit" Then
                 If GridViewPOS.RowCount > 0 Then
                     frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
-                    Dim _givenAmt As Decimal = 0.0
-                    Dim _BalanceAmt As Decimal = 0.0
+                   
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         ' Get payment details from PaymentDetailTable
                         Dim paymentModeSelections As New List(Of String)()
@@ -2937,11 +2961,13 @@ Public Class PosSalesII
                             _saleData.psih_invoice_givenamt = 0
                         Else
                             _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                            _givenAmt = _saleData.psih_invoice_givenamt
                         End If
                         If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_balamt = 0
                         Else
                             _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                            _BalanceAmt = _saleData.psih_invoice_balamt
                         End If
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
                         _saleData.psih_invoice_dayno = _saleSetting._curDayno
@@ -2974,7 +3000,18 @@ Public Class PosSalesII
             Else
                 DevExpress.XtraEditors.XtraMessageBox.Show("View Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
+            If barchkcustomerpole.Checked = True Then
+                If CustomerPoleOpen(Errstr) = True Then
+                    Dim stpole1 As String = ""
+                    Dim stpole2 As String = ""
+                    stpole1 = "Received RM " & Format(_givenAmt, "###0.00")
+                    stpole2 = "Balance RM " & Format(_BalanceAmt, "###0.00")
+                    If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
 
+                    End If
+                    CustomerPoleClose(Errstr)
+                End If
+            End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
@@ -3374,6 +3411,115 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+#Region "CustomerSerial Port"
 
+    Private Rexstr As String = String.Empty
+    Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
+ 
+    Private Sub barchkcustomerpole_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barchkcustomerpole.ItemClick
+        Try
+            If CustomerDisplaySettings.Startup = 2 Then
+                barchkcustomerpole.Checked = False
+                DevExpress.XtraEditors.XtraMessageBox.Show("Customer Display Pole is Disable Status on Settings.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                If barchkcustomerpole.Checked = True Then
+                    barchkcustomerpole.Checked = False
+                ElseIf barchkcustomerpole.Checked = False Then
+                    barchkcustomerpole.Checked = True
+                End If
+            End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
+    Private Function CustomerPoleOpen(ByRef ErrorMsg As String) As Boolean
+        Try
+
+            If SerialPortCustomerPole.IsOpen Then
+                ErrorMsg = "Aready Opened."
+                Return False
+            End If
+            SerialPortCustomerPole.PortName = CustomerDisplaySettings.PortName
+            SerialPortCustomerPole.BaudRate = CustomerDisplaySettings.BaudRate
+
+            Select Case CustomerDisplaySettings.Parity
+                Case "Even"
+                    SerialPortCustomerPole.Parity = Ports.Parity.Even
+                Case "None"
+                    SerialPortCustomerPole.Parity = Ports.Parity.None
+                Case "Mark"
+                    SerialPortCustomerPole.Parity = Ports.Parity.Mark
+                Case "Odd"
+                    SerialPortCustomerPole.Parity = Ports.Parity.Odd
+                Case "Space"
+                    SerialPortCustomerPole.Parity = Ports.Parity.Space
+            End Select
+
+            SerialPortCustomerPole.DataBits = CustomerDisplaySettings.DataBits
+
+            Select Case CustomerDisplaySettings.StopBits
+                Case "None"
+                    SerialPortCustomerPole.StopBits = 0 ' Ports.StopBits.None
+                Case "One"
+                    SerialPortCustomerPole.StopBits = 1 ' Ports.StopBits.One
+                Case "OnePointFive"
+                    SerialPortCustomerPole.StopBits = 2.5 'Ports.StopBits.OnePointFive
+                Case "Two"
+                    SerialPortCustomerPole.StopBits = 2 ' Ports.StopBits.Two
+            End Select
+            SerialPortCustomerPole.Open()
+            Return True
+        Catch ex As Exception
+            ErrorMsg = ex.Message
+            Return False
+        End Try
+    End Function
+
+    Private Function CustomerPoleClose(ByRef ErrorMsg As String) As Boolean
+        Try
+            If SerialPortCustomerPole.IsOpen Then
+                SerialPortCustomerPole.DtrEnable = True
+                SerialPortCustomerPole.Close()
+                SerialPortCustomerPole.Dispose()
+
+            End If
+            Return True
+        Catch ex As Exception
+            ErrorMsg = ex.Message
+            Return False
+        End Try
+    End Function
+
+    Private Function SetCustomerPole(ByVal Txt1 As String, ByVal Txt2 As String, ByRef ErrorMsg As String) As Boolean
+        Try
+            'SerialPortCustomerPole.Write(" " & vbCr)
+            'SerialPortCustomerPole.WriteLine(_GlobalSettings._ShopName)
+            'SerialPortCustomerPole.WriteLine(Txt)
+
+            ''SerialPortCustomerPole.Write(Convert.ToString(ChrW(11)))
+            ''SerialPortCustomerPole.WriteLine(_GlobalSettings._ShopName)
+            ''SerialPortCustomerPole.WriteLine(ChrW(13) & Txt)
+
+            '' SerialPortCustomerPole.Open()
+            SerialPortCustomerPole.Write(Convert.ToString(ChrW(12)))
+            SerialPortCustomerPole.WriteLine(Txt1)
+            SerialPortCustomerPole.WriteLine(ChrW(13) & Txt2)
+            Return True
+        Catch ex As Exception
+            ErrorMsg = ex.Message
+            Return False
+        End Try
+    End Function
+
+    Private Sub btnPoledisplaysetting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPoledisplaysetting.ItemClick
+        Try
+            frmcustomerpole.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
+
+  
 End Class

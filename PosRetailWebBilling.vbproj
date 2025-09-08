@@ -245,6 +245,12 @@
     <Compile Include="Controller\frmbusinessDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Controller\frmcustomerpole.designer.vb">
+      <DependentUpon>frmcustomerpole.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmcustomerpole.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controller\frmDeleteReason.designer.vb">
       <DependentUpon>frmDeleteReason.vb</DependentUpon>
     </Compile>
@@ -728,6 +734,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmbusinessDate.resx">
       <DependentUpon>frmbusinessDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmcustomerpole.resx">
+      <DependentUpon>frmcustomerpole.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmDeleteReason.resx">
       <DependentUpon>frmDeleteReason.vb</DependentUpon>

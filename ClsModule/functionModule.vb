@@ -95,7 +95,17 @@ Module functionModule
         Public Shared SUBMENUCOL As String = "1"
         Public Shared ITEMMENUCOL As String = "5"
     End Structure
+    Public Structure CustomerDisplaySettings
 
+        Public Shared PortName As String = String.Empty
+        Public Shared Parity As String = String.Empty
+        Public Shared StopBits As String = String.Empty
+        Public Shared DataBits As String = String.Empty
+        Public Shared BaudRate As String = String.Empty
+        Public Shared Startup As Integer = 0 '0 is automatic, 1 is manual, 2 is Disable
+        Public Shared DefaultDisplay As String = String.Empty
+
+    End Structure
     Public Structure PrintProfile
         Shared _salesFilename As String = ""
         Shared _purchaseFilename As String = ""
@@ -277,7 +287,29 @@ Module functionModule
         End Try
     End Sub
     Dim filePath As String = M_Details._appPath & "\LocalDataBase\"
+    Public Function ReadCustomerDisplayPole(ByRef ErrorMsg As String) As Boolean
+        Try
+            Dim dsCusPole As New DataSet
 
+            If File.Exists(M_Details._appPath & "\Layout\CustomerCOMSettings.xml") Then
+                dsCusPole.ReadXml(M_Details._appPath & "\Layout\CustomerCOMSettings.xml")
+                CustomerDisplaySettings.BaudRate = dsCusPole.Tables(0).Rows(0)("BaudRate")
+                CustomerDisplaySettings.DataBits = dsCusPole.Tables(0).Rows(0)("DataBits")
+                CustomerDisplaySettings.DefaultDisplay = dsCusPole.Tables(0).Rows(0)("DefaultDisplay")
+                CustomerDisplaySettings.Parity = dsCusPole.Tables(0).Rows(0)("Parity")
+                CustomerDisplaySettings.PortName = dsCusPole.Tables(0).Rows(0)("PortName")
+                CustomerDisplaySettings.Startup = dsCusPole.Tables(0).Rows(0)("Startup")
+                CustomerDisplaySettings.StopBits = dsCusPole.Tables(0).Rows(0)("StopBits")
+            Else
+                File.Create(M_Details._appPath & "\Layout\CustomerCOMSettings.xml")
+            End If
+
+            Return True
+        Catch ex As Exception
+            ErrorMsg = ex.Message
+            Return False
+        End Try
+    End Function
     Public Function getUserInfo() As Boolean
         Try
 
