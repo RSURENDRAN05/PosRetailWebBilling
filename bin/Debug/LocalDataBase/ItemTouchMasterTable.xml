@@ -12,6 +12,7 @@
                 <xs:element name="ItemName" type="xs:string" minOccurs="0" />
                 <xs:element name="BusinessType" type="xs:string" minOccurs="0" />
                 <xs:element name="Remarks" type="xs:string" minOccurs="0" />
+                <xs:element name="TaxValue" type="xs:string" minOccurs="0" />
                 <xs:element name="MainId" type="xs:string" minOccurs="0" />
                 <xs:element name="MainName" type="xs:string" minOccurs="0" />
                 <xs:element name="CateId" type="xs:string" minOccurs="0" />
@@ -52,6 +53,7 @@
     <ItemName>ADULT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -86,6 +88,7 @@
     <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -120,6 +123,7 @@
     <ItemName>CHILDREN</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -154,6 +158,7 @@
     <ItemName>SHAVING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -188,6 +193,7 @@
     <ItemName>SHAMPOO</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -222,6 +228,7 @@
     <ItemName>BALDING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>1</CateId>
@@ -256,6 +263,7 @@
     <ItemName>POWDER</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>2</CateId>
@@ -290,6 +298,7 @@
     <ItemName>CREAM</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>2</CateId>
@@ -324,6 +333,7 @@
     <ItemName>HAIR COLOURING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>2</CateId>
@@ -358,6 +368,7 @@
     <ItemName>FACE WASH</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
@@ -392,6 +403,7 @@
     <ItemName>FACE MASSAGE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
@@ -426,6 +438,7 @@
     <ItemName>FACE BLEACH</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
@@ -460,6 +473,7 @@
     <ItemName>FACIAL</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
@@ -494,6 +508,7 @@
     <ItemName>GOLD FACIAL</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>
@@ -528,6 +543,7 @@
     <ItemName>HAIR MASSAGE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>4</CateId>
@@ -562,6 +578,7 @@
     <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>4</CateId>
@@ -596,6 +613,7 @@
     <ItemName>KERATIN TREATMENT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>5</CateId>
@@ -630,6 +648,7 @@
     <ItemName>HAIR STYLING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>7</CateId>
@@ -664,6 +683,7 @@
     <ItemName>FACE WAX</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>6</CateId>
@@ -698,6 +718,7 @@
     <ItemName>FACE PACK</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>3</CateId>

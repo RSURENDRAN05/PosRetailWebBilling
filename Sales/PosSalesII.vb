@@ -110,7 +110,7 @@ Public Class PosSalesII
                 dtview = _JsonData.ItemMasterTable.DefaultView
             End If
             LoadButtonStyles()
-            mainMenu()
+            LoadMainMenu()
             If _globalSetting.SearchProductCode = True Then
                 barSearchProductCode.Checked = True
             Else
@@ -329,230 +329,587 @@ Public Class PosSalesII
  
 #End Region
 #Region "LoadMenu"
-    Private Sub mainMenu()
+    'Private Sub mainMenu()
+    '    Try
+    '        Try
+
+    '            FlowLayoutPanelMain.Controls.Clear()
+    '            ' Set FlowLayoutPanel properties for perfect layout
+
+    '            FlowLayoutPanelMain.WrapContents = True
+    '            FlowLayoutPanelMain.AutoScroll = True
+    '            ' Add dynamic SimpleButtons for each category with perfect fit styling
+
+    '            ' For initial load, use ButtonStyleWH.SUBLOAD as default index
+    '            Dim firstMainGroupId As Integer = Convert.ToInt32(ButtonStyleWH.SUBLOAD)
+    '            If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+    '                For Each row As DataRow In _JsonData.MainGroupPolicyTable.Rows
+    '                    Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+    '                    ' Button text and data
+    '                    btn.Text = row("MainName").ToString()
+    '                    btn.Tag = row("MainId")
+
+    '                    ' Button styling and dimensions for perfect fit with even padding
+    '                    btn.Size = New Size(ButtonStyleWH.MAINW, ButtonStyleWH.MAINH)
+
+
+    '                    ' DevExpress SimpleButton specific properties with enhanced styling
+    '                    btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(52, 152, 219)) ' Blue default for MainGroup
+    '                    btn.Appearance.ForeColor = Color.Black
+    '                    btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
+    '                    btn.Appearance.Options.UseBackColor = True
+    '                    btn.Appearance.Options.UseForeColor = True
+    '                    btn.Appearance.Options.UseFont = True
+    '                    btn.Appearance.Options.UseTextOptions = True
+    '                    btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '                    btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+    '                    btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    '                    btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+
+
+    '                    btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+    '                    btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+    '                    ' Add border for better visual separation
+    '                    btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+    '                    btn.Appearance.Options.UseBorderColor = True
+
+    '                    ' Event handler
+    '                    AddHandler btn.Click, AddressOf MainGroupButton_Click
+
+    '                    ' Add to panel
+    '                    FlowLayoutPanelMain.Controls.Add(btn)
+
+    '                Next
+
+    '                ' Force layout update to ensure proper sizing
+    '                FlowLayoutPanelMain.PerformLayout()
+
+    '                ' Load submenu for the initial default main group ID
+    '                If firstMainGroupId > 0 Then
+    '                    subMenu(firstMainGroupId, True) ' True indicates initial load
+    '                End If
+
+    '            End If
+
+    '        Catch ex As Exception
+    '            ' Handle error silently or log if needed
+    '        End Try
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+    'Private Sub subMenu(ByRef DefaultMainId As Integer, Optional ByVal isInitialLoad As Boolean = False)
+    '    Try
+
+    '        FlowLayoutPanelSubMenu.Controls.Clear()
+
+    '        Dim selectedMainId As Integer = DefaultMainId ' Store selected main group ID
+    '        Dim firstCategoryId As Integer = 0 ' Will store the first category ID for product loading
+
+    '        If _JsonData.CategoryTable.Rows.Count > 0 Then
+    '            Dim filteredCate = From item In _JsonData.CategoryTable.AsEnumerable() _
+    '                              Where IsNumeric(item("MainId")) AndAlso Convert.ToInt32(item("MainId")) = selectedMainId _
+    '                              Select item
+
+    '            If filteredCate.Any() Then
+    '                Dim filteredTable As DataTable = filteredCate.CopyToDataTable()
+
+    '                ' Determine which category to load for products
+    '                If isInitialLoad Then
+    '                    ' For initial load, use ButtonStyleWH.ITEMLOAD as index
+    '                    Dim itemLoadIndex As Integer = Convert.ToInt32(ButtonStyleWH.ITEMLOAD)
+    '                    If itemLoadIndex < filteredTable.Rows.Count Then
+    '                        firstCategoryId = Convert.ToInt32(filteredTable.Rows(itemLoadIndex)("CateID"))
+    '                    Else
+    '                        ' If index is out of range, use first category
+    '                        firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
+    '                    End If
+    '                Else
+    '                    ' For user clicks, always use first category (index 0)
+    '                    firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
+    '                End If
+    '                For Each row As DataRow In filteredTable.Rows
+    '                    Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+    '                    ' Button text and data
+    '                    btn.Text = row("CateName").ToString()
+    '                    btn.Tag = row("CateID")
+
+
+    '                    ' Button styling and dimensions for perfect fit with even padding
+    '                    btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
+
+    '                    ' DevExpress SimpleButton specific properties with enhanced styling
+    '                    btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(46, 204, 113)) ' Green default for SubMenu
+    '                    btn.Appearance.ForeColor = Color.Black
+    '                    btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
+    '                    btn.Appearance.Options.UseBackColor = True
+    '                    btn.Appearance.Options.UseForeColor = True
+    '                    btn.Appearance.Options.UseFont = True
+    '                    btn.Appearance.Options.UseTextOptions = True
+    '                    btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '                    btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+    '                    btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    '                    btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+
+
+    '                    btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+    '                    btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+    '                    ' Add border for better visual separation
+    '                    btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+    '                    btn.Appearance.Options.UseBorderColor = True
+
+    '                    ' Event handler
+    '                    AddHandler btn.Click, AddressOf CategoryButton_Click
+
+    '                    ' Add to panel
+    '                    FlowLayoutPanelSubMenu.Controls.Add(btn)
+
+    '                    ' Increment color index for next button
+
+    '                Next
+    '            End If
+
+    '            ' Force layout update to ensure proper sizing
+    '            FlowLayoutPanelSubMenu.PerformLayout()
+
+    '            LoadProductMenu(firstCategoryId)
+
+    '        End If
+    '    Catch ex As Exception
+    '        ' Handle error silently or log if needed
+    '    End Try
+    'End Sub
+    'Private Sub LoadProductMenu(ByRef DefaultCateId As Integer)
+    '    Try
+    '        Dim Cateid As Integer = 0
+    '        Cateid = DefaultCateId
+
+    '        ' Clear existing product buttons
+    '        FlowLayoutPanelProduct.Controls.Clear()
+
+    '        If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+    '            ' Filter items by category ID and update the item grid
+    '            Dim filteredItems = From item In _JsonData.ItemTouchMasterTable.AsEnumerable() _
+    '                               Where IsNumeric(item("CateId")) AndAlso Convert.ToInt32(item("CateId")) = Cateid _
+    '                               Select item
+
+    '            If filteredItems.Any() Then
+    '                ' Create a new DataTable with filtered items
+    '                Dim filteredTable As DataTable = filteredItems.CopyToDataTable()
+    '                For Each row As DataRow In filteredTable.Rows
+    '                    Dim btn As New DevExpress.XtraEditors.SimpleButton()
+
+    '                    ' Button content - Item name and price
+    '                    Dim itemName As String = If(row("ItemName") IsNot Nothing, row("ItemName").ToString(), "Unknown Item")
+    '                    Dim sellPrice As Decimal = 0
+    '                    If IsNumeric(row("SellPrice")) Then
+    '                        sellPrice = Convert.ToDecimal(row("SellPrice"))
+    '                    End If
+    '                    btn.Text = itemName & Environment.NewLine & sellPrice.ToString("C2")
+
+    '                    ' Store ItemCode in Tag with safety check
+    '                    If IsNumeric(row("Id")) Then
+    '                        btn.Tag = Convert.ToInt32(row("Id"))
+    '                    Else
+    '                        btn.Tag = 0 ' Default value if conversion fails
+    '                    End If
+
+    '                    ' Enhanced button styling
+    '                    btn.Size = New Size(ButtonStyleWH.ITEMW, ButtonStyleWH.ITEMH)
+
+    '                    ' Safe color handling using helper function
+    '                    btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(70, 130, 180)) ' Steel Blue default for Products
+    '                    btn.Appearance.ForeColor = Color.Black
+    '                    btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold)
+    '                    btn.Appearance.Options.UseBackColor = True
+    '                    btn.Appearance.Options.UseForeColor = True
+    '                    btn.Appearance.Options.UseFont = True
+    '                    btn.Appearance.Options.UseTextOptions = True
+    '                    btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '                    btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+    '                    btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+
+
+    '                    btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+    '                    btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+    '                    ' Border styling
+    '                    btn.Appearance.BorderColor = Color.FromArgb(180, 180, 180)
+    '                    btn.Appearance.Options.UseBorderColor = True
+
+    '                    ' Event handler
+    '                    AddHandler btn.Click, AddressOf ItemButton_Click
+    '                    FlowLayoutPanelProduct.Controls.Add(btn)
+    '                Next
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+    ' ============ Load Main Menu ============
+    Private Sub LoadMainMenu()
         Try
-            Try
+            PanelMainMenu.Controls.Clear()
 
-                FlowLayoutPanelMain.Controls.Clear()
-                ' Set FlowLayoutPanel properties for perfect layout
-
-                FlowLayoutPanelMain.WrapContents = True
-                FlowLayoutPanelMain.AutoScroll = True
-                ' Add dynamic SimpleButtons for each category with perfect fit styling
-
-                ' For initial load, use ButtonStyleWH.SUBLOAD as default index
-                Dim firstMainGroupId As Integer = Convert.ToInt32(ButtonStyleWH.SUBLOAD)
-                If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
-                    For Each row As DataRow In _JsonData.MainGroupPolicyTable.Rows
-                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
-
-                        ' Button text and data
-                        btn.Text = row("MainName").ToString()
-                        btn.Tag = row("MainId")
-
-                        ' Button styling and dimensions for perfect fit with even padding
-                        btn.Size = New Size(ButtonStyleWH.MAINW, ButtonStyleWH.MAINH)
+            Dim btnWidth As Integer = ButtonStyleWH.MAINW
+            Dim btnHeight As Integer = ButtonStyleWH.MAINH
+            Dim spacing As Integer = 5
+            Dim cols As Integer = ButtonStyleWH.MAINCOL
+            Dim marginLeft As Integer = 10
+            Dim marginTop As Integer = 10
 
 
-                        ' DevExpress SimpleButton specific properties with enhanced styling
-                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(52, 152, 219)) ' Blue default for MainGroup
-                        btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
-                        btn.Appearance.Options.UseBackColor = True
-                        btn.Appearance.Options.UseForeColor = True
-                        btn.Appearance.Options.UseFont = True
-                        btn.Appearance.Options.UseTextOptions = True
-                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-                        btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
+            For i As Integer = 0 To _JsonData.MainGroupTable.Rows.Count - 1
+                Dim row As Integer = i \ cols
+                Dim col As Integer = i Mod cols
 
+                ' Get current row data
+                Dim currentRow As DataRow = _JsonData.MainGroupTable.Rows(i)
 
-                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-                        btn.LookAndFeel.UseDefaultLookAndFeel = False
+                ' Count how many buttons in this row
+                Dim countInRow As Integer =
+                    If(i + cols < _JsonData.MainGroupTable.Rows.Count, cols, _JsonData.MainGroupTable.Rows.Count - row * cols)
 
-                        ' Add border for better visual separation
-                        btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
-                        btn.Appearance.Options.UseBorderColor = True
+                ' Total width of this row
+                Dim rowWidth As Integer = (countInRow * btnWidth) + ((countInRow - 1) * spacing)
 
-                        ' Event handler
-                        AddHandler btn.Click, AddressOf MainGroupButton_Click
+                ' Center horizontally
+                Dim startX As Integer = Math.Max(0, (PanelMainMenu.Width - rowWidth) \ 2)
 
-                        ' Add to panel
-                        FlowLayoutPanelMain.Controls.Add(btn)
+                ' Create button
+                Dim btn As New DevExpress.XtraEditors.SimpleButton()
+                btn.Text = currentRow("MainName").ToString()
+                btn.Tag = currentRow("MainId").ToString()
+                btn.Size = New Size(btnWidth, btnHeight)
+                btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
+                             marginTop + row * (btnHeight + spacing))
 
-                    Next
+                ' Get properties from API data with defaults
+                Dim fontSize As Single = GetSafeValue(currentRow, "font_size", 14.0F)
+                Dim fontName As String = GetSafeValue(currentRow, "font_name", "Segoe UI")
+                Dim fontStyleString As String = GetSafeValue(currentRow, "font_style", "Bold")
+                Dim textColor As Color = ParseARGBColor(GetSafeValue(currentRow, "text_color", ""), Color.White)
+                Dim backColor As Color = ParseARGBColor(GetSafeValue(currentRow, "back_color", ""), Color.FromArgb(52, 152, 219))
 
-                    ' Force layout update to ensure proper sizing
-                    FlowLayoutPanelMain.PerformLayout()
-
-                    ' Load submenu for the initial default main group ID
-                    If firstMainGroupId > 0 Then
-                        subMenu(firstMainGroupId, True) ' True indicates initial load
-                    End If
-
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
                 End If
 
-            Catch ex As Exception
-                ' Handle error silently or log if needed
-            End Try
-        Catch ex As Exception
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
+                btn.Appearance.Options.UseBackColor = True
+                btn.Appearance.Options.UseForeColor = True
+                btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
 
-        End Try
-    End Sub
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
 
-    Private Sub subMenu(ByRef DefaultMainId As Integer, Optional ByVal isInitialLoad As Boolean = False)
-        Try
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
+                ' Try to load saved properties from PHP
+                'Try
+                '    LoadButtonPropertiesFromPHP(mains(i).MainId, "Main")
+                '    If selectedButtonProperties IsNot Nothing Then
+                '        ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+                '    End If
+                'Catch
+                '    ' Use default if loading fails
+                'End Try
 
-            FlowLayoutPanelSubMenu.Controls.Clear()
+                '' Add context menu for properties
+                'AddContextMenuToButton(btn)
 
-            Dim selectedMainId As Integer = DefaultMainId ' Store selected main group ID
-            Dim firstCategoryId As Integer = 0 ' Will store the first category ID for product loading
+                AddHandler btn.Click, AddressOf MainMenu_Click
+                PanelMainMenu.Controls.Add(btn)
+            Next
 
-            If _JsonData.CategoryTable.Rows.Count > 0 Then
-                Dim filteredCate = From item In _JsonData.CategoryTable.AsEnumerable() _
-                                  Where IsNumeric(item("MainId")) AndAlso Convert.ToInt32(item("MainId")) = selectedMainId _
-                                  Select item
+            PanelMainMenu.AutoScroll = True
 
-                If filteredCate.Any() Then
-                    Dim filteredTable As DataTable = filteredCate.CopyToDataTable()
-
-                    ' Determine which category to load for products
-                    If isInitialLoad Then
-                        ' For initial load, use ButtonStyleWH.ITEMLOAD as index
-                        Dim itemLoadIndex As Integer = Convert.ToInt32(ButtonStyleWH.ITEMLOAD)
-                        If itemLoadIndex < filteredTable.Rows.Count Then
-                            firstCategoryId = Convert.ToInt32(filteredTable.Rows(itemLoadIndex)("CateID"))
-                        Else
-                            ' If index is out of range, use first category
-                            firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
-                        End If
-                    Else
-                        ' For user clicks, always use first category (index 0)
-                        firstCategoryId = Convert.ToInt32(filteredTable.Rows(0)("CateID"))
-                    End If
-                    For Each row As DataRow In filteredTable.Rows
-                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
-
-                        ' Button text and data
-                        btn.Text = row("CateName").ToString()
-                        btn.Tag = row("CateID")
-
-
-                        ' Button styling and dimensions for perfect fit with even padding
-                        btn.Size = New Size(ButtonStyleWH.SUBW, ButtonStyleWH.SUBH)
-
-                        ' DevExpress SimpleButton specific properties with enhanced styling
-                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(46, 204, 113)) ' Green default for SubMenu
-                        btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold) ' Consistent larger font
-                        btn.Appearance.Options.UseBackColor = True
-                        btn.Appearance.Options.UseForeColor = True
-                        btn.Appearance.Options.UseFont = True
-                        btn.Appearance.Options.UseTextOptions = True
-                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-                        btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter ' Handle long text gracefully
-
-
-                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-                        btn.LookAndFeel.UseDefaultLookAndFeel = False
-
-                        ' Add border for better visual separation
-                        btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
-                        btn.Appearance.Options.UseBorderColor = True
-
-                        ' Event handler
-                        AddHandler btn.Click, AddressOf CategoryButton_Click
-
-                        ' Add to panel
-                        FlowLayoutPanelSubMenu.Controls.Add(btn)
-
-                        ' Increment color index for next button
-
-                    Next
-                End If
-
-                ' Force layout update to ensure proper sizing
-                FlowLayoutPanelSubMenu.PerformLayout()
-
-                LoadProductMenu(firstCategoryId)
-
+            ' Auto-load first MainId
+            If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                LoadSubMenu(Convert.ToInt32(_JsonData.MainGroupTable.Rows(0)("MainId")))
             End If
+
         Catch ex As Exception
-            ' Handle error silently or log if needed
+            MessageBox.Show("Error loading Main Menu: " & ex.Message)
         End Try
     End Sub
-    Private Sub LoadProductMenu(ByRef DefaultCateId As Integer)
+
+
+    ' ============ Load Sub Menu ============
+    Private Sub LoadSubMenu(mainId As Integer)
         Try
-            Dim Cateid As Integer = 0
-            Cateid = DefaultCateId
+            PanelSubMenu.Controls.Clear()
 
-            ' Clear existing product buttons
-            FlowLayoutPanelProduct.Controls.Clear()
+            Dim btnWidth As Integer = ButtonStyleWH.SUBW
+            Dim btnHeight As Integer = ButtonStyleWH.SUBH
+            Dim spacing As Integer = 5
+            Dim cols As Integer = ButtonStyleWH.SUBMENUCOL
+            Dim marginLeft As Integer = 10
+            Dim marginTop As Integer = 10
+            ' Group by CateId, CateName under selected MainId
+            Dim subs = _JsonData.CategoryTable.AsEnumerable().
+                Where(Function(r) Convert.ToInt32(r("MainId")) = mainId).
+                GroupBy(Function(r) New With {
+                    Key .CateId = Convert.ToInt32(r("CateId")),
+                    Key .CateName = r("CateName").ToString(),
+                    Key .Position = Convert.ToInt32(r("Position"))
+                }).
+                Select(Function(g) g.Key).
+                OrderBy(Function(x) x.Position).ToList()
 
-            If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
-                ' Filter items by category ID and update the item grid
-                Dim filteredItems = From item In _JsonData.ItemTouchMasterTable.AsEnumerable() _
-                                   Where IsNumeric(item("CateId")) AndAlso Convert.ToInt32(item("CateId")) = Cateid _
-                                   Select item
+            For i As Integer = 0 To subs.Count - 1
+                Dim row As Integer = i \ cols
+                Dim col As Integer = i Mod cols
 
-                If filteredItems.Any() Then
-                    ' Create a new DataTable with filtered items
-                    Dim filteredTable As DataTable = filteredItems.CopyToDataTable()
-                    For Each row As DataRow In filteredTable.Rows
-                        Dim btn As New DevExpress.XtraEditors.SimpleButton()
+                Dim btn As New DevExpress.XtraEditors.SimpleButton()
+                btn.Text = subs(i).CateName
+                btn.Tag = subs(i).CateId
+                btn.Size = New Size(btnWidth, btnHeight)
+                btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
+                              marginTop + row * (btnHeight + spacing))
 
-                        ' Button content - Item name and price
-                        Dim itemName As String = If(row("ItemName") IsNot Nothing, row("ItemName").ToString(), "Unknown Item")
-                        Dim sellPrice As Decimal = 0
-                        If IsNumeric(row("SellPrice")) Then
-                            sellPrice = Convert.ToDecimal(row("SellPrice"))
-                        End If
-                        btn.Text = itemName & Environment.NewLine & sellPrice.ToString("C2")
+                ' Try to find matching row in CategoryTable for this CateId
+                Dim matchingRow As DataRow = Nothing
+                Try
+                    Dim currentCateId As Integer = subs(i).CateId
+                    matchingRow = _JsonData.CategoryTable.AsEnumerable().
+                        Where(Function(r) Convert.ToInt32(r("CateId")) = currentCateId).
+                        FirstOrDefault()
+                Catch
+                    ' Continue with defaults if no matching row found
+                End Try
 
-                        ' Store ItemCode in Tag with safety check
-                        If IsNumeric(row("Id")) Then
-                            btn.Tag = Convert.ToInt32(row("Id"))
-                        Else
-                            btn.Tag = 0 ' Default value if conversion fails
-                        End If
+                ' Get properties from API data with defaults for Sub menu
+                Dim fontSize As Single = 9.0F
+                Dim fontName As String = "Segoe UI"
+                Dim fontStyleString As String = "Regular"
+                Dim textColor As Color = Color.Black
+                Dim backColor As Color = Color.LightSteelBlue
 
-                        ' Enhanced button styling
-                        btn.Size = New Size(ButtonStyleWH.ITEMW, ButtonStyleWH.ITEMH)
-
-                        ' Safe color handling using helper function
-                        btn.Appearance.BackColor = GetSafeColor(row, "Color", Color.FromArgb(70, 130, 180)) ' Steel Blue default for Products
-                        btn.Appearance.ForeColor = Color.Black
-                        btn.Appearance.Font = New Font("Segoe UI", 14, FontStyle.Bold)
-                        btn.Appearance.Options.UseBackColor = True
-                        btn.Appearance.Options.UseForeColor = True
-                        btn.Appearance.Options.UseFont = True
-                        btn.Appearance.Options.UseTextOptions = True
-                        btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                        btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-                        btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-
-
-                        btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-                        btn.LookAndFeel.UseDefaultLookAndFeel = False
-
-                        ' Border styling
-                        btn.Appearance.BorderColor = Color.FromArgb(180, 180, 180)
-                        btn.Appearance.Options.UseBorderColor = True
-
-                        ' Event handler
-                        AddHandler btn.Click, AddressOf ItemButton_Click
-                        FlowLayoutPanelProduct.Controls.Add(btn)
-                    Next
+                ' If we found a matching row, try to get custom properties
+                If matchingRow IsNot Nothing Then
+                    fontSize = GetSafeValue(matchingRow, "font_size", 9.0F)
+                    fontName = GetSafeValue(matchingRow, "font_name", "Segoe UI")
+                    fontStyleString = GetSafeValue(matchingRow, "font_style", "Regular")
+                    textColor = ParseArgbColor(GetSafeValue(matchingRow, "text_color", ""), Color.Black)
+                    backColor = ParseArgbColor(GetSafeValue(matchingRow, "back_color", ""), Color.LightSteelBlue)
                 End If
-            End If
-        Catch ex As Exception
 
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
+                End If
+
+                ' Enable DevExpress appearance options
+                btn.Appearance.Options.UseBackColor = True
+                btn.Appearance.Options.UseForeColor = True
+                btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
+
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
+
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
+
+                '' Try to load saved properties from PHP
+                'Try
+                '    LoadButtonPropertiesFromPHP(subs(i).CateId, "Sub")
+                '    If selectedButtonProperties IsNot Nothing Then
+                '        ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+                '    End If
+                'Catch
+                '    ' Use default if loading fails
+                'End Try
+
+
+
+                AddHandler btn.Click, AddressOf SubMenu_Click
+                PanelSubMenu.Controls.Add(btn)
+            Next
+
+            PanelSubMenu.AutoScroll = True
+
+            ' ✅ Auto-load first CateId
+            If subs.Count > 0 Then
+                LoadItemMenu(subs(0).CateId)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading Sub Menu: " & ex.Message)
         End Try
     End Sub
-    Private Sub MainGroupButton_Click(sender As Object, e As EventArgs)
+
+    ' ============ Load Item Menu ============
+    Private Sub LoadItemMenu(cateId As Integer)
+        Try
+            PanelItemMenu.Controls.Clear()
+
+            Dim btnWidth As Integer = ButtonStyleWH.ITEMW
+            Dim btnHeight As Integer = ButtonStyleWH.ITEMH
+            Dim spacing As Integer = 5
+            Dim cols As Integer = ButtonStyleWH.ITEMMENUCOL
+            Dim marginLeft As Integer = 10
+            Dim marginTop As Integer = 10
+            ' Items filtered by CateId
+            Dim items = _JsonData.ItemTouchMasterTable.AsEnumerable().
+                Where(Function(r) Convert.ToInt32(r("CateId")) = cateId).
+                Select(Function(r) New With {
+                    .Id = Convert.ToInt32(r("Id")),
+                    .ItemName = r("ItemName").ToString(),
+                    .Position = Convert.ToInt32(r("Position"))
+                }).OrderBy(Function(x) x.Position).ToList() ' Ascending order by Position
+
+            For i As Integer = 0 To items.Count - 1
+                Dim row As Integer = i \ cols
+                Dim col As Integer = i Mod cols
+
+                Dim btn As New DevExpress.XtraEditors.SimpleButton()
+                btn.Text = items(i).ItemName
+                btn.Tag = items(i).Id
+                btn.Size = New Size(btnWidth, btnHeight)
+                btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
+                              marginTop + row * (btnHeight + spacing))
+
+                ' Try to find matching row in ItemTouchMasterTable for this Id
+                Dim matchingRow As DataRow = Nothing
+                Try
+                    Dim currentItemId As Integer = items(i).Id
+                    matchingRow = _JsonData.ItemTouchMasterTable.AsEnumerable().
+                        Where(Function(r) Convert.ToInt32(r("item_id")) = currentItemId).
+                        FirstOrDefault()
+                Catch
+                    ' Continue with defaults if no matching row found
+                End Try
+
+                ' Get properties from API data with defaults for Item menu
+                Dim fontSize As Single = 8.0F
+                Dim fontName As String = "Segoe UI"
+                Dim fontStyleString As String = "Regular"
+                Dim textColor As Color = Color.DarkBlue
+                Dim backColor As Color = Color.Beige
+
+                ' If we found a matching row, try to get custom properties
+                If matchingRow IsNot Nothing Then
+                    fontSize = GetSafeValue(matchingRow, "font_size", 8.0F)
+                    fontName = GetSafeValue(matchingRow, "font_name", "Segoe UI")
+                    fontStyleString = GetSafeValue(matchingRow, "font_style", "Regular")
+                    textColor = ParseARGBColor(GetSafeValue(matchingRow, "text_color", ""), Color.DarkBlue)
+                    backColor = ParseARGBColor(GetSafeValue(matchingRow, "back_color", ""), Color.Beige)
+                End If
+
+                ' Convert font style string to FontStyle enum
+                Dim fontStyleEnum As FontStyle = FontStyle.Regular
+                Dim fontStyleLower As String = fontStyleString.ToLower()
+                If fontStyleLower = "bold" Then
+                    fontStyleEnum = FontStyle.Bold
+                ElseIf fontStyleLower = "italic" Then
+                    fontStyleEnum = FontStyle.Italic
+                ElseIf fontStyleLower = "underline" Then
+                    fontStyleEnum = FontStyle.Underline
+                ElseIf fontStyleLower = "strikeout" Then
+                    fontStyleEnum = FontStyle.Strikeout
+                Else
+                    fontStyleEnum = FontStyle.Regular
+                End If
+
+                ' Enable DevExpress appearance options
+                btn.Appearance.Options.UseBackColor = True
+                btn.Appearance.Options.UseForeColor = True
+                btn.Appearance.Options.UseFont = True
+                btn.Appearance.Options.UseTextOptions = True
+                btn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                btn.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+                btn.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                btn.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter
+
+                ' Apply properties to button
+                btn.Appearance.Font = New Font(fontName, fontSize, fontStyleEnum)
+                btn.Appearance.ForeColor = textColor
+                btn.Appearance.BackColor = backColor
+
+                btn.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+                btn.LookAndFeel.UseDefaultLookAndFeel = False
+
+                ' Add border for better visual separation
+                btn.Appearance.BorderColor = Color.FromArgb(200, 200, 200)
+                btn.Appearance.Options.UseBorderColor = True
+
+                '' Try to load saved properties from PHP
+                'Try
+                '    LoadButtonPropertiesFromPHP(items(i).Id, "Item")
+                '    If selectedButtonProperties IsNot Nothing Then
+                '        ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+                '    End If
+                'Catch
+                '    ' Use default if loading fails
+                'End Try
+
+
+                AddHandler btn.Click, AddressOf ItemMenu_Click
+                PanelItemMenu.Controls.Add(btn)
+            Next
+
+            PanelItemMenu.AutoScroll = True
+
+            '' ✅ Auto-select first item
+            'If items.Count > 0 Then
+            '    ItemMenu_Click(PanelItemMenu.Controls(0), EventArgs.Empty)
+            'End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading Item Menu: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub MainMenu_Click(sender As Object, e As EventArgs)
         Try
             ' Get the clicked button and extract the category ID from its Tag
             Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
@@ -565,7 +922,7 @@ Public Class PosSalesII
 
             ' Load submenu for the selected main group (user click - use first index)
             If selectedMainGroupId > 0 Then
-                subMenu(selectedMainGroupId, False) ' False indicates user click, not initial load
+                LoadSubMenu(selectedMainGroupId) ' False indicates user click, not initial load
             End If
 
         Catch ex As Exception
@@ -573,7 +930,7 @@ Public Class PosSalesII
             DevExpress.XtraEditors.XtraMessageBox.Show("Error loading category: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub CategoryButton_Click(sender As Object, e As EventArgs)
+    Private Sub SubMenu_Click(sender As Object, e As EventArgs)
         Try
             ' Get the clicked button and extract the category ID from its Tag
             Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
@@ -586,7 +943,7 @@ Public Class PosSalesII
 
             ' Load products for the selected category
             If selectedCategoryId > 0 Then
-                LoadProductMenu(selectedCategoryId)
+                LoadItemMenu(selectedCategoryId)
             End If
 
         Catch ex As Exception
@@ -595,7 +952,7 @@ Public Class PosSalesII
         End Try
     End Sub
 
-    Private Sub ItemButton_Click(sender As Object, e As EventArgs)
+    Private Sub ItemMenu_Click(sender As Object, e As EventArgs)
         Try
             ' Get the clicked button and extract the item ID from its Tag
             Dim clickedButton As DevExpress.XtraEditors.SimpleButton = CType(sender, DevExpress.XtraEditors.SimpleButton)
@@ -632,7 +989,57 @@ Public Class PosSalesII
             DevExpress.XtraEditors.XtraMessageBox.Show("Error adding product: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    ' Helper method to parse ARGB color format: Argb(255,255,255,255)
+    Private Function ParseARGBColor(argbString As String) As Color
+        Try
+            ' Remove "Argb(" and ")" and split by comma
+            Dim cleanString As String = argbString.Replace("Argb(", "").Replace(")", "").Trim()
+            Dim values() As String = cleanString.Split(","c)
 
+            If values.Length = 4 Then
+                Dim a As Integer = Convert.ToInt32(values(0).Trim())
+                Dim r As Integer = Convert.ToInt32(values(1).Trim())
+                Dim g As Integer = Convert.ToInt32(values(2).Trim())
+                Dim b As Integer = Convert.ToInt32(values(3).Trim())
+
+                Return Color.FromArgb(a, r, g, b)
+            End If
+
+            ' Return default color if parsing fails
+            Return Color.Black
+        Catch ex As Exception
+            ' Return default color if parsing fails
+            Return Color.Black
+        End Try
+    End Function
+
+    ' Helper function to safely get values from DataRow with default fallback
+    Private Function GetSafeValue(Of T)(row As DataRow, columnName As String, defaultValue As T) As T
+        Try
+            If row.Table.Columns.Contains(columnName) AndAlso Not IsDBNull(row(columnName)) Then
+                Dim value As Object = row(columnName)
+                If value IsNot Nothing Then
+                    Return DirectCast(Convert.ChangeType(value, GetType(T)), T)
+                End If
+            End If
+            Return defaultValue
+        Catch ex As Exception
+            Return defaultValue
+        End Try
+    End Function
+
+    ' Helper function to parse ARGB color with fallback
+    Private Function ParseArgbColor(argbString As String, defaultColor As Color) As Color
+        If String.IsNullOrEmpty(argbString) Then
+            Return defaultColor
+        End If
+
+        Dim result As Color = ParseARGBColor(argbString)
+        If result = Color.Black AndAlso argbString <> "Argb(255,0,0,0)" Then
+            Return defaultColor
+        End If
+        Return result
+    End Function
 #End Region
 #Region "KeyDown"
     Private dtview As New DataView
@@ -1079,7 +1486,7 @@ Public Class PosSalesII
                         _Code = _rows("Id")
                         _item = _rows("ItemName")
                         _srate = _rows("SellPrice")
-                        _taxValue = _rows("TAXVALUE")
+                        _taxValue = _rows("TaxValue")
                         _serialno = 1
                         _uom = 1
 
@@ -3381,7 +3788,7 @@ Public Class PosSalesII
                 Return
             Else
                 LoadButtonStyles()
-                mainMenu()
+                LoadMainMenu()
             End If
         Catch ex As Exception
 

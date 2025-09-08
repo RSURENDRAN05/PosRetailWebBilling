@@ -2,7 +2,7 @@
   <property name="#LayoutVersion" />
   <property name="Columns" iskey="true" value="20">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Width">78</property>
+      <property name="Width">72</property>
       <property name="Visible">true</property>
       <property name="VisibleIndex">0</property>
       <property name="Name">GridColumn1</property>
@@ -12,13 +12,15 @@
       <property name="Name">GridColumn2</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
-      <property name="Width">76</property>
+      <property name="Width">126</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">1</property>
       <property name="Name">GridColumn3</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
-      <property name="Width">350</property>
+      <property name="Width">327</property>
       <property name="Visible">true</property>
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">2</property>
       <property name="Name">GridColumn4</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
@@ -29,13 +31,11 @@
       <property name="Name">GridColumn6</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
-      <property name="Width">56</property>
+      <property name="Width">84</property>
       <property name="Name">GridColumn7</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
-      <property name="Width">56</property>
-      <property name="Visible">true</property>
-      <property name="VisibleIndex">3</property>
+      <property name="Width">76</property>
       <property name="Name">GridColumn8</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
@@ -57,15 +57,15 @@
       <property name="Name">GridColumn13</property>
     </property>
     <property name="Item15" isnull="true" iskey="true">
-      <property name="Width">156</property>
+      <property name="Width">173</property>
       <property name="Visible">true</property>
       <property name="VisibleIndex">4</property>
       <property name="Name">GridColumn14</property>
     </property>
     <property name="Item16" isnull="true" iskey="true">
-      <property name="Width">245</property>
+      <property name="Width">149</property>
       <property name="Visible">true</property>
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Name">GridColumn15</property>
     </property>
     <property name="Item17" isnull="true" iskey="true">
@@ -75,7 +75,7 @@
       <property name="Name">GridColumn17</property>
     </property>
     <property name="Item19" isnull="true" iskey="true">
-      <property name="Width">70</property>
+      <property name="Width">79</property>
       <property name="Visible">true</property>
       <property name="VisibleIndex">5</property>
       <property name="Name">GridColumn18</property>
@@ -87,7 +87,6 @@
   <property name="ActiveFilterEnabled">true</property>
   <property name="OptionsView" isnull="true" iskey="true">
     <property name="ShowGroupPanel">false</property>
-    <property name="RowAutoHeight">true</property>
   </property>
   <property name="ActiveFilterString" />
   <property name="GroupSummarySortInfoState" />
