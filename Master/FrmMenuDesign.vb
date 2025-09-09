@@ -74,11 +74,10 @@
 
             Dim btnWidth As Integer = ButtonStyleWH.MAINW
             Dim btnHeight As Integer = ButtonStyleWH.MAINH
-            Dim spacing As Integer = 5
             Dim cols As Integer = ButtonStyleWH.MAINCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
-
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
 
             For i As Integer = 0 To _JsonData.MainGroupTable.Rows.Count - 1
                 Dim row As Integer = i \ cols
@@ -183,10 +182,10 @@
 
             Dim btnWidth As Integer = ButtonStyleWH.SUBW
             Dim btnHeight As Integer = ButtonStyleWH.SUBH
-            Dim spacing As Integer = 5
             Dim cols As Integer = ButtonStyleWH.SUBMENUCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
             ' Group by CateId, CateName under selected MainId
             Dim subs = _JsonData.CategoryTable.AsEnumerable().
                 Where(Function(r) Convert.ToInt32(r("MainId")) = mainId).
@@ -308,10 +307,10 @@
 
             Dim btnWidth As Integer = ButtonStyleWH.ITEMW
             Dim btnHeight As Integer = ButtonStyleWH.ITEMH
-            Dim spacing As Integer = 5
             Dim cols As Integer = ButtonStyleWH.ITEMMENUCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
             ' Items filtered by CateId
             Dim items = _JsonData.ItemTouchMasterTable.AsEnumerable().
                 Where(Function(r) Convert.ToInt32(r("CateId")) = cateId).

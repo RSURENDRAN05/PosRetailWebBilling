@@ -20,6 +20,9 @@ Public Class PosLogin
             InitializeComponent()
             ' Apply the current skin to Login form (don't reload, just apply what's already set)
             SkinManager.LoadSkinSetting()
+            If ValidateDBConnectionBeforeLogin(errMsg, M_Details._Conn) = False Then
+                MessageBox.Show(errMsg, "Error On Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
             If _ReadSyncLocalCloud() Then
                 txtusername.Properties.DataSource = _JsonData.UserTable
             End If
@@ -30,7 +33,17 @@ Public Class PosLogin
     End Sub
     Private Sub btn_close_Click(sender As Object, e As EventArgs) Handles btn_close.Click
         Try
-            Application.Exit()
+            If RegistrationDetails._serverClient = "SERVER" Then
+                Dim _SqlbackUpDataBase(2) As SqlParameter
+                _SqlbackUpDataBase(0) = New SqlParameter("@databaseName", M_Details._dataBasName)
+                _SqlbackUpDataBase(1) = New SqlParameter("@backupType", "F")
+                _SqlbackUpDataBase(2) = New SqlParameter("@backupLocation", M_Details._appPath & "\BackUp\")
+                If _ExecuteNonQuery("sp_BackupDatabases", _SqlbackUpDataBase, errMsg) = True Then
+                    WriteErroLog("Back Up Success")
+                Else
+                    WriteErroLog("Back Up Not Success: " & errMsg)
+                End If
+            End If
         Catch ex As Exception
             WriteErroLog(errMsg & " btnBackUp_Click " & ex.Message)
         End Try
@@ -58,7 +71,7 @@ Public Class PosLogin
             End If
 
         Catch ex As Exception
-
+            MessageBox.Show("LoadStatusBar" & ex.Message)
         End Try
     End Sub
 
@@ -66,6 +79,7 @@ Public Class PosLogin
         Try
 
             Dim _RegSettingDs = New DataSet
+            updateStr("Please Check File Name \LoyOut\SerSettings.xml")
             If File.Exists(M_Details._appPath & "\LayOut\SerSettings.xml") Then
                 _RegSettingDs.ReadXml(M_Details._appPath & "\LayOut\SerSettings.xml")
                 RegistrationDetails._machineId = _RegSettingDs.Tables(0).Rows(0)(0).ToString
@@ -138,7 +152,7 @@ Public Class PosLogin
                 EventlogModule.WriteErroLog("Dual Screen Not Found")
             End If
         Catch ex As Exception
-
+            MessageBox.Show("LoadLogin Form" & ex.Message)
         End Try
     End Sub
     Public Function timer_trick() As Boolean
@@ -403,7 +417,7 @@ Public Class PosLogin
 
             Return True
         Catch ex As Exception
-
+            MessageBox.Show("SP_SYSTEMREGISTER Form" & ex.Message)
             updateStr("SP_SYSTEMREGISTER-" & STEPS & ex.ToString & ":" & errMsg)
             Return False
         End Try
@@ -411,7 +425,7 @@ Public Class PosLogin
     Public Sub _processStart()
         Try
             If Running("AutoSyncSales") = False Then
-                If File.Exists(M_Details._appPath & "\1AutoSyncSales.exe") Then
+                If File.Exists(M_Details._appPath & "\AutoSyncSales.exe") Then
                     info.FileName = M_Details._appPath & "\AutoSyncSales.exe"
                     info.WorkingDirectory = M_Details._appPath & "\"
                     Process.Start(info)
@@ -465,7 +479,7 @@ Public Class PosLogin
             '    Application.Exit()
             'End If
         Catch ex As Exception
-
+            MessageBox.Show("_processStart Form" & ex.Message)
         End Try
     End Sub
     Private Function Running(ByRef GetProcessesByName As String) As Boolean
@@ -484,6 +498,7 @@ Public Class PosLogin
                 Return False
             End If
         Catch ex As Exception
+            MessageBox.Show("Running Form" & ex.Message)
             Return False
         End Try
     End Function

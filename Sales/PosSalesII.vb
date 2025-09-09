@@ -26,6 +26,8 @@ Public Class PosSalesII
     Private _CashDraw As New RawPrinter
     Dim salesHelper As New SalesDBHelper(M_Details._Conn)
     Private _isSelectionMode As Boolean = False
+    Dim stpole1 As String = M_Details._shopName
+    Dim NetAmountGlobal As Decimal = 0.0
     Public Sub New()
 
         ' This call is required by the designer.
@@ -560,11 +562,10 @@ Public Class PosSalesII
 
             Dim btnWidth As Integer = ButtonStyleWH.MAINW
             Dim btnHeight As Integer = ButtonStyleWH.MAINH
-            Dim spacing As Integer = 5
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
             Dim cols As Integer = ButtonStyleWH.MAINCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
-
 
             For i As Integer = 0 To _JsonData.MainGroupTable.Rows.Count - 1
                 Dim row As Integer = i \ cols
@@ -669,10 +670,10 @@ Public Class PosSalesII
 
             Dim btnWidth As Integer = ButtonStyleWH.SUBW
             Dim btnHeight As Integer = ButtonStyleWH.SUBH
-            Dim spacing As Integer = 5
             Dim cols As Integer = ButtonStyleWH.SUBMENUCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
             ' Group by CateId, CateName under selected MainId
             Dim subs = _JsonData.CategoryTable.AsEnumerable().
                 Where(Function(r) Convert.ToInt32(r("MainId")) = mainId).
@@ -794,10 +795,12 @@ Public Class PosSalesII
 
             Dim btnWidth As Integer = ButtonStyleWH.ITEMW
             Dim btnHeight As Integer = ButtonStyleWH.ITEMH
-            Dim spacing As Integer = 5
             Dim cols As Integer = ButtonStyleWH.ITEMMENUCOL
-            Dim marginLeft As Integer = 10
-            Dim marginTop As Integer = 10
+            Dim spacing As Integer = ButtonStyleWH.ITEMSPACING
+            Dim marginLeft As Integer = ButtonStyleWH.ITEMMARGINLEFT
+            Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
+
+
             ' Items filtered by CateId
             Dim items = _JsonData.ItemTouchMasterTable.AsEnumerable().
                 Where(Function(r) Convert.ToInt32(r("CateId")) = cateId).
@@ -1627,7 +1630,7 @@ Public Class PosSalesII
             Dim GST As Decimal = 0.0
             Dim ServiceChargeAmount As Decimal = 0.0
             Dim NetTot As Decimal = 0.0
-            Dim stpole1 As String = M_Details._shopName
+
             TAmount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
 
             ' Calculate separate discount totals
@@ -1656,7 +1659,7 @@ Public Class PosSalesII
                 ' Tax Inclusive: Add only service charge (tax already included in gross amount)
                 NetTot = GAmount + ServiceChargeAmount
             End If
-
+            NetAmountGlobal = 0
             ' Update UI labels with detailed discount breakdown
             lblsubtotal.Text = TAmount.ToString("0.00")
             lblitemdisctotal.Text = ItemDiscountAmt.ToString("0.00")
@@ -1666,6 +1669,7 @@ Public Class PosSalesII
             lblnetamt.Text = _RoundOff(NetTot).ToString("0.00")
             lblnoofitems.Text = GridDataTble_Insert.Rows.Count.ToString()
             lblnoofqty.Text = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("QTY")).ToString("0.00")
+            NetAmountGlobal = _RoundOff(NetTot).ToString("0.00")
             ' Update any additional discount breakdown labels if they exist
             ' You can add these labels to show separate item and bill discounts
             ' lblitemdiscountonly.Text = ItemDiscountAmt.ToString("0.00")
@@ -1674,24 +1678,7 @@ Public Class PosSalesII
             If SalesManModeShow = True Then
                 barselectsalesman_ItemClick(Nothing, Nothing)
             End If
-            If barchkcustomerpole.Checked = True Then
-                If CustomerPoleOpen(Errstr) = True Then
-
-                    Dim stpole2 As String = ""
-                    stpole2 = "Total RM " & Format(NetTot, "0.00")
-                    If stpole1.Length > 19 Then
-                        If SetCustomerPole(stpole1.Substring(0, 19), stpole2, Errstr) = False Then
-
-                        End If
-                    Else
-                        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
-
-                        End If
-                    End If
-
-                    CustomerPoleClose(Errstr)
-                End If
-            End If
+           
             Return True
         Catch ex As Exception
             MsgBox("Error in SalesGrandtotal: " & ex.Message)
@@ -2174,7 +2161,25 @@ Public Class PosSalesII
             GridControlSalesData.DataSource = GridDataTble_Insert
             'payment term
             'CmbPaymentTerm.SelectedIndex = 0
+            NetAmountGlobal = 0
+            If barchkcustomerpole.Checked = True Then
+                If CustomerPoleOpen(Errstr) = True Then
 
+                    Dim stpole2 As String = ""
+                    stpole2 = "Welcome,Thank You!"
+                    If stpole1.Length > 19 Then
+                        If SetCustomerPole(stpole1.Substring(0, 19), stpole2, Errstr) = False Then
+
+                        End If
+                    Else
+                        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
+
+                        End If
+                    End If
+
+                    CustomerPoleClose(Errstr)
+                End If
+            End If
         Catch ex As Exception
             Throw New Exception("Error clearing current bill: " & ex.Message)
         End Try
@@ -3057,6 +3062,24 @@ Public Class PosSalesII
     End Sub
     Private Sub PaymentProcess()
         Try
+            If barchkcustomerpole.Checked = True Then
+                If CustomerPoleOpen(Errstr) = True Then
+
+                    Dim stpole2 As String = ""
+                    stpole2 = "Total RM " & Format(NetAmountGlobal, "0.00")
+                    If stpole1.Length > 19 Then
+                        If SetCustomerPole(stpole1.Substring(0, 19), stpole2, Errstr) = False Then
+
+                        End If
+                    Else
+                        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
+
+                        End If
+                    End If
+
+                    CustomerPoleClose(Errstr)
+                End If
+            End If
             Dim _givenAmt As Decimal = 0.0
             Dim _BalanceAmt As Decimal = 0.0
             If modeOfSale = "New" Then
@@ -3234,7 +3257,7 @@ Public Class PosSalesII
             ElseIf modeOfSale = "Edit" Then
                 If GridViewPOS.RowCount > 0 Then
                     frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
-                   
+
                     If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
                         ' Get payment details from PaymentDetailTable
                         Dim paymentModeSelections As New List(Of String)()
@@ -3407,18 +3430,18 @@ Public Class PosSalesII
             Else
                 DevExpress.XtraEditors.XtraMessageBox.Show("View Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-            If barchkcustomerpole.Checked = True Then
-                If CustomerPoleOpen(Errstr) = True Then
-                    Dim stpole1 As String = ""
-                    Dim stpole2 As String = ""
-                    stpole1 = "Received RM " & Format(_givenAmt, "###0.00")
-                    stpole2 = "Balance RM " & Format(_BalanceAmt, "###0.00")
-                    If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
+            'If barchkcustomerpole.Checked = True Then
+            '    If CustomerPoleOpen(Errstr) = True Then
+            '        Dim stpole1 As String = ""
+            '        Dim stpole2 As String = ""
+            '        stpole1 = "Received RM " & Format(_givenAmt, "###0.00")
+            '        stpole2 = "Balance RM " & Format(_BalanceAmt, "###0.00")
+            '        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
 
-                    End If
-                    CustomerPoleClose(Errstr)
-                End If
-            End If
+            '        End If
+            '        CustomerPoleClose(Errstr)
+            '    End If
+            'End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
@@ -3720,13 +3743,19 @@ Public Class PosSalesII
 #Region "Print/Home/Print"
     Private Sub barbtnhome_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnhome.ItemClick
         Try
+            Application.Exit()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub barbtnback_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnback.ItemClick
+        Try
             Me.Hide()
             PosLogin.Show()
         Catch ex As Exception
 
         End Try
     End Sub
-
     Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.ItemClick
         Try
             Dim _receDs As New DataSet
@@ -3929,4 +3958,5 @@ Public Class PosSalesII
 #End Region
 
   
+
 End Class

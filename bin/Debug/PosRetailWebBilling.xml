@@ -436,6 +436,39 @@ PosRetailWebBilling
  Centralized method to update day information from JSON response
  This ensures consistent handling and avoids duplicate code
  </summary>
+</member><member name="M:PosRetailWebBilling.M_CONNECT.ValidateDBConnectionBeforeLogin(System.String@,System.String)">
+	<summary>
+ Validates database connection string before login
+ Tests connection string format, server accessibility, database existence, and authentication
+ </summary>
+	<param name="ErrorMsg">Returns detailed error message if validation fails</param>
+	<param name="connectionString">Optional custom connection string to test (if empty, uses M_Details._Conn)</param>
+	<returns>True if connection is valid and database is accessible, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.M_CONNECT.CheckEssentialTablesExist(System.Data.SqlClient.SqlConnection,System.String@)">
+	<summary>
+ Checks if essential database tables exist
+ </summary>
+	<param name="connection">Active database connection</param>
+	<param name="ErrorMsg">Error message if validation fails</param>
+	<returns>True if essential tables exist</returns>
+</member><member name="M:PosRetailWebBilling.M_CONNECT.QuickDBConnectionTest(System.String@)">
+	<summary>
+ Quick connection test - lighter version for frequent checking
+ </summary>
+	<param name="ErrorMsg">Error message if test fails</param>
+	<returns>True if basic connection works</returns>
+</member><member name="M:PosRetailWebBilling.M_CONNECT.RefreshDBConnectionFromRegistry(System.String@)">
+	<summary>
+ Refreshes the database connection string from registry and updates the connection object
+ Call this before login to ensure latest connection settings are used
+ </summary>
+	<param name="ErrorMsg">Error message if refresh fails</param>
+	<returns>True if connection string was successfully refreshed</returns>
+</member><member name="M:PosRetailWebBilling.M_CONNECT.GetConnectionInfo">
+	<summary>
+ Gets current database connection information for display/logging purposes
+ </summary>
+	<returns>Formatted string with connection details (without sensitive information)</returns>
 </member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
 	<summary>
  Generates MD5 hash of the input string (same as PHP's md5() function)

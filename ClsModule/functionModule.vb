@@ -27,7 +27,7 @@ Module functionModule
     Public _PRINTDS, _SETTINGS As New DataSet
     Public _posPrintHeadDesign As DataSet
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "Web-VER25.0.0.4 R1 020925"
+        Public Shared SoftwareVersion As String = "Cli-VER25.0.0.16 R1 090925" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
@@ -94,6 +94,9 @@ Module functionModule
         Public Shared MAINCOL As String = "5"
         Public Shared SUBMENUCOL As String = "1"
         Public Shared ITEMMENUCOL As String = "5"
+        Public Shared ITEMSPACING As String = "5"
+        Public Shared ITEMMARGINLEFT As String = "5"
+        Public Shared ITEMMARGINRIGHT As String = "5"
     End Structure
     Public Structure CustomerDisplaySettings
 
