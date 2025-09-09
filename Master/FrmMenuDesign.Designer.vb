@@ -295,7 +295,7 @@ Partial Class FrmMenuDesign
         'numWidth
         '
         Me.numWidth.Location = New System.Drawing.Point(98, 87)
-        Me.numWidth.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.numWidth.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.numWidth.Name = "numWidth"
         Me.numWidth.Size = New System.Drawing.Size(120, 21)
         Me.numWidth.TabIndex = 22

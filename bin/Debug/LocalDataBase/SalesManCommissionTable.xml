@@ -67,24 +67,6 @@
     <Updated>2025-09-06 11:45:01</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>10</CommissionId>
-    <EmpId>1</EmpId>
-    <SalesmanName>RAJKUMAR</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>11</ItemId>
-    <ItemName>FACE MASSAGE</ItemName>
-    <Barcode>11</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>0.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-06 11:45:01</Created>
-    <Updated>2025-09-06 11:45:01</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
     <CommissionId>11</CommissionId>
     <EmpId>1</EmpId>
     <SalesmanName>RAJKUMAR</SalesmanName>
@@ -155,5 +137,23 @@
     <Status>1</Status>
     <Created>2025-09-06 11:45:03</Created>
     <Updated>2025-09-06 11:45:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>10</CommissionId>
+    <EmpId>1</EmpId>
+    <SalesmanName>RAJKUMAR</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>11</ItemId>
+    <ItemName>X</ItemName>
+    <Barcode>0</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>0.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-06 11:45:01</Created>
+    <Updated>2025-09-06 11:45:01</Updated>
   </SalesManCommissionTable>
 </NewDataSet>

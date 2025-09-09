@@ -21,9 +21,9 @@ Partial Class PosSalesII
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PosSalesII))
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.PanelSubMenu = New DevExpress.XtraEditors.PanelControl()
         Me.PanelItemMenu = New DevExpress.XtraEditors.PanelControl()
@@ -90,8 +90,8 @@ Partial Class PosSalesII
         Me.btnlastprint = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtncashdraweropen = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnrefreshdata = New DevExpress.XtraBars.BarButtonItem()
-        Me.barbtnhome = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnback = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnhome = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barbtnposstatus = New DevExpress.XtraBars.BarStaticItem()
         Me.BarDate = New DevExpress.XtraBars.BarStaticItem()
@@ -173,13 +173,13 @@ Partial Class PosSalesII
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SerialPortCustomerPole = New System.IO.Ports.SerialPort(Me.components)
         Me.SimpleSeparator1 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.SimpleSeparator2 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.SimpleSeparator3 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.SimpleSeparator4 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.SimpleSeparator5 = New DevExpress.XtraLayout.SimpleSeparator()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.SerialPortCustomerPole = New System.IO.Ports.SerialPort(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PanelSubMenu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,12 +219,12 @@ Partial Class PosSalesII
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleSeparator2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleSeparator3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleSeparator4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleSeparator5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -251,8 +251,8 @@ Partial Class PosSalesII
         'PanelSubMenu
         '
         Me.PanelSubMenu.AllowTouchScroll = True
-        Me.PanelSubMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.PanelSubMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.PanelSubMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PanelSubMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.PanelSubMenu.Appearance.Options.UseBackColor = True
         Me.PanelSubMenu.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelSubMenu.Location = New System.Drawing.Point(1118, 91)
@@ -263,8 +263,8 @@ Partial Class PosSalesII
         'PanelItemMenu
         '
         Me.PanelItemMenu.AllowTouchScroll = True
-        Me.PanelItemMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.PanelItemMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.PanelItemMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.PanelItemMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.PanelItemMenu.Appearance.Options.UseBackColor = True
         Me.PanelItemMenu.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelItemMenu.Location = New System.Drawing.Point(636, 91)
@@ -275,8 +275,8 @@ Partial Class PosSalesII
         'PanelMainMenu
         '
         Me.PanelMainMenu.AllowTouchScroll = True
-        Me.PanelMainMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.PanelMainMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanelMainMenu.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PanelMainMenu.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.PanelMainMenu.Appearance.Options.UseBackColor = True
         Me.PanelMainMenu.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelMainMenu.Location = New System.Drawing.Point(636, 2)
@@ -301,15 +301,16 @@ Partial Class PosSalesII
         '
         'lblnetamt
         '
-        Me.lblnetamt.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.lblnetamt.BackColor = System.Drawing.Color.Red
         Me.TableLayoutPanel3.SetColumnSpan(Me.lblnetamt, 2)
         Me.lblnetamt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblnetamt.Font = New System.Drawing.Font("Arial Narrow", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(5, Byte))
+        Me.lblnetamt.Font = New System.Drawing.Font("Algerian", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Millimeter, CType(0, Byte))
+        Me.lblnetamt.ForeColor = System.Drawing.Color.White
         Me.lblnetamt.Location = New System.Drawing.Point(3, 0)
         Me.lblnetamt.Name = "lblnetamt"
         Me.lblnetamt.Size = New System.Drawing.Size(267, 63)
         Me.lblnetamt.TabIndex = 1
-        Me.lblnetamt.Text = "00000.00"
+        Me.lblnetamt.Text = "0.00"
         Me.lblnetamt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnpayment
@@ -997,15 +998,6 @@ Partial Class PosSalesII
         Me.barbtnrefreshdata.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnrefreshdata.Name = "barbtnrefreshdata"
         '
-        'barbtnhome
-        '
-        Me.barbtnhome.Caption = "Exit"
-        Me.barbtnhome.Glyph = CType(resources.GetObject("barbtnhome.Glyph"), System.Drawing.Image)
-        Me.barbtnhome.Id = 41
-        Me.barbtnhome.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.barbtnhome.ItemAppearance.Normal.Options.UseFont = True
-        Me.barbtnhome.Name = "barbtnhome"
-        '
         'barbtnback
         '
         Me.barbtnback.Caption = "Back"
@@ -1014,6 +1006,15 @@ Partial Class PosSalesII
         Me.barbtnback.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.barbtnback.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnback.Name = "barbtnback"
+        '
+        'barbtnhome
+        '
+        Me.barbtnhome.Caption = "Exit"
+        Me.barbtnhome.Glyph = CType(resources.GetObject("barbtnhome.Glyph"), System.Drawing.Image)
+        Me.barbtnhome.Id = 41
+        Me.barbtnhome.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnhome.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnhome.Name = "barbtnhome"
         '
         'Bar3
         '
@@ -1623,7 +1624,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditPrice
         '
         Me.RepositoryItemButtonEditPrice.AutoHeight = False
-        Me.RepositoryItemButtonEditPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditPrice.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject7, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditPrice.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditPrice.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditPrice.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditPrice.Name = "RepositoryItemButtonEditPrice"
@@ -1643,9 +1644,9 @@ Partial Class PosSalesII
         '
         'RepositoryItemButtonEditSelectSp
         '
-        SerializableAppearanceObject8.Options.UseTextOptions = True
-        SerializableAppearanceObject8.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.RepositoryItemButtonEditSelectSp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditSelectSp.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject8, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject11.Options.UseTextOptions = True
+        SerializableAppearanceObject11.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RepositoryItemButtonEditSelectSp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditSelectSp.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject11, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditSelectSp.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditSelectSp.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditSelectSp.Name = "RepositoryItemButtonEditSelectSp"
@@ -1681,7 +1682,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditDelete
         '
         Me.RepositoryItemButtonEditDelete.AutoHeight = False
-        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject12, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditDelete.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditDelete.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditDelete.Name = "RepositoryItemButtonEditDelete"
@@ -1813,25 +1814,6 @@ Partial Class PosSalesII
         Me.LayoutControlItem9.TextToControlDistance = 0
         Me.LayoutControlItem9.TextVisible = False
         '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.AppearanceItemCaption.BackColor = System.Drawing.Color.Yellow
-        Me.LayoutControlItem13.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LayoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black
-        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseBackColor = True
-        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseFont = True
-        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseForeColor = True
-        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = True
-        Me.LayoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.LayoutControlItem13.CustomizationFormText = "SALES AMOUNT"
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(12, 6)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(234, 74)
-        Me.LayoutControlItem13.Text = "SALES AMOUNT"
-        Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
-        Me.LayoutControlItem13.TextToControlDistance = 5
-        '
         'SimpleSeparator1
         '
         Me.SimpleSeparator1.AllowHotTrack = False
@@ -1876,6 +1858,25 @@ Partial Class PosSalesII
         Me.SimpleSeparator5.Name = "SimpleSeparator5"
         Me.SimpleSeparator5.Size = New System.Drawing.Size(2, 558)
         Me.SimpleSeparator5.Text = "SimpleSeparator5"
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.AppearanceItemCaption.BackColor = System.Drawing.Color.Yellow
+        Me.LayoutControlItem13.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LayoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseBackColor = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseFont = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseForeColor = True
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = True
+        Me.LayoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LayoutControlItem13.CustomizationFormText = "SALES AMOUNT"
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(12, 6)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(234, 74)
+        Me.LayoutControlItem13.Text = "SALES AMOUNT"
+        Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
+        Me.LayoutControlItem13.TextToControlDistance = 5
         '
         'PosSalesII
         '
@@ -1933,12 +1934,12 @@ Partial Class PosSalesII
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleSeparator2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleSeparator3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleSeparator4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleSeparator5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

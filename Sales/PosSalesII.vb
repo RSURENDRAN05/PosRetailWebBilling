@@ -567,16 +567,16 @@ Public Class PosSalesII
             Dim marginTop As Integer = ButtonStyleWH.ITEMMARGINRIGHT
             Dim cols As Integer = ButtonStyleWH.MAINCOL
 
-            For i As Integer = 0 To _JsonData.MainGroupTable.Rows.Count - 1
+            For i As Integer = 0 To _JsonData.MainGroupPolicyTable.Rows.Count - 1
                 Dim row As Integer = i \ cols
                 Dim col As Integer = i Mod cols
 
                 ' Get current row data
-                Dim currentRow As DataRow = _JsonData.MainGroupTable.Rows(i)
+                Dim currentRow As DataRow = _JsonData.MainGroupPolicyTable.Rows(i)
 
                 ' Count how many buttons in this row
                 Dim countInRow As Integer =
-                    If(i + cols < _JsonData.MainGroupTable.Rows.Count, cols, _JsonData.MainGroupTable.Rows.Count - row * cols)
+                    If(i + cols < _JsonData.MainGroupPolicyTable.Rows.Count, cols, _JsonData.MainGroupPolicyTable.Rows.Count - row * cols)
 
                 ' Total width of this row
                 Dim rowWidth As Integer = (countInRow * btnWidth) + ((countInRow - 1) * spacing)
@@ -653,8 +653,8 @@ Public Class PosSalesII
             PanelMainMenu.AutoScroll = True
 
             ' Auto-load first MainId
-            If _JsonData.MainGroupTable.Rows.Count > 0 Then
-                LoadSubMenu(Convert.ToInt32(_JsonData.MainGroupTable.Rows(0)("MainId")))
+            If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+                LoadSubMenu(Convert.ToInt32(_JsonData.MainGroupPolicyTable.Rows(0)("MainId")))
             End If
 
         Catch ex As Exception

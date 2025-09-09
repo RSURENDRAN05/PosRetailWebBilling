@@ -239,10 +239,8 @@ class funcProcessMgmt
     public function _SelectProductJoin()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim_business_type as BusinessType,dim.dim_remark as Remarks,tax.taxvalue as TaxValue,dmg.mainid as MainId,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId, dim.dim_color as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, pbp.`position` as Position FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id
-                      INNER JOIN `pos_button_properties`  as pbp ON dim.dim_item_id=pbp.item_id
-                      INNER join `taxmaster` as tax ON tax.taxid = dim_tax_id
-                      WHERE pbp.menu_type='Item';");
+        $sqlQuery = ("SELECT dim.dim_item_id as Id,dim.dim_item_barcode as BarCode,dim_item_name as ItemName,dim_business_type as BusinessType,dim.dim_remark as Remarks,tax.taxvalue as TaxValue,dmg.mainid as MainId,dmg.mainname as MainName,dcm.dcm_id as CateId,dcm.dcm_name as CateName,tx.taxname as TaxName,dim.dim_sell_price as SellPrice,dim.dim_cost_price as CostPrice,dim.dim_min_price as MinPrice,dim.dim_max_price as MaxPrice,dim.dim_allow_disc as AllowDiscount,dim.dim_allow_negstock as AllowNegStock,dim.dim_allow_multiprice as AllowMultiPrice,dim.dim_op_stock as OpeningStock,pcm.pcm_name as CompanyName,plm.plm_name as LocationName,dim.dim_status as Active,dim.dim_loc_id as ComId,dim.dim_loc_id as LocId, dim.dim_color as Color, `id` as LnkId, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, pbp.`position` as Position FROM `di_item_mast`as dim INNER JOIN `di_main_group` as dmg ON dim.dim_main_id=dmg.mainid INNER JOIN `di_category_master` as dcm ON dim.dim_cate_id=dcm.dcm_id INNER JOIN `taxmaster` as tx ON dim.dim_tax_id=tx.taxid INNER JOIN `pos_company_mast` as pcm   ON dim.dim_com_id=pcm.pcm_id INNER JOIN `pos_location_mast` as plm ON dim.dim_loc_id=plm.plm_id INNER JOIN `pos_button_properties`  as pbp ON dim.dim_item_id=pbp.item_id INNER join `taxmaster` as tax ON tax.taxid = dim_tax_id
+            WHERE pbp.menu_type='Item' AND dim_status='1';");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
@@ -4510,12 +4508,13 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
 
-        $sqlSelect = "SELECT p.`mainrefid` as MainId, mg.`mainname` as MainName
+        $sqlSelect = "SELECT p.`mainrefid` as MainId, mg.`mainname` as MainName, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`,						  `back_color`, pbp.`position` as Position
                       FROM `di_main_group_policy` p
                       INNER JOIN `di_main_group` mg ON p.`mainrefid` = mg.`mainid`
+                      INNER JOIN `pos_button_properties`  as pbp ON p.`mainrefid`=pbp.item_id
                       WHERE p.`comid` = '" . mysqli_real_escape_string($conn, $comid) . "'
                         AND p.`locid` = '" . mysqli_real_escape_string($conn, $locid) . "'
-                        AND p.`mainstatus` = '1'
+                        AND p.`mainstatus` = '1' AND pbp.menu_type='Main'
                       ORDER BY mg.`mainname` ASC";
 
         $result = mysqli_query($conn, $sqlSelect);

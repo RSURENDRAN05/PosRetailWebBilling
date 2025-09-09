@@ -190,7 +190,7 @@ Public Class FrmItemMaster
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=24&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
                     ' Save default button settings after successful update
-                    SaveDefaultButtonSettings()
+                    'SaveDefaultButtonSettings()
                     _Clear()
                 End If
             End If
@@ -281,6 +281,7 @@ Public Class FrmItemMaster
             Dim ItemTable As DataTable
             ItemTable = New DataTable
             ItemTable.TableName = "ItemTable"
+            ItemTable.Rows.Clear()
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=27")
             Dim Userparsejson As JObject = JObject.Parse(json)
