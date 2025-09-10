@@ -51,7 +51,7 @@
   <ItemTouchMasterTable>
     <Id>1</Id>
     <BarCode>0</BarCode>
-    <ItemName>HAIR CUT [ADULT]</ItemName>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -78,7 +78,7 @@
     <item_id>1</item_id>
     <menu_type>Item</menu_type>
     <font_size>20.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
@@ -114,7 +114,7 @@
     <item_id>2</item_id>
     <menu_type>Item</menu_type>
     <font_size>20.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
@@ -123,7 +123,7 @@
   <ItemTouchMasterTable>
     <Id>3</Id>
     <BarCode>3</BarCode>
-    <ItemName>CHILDREN</ItemName>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -149,17 +149,17 @@
     <LnkId>13</LnkId>
     <item_id>3</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>4</Id>
     <BarCode>4</BarCode>
-    <ItemName>SHAVING</ItemName>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -185,17 +185,17 @@
     <LnkId>14</LnkId>
     <item_id>4</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>5</Id>
     <BarCode>5</BarCode>
-    <ItemName>SHAMPOO</ItemName>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -221,17 +221,17 @@
     <LnkId>15</LnkId>
     <item_id>5</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>6</Id>
     <BarCode>6</BarCode>
-    <ItemName>BALDING</ItemName>
+    <ItemName>HAIR CUT -  SHAVE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -257,11 +257,11 @@
     <LnkId>16</LnkId>
     <item_id>6</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
@@ -293,17 +293,17 @@
     <LnkId>17</LnkId>
     <item_id>7</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>8</Id>
     <BarCode>8</BarCode>
-    <ItemName>CREAM</ItemName>
+    <ItemName>POWDER</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -329,17 +329,17 @@
     <LnkId>18</LnkId>
     <item_id>8</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>9</Id>
     <BarCode>9</BarCode>
-    <ItemName>HAIR COLOURING</ItemName>
+    <ItemName>POWDER</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -365,11 +365,11 @@
     <LnkId>19</LnkId>
     <item_id>9</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>

@@ -100,6 +100,7 @@
                 Dim btn As New DevExpress.XtraEditors.SimpleButton()
                 btn.Text = currentRow("MainName").ToString()
                 btn.Tag = currentRow("MainId").ToString()
+                btn.ToolTip = currentRow("Position").ToString
                 btn.Size = New Size(btnWidth, btnHeight)
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                              marginTop + row * (btnHeight + spacing))
@@ -204,6 +205,7 @@
                 Dim btn As New DevExpress.XtraEditors.SimpleButton()
                 btn.Text = subs(i).CateName
                 btn.Tag = subs(i).CateId
+                btn.ToolTip = subs(i).Position
                 btn.Size = New Size(btnWidth, btnHeight)
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                               marginTop + row * (btnHeight + spacing))
@@ -327,6 +329,7 @@
                 Dim btn As New DevExpress.XtraEditors.SimpleButton()
                 btn.Text = items(i).ItemName
                 btn.Tag = items(i).Id
+                btn.ToolTip = items(i).Position
                 btn.Size = New Size(btnWidth, btnHeight)
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
                               marginTop + row * (btnHeight + spacing))
@@ -504,7 +507,7 @@
             selectedButtonProperties.FontStyle = btn.Appearance.Font.Style.ToString()
             selectedButtonProperties.SetTextColor(btn.Appearance.ForeColor)
             selectedButtonProperties.SetBackColor(btn.Appearance.BackColor)
-
+            selectedButtonProperties.Position = btn.ToolTip
             ' Update properties UI
             UpdatePropertiesUI()
 
@@ -526,7 +529,7 @@
                 numFontSize.Value = CDec(selectedButtonProperties.FontSize)
                 cmbFontName.Text = selectedButtonProperties.FontName
                 cmbFontStyle.Text = selectedButtonProperties.FontStyle
-
+                txtposition.Text = selectedButtonProperties.Position
                 ' Colors
                 Dim txtColor As Color = selectedButtonProperties.GetTextColor()
                 btnTextColor.ForeColor = txtColor
@@ -576,7 +579,217 @@
         End Try
     End Sub
 
+#Region "ApplyToAllButtons"
+    ' Add this method to apply properties to all buttons of the selected menu type
+    Private Sub ApplyPropertiesToAllButtons()
+        Try
+            If selectedButtonProperties Is Nothing Then
+                MessageBox.Show("No button properties to apply.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
 
+            Dim result As DialogResult = MessageBox.Show(
+                "Do you want to apply these properties to ALL buttons in the selected menu type?" & vbCrLf &
+                "This will override existing styles for all buttons.",
+                "Apply to All Buttons",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question)
+
+            If result = DialogResult.Yes Then
+                Dim menuType As String = ""
+                Dim buttonsUpdated As Integer = 0
+
+                ' Determine which menu type based on RadioGroupSettings
+                Select Case RadioGroupSettings.SelectedIndex
+                    Case 0 ' Main Menu
+                        menuType = "Main"
+                        buttonsUpdated = ApplyToAllMainButtons()
+                    Case 1 ' Sub Menu
+                        menuType = "Sub"
+                        buttonsUpdated = ApplyToAllSubButtons()
+                    Case 2 ' Item Menu
+                        menuType = "Item"
+                        buttonsUpdated = ApplyToAllItemButtons()
+                End Select
+
+
+                MessageBox.Show("Applied properties to " & buttonsUpdated.ToString() & " " & menuType & " buttons successfully!",
+                               "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error applying properties to all buttons: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Apply properties to all Main menu buttons
+    Private Function ApplyToAllMainButtons() As Integer
+        Try
+            Dim count As Integer = 0
+            For Each ctrl As Control In PanelMainMenu.Controls
+                If TypeOf ctrl Is DevExpress.XtraEditors.SimpleButton Then
+                    Dim btn As DevExpress.XtraEditors.SimpleButton = DirectCast(ctrl, DevExpress.XtraEditors.SimpleButton)
+                    ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+
+                    ' Save to PHP for each button with CORRECT ID, name, and position
+                    Dim buttonId As Integer = Convert.ToInt32(btn.Tag)
+                    Dim buttonName As String = btn.Text
+                    Dim buttonPosition As String = If(String.IsNullOrEmpty(btn.ToolTip), "0", btn.ToolTip)
+
+                    SaveButtonPropertiesToPHPForButtonWithPosition(buttonId, "Main", buttonName, buttonPosition)
+                    count += 1
+                End If
+            Next
+            Return count
+        Catch ex As Exception
+            Throw New Exception("Error applying to Main buttons: " & ex.Message)
+        End Try
+    End Function
+
+    ' Apply properties to all Sub menu buttons
+    Private Function ApplyToAllSubButtons() As Integer
+        Try
+            Dim count As Integer = 0
+            For Each ctrl As Control In PanelSubMenu.Controls
+                If TypeOf ctrl Is DevExpress.XtraEditors.SimpleButton Then
+                    Dim btn As DevExpress.XtraEditors.SimpleButton = DirectCast(ctrl, DevExpress.XtraEditors.SimpleButton)
+                    ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+
+                    ' Save to PHP for each button with CORRECT ID, name, and position
+                    Dim buttonId As Integer = Convert.ToInt32(btn.Tag)
+                    Dim buttonName As String = btn.Text
+                    Dim buttonPosition As String = If(String.IsNullOrEmpty(btn.ToolTip), "0", btn.ToolTip)
+
+                    SaveButtonPropertiesToPHPForButtonWithPosition(buttonId, "Sub", buttonName, buttonPosition)
+                    count += 1
+                End If
+            Next
+            Return count
+        Catch ex As Exception
+            Throw New Exception("Error applying to Sub buttons: " & ex.Message)
+        End Try
+    End Function
+
+    ' Apply properties to all Item menu buttons
+    Private Function ApplyToAllItemButtons() As Integer
+        Try
+            Dim count As Integer = 0
+            For Each ctrl As Control In PanelItemMenu.Controls
+                If TypeOf ctrl Is DevExpress.XtraEditors.SimpleButton Then
+                    Dim btn As DevExpress.XtraEditors.SimpleButton = DirectCast(ctrl, DevExpress.XtraEditors.SimpleButton)
+                    ApplyPropertiesFromObjectToButton(btn, selectedButtonProperties)
+
+                    ' Save to PHP for each button with CORRECT ID, name, and position
+                    Dim buttonId As Integer = Convert.ToInt32(btn.Tag)
+                    Dim buttonName As String = btn.Text
+                    Dim buttonPosition As String = If(String.IsNullOrEmpty(btn.ToolTip), "0", btn.ToolTip)
+
+                    SaveButtonPropertiesToPHPForButtonWithPosition(buttonId, "Item", buttonName, buttonPosition)
+                    count += 1
+                End If
+            Next
+            Return count
+        Catch ex As Exception
+            Throw New Exception("Error applying to Item buttons: " & ex.Message)
+        End Try
+    End Function
+
+    ' Save button properties to PHP for a specific button
+    Private Sub SaveButtonPropertiesToPHPForButton(itemId As Integer, menuType As String, itemName As String)
+        Try
+            ' Create POST data using the ACTUAL button's ID and name, not selectedButtonProperties
+            Dim postData As String = ""
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(itemId.ToString())  ' Use actual button ID
+            postData &= "&menu_type=" & Uri.EscapeDataString(menuType)
+            postData &= "&item_name=" & Uri.EscapeDataString(itemName)          ' Use actual button name
+            postData &= "&button_width=" & Uri.EscapeDataString(selectedButtonProperties.ButtonWidth.ToString())
+            postData &= "&button_height=" & Uri.EscapeDataString(selectedButtonProperties.ButtonHeight.ToString())
+            postData &= "&font_size=" & Uri.EscapeDataString(selectedButtonProperties.FontSize.ToString())
+            postData &= "&font_name=" & Uri.EscapeDataString(selectedButtonProperties.FontName)
+            postData &= "&font_style=" & Uri.EscapeDataString(selectedButtonProperties.FontStyle)
+
+            ' Create ARGB format for colors (use selected properties for styling)
+            Dim textColor As Color = selectedButtonProperties.GetTextColor()
+            Dim backColor As Color = selectedButtonProperties.GetBackColor()
+
+            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
+            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
+            postData &= "&position=" & Uri.EscapeDataString(selectedButtonProperties.Position.ToString())
+
+            Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
+
+            ' Send to PHP (silent - no message boxes for batch operations)
+            Dim response As String = SendGetToPHP(phpUrl)
+
+        Catch ex As Exception
+            ' Log error but don't interrupt batch process
+            System.Diagnostics.Debug.WriteLine("Error saving button " & itemId.ToString() & ": " & ex.Message)
+        End Try
+    End Sub
+
+    ' Save button properties to PHP for a specific button with position
+    Private Sub SaveButtonPropertiesToPHPForButtonWithPosition(itemId As Integer, menuType As String, itemName As String, position As String)
+        Try
+            ' Create POST data using the ACTUAL button's properties
+            Dim postData As String = ""
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(itemId.ToString())     ' Actual button ID
+            postData &= "&menu_type=" & Uri.EscapeDataString(menuType)
+            postData &= "&item_name=" & Uri.EscapeDataString(itemName)             ' Actual button name
+            postData &= "&button_width=" & Uri.EscapeDataString(selectedButtonProperties.ButtonWidth.ToString())
+            postData &= "&button_height=" & Uri.EscapeDataString(selectedButtonProperties.ButtonHeight.ToString())
+            postData &= "&font_size=" & Uri.EscapeDataString(selectedButtonProperties.FontSize.ToString())
+            postData &= "&font_name=" & Uri.EscapeDataString(selectedButtonProperties.FontName)
+            postData &= "&font_style=" & Uri.EscapeDataString(selectedButtonProperties.FontStyle)
+
+            ' Create ARGB format for colors (use selected properties for styling)
+            Dim textColor As Color = selectedButtonProperties.GetTextColor()
+            Dim backColor As Color = selectedButtonProperties.GetBackColor()
+
+            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
+            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
+            postData &= "&position=" & Uri.EscapeDataString(position)              ' Actual button position
+
+            Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
+
+            ' Send to PHP (silent - no message boxes for batch operations)
+            Dim response As String = SendGetToPHP(phpUrl)
+
+        Catch ex As Exception
+            ' Log error but don't interrupt batch process
+            System.Diagnostics.Debug.WriteLine("Error saving button " & itemId.ToString() & ": " & ex.Message)
+        End Try
+    End Sub
+
+    ' Create POST data for a specific button
+    Private Function CreatePostDataForButton(props As ButtonProperties) As String
+        Try
+            Dim postData As String = ""
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(props.Id.ToString())
+            postData &= "&menu_type=" & Uri.EscapeDataString(props.MenuType)
+            postData &= "&item_name=" & Uri.EscapeDataString(props.ItemName)
+            postData &= "&button_width=" & Uri.EscapeDataString(props.ButtonWidth.ToString())
+            postData &= "&button_height=" & Uri.EscapeDataString(props.ButtonHeight.ToString())
+            postData &= "&font_size=" & Uri.EscapeDataString(props.FontSize.ToString())
+            postData &= "&font_name=" & Uri.EscapeDataString(props.FontName)
+            postData &= "&font_style=" & Uri.EscapeDataString(props.FontStyle)
+
+            ' Create ARGB format for colors
+            Dim textColor As Color = props.GetTextColor()
+            Dim backColor As Color = props.GetBackColor()
+
+            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
+            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
+            postData &= "&position=" & Uri.EscapeDataString(props.Position.ToString())
+
+            Return postData
+        Catch ex As Exception
+            Throw New Exception("Error creating POST data for button: " & ex.Message)
+        End Try
+    End Function
+#End Region
 
 
     ' Update preview button and apply to selected button (DevExpress SimpleButton workaround)
@@ -710,10 +923,31 @@
                 ' Update properties from controls
                 UpdatePropertiesFromControls()
 
-                ' Apply to the selected button
-                ApplyPropertiesToButton()
+                ' Ask user if they want to apply to all buttons or just selected
+                Dim result As DialogResult = MessageBox.Show(
+                    "Apply to:" & vbCrLf &
+                    "YES = Current selected button only" & vbCrLf &
+                    "NO = All buttons in current menu type" & vbCrLf &
+                    "CANCEL = Cancel operation",
+                    "Apply Properties",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question)
 
-                MessageBox.Show("Properties applied successfully!", "Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Select Case result
+                    Case DialogResult.Yes
+                        ' Apply to selected button only
+                        ApplyPropertiesToButton()
+                        MessageBox.Show("Properties applied to selected button!", "Applied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    Case DialogResult.No
+                        ' Apply to all buttons of current menu type
+                        ApplyPropertiesToAllButtons()
+
+                    Case DialogResult.Cancel
+                        ' Do nothing
+                        Return
+                End Select
+
             End If
         Catch ex As Exception
             MessageBox.Show("Error applying properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -726,13 +960,31 @@
                 ' Update properties from controls
                 UpdatePropertiesFromControls()
 
-                ' Apply to the selected button
-                ApplyPropertiesToButton()
+                ' Ask user if they want to save to all buttons or just selected
+                Dim result As DialogResult = MessageBox.Show(
+                    "Save to:" & vbCrLf &
+                    "YES = Current selected button only" & vbCrLf &
+                    "NO = All buttons in current menu type" & vbCrLf &
+                    "CANCEL = Cancel operation",
+                    "Save Properties",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question)
 
-                ' Save to PHP
-                SaveButtonPropertiesToPHP()
+                Select Case result
+                    Case DialogResult.Yes
+                        ' Apply and save to selected button only
+                        ApplyPropertiesToButton()
+                        SaveButtonPropertiesToPHP()
 
-                'MessageBox.Show("Properties saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Case DialogResult.No
+                        ' Apply and save to all buttons of current menu type
+                        ApplyPropertiesToAllButtons()
+
+                    Case DialogResult.Cancel
+                        ' Do nothing
+                        Return
+                End Select
+
             End If
         Catch ex As Exception
             MessageBox.Show("Error saving properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -751,7 +1003,7 @@
                 selectedButtonProperties.FontSize = CSng(numFontSize.Value)
                 selectedButtonProperties.FontName = cmbFontName.Text
                 selectedButtonProperties.FontStyle = cmbFontStyle.Text
-
+                selectedButtonProperties.Position = txtposition.Text
                 ' Save ARGB colors
                 selectedButtonProperties.SetTextColor(btnTextColor.ForeColor)
                 selectedButtonProperties.SetBackColor(btnBackColor.Appearance.BackColor)
@@ -1162,7 +1414,7 @@
             Return defaultColor
         End If
 
-        Dim result As Color = ParseArgbColor(argbString)
+        Dim result As Color = ParseARGBColor(argbString)
         If result = Color.Black AndAlso argbString <> "Argb(255,0,0,0)" Then
             Return defaultColor
         End If
