@@ -342,7 +342,16 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
-
+    //updateonly itemname
+    public function _UpdateProductMasterName(
+        $dim_item_id,
+        $dim_item_name
+    ) {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `di_item_mast` SET `dim_item_name`='" . $dim_item_name . "' WHERE `dim_item_id`='" . $dim_item_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
     //Company Save
     public function storeCustomerData($txtCustomerName, $txtCustomerPhone, $status)
     {
@@ -4593,8 +4602,9 @@ class funcProcessMgmt
      * @param int $position Display position
      * @return bool True on success, false on failure
      */
-    public function UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position)
+    public function UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position, $item_name)
     {
+        $itemUpdate = $this->_UpdateProductMasterName($item_id, $item_name);
         $conn = $this->conn;
 
         $sqlUpdate = "UPDATE `pos_button_properties`
@@ -4609,7 +4619,6 @@ class funcProcessMgmt
             mysqli_stmt_close($stmt);
             return $result;
         }
-
         return false;
     }
 

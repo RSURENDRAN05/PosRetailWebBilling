@@ -676,13 +676,7 @@
             MessageBox.Show("Error setting back color: " & ex.Message)
         End Try
     End Sub
-    Private Sub Control_Changed(sender As Object, e As EventArgs) _
-    Handles numWidth.ValueChanged,
-            numHeight.ValueChanged,
-            numFontSize.ValueChanged,
-            cmbFontName.SelectedIndexChanged,
-            cmbFontStyle.SelectedIndexChanged
-
+    Private Sub Control_Changed(sender As Object, e As EventArgs) Handles numHeight.ValueChanged, numFontSize.ValueChanged, cmbFontName.SelectedIndexChanged, cmbFontStyle.SelectedIndexChanged
         UpdatePreview()
     End Sub
 
@@ -1168,7 +1162,7 @@
             Return defaultColor
         End If
 
-        Dim result As Color = ParseARGBColor(argbString)
+        Dim result As Color = ParseArgbColor(argbString)
         If result = Color.Black AndAlso argbString <> "Argb(255,0,0,0)" Then
             Return defaultColor
         End If
@@ -1197,7 +1191,7 @@
 
 #End Region
 #Region "Save/Height/Width/Cols"
-    Private Sub btnsavefordefault_Click(sender As Object, e As EventArgs) Handles btnsavefordefault.Click
+    Private Sub btnsavefordefault_Click(sender As Object, e As EventArgs)
         Try
             Dim Width As String = ""
             Dim Height As String = ""

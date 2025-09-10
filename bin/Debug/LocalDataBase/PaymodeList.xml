@@ -19,22 +19,17 @@
   </xs:schema>
   <PaymodeList>
     <pmode_id>1</pmode_id>
-    <pmode_name>Cash Bill</pmode_name>
+    <pmode_name>CASH</pmode_name>
     <pmode_type>cash</pmode_type>
   </PaymodeList>
   <PaymodeList>
     <pmode_id>2</pmode_id>
-    <pmode_name>Credit Bill</pmode_name>
-    <pmode_type>credit</pmode_type>
-  </PaymodeList>
-  <PaymodeList>
-    <pmode_id>3</pmode_id>
-    <pmode_name>Bank Card</pmode_name>
+    <pmode_name>QR PAY</pmode_name>
     <pmode_type>card</pmode_type>
   </PaymodeList>
   <PaymodeList>
-    <pmode_id>4</pmode_id>
-    <pmode_name>Qr Sales</pmode_name>
+    <pmode_id>3</pmode_id>
+    <pmode_name>CARD</pmode_name>
     <pmode_type>card</pmode_type>
   </PaymodeList>
 </NewDataSet>

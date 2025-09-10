@@ -1001,4 +1001,14 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnRefreshAll_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnRefreshAll.ItemClick
+        Try
+            If _ReadDefaultLocalData() = False Then
+
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

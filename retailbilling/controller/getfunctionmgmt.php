@@ -3789,6 +3789,7 @@ elseif (isset($_REQUEST['MenuRequest'])) {
                         }
                     }
                     $item_id = $data['item_id'];
+                    $item_name = isset($data['item_name']) ? $data['item_name'] : '';
                     $menu_type = $data['menu_type'];
                     $font_size = isset($data['font_size']) ? $data['font_size'] : 10.0;
                     $font_name = isset($data['font_name']) ? $data['font_name'] : 'Segoe UI';
@@ -3802,7 +3803,7 @@ elseif (isset($_REQUEST['MenuRequest'])) {
                     $exists = $clsfunreq->CheckButtonPropertiesExists($item_id, $menu_type);
                     if ($exists) {
                         // Update existing record
-                        $RequestUpdate = $clsfunreq->UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position);
+                        $RequestUpdate = $clsfunreq->UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position, $item_name);
                         if ($RequestUpdate) {
                             echo json_encode(array("Success" => true, "Msg" => 'Button Properties Updated Successfully'));
                         } else {

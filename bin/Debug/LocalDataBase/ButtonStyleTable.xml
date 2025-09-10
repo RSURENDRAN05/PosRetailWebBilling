@@ -45,7 +45,7 @@
   <ButtonStyleTable>
     <Id>79</Id>
     <Name>ITEMW</Name>
-    <Value>200</Value>
+    <Value>390</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>80</Id>
@@ -75,6 +75,6 @@
   <ButtonStyleTable>
     <Id>85</Id>
     <Name>ITEMMENUCOL</Name>
-    <Value>2</Value>
+    <Value>1</Value>
   </ButtonStyleTable>
 </NewDataSet>
