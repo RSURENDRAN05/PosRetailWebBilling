@@ -484,101 +484,7 @@
         End Try
     End Sub
 
-
-    ' ================= Properties Management =================
-
-    ' Load button properties from controls
-    Private Sub LoadButtonProperties(btn As DevExpress.XtraEditors.SimpleButton, menuType As String)
-        Try
-            selectedButton = btn
-
-            ' Create or update properties object
-            If selectedButtonProperties Is Nothing Then
-                selectedButtonProperties = New ButtonProperties()
-            End If
-
-            selectedButtonProperties.Id = Convert.ToInt32(btn.Tag)
-            selectedButtonProperties.MenuType = menuType
-            selectedButtonProperties.ItemName = btn.Text
-            selectedButtonProperties.ButtonWidth = btn.Width
-            selectedButtonProperties.ButtonHeight = btn.Height
-            selectedButtonProperties.FontSize = btn.Appearance.Font.Size
-            selectedButtonProperties.FontName = btn.Appearance.Font.Name
-            selectedButtonProperties.FontStyle = btn.Appearance.Font.Style.ToString()
-            selectedButtonProperties.SetTextColor(btn.Appearance.ForeColor)
-            selectedButtonProperties.SetBackColor(btn.Appearance.BackColor)
-            selectedButtonProperties.Position = btn.ToolTip
-            ' Update properties UI
-            UpdatePropertiesUI()
-
-        Catch ex As Exception
-            MessageBox.Show("Error loading properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    ' =======================================
-    ' === Update UI from Properties Object ===
-    ' =======================================
-    Private Sub UpdatePropertiesUI()
-        Try
-            If selectedButtonProperties IsNot Nothing Then
-                txtid.Text = selectedButtonProperties.Id.ToString()
-                txtItemName.Text = selectedButtonProperties.ItemName
-                numWidth.Value = selectedButtonProperties.ButtonWidth
-                numHeight.Value = selectedButtonProperties.ButtonHeight
-                numFontSize.Value = CDec(selectedButtonProperties.FontSize)
-                cmbFontName.Text = selectedButtonProperties.FontName
-                cmbFontStyle.Text = selectedButtonProperties.FontStyle
-                txtposition.Text = selectedButtonProperties.Position
-                ' Colors
-                Dim txtColor As Color = selectedButtonProperties.GetTextColor()
-                btnTextColor.ForeColor = txtColor
-                btnTextColor.Text = String.Format("ARGB({0},{1},{2},{3})", txtColor.A, txtColor.R, txtColor.G, txtColor.B)
-
-
-                Dim backColor As Color = selectedButtonProperties.GetBackColor()
-                btnBackColor.Appearance.BackColor = backColor
-                btnBackColor.Text = String.Format("ARGB({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B)
-                UpdatePreview()
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error updating UI: " & ex.Message)
-        End Try
-    End Sub
-
-
-    ' =======================================
-    ' === Apply Properties to DevExpress Button ===
-    ' =======================================
-    Private Sub ApplyPropertiesToButton()
-        Try
-            If selectedButton IsNot Nothing AndAlso selectedButtonProperties IsNot Nothing Then
-                selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
-                selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-
-                selectedButton.Text = selectedButtonProperties.ItemName
-                selectedButton.Size = New Size(selectedButtonProperties.ButtonWidth, selectedButtonProperties.ButtonHeight)
-
-                ' Font style
-                Dim style As FontStyle = FontStyle.Regular
-                Select Case selectedButtonProperties.FontStyle.ToLower()
-                    Case "bold" : style = FontStyle.Bold
-                    Case "italic" : style = FontStyle.Italic
-                    Case "underline" : style = FontStyle.Underline
-                End Select
-
-                ' Apply ARGB colors
-                selectedButton.Appearance.Font = New Font(selectedButtonProperties.FontName, selectedButtonProperties.FontSize, style)
-                selectedButton.Appearance.ForeColor = selectedButtonProperties.GetTextColor()
-                selectedButton.Appearance.BackColor = selectedButtonProperties.GetBackColor()
-
-                selectedButton.Refresh()
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error applying properties: " & ex.Message)
-        End Try
-    End Sub
-
+#End Region
 #Region "ApplyToAllButtons"
     ' Add this method to apply properties to all buttons of the selected menu type
     Private Sub ApplyPropertiesToAllButtons()
@@ -611,7 +517,6 @@
                         menuType = "Item"
                         buttonsUpdated = ApplyToAllItemButtons()
                 End Select
-
 
                 MessageBox.Show("Applied properties to " & buttonsUpdated.ToString() & " " & menuType & " buttons successfully!",
                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -670,7 +575,7 @@
         End Try
     End Function
 
-    ' Apply properties to all Item menu buttons
+    ' Apply properties to all Item menu buttons - SINGLE IMPLEMENTATION
     Private Function ApplyToAllItemButtons() As Integer
         Try
             Dim count As Integer = 0
@@ -693,40 +598,6 @@
             Throw New Exception("Error applying to Item buttons: " & ex.Message)
         End Try
     End Function
-
-    ' Save button properties to PHP for a specific button
-    Private Sub SaveButtonPropertiesToPHPForButton(itemId As Integer, menuType As String, itemName As String)
-        Try
-            ' Create POST data using the ACTUAL button's ID and name, not selectedButtonProperties
-            Dim postData As String = ""
-            postData &= "operation=SAVE"
-            postData &= "&item_id=" & Uri.EscapeDataString(itemId.ToString())  ' Use actual button ID
-            postData &= "&menu_type=" & Uri.EscapeDataString(menuType)
-            postData &= "&item_name=" & Uri.EscapeDataString(itemName)          ' Use actual button name
-            postData &= "&button_width=" & Uri.EscapeDataString(selectedButtonProperties.ButtonWidth.ToString())
-            postData &= "&button_height=" & Uri.EscapeDataString(selectedButtonProperties.ButtonHeight.ToString())
-            postData &= "&font_size=" & Uri.EscapeDataString(selectedButtonProperties.FontSize.ToString())
-            postData &= "&font_name=" & Uri.EscapeDataString(selectedButtonProperties.FontName)
-            postData &= "&font_style=" & Uri.EscapeDataString(selectedButtonProperties.FontStyle)
-
-            ' Create ARGB format for colors (use selected properties for styling)
-            Dim textColor As Color = selectedButtonProperties.GetTextColor()
-            Dim backColor As Color = selectedButtonProperties.GetBackColor()
-
-            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
-            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
-            postData &= "&position=" & Uri.EscapeDataString(selectedButtonProperties.Position.ToString())
-
-            Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
-
-            ' Send to PHP (silent - no message boxes for batch operations)
-            Dim response As String = SendGetToPHP(phpUrl)
-
-        Catch ex As Exception
-            ' Log error but don't interrupt batch process
-            System.Diagnostics.Debug.WriteLine("Error saving button " & itemId.ToString() & ": " & ex.Message)
-        End Try
-    End Sub
 
     ' Save button properties to PHP for a specific button with position
     Private Sub SaveButtonPropertiesToPHPForButtonWithPosition(itemId As Integer, menuType As String, itemName As String, position As String)
@@ -761,138 +632,6 @@
             System.Diagnostics.Debug.WriteLine("Error saving button " & itemId.ToString() & ": " & ex.Message)
         End Try
     End Sub
-
-    ' Create POST data for a specific button
-    Private Function CreatePostDataForButton(props As ButtonProperties) As String
-        Try
-            Dim postData As String = ""
-            postData &= "operation=SAVE"
-            postData &= "&item_id=" & Uri.EscapeDataString(props.Id.ToString())
-            postData &= "&menu_type=" & Uri.EscapeDataString(props.MenuType)
-            postData &= "&item_name=" & Uri.EscapeDataString(props.ItemName)
-            postData &= "&button_width=" & Uri.EscapeDataString(props.ButtonWidth.ToString())
-            postData &= "&button_height=" & Uri.EscapeDataString(props.ButtonHeight.ToString())
-            postData &= "&font_size=" & Uri.EscapeDataString(props.FontSize.ToString())
-            postData &= "&font_name=" & Uri.EscapeDataString(props.FontName)
-            postData &= "&font_style=" & Uri.EscapeDataString(props.FontStyle)
-
-            ' Create ARGB format for colors
-            Dim textColor As Color = props.GetTextColor()
-            Dim backColor As Color = props.GetBackColor()
-
-            postData &= "&text_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", textColor.A, textColor.R, textColor.G, textColor.B))
-            postData &= "&back_color=" & Uri.EscapeDataString(String.Format("Argb({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B))
-            postData &= "&position=" & Uri.EscapeDataString(props.Position.ToString())
-
-            Return postData
-        Catch ex As Exception
-            Throw New Exception("Error creating POST data for button: " & ex.Message)
-        End Try
-    End Function
-#End Region
-
-
-    ' Update preview button and apply to selected button (DevExpress SimpleButton workaround)
-    Private Sub UpdatePreview()
-        Try
-            If btnPreview IsNot Nothing Then
-                ' --- Text, Size, Style ---
-                btnPreview.Text = txtItemName.Text
-                btnPreview.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
-                btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-
-                ' --- Font Style ---
-                Dim fontStyle As FontStyle = fontStyle.Regular
-                Select Case cmbFontStyle.Text.ToLower()
-                    Case "bold"
-                        fontStyle = fontStyle.Bold
-                    Case "italic"
-                        fontStyle = fontStyle.Italic
-                    Case "bold, italic"
-                        fontStyle = fontStyle.Bold Or fontStyle.Italic
-                End Select
-
-                ' --- Colors from selector ---
-                Dim textColor As Color = selectedButtonProperties.GetTextColor()
-                Dim backColor As Color = selectedButtonProperties.GetBackColor()
-
-
-                ' --- Apply appearance (DevExpress way) ---
-                btnPreview.LookAndFeel.UseDefaultLookAndFeel = False
-                btnPreview.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-
-                btnPreview.Appearance.Options.UseBackColor = True
-                btnPreview.Appearance.Options.UseForeColor = True
-                btnPreview.Appearance.Options.UseFont = True
-
-                btnPreview.Appearance.BackColor = backColor
-                btnPreview.Appearance.ForeColor = textColor
-                btnPreview.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
-
-                btnPreview.Refresh()
-                btnPreview.Invalidate()
-
-
-                '' --- Apply to selected button (if any) ---
-                'If selectedButton IsNot Nothing Then
-                '    selectedButton.Text = txtItemName.Text
-                '    selectedButton.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
-
-                '    selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
-                '    selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-
-                '    selectedButton.Appearance.Options.UseBackColor = True
-                '    selectedButton.Appearance.Options.UseForeColor = True
-                '    selectedButton.Appearance.Options.UseFont = True
-
-                '    selectedButton.Appearance.BackColor = backColor
-                '    selectedButton.Appearance.ForeColor = textColor
-                '    selectedButton.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
-
-                '    selectedButton.Refresh()
-                '    selectedButton.Invalidate()
-
-                '    ' --- Update property object if available ---
-                '    If selectedButtonProperties IsNot Nothing Then
-                '        selectedButtonProperties.SetTextColor(textColor)
-                '        selectedButtonProperties.SetBackColor(backColor)
-                '    End If
-                'End If
-            End If
-        Catch ex As Exception
-            ' Ignore preview errors
-        End Try
-    End Sub
-    ' =======================================
-    ' === Color Picker Events ===
-    ' =======================================
-    Private Sub colorEditTextColor_EditValueChanged(sender As Object, e As EventArgs) Handles colorEditTextColor.EditValueChanged
-        Try
-            Dim c As Color = colorEditTextColor.Color
-            btnTextColor.ForeColor = c
-            btnTextColor.Text = String.Format("ARGB({0},{1},{2},{3})", c.A, c.R, c.G, c.B)
-            If selectedButtonProperties IsNot Nothing Then selectedButtonProperties.SetTextColor(c)
-            UpdatePreview()
-        Catch ex As Exception
-            MessageBox.Show("Error setting text color: " & ex.Message)
-        End Try
-    End Sub
-
-    Private Sub colorEditBackColor_EditValueChanged(sender As Object, e As EventArgs) Handles colorEditBackColor.EditValueChanged
-        Try
-            Dim c As Color = colorEditBackColor.Color
-            btnBackColor.Appearance.BackColor = c
-            btnBackColor.Text = String.Format("ARGB({0},{1},{2},{3})", c.A, c.R, c.G, c.B)
-            If selectedButtonProperties IsNot Nothing Then selectedButtonProperties.SetBackColor(c)
-            UpdatePreview()
-        Catch ex As Exception
-            MessageBox.Show("Error setting back color: " & ex.Message)
-        End Try
-    End Sub
-    Private Sub Control_Changed(sender As Object, e As EventArgs) Handles numHeight.ValueChanged, numFontSize.ValueChanged, cmbFontName.SelectedIndexChanged, cmbFontStyle.SelectedIndexChanged
-        UpdatePreview()
-    End Sub
-
 #End Region
 #Region "RefreshTable"
     Private Sub RefreshTable()
@@ -1011,6 +750,208 @@
         Catch ex As Exception
             MessageBox.Show("Error saving UI to properties: " & ex.Message)
         End Try
+    End Sub
+
+#End Region
+#Region "ApplySingleButton"
+
+
+    ' ================= Properties Management =================
+
+    ' Load button properties from controls
+    Private Sub LoadButtonProperties(btn As DevExpress.XtraEditors.SimpleButton, menuType As String)
+        Try
+            selectedButton = btn
+
+            ' Create or update properties object
+            If selectedButtonProperties Is Nothing Then
+                selectedButtonProperties = New ButtonProperties()
+            End If
+
+            selectedButtonProperties.Id = Convert.ToInt32(btn.Tag)
+            selectedButtonProperties.MenuType = menuType
+            selectedButtonProperties.ItemName = btn.Text
+            selectedButtonProperties.ButtonWidth = btn.Width
+            selectedButtonProperties.ButtonHeight = btn.Height
+            selectedButtonProperties.FontSize = btn.Appearance.Font.Size
+            selectedButtonProperties.FontName = btn.Appearance.Font.Name
+            selectedButtonProperties.FontStyle = btn.Appearance.Font.Style.ToString()
+            selectedButtonProperties.SetTextColor(btn.Appearance.ForeColor)
+            selectedButtonProperties.SetBackColor(btn.Appearance.BackColor)
+            selectedButtonProperties.Position = btn.ToolTip
+            ' Update properties UI
+            UpdatePropertiesUI()
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' =======================================
+    ' === Update UI from Properties Object ===
+    ' =======================================
+    Private Sub UpdatePropertiesUI()
+        Try
+            If selectedButtonProperties IsNot Nothing Then
+                txtid.Text = selectedButtonProperties.Id.ToString()
+                txtItemName.Text = selectedButtonProperties.ItemName
+                numWidth.Value = selectedButtonProperties.ButtonWidth
+                numHeight.Value = selectedButtonProperties.ButtonHeight
+                numFontSize.Value = CDec(selectedButtonProperties.FontSize)
+                cmbFontName.Text = selectedButtonProperties.FontName
+                cmbFontStyle.Text = selectedButtonProperties.FontStyle
+                txtposition.Text = selectedButtonProperties.Position
+                ' Colors
+                Dim txtColor As Color = selectedButtonProperties.GetTextColor()
+                btnTextColor.ForeColor = txtColor
+                btnTextColor.Text = String.Format("ARGB({0},{1},{2},{3})", txtColor.A, txtColor.R, txtColor.G, txtColor.B)
+
+
+                Dim backColor As Color = selectedButtonProperties.GetBackColor()
+                btnBackColor.Appearance.BackColor = backColor
+                btnBackColor.Text = String.Format("ARGB({0},{1},{2},{3})", backColor.A, backColor.R, backColor.G, backColor.B)
+                UpdatePreview()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error updating UI: " & ex.Message)
+        End Try
+    End Sub
+
+
+    ' =======================================
+    ' === Apply Properties to DevExpress Button ===
+    ' =======================================
+    Private Sub ApplyPropertiesToButton()
+        Try
+            If selectedButton IsNot Nothing AndAlso selectedButtonProperties IsNot Nothing Then
+                selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
+                selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+
+                selectedButton.Text = selectedButtonProperties.ItemName
+                selectedButton.Size = New Size(selectedButtonProperties.ButtonWidth, selectedButtonProperties.ButtonHeight)
+
+                ' Font style
+                Dim style As FontStyle = FontStyle.Regular
+                Select Case selectedButtonProperties.FontStyle.ToLower()
+                    Case "bold" : style = FontStyle.Bold
+                    Case "italic" : style = FontStyle.Italic
+                    Case "underline" : style = FontStyle.Underline
+                End Select
+
+                ' Apply ARGB colors
+                selectedButton.Appearance.Font = New Font(selectedButtonProperties.FontName, selectedButtonProperties.FontSize, style)
+                selectedButton.Appearance.ForeColor = selectedButtonProperties.GetTextColor()
+                selectedButton.Appearance.BackColor = selectedButtonProperties.GetBackColor()
+
+                selectedButton.Refresh()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error applying properties: " & ex.Message)
+        End Try
+    End Sub
+
+
+
+
+    ' Update preview button and apply to selected button (DevExpress SimpleButton workaround)
+    Private Sub UpdatePreview()
+        Try
+            If btnPreview IsNot Nothing Then
+                ' --- Text, Size, Style ---
+                btnPreview.Text = txtItemName.Text
+                btnPreview.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
+                btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+
+                ' --- Font Style ---
+                Dim fontStyle As FontStyle = fontStyle.Regular
+                Select Case cmbFontStyle.Text.ToLower()
+                    Case "bold"
+                        fontStyle = fontStyle.Bold
+                    Case "italic"
+                        fontStyle = fontStyle.Italic
+                    Case "bold, italic"
+                        fontStyle = fontStyle.Bold Or fontStyle.Italic
+                End Select
+
+                ' --- Colors from selector ---
+                Dim textColor As Color = selectedButtonProperties.GetTextColor()
+                Dim backColor As Color = selectedButtonProperties.GetBackColor()
+
+
+                ' --- Apply appearance (DevExpress way) ---
+                btnPreview.LookAndFeel.UseDefaultLookAndFeel = False
+                btnPreview.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+
+                btnPreview.Appearance.Options.UseBackColor = True
+                btnPreview.Appearance.Options.UseForeColor = True
+                btnPreview.Appearance.Options.UseFont = True
+
+                btnPreview.Appearance.BackColor = backColor
+                btnPreview.Appearance.ForeColor = textColor
+                btnPreview.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
+
+                btnPreview.Refresh()
+                btnPreview.Invalidate()
+
+
+                '' --- Apply to selected button (if any) ---
+                'If selectedButton IsNot Nothing Then
+                '    selectedButton.Text = txtItemName.Text
+                '    selectedButton.Size = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
+
+                '    selectedButton.LookAndFeel.UseDefaultLookAndFeel = False
+                '    selectedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+
+                '    selectedButton.Appearance.Options.UseBackColor = True
+                '    selectedButton.Appearance.Options.UseForeColor = True
+                '    selectedButton.Appearance.Options.UseFont = True
+
+                '    selectedButton.Appearance.BackColor = backColor
+                '    selectedButton.Appearance.ForeColor = textColor
+                '    selectedButton.Appearance.Font = New Font(cmbFontName.Text, CSng(numFontSize.Value), fontStyle)
+
+                '    selectedButton.Refresh()
+                '    selectedButton.Invalidate()
+
+                '    ' --- Update property object if available ---
+                '    If selectedButtonProperties IsNot Nothing Then
+                '        selectedButtonProperties.SetTextColor(textColor)
+                '        selectedButtonProperties.SetBackColor(backColor)
+                '    End If
+                'End If
+            End If
+        Catch ex As Exception
+            ' Ignore preview errors
+        End Try
+    End Sub
+    ' =======================================
+    ' === Color Picker Events ===
+    ' =======================================
+    Private Sub colorEditTextColor_EditValueChanged(sender As Object, e As EventArgs) Handles colorEditTextColor.EditValueChanged
+        Try
+            Dim c As Color = colorEditTextColor.Color
+            btnTextColor.ForeColor = c
+            btnTextColor.Text = String.Format("ARGB({0},{1},{2},{3})", c.A, c.R, c.G, c.B)
+            If selectedButtonProperties IsNot Nothing Then selectedButtonProperties.SetTextColor(c)
+            UpdatePreview()
+        Catch ex As Exception
+            MessageBox.Show("Error setting text color: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub colorEditBackColor_EditValueChanged(sender As Object, e As EventArgs) Handles colorEditBackColor.EditValueChanged
+        Try
+            Dim c As Color = colorEditBackColor.Color
+            btnBackColor.Appearance.BackColor = c
+            btnBackColor.Text = String.Format("ARGB({0},{1},{2},{3})", c.A, c.R, c.G, c.B)
+            If selectedButtonProperties IsNot Nothing Then selectedButtonProperties.SetBackColor(c)
+            UpdatePreview()
+        Catch ex As Exception
+            MessageBox.Show("Error setting back color: " & ex.Message)
+        End Try
+    End Sub
+    Private Sub Control_Changed(sender As Object, e As EventArgs) Handles numHeight.ValueChanged, numFontSize.ValueChanged, cmbFontName.SelectedIndexChanged, cmbFontStyle.SelectedIndexChanged
+        UpdatePreview()
     End Sub
 
 #End Region

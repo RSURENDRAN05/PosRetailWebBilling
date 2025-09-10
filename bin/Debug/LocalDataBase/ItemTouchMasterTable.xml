@@ -51,7 +51,7 @@
   <ItemTouchMasterTable>
     <Id>1</Id>
     <BarCode>0</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <ItemName>HAIR CUT [ADULT]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -123,7 +123,7 @@
   <ItemTouchMasterTable>
     <Id>3</Id>
     <BarCode>3</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <ItemName>HAIR CUT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -159,7 +159,7 @@
   <ItemTouchMasterTable>
     <Id>4</Id>
     <BarCode>4</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <ItemName>SHAVING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -195,7 +195,7 @@
   <ItemTouchMasterTable>
     <Id>5</Id>
     <BarCode>5</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <ItemName>SHAMPOO</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -231,7 +231,7 @@
   <ItemTouchMasterTable>
     <Id>6</Id>
     <BarCode>6</BarCode>
-    <ItemName>HAIR CUT -  SHAVE</ItemName>
+    <ItemName>BALDING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -303,7 +303,7 @@
   <ItemTouchMasterTable>
     <Id>8</Id>
     <BarCode>8</BarCode>
-    <ItemName>POWDER</ItemName>
+    <ItemName>CREAM</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -339,7 +339,7 @@
   <ItemTouchMasterTable>
     <Id>9</Id>
     <BarCode>9</BarCode>
-    <ItemName>POWDER</ItemName>
+    <ItemName>HAIR COLOURING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
