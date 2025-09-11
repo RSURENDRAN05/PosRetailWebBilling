@@ -80,7 +80,7 @@
     <font_size>20.0</font_size>
     <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,255,128,0)</text_color>
+    <text_color>Argb(255,255,255,255)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
@@ -581,11 +581,11 @@
     <LnkId>26</LnkId>
     <item_id>16</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>

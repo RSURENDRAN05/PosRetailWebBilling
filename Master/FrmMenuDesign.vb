@@ -666,12 +666,11 @@
                 Dim result As DialogResult = MessageBox.Show(
                     "Apply to:" & vbCrLf &
                     "YES = Current selected button only" & vbCrLf &
-                    "NO = All buttons in current menu type" & vbCrLf &
                     "CANCEL = Cancel operation",
                     "Apply Properties",
                     MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question)
-
+                '"NO = All buttons in current menu type" & vbCrLf &
                 Select Case result
                     Case DialogResult.Yes
                         ' Apply to selected button only
@@ -680,7 +679,7 @@
 
                     Case DialogResult.No
                         ' Apply to all buttons of current menu type
-                        ApplyPropertiesToAllButtons()
+                        ' ApplyPropertiesToAllButtons()
 
                     Case DialogResult.Cancel
                         ' Do nothing

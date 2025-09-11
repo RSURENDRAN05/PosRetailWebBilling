@@ -149,7 +149,6 @@ Partial Class frmSelectBill
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         Me.GridView1.RowHeight = 25
         '
@@ -306,6 +305,7 @@ Partial Class frmSelectBill
         '
         'btngetquotebill
         '
+        Me.btngetquotebill.Enabled = False
         Me.btngetquotebill.Location = New System.Drawing.Point(7, 612)
         Me.btngetquotebill.Name = "btngetquotebill"
         Me.btngetquotebill.Size = New System.Drawing.Size(107, 22)
@@ -329,6 +329,7 @@ Partial Class frmSelectBill
         '
         Me.btna4print.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btna4print.Appearance.Options.UseFont = True
+        Me.btna4print.Enabled = False
         Me.btna4print.Image = CType(resources.GetObject("btna4print.Image"), System.Drawing.Image)
         Me.btna4print.Location = New System.Drawing.Point(778, 638)
         Me.btna4print.Name = "btna4print"
@@ -359,6 +360,7 @@ Partial Class frmSelectBill
         '
         'btnOk
         '
+        Me.btnOk.Enabled = False
         Me.btnOk.Image = CType(resources.GetObject("btnOk.Image"), System.Drawing.Image)
         Me.btnOk.Location = New System.Drawing.Point(679, 638)
         Me.btnOk.Name = "btnOk"
@@ -369,6 +371,7 @@ Partial Class frmSelectBill
         '
         'btnget
         '
+        Me.btnget.Enabled = False
         Me.btnget.Image = CType(resources.GetObject("btnget.Image"), System.Drawing.Image)
         Me.btnget.Location = New System.Drawing.Point(406, 638)
         Me.btnget.Name = "btnget"

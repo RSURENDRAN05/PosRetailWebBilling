@@ -1127,28 +1127,30 @@ Public Class PosSalesII
                     Return
                 End If
                 If itemLock.ToString = "2" Then
-                    If _globalSetting.ItemDeleteActive = True Then
+                    MessageBox.Show("You Can't Delete This Item ,No Rights '" & itemName & "'?", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                    'If _globalSetting.ItemDeleteActive = True Then
 
-                        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
-                                                                   "Confirm Delete", _
-                                                                   MessageBoxButtons.YesNo, _
-                                                                   MessageBoxIcon.Question)
-                        If result = DialogResult.Yes Then
-                            DeleteSelectedRow(focusedRowHandle)
-                        End If
-                    Else
-                        If _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                    '    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                    '                                               "Confirm Delete", _
+                    '                                               MessageBoxButtons.YesNo, _
+                    '                                               MessageBoxIcon.Question)
+                    '    If result = DialogResult.Yes Then
+                    '        DeleteSelectedRow(focusedRowHandle)
+                    '    End If
+                    'Else
+                    '    If _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
 
-                            Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
-                                                                       "Confirm Delete", _
-                                                                       MessageBoxButtons.YesNo, _
-                                                                       MessageBoxIcon.Question)
+                    '        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                    '                                                   "Confirm Delete", _
+                    '                                                   MessageBoxButtons.YesNo, _
+                    '                                                   MessageBoxIcon.Question)
 
-                            If result = DialogResult.Yes Then
-                                DeleteSelectedRow(focusedRowHandle)
-                            End If
-                        End If
-                    End If
+                    '        If result = DialogResult.Yes Then
+                    '            DeleteSelectedRow(focusedRowHandle)
+                    '        End If
+                    '    End If
+                    'End If
                 Else
                     Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
                                                                "Confirm Delete", _
@@ -3837,11 +3839,15 @@ Public Class PosSalesII
 
     Private Sub barbtnPrintShiftClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnPrintShiftClose.ItemClick
         Try
-            Dim printcmd As New PrintCommand
-            Dim input As Integer = InputBox("Enter Shift No")
-            If input > 0 Then
-                printcmd._printShiftClose(input, "S", Date.Now)
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                Dim printcmd As New PrintCommand
+                Dim input As Integer = InputBox("Enter Shift No")
+                If input > 0 Then
+                    printcmd._printShiftClose(input, "S", Date.Now)
+                End If
             End If
+          
         Catch ex As Exception
 
         End Try
