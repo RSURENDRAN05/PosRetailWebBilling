@@ -176,7 +176,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $mainstatus = $row['active'];
         $RequestInsert = $clsfunreq->_InsertMainMastrer($mainname, $mainstatus, $groupcolor);
         if ($RequestInsert) {
-            echo json_encode(array("Success" => true));
+            echo json_encode(array("Success" => true, "Data" => $RequestInsert));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
@@ -259,10 +259,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $id = $_POST['id'];
         $ResulQuery = $clsfunreq->_SelectCateMastrerById($id);
         $GetDataRes = array();
-        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
-            $GetDataRes[] = $rows;
-        }
-        if ($ResulQuery) {
+        if ($ResulQuery instanceof mysqli_result) {
+            while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+                $GetDataRes[] = $rows;
+            }
             echo json_encode(array("Data" => $GetDataRes));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));

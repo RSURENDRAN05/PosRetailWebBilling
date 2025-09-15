@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>22</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -389,10 +389,10 @@
     <Compile Include="Master\FrmMenuManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\FrmMultiplePriceSelection.designer.vb">
+    <Compile Include="Sales\FrmMultiplePriceSelection.designer.vb">
       <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>
     </Compile>
-    <Compile Include="Master\FrmMultiplePriceSelection.vb">
+    <Compile Include="Sales\FrmMultiplePriceSelection.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\FrmNewCustomer.designer.vb">
@@ -808,7 +808,7 @@
     <EmbeddedResource Include="Master\FrmMenuManager.resx">
       <DependentUpon>FrmMenuManager.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\FrmMultiplePriceSelection.resx">
+    <EmbeddedResource Include="Sales\FrmMultiplePriceSelection.resx">
       <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmNewCustomer.resx">

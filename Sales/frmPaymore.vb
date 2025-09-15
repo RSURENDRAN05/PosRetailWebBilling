@@ -348,7 +348,8 @@ Public Class frmPaymore
             _btnnum = CType(sender, SimpleButton)
             txttpopenamt.EditValue = txttpopenamt.EditValue + Convert.ToDouble(_btnnum.Tag).ToString("####0.00")
             numstr = numstr + _btnnum.Text
-            txttpopenamt.EditValue = Format(Val(numstr) / 100, "#####.00")
+            txttpopenamt.EditValue = Format(Val(numstr), "#####.00")
+            'txttpopenamt.EditValue = Format(Val(numstr) / 100, "#####.00")
         Catch ex As Exception
 
         End Try

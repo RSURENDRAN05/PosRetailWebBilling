@@ -40,11 +40,11 @@
     <item_id>1</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>1</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>2</CateId>
@@ -57,11 +57,11 @@
     <item_id>2</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>2</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>3</CateId>
@@ -74,11 +74,11 @@
     <item_id>3</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>4</CateId>
@@ -91,11 +91,11 @@
     <item_id>4</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>5</CateId>
@@ -108,11 +108,11 @@
     <item_id>5</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>6</CateId>
@@ -125,11 +125,11 @@
     <item_id>6</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>7</CateId>
@@ -142,10 +142,10 @@
     <item_id>7</item_id>
     <menu_type>Sub</menu_type>
     <font_size>12.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>0</Position>
+    <Position>7</Position>
   </CategoryTable>
 </NewDataSet>

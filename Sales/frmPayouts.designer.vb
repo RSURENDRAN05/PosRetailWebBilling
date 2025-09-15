@@ -48,6 +48,7 @@ Partial Class frmPayouts
         Me.btnStaff = New DevExpress.XtraEditors.SimpleButton()
         Me.btnSupp = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnModeofWeb = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -364,12 +365,29 @@ Partial Class frmPayouts
         Me.btnPrint.TabIndex = 18
         Me.btnPrint.Text = "Print"
         '
+        'btnModeofWeb
+        '
+        Me.btnModeofWeb.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnModeofWeb.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnModeofWeb.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnModeofWeb.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        Me.btnModeofWeb.Appearance.Options.UseBackColor = True
+        Me.btnModeofWeb.Appearance.Options.UseFont = True
+        Me.btnModeofWeb.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.btnModeofWeb.Location = New System.Drawing.Point(163, 27)
+        Me.btnModeofWeb.Name = "btnModeofWeb"
+        Me.btnModeofWeb.Size = New System.Drawing.Size(134, 38)
+        Me.btnModeofWeb.TabIndex = 19
+        Me.btnModeofWeb.Text = "WebMode"
+        Me.btnModeofWeb.Visible = False
+        '
         'frmPayouts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
+        Me.Controls.Add(Me.btnModeofWeb)
         Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.btnSupp)
         Me.Controls.Add(Me.btnStaff)
@@ -425,4 +443,5 @@ Partial Class frmPayouts
     Friend WithEvents btnStaff As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnSupp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnModeofWeb As DevExpress.XtraEditors.SimpleButton
 End Class

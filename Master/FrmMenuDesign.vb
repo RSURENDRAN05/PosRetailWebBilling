@@ -635,15 +635,21 @@
 #End Region
 #Region "RefreshTable"
     Private Sub RefreshTable()
+        Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
+            dialog.Caption = "Loading Data"
             getMainMaster()
             getCategoryMaster()
             getTouchItemMaster()
+            getMainGroupPolicy()
             getButtonStyleTable()
             LoadButtonStyles()
             LoadMainMenu()
         Catch ex As Exception
-
+            dialog.Caption = "Error " & ex.Message.ToString
+            dialog.Close()
+        Finally
+            dialog.Close()
         End Try
     End Sub
 

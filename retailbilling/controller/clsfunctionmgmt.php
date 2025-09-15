@@ -183,7 +183,12 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlSelect = ("INSERT INTO `di_main_group`(`mainname`, `mainstatus`, `groupcolor`)VALUES ('" . $mainname . "','" . $mainstatus . "','" . $groupcolor . "')");
         $result = mysqli_query($conn, $sqlSelect);
-        return $result;
+
+        if ($result) {
+            return mysqli_insert_id($conn);
+        } else {
+            return false;
+        }
     }
 
     public function _UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor)

@@ -651,6 +651,7 @@ Public Class PosSalesII
             Next
 
             PanelMainMenu.AutoScroll = True
+            PanelMainMenu.AllowTouchScroll = True
 
             ' Auto-load first MainId
             If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
@@ -777,6 +778,7 @@ Public Class PosSalesII
             Next
 
             PanelSubMenu.AutoScroll = True
+            PanelSubMenu.AllowTouchScroll = True
 
             ' ✅ Auto-load first CateId
             If subs.Count > 0 Then
@@ -807,6 +809,7 @@ Public Class PosSalesII
                 Select(Function(r) New With {
                     .Id = Convert.ToInt32(r("Id")),
                     .ItemName = r("ItemName").ToString(),
+                    .Price = r("SellPrice").ToString,
                     .Position = Convert.ToInt32(r("Position"))
                 }).OrderBy(Function(x) x.Position).ToList() ' Ascending order by Position
 
@@ -815,7 +818,7 @@ Public Class PosSalesII
                 Dim col As Integer = i Mod cols
 
                 Dim btn As New DevExpress.XtraEditors.SimpleButton()
-                btn.Text = items(i).ItemName
+                btn.Text = items(i).ItemName & vbNewLine & items(i).Price
                 btn.Tag = items(i).Id
                 btn.Size = New Size(btnWidth, btnHeight)
                 btn.Location = New Point(marginLeft + col * (btnWidth + spacing),
@@ -901,7 +904,7 @@ Public Class PosSalesII
             Next
 
             PanelItemMenu.AutoScroll = True
-
+            PanelItemMenu.AllowTouchScroll = True
             '' ✅ Auto-select first item
             'If items.Count > 0 Then
             '    ItemMenu_Click(PanelItemMenu.Controls(0), EventArgs.Empty)
@@ -1758,18 +1761,21 @@ Public Class PosSalesII
     ' Bill Discount Button Click Handler
     Private Sub BarButtonItem7_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbilldiscount.ItemClick
         Try
-            If _globalSetting.BillDiscountAcitve = False Then
-                MessageBox.Show("You do not have rights apply billdiscount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End If
-            ' Show discount selection form
-            Dim discountForm As New FrmDiscountSelection()
-            If discountForm.ShowDialog() = DialogResult.OK Then
-                Dim selectedDiscount = discountForm.SelectedDiscountInfo
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                If _globalSetting.BillDiscountAcitve = False Then
+                    MessageBox.Show("You do not have rights apply billdiscount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                ' Show discount selection form
+                Dim discountForm As New FrmDiscountSelection()
+                If discountForm.ShowDialog() = DialogResult.OK Then
+                    Dim selectedDiscount = discountForm.SelectedDiscountInfo
 
-                If selectedDiscount IsNot Nothing Then
-                    ' Apply bill-level discount
-                    _ApplyBillDiscount(selectedDiscount)
+                    If selectedDiscount IsNot Nothing Then
+                        ' Apply bill-level discount
+                        _ApplyBillDiscount(selectedDiscount)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -1780,24 +1786,27 @@ Public Class PosSalesII
     ' Item Discount Button Click Handler
     Private Sub BarButtonItem8_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles baritemdiscount.ItemClick
         Try
-            If _globalSetting.ItemDiscountActive = False Then
-                MessageBox.Show("You do not have rights apply item discount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End If
-            ' Check if any item is selected in the grid
-            If GridViewPOS.FocusedRowHandle < 0 Then
-                MessageBox.Show("Please select an item to apply discount.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Exit Sub
-            End If
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                If _globalSetting.ItemDiscountActive = False Then
+                    MessageBox.Show("You do not have rights apply item discount: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                ' Check if any item is selected in the grid
+                If GridViewPOS.FocusedRowHandle < 0 Then
+                    MessageBox.Show("Please select an item to apply discount.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Sub
+                End If
 
-            ' Show discount selection form
-            Dim discountForm As New FrmDiscountSelection()
-            If discountForm.ShowDialog() = DialogResult.OK Then
-                Dim selectedDiscount = discountForm.SelectedDiscountInfo
+                ' Show discount selection form
+                Dim discountForm As New FrmDiscountSelection()
+                If discountForm.ShowDialog() = DialogResult.OK Then
+                    Dim selectedDiscount = discountForm.SelectedDiscountInfo
 
-                If selectedDiscount IsNot Nothing Then
-                    ' Apply item-level discount
-                    _ApplyItemDiscount(selectedDiscount)
+                    If selectedDiscount IsNot Nothing Then
+                        ' Apply item-level discount
+                        _ApplyItemDiscount(selectedDiscount)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -3485,13 +3494,16 @@ Public Class PosSalesII
 #Region "ViewEdit"
     Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
         Try
-            Dim modeofbill As String = ""
-            frmSelectBill.ShowDialog()
-            If frmSelectBill.DialogResult = Windows.Forms.DialogResult.OK Then
-                modeOfSale = "View"
-                If GetSalesBySalID(G_SalID, modeofbill) = True Then
-                    modeOfSale = modeofbill
-                    barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                Dim modeofbill As String = ""
+                frmSelectBill.ShowDialog()
+                If frmSelectBill.DialogResult = Windows.Forms.DialogResult.OK Then
+                    modeOfSale = "View"
+                    If GetSalesBySalID(G_SalID, modeofbill) = True Then
+                        modeOfSale = modeofbill
+                        barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -3780,8 +3792,10 @@ Public Class PosSalesII
 
     Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
         Try
-            frmPrintProfile.ShowDialog()
-
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmPrintProfile.ShowDialog()
+            End If
         Catch ex As Exception
 
         End Try
@@ -3860,14 +3874,17 @@ Public Class PosSalesII
  
     Private Sub barchkcustomerpole_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barchkcustomerpole.ItemClick
         Try
-            If CustomerDisplaySettings.Startup = 2 Then
-                barchkcustomerpole.Checked = False
-                DevExpress.XtraEditors.XtraMessageBox.Show("Customer Display Pole is Disable Status on Settings.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                If barchkcustomerpole.Checked = True Then
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                If CustomerDisplaySettings.Startup = 2 Then
                     barchkcustomerpole.Checked = False
-                ElseIf barchkcustomerpole.Checked = False Then
-                    barchkcustomerpole.Checked = True
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Customer Display Pole is Disable Status on Settings.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    If barchkcustomerpole.Checked = True Then
+                        barchkcustomerpole.Checked = False
+                    ElseIf barchkcustomerpole.Checked = False Then
+                        barchkcustomerpole.Checked = True
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -3956,13 +3973,14 @@ Public Class PosSalesII
 
     Private Sub btnPoledisplaysetting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPoledisplaysetting.ItemClick
         Try
-            frmcustomerpole.ShowDialog()
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmcustomerpole.ShowDialog()
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
 #End Region
-
-  
-
+ 
 End Class

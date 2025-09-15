@@ -16,7 +16,8 @@ Public Class frmKeyAmt
             _btnnum = CType(sender, SimpleButton)
             _TXTPASS.EditValue = _TXTPASS.EditValue + _btnnum.Text.ToString
             numstr = numstr + _btnnum.Text
-            _TXTPASS.EditValue = Format(Val(numstr) / 100, "#####.00")
+            '_TXTPASS.EditValue = Format(Val(numstr) / 100, "#####.00")
+            _TXTPASS.EditValue = Format(Val(numstr), "#####.00")
         Catch ex As Exception
 
         End Try

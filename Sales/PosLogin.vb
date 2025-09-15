@@ -21,12 +21,13 @@ Public Class PosLogin
             ' Apply the current skin to Login form (don't reload, just apply what's already set)
             SkinManager.LoadSkinSetting()
             If ValidateDBConnectionBeforeLogin(errMsg, M_Details._Conn) = False Then
-                MessageBox.Show(errMsg, "Error On Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(errMsg, "Database Connection String Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Application.Exit()
+            Else
+                If _ReadSyncLocalCloud() Then
+                    txtusername.Properties.DataSource = _JsonData.UserTable
+                End If
             End If
-            If _ReadSyncLocalCloud() Then
-                txtusername.Properties.DataSource = _JsonData.UserTable
-            End If
-
         Catch ex As Exception
 
         End Try

@@ -437,6 +437,7 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    
 }
 
 // Fallback for invalid requests

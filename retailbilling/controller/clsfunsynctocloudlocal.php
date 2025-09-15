@@ -546,12 +546,12 @@ class clsfuncsync
                 // Check delete status for each individual record
                 $deleteState = isset($payout['payd_deletestatus']) ? $payout['payd_deletestatus'] : 'I';
                 //if exists previous record
-                $deleteitem = "DELETE FROM pos_payout_dtl WHERE payd_refid = '" . mysqli_real_escape_string($this->conn, $payout['payd_id']) . "' AND ComId = '" . mysqli_real_escape_string($this->conn, $comid) . "' AND LocId = '" . mysqli_real_escape_string($this->conn, $locid) . "' AND PmId = '" . mysqli_real_escape_string($this->conn, $pm_id) . "'";
-                mysqli_query($this->conn, $deleteitem);
-                if (mysqli_affected_rows($this->conn) > 0) {
-                    // Record was deleted
-                    error_log("Deleted payout record: " . $payout['payd_id']);
-                }
+                // $deleteitem = "DELETE FROM pos_payout_dtl WHERE payd_refid = '" . mysqli_real_escape_string($this->conn, $payout['payd_id']) . "' AND ComId = '" . mysqli_real_escape_string($this->conn, $comid) . "' AND LocId = '" . mysqli_real_escape_string($this->conn, $locid) . "' AND PmId = '" . mysqli_real_escape_string($this->conn, $pm_id) . "'";
+                // mysqli_query($this->conn, $deleteitem);
+                // if (mysqli_affected_rows($this->conn) > 0) {
+                //     // Record was deleted
+                //     error_log("Deleted payout record: " . $payout['payd_id']);
+                // }
 
                 if ($deleteState == 'D') {
                     $payd_id = isset($payout['payd_id']) ? $payout['payd_id'] : '';
@@ -621,7 +621,7 @@ class clsfuncsync
         $locid   = mysqli_real_escape_string($this->conn, $locid);
         $pm_id   = mysqli_real_escape_string($this->conn, $pm_id);
 
-        $sql = "DELETE FROM pos_payout_dtl WHERE paydref_id = '$payd_id' AND ComId = '$comid' AND LocId = '$locid' AND PmId = '$pm_id'";
+        $sql = "DELETE FROM pos_payout_dtl WHERE payd_refid = '$payd_id' AND ComId = '$comid' AND LocId = '$locid' AND PmId = '$pm_id'";
         $result = mysqli_query($this->conn, $sql);
 
         if ($result) {

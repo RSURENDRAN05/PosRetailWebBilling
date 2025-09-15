@@ -28,8 +28,8 @@ Module PosSettingsManager
         Public Shared _AutoDayOpen As Boolean = True
         Public Shared _ShiftPrintDos As Boolean = True
         Public Shared ProductWithBarcode As Boolean = False
-        Public Shared PrintShiftClose As Boolean = True
-        Public Shared PrintDayClose As Boolean = True
+        Public Shared PrintShiftClose As Boolean = False
+        Public Shared PrintDayClose As Boolean = False
         Public Shared SalePriceOnSales As Boolean = False
         Public Shared SuperUserPassword As Boolean = False
         Public Shared BackDisplayClear As Boolean = False

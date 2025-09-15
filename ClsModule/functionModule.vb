@@ -27,7 +27,7 @@ Module functionModule
     Public _PRINTDS, _SETTINGS As New DataSet
     Public _posPrintHeadDesign As DataSet
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "Cli-VER25.0.0.21 R2 140925" '"Web" '"Ser" '"Cli"
+        Public Shared SoftwareVersion As String = "Web-VER25.0.0.22 R2 1540925" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
@@ -1337,6 +1337,28 @@ Module functionModule
             'Dim MsgResultDTL = Userparsejson("dtl")
             Dim MsgResultMsg = Userparsejson("Data")
             If dtresults.ToString = "True" Then
+
+                Return True
+            Else
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function _JsonSend(ByRef _val As String, ByRef ReturnId As String, Optional ByRef ErrMsg As String = "0") As Boolean
+        Try
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(_val)
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dim dtresults = Userparsejson("Success")
+            ' Dim MsgResultHDR = Userparsejson("hdr")
+            'Dim MsgResultDTL = Userparsejson("dtl")
+            Dim MsgResultMsg = Userparsejson("Data")
+            If dtresults.ToString = "True" Then
+                ReturnId = MsgResultMsg.ToString
                 Return True
             Else
                 Return False

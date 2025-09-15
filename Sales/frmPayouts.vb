@@ -16,6 +16,7 @@ Public Class frmPayouts
     Dim keyTextNum As New xkeyboard
     Dim _newSave As Boolean = False
     Dim _casdr As New RawPrinter
+    Dim ModeOfUpload As String = "Local"
     Public Function CreateStaffTable() As DataTable
         Try
             StaffTable = New DataTable
@@ -113,41 +114,48 @@ Public Class frmPayouts
                 Else
                     remas = txtRemarks.Text
                 End If
-                If _newSave = True Then
-                    Dim _SqlpayoutSave(11) As SqlParameter
-                    _SqlpayoutSave(0) = New SqlParameter("@mode", "I")
-                    _SqlpayoutSave(1) = New SqlParameter("@payd_id", "0")
-                    _SqlpayoutSave(2) = New SqlParameter("@payd_ledgerid", txtId.Text)
-                    _SqlpayoutSave(3) = New SqlParameter("@payd_name", txtName.Text)
-                    _SqlpayoutSave(4) = New SqlParameter("@payd_amount", txtAmount.Text)
-                    _SqlpayoutSave(5) = New SqlParameter("@payd_remarks", remas)
-                    _SqlpayoutSave(6) = New SqlParameter("@payd_shiftno", _saleSetting._curShiftno)
-                    _SqlpayoutSave(7) = New SqlParameter("@payd_dayno", _saleSetting._curDayno)
-                    _SqlpayoutSave(8) = New SqlParameter("@payd_user", _companyInfo.UserId)
-                    _SqlpayoutSave(9) = New SqlParameter("@payd_ledgertype", ledgerType)
-                    _SqlpayoutSave(10) = New SqlParameter("@POS_MACHINEID", RegistrationDetails._machineId)
-                    _SqlpayoutSave(11) = New SqlParameter("@POS_MACHINENAME", RegistrationDetails._localPcname)
-                    If _ExecuteNonQuery("sp_payout_save", _SqlpayoutSave, errMsg) = False Then
-                        WriteErroLog(errMsg)
-                    Else
-                        _newSave = False
-                        txtAmount.Text = ""
-                        txtId.Text = ""
-                        txtName.Text = ""
-                        _PayoutDetailsLoad()
-                        Dim wSalesPrint As New WindowsPrinter
-                        If wSalesPrint._PayOutSinglePrint = False Then
+                If ModeOfUpload = "Local" Then
+                    If _newSave = True Then
+                        Dim _SqlpayoutSave(11) As SqlParameter
+                        _SqlpayoutSave(0) = New SqlParameter("@mode", "I")
+                        _SqlpayoutSave(1) = New SqlParameter("@payd_id", "0")
+                        _SqlpayoutSave(2) = New SqlParameter("@payd_ledgerid", txtId.Text)
+                        _SqlpayoutSave(3) = New SqlParameter("@payd_name", txtName.Text)
+                        _SqlpayoutSave(4) = New SqlParameter("@payd_amount", txtAmount.Text)
+                        _SqlpayoutSave(5) = New SqlParameter("@payd_remarks", remas)
+                        _SqlpayoutSave(6) = New SqlParameter("@payd_shiftno", _saleSetting._curShiftno)
+                        _SqlpayoutSave(7) = New SqlParameter("@payd_dayno", _saleSetting._curDayno)
+                        _SqlpayoutSave(8) = New SqlParameter("@payd_user", _companyInfo.UserId)
+                        _SqlpayoutSave(9) = New SqlParameter("@payd_ledgertype", ledgerType)
+                        _SqlpayoutSave(10) = New SqlParameter("@POS_MACHINEID", RegistrationDetails._machineId)
+                        _SqlpayoutSave(11) = New SqlParameter("@POS_MACHINENAME", RegistrationDetails._localPcname)
+                        If _ExecuteNonQuery("sp_payout_save", _SqlpayoutSave, errMsg) = False Then
                             WriteErroLog(errMsg)
                         Else
-                            Dim windprint As New PrintCommand
-                            If windprint._PayoutSingleEntry() = False Then
-                                'MessageBox.Show("Not Print")
-                            End If
-                            _casdr.OpenCashdrawer(True)
+                            _newSave = False
+                            txtAmount.Text = ""
+                            txtId.Text = ""
+                            txtName.Text = ""
+                            _PayoutDetailsLoad()
+                            Dim wSalesPrint As New WindowsPrinter
+                            If wSalesPrint._PayOutSinglePrint = False Then
+                                WriteErroLog(errMsg)
+                            Else
+                                Dim windprint As New PrintCommand
+                                If windprint._PayoutSingleEntry() = False Then
+                                    'MessageBox.Show("Not Print")
+                                End If
+                                _casdr.OpenCashdrawer(True)
 
+                            End If
                         End If
                     End If
+                Else
+                    'web
+                    Dim payoutcls As New Payout
+
                 End If
+
             End If
         Catch ex As Exception
 
@@ -242,4 +250,31 @@ Public Class frmPayouts
     End Sub
 
 
+    Private Sub btnModeofWeb_Click(sender As Object, e As EventArgs) Handles btnModeofWeb.Click
+        Try
+            If ModeOfUpload = "Web" Then
+                btnModeofWeb.Text = ModeOfUpload
+            Else
+                btnModeofWeb.Text = "Local"
+                ModeOfUpload = "Local"
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+End Class
+Public Class Payout
+    Public Property Mode As String
+    Public Property Payd_Id As Integer
+    Public Property Payd_LedgerId As Integer
+    Public Property Payd_Name As String
+    Public Property Payd_Amount As Decimal
+    Public Property Payd_Remarks As String
+    Public Property Payd_ShiftNo As Integer
+    Public Property Payd_DayNo As Integer
+    Public Property Payd_User As Integer
+    Public Property Payd_LedgerType As String
+    Public Property POS_MachineId As String
+    Public Property POS_MachineName As String
+    Public Property payd_deletestatus As String
 End Class

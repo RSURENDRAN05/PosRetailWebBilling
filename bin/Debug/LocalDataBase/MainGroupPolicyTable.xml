@@ -32,10 +32,23 @@
     <item_id>1</item_id>
     <menu_type>Main</menu_type>
     <font_size>25.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,192,128)</back_color>
+    <Position>0</Position>
+  </MainGroupPolicyTable>
+  <MainGroupPolicyTable>
+    <MainId>4</MainId>
+    <MainName>TEST</MainName>
+    <id>32</id>
+    <item_id>4</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
     <Position>0</Position>
   </MainGroupPolicyTable>
 </NewDataSet>

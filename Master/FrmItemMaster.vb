@@ -135,6 +135,7 @@ Public Class FrmItemMaster
                 txtposition.Properties.Appearance.BackColor = Color.White
             End If
             Dim itemdata As New itemmaster
+            Dim btnprop As New ButtonPropertiesData
             If btnsave.Text = "Save" Then
                 dialog.Caption = "Connecting To Server"
                 itemdata.itemid = 0
@@ -158,10 +159,14 @@ Public Class FrmItemMaster
                 itemdata.itemallowmultipleprice = chkallowmultipleprice.CheckState
                 itemdata.itemcolor = ColorTranslator.ToHtml(colorEdit1.Color)
                 itemdata.itemposition = txtposition.Text
+                Dim RturnId As String = "0"
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
-                If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=23&json=" & PostString) = True Then
+                If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=23&json=" & PostString, RturnId, "0") = True Then
                     dialog.Caption = "Data Saved Success.."
                     _Clear()
+                    ' Save default button settings after successful update
+                    btnprop.SaveDefaultButtonSettings(RturnId, "Item")
+                    _DataLoad()
                 End If
             Else
                 dialog.Caption = "Connecting To Server"
@@ -189,9 +194,8 @@ Public Class FrmItemMaster
                 Dim PostString As String = JsonConvert.SerializeObject(itemdata)
                 If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=24&json=" & PostString) = True Then
                     dialog.Caption = "Data Saved Success.."
-                    ' Save default button settings after successful update
-                    'SaveDefaultButtonSettings()
                     _Clear()
+                    _DataLoad()
                 End If
             End If
         Catch ex As Exception
@@ -659,81 +663,7 @@ Public Class FrmItemMaster
         End Try
     End Sub
 
-    ' Save default button settings for the newly created/updated item
-    Private Sub SaveDefaultButtonSettings()
-        Try
-            ' Get the ItemId (either from txtitemid for updates or get the latest for new records)
-            Dim itemId As Integer = 0
-
-            If btnsave.Text = "Update" AndAlso Not String.IsNullOrEmpty(txtitemid.Text) Then
-                ' For updates, use the existing ItemId
-                itemId = Convert.ToInt32(txtitemid.Text)
-            Else
-                ' For new records, get the latest ItemId from the data
-                If _JsonData.ItemMasterTable IsNot Nothing AndAlso _JsonData.ItemMasterTable.Rows.Count > 0 Then
-                    ' Get the maximum ItemId (assuming it's the newly inserted one)
-                    itemId = _JsonData.ItemMasterTable.AsEnumerable().Max(Function(row) Convert.ToInt32(row("Id")))
-                End If
-            End If
-
-            If itemId > 0 Then
-                ' Create default button properties for Item menu type
-                Dim buttonProperties As New ButtonPropertiesData()
-                buttonProperties.item_id = itemId
-                buttonProperties.menu_type = "Item"
-                buttonProperties.font_size = 8.0
-                buttonProperties.font_name = "Segoe UI"
-                buttonProperties.font_style = "Regular"
-                buttonProperties.text_color = String.Format("Argb({0},{1},{2},{3})", 255, 0, 0, 139) ' DarkBlue text
-                buttonProperties.back_color = String.Format("Argb({0},{1},{2},{3})", 255, 245, 245, 220) ' Beige background
-                buttonProperties.position = 0
-                buttonProperties.button_width = 100
-                buttonProperties.button_height = 45
-
-                ' Send to PHP API
-                Dim postData As String = CreateButtonPostData(buttonProperties)
-                Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
-
-                ' Send GET request to save button properties
-                Try
-                    Using client As New System.Net.WebClient()
-                        Dim response As String = client.DownloadString(phpUrl)
-                        ' Show success message to user
-                        MessageBox.Show("Default button settings saved for ItemId: " & itemId, "Button Settings", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    End Using
-                Catch ex As Exception
-                    ' Show error message to user
-                    MessageBox.Show("Error saving default button settings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-            End If
-
-        Catch ex As Exception
-            ' Show error message to user
-            MessageBox.Show("Error in SaveDefaultButtonSettings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    ' Helper method to create POST data for button properties
-    Private Function CreateButtonPostData(props As ButtonPropertiesData) As String
-        Try
-            Dim postData As String = ""
-            postData &= "operation=SAVE"
-            postData &= "&item_id=" & Uri.EscapeDataString(props.item_id.ToString())
-            postData &= "&menu_type=" & Uri.EscapeDataString(props.menu_type)
-            postData &= "&font_size=" & Uri.EscapeDataString(props.font_size.ToString())
-            postData &= "&font_name=" & Uri.EscapeDataString(props.font_name)
-            postData &= "&font_style=" & Uri.EscapeDataString(props.font_style)
-            postData &= "&text_color=" & Uri.EscapeDataString(props.text_color)
-            postData &= "&back_color=" & Uri.EscapeDataString(props.back_color)
-            postData &= "&position=" & Uri.EscapeDataString(props.position.ToString())
-            postData &= "&button_width=" & Uri.EscapeDataString(props.button_width.ToString())
-            postData &= "&button_height=" & Uri.EscapeDataString(props.button_height.ToString())
-
-            Return postData
-        Catch ex As Exception
-            Return ""
-        End Try
-    End Function
+     
 End Class
 
 Public Class itemmaster
@@ -777,4 +707,79 @@ Public Class ButtonPropertiesData
     Public Property position As Integer
     Public Property button_width As Integer
     Public Property button_height As Integer
+    ' Save default button settings for the newly created/updated main group
+    Public Sub SaveDefaultButtonSettings(ByRef RtnId As String, ByRef MenuType As String)
+        Try
+            ' Get the MainId (either from txtmainid for updates or get the latest for new records)
+            Dim mainId As Integer = 0
+
+            If Not String.IsNullOrEmpty(mainId) Then
+                ' For updates, use the existing MainId
+                mainId = Convert.ToInt32(RtnId)
+            Else
+                ' For new records, get the latest MainId from the data
+                If _JsonData.MainGroupTable IsNot Nothing AndAlso _JsonData.MainGroupTable.Rows.Count > 0 Then
+                    ' Get the maximum MainId (assuming it's the newly inserted one)
+                    mainId = _JsonData.MainGroupTable.AsEnumerable().Max(Function(row) Convert.ToInt32(row("MainId")))
+                End If
+            End If
+
+            If mainId > 0 Then
+                ' Create default button properties for Main menu type
+                Dim buttonProperties As New ButtonPropertiesData()
+                buttonProperties.item_id = mainId
+                buttonProperties.menu_type = MenuType
+                buttonProperties.font_size = 10.0
+                buttonProperties.font_name = "Segoe UI"
+                buttonProperties.font_style = "Bold"
+                buttonProperties.text_color = String.Format("Argb({0},{1},{2},{3})", 255, 255, 255, 255) ' White text
+                buttonProperties.back_color = String.Format("Argb({0},{1},{2},{3})", 255, 72, 61, 139) ' DarkSlateBlue background
+                buttonProperties.position = 0
+                buttonProperties.button_width = 120
+                buttonProperties.button_height = 60
+
+                ' Send to PHP API
+                Dim postData As String = CreateButtonPostData(buttonProperties)
+                Dim phpUrl As String = M_Details.LinkAjaxRequest & "MenuRequest=11&" & postData
+
+                ' Send GET request to save button properties
+                Try
+                    Using client As New System.Net.WebClient()
+                        Dim response As String = client.DownloadString(phpUrl)
+                        ' Show success message to user
+                        MessageBox.Show("Default button settings saved for MainId: " & mainId, "Button Settings", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End Using
+                Catch ex As Exception
+                    ' Show error message to user
+                    MessageBox.Show("Error saving default button settings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
+
+        Catch ex As Exception
+            ' Show error message to user
+            MessageBox.Show("Error in SaveDefaultButtonSettings: " & ex.Message, "Button Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Helper method to create POST data for button properties
+    Private Function CreateButtonPostData(props As ButtonPropertiesData) As String
+        Try
+            Dim postData As String = ""
+            postData &= "operation=SAVE"
+            postData &= "&item_id=" & Uri.EscapeDataString(props.item_id.ToString())
+            postData &= "&menu_type=" & Uri.EscapeDataString(props.menu_type)
+            postData &= "&font_size=" & Uri.EscapeDataString(props.font_size.ToString())
+            postData &= "&font_name=" & Uri.EscapeDataString(props.font_name)
+            postData &= "&font_style=" & Uri.EscapeDataString(props.font_style)
+            postData &= "&text_color=" & Uri.EscapeDataString(props.text_color)
+            postData &= "&back_color=" & Uri.EscapeDataString(props.back_color)
+            postData &= "&position=" & Uri.EscapeDataString(props.position.ToString())
+            postData &= "&button_width=" & Uri.EscapeDataString(props.button_width.ToString())
+            postData &= "&button_height=" & Uri.EscapeDataString(props.button_height.ToString())
+
+            Return postData
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
 End Class

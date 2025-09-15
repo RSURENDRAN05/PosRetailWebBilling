@@ -923,6 +923,7 @@ namespace XtraReportSerialization {
                         this.PageHeader,
                         this.GroupFooter1,
                         this.GroupFooter2});
+            this.DataMember = "Table1";
             this.DesignerOptions.ShowDesignerHints = false;
             this.DesignerOptions.ShowExportWarnings = false;
             this.DesignerOptions.ShowPrintingWarnings = false;
