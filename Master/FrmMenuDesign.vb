@@ -702,7 +702,6 @@
                 Dim result As DialogResult = MessageBox.Show(
                     "Save to:" & vbCrLf &
                     "YES = Current selected button only" & vbCrLf &
-                    "NO = All buttons in current menu type" & vbCrLf &
                     "CANCEL = Cancel operation",
                     "Save Properties",
                     MessageBoxButtons.YesNoCancel,
@@ -716,7 +715,7 @@
 
                     Case DialogResult.No
                         ' Apply and save to all buttons of current menu type
-                        ApplyPropertiesToAllButtons()
+                        'ApplyPropertiesToAllButtons()
 
                     Case DialogResult.Cancel
                         ' Do nothing
