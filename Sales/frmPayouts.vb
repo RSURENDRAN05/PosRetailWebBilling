@@ -7,6 +7,9 @@ Imports System.Linq
 Imports System.Data
 Imports System
 Imports PosRetailWebBilling.clssalesProperty
+Imports System.Net
+Imports Newtonsoft.Json.Linq
+Imports System.Text
 
 Public Class frmPayouts
     Dim StaffTable As DataTable
@@ -41,7 +44,7 @@ Public Class frmPayouts
                 StaffTable.AcceptChanges()
                 GridControl1.DataSource = StaffTable
             End If
-       
+
         Catch ex As Exception
 
         End Try
@@ -60,9 +63,18 @@ Public Class frmPayouts
 
     Private Sub frmPayouts_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
+            If CheckForInternetConnection() = True Then
+                ModeOfUpload = "Web"
+            End If
             GridControl1.DataSource = CreateStaffTable()
             _DsLoad("STA")
-            _PayoutDetailsLoad()
+            If ModeOfUpload = "Local" Then
+                _PayoutDetailsLoad()
+            Else
+                GetPayoutDataCloud()
+            End If
+
+            PayDate.EditValue = Date.Now
         Catch ex As Exception
 
         End Try
@@ -107,12 +119,31 @@ Public Class frmPayouts
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
+            Dim _results As Boolean
+            Dim _msg As String = ""
+            Dim _data As String = ""
             If Not String.IsNullOrEmpty(txtId.Text) OrElse String.IsNullOrEmpty(txtAmount.Text) Then
                 Dim remas As String = ""
                 If String.IsNullOrEmpty(txtRemarks.Text) Then
                     remas = txtName.Text
                 Else
                     remas = txtRemarks.Text
+                End If
+                If Not IsNumeric(txtAmount.Text) Then
+                    MessageBox.Show("Please Enter Valid Amount", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
+                End If
+                If Val(txtAmount.Text) <= 0 Then
+                    MessageBox.Show("Amount Should Be Greater Than Zero", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
+                End If
+                If Val(txtAmount.Text) > 1000000 Then
+                    MessageBox.Show("Amount Should Be Less Than 1,000,000", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
+                End If
+                If String.IsNullOrEmpty(txtName.Text) Then
+                    MessageBox.Show("Please Select Name", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
                 End If
                 If ModeOfUpload = "Local" Then
                     If _newSave = True Then
@@ -153,6 +184,37 @@ Public Class frmPayouts
                 Else
                     'web
                     Dim payoutcls As New Payout
+                    payoutcls.payd_refid = txtId.Text
+                    payoutcls.payd_ledgerid = txtId.Text
+                    payoutcls.payd_name = txtName.Text
+                    payoutcls.payd_amount = txtAmount.Text
+                    payoutcls.payd_remarks = remas
+                    payoutcls.payd_shiftno = _saleSetting._curShiftno
+                    payoutcls.payd_dayno = _saleSetting._curDayno
+                    payoutcls.payd_user = _companyInfo.UserId
+                    Dim fromDate As Date = Convert.ToDateTime(PayDate.EditValue).Date
+                    payoutcls.payd_datetime = fromDate.ToString("yyyy-MM-dd")
+                    Dim HdrData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payoutcls)
+                    HdrData = CleanJsonString(HdrData)
+                    Dim postData As String = String.Format("payoutdata={0}", Uri.EscapeDataString(HdrData))
+                    If JsonPostSales(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=" & 11 & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId, "POST", postData, _results, _msg, _data) = True Then
+                        _newSave = False
+                        txtAmount.Text = ""
+                        txtId.Text = ""
+                        txtName.Text = ""
+                        GetPayoutDataCloud()
+                        Dim wSalesPrint As New WindowsPrinter
+                        If wSalesPrint._PayOutSinglePrint = False Then
+                            WriteErroLog(errMsg)
+                        Else
+                            Dim windprint As New PrintCommand
+                            If windprint._PayoutSingleEntry() = False Then
+                                'MessageBox.Show("Not Print")
+                            End If
+                            _casdr.OpenCashdrawer(True)
+
+                        End If
+                    End If
 
                 End If
 
@@ -165,7 +227,7 @@ Public Class frmPayouts
         Try
             Dim _DSpayoyut As New DataSet
             Dim _SqlpayoutSave(11) As SqlParameter
-            _SqlpayoutSave(0) = New SqlParameter("@mode", "S") 'S supplier / 'Staff 
+            _SqlpayoutSave(0) = New SqlParameter("@mode", "S") 'S supplier / 'Staff
             _SqlpayoutSave(1) = New SqlParameter("@payd_id", "0")
             _SqlpayoutSave(2) = New SqlParameter("@payd_ledgerid", "0")
             _SqlpayoutSave(3) = New SqlParameter("@payd_name", "0")
@@ -207,28 +269,58 @@ Public Class frmPayouts
     Private Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
 
         Try
-            properClass.R_Msgstring = txtId.Text & " -" & txtName.Text & vbNewLine & "Do You Want To Delete?"
-            Dim frmmsg As New frmMsgBox
-            frmmsg.ShowDialog()
-            If properClass.R_YesOrNo = "Yes" Then
-                Dim _DSpayoyut As New DataSet
-                Dim _SqlpayoutSave(11) As SqlParameter
-                _SqlpayoutSave(0) = New SqlParameter("@mode", "D")
-                _SqlpayoutSave(1) = New SqlParameter("@payd_id", txtId.Text)
-                _SqlpayoutSave(2) = New SqlParameter("@payd_ledgerid", "0")
-                _SqlpayoutSave(3) = New SqlParameter("@payd_name", "0")
-                _SqlpayoutSave(4) = New SqlParameter("@payd_amount", "0")
-                _SqlpayoutSave(5) = New SqlParameter("@payd_remarks", "0")
-                _SqlpayoutSave(6) = New SqlParameter("@payd_shiftno", _saleSetting._curShiftno)
-                _SqlpayoutSave(7) = New SqlParameter("@payd_dayno", "0")
-                _SqlpayoutSave(8) = New SqlParameter("@payd_user", "0")
-                _SqlpayoutSave(9) = New SqlParameter("@payd_ledgertype", ledgerType)
-                _SqlpayoutSave(10) = New SqlParameter("@POS_MACHINEID", RegistrationDetails._machineId)
-                _SqlpayoutSave(11) = New SqlParameter("@POS_MACHINENAME", RegistrationDetails._localPcname)
-                If _ExecuteNonQuery("sp_payout_save", _SqlpayoutSave, errMsg) = True Then
-                    WriteAuditLog(_companyInfo.UserId, "PayOutDelete", "PayoutName :" & txtName.Text & "- Amount" & txtAmount.Text)
-                    _PayoutDetailsLoad()
-                    _MailSentMsg("PayOutDelete => UserName :" & _companyInfo.UserName & " ShiftNo : " & _saleSetting._curShiftno & vbNewLine & " PayoutName :" & txtName.Text & vbNewLine & " Amount: " & txtAmount.Text & vbNewLine & "Date :" & Date.Now, MailConfiguration._custMailID1)
+            Dim _results As Boolean
+            Dim _msg As String = ""
+            Dim _data As String = ""
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                If ModeOfUpload = "Local" Then
+                    properClass.R_Msgstring = txtId.Text & " -" & txtName.Text & vbNewLine & "Do You Want To Delete?"
+                    Dim frmmsg As New frmMsgBox
+                    frmmsg.ShowDialog()
+                    If properClass.R_YesOrNo = "Yes" Then
+                        Dim _DSpayoyut As New DataSet
+                        Dim _SqlpayoutSave(11) As SqlParameter
+                        _SqlpayoutSave(0) = New SqlParameter("@mode", "D")
+                        _SqlpayoutSave(1) = New SqlParameter("@payd_id", txtId.Text)
+                        _SqlpayoutSave(2) = New SqlParameter("@payd_ledgerid", "0")
+                        _SqlpayoutSave(3) = New SqlParameter("@payd_name", "0")
+                        _SqlpayoutSave(4) = New SqlParameter("@payd_amount", "0")
+                        _SqlpayoutSave(5) = New SqlParameter("@payd_remarks", "0")
+                        _SqlpayoutSave(6) = New SqlParameter("@payd_shiftno", _saleSetting._curShiftno)
+                        _SqlpayoutSave(7) = New SqlParameter("@payd_dayno", "0")
+                        _SqlpayoutSave(8) = New SqlParameter("@payd_user", "0")
+                        _SqlpayoutSave(9) = New SqlParameter("@payd_ledgertype", ledgerType)
+                        _SqlpayoutSave(10) = New SqlParameter("@POS_MACHINEID", RegistrationDetails._machineId)
+                        _SqlpayoutSave(11) = New SqlParameter("@POS_MACHINENAME", RegistrationDetails._localPcname)
+                        If _ExecuteNonQuery("sp_payout_save", _SqlpayoutSave, errMsg) = True Then
+                            WriteAuditLog(_companyInfo.UserId, "PayOutDelete", "PayoutName :" & txtName.Text & "- Amount" & txtAmount.Text)
+                            _PayoutDetailsLoad()
+
+                            txtAmount.Text = ""
+                            txtId.Text = ""
+                            txtName.Text = ""
+                        End If
+                    End If
+                Else
+                    'web
+                    properClass.R_Msgstring = txtId.Text & " -" & txtName.Text & vbNewLine & "Do You Want To Delete?"
+                    Dim frmmsg As New frmMsgBox 'YesNo
+                    frmmsg.ShowDialog() 'YesNo
+                    If properClass.R_YesOrNo = "Yes" Then
+                        Dim payoutcls As New Payout
+                        payoutcls.payd_id = txtId.Text
+                        Dim HdrData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payoutcls)
+                        HdrData = CleanJsonString(HdrData)
+                        Dim postData As String = String.Format("payoutdata={0}", Uri.EscapeDataString(HdrData))
+                        If JsonPostSales(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=" & 12 & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId, "POST", postData, _results, _msg, _data) = True Then
+                            WriteAuditLog(_companyInfo.UserId, "PayOutDelete", "PayoutName :" & txtName.Text & "- Amount" & txtAmount.Text)
+                            GetPayoutDataCloud()
+                            txtAmount.Text = ""
+                            txtId.Text = ""
+                            txtName.Text = ""
+                        End If
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -254,27 +346,207 @@ Public Class frmPayouts
         Try
             If ModeOfUpload = "Web" Then
                 btnModeofWeb.Text = ModeOfUpload
+                GetPayoutDataCloud()
             Else
                 btnModeofWeb.Text = "Local"
                 ModeOfUpload = "Local"
+                _PayoutDetailsLoad()
             End If
         Catch ex As Exception
 
         End Try
     End Sub
+#Region "PostDataCloud"
+    Public Function JsonPostSales(ByVal url As String, ByVal method As String, ByVal data As String, ByRef _results As Boolean, ByRef _msg As String, ByRef _data As String) As Boolean
+        Try
+
+            Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(url)
+            request.Method = method
+            Dim postData = data
+            Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData)
+            request.ContentType = "application/x-www-form-urlencoded" ' "application/json" '
+            request.ContentLength = byteArray.Length
+            request.Timeout = 30000 ' 30 seconds timeout
+
+            Dim dataStream As System.IO.Stream = request.GetRequestStream()
+            dataStream.Write(byteArray, 0, byteArray.Length)
+            dataStream.Close()
+
+            Dim response As WebResponse = request.GetResponse()
+            dataStream = response.GetResponseStream()
+            Dim reader As New StreamReader(dataStream)
+            Dim responseText As String = reader.ReadToEnd()
+            reader.Close()
+            dataStream.Close()
+            response.Close()
+
+            ' Log the response for debugging
+            WriteErroLog("Post Sales Response", "URL: " & url)
+            WriteErroLog("Post Sales Response", "Response Length: " & responseText.Length.ToString())
+
+
+            ' Check if response is empty
+            If String.IsNullOrWhiteSpace(responseText) Then
+                WriteErroLog("Post Sales Error", "Empty response received from server")
+                _results = False
+                _msg = "Empty response"
+                _data = "No data received from server"
+                Return False
+            End If
+
+            ' Check if response starts with expected JSON format
+            If Not responseText.Trim().StartsWith("{") Then
+                WriteErroLog("Post Sales Error", "Response is not JSON format. First 200 chars: " & If(responseText.Length > 200, responseText.Substring(0, 200), responseText))
+                _results = False
+                _msg = "Invalid response format"
+                _data = "Response is not valid JSON"
+                Return False
+            End If
+
+            ' Parse JSON response
+            Dim Userparsejson As JObject = JObject.Parse(responseText)
+            _data = If(Userparsejson("Data") IsNot Nothing, Userparsejson("Data").ToString, "")
+            _results = If(Userparsejson("Success") IsNot Nothing, CBool(Userparsejson("Success")), False)
+            _msg = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString, "")
+
+            Return _results
+
+        Catch jsonEx As Newtonsoft.Json.JsonReaderException
+            WriteErroLog("Post Sales JSON Error", "Failed to parse response JSON: " & jsonEx.Message)
+            _results = False
+            _msg = "JSON parsing error"
+            _data = jsonEx.Message
+            Return False
+        Catch webEx As WebException
+            Dim errorResponse As String = ""
+            If webEx.Response IsNot Nothing Then
+                Try
+                    Using responseStream As System.IO.Stream = webEx.Response.GetResponseStream()
+                        Using errorReader As New StreamReader(responseStream)
+                            errorResponse = errorReader.ReadToEnd()
+                        End Using
+                    End Using
+                Catch
+                    ' Ignore error reading response
+                End Try
+            End If
+            WriteErroLog("Post Sales Web Error", webEx.Message & " - Response: " & errorResponse)
+            _results = False
+            _msg = "Network error"
+            _data = webEx.Message
+            Return False
+        Catch ex As Exception
+            Dim error1 As String = ex.Message
+            If error1.Contains("Invalid URI") Then
+                WriteErroLog("Post Sales Error", "ERROR! Must have HTTP:// before the URL.")
+            Else
+                WriteErroLog("Post Sales Error", error1)
+            End If
+            _results = False
+            _msg = "General error"
+            _data = error1
+            Return False
+        End Try
+    End Function
+
+#End Region
+#Region "JsonConversion"
+    ''' <summary>
+    ''' Clean JSON string to remove control characters that cause parsing errors
+    ''' </summary>
+    Private Function CleanJsonString(jsonString As String) As String
+        If String.IsNullOrEmpty(jsonString) Then Return jsonString
+
+        ' Remove control characters (ASCII 0-31 and 127) except allowed ones
+        Dim cleanString As String = System.Text.RegularExpressions.Regex.Replace(jsonString, "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "")
+
+        ' Replace common problematic characters
+        cleanString = cleanString.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ").Replace(vbTab, " ")
+
+        ' Remove extra spaces
+        cleanString = System.Text.RegularExpressions.Regex.Replace(cleanString, "\s+", " ")
+
+        Return cleanString.Trim()
+    End Function
+
+    ''' <summary>
+    ''' Clean DataSet string fields to remove control characters before JSON serialization
+    ''' </summary>
+    Private Sub CleanDataSetForJson(ds As DataSet)
+        Try
+            For Each table As DataTable In ds.Tables
+                For Each row As DataRow In table.Rows
+                    For Each column As DataColumn In table.Columns
+                        If column.DataType Is GetType(String) AndAlso Not IsDBNull(row(column)) Then
+                            Dim originalValue As String = row(column).ToString()
+                            If Not String.IsNullOrEmpty(originalValue) Then
+                                ' Clean the string value
+                                Dim cleanValue As String = CleanStringField(originalValue)
+                                row(column) = cleanValue
+                            End If
+                        End If
+                    Next
+                Next
+            Next
+        Catch ex As Exception
+            WriteErroLog("CleanDataSetForJson Error", ex.Message)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Clean individual string field to remove control characters
+    ''' </summary>
+    Private Function CleanStringField(value As String) As String
+        If String.IsNullOrEmpty(value) Then Return value
+
+        ' Remove control characters except allowed ones (tab, newline, carriage return will be converted to spaces)
+        Dim cleanValue As String = System.Text.RegularExpressions.Regex.Replace(value, "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "")
+
+        ' Convert newlines and tabs to spaces
+        cleanValue = cleanValue.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ").Replace(vbTab, " ")
+
+        ' Remove extra spaces and trim
+        cleanValue = System.Text.RegularExpressions.Regex.Replace(cleanValue, "\s+", " ").Trim()
+
+        Return cleanValue
+    End Function
+#End Region
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Try
+            GetPayoutDataCloud()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub GetPayoutDataCloud()
+        Try
+            'Get date range from UI
+            Dim Dts As DataTable
+            Dim fromDate As Date = Convert.ToDateTime(PayDate.EditValue).Date
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd"))
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dts = Userparsejson("Data").ToObject(Of DataTable)()
+            If Dts.Rows.Count > 0 Then
+                GridControl2.DataSource = Dts
+            Else
+                GridControl2.DataSource = Nothing
+            End If
+        Catch ex As Exception
+            WriteErroLog("Payout Search Error", ex.Message)
+        End Try
+    End Sub
 End Class
 Public Class Payout
-    Public Property Mode As String
-    Public Property Payd_Id As Integer
-    Public Property Payd_LedgerId As Integer
-    Public Property Payd_Name As String
-    Public Property Payd_Amount As Decimal
-    Public Property Payd_Remarks As String
-    Public Property Payd_ShiftNo As Integer
-    Public Property Payd_DayNo As Integer
-    Public Property Payd_User As Integer
-    Public Property Payd_LedgerType As String
-    Public Property POS_MachineId As String
-    Public Property POS_MachineName As String
-    Public Property payd_deletestatus As String
+    Public Property payd_id As Integer
+    Public Property payd_refid As Integer
+    Public Property payd_ledgerid As Integer
+    Public Property payd_name As String
+    Public Property payd_amount As Decimal
+    Public Property payd_remarks As String
+    Public Property payd_shiftno As Integer
+    Public Property payd_dayno As Integer
+    Public Property payd_user As Integer
+    Public Property payd_datetime As DateTime
 End Class

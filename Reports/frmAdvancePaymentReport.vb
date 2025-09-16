@@ -884,4 +884,11 @@ Public Class frmAdvancePaymentReport
 #End Region
 
 
+    Private Sub btnAdvance_Click(sender As Object, e As EventArgs) Handles btnAdvance.Click
+        Try
+            frmPayouts.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

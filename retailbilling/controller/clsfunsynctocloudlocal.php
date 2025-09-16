@@ -45,6 +45,27 @@ class clsfuncsync
         throw new Exception("Could not find matching column structure for pos_master table");
     }
 
+    public function GetPMId($comid, $locid)
+    {
+        $sql = "SELECT PM_ID FROM POS_MASTER WHERE PM_COMID = ? AND PM_LOCID = ?";
+        $stmt = mysqli_prepare($this->conn, $sql);
+
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . mysqli_error($this->conn));
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $comid, $locid);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $pm_id = null;
+        if ($row = mysqli_fetch_assoc($result)) {
+            $pm_id = $row['PM_ID'];
+        }
+
+        mysqli_stmt_close($stmt);
+        return $pm_id; // Returns PM_ID value or null if not found
+    }
     public function GetSaleInvoiceHdr($pm_id, $trno, $comid, $locid)
     {
         $sql = "SELECT COUNT(*) FROM pos_sale_invoicehdr WHERE psih_invoice_pmid = ? AND psih_invoice_trno = ? AND psih_invoice_comid = ? AND psih_invoice_locid = ?";
@@ -556,7 +577,7 @@ class clsfuncsync
                 if ($deleteState == 'D') {
                     $payd_id = isset($payout['payd_id']) ? $payout['payd_id'] : '';
                     if (!empty($payd_id)) {
-                        $deleteResult = $this->DeletePayoutRecord($payd_id, $comid, $locid, $pm_id);
+                        $deleteResult = $this->DeletePayoutRecord($payd_id, $comid, $locid);
                         if (!$deleteResult['success']) {
                             throw new Exception("Failed to delete payout record with ID: $payd_id. " . $deleteResult['message']);
                         }
@@ -608,18 +629,110 @@ class clsfuncsync
         }
     }
 
+    public function SavePayoutDataToCloud($data, $comid, $locid, $pm_id)
+    {
+        try {
+            // Start transaction
+            mysqli_autocommit($this->conn, false);
 
+            // Get the actual payout data array
+            $payoutData = isset($data['payout_dtl']) ? $data['payout_dtl'] : $data;
+
+            // Debug: Log the structure of payoutData
+            error_log("SavePayoutDataToCloud - Data structure: " . print_r($payoutData, true));
+            error_log("SavePayoutDataToCloud - Data count: " . (is_array($payoutData) ? count($payoutData) : 'Not an array'));
+
+            // Ensure we have an array to work with
+            if (!is_array($payoutData)) {
+                throw new Exception("Payout data is not an array");
+            }
+
+            // Insert new payout records
+            foreach ($payoutData as $index => $payout) {
+                error_log("Processing payout record $index: " . print_r($payout, true));
+
+                // Skip if this isn't a valid payout array
+                if (!is_array($payout)) {
+                    error_log("Skipping non-array payout at index $index");
+                    continue;
+                }
+
+                // Escape and validate all values
+                $payd_refid = mysqli_real_escape_string($this->conn, isset($payout['payd_refid']) ? $payout['payd_refid'] : '0');
+                $payd_ledgerid = mysqli_real_escape_string($this->conn, isset($payout['payd_ledgerid']) ? $payout['payd_ledgerid'] : '0');
+                $payd_name = mysqli_real_escape_string($this->conn, isset($payout['payd_name']) ? $payout['payd_name'] : '');
+                $payd_amount = mysqli_real_escape_string($this->conn, isset($payout['payd_amount']) ? $payout['payd_amount'] : '0');
+                $payd_remarks = mysqli_real_escape_string($this->conn, isset($payout['payd_remarks']) ? $payout['payd_remarks'] : '');
+                $payd_shiftno = mysqli_real_escape_string($this->conn, isset($payout['payd_shiftno']) ? $payout['payd_shiftno'] : '0');
+                $payd_dayno = mysqli_real_escape_string($this->conn, isset($payout['payd_dayno']) ? $payout['payd_dayno'] : '0');
+                $payd_user = mysqli_real_escape_string($this->conn, isset($payout['payd_user']) ? $payout['payd_user'] : '0');
+
+                // Handle datetime properly - escape it too
+                $payd_datetime = isset($payout['payd_datetime']) && !empty($payout['payd_datetime']) ?
+                    mysqli_real_escape_string($this->conn, $payout['payd_datetime']) :
+                    date('Y-m-d H:i:s');
+
+                // Escape the other parameters
+                $pm_id_escaped = mysqli_real_escape_string($this->conn, $pm_id);
+                $comid_escaped = mysqli_real_escape_string($this->conn, $comid);
+                $locid_escaped = mysqli_real_escape_string($this->conn, $locid);
+
+                $sql = "INSERT INTO pos_payout_dtl (
+                        payd_refid, payd_ledgerid, payd_name,
+                        payd_amount, payd_remarks, payd_shiftno,
+                        payd_dayno, payd_user, payd_datetime,
+                        PmId, ComId, LocId
+                    ) VALUES (
+                        '$payd_refid',
+                        '$payd_ledgerid',
+                        '$payd_name',
+                        '$payd_amount',
+                        '$payd_remarks',
+                        '$payd_shiftno',
+                        '$payd_dayno',
+                        '$payd_user',
+                        '$payd_datetime',
+                        '$pm_id_escaped',
+                        '$comid_escaped',
+                        '$locid_escaped'
+                    )";
+
+                error_log("Executing SQL: " . $sql);
+                $result = mysqli_query($this->conn, $sql);
+                if (!$result) {
+                    throw new Exception("Error inserting payout record: " . mysqli_error($this->conn) . " SQL: " . $sql);
+                }
+                error_log("Successfully inserted payout record for: " . $payd_name);
+            }
+
+            // Commit transaction
+            mysqli_commit($this->conn);
+            mysqli_autocommit($this->conn, true);
+
+            return array('success' => true, 'message' => 'Payout data saved successfully');
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            mysqli_rollback($this->conn);
+            mysqli_autocommit($this->conn, true);
+
+            return array('success' => false, 'message' => 'Error saving payout data: ' . $e->getMessage());
+        }
+    }
 
     /**
      * Delete a payout record by ID, company, location, and pm_id.
      * Returns array('success' => bool, 'message' => string)
      */
-    public function DeletePayoutRecord($payd_id, $comid, $locid, $pm_id)
+    public function DeletePayoutRecord($payd_id, $comid, $locid)
     {
         $payd_id = mysqli_real_escape_string($this->conn, $payd_id);
         $comid   = mysqli_real_escape_string($this->conn, $comid);
         $locid   = mysqli_real_escape_string($this->conn, $locid);
-        $pm_id   = mysqli_real_escape_string($this->conn, $pm_id);
+        $pm_id = $this->GetPMId($comid, $locid);
+
+        if (!$pm_id) {
+            throw new Exception("Invalid comid or locid - could not find pm_id");
+        }
 
         $sql = "DELETE FROM pos_payout_dtl WHERE payd_refid = '$payd_id' AND ComId = '$comid' AND LocId = '$locid' AND PmId = '$pm_id'";
         $result = mysqli_query($this->conn, $sql);
@@ -630,7 +743,62 @@ class clsfuncsync
             return array('success' => false, 'message' => 'Error deleting payout record: ' . mysqli_error($this->conn));
         }
     }
+    public function DeletePayoutRecordCloud($payd_id, $comid, $locid)
+    {
+        $payd_id = mysqli_real_escape_string($this->conn, $payd_id);
+        $comid   = mysqli_real_escape_string($this->conn, $comid);
+        $locid   = mysqli_real_escape_string($this->conn, $locid);
+        $pm_id = $this->GetPMId($comid, $locid);
 
+        if (!$pm_id) {
+            throw new Exception("Invalid comid or locid - could not find pm_id");
+        }
+
+        $sql = "DELETE FROM pos_payout_dtl WHERE payd_id = '$payd_id' AND ComId = '$comid' AND LocId = '$locid' AND PmId = '$pm_id'";
+        $result = mysqli_query($this->conn, $sql);
+
+        if ($result) {
+            return array('success' => true, 'message' => 'Payout record deleted successfully.');
+        } else {
+            return array('success' => false, 'message' => 'Error deleting payout record: ' . mysqli_error($this->conn));
+        }
+    }
+    public function GetPayoutReport($comid, $locid, $pm_id, $startDate)
+    {
+        // Escape variables first
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $pm_id     = mysqli_real_escape_string($this->conn, $pm_id);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        //SELECT `payd_id` as Id, `payd_refid` as StaffId,  `payd_name` as Name, `payd_amount` as Amount, `payd_remarks` as Remarks, `payd_shiftno`, `payd_dayno`, `payd_user`, `payd_datetime`, `PmId`, `ComId`, `LocId`, `CurrentDate` FROM `pos_payout_dtl` WHERE `payd_datetime`=$payd_datetime, `PmId` =$PmId, `ComId`=$ComId, `LocId`=$LocId
+        $sql = "SELECT
+                    ppd.payd_id AS ID,
+                    ppd.payd_refid AS StaffId,
+                    ppd.payd_name AS Name,
+                    ppd.payd_amount AS Amount,
+                    ppd.payd_remarks AS Remarks,
+                    ppd.payd_shiftno AS ShiftNo,
+                    ppd.payd_dayno AS DayNo,
+                    ppd.payd_user AS User,
+                    ppd.payd_datetime AS DateTime,
+                    ppd.PmId,
+                    ppd.ComId,
+                    ppd.LocId,
+                    pm.pcm_name AS CompanyName,
+                    pl.plm_name AS LocationName
+                FROM pos_payout_dtl AS ppd
+                INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
+                INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
+                WHERE DATE(ppd.payd_datetime) = '$startDate'
+                  AND ppd.ComId = '$comid'
+                  AND ppd.LocId = '$locid'
+                  AND ppd.PmId = '$pm_id'
+                ORDER BY ppd.payd_datetime DESC, ppd.payd_name";
+        // Log the query for debugging (remove in production)
+        error_log("Payout Report Query: " . $sql);
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
     public function GetAdvanceReport($comid, $locid, $startDate, $endDate, $salesmanId, $OperationType, $OptionsSalesMan, $OptionComidLocid)
     {
         // (Operation Type = 1: Summary, 2: Detailed), (OptionsSalesMan : 1: All, 2: By SalesManId as Payd_LedgerId)

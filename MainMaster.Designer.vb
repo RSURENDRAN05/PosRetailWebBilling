@@ -71,6 +71,7 @@ Partial Class MainMaster
         Me.barbtnmonthlysummaryreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnmaingrouppolicy = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnMenuDesign1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnRefreshAll = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -104,7 +105,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barbtnRefreshAll = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,7 +126,7 @@ Partial Class MainMaster
         Me.RibbonControl.ExpandCollapseItem.Id = 0
         Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 57
+        Me.RibbonControl.MaxItemId = 58
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.PageHeaderItemLinks.Add(Me.barbtnRefreshAll)
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
@@ -518,6 +518,15 @@ Partial Class MainMaster
         Me.barbtnMenuDesign1.LargeGlyph = CType(resources.GetObject("barbtnMenuDesign1.LargeGlyph"), System.Drawing.Image)
         Me.barbtnMenuDesign1.Name = "barbtnMenuDesign1"
         '
+        'barbtnRefreshAll
+        '
+        Me.barbtnRefreshAll.Caption = "Refresh"
+        Me.barbtnRefreshAll.Glyph = CType(resources.GetObject("barbtnRefreshAll.Glyph"), System.Drawing.Image)
+        Me.barbtnRefreshAll.Id = 56
+        Me.barbtnRefreshAll.ItemShortcut = New DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F5)
+        Me.barbtnRefreshAll.LargeGlyph = CType(resources.GetObject("barbtnRefreshAll.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnRefreshAll.Name = "barbtnRefreshAll"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -569,9 +578,9 @@ Partial Class MainMaster
         Me.RibbonPageGroup6.ItemLinks.Add(Me.bartaxmaster)
         Me.RibbonPageGroup6.ItemLinks.Add(Me.barunitmaster)
         Me.RibbonPageGroup6.ItemLinks.Add(Me.barmaingroup)
+        Me.RibbonPageGroup6.ItemLinks.Add(Me.barbtnmaingrouppolicy)
         Me.RibbonPageGroup6.ItemLinks.Add(Me.barsubgroup)
         Me.RibbonPageGroup6.ItemLinks.Add(Me.barmaterial)
-        Me.RibbonPageGroup6.ItemLinks.Add(Me.barbtnmaingrouppolicy)
         Me.RibbonPageGroup6.Name = "RibbonPageGroup6"
         Me.RibbonPageGroup6.Text = "Product Master"
         '
@@ -811,15 +820,6 @@ Partial Class MainMaster
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
-        '
-        'barbtnRefreshAll
-        '
-        Me.barbtnRefreshAll.Caption = "Refresh"
-        Me.barbtnRefreshAll.Glyph = CType(resources.GetObject("barbtnRefreshAll.Glyph"), System.Drawing.Image)
-        Me.barbtnRefreshAll.Id = 56
-        Me.barbtnRefreshAll.ItemShortcut = New DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F5)
-        Me.barbtnRefreshAll.LargeGlyph = CType(resources.GetObject("barbtnRefreshAll.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnRefreshAll.Name = "barbtnRefreshAll"
         '
         'MainMaster
         '

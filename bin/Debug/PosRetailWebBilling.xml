@@ -525,6 +525,18 @@ PosRetailWebBilling
 	<summary>
  Log sync process completion
  </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanJsonString(System.String)">
+	<summary>
+ Clean JSON string to remove control characters that cause parsing errors
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanDataSetForJson(System.Data.DataSet)">
+	<summary>
+ Clean DataSet string fields to remove control characters before JSON serialization
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanStringField(System.String)">
+	<summary>
+ Clean individual string field to remove control characters
+ </summary>
 </member><member name="M:PosRetailWebBilling.frmPaymore.ConvertDecimal(System.Object)">
 	<summary>
  Safely convert object to decimal, handling DBNull and empty values

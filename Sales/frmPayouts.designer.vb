@@ -49,10 +49,14 @@ Partial Class frmPayouts
         Me.btnSupp = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.btnModeofWeb = New DevExpress.XtraEditors.SimpleButton()
+        Me.PayDate = New DevExpress.XtraEditors.DateEdit()
+        Me.btnSearch = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblHead
@@ -233,7 +237,7 @@ Partial Class frmPayouts
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "SupplierName"
+        Me.GridColumn4.Caption = "Staff Name"
         Me.GridColumn4.FieldName = "Name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -317,6 +321,7 @@ Partial Class frmPayouts
         Me.btnNewSupplre.Size = New System.Drawing.Size(95, 38)
         Me.btnNewSupplre.TabIndex = 15
         Me.btnNewSupplre.Text = "Add"
+        Me.btnNewSupplre.Visible = False
         '
         'btnStaff
         '
@@ -327,7 +332,7 @@ Partial Class frmPayouts
         Me.btnStaff.Appearance.Options.UseBackColor = True
         Me.btnStaff.Appearance.Options.UseFont = True
         Me.btnStaff.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.btnStaff.Location = New System.Drawing.Point(11, 27)
+        Me.btnStaff.Location = New System.Drawing.Point(152, 27)
         Me.btnStaff.Name = "btnStaff"
         Me.btnStaff.Size = New System.Drawing.Size(69, 38)
         Me.btnStaff.TabIndex = 16
@@ -342,7 +347,7 @@ Partial Class frmPayouts
         Me.btnSupp.Appearance.Options.UseBackColor = True
         Me.btnSupp.Appearance.Options.UseFont = True
         Me.btnSupp.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.btnSupp.Location = New System.Drawing.Point(86, 27)
+        Me.btnSupp.Location = New System.Drawing.Point(227, 27)
         Me.btnSupp.Name = "btnSupp"
         Me.btnSupp.Size = New System.Drawing.Size(71, 38)
         Me.btnSupp.TabIndex = 17
@@ -374,12 +379,40 @@ Partial Class frmPayouts
         Me.btnModeofWeb.Appearance.Options.UseBackColor = True
         Me.btnModeofWeb.Appearance.Options.UseFont = True
         Me.btnModeofWeb.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.btnModeofWeb.Location = New System.Drawing.Point(163, 27)
+        Me.btnModeofWeb.Location = New System.Drawing.Point(12, 27)
         Me.btnModeofWeb.Name = "btnModeofWeb"
         Me.btnModeofWeb.Size = New System.Drawing.Size(134, 38)
         Me.btnModeofWeb.TabIndex = 19
         Me.btnModeofWeb.Text = "WebMode"
-        Me.btnModeofWeb.Visible = False
+        '
+        'PayDate
+        '
+        Me.PayDate.EditValue = Nothing
+        Me.PayDate.Location = New System.Drawing.Point(686, 12)
+        Me.PayDate.Name = "PayDate"
+        Me.PayDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.PayDate.Properties.Appearance.Options.UseFont = True
+        Me.PayDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDate.Properties.CalendarTimeProperties.CloseUpKey = New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4)
+        Me.PayDate.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
+        Me.PayDate.Size = New System.Drawing.Size(155, 30)
+        Me.PayDate.TabIndex = 20
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSearch.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        Me.btnSearch.Appearance.Options.UseBackColor = True
+        Me.btnSearch.Appearance.Options.UseFont = True
+        Me.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.btnSearch.Location = New System.Drawing.Point(847, 12)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(134, 38)
+        Me.btnSearch.TabIndex = 21
+        Me.btnSearch.Text = "Serach"
         '
         'frmPayouts
         '
@@ -387,6 +420,8 @@ Partial Class frmPayouts
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
+        Me.Controls.Add(Me.btnSearch)
+        Me.Controls.Add(Me.PayDate)
         Me.Controls.Add(Me.btnModeofWeb)
         Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.btnSupp)
@@ -414,6 +449,8 @@ Partial Class frmPayouts
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -444,4 +481,6 @@ Partial Class frmPayouts
     Friend WithEvents btnSupp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnModeofWeb As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PayDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents btnSearch As DevExpress.XtraEditors.SimpleButton
 End Class

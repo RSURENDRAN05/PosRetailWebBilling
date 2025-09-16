@@ -304,7 +304,7 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         exit;
     }
     //payout Details
-    if ((int)$_REQUEST['AjaxRequest'] == 8) { //PayoutDetails Delete And Save
+    if ((int)$_REQUEST['AjaxRequest'] == 8) { //PayoutDetails Delete And Save Local to Cloud
         try {
             // Log the incoming request for debugging
             error_log("AjaxRequest=8 called with POST parameters: " . print_r($_POST, true));
@@ -437,7 +437,147 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
-    
+    //payout Details direct to cloud
+    if ((int)$_REQUEST['AjaxRequest'] == 11) { //Payout
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=11 called with POST parameters: " . print_r($_POST, true));
+
+            $comid = isset($_POST['comid']) ? $_POST['comid'] : (isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '');
+            $locid = isset($_POST['locid']) ? $_POST['locid'] : (isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '');
+
+            $pm_id = $clsfunreq->GetPMid($comid, $locid);
+
+            if (!$pm_id) {
+                throw new Exception("Invalid comid or locid - could not find pm_id");
+            }
+            $payoutdata = isset($_POST['payoutdata']) ? $_POST['payoutdata'] : '';
+
+            // Validate required parameters - use isset() for numeric fields to allow 0 values
+            if (!isset($_POST['comid']) && !isset($_REQUEST['comid'])) {
+                throw new Exception("Missing required parameter: comid");
+            }
+            if (!isset($_POST['locid']) && !isset($_REQUEST['locid'])) {
+                throw new Exception("Missing required parameter: locid");
+            }
+            if (empty($payoutdata)) {
+                throw new Exception("Missing required parameter: payoutdata");
+            }
+            if (empty($pm_id)) {
+                throw new Exception("Missing required parameter: pm_id");
+            }
+
+            // URL decode the data (VB.NET sends it URL-encoded)
+            $payoutdata = urldecode($payoutdata);
+
+            // Decode JSON data
+            $payoutArray = json_decode($payoutdata, true);
+
+            if (!$payoutArray) {
+                $payoutError = json_last_error_msg();
+                throw new Exception("Invalid JSON data - Payout: $payoutError");
+            }
+
+            // Check if we have a single object instead of an array of objects
+            // If it's a single object (associative array), wrap it in an array
+            if (isset($payoutArray['payd_id']) || isset($payoutArray['payd_refid'])) {
+                // Single payout record - wrap in array
+                $payoutArray = array($payoutArray);
+                error_log("Single payout record detected, wrapped in array");
+            }
+
+            // Prepare data structure for SavePayoutData
+            $data = array(
+                'payout_dtl' => $payoutArray
+            );
+            $result = $clsfunreq->SavePayoutDataToCloud($data, $comid, $locid, $pm_id);
+            if ($result['success']) {
+                echo json_encode(array("Success" => true, "Msg" => $result['message'], "Data" => "Payout data saved successfully to cloud"));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => $result['message'], "Data" => "Failed to save payout data to cloud"));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Msg" => "Request 11 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+    if ((int)$_REQUEST['AjaxRequest'] == 12) { //Delete Cloud POS Machine ID
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=12 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=12 called with POST parameters: " . print_r($_POST, true));
+
+            // Get parameters from REQUEST (works for both GET and POST)
+            $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
+            $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
+            $payoutdata = isset($_POST['payoutdata']) ? $_POST['payoutdata'] : '';
+            // Validate required parameters
+            if (empty($comid) || empty($locid)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid");
+            }
+            $payoutdata = urldecode($payoutdata);
+            // Decode JSON data
+            $payoutArray = json_decode($payoutdata, true);
+            if (!$payoutArray) {
+                $payoutError = json_last_error_msg();
+                throw new Exception("Invalid JSON data - Payout: $payoutError");
+            }
+            $payd_id = $payoutArray['payd_id'];
+            if (empty($payd_id)) {
+                throw new Exception("Missing required parameter: payd_id");
+            }
+            // Fetch POS Machine ID
+
+            $deletePayout = $clsfunreq->DeletePayoutRecordCloud($payd_id, $comid, $locid);
+            if ($deletePayout) {
+                echo json_encode(array("Success" => true, "Data" => $payd_id, "Msg" => "Payout Record Deleted Successfully"));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No POS Machine ID found for given comid and locid", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 12 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 12 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
+    //SELECT `payd_id` as Id, `payd_refid` as StaffId,  `payd_name` as Name, `payd_amount` as Amount, `payd_remarks` as Remarks, `payd_shiftno`, `payd_dayno`, `payd_user`, `payd_datetime`, `PmId`, `ComId`, `LocId`, `CurrentDate` FROM `pos_payout_dtl` WHERE `payd_datetime`=$payd_datetime, `PmId` =$PmId, `ComId`=$ComId, `LocId`=$LocId
+    if ((int)$_REQUEST['AjaxRequest'] == 13) { //get payout report with parameters
+        try {
+            // Log the incoming request for debugging
+            error_log("AjaxRequest=13 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=13 called with POST parameters: " . print_r($_POST, true));
+
+            // Get parameters from REQUEST (works for both GET and POST)
+            $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
+            $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
+            $startDate = isset($_REQUEST['fromdate']) ? $_REQUEST['fromdate'] : '';
+
+            // Validate required parameters
+            if (empty($comid) || empty($locid) || empty($startDate)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, fromdate=$startDate");
+            }
+            $pm_id = $clsfunreq->GetPMid($comid, $locid);
+            if (!$pm_id) {
+                throw new Exception("Invalid comid or locid - could not find pm_id");
+            }
+            // Fetch payout report data
+            $payoutReport = $clsfunreq->GetPayoutReport($comid, $locid, $pm_id, $startDate);
+            $arr = array();
+            if ($payoutReport) {
+                while ($row = mysqli_fetch_assoc($payoutReport)) {
+                    $arr[] = $row;
+                }
+                error_log("Payout report data fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No payout data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 13 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 13 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests

@@ -44,6 +44,7 @@ Partial Class frmAdvancePaymentReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
+        Me.btnAdvance = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCurrencyEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +126,7 @@ Partial Class frmAdvancePaymentReport
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.btnAdvance)
         Me.PanelControl1.Controls.Add(Me.btnprintreport)
         Me.PanelControl1.Controls.Add(Me.ListBoxControlSalemanList)
         Me.PanelControl1.Controls.Add(Me.ListBoxControlReportList)
@@ -325,6 +327,15 @@ Partial Class frmAdvancePaymentReport
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
+        'btnAdvance
+        '
+        Me.btnAdvance.Image = CType(resources.GetObject("btnAdvance.Image"), System.Drawing.Image)
+        Me.btnAdvance.Location = New System.Drawing.Point(651, 34)
+        Me.btnAdvance.Name = "btnAdvance"
+        Me.btnAdvance.Size = New System.Drawing.Size(128, 36)
+        Me.btnAdvance.TabIndex = 17
+        Me.btnAdvance.Text = "Advance Pay"
+        '
         'frmAdvancePaymentReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -387,4 +398,5 @@ Partial Class frmAdvancePaymentReport
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ListBoxControlReportType As DevExpress.XtraEditors.ListBoxControl
     Friend WithEvents btnprintreport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnAdvance As DevExpress.XtraEditors.SimpleButton
 End Class
