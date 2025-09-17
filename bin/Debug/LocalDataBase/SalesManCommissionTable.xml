@@ -139,13 +139,13 @@
     <Updated>2025-09-10 00:12:01</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>21</CommissionId>
+    <CommissionId>22</CommissionId>
     <EmpId>3</EmpId>
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>CREAM</ItemName>
-    <Barcode>8</Barcode>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>
@@ -157,13 +157,13 @@
     <Updated>2025-09-10 00:12:01</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>22</CommissionId>
+    <CommissionId>21</CommissionId>
     <EmpId>3</EmpId>
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>HAIR COLOURING</ItemName>
-    <Barcode>9</Barcode>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [CREAM]</ItemName>
+    <Barcode>8</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>
@@ -373,13 +373,13 @@
     <Updated>2025-09-10 00:14:38</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>54</CommissionId>
+    <CommissionId>55</CommissionId>
     <EmpId>1</EmpId>
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>CREAM</ItemName>
-    <Barcode>8</Barcode>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>
@@ -391,13 +391,13 @@
     <Updated>2025-09-10 00:14:38</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>55</CommissionId>
+    <CommissionId>54</CommissionId>
     <EmpId>1</EmpId>
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>HAIR COLOURING</ItemName>
-    <Barcode>9</Barcode>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [CREAM]</ItemName>
+    <Barcode>8</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>
@@ -607,13 +607,13 @@
     <Updated>2025-09-10 00:12:05</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>41</CommissionId>
+    <CommissionId>42</CommissionId>
     <EmpId>2</EmpId>
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>CREAM</ItemName>
-    <Barcode>8</Barcode>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>
@@ -625,13 +625,13 @@
     <Updated>2025-09-10 00:12:05</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>42</CommissionId>
+    <CommissionId>41</CommissionId>
     <EmpId>2</EmpId>
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>HAIR COLOURING</ItemName>
-    <Barcode>9</Barcode>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [CREAM]</ItemName>
+    <Barcode>8</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
     <MainGroupName>BARBER</MainGroupName>

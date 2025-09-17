@@ -351,24 +351,36 @@ Module SyncLocalCloudModuel
     Public Function AuthenticateMasterAdmin(ByVal password As String) As Boolean
         Try
             If _JsonData.UserTable.Rows.Count > 0 Then
-                ' Find user by username using LINQ
+                ' Find all users with GroupId "1" or "2" using LINQ
                 Dim userRows = From row In _JsonData.UserTable.AsEnumerable()
                               Where row.Field(Of String)("GroupId").Equals("1", StringComparison.OrdinalIgnoreCase) OrElse row.Field(Of String)("GroupId").Equals("2", StringComparison.OrdinalIgnoreCase)
                               Select row
 
                 If userRows.Any Then
-                    Dim userRow As DataRow = userRows.First()
-                    Dim storedPassword As String = userRow.Field(Of String)("Password")
-                    ' Check if stored password is already hashed (32 characters = MD5 hash)
-                    If storedPassword.Length = 32 Then
-                        ' Stored password is MD5 hash - compare with hashed input
-                        Return VerifyMD5Password(password, storedPassword)
-                    Else
-                        ' Stored password is plain text - direct comparison
-                        Return String.Equals(password, storedPassword, StringComparison.Ordinal)
-                    End If
+                    ' Check password against each user until a match is found
+                    For Each userRow As DataRow In userRows
+                        Dim storedPassword As String = userRow.Field(Of String)("Password")
+                        Dim passwordMatches As Boolean = False
+
+                        ' Check if stored password is already hashed (32 characters = MD5 hash)
+                        If storedPassword.Length = 32 Then
+                            ' Stored password is MD5 hash - compare with hashed input
+                            passwordMatches = VerifyMD5Password(password, storedPassword)
+                        Else
+                            ' Stored password is plain text - direct comparison
+                            passwordMatches = String.Equals(password, storedPassword, StringComparison.Ordinal)
+                        End If
+
+                        ' If password matches, return True immediately
+                        If passwordMatches Then
+                            Return True
+                        End If
+                    Next
+
+                    ' No matching password found among all admin users
+                    Return False
                 Else
-                    ' User not found
+                    ' No admin users found
                     Return False
                 End If
             End If
