@@ -72,7 +72,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE PACK</ItemName>
+    <ItemName>FACE COOL PACK</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -306,7 +306,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE PACK</ItemName>
+    <ItemName>FACE COOL PACK</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -540,7 +540,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE PACK</ItemName>
+    <ItemName>FACE COOL PACK</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>

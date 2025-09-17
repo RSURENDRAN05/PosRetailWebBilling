@@ -4,7 +4,7 @@ Imports PosRetailWebBilling.clssalesProperty
 Public Class frmKeyPassIIIMaster
     Dim errMsg As String
     Dim menuCode As Integer
-    Dim _Title As String = "Admin"
+    Dim _Title As String = "SuperAdmin"
 
     Private Sub frmKeyPass_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         menuCode = properClass.R_MenuCode

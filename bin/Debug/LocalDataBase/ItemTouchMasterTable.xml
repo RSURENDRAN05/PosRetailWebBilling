@@ -473,11 +473,11 @@
     <LnkId>23</LnkId>
     <item_id>13</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>0</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
@@ -699,7 +699,7 @@
   <ItemTouchMasterTable>
     <Id>20</Id>
     <BarCode>20</BarCode>
-    <ItemName>FACE PACK</ItemName>
+    <ItemName>FACE COOL PACK</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -708,7 +708,7 @@
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -725,11 +725,11 @@
     <LnkId>30</LnkId>
     <item_id>20</item_id>
     <menu_type>Item</menu_type>
-    <font_size>8.0</font_size>
-    <font_name>Segoe UI</font_name>
-    <font_style>Regular</font_style>
-    <text_color>Argb(255,0,0,139)</text_color>
-    <back_color>Argb(255,245,245,220)</back_color>
-    <Position>0</Position>
+    <font_size>20.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
 </NewDataSet>

@@ -72,19 +72,4 @@
     <back_color>Argb(255,72,61,139)</back_color>
     <position>0</position>
   </MainGroupTable>
-  <MainGroupTable>
-    <MainId>4</MainId>
-    <MainName>TEST</MainName>
-    <Active>1</Active>
-    <Color>LightBlue</Color>
-    <id>32</id>
-    <item_id>4</item_id>
-    <menu_type>Main</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
-    <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <position>0</position>
-  </MainGroupTable>
 </NewDataSet>

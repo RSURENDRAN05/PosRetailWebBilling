@@ -42,15 +42,15 @@
   </UserTable>
   <UserTable>
     <Id>2</Id>
-    <UserName>admin@mypos</UserName>
-    <Password>c4ca4238a0b923820dcc509a6f75849b</Password>
-    <GroupName>Admin</GroupName>
+    <UserName>MOHAN</UserName>
+    <Password>22722a343513ed45f14905eb07621686</Password>
+    <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <GroupId>2</GroupId>
+    <GroupId>1</GroupId>
     <Created>2025-08-16 11:47:33</Created>
-    <GroupDescription>Administrative access with most permissions</GroupDescription>
+    <GroupDescription>Full system access with all permissions</GroupDescription>
     <GroupActive>1</GroupActive>
     <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
   </UserTable>
@@ -58,13 +58,27 @@
     <Id>3</Id>
     <UserName>CASHIER</UserName>
     <Password>81dc9bdb52d04dc20036dbd8313ed055</Password>
-    <GroupName>Super Admin</GroupName>
+    <GroupName>Cashier</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
     <LocId>1</LocId>
-    <GroupId>1</GroupId>
+    <GroupId>4</GroupId>
     <Created>2025-09-02 22:29:47</Created>
-    <GroupDescription>Full system access with all permissions</GroupDescription>
+    <GroupDescription>Basic POS operations only</GroupDescription>
+    <GroupActive>1</GroupActive>
+    <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
+  </UserTable>
+  <UserTable>
+    <Id>4</Id>
+    <UserName>ADMIN</UserName>
+    <Password>312f1ba2a72318edaaa995a67835fad5</Password>
+    <GroupName>Admin</GroupName>
+    <Status>Active</Status>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <GroupId>2</GroupId>
+    <Created>2025-09-17 17:06:17</Created>
+    <GroupDescription>Administrative access with most permissions</GroupDescription>
     <GroupActive>1</GroupActive>
     <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
   </UserTable>
