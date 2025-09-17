@@ -347,6 +347,18 @@
     <Compile Include="Employee\frmFinalProcess.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Employee\FrmFingerRegister.Designer.vb">
+      <DependentUpon>FrmFingerRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\FrmFingerRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\FrmFingerScanner.Designer.vb">
+      <DependentUpon>FrmFingerScanner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\FrmFingerScanner.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Employee\frmGenerateMonth.Designer.vb">
       <DependentUpon>frmGenerateMonth.vb</DependentUpon>
     </Compile>
@@ -785,6 +797,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmFinalProcess.resx">
       <DependentUpon>frmFinalProcess.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\FrmFingerRegister.resx">
+      <DependentUpon>FrmFingerRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\FrmFingerScanner.resx">
+      <DependentUpon>FrmFingerScanner.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmGenerateMonth.resx">
       <DependentUpon>frmGenerateMonth.vb</DependentUpon>

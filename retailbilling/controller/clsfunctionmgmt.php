@@ -4666,4 +4666,194 @@ class funcProcessMgmt
         }
     }
     // ==================== End Button Properties Methods ====================
+    //============Employee Finger Management=================
+    public function RegisterEmpFinger($empId, $template)
+    {
+        $conn = $this->conn;
+
+        try {
+            // Prepare the statement for inserting fingerprint data
+            $stmt = mysqli_prepare($conn, "INSERT INTO employee_fingerprints (emp_id, finger_template) VALUES (?, ?)");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            // Bind parameters - 'i' for integer (emp_id), 'b' for blob (finger_template)
+            mysqli_stmt_bind_param($stmt, "ib", $empId, $null);
+
+            // Set null variable for blob data
+            $null = null;
+
+            // Send the binary data for the blob field (parameter index 1 = second parameter)
+            mysqli_stmt_send_long_data($stmt, 1, $template);
+
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                $insertId = mysqli_insert_id($conn);
+                mysqli_stmt_close($stmt);
+                return $insertId;
+            } else {
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("RegisterEmpFinger Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Verify employee fingerprint
+     * @param int $empId Employee ID
+     * @return string|false Returns fingerprint template on success, false on failure
+     */
+    public function GetEmpFingerTemplate($empId)
+    {
+        $conn = $this->conn;
+
+        try {
+            $stmt = mysqli_prepare($conn, "SELECT finger_template FROM employee_fingerprints WHERE emp_id = ?");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "i", $empId);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+
+                if ($row = mysqli_fetch_assoc($result)) {
+                    mysqli_stmt_close($stmt);
+                    return $row['finger_template'];
+                } else {
+                    mysqli_stmt_close($stmt);
+                    return false; // No fingerprint found
+                }
+            } else {
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("GetEmpFingerTemplate Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Update employee fingerprint template
+     * @param int $empId Employee ID
+     * @param string $template Binary fingerprint template
+     * @return bool True on success, false on failure
+     */
+    public function UpdateEmpFingerTemplate($empId, $template)
+    {
+        $conn = $this->conn;
+
+        try {
+            $stmt = mysqli_prepare($conn, "UPDATE employee_fingerprints SET finger_template = ?, updated_at = NOW() WHERE emp_id = ?");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "bi", $null, $empId);
+
+            $null = null;
+            mysqli_stmt_send_long_data($stmt, 0, $template);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $affected = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $affected > 0;
+            } else {
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("UpdateEmpFingerTemplate Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Delete employee fingerprint
+     * @param int $empId Employee ID
+     * @return bool True on success, false on failure
+     */
+    public function DeleteEmpFingerprint($empId)
+    {
+        $conn = $this->conn;
+
+        try {
+            $stmt = mysqli_prepare($conn, "DELETE FROM employee_fingerprints WHERE emp_id = ?");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "i", $empId);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $affected = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $affected > 0;
+            } else {
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("DeleteEmpFingerprint Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Check if employee has fingerprint registered
+     * @param int $empId Employee ID
+     * @return bool True if fingerprint exists, false otherwise
+     */
+    public function CheckEmpFingerprintExists($empId)
+    {
+        $conn = $this->conn;
+
+        try {
+            $stmt = mysqli_prepare($conn, "SELECT COUNT(*) as count FROM employee_fingerprints WHERE emp_id = ?");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "i", $empId);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+                $row = mysqli_fetch_assoc($result);
+                mysqli_stmt_close($stmt);
+                return $row['count'] > 0;
+            } else {
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("CheckEmpFingerprintExists Error: " . $e->getMessage());
+            return false;
+        }
+    }
 }

@@ -1011,4 +1011,21 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnfingerscanner_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnfingerscanner.ItemClick
+        Try
+            FrmFingerScanner.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnfingerregister_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnfingerregister.ItemClick
+        Try
+            FrmFingerRegister.ShowDialog()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

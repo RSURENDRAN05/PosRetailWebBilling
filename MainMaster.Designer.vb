@@ -105,6 +105,9 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.RibbonPageGroup14 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.barbtnfingerscanner = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnfingerregister = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,9 +127,9 @@ Partial Class MainMaster
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll, Me.barbtnfingerscanner, Me.barbtnfingerregister})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 58
+        Me.RibbonControl.MaxItemId = 60
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.PageHeaderItemLinks.Add(Me.barbtnRefreshAll)
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
@@ -665,7 +668,7 @@ Partial Class MainMaster
         '
         Me.RibbonPageEmployee.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.RibbonPageEmployee.Appearance.Options.UseFont = True
-        Me.RibbonPageEmployee.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11})
+        Me.RibbonPageEmployee.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11, Me.RibbonPageGroup14})
         Me.RibbonPageEmployee.Name = "RibbonPageEmployee"
         Me.RibbonPageEmployee.Text = "Employee"
         '
@@ -821,6 +824,29 @@ Partial Class MainMaster
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
         '
+        'RibbonPageGroup14
+        '
+        Me.RibbonPageGroup14.ItemLinks.Add(Me.barbtnfingerscanner)
+        Me.RibbonPageGroup14.ItemLinks.Add(Me.barbtnfingerregister)
+        Me.RibbonPageGroup14.Name = "RibbonPageGroup14"
+        Me.RibbonPageGroup14.Text = "Finger Registration"
+        '
+        'barbtnfingerscanner
+        '
+        Me.barbtnfingerscanner.Caption = "Finger Scanner"
+        Me.barbtnfingerscanner.Glyph = CType(resources.GetObject("barbtnfingerscanner.Glyph"), System.Drawing.Image)
+        Me.barbtnfingerscanner.Id = 58
+        Me.barbtnfingerscanner.LargeGlyph = CType(resources.GetObject("barbtnfingerscanner.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnfingerscanner.Name = "barbtnfingerscanner"
+        '
+        'barbtnfingerregister
+        '
+        Me.barbtnfingerregister.Caption = "Finger Register"
+        Me.barbtnfingerregister.Glyph = CType(resources.GetObject("barbtnfingerregister.Glyph"), System.Drawing.Image)
+        Me.barbtnfingerregister.Id = 59
+        Me.barbtnfingerregister.LargeGlyph = CType(resources.GetObject("barbtnfingerregister.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnfingerregister.Name = "barbtnfingerregister"
+        '
         'MainMaster
         '
         Me.AllowMdiBar = True
@@ -940,6 +966,9 @@ Partial Class MainMaster
     Friend WithEvents RibbonPageGroup13 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents barbtnMenuDesign1 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnRefreshAll As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnfingerscanner As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnfingerregister As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup14 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
 
 
 End Class

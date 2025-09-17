@@ -5287,4 +5287,33 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
         error_log("Stack trace: " . $e->getTraceAsString());
         echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
     }
+} elseif (isset($_REQUEST["AttRequest"])) {
+    try {
+        if ((int) $_REQUEST['AttRequest'] === 1) {
+            // Register Fingerprint
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            if ($data && isset($data["EmpId"]) && isset($data["Template"])) {
+                $empId = $data["EmpId"];
+                $template = base64_decode($data["Template"]);
+                $register = $clsfunreq->RegisterEmpFinger($empId, $template);
+
+                if ($register) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Fingerprint registered successfully'));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to register fingerprint'));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId and Template are required'));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest parameter'));
+        }
+    } catch (Exception $e) {
+        error_log("AttRequest Exception: " . $e->getMessage());
+        error_log("Stack trace: " . $e->getTraceAsString());
+        echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
+    }
+} else {
+    echo json_encode(array("Success" => false, "Msg" => 'No valid request specified'));
 }
