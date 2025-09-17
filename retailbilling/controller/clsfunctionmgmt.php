@@ -221,7 +221,11 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlSelect = ("INSERT INTO `di_category_master`(`dcm_name`, `di_main_id`, `dcm_active`, `color`, `position`) VALUES  ('" . $catename . "','" . $mainid . "','" . $catestatus . "','" . $color . "','" . $position . "')");
         $result = mysqli_query($conn, $sqlSelect);
-        return $result;
+        if ($result) {
+            return mysqli_insert_id($conn);
+        } else {
+            return false;
+        }
     }
 
     public function _UpdateCateMastrer($cateid, $catename, $mainid, $catestatus, $color, $position)

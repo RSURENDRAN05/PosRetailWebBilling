@@ -43,7 +43,7 @@
   <UserTable>
     <Id>2</Id>
     <UserName>MOHAN</UserName>
-    <Password>202cb962ac59075b964b07152d234b70</Password>
+    <Password>22722a343513ed45f14905eb07621686</Password>
     <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
@@ -71,9 +71,9 @@
   <UserTable>
     <Id>4</Id>
     <UserName>ADMIN</UserName>
-    <Password>312f1ba2a72318edaaa995a67835fad5</Password>
+    <Password>d41d8cd98f00b204e9800998ecf8427e</Password>
     <GroupName>Admin</GroupName>
-    <Status>Active</Status>
+    <Status>InActive</Status>
     <ComId>1</ComId>
     <LocId>1</LocId>
     <GroupId>2</GroupId>

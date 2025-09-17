@@ -234,7 +234,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $catestatus = $row['active'];
         $RequestInsert = $clsfunreq->_InsertCateMastrer($catename, $mainid, $catestatus, $color, $position);
         if ($RequestInsert) {
-            echo json_encode(array("Success" => true));
+            echo json_encode(array("Success" => true, "Msg" => "Data Saved", "Data" => $RequestInsert));
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
@@ -348,9 +348,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
             if (strlen($productCode) > 0) {
                 $RequestLiveStock = $clsfunreq->_InsertLiveStock($productCode, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_op_stock, $dim_com_id, $dim_loc_id);
                 if ($RequestLiveStock) {
-                    echo json_encode(array("Success" => true));
+                    echo json_encode(array("Success" => true, "Msg" => 'Item saved successfully', "Data" => $productCode));
                 } else {
-                    echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
+                    echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => $RequestLiveStock));
                 }
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));

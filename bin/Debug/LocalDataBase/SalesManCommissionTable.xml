@@ -72,7 +72,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE COOL PACK</ItemName>
+    <ItemName>FACE MASSAGE</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -126,7 +126,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>14</ItemId>
-    <ItemName>GOLD FACIAL</ItemName>
+    <ItemName>SIGNATURE FACIAL</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -180,7 +180,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>7</ItemId>
-    <ItemName>POWDER</ItemName>
+    <ItemName>HAIR DYE [POWDER]</ItemName>
     <Barcode>7</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
@@ -306,7 +306,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE COOL PACK</ItemName>
+    <ItemName>FACE MASSAGE</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -360,7 +360,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>GOLD FACIAL</ItemName>
+    <ItemName>SIGNATURE FACIAL</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -414,7 +414,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>7</ItemId>
-    <ItemName>POWDER</ItemName>
+    <ItemName>HAIR DYE [POWDER]</ItemName>
     <Barcode>7</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
@@ -540,7 +540,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>20</ItemId>
-    <ItemName>FACE COOL PACK</ItemName>
+    <ItemName>FACE MASSAGE</ItemName>
     <Barcode>20</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -594,7 +594,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>GOLD FACIAL</ItemName>
+    <ItemName>SIGNATURE FACIAL</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -648,7 +648,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>7</ItemId>
-    <ItemName>POWDER</ItemName>
+    <ItemName>HAIR DYE [POWDER]</ItemName>
     <Barcode>7</Barcode>
     <SubGroupId>2</SubGroupId>
     <SubGroupName>HAIR DYE</SubGroupName>
