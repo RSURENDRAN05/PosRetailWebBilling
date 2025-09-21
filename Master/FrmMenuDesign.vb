@@ -1388,7 +1388,7 @@
 
 #End Region
 #Region "Save/Height/Width/Cols"
-    Private Sub btnsavefordefault_Click(sender As Object, e As EventArgs)
+    Private Sub btnsavefordefault_Click(sender As Object, e As EventArgs) Handles btnsavefordefault.Click
         Try
             Dim Width As String = ""
             Dim Height As String = ""
@@ -1457,5 +1457,5 @@
         End Try
     End Sub
 #End Region
-
+ 
 End Class
