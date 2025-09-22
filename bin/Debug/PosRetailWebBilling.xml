@@ -493,56 +493,24 @@ PosRetailWebBilling
 	<param name="getdate">Date to retrieve sales for</param>
 	<param name="receDs">DataSet to populate with sales data</param>
 	<returns>True if sales data found and populated, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateLocally(System.Int32,DPFP.Template)">
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.LogToErrorBox(System.String,System.String)">
 	<summary>
- Store a fingerprint template locally for an employee (multi-finger support)
+ Logs messages to the error RichTextBox with color coding and timestamps
  </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateOnServer(System.Int32,System.String)">
+	<param name="message">The message to log</param>
+	<param name="messageType">The type of message: "Error", "Info", "Success"</param>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.WriteToErrorBox(System.String,System.String)">
 	<summary>
- Store a fingerprint template on the server
+ Helper method to write to the error RichTextBox with formatting
  </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.VerifyLocalMultiFinger(System.Int32,DPFP.Sample)">
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.TestImmediateVerificationWithCurrentTemplate(DPFP.Template)">
 	<summary>
- Verify a fingerprint sample against all registered templates for an employee
+ Tests verification immediately after registration using the just-registered template
+ This avoids potential server timing issues by using the template from memory
  </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ConvertTemplateToBase64(DPFP.Template)">
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.RecreateTemplateInCurrentContext(DPFP.Template)">
 	<summary>
- Convert a template to Base64 string for server storage
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerification">
-	<summary>
- Start verification mode
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerificationFromButton">
-	<summary>
- You can call this method from a "Verify" button click
- Example: Private Sub btnVerify_Click(sender As Object, e As EventArgs) Handles btnVerify.Click
-              StartVerification()
-          End Sub
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ViewRegisteredFingerprints">
-	<summary>
- View registered fingerprints for the selected employee
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.VerifyLocalMultiFingerAsync(System.Int32,DPFP.Sample)">
-	<summary>
- Async version of fingerprint verification for background processing
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateOnServerAsync(System.Int32,System.String)">
-	<summary>
- Async version of server template storage for background processing
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ResetAttempts">
-	<summary>
- Helper methods for attempt management
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerificationMode(System.Int32)">
-	<summary>
- Start verification mode with fresh attempt counter
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartRegistrationMode(System.Int32)">
-	<summary>
- Start registration mode with fresh attempt counter
+ Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors
  </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>
