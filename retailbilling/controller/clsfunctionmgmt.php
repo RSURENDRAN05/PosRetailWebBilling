@@ -4671,20 +4671,70 @@ class funcProcessMgmt
     }
     // ==================== End Button Properties Methods ====================
     //============Employee Finger Management=================
-    public function RegisterEmpFinger($empId, $template)
+    public function RegisterEmpFinger($empId, $template, $fingername, $fingertype, $checksum = null)
     {
         $conn = $this->conn;
 
         try {
+            // Validate input parameters
+            if (empty($empId) || !is_numeric($empId) || $empId <= 0) {
+                throw new Exception("Invalid employee ID provided");
+            }
+
+            if (empty($template)) {
+                throw new Exception("Template data is required");
+            }
+
+            if (empty($fingername)) {
+                $fingername = 'Finger1'; // Default finger name
+            }
+
+            if (empty($fingertype)) {
+                $fingertype = 'Employee'; // Default finger type
+            }
+
+            // Validate template data size (DPFP templates are typically between 1KB-4KB)
+            $templateSize = strlen($template);
+            if ($templateSize < 100 || $templateSize > 10240) { // 100 bytes to 10KB range
+                throw new Exception("Template data size is invalid: " . $templateSize . " bytes");
+            }
+
+            // Verify integrity if checksum provided
+            if (!empty($checksum)) {
+                $calculatedChecksum = md5(base64_encode($template));
+                if ($calculatedChecksum !== $checksum) {
+                    error_log("Template integrity check failed. Expected: " . $checksum . ", Got: " . $calculatedChecksum);
+                    throw new Exception("Template data integrity check failed");
+                }
+            }
+
+            // Check if fingerprint already exists for this employee, finger name, and type
+            $checkExistingQuery = "SELECT id FROM employee_fingerprints WHERE emp_id = ? AND finger_name = ? AND fingertype = ?";
+            $checkStmt = mysqli_prepare($conn, $checkExistingQuery);
+
+            if ($checkStmt) {
+                mysqli_stmt_bind_param($checkStmt, "iss", $empId, $fingername, $fingertype);
+                mysqli_stmt_execute($checkStmt);
+                $checkResult = mysqli_stmt_get_result($checkStmt);
+
+                if (mysqli_num_rows($checkResult) > 0) {
+                    mysqli_stmt_close($checkStmt);
+                    // Update existing record instead of creating duplicate
+                    return $this->UpdateEmpFingerTemplate($empId, $template, $fingername, $fingertype);
+                }
+                mysqli_stmt_close($checkStmt);
+            }
+
             // Prepare the statement for inserting fingerprint data
-            $stmt = mysqli_prepare($conn, "INSERT INTO employee_fingerprints (emp_id, finger_template) VALUES (?, ?)");
+            // Schema: id, emp_id, finger_template (BLOB), created_at, finger_name, fingertype
+            $stmt = mysqli_prepare($conn, "INSERT INTO employee_fingerprints (emp_id, finger_template, finger_name, fingertype, created_at) VALUES (?, ?, ?, ?, NOW())");
 
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . mysqli_error($conn));
             }
 
-            // Bind parameters - 'i' for integer (emp_id), 'b' for blob (finger_template)
-            mysqli_stmt_bind_param($stmt, "ib", $empId, $null);
+            // Bind parameters - 'i' for integer (emp_id), 'b' for blob (finger_template), 's' for string (finger_name, fingertype)
+            mysqli_stmt_bind_param($stmt, "ibss", $empId, $null, $fingername, $fingertype);
 
             // Set null variable for blob data
             $null = null;
@@ -4696,37 +4746,62 @@ class funcProcessMgmt
             if (mysqli_stmt_execute($stmt)) {
                 $insertId = mysqli_insert_id($conn);
                 mysqli_stmt_close($stmt);
+
+                // Log successful registration
+                error_log("Fingerprint registered successfully - EmpId: " . $empId . ", FingerName: " . $fingername . ", Type: " . $fingertype . ", Size: " . $templateSize . " bytes");
+
                 return $insertId;
             } else {
+                $executeError = mysqli_stmt_error($stmt);
                 mysqli_stmt_close($stmt);
-                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+                throw new Exception("Execute failed: " . $executeError);
             }
         } catch (Exception $e) {
             if (isset($stmt)) {
                 mysqli_stmt_close($stmt);
             }
-            error_log("RegisterEmpFinger Error: " . $e->getMessage());
-            return false;
+            error_log("RegisterEmpFinger Error: " . $e->getMessage() . " - EmpId: " . $empId . ", FingerName: " . $fingername);
+            throw $e; // Re-throw for better error handling in calling code
         }
     }
 
     /**
-     * Verify employee fingerprint
+     * Get employee fingerprint template with enhanced multi-finger support
      * @param int $empId Employee ID
+     * @param string $fingertype Optional fingertype filter ("Employee" or "User")
+     * @param string $fingername Optional finger name filter ("Finger1", "Finger2", etc.)
      * @return string|false Returns fingerprint template on success, false on failure
      */
-    public function GetEmpFingerTemplate($empId)
+    public function GetEmpFingerTemplate($empId, $fingertype = null, $fingername = null)
     {
         $conn = $this->conn;
 
         try {
-            $stmt = mysqli_prepare($conn, "SELECT finger_template FROM employee_fingerprints WHERE emp_id = ?");
+            $sql = "SELECT finger_template FROM employee_fingerprints WHERE emp_id = ?";
+            $params = array($empId);
+            $types = "i";
+
+            if ($fingertype !== null) {
+                $sql .= " AND fingertype = ?";
+                $params[] = $fingertype;
+                $types .= "s";
+            }
+
+            if ($fingername !== null) {
+                $sql .= " AND finger_name = ?";
+                $params[] = $fingername;
+                $types .= "s";
+            }
+
+            $sql .= " ORDER BY created_at DESC LIMIT 1";
+
+            $stmt = mysqli_prepare($conn, $sql);
 
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . mysqli_error($conn));
             }
 
-            mysqli_stmt_bind_param($stmt, "i", $empId);
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
 
             if (mysqli_stmt_execute($stmt)) {
                 $result = mysqli_stmt_get_result($stmt);
@@ -4754,23 +4829,29 @@ class funcProcessMgmt
     /**
      * Update employee fingerprint template
      * @param int $empId Employee ID
-     * @param string $template Binary fingerprint template
+     * @param string $template Binary fingerprint template (BLOB data)
+     * @param string $fingername Finger name ("Finger1", "Finger2", etc.)
+     * @param string $fingertype Finger type ("Employee" or "User")
      * @return bool True on success, false on failure
      */
-    public function UpdateEmpFingerTemplate($empId, $template)
+    public function UpdateEmpFingerTemplate($empId, $template, $fingername = 'Finger1', $fingertype = 'Employee')
     {
         $conn = $this->conn;
 
         try {
-            $stmt = mysqli_prepare($conn, "UPDATE employee_fingerprints SET finger_template = ?, updated_at = NOW() WHERE emp_id = ?");
+            $stmt = mysqli_prepare($conn, "UPDATE employee_fingerprints SET finger_template = ?, updated_at = NOW() WHERE emp_id = ? AND finger_name = ? AND fingertype = ?");
 
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . mysqli_error($conn));
             }
 
-            mysqli_stmt_bind_param($stmt, "bi", $null, $empId);
+            // Bind parameters - 'b' for blob (finger_template), 'i' for integer (emp_id), 's' for string
+            mysqli_stmt_bind_param($stmt, "biss", $null, $empId, $fingername, $fingertype);
 
+            // Set null variable for blob data
             $null = null;
+
+            // Send the binary data for the blob field (parameter index 0 = first parameter)
             mysqli_stmt_send_long_data($stmt, 0, $template);
 
             if (mysqli_stmt_execute($stmt)) {
@@ -4800,7 +4881,7 @@ class funcProcessMgmt
         $conn = $this->conn;
 
         try {
-            $stmt = mysqli_prepare($conn, "DELETE FROM employee_fingerprints WHERE emp_id = ?");
+            $stmt = mysqli_prepare($conn, "DELETE FROM employee_fingerprints WHERE id = ?");
 
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . mysqli_error($conn));
@@ -4824,39 +4905,50 @@ class funcProcessMgmt
             return false;
         }
     }
-
-    /**
-     * Check if employee has fingerprint registered
-     * @param int $empId Employee ID
-     * @return bool True if fingerprint exists, false otherwise
-     */
-    public function CheckEmpFingerprintExists($empId)
+    //SELECT `id`, `emp_id`, ei.emp_printname, `finger_template`, `created_at`, `finger_name`, `fingertype` FROM `employee_fingerprints` as ef inner join pos_employeeinfo as ei on ef.emp_id=ei.emp_id WHERE 1;
+    public function GetAllEmpFingerprints()
     {
         $conn = $this->conn;
 
         try {
-            $stmt = mysqli_prepare($conn, "SELECT COUNT(*) as count FROM employee_fingerprints WHERE emp_id = ?");
+            // Fixed SQL query - proper handling of employee vs user fingerprints
+            // Note: Excluding finger_template BLOB field from general listing for performance
+            $sql = "SELECT
+                        ef.id,
+                        ef.emp_id,
+                        CASE
+                            WHEN ef.fingertype = 'Employee' THEN ei.emp_printname
+                            WHEN ef.fingertype = 'User' THEN ui.username
+                            ELSE CONCAT('ID: ', ef.emp_id)
+                        END AS emp_printname,
+                        ef.created_at,
+                        ef.finger_name,
+                        ef.fingertype,
+                        CASE
+                            WHEN ef.fingertype = 'Employee' THEN 'Employee'
+                            WHEN ef.fingertype = 'User' THEN 'User'
+                            ELSE 'Unknown'
+                        END AS record_type
+                    FROM employee_fingerprints AS ef
+                    LEFT JOIN pos_employeeinfo AS ei ON (ef.emp_id = ei.emp_id AND ef.fingertype = 'Employee')
+                    LEFT JOIN users AS ui ON (ef.emp_id = ui.id AND ef.fingertype = 'User')
+                    ORDER BY ef.created_at DESC";
 
-            if (!$stmt) {
-                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            $result = mysqli_query($conn, $sql);
+
+            if (!$result) {
+                throw new Exception("Query failed: " . mysqli_error($conn));
             }
 
-            mysqli_stmt_bind_param($stmt, "i", $empId);
+            $fingerprints = array();
 
-            if (mysqli_stmt_execute($stmt)) {
-                $result = mysqli_stmt_get_result($stmt);
-                $row = mysqli_fetch_assoc($result);
-                mysqli_stmt_close($stmt);
-                return $row['count'] > 0;
-            } else {
-                mysqli_stmt_close($stmt);
-                throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
+            while ($row = mysqli_fetch_assoc($result)) {
+                $fingerprints[] = $row;
             }
+
+            return $fingerprints;
         } catch (Exception $e) {
-            if (isset($stmt)) {
-                mysqli_stmt_close($stmt);
-            }
-            error_log("CheckEmpFingerprintExists Error: " . $e->getMessage());
+            error_log("GetAllEmpFingerprints Error: " . $e->getMessage());
             return false;
         }
     }

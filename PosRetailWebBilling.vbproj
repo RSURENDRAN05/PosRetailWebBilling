@@ -242,10 +242,13 @@
     <Compile Include="ChequeSystem\frmTodayCheque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClsModule\AuthenticationHelper.vb" />
     <Compile Include="ClsModule\clsfunction.vb" />
     <Compile Include="ClsModule\clssalesProperty.vb" />
     <Compile Include="ClsModule\encryDecry.vb" />
     <Compile Include="ClsModule\eventlogs.vb" />
+    <Compile Include="ClsModule\ExampleUsage.vb" />
+    <Compile Include="ClsModule\FingerprintAuthenticationModule.vb" />
     <Compile Include="ClsModule\LoginModule.vb" />
     <Compile Include="ClsModule\mangementModule.vb" />
     <Compile Include="ClsModule\mySqlConnection.vb" />
@@ -348,6 +351,12 @@
     <Compile Include="Employee\frmEmployeeSalaryHis.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Employee\FrmEmployeeSelect.designer.vb">
+      <DependentUpon>FrmEmployeeSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\FrmEmployeeSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Employee\frmEmployeeView.Designer.vb">
       <DependentUpon>frmEmployeeView.vb</DependentUpon>
     </Compile>
@@ -358,6 +367,12 @@
       <DependentUpon>frmFinalProcess.vb</DependentUpon>
     </Compile>
     <Compile Include="Employee\frmFinalProcess.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\FrmFingerprintAuth.designer.vb">
+      <DependentUpon>FrmFingerprintAuth.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\FrmFingerprintAuth.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Employee\FrmFingerRegister.Designer.vb">
@@ -805,11 +820,17 @@
     <EmbeddedResource Include="Employee\frmEmployeeSalaryHis.resx">
       <DependentUpon>frmEmployeeSalaryHis.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Employee\FrmEmployeeSelect.resx">
+      <DependentUpon>FrmEmployeeSelect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmEmployeeView.resx">
       <DependentUpon>frmEmployeeView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmFinalProcess.resx">
       <DependentUpon>frmFinalProcess.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\FrmFingerprintAuth.resx">
+      <DependentUpon>FrmFingerprintAuth.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\FrmFingerRegister.resx">
       <DependentUpon>FrmFingerRegister.vb</DependentUpon>

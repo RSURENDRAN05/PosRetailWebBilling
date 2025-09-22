@@ -6,7 +6,74 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.StartVerification(System.Int32,System.String)">
+	<summary>
+ Start fingerprint verification for a specific employee
+ </summary>
+	<param name="empId">Employee ID to verify</param>
+	<param name="empName">Employee name for display</param>
+	<returns>True if verification started successfully</returns>
+</member><member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.StopVerification">
+	<summary>
+ Stop any active verification process
+ </summary>
+</member><member name="P:PosRetailWebBilling.FingerprintAuthenticationModule.IsActive">
+	<summary>
+ Check if verification is currently active
+ </summary>
+</member><member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.Dispose">
+	<summary>
+ Cleanup resources when done
+ </summary>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.AuthenticateEmployee(System.Int32,System.String,System.Boolean,System.String)">
+	<summary>
+ Authenticate a specific employee using fingerprint or password
+ </summary>
+	<param name="empId">Employee ID to authenticate</param>
+	<param name="empName">Employee name for display</param>
+	<param name="allowPassword">Allow password fallback</param>
+	<param name="passwordHash">Optional password hash for verification</param>
+	<returns>Authentication result</returns>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.ShowLoginDialog(System.Boolean,System.Int32)">
+	<summary>
+ Show login dialog that requires either fingerprint or password authentication
+ </summary>
+	<param name="allowAnyEmployee">If true, allows any registered employee. If false, requires specific employee</param>
+	<param name="requiredEmpId">If allowAnyEmployee is false, this employee must authenticate</param>
+	<returns>Authentication result</returns>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.QuickFingerprintVerify(System.Int32,System.String)">
+	<summary>
+ Quick fingerprint verification without password option
+ </summary>
+	<param name="empId">Employee ID to verify</param>
+	<param name="empName">Employee name</param>
+	<returns>True if fingerprint verified successfully</returns>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.VerifyCurrentUser(System.Int32,System.String)">
+	<summary>
+ Verify current user for sensitive operations
+ </summary>
+	<param name="currentUserId">Current logged in user ID</param>
+	<param name="operationName">Name of operation requiring verification</param>
+	<returns>True if user verified successfully</returns>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.HasFingerprintRegistered(System.Int32)">
+	<summary>
+ Check if employee has fingerprint registered
+ </summary>
+	<param name="empId">Employee ID to check</param>
+	<returns>True if fingerprint is registered</returns>
+</member><member name="M:PosRetailWebBilling.AuthenticationHelper.GetEmployeeNameById(System.Int32)">
+	<summary>
+ Get employee name by ID (implement based on your data source)
+ </summary>
+</member><member name="T:PosRetailWebBilling.AuthenticationResult">
+	<summary>
+ Result of authentication attempt
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerprintAuth.ShowAuthenticationDialog(System.Int32,System.String,System.Boolean,System.String)">
+	<summary>
+ Static method to easily call fingerprint authentication from anywhere
+ </summary>
+</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>
@@ -426,6 +493,57 @@ PosRetailWebBilling
 	<param name="getdate">Date to retrieve sales for</param>
 	<param name="receDs">DataSet to populate with sales data</param>
 	<returns>True if sales data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateLocally(System.Int32,DPFP.Template)">
+	<summary>
+ Store a fingerprint template locally for an employee (multi-finger support)
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateOnServer(System.Int32,System.String)">
+	<summary>
+ Store a fingerprint template on the server
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.VerifyLocalMultiFinger(System.Int32,DPFP.Sample)">
+	<summary>
+ Verify a fingerprint sample against all registered templates for an employee
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ConvertTemplateToBase64(DPFP.Template)">
+	<summary>
+ Convert a template to Base64 string for server storage
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerification">
+	<summary>
+ Start verification mode
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerificationFromButton">
+	<summary>
+ You can call this method from a "Verify" button click
+ Example: Private Sub btnVerify_Click(sender As Object, e As EventArgs) Handles btnVerify.Click
+              StartVerification()
+          End Sub
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ViewRegisteredFingerprints">
+	<summary>
+ View registered fingerprints for the selected employee
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.VerifyLocalMultiFingerAsync(System.Int32,DPFP.Sample)">
+	<summary>
+ Async version of fingerprint verification for background processing
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StoreTemplateOnServerAsync(System.Int32,System.String)">
+	<summary>
+ Async version of server template storage for background processing
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.ResetAttempts">
+	<summary>
+ Helper methods for attempt management
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartVerificationMode(System.Int32)">
+	<summary>
+ Start verification mode with fresh attempt counter
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.StartRegistrationMode(System.Int32)">
+	<summary>
+ Start registration mode with fresh attempt counter
+ </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>
  Centralized method to update shift information from JSON response
