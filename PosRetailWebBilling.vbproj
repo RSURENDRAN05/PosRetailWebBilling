@@ -235,7 +235,6 @@
     <Compile Include="ClsModule\eventlogs.vb" />
     <Compile Include="ClsModule\LoginModule.vb" />
     <Compile Include="ClsModule\mangementModule.vb" />
-    <Compile Include="ClsModule\mySqlConnection.vb" />
     <Compile Include="ClsModule\M_CONNECT.vb" />
     <Compile Include="ClsModule\SalesDBHelper.vb" />
     <Compile Include="ClsModule\shiftclosecheck.vb" />

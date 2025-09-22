@@ -6,7 +6,245 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="M:PosRetailWebBilling.IniFile.#ctor(System.String)">
+	<summary>
+ IniFile Constructor
+ </summary>
+	<param name="IniPath">The path to the INI file.</param>
+</member><member name="M:PosRetailWebBilling.IniFile.ReadValue(System.String,System.String)">
+	<summary>
+ Read value from INI file
+ </summary>
+	<param name="section">The section of the file to look in</param>
+	<param name="key">The key in the section to look for</param>
+</member><member name="M:PosRetailWebBilling.IniFile.WriteValue(System.String,System.String,System.String)">
+	<summary>
+ Write value to INI file
+ </summary>
+	<param name="section">The section of the file to write in</param>
+	<param name="key">The key in the section to write</param>
+	<param name="value">The value to write for the key</param>
+</member><member name="M:PosRetailWebBilling.SkinManager.Initialize(System.String)">
+	<summary>
+ Initialize skins for the entire application
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.SetSkin(System.String)">
+	<summary>
+ Set the application skin and save the setting (for user-initiated changes)
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.ApplySkin(System.String)">
+	<summary>
+ Apply skin without saving (for loading saved settings)
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.GetAvailableSkins">
+	<summary>
+ Get all available skins from the SkinManager
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.SaveSkinSetting(System.String)">
+	<summary>
+ Save skin setting to both My.Settings and INI file
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.LoadSkinSetting">
+	<summary>
+ Load skin setting from application settings and apply it
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.GetSavedSkin">
+	<summary>
+ Get the saved skin setting from application settings
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.ApplySkinToForms(System.String,System.Windows.Forms.Form)">
+	<summary>
+ Apply skin to forms and controls - handles both single form and all open forms
+ </summary>
+</member><member name="M:PosRetailWebBilling.SkinManager.ApplyToControls(System.Windows.Forms.Control,System.String)">
+	<summary>
+ Apply skin to DevExpress controls recursively
+ </summary>
+</member><member name="M:PosRetailWebBilling.PosSalesII.GetPaymentModesDictionary">
+	<summary>
+ Convert PaymentDetailTable to Dictionary for database operations
+ </summary>
+</member><member name="M:PosRetailWebBilling.PosSalesII.ConvertDecimal(System.Object)">
+	<summary>
+ Safely convert object to decimal, handling DBNull and empty values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
+	<summary>
+ Generates MD5 hash of the input string (same as PHP's md5() function)
+ </summary>
+	<param name="input">The string to hash</param>
+	<returns>MD5 hash as lowercase hex string</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
+	<summary>
+ Verifies password against stored MD5 hash
+ </summary>
+	<param name="password">Plain text password to verify</param>
+	<param name="storedHash">Stored MD5 hash from database</param>
+	<returns>True if password matches, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
+	<summary>
+ Authenticates user with username and password using MD5 hash comparison
+ </summary>
+	<param name="username">Username</param>
+	<param name="password">Plain text password</param>
+	<returns>True if authentication successful, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Integer values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDecimal(System.Object,System.Decimal)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Decimal values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion to handle DBNull values
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDateTime(System.Object,System.DateTime)">
+	<summary>
+ Safe date conversion to handle DBNull and invalid date strings
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
+	<summary>
+ Save sales bill with payment mode information
+ </summary>
+	<param name="salesHeader">Sales header data</param>
+	<param name="salesDetailsList">List of sales details</param>
+	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
+	<param name="errorMessage">Error message output</param>
+	<param name="returnBillNo">Generated bill number output</param>
+	<returns>True if successful, False if failed</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentModesWithTransaction(System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.Int32,System.Int32,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)">
+	<summary>
+ Save payment modes within a transaction
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
+	<summary>
+ Update existing sales bill (for edit mode)
+ </summary>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
+	<summary>
+ Update existing sales bill with payment mode information (for edit mode)
+ </summary>
+	<param name="salesHeader">Sales header data</param>
+	<param name="salesDetailsList">List of sales details</param>
+	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
+	<param name="errorMessage">Error message output</param>
+	<param name="returnBillNo">Generated bill number output</param>
+	<returns>True if successful, False if failed</returns>
+</member><member name="M:PosRetailWebBilling.SalesDBHelper.ConvertDataTableToSalesDetails(System.Data.DataTable)">
+	<summary>
+ Convert DataTable to List of SalesDetails
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion helper for the module
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetSalesByBillLocal(System.String,System.Data.DataSet@,System.String@)">
+	<summary>
+ Get sales data by bill number for printing/viewing
+ </summary>
+	<param name="BillNo">Bill number to retrieve</param>
+	<param name="receDs">DataSet to populate with bill data</param>
+	<returns>True if bill data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.PrintViewReport.GetAllSales(System.String,System.Data.DataSet@)">
+	<summary>
+ Get all sales data for a specific date
+ </summary>
+	<param name="getdate">Date to retrieve sales for</param>
+	<param name="receDs">DataSet to populate with sales data</param>
+	<returns>True if sales data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
+	<summary>
+ Centralized method to update shift information from JSON response
+ This ensures consistent handling and avoids duplicate code
+ </summary>
+</member><member name="M:PosRetailWebBilling.LoginModule.UpdateDayInfo(System.Object)">
+	<summary>
+ Centralized method to update day information from JSON response
+ This ensures consistent handling and avoids duplicate code
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanJsonString(System.String)">
+	<summary>
+ Clean JSON string to remove control characters that cause parsing errors
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanDataSetForJson(System.Data.DataSet)">
+	<summary>
+ Clean DataSet string fields to remove control characters before JSON serialization
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanStringField(System.String)">
+	<summary>
+ Clean individual string field to remove control characters
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionSuccess(System.String,System.String)">
+	<summary>
+ Log successful transaction to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionFailure(System.String,System.String)">
+	<summary>
+ Log failed transaction to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionInfo(System.String,System.String)">
+	<summary>
+ Log informational transaction message to RichTextBox with real-time display
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionProcessing(System.String)">
+	<summary>
+ Log transaction processing start to RichTextBox
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncStart(System.Int32)">
+	<summary>
+ Log sync process start
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncComplete">
+	<summary>
+ Log sync process completion
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanJsonString(System.String)">
+	<summary>
+ Clean JSON string to remove control characters that cause parsing errors
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanDataSetForJson(System.Data.DataSet)">
+	<summary>
+ Clean DataSet string fields to remove control characters before JSON serialization
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPayouts.CleanStringField(System.String)">
+	<summary>
+ Clean individual string field to remove control characters
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.ConvertDecimal(System.Object)">
+	<summary>
+ Safely convert object to decimal, handling DBNull and empty values
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.ValidateMultiplePaymentTotal">
+	<summary>
+ Validate multiple payment total matches balance before proceeding
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.ClearMultiplePaymentFields">
+	<summary>
+ Clear multiple payment fields
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.txtmultipletotal_EditValueChanged(System.Object,System.EventArgs)">
+	<summary>
+ Handle multiple payment total change
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.GetTotalPaymentAmount">
+	<summary>
+ Get total selected payment amount
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.GetSelectedPaymentModes">
+	<summary>
+ Get selected payment modes as dictionary for saving
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.IsPaymentComplete">
+	<summary>
+ Check if payment is complete
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymore.GridControlPaymore_DoubleClick(System.Object,System.EventArgs)">
+	<summary>
+ Handle double-click on payment detail grid to edit amount
+ </summary>
+</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>
@@ -298,144 +536,6 @@ PosRetailWebBilling
 	<param name="userId">User ID</param>
 	<param name="pcName">PC Name</param>
 	<returns>Success status, action, message and result data</returns>
-</member><member name="M:PosRetailWebBilling.SkinManager.Initialize(System.String)">
-	<summary>
- Initialize skins for the entire application
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.SetSkin(System.String)">
-	<summary>
- Set the application skin and save the setting (for user-initiated changes)
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.ApplySkin(System.String)">
-	<summary>
- Apply skin without saving (for loading saved settings)
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.GetAvailableSkins">
-	<summary>
- Get all available skins from the SkinManager
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.SaveSkinSetting(System.String)">
-	<summary>
- Save skin setting to both My.Settings and INI file
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.LoadSkinSetting">
-	<summary>
- Load skin setting from application settings and apply it
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.GetSavedSkin">
-	<summary>
- Get the saved skin setting from application settings
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.ApplySkinToForms(System.String,System.Windows.Forms.Form)">
-	<summary>
- Apply skin to forms and controls - handles both single form and all open forms
- </summary>
-</member><member name="M:PosRetailWebBilling.SkinManager.ApplyToControls(System.Windows.Forms.Control,System.String)">
-	<summary>
- Apply skin to DevExpress controls recursively
- </summary>
-</member><member name="M:PosRetailWebBilling.IniFile.#ctor(System.String)">
-	<summary>
- IniFile Constructor
- </summary>
-	<param name="IniPath">The path to the INI file.</param>
-</member><member name="M:PosRetailWebBilling.IniFile.ReadValue(System.String,System.String)">
-	<summary>
- Read value from INI file
- </summary>
-	<param name="section">The section of the file to look in</param>
-	<param name="key">The key in the section to look for</param>
-</member><member name="M:PosRetailWebBilling.IniFile.WriteValue(System.String,System.String,System.String)">
-	<summary>
- Write value to INI file
- </summary>
-	<param name="section">The section of the file to write in</param>
-	<param name="key">The key in the section to write</param>
-	<param name="value">The value to write for the key</param>
-</member><member name="M:PosRetailWebBilling.PosSalesII.GetPaymentModesDictionary">
-	<summary>
- Convert PaymentDetailTable to Dictionary for database operations
- </summary>
-</member><member name="M:PosRetailWebBilling.PosSalesII.ConvertDecimal(System.Object)">
-	<summary>
- Safely convert object to decimal, handling DBNull and empty values
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
-	<summary>
- Safe conversion helper to handle DBNull and empty strings for Integer values
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDecimal(System.Object,System.Decimal)">
-	<summary>
- Safe conversion helper to handle DBNull and empty strings for Decimal values
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToString(System.Object,System.String)">
-	<summary>
- Safe string conversion to handle DBNull values
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToDateTime(System.Object,System.DateTime)">
-	<summary>
- Safe date conversion to handle DBNull and invalid date strings
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SaveSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
-	<summary>
- Save sales bill with payment mode information
- </summary>
-	<param name="salesHeader">Sales header data</param>
-	<param name="salesDetailsList">List of sales details</param>
-	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.SavePaymentModesWithTransaction(System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.Int32,System.Int32,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)">
-	<summary>
- Save payment modes within a transaction
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.String@,System.String@)">
-	<summary>
- Update existing sales bill (for edit mode)
- </summary>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.UpdateSalesBill(PosRetailWebBilling.SalesHeader,System.Collections.Generic.List{PosRetailWebBilling.SalesDetails},System.Collections.Generic.Dictionary{System.Int32,System.Decimal},System.String@,System.String@)">
-	<summary>
- Update existing sales bill with payment mode information (for edit mode)
- </summary>
-	<param name="salesHeader">Sales header data</param>
-	<param name="salesDetailsList">List of sales details</param>
-	<param name="paymentModes">Dictionary of payment modes (PaymodeID, Amount)</param>
-	<param name="errorMessage">Error message output</param>
-	<param name="returnBillNo">Generated bill number output</param>
-	<returns>True if successful, False if failed</returns>
-</member><member name="M:PosRetailWebBilling.SalesDBHelper.ConvertDataTableToSalesDetails(System.Data.DataTable)">
-	<summary>
- Convert DataTable to List of SalesDetails
- </summary>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.SafeToString(System.Object,System.String)">
-	<summary>
- Safe string conversion helper for the module
- </summary>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.GetSalesByBillLocal(System.String,System.Data.DataSet@,System.String@)">
-	<summary>
- Get sales data by bill number for printing/viewing
- </summary>
-	<param name="BillNo">Bill number to retrieve</param>
-	<param name="receDs">DataSet to populate with bill data</param>
-	<returns>True if bill data found and populated, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.PrintViewReport.GetAllSales(System.String,System.Data.DataSet@)">
-	<summary>
- Get all sales data for a specific date
- </summary>
-	<param name="getdate">Date to retrieve sales for</param>
-	<param name="receDs">DataSet to populate with sales data</param>
-	<returns>True if sales data found and populated, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
-	<summary>
- Centralized method to update shift information from JSON response
- This ensures consistent handling and avoids duplicate code
- </summary>
-</member><member name="M:PosRetailWebBilling.LoginModule.UpdateDayInfo(System.Object)">
-	<summary>
- Centralized method to update day information from JSON response
- This ensures consistent handling and avoids duplicate code
- </summary>
 </member><member name="M:PosRetailWebBilling.M_CONNECT.ValidateDBConnectionBeforeLogin(System.String@,System.String)">
 	<summary>
  Validates database connection string before login
@@ -469,106 +569,6 @@ PosRetailWebBilling
  Gets current database connection information for display/logging purposes
  </summary>
 	<returns>Formatted string with connection details (without sensitive information)</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.GenerateMD5Hash(System.String)">
-	<summary>
- Generates MD5 hash of the input string (same as PHP's md5() function)
- </summary>
-	<param name="input">The string to hash</param>
-	<returns>MD5 hash as lowercase hex string</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.VerifyMD5Password(System.String,System.String)">
-	<summary>
- Verifies password against stored MD5 hash
- </summary>
-	<param name="password">Plain text password to verify</param>
-	<param name="storedHash">Stored MD5 hash from database</param>
-	<returns>True if password matches, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
-	<summary>
- Authenticates user with username and password using MD5 hash comparison
- </summary>
-	<param name="username">Username</param>
-	<param name="password">Plain text password</param>
-	<returns>True if authentication successful, False otherwise</returns>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanJsonString(System.String)">
-	<summary>
- Clean JSON string to remove control characters that cause parsing errors
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanDataSetForJson(System.Data.DataSet)">
-	<summary>
- Clean DataSet string fields to remove control characters before JSON serialization
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.CleanStringField(System.String)">
-	<summary>
- Clean individual string field to remove control characters
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionSuccess(System.String,System.String)">
-	<summary>
- Log successful transaction to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionFailure(System.String,System.String)">
-	<summary>
- Log failed transaction to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionInfo(System.String,System.String)">
-	<summary>
- Log informational transaction message to RichTextBox with real-time display
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogTransactionProcessing(System.String)">
-	<summary>
- Log transaction processing start to RichTextBox
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncStart(System.Int32)">
-	<summary>
- Log sync process start
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.LogSyncComplete">
-	<summary>
- Log sync process completion
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPayouts.CleanJsonString(System.String)">
-	<summary>
- Clean JSON string to remove control characters that cause parsing errors
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPayouts.CleanDataSetForJson(System.Data.DataSet)">
-	<summary>
- Clean DataSet string fields to remove control characters before JSON serialization
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPayouts.CleanStringField(System.String)">
-	<summary>
- Clean individual string field to remove control characters
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.ConvertDecimal(System.Object)">
-	<summary>
- Safely convert object to decimal, handling DBNull and empty values
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.ValidateMultiplePaymentTotal">
-	<summary>
- Validate multiple payment total matches balance before proceeding
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.ClearMultiplePaymentFields">
-	<summary>
- Clear multiple payment fields
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.txtmultipletotal_EditValueChanged(System.Object,System.EventArgs)">
-	<summary>
- Handle multiple payment total change
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.GetTotalPaymentAmount">
-	<summary>
- Get total selected payment amount
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.GetSelectedPaymentModes">
-	<summary>
- Get selected payment modes as dictionary for saving
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.IsPaymentComplete">
-	<summary>
- Check if payment is complete
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymore.GridControlPaymore_DoubleClick(System.Object,System.EventArgs)">
-	<summary>
- Handle double-click on payment detail grid to edit amount
- </summary>
 </member><member name="P:PosRetailWebBilling.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
