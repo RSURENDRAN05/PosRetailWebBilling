@@ -79,7 +79,7 @@
   <PosSettingsTable>
     <Id>5</Id>
     <Name>SearchProductCode</Name>
-    <Status>1</Status>
+    <Status>0</Status>
     <Value>0</Value>
     <Type>0</Type>
     <Created>2025-08-19 05:15:38</Created>

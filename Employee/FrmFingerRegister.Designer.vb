@@ -24,6 +24,10 @@ Partial Class FrmFingerRegister
         Me.GridControlEmpFingerHeader = New DevExpress.XtraGrid.GridControl()
         Me.GridViewEmpFingerHeader = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.lblempname = New System.Windows.Forms.Label()
+        Me.lblempid = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnTest = New DevExpress.XtraEditors.SimpleButton()
@@ -33,10 +37,13 @@ Partial Class FrmFingerRegister
         Me.lblfingerimage = New DevExpress.XtraEditors.PictureEdit()
         Me.GridControlEmpHeader = New DevExpress.XtraGrid.GridControl()
         Me.GridViewEmpHeader = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.btnstartCapture = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +90,11 @@ Partial Class FrmFingerRegister
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.btnstartCapture)
+        Me.PanelControl1.Controls.Add(Me.lblempname)
+        Me.PanelControl1.Controls.Add(Me.lblempid)
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Controls.Add(Me.btnDelete)
         Me.PanelControl1.Controls.Add(Me.btnRefresh)
         Me.PanelControl1.Controls.Add(Me.btnTest)
@@ -94,6 +106,42 @@ Partial Class FrmFingerRegister
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(563, 329)
         Me.PanelControl1.TabIndex = 5
+        '
+        'lblempname
+        '
+        Me.lblempname.AutoSize = True
+        Me.lblempname.Location = New System.Drawing.Point(93, 54)
+        Me.lblempname.Name = "lblempname"
+        Me.lblempname.Size = New System.Drawing.Size(38, 13)
+        Me.lblempname.TabIndex = 10
+        Me.lblempname.Text = "Label4"
+        '
+        'lblempid
+        '
+        Me.lblempid.AutoSize = True
+        Me.lblempid.Location = New System.Drawing.Point(93, 19)
+        Me.lblempid.Name = "lblempid"
+        Me.lblempid.Size = New System.Drawing.Size(38, 13)
+        Me.lblempid.TabIndex = 9
+        Me.lblempid.Text = "Label3"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(5, 54)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(61, 13)
+        Me.Label2.TabIndex = 8
+        Me.Label2.Text = "EmpName :"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(22, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "EmpId :"
         '
         'btnDelete
         '
@@ -165,9 +213,39 @@ Partial Class FrmFingerRegister
         '
         'GridViewEmpHeader
         '
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridViewEmpHeader.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpHeader.Appearance.Row.Options.UseFont = True
+        Me.GridViewEmpHeader.Appearance.Row.Options.UseTextOptions = True
+        Me.GridViewEmpHeader.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridViewEmpHeader.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
         Me.GridViewEmpHeader.GridControl = Me.GridControlEmpHeader
         Me.GridViewEmpHeader.Name = "GridViewEmpHeader"
+        Me.GridViewEmpHeader.OptionsBehavior.Editable = False
+        Me.GridViewEmpHeader.OptionsBehavior.ReadOnly = True
         Me.GridViewEmpHeader.OptionsView.ShowGroupPanel = False
+        Me.GridViewEmpHeader.RowHeight = 30
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "EmpId"
+        Me.GridColumn1.FieldName = "emp_id"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 79
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "EmpName"
+        Me.GridColumn2.FieldName = "emp_printname"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 320
         '
         'LayoutControlGroup1
         '
@@ -214,6 +292,14 @@ Partial Class FrmFingerRegister
         Me.LayoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(69, 13)
         '
+        'btnstartCapture
+        '
+        Me.btnstartCapture.Location = New System.Drawing.Point(321, 133)
+        Me.btnstartCapture.Name = "btnstartCapture"
+        Me.btnstartCapture.Size = New System.Drawing.Size(101, 46)
+        Me.btnstartCapture.TabIndex = 11
+        Me.btnstartCapture.Text = "Start"
+        '
         'FrmFingerRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,6 +315,7 @@ Partial Class FrmFingerRegister
         CType(Me.GridViewEmpFingerHeader, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.lblstatusimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblfingerimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControlEmpHeader, System.ComponentModel.ISupportInitialize).EndInit()
@@ -257,4 +344,11 @@ Partial Class FrmFingerRegister
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents lblempname As System.Windows.Forms.Label
+    Friend WithEvents lblempid As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents btnstartCapture As DevExpress.XtraEditors.SimpleButton
 End Class

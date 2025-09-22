@@ -30,22 +30,22 @@
   <ButtonStyleTable>
     <Id>76</Id>
     <Name>SUBH</Name>
-    <Value>70</Value>
+    <Value>79</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>77</Id>
     <Name>SUBW</Name>
-    <Value>120</Value>
+    <Value>112</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>78</Id>
     <Name>ITEMH</Name>
-    <Value>80</Value>
+    <Value>113</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>79</Id>
     <Name>ITEMW</Name>
-    <Value>390</Value>
+    <Value>187</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>80</Id>
@@ -75,6 +75,6 @@
   <ButtonStyleTable>
     <Id>85</Id>
     <Name>ITEMMENUCOL</Name>
-    <Value>1</Value>
+    <Value>2</Value>
   </ButtonStyleTable>
 </NewDataSet>
