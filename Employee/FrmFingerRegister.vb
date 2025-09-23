@@ -286,7 +286,7 @@ Public Class FrmFingerRegister
                 Return
             End If
             EnrollmentControl.ShowDailogData(selectedEmployeeId, lbltype.Text)
-            StoreFmdFile()
+            StoreFmdFile(selectedEmployeeId)
         Catch ex As Exception
 
         End Try

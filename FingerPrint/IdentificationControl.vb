@@ -31,7 +31,7 @@ Partial Public Class IdentificationControl
 
     Private Sub IdentificationControl_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         'MessageBox.Show("Form Load - initializing fingerprint identification")
-        StoreFmdFile()
+        StoreFmdFile(EmpIds)
         'Dim count = _sender.Fmds.Count
         FingerPrintReader.CurrentReaderData()
         ' Get first EmployeeFinger object
@@ -40,15 +40,15 @@ Partial Public Class IdentificationControl
 
         If identificationControl IsNot Nothing Then
             identificationControl.Reader = FingerPrintReader.CurrentReader
+        Else
+            ' See the SDK documentation for an explanation on threshold scores.
+            Dim thresholdScore As Integer = DPFJ_PROBABILITY_ONE * 1 / 100000
+            identificationControl = New DPCtlUruNet.IdentificationControl(FingerPrintReader.CurrentReader, allTemplates, thresholdScore, 10, Constants.CapturePriority.DP_PRIORITY_COOPERATIVE)
+            identificationControl.Location = New System.Drawing.Point(3, 3)
+            identificationControl.Name = "identificationControl"
+            identificationControl.Size = New System.Drawing.Size(397, 128)
+            identificationControl.TabIndex = 0
         End If
-        ' See the SDK documentation for an explanation on threshold scores.
-        Dim thresholdScore As Integer = DPFJ_PROBABILITY_ONE * 1 / 100000
-        identificationControl = New DPCtlUruNet.IdentificationControl(FingerPrintReader.CurrentReader, allTemplates, thresholdScore, 10, Constants.CapturePriority.DP_PRIORITY_COOPERATIVE)
-        identificationControl.Location = New System.Drawing.Point(3, 3)
-        identificationControl.Name = "identificationControl"
-        identificationControl.Size = New System.Drawing.Size(397, 128)
-        identificationControl.TabIndex = 0
-
         ' Be sure to set the maximum number of matches you want returned.
         identificationControl.MaximumResult = 10
 
@@ -63,23 +63,17 @@ Partial Public Class IdentificationControl
     End Sub
     Private Sub identificationControl_OnIdentify(ByVal IdentificationControl As DPCtlUruNet.IdentificationControl, ByVal IdentificationResult As IdentifyResult) Handles identificationControl.OnIdentify
         Try
-            ' Check if identification failed
             If IdentificationResult.ResultCode <> Constants.ResultCode.DP_SUCCESS Then
-                ' Handle failure
                 If IdentificationResult.Indexes Is Nothing Then
-                    Select Case IdentificationResult.ResultCode
-                        Case Constants.ResultCode.DP_INVALID_PARAMETER
-                            MessageBox.Show("Warning: Fake finger detected.", "Identification Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Case Constants.ResultCode.DP_NO_DATA
-                            MessageBox.Show("Warning: No finger detected.", "Identification Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Case Else
-                            MessageBox.Show("Error: " & IdentificationResult.ResultCode.ToString(), "Identification Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End Select
-
-                    ' Dispose reader on failure
-                    If FingerPrintReader.CurrentReader IsNot Nothing Then
-                        FingerPrintReader.CurrentReader.Dispose()
-                        FingerPrintReader.CurrentReader = Nothing
+                    If IdentificationResult.ResultCode = Constants.ResultCode.DP_INVALID_PARAMETER Then
+                        MessageBox.Show("Warning: Fake finger was detected.")
+                    ElseIf IdentificationResult.ResultCode = Constants.ResultCode.DP_NO_DATA Then
+                        MessageBox.Show("Warning: No finger was detected.")
+                    Else
+                        If FingerPrintReader.CurrentReader IsNot Nothing Then
+                            FingerPrintReader.CurrentReader.Dispose()
+                            FingerPrintReader.CurrentReader = Nothing
+                        End If
                     End If
                 Else
                     If FingerPrintReader.CurrentReader IsNot Nothing Then
@@ -88,37 +82,11 @@ Partial Public Class IdentificationControl
                     End If
                     MessageBox.Show("Error:  " & IdentificationResult.ResultCode.ToString())
                 End If
-            End If
-
-
-            ' Identification succeeded
-            FingerPrintReader.CurrentReader = IdentificationControl.Reader
-            Dim matchMessage As String = ""
-
-            ' Check if there are actual matches
-            If IdentificationResult.Indexes IsNot Nothing AndAlso IdentificationResult.Indexes.Length > 0 Then
-                For i As Integer = 0 To IdentificationResult.Indexes.Length - 1
-                    'If FingerPrintReader.Fmds.ContainsKey(i) Then
-                    '    Dim empInfo As EmployeeFinger = FingerPrintReader.Fmds(i)
-                    '    matchMessage &= "Employee: " & empInfo.EmpName & " (ID: " & empInfo.EmpId & "), Finger: " & empInfo.FingerName & vbCrLf
-                    'Else
-                    '    matchMessage &= "Matched index: " & i.ToString() & vbCrLf
-                    'End If
-                Next
-
-                ' Append to textbox
-                txtMessage.AppendText("OnIdentify: " & matchMessage & vbCrLf)
-
-                ' Show success message
-                MessageBox.Show("Fingerprint identified successfully!" & vbCrLf & matchMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                ' No matches found
-                txtMessage.AppendText("OnIdentify: No matches found." & vbCrLf)
-                MessageBox.Show("No fingerprint matches found.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                FingerPrintReader.CurrentReader = IdentificationControl.Reader
+                txtMessage.Text = txtMessage.Text + "OnIdentify:  " & (If(IdentificationResult.Indexes.Length.Equals(0), "No ", "One or more ")) & "matches.  Try another finger." & vbCr & vbLf & vbCr & vbLf
             End If
 
-
-            ' Scroll textbox
             txtMessage.SelectionStart = txtMessage.TextLength
             txtMessage.ScrollToCaret()
 

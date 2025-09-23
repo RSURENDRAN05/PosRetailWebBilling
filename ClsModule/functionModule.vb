@@ -451,14 +451,24 @@ Module functionModule
     '        Return False
     '    End Try
     'End Function
-    Public Function StoreFmdFile() As Boolean
+    Public Function StoreFmdFile(empIds As Integer) As Boolean
         Try
             ' Clear existing Fmds
             FingerPrintReader.Fmds.Clear()
             getFingerPrintData()
+            Dim dt As DataTable = Nothing
+
+            ' Filter rows by emp_id
+            Dim filteredRows = _JsonData.FingerPrintDataTable.AsEnumerable() _
+                               .Where(Function(r) Convert.ToInt32(r("emp_id")) = empIds)
+
+            If filteredRows.Any() Then
+                ' Copy the filtered rows to a new DataTable
+                dt = filteredRows.CopyToDataTable()
+            End If
             ' Loop through each row in your fingerprint data table
-            If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
-                For Each row As DataRow In _JsonData.FingerPrintDataTable.Rows
+            If dt.Rows.Count > 0 Then
+                For Each row As DataRow In dt.Rows
                     Dim fingerPosition As Int16 = Convert.ToInt16(row("finger_name"))
                     Dim empId As Integer = Convert.ToInt32(row("emp_id"))
                     Dim empName As String = If(row.Table.Columns.Contains("emp_printname"), row("emp_printname").ToString(), "Unknown")
