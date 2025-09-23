@@ -22,9 +22,16 @@ Partial Class FrmFingerRegister
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFingerRegister))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.errorRichBox = New System.Windows.Forms.RichTextBox()
         Me.GridControlEmpFingerHeader = New DevExpress.XtraGrid.GridControl()
         Me.GridViewEmpFingerHeader = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.lbltype = New System.Windows.Forms.Label()
         Me.cmbFingerName = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -43,20 +50,13 @@ Partial Class FrmFingerRegister
         Me.GridViewEmpHeader = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.lbltype = New System.Windows.Forms.Label()
-        Me.errorRichBox = New System.Windows.Forms.RichTextBox()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,8 +71,8 @@ Partial Class FrmFingerRegister
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Img, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Img, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -88,6 +88,14 @@ Partial Class FrmFingerRegister
         Me.LayoutControl1.Size = New System.Drawing.Size(1008, 729)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'errorRichBox
+        '
+        Me.errorRichBox.Location = New System.Drawing.Point(12, 381)
+        Me.errorRichBox.Name = "errorRichBox"
+        Me.errorRichBox.Size = New System.Drawing.Size(417, 336)
+        Me.errorRichBox.TabIndex = 7
+        Me.errorRichBox.Text = ""
         '
         'GridControlEmpFingerHeader
         '
@@ -116,6 +124,49 @@ Partial Class FrmFingerRegister
         Me.GridViewEmpFingerHeader.OptionsView.ShowGroupPanel = False
         Me.GridViewEmpFingerHeader.RowHeight = 30
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Id"
+        Me.GridColumn3.FieldName = "id"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Width = 41
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "RefId"
+        Me.GridColumn4.FieldName = "emp_id"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 46
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Name"
+        Me.GridColumn5.FieldName = "emp_printname"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.Width = 152
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "FingerName"
+        Me.GridColumn6.FieldName = "finger_name"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.Width = 152
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Type"
+        Me.GridColumn7.FieldName = "fingertype"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.Width = 154
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.lbltype)
@@ -137,6 +188,15 @@ Partial Class FrmFingerRegister
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(563, 361)
         Me.PanelControl1.TabIndex = 5
+        '
+        'lbltype
+        '
+        Me.lbltype.AutoSize = True
+        Me.lbltype.Location = New System.Drawing.Point(106, 111)
+        Me.lbltype.Name = "lbltype"
+        Me.lbltype.Size = New System.Drawing.Size(38, 13)
+        Me.lbltype.TabIndex = 21
+        Me.lbltype.Text = "Label4"
         '
         'cmbFingerName
         '
@@ -305,6 +365,15 @@ Partial Class FrmFingerRegister
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 248
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Type"
+        Me.GridColumn8.FieldName = "emp_type"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.Width = 85
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
@@ -350,82 +419,6 @@ Partial Class FrmFingerRegister
         Me.LayoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(69, 13)
         '
-        'Img
-        '
-        Me.Img.ImageSize = New System.Drawing.Size(144, 144)
-        Me.Img.ImageStream = CType(resources.GetObject("Img.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.Img.Images.SetKeyName(0, "red-success-144.png")
-        Me.Img.Images.SetKeyName(1, "green-success-144.png")
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Id"
-        Me.GridColumn3.FieldName = "id"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Width = 41
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "RefId"
-        Me.GridColumn4.FieldName = "emp_id"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        Me.GridColumn4.Width = 46
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Name"
-        Me.GridColumn5.FieldName = "emp_printname"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
-        Me.GridColumn5.Width = 152
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "FingerName"
-        Me.GridColumn6.FieldName = "finger_name"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
-        Me.GridColumn6.Width = 152
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Type"
-        Me.GridColumn7.FieldName = "fingertype"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
-        Me.GridColumn7.Width = 154
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Type"
-        Me.GridColumn8.FieldName = "emp_type"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 85
-        '
-        'lbltype
-        '
-        Me.lbltype.AutoSize = True
-        Me.lbltype.Location = New System.Drawing.Point(106, 111)
-        Me.lbltype.Name = "lbltype"
-        Me.lbltype.Size = New System.Drawing.Size(38, 13)
-        Me.lbltype.TabIndex = 21
-        Me.lbltype.Text = "Label4"
-        '
-        'errorRichBox
-        '
-        Me.errorRichBox.Location = New System.Drawing.Point(12, 381)
-        Me.errorRichBox.Name = "errorRichBox"
-        Me.errorRichBox.Size = New System.Drawing.Size(417, 336)
-        Me.errorRichBox.TabIndex = 7
-        Me.errorRichBox.Text = ""
-        '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.errorRichBox
@@ -437,33 +430,40 @@ Partial Class FrmFingerRegister
         Me.LayoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(69, 13)
         '
+        'Img
+        '
+        Me.Img.ImageSize = New System.Drawing.Size(144, 144)
+        Me.Img.ImageStream = CType(resources.GetObject("Img.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.Img.Images.SetKeyName(0, "red-success-144.png")
+        Me.Img.Images.SetKeyName(1, "green-success-144.png")
+        '
         'FrmFingerRegister
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "FrmFingerRegister"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finger Register"
-        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.LayoutControl1.ResumeLayout(false)
-        CType(Me.GridControlEmpFingerHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridViewEmpFingerHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.PanelControl1.ResumeLayout(false)
-        Me.PanelControl1.PerformLayout
-        CType(Me.lblstatusimage.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.lblfingerimage.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridControlEmpHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridViewEmpHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Img,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewEmpFingerHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.lblstatusimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lblfingerimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControlEmpHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewEmpHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Img, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
 End Sub
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl

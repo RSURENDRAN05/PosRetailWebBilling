@@ -4777,7 +4777,7 @@ class funcProcessMgmt
         $conn = $this->conn;
 
         try {
-            $sql = "SELECT finger_template FROM employee_fingerprints WHERE emp_id = ?";
+            $sql = "SELECT emp_id,finger_template FROM employee_fingerprints WHERE emp_id = ?";
             $params = array($empId);
             $types = "i";
 
@@ -4839,7 +4839,7 @@ class funcProcessMgmt
         $conn = $this->conn;
 
         try {
-            $stmt = mysqli_prepare($conn, "UPDATE employee_fingerprints SET finger_template = ?, updated_at = NOW() WHERE emp_id = ? AND finger_name = ? AND fingertype = ?");
+            $stmt = mysqli_prepare($conn, "UPDATE employee_fingerprints SET finger_template = ? WHERE emp_id = ? AND finger_name = ? AND fingertype = ?");
 
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . mysqli_error($conn));
@@ -4924,6 +4924,7 @@ class funcProcessMgmt
                         ef.created_at,
                         ef.finger_name,
                         ef.fingertype,
+                        ef.finger_template,
                         CASE
                             WHEN ef.fingertype = 'Employee' THEN 'Employee'
                             WHEN ef.fingertype = 'User' THEN 'User'

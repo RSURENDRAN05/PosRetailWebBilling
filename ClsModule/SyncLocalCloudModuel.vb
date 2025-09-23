@@ -173,6 +173,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "PoleDisplay Not Received"
             End If
+            If getFingerPrintData() = True Then
+                dialog.Caption = "Loading FingerPrintData"
+            Else
+                dialog.Caption = "FingerPrintData Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

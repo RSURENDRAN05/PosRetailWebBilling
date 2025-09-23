@@ -12,6 +12,8 @@ Imports System.Text
 Imports System.Security.Cryptography
 Imports DevExpress.XtraEditors
 Imports System.Globalization
+Imports DPUruNet
+Imports DPXUru
 
 Module functionModule
     Public isTrial As Boolean
@@ -26,6 +28,7 @@ Module functionModule
     Public _posSettingDs As DataSet
     Public _PRINTDS, _SETTINGS As New DataSet
     Public _posPrintHeadDesign As DataSet
+
     Public Structure M_Details
         Public Shared SoftwareVersion As String = "Ser-VER25.0.0.27 R3 210925" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
@@ -240,7 +243,8 @@ Module functionModule
         Public Shared PaymentTermTable As New DataTable
         Public Shared ButtonStyleTable As New DataTable
         Public Shared MultiPriceTable As New DataTable
-        public shared MainGroupPolicyTable As New DataTable
+        Public Shared MainGroupPolicyTable As New DataTable
+        Public Shared FingerPrintDataTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -323,9 +327,9 @@ Module functionModule
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                 Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=1")
                 Dim Userparsejson As JObject = JObject.Parse(json)
-                _JsonData.USerTable = Userparsejson("Data").ToObject(Of DataTable)()
+                _JsonData.UserTable = Userparsejson("Data").ToObject(Of DataTable)()
 
-                If _JsonData.USerTable.Rows.Count > 0 Then
+                If _JsonData.UserTable.Rows.Count > 0 Then
                     ' Save DataTable to XML file
                     _JsonData.UserTable.TableName = "UserTable"
                     _JsonData.UserTable.WriteXml(Path, XmlWriteMode.WriteSchema)
@@ -387,6 +391,105 @@ Module functionModule
             Return False
         End Try
     End Function
+    Public Function getFingerPrintData() As Boolean
+        Try
+            Dim Path As String = filePath & "FingerPrintDataTable.xml"
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.FingerPrintDataTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
+                    _JsonData.FingerPrintDataTable.TableName = "FingerPrintDataTable"
+                    _JsonData.FingerPrintDataTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.FingerPrintDataTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.FingerPrintDataTable.ReadXml(Path)
+                    _JsonData.FingerPrintDataTable.TableName = "FingerPrintDataTable"
+
+                    If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+ 
+    'Public Function StoreFmdFile() As Boolean
+    '    Try
+    '        getFingerPrintData()
+    '        Dim _fingerTemplates As New Dictionary(Of Int16, Fmd)
+
+    '        If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
+    '            For Each row In _JsonData.FingerPrintDataTable.Rows
+    '                Dim fingerPosition As Int16 = Convert.ToInt16(row("finger_name"))
+    '                Dim base64 As String = row("finger_template")
+    '                Dim bytes As Byte() = Convert.FromBase64String(base64)
+    '                Dim templateXml As String = Encoding.UTF8.GetString(Convert.FromBase64String(base64))
+    '                'Dim fmd As Fmd = Fmd.DeserializeXml(Encoding.UTF8.GetBytes(templateXml))
+    '                ' Convert stored XML bytes to Fmd object
+    '                Dim fmd As Fmd = fmd.DeserializeXml(templateXml)
+    '                _fingerTemplates.Add(fingerPosition, fmd)
+    '            Next
+    '        End If
+    '        FingerPrintReader.Fmds = _fingerTemplates
+
+    '        Return True
+    '    Catch ex As Exception
+    '        ' Optionally log ex.Message
+    '        Return False
+    '    End Try
+    'End Function
+    Public Function StoreFmdFile() As Boolean
+        Try
+            ' Clear existing Fmds
+            FingerPrintReader.Fmds.Clear()
+            getFingerPrintData()
+            ' Loop through each row in your fingerprint data table
+            If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
+                For Each row As DataRow In _JsonData.FingerPrintDataTable.Rows
+                    Dim fingerPosition As Int16 = Convert.ToInt16(row("finger_name"))
+                    Dim empId As Integer = Convert.ToInt32(row("emp_id"))
+                    Dim empName As String = If(row.Table.Columns.Contains("emp_printname"), row("emp_printname").ToString(), "Unknown")
+                    Dim fingerType As String = If(row.Table.Columns.Contains("fingertype"), row("fingertype").ToString(), "")
+                    Dim base64Template As String = row("finger_template").ToString()
+
+                    ' Convert XML/base64 template into Fmd object
+                    Dim templateXml As String = Encoding.UTF8.GetString(Convert.FromBase64String(base64Template))
+
+                    Dim fmd As Fmd = fmd.DeserializeXml(templateXml)
+
+                    ' Create EmployeeFinger object
+                    Dim empFinger As New EmployeeFinger() With {
+                        .EmpId = empId,
+                        .EmpName = empName,
+                        .FingerName = fingerPosition.ToString(),
+                        .FingerTemplate = fmd
+                    }
+
+                    ' Add to dictionary
+                    FingerPrintReader.Fmds(fingerPosition) = empFinger
+                Next
+            End If
+
+            Return True
+        Catch ex As Exception
+            ' Optional: log ex.Message
+            Return False
+        End Try
+    End Function
+
     Public Function getSalesManCommissionInfo() As Boolean
         Try
             Dim Path As String = filePath & "SalesManCommissionTable.xml"

@@ -229,22 +229,17 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="DPFPDevNET" version="1.6.1.0" publicKeyToken="696774C42EE28C57" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DPCtlUruNet" version="1.0.0.0" publicKeyToken="7F32EF930FEC5E5F" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="DPFPEngNET" version="1.6.1.0" publicKeyToken="7FE76E7ADF19964B" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DPUruNet" version="1.0.0.0" publicKeyToken="7F32EF930FEC5E5F" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="DPFPShrNET" version="1.6.1.0" publicKeyToken="D902FE275A8D6CF2" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="DPFPVerNET" version="1.6.1.0" publicKeyToken="4DE0A9C4DCC83984" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DPXUru" version="1.0.0.0" publicKeyToken="7F32EF930FEC5E5F" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -1578,14 +1573,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="4489728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="4449280">
       <assemblyIdentity name="PosRetailWebBilling" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9/GwNiPlXedFxSM1feYkcxv2RbxZc1XvPtklfDc+00U=</dsig:DigestValue>
+        <dsig:DigestValue>nh1dzuDXrb3o1mnLOluArvMC5Ewe96Ygph/pKEEgsDY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

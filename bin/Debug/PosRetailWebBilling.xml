@@ -6,72 +6,112 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.StartVerification(System.Int32,System.String)">
+<member name="P:PosRetailWebBilling.Form_Main.Fmds">
 	<summary>
- Start fingerprint verification for a specific employee
+ Holds fmds enrolled by the enrollment GUI.
  </summary>
-	<param name="empId">Employee ID to verify</param>
-	<param name="empName">Employee name for display</param>
-	<returns>True if verification started successfully</returns>
-</member><member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.StopVerification">
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:PosRetailWebBilling.Form_Main.Reset">
 	<summary>
- Stop any active verification process
+ Reset the UI causing the user to reselect a reader.
  </summary>
-</member><member name="P:PosRetailWebBilling.FingerprintAuthenticationModule.IsActive">
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PosRetailWebBilling.Form_Main.OpenReader">
 	<summary>
- Check if verification is currently active
+ Open a device and check result for errors.
  </summary>
-</member><member name="M:PosRetailWebBilling.FingerprintAuthenticationModule.Dispose">
+	<returns>Returns true if successful; false if unsuccessful</returns>
+</member><member name="M:PosRetailWebBilling.Form_Main.StartCaptureAsync(DPUruNet.Reader.CaptureCallback)">
 	<summary>
- Cleanup resources when done
+ Hookup capture handler and start capture.
  </summary>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.AuthenticateEmployee(System.Int32,System.String,System.Boolean,System.String)">
+	<param name="OnCaptured">Delegate to hookup as handler of the On_Captured event</param>
+	<returns>Returns true if successful; false if unsuccessful</returns>
+</member><member name="M:PosRetailWebBilling.Form_Main.CancelCaptureAndCloseReader(DPUruNet.Reader.CaptureCallback)">
 	<summary>
- Authenticate a specific employee using fingerprint or password
+ Cancel the capture and then close the reader.
  </summary>
-	<param name="empId">Employee ID to authenticate</param>
-	<param name="empName">Employee name for display</param>
-	<param name="allowPassword">Allow password fallback</param>
-	<param name="passwordHash">Optional password hash for verification</param>
-	<returns>Authentication result</returns>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.ShowLoginDialog(System.Boolean,System.Int32)">
+	<param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
+</member><member name="M:PosRetailWebBilling.Form_Main.CheckCaptureResult(DPUruNet.CaptureResult)">
 	<summary>
- Show login dialog that requires either fingerprint or password authentication
+ Check quality of the resulting capture.
  </summary>
-	<param name="allowAnyEmployee">If true, allows any registered employee. If false, requires specific employee</param>
-	<param name="requiredEmpId">If allowAnyEmployee is false, this employee must authenticate</param>
-	<returns>Authentication result</returns>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.QuickFingerprintVerify(System.Int32,System.String)">
+</member><member name="M:PosRetailWebBilling.Form_Main.CreateBitmap(System.Byte[],System.Int32,System.Int32)">
 	<summary>
- Quick fingerprint verification without password option
+ Create a bitmap from raw data in row/column format.
  </summary>
-	<param name="empId">Employee ID to verify</param>
-	<param name="empName">Employee name</param>
-	<returns>True if fingerprint verified successfully</returns>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.VerifyCurrentUser(System.Int32,System.String)">
+	<param name="bytes"></param>
+	<param name="width"></param>
+	<param name="height"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:PosRetailWebBilling.IdentificationControl.components">
 	<summary>
- Verify current user for sensitive operations
+ Required designer variable.
  </summary>
-	<param name="currentUserId">Current logged in user ID</param>
-	<param name="operationName">Name of operation requiring verification</param>
-	<returns>True if user verified successfully</returns>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.HasFingerprintRegistered(System.Int32)">
+</member><member name="M:PosRetailWebBilling.IdentificationControl.Dispose(System.Boolean)">
 	<summary>
- Check if employee has fingerprint registered
+ Clean up any resources being used.
  </summary>
-	<param name="empId">Employee ID to check</param>
-	<returns>True if fingerprint is registered</returns>
-</member><member name="M:PosRetailWebBilling.AuthenticationHelper.GetEmployeeNameById(System.Int32)">
+	<param name="disposing">true if managed resources should be disposed; otherwise, false</param>
+</member><member name="M:PosRetailWebBilling.IdentificationControl.InitializeComponent">
 	<summary>
- Get employee name by ID (implement based on your data source)
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
  </summary>
-</member><member name="T:PosRetailWebBilling.AuthenticationResult">
+</member><member name="P:PosRetailWebBilling.FingerPrintReader.Reset">
 	<summary>
- Result of authentication attempt
+ Reset the UI causing the user to reselect a reader.
  </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerprintAuth.ShowAuthenticationDialog(System.Int32,System.String,System.Boolean,System.String)">
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PosRetailWebBilling.FingerPrintReader.OpenReader">
 	<summary>
- Static method to easily call fingerprint authentication from anywhere
+ Open a device and check result for errors.
+ </summary>
+	<returns>Returns true if successful; false if unsuccessful</returns>
+</member><member name="M:PosRetailWebBilling.FingerPrintReader.StartCaptureAsync(DPUruNet.Reader.CaptureCallback)">
+	<summary>
+ Hookup capture handler and start capture.
+ </summary>
+	<param name="OnCaptured">Delegate to hookup as handler of the On_Captured event</param>
+	<returns>Returns true if successful; false if unsuccessful</returns>
+</member><member name="M:PosRetailWebBilling.FingerPrintReader.CancelCaptureAndCloseReader(DPUruNet.Reader.CaptureCallback)">
+	<summary>
+ Cancel the capture and then close the reader.
+ </summary>
+	<param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
+</member><member name="M:PosRetailWebBilling.FingerPrintReader.CheckCaptureResult(DPUruNet.CaptureResult)">
+	<summary>
+ Check quality of the resulting capture.
+ </summary>
+</member><member name="M:PosRetailWebBilling.FingerPrintReader.CreateBitmap(System.Byte[],System.Int32,System.Int32)">
+	<summary>
+ Create a bitmap from raw data in row/column format.
+ </summary>
+	<param name="bytes"></param>
+	<param name="width"></param>
+	<param name="height"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:PosRetailWebBilling.EnrollmentControl.components">
+	<summary>
+ Required designer variable.
+ </summary>
+</member><member name="M:PosRetailWebBilling.EnrollmentControl.Dispose(System.Boolean)">
+	<summary>
+ Clean up any resources being used.
+ </summary>
+	<param name="disposing">true if managed resources should be disposed; otherwise, false</param>
+</member><member name="M:PosRetailWebBilling.EnrollmentControl.InitializeComponent">
+	<summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
  </summary>
 </member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
@@ -502,15 +542,6 @@ PosRetailWebBilling
 </member><member name="M:PosRetailWebBilling.FrmFingerRegister.WriteToErrorBox(System.String,System.String)">
 	<summary>
  Helper method to write to the error RichTextBox with formatting
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.TestImmediateVerificationWithCurrentTemplate(DPFP.Template)">
-	<summary>
- Tests verification immediately after registration using the just-registered template
- This avoids potential server timing issues by using the template from memory
- </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.RecreateTemplateInCurrentContext(DPFP.Template)">
-	<summary>
- Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors
  </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>

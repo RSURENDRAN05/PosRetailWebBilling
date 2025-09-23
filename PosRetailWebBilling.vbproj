@@ -107,6 +107,10 @@
     <Reference Include="DevExpress.XtraRichEdit.v13.1, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v13.1.Extensions, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v13.1, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DPCtlUruNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f32ef930fec5e5f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DigitalPersona\U.are.U SDK\Windows\Lib\.NET\DPCtlUruNet.dll</HintPath>
+    </Reference>
     <Reference Include="DPFPDevNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=696774c42ee28c57, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPDevNET.dll</HintPath>
@@ -119,6 +123,14 @@
     <Reference Include="DPFPVerNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4de0a9c4dcc83984, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPVerNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPUruNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f32ef930fec5e5f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DigitalPersona\U.are.U SDK\Windows\Lib\.NET\DPUruNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DPXUru, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f32ef930fec5e5f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DigitalPersona\U.are.U SDK\Windows\Lib\.NET\DPXUru.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -372,9 +384,7 @@
     <Compile Include="Employee\FrmFingerprintAuth.designer.vb">
       <DependentUpon>FrmFingerprintAuth.vb</DependentUpon>
     </Compile>
-    <Compile Include="Employee\FrmFingerprintAuth.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Employee\FrmFingerprintAuth.vb" />
     <Compile Include="Employee\FrmFingerRegister.Designer.vb">
       <DependentUpon>FrmFingerRegister.vb</DependentUpon>
     </Compile>
@@ -397,6 +407,26 @@
       <DependentUpon>FRMPAYSLIP.vb</DependentUpon>
     </Compile>
     <Compile Include="Employee\FRMPAYSLIP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FingerPrint\EnrollmentControl.designer.vb">
+      <DependentUpon>EnrollmentControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FingerPrint\EnrollmentControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FingerPrint\FingerprintHelper.vb" />
+    <Compile Include="FingerPrint\FingerPrintReader.vb" />
+    <Compile Include="FingerPrint\Form_Main.designer.vb">
+      <DependentUpon>Form_Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FingerPrint\Form_Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FingerPrint\IdentificationControl.designer.vb">
+      <DependentUpon>IdentificationControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FingerPrint\IdentificationControl.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainMaster.Designer.vb">
@@ -843,6 +873,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\FRMPAYSLIP.resx">
       <DependentUpon>FRMPAYSLIP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FingerPrint\EnrollmentControl.resx">
+      <DependentUpon>EnrollmentControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FingerPrint\Form_Main.resx">
+      <DependentUpon>Form_Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FingerPrint\IdentificationControl.resx">
+      <DependentUpon>IdentificationControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMaster.resx">
       <DependentUpon>MainMaster.vb</DependentUpon>

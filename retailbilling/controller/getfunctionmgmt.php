@@ -5298,101 +5298,171 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
      */
     try {
         if ((int) $_REQUEST['AttRequest'] === 1) {
-            // Register Fingerprint with enhanced validation
-            $data = json_decode(file_get_contents("php://input"), true);
+            // Register Fingerprint with Base64-encoded XML template
+            $rawInput = file_get_contents("php://input");
+            $data = json_decode($rawInput, true);
 
-            if ($data && isset($data["EmpId"]) && isset($data["Template"])) {
-                $empId = $data["EmpId"];
-                $templateBase64 = $data["Template"];
-                $fingername = $data["FingerName"] ?? 'Finger1';
-                $fingertype = $data["FingerType"] ?? 'Employee';
-                $checksum = $data["Checksum"] ?? null;
+            // Check JSON parsing
+            if ($data === null) {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Failed to parse JSON. Check Content-Type and JSON format.",
+                    "RawInput" => $rawInput
+                ]);
+                exit;
+            }
 
-                // Validate template data before processing
-                if (empty($templateBase64)) {
-                    echo json_encode(array("Success" => false, "Msg" => 'Empty template data provided'));
-                    exit;
+            // Validate required fields
+            if (!isset($data["EmpId"]) || !isset($data["Template"])) {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Invalid data: EmpId and Template (Base64 XML) are required"
+                ]);
+                exit;
+            }
+
+            $empId = (int)$data["EmpId"];
+            $templateBase64 = trim($data["Template"]);
+            $fingerName = isset($data["FingerName"]) ? $data["FingerName"] : 'Finger1';
+            $fingerType = isset($data["FingerType"]) ? $data["FingerType"] : 'Employee';
+
+            // Validate EmpId
+            if ($empId <= 0) {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Invalid EmpId value"
+                ]);
+                exit;
+            }
+
+            // Decode Base64 to get XML
+            $templateXml = base64_decode($templateBase64, true);
+            if ($templateXml === false) {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Failed to decode Base64 Template"
+                ]);
+                exit;
+            }
+
+            // Validate XML template
+            libxml_use_internal_errors(true);
+            $xmlTest = simplexml_load_string($templateXml);
+            if ($xmlTest === false) {
+                $errors = array_map(function ($e) {
+                    return $e->message;
+                }, libxml_get_errors());
+                libxml_clear_errors();
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Invalid XML template data",
+                    "Errors" => $errors
+                ]);
+                exit;
+            }
+
+            // Store XML string in database
+            try {
+                $register = $clsfunreq->RegisterEmpFinger($empId, $templateXml, $fingerName, $fingerType);
+
+                if ($register) {
+                    echo json_encode([
+                        "Success" => true,
+                        "Msg" => "Fingerprint (XML) registered successfully for $fingerType - $fingerName",
+                        "FingerprintId" => $register
+                    ]);
+                } else {
+                    echo json_encode([
+                        "Success" => false,
+                        "Msg" => "Failed to register fingerprint in database"
+                    ]);
                 }
-
-                // Decode base64 template
-                $template = base64_decode($templateBase64);
-                if ($template === false) {
-                    echo json_encode(array("Success" => false, "Msg" => 'Invalid base64 template data'));
-                    exit;
-                }
-
-                // Additional validation
-                if (strlen($template) < 100) {
-                    echo json_encode(array("Success" => false, "Msg" => 'Template data too small, may be corrupted'));
-                    exit;
-                }
-
-                try {
-                    $register = $clsfunreq->RegisterEmpFinger($empId, $template, $fingername, $fingertype, $checksum);
-
-                    if ($register) {
-                        echo json_encode(array(
-                            "Success" => true,
-                            "Msg" => 'Fingerprint registered successfully for ' . $fingertype . ' - ' . $fingername,
-                            "FingerprintId" => $register
-                        ));
-                    } else {
-                        echo json_encode(array("Success" => false, "Msg" => 'Failed to register fingerprint in database'));
-                    }
-                } catch (Exception $e) {
-                    error_log("RegisterEmpFinger API Error: " . $e->getMessage());
-                    echo json_encode(array("Success" => false, "Msg" => 'Registration error: ' . $e->getMessage()));
-                }
-            } else {
-                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId and Template are required'));
+            } catch (Exception $e) {
+                error_log("RegisterEmpFinger API Error: " . $e->getMessage());
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Registration error: " . $e->getMessage()
+                ]);
             }
         } elseif ((int) $_REQUEST['AttRequest'] === 2) {
-            // Get Employee Fingerprint Template (with optional finger name and type specification)
             $data = json_decode(file_get_contents("php://input"), true);
 
             if ($data && isset($data["EmpId"])) {
-                $empId = $data["EmpId"];
+                $empId = (int)$data["EmpId"];
                 $fingerName = isset($data["FingerName"]) ? $data["FingerName"] : null;
                 $fingerType = isset($data["FingerType"]) ? $data["FingerType"] : null;
 
-                $template = $clsfunreq->GetEmpFingerTemplate($empId, $fingerType, $fingerName);
+                $templateXml = $clsfunreq->GetEmpFingerTemplate($empId, $fingerType, $fingerName);
 
-                if ($template) {
-                    // Convert binary template to base64 for transmission
-                    $templateBase64 = base64_encode($template);
+                if ($templateXml) {
+                    // Convert XML to Base64
+                    $templateBase64 = base64_encode($templateXml);
+
                     $msg = 'Template retrieved successfully';
                     if ($fingerName && $fingerType) {
                         $msg .= " for {$fingerType} - {$fingerName}";
                     }
-                    echo json_encode(array("Success" => true, "Template" => $templateBase64, "Msg" => $msg));
+
+                    echo json_encode([
+                        "Success" => true,
+                        "Template" => $templateBase64,
+                        "Msg" => $msg
+                    ]);
                 } else {
-                    $msg = 'No fingerprint template found for this employee';
+                    $msg = 'No fingerprint template found';
                     if ($fingerName && $fingerType) {
                         $msg .= " for {$fingerType} - {$fingerName}";
                     }
-                    echo json_encode(array("Success" => false, "Msg" => $msg));
+                    echo json_encode([
+                        "Success" => false,
+                        "Msg" => $msg
+                    ]);
                 }
             } else {
-                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId is required'));
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Invalid data: EmpId is required"
+                ]);
             }
-        }   //Get All Employees with Fingerprint Templates and User Details
+        }
+
+        //Get All Employees with Fingerprint Templates and User Details
         elseif ((int) $_REQUEST['AttRequest'] === 3) {
             $getData = $clsfunreq->GetAllEmpFingerprints();
 
             if ($getData) {
-                $dataArray = array();
+                $dataArray = [];
+
                 if ($getData instanceof mysqli_result) {
                     while ($row = mysqli_fetch_assoc($getData)) {
+                        if (isset($row['finger_template'])) {
+                            $row['finger_template'] = base64_encode($row['finger_template']);
+                        }
                         $dataArray[] = $row;
                     }
                 } elseif (is_array($getData)) {
-                    $dataArray = $getData;
+                    foreach ($getData as $row) {
+                        if (isset($row['finger_template'])) {
+                            $row['finger_template'] = base64_encode($row['finger_template']);
+                        }
+                        $dataArray[] = $row;
+                    }
                 }
-                echo json_encode(array("Success" => true, "Data" => $dataArray, "Msg" => 'Data retrieved successfully'));
+
+                echo json_encode([
+                    "Success" => true,
+                    "Data" => $dataArray,
+                    "Msg" => "Data retrieved successfully"
+                ]);
             } else {
-                echo json_encode(array("Success" => false, "Msg" => 'Failed to retrieve data'));
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "Failed to retrieve data"
+                ]);
             }
-        } //Delete Employee Fingerprint Template(s)
+        }
+
+        //Delete Employee Fingerprint Template(s)
         elseif ((int) $_REQUEST['AttRequest'] === 4) {
             $data = json_decode(file_get_contents("php://input"), true);
 

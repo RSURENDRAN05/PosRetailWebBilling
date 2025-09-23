@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="FingerPrintDataTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="FingerPrintDataTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_id" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_printname" type="xs:string" minOccurs="0" />
+                <xs:element name="created_at" type="xs:string" minOccurs="0" />
+                <xs:element name="finger_name" type="xs:string" minOccurs="0" />
+                <xs:element name="fingertype" type="xs:string" minOccurs="0" />
+                <xs:element name="finger_template" type="xs:string" minOccurs="0" />
+                <xs:element name="record_type" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <FingerPrintDataTable>
+    <id>27</id>
+    <emp_id>3</emp_id>
+    <emp_printname>PRAVEEN</emp_printname>
+    <created_at>2025-09-23 20:09:08</created_at>
+    <finger_name>9</finger_name>
+    <fingertype>Employee</fingertype>
+    <finger_template>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48RmlkPjxCeXRlcz5SazFTQUNBeU1BQUJ1QUF6L3Y4QUFBRmxBWWdBeEFERUFRQUFBRlpFZ1JRQkZITmJRS2dBTUtCWVFNOEJRRTlXUUlnQkdwNVZRU2dBOUh4VlFJRUFvNVZUUVBRQlB4QlRnTW9CTTdKU1FPVUFaelpSUUdVQXJabFJnT29BdG9GUlFSRUJEM3BSUVB3QXpTbFJRS01CUDBSUVFMQUF6VGhRZ1BJQkRXSlBRSzhCWXF0UFFRRUJURnhPUUhJQVBLQk9nR2NBU1VSTlFLUUEwSjVOUUxzQVNaWk1RTnNBdkN0TFFMQUFXVDVMUVQwQkczOUxnSzBCQ3FkS1FMWUF4YWhKZ0xnQU1VWkpRTXNBY2psSlFVTUE0WUZJZ0hzQXV6OUlRTDRCUXJCSVFVUUFxakZIZ04wQXFpdEdRTjhBN2xwR1FQWUFJVFZHUVFBQVN6VkdRRjBCSlpoRlFUc0JWM3hGZ0tVQkIwRkVnT3dBSERkRVFLUUF2SmREUVJNQVJaSkRnS0FBeUpkRGdPd0FNamRDUU44QWJveENRU2tBZUlkQ2dUSUFzUzlDUU5BQW96TkNnRUlBNTVSQlFVNEEreVZCUUdFQVhKdEFRR1lBdEpaQWdMNEF0RHBBZ05RQU9EMUFnTjBBb1lsQWdNUUFsam8vZ1E0QVJZMCtnVTBCRHlRK2dJNEF4ancrUURjQkdZVStRSThBRzBvOVFTa0FTWkE5Z1VJQldYdzlnUUFCUmw0OVFINEFNVTA4UVNzQVpESThnRXNBclQ0OEFBQT08L0J5dGVzPjxGb3JtYXQ+MTc2OTQ3MzwvRm9ybWF0PjxWZXJzaW9uPjEuMC4wPC9WZXJzaW9uPjwvRmlkPg==</finger_template>
+    <record_type>Employee</record_type>
+  </FingerPrintDataTable>
+  <FingerPrintDataTable>
+    <id>26</id>
+    <emp_id>1</emp_id>
+    <emp_printname>RAJKUMAR</emp_printname>
+    <created_at>2025-09-23 19:09:59</created_at>
+    <finger_name>4</finger_name>
+    <fingertype>Employee</fingertype>
+    <finger_template>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48RmlkPjxCeXRlcz5SazFTQUNBeU1BQUJ1QUF6L3Y4QUFBRmxBWWdBeEFERUFRQUFBRlpFUUdzQWVDMWRnS1VBMDZkYlFLQUJBcVZiUUYwQVhDOVZRSXdBYlJ4VVFNb0FaajVTZ0xVQWdrbFNRRllBZVROUWdMVUFiWjVQUUtnQWJHVk9nU1FCQTNGT1FMQUJDazlPZ0lFQTBUMU5RS1FBNjBSTGdNTUFLa3hMUVB3QTBDSktRUkFBVVROS2dLa0JYYWRJUUl3QTBKNUhnUFFBZFRWSGdHZ0FQaDlHUUhzQW16ZEdnVHNBbmkxR1FMMEFaMGxGZ1NFQWdvcEZRVElBcVNsRlFKSUJXYVZGZ01BQWVqMUVnT0FBZmpORWdUSUF1WHBFUVFZQXZYaEVnRmNCUUo1RVFFOEJWRGhFZ1RzQlc0ZEVRTmNCRVF0RGdENEJYNVpEUUpJQUlHZENnR1VBTm9KQ1FQRUFqekZDZ1RrQTIzcENnU3NBTlNKQ2dLMEFQVnhDUU13QWREOUNnVFVBaGk5Q2dEc0JDb2xDZ1EwQXBTOUJRRzBBblRkQmdTd0JRSFZCUUU4QkhwdEFnUllBZkRnL1FUVUJYWWcvZ0VFQlZwWS9RTEFBTzE4K2dRSUFlUzgrUUVFQXdwYytnS2tBOFVjK1FSQUFQSXMrUVNNQVhZMCtRSHNBWGg4K2dPd0FnalUrZ1I0QWlvSStnTVlBTUUwOWdSQUFkSXc5Z0w4QXRVYzlRVWtCRXgwOVFGRUFOeU05Z0pZQVhhazlRSWNBWGhjOUFBQT08L0J5dGVzPjxGb3JtYXQ+MTc2OTQ3MzwvRm9ybWF0PjxWZXJzaW9uPjEuMC4wPC9WZXJzaW9uPjwvRmlkPg==</finger_template>
+    <record_type>Employee</record_type>
+  </FingerPrintDataTable>
+</NewDataSet>
