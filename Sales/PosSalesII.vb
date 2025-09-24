@@ -1130,8 +1130,19 @@ Public Class PosSalesII
                     Return
                 End If
                 If itemLock.ToString = "2" Then
-                    MessageBox.Show("You Can't Delete This Item ,No Rights '" & itemName & "'?", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
+                    frmKeyPassIIIMaster.ShowDialog()
+                    If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
+                                                                  "Confirm Delete", _
+                                                                      MessageBoxButtons.YesNo, _
+                                                                      MessageBoxIcon.Question)
+                        If result = DialogResult.Yes Then
+                            DeleteSelectedRow(focusedRowHandle)
+                        End If
+                    End If
+                    'MessageBox.Show("You Can't Delete This Item ,No Rights '" & itemName & "'?", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    'Return
+
                     'If _globalSetting.ItemDeleteActive = True Then
 
                     '    Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete '" & itemName & "'?", _
@@ -3982,5 +3993,6 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+ 
  
 End Class

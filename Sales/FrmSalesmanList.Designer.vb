@@ -43,13 +43,11 @@ Partial Class FrmSalesmanList
         'GridControlSalesman
         '
         Me.GridControlSalesman.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControlSalesman.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridControlSalesman.Location = New System.Drawing.Point(0, 73)
+        Me.GridControlSalesman.Location = New System.Drawing.Point(0, 50)
         Me.GridControlSalesman.MainView = Me.GridViewSalesman
-        Me.GridControlSalesman.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControlSalesman.Name = "GridControlSalesman"
         Me.GridControlSalesman.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEditSelect})
-        Me.GridControlSalesman.Size = New System.Drawing.Size(616, 642)
+        Me.GridControlSalesman.Size = New System.Drawing.Size(411, 439)
         Me.GridControlSalesman.TabIndex = 0
         Me.GridControlSalesman.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSalesman})
         '
@@ -118,39 +116,38 @@ Partial Class FrmSalesmanList
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(616, 73)
+        Me.PanelControl1.Size = New System.Drawing.Size(411, 50)
         Me.PanelControl1.TabIndex = 1
         '
         'btnCancel
         '
         Me.btnCancel.Image = CType(resources.GetObject("btnCancel.Image"), System.Drawing.Image)
-        Me.btnCancel.Location = New System.Drawing.Point(483, 21)
+        Me.btnCancel.Location = New System.Drawing.Point(322, 14)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(128, 45)
+        Me.btnCancel.Size = New System.Drawing.Size(85, 31)
         Me.btnCancel.TabIndex = 1
         Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Visible = False
         '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Location = New System.Drawing.Point(18, 22)
-        Me.LabelControl1.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(164, 29)
+        Me.LabelControl1.Size = New System.Drawing.Size(112, 19)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Salesman List"
         '
         'FrmSalesmanList
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(616, 715)
+        Me.ClientSize = New System.Drawing.Size(411, 489)
         Me.Controls.Add(Me.GridControlSalesman)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmSalesmanList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Salesman List"

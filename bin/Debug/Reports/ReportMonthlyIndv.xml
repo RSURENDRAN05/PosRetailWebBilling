@@ -35,14 +35,6 @@
           </xs:element>
           <xs:element name="AdvanceData">
             <xs:complexType>
-              <xs:sequence>
-                <xs:element name="MonYear" type="xs:string" minOccurs="0" />
-                <xs:element name="EmpID" type="xs:string" minOccurs="0" />
-                <xs:element name="Salesman" type="xs:string" minOccurs="0" />
-                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
-                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalAdvance" type="xs:string" minOccurs="0" />
-              </xs:sequence>
             </xs:complexType>
           </xs:element>
         </xs:choice>
@@ -55,19 +47,19 @@
     <Salesman>RAJKUMAR</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>369.00</NetAmt>
-    <Commission>22.00</Commission>
-    <Qty>10.00</Qty>
+    <NetAmt>388.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>21.00</Qty>
   </SalesmanData>
   <SalesmanData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>KILI FORN</Salesman>
+    <Salesman>PRAVEEN</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>100.00</NetAmt>
+    <NetAmt>334.00</NetAmt>
     <Commission>8.00</Commission>
-    <Qty>2.00</Qty>
+    <Qty>16.00</Qty>
   </SalesmanData>
   <SalesmanData>
     <MonYear>Sep-2025</MonYear>
@@ -75,26 +67,37 @@
     <Salesman>SUVATHI</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>35.00</NetAmt>
-    <Commission>0.00</Commission>
-    <Qty>2.00</Qty>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
   </SalesmanData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>RAJKUMAR</Salesman>
-    <ItemName>KERATIN TREATMENT</ItemName>
+    <ItemName>HAIR CUT [Adult]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>100.00</NetAmt>
-    <Commission>10.00</Commission>
-    <Qty>1.00</Qty>
+    <NetAmt>108.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>KILI FORN</Salesman>
-    <ItemName>FACIAL</ItemName>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>108.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACIAL [Basic]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
     <NetAmt>80.00</NetAmt>
@@ -105,32 +108,10 @@
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>RAJKUMAR</Salesman>
-    <ItemName>POWDER</ItemName>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>80.00</NetAmt>
-    <Commission>4.00</Commission>
-    <Qty>2.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Sep-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>RAJKUMAR</Salesman>
-    <ItemName>CREAM</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <NetAmt>60.00</NetAmt>
-    <Commission>0.00</Commission>
-    <Qty>1.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Sep-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>RAJKUMAR</Salesman>
-    <ItemName>ADULT</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <NetAmt>54.00</NetAmt>
+    <NetAmt>70.00</NetAmt>
     <Commission>0.00</Commission>
     <Qty>3.00</Qty>
   </ItemwiseData>
@@ -138,32 +119,65 @@
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>RAJKUMAR</Salesman>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>BEARD TRIMMING</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>50.00</NetAmt>
-    <Commission>6.00</Commission>
-    <Qty>1.00</Qty>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
-    <EmpID>2</EmpID>
-    <Salesman>SUVATHI</Salesman>
-    <ItemName>HAIR STYLING</ItemName>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>25.00</NetAmt>
+    <NetAmt>50.00</NetAmt>
     <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>45.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>40.00</NetAmt>
+    <Commission>4.00</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
     <MonYear>Sep-2025</MonYear>
     <EmpID>3</EmpID>
-    <Salesman>KILI FORN</Salesman>
-    <ItemName>BALDING</ItemName>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>SHAVING</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>20.00</NetAmt>
+    <NetAmt>36.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT - SHAVE / B.TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>30.00</NetAmt>
     <Commission>0.00</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
@@ -171,7 +185,18 @@
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>RAJKUMAR</Salesman>
-    <ItemName>FACE WAX</ItemName>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR MASSAGE</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
     <NetAmt>20.00</NetAmt>
@@ -182,10 +207,32 @@
     <MonYear>Sep-2025</MonYear>
     <EmpID>2</EmpID>
     <Salesman>SUVATHI</Salesman>
+    <ItemName>HAIR MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
     <ItemName>SHAMPOO</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>10.00</NetAmt>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Sep-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>15.00</NetAmt>
     <Commission>0.00</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
@@ -193,19 +240,11 @@
     <MonYear>Sep-2025</MonYear>
     <EmpID>1</EmpID>
     <Salesman>RAJKUMAR</Salesman>
-    <ItemName>HAIR STYLING</ItemName>
+    <ItemName>HAIR DESIGN</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BANGSAR</LocationName>
-    <NetAmt>5.00</NetAmt>
+    <NetAmt>10.00</NetAmt>
     <Commission>0.00</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
-  <AdvanceData>
-    <MonYear>Sep-2025</MonYear>
-    <EmpID>1</EmpID>
-    <Salesman>RAJKUMAR</Salesman>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <TotalAdvance>250.00</TotalAdvance>
-  </AdvanceData>
 </ReportData>
