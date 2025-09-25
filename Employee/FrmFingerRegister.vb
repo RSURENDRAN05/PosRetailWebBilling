@@ -1,310 +1,4 @@
-﻿'Imports DPUruNet
-'Imports System.Net
-'Imports Newtonsoft.Json.Linq
-
-'Public Class FrmFingerRegister
-'    Private salesmenTable As DataTable
-'    Private registeredFingerprints As DataTable
-'    Private selectedEmployeeId As Integer = 0 ' Track selected employee ID
-'    Private selectedEmployeeName As String = "" ' Track selected employee name
-'    Private selectedFingerType As String = ""
-'#Region "Error Log"
-'    'Logging method to display messages in RichTextBox
-'    Private Sub LogMessage(message As String)
-'        Try
-'            If errorRichBox IsNot Nothing Then
-'                If errorRichBox.InvokeRequired Then
-'                    errorRichBox.Invoke(Sub()
-'                                            Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
-'                                            errorRichBox.AppendText("[" & timestamp & "] " & message & vbCrLf)
-'                                            errorRichBox.ScrollToCaret()
-'                                        End Sub)
-'                Else
-'                    Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
-'                    errorRichBox.AppendText("[" & timestamp & "] " & message & vbCrLf)
-'                    errorRichBox.ScrollToCaret()
-'                End If
-'            End If
-'        Catch ex As Exception
-'            ' Fallback to debug output if RichTextBox fails
-'            System.Diagnostics.Debug.WriteLine("Log Error: " & ex.Message & " - Original: " & message)
-'        End Try
-'    End Sub
-
-'    ''' <summary>
-'    ''' Logs messages to the error RichTextBox with color coding and timestamps
-'    ''' </summary>
-'    ''' <param name="message">The message to log</param>
-'    ''' <param name="messageType">The type of message: "Error", "Info", "Success"</param>
-'    Private Sub LogToErrorBox(message As String, messageType As String)
-'        Try
-'            If errorRichBox IsNot Nothing Then
-'                If errorRichBox.InvokeRequired Then
-'                    errorRichBox.Invoke(Sub() WriteToErrorBox(message, messageType))
-'                Else
-'                    WriteToErrorBox(message, messageType)
-'                End If
-'            End If
-'        Catch ex As Exception
-'            ' Fallback to debug output if RichTextBox fails
-'            System.Diagnostics.Debug.WriteLine("LogToErrorBox Error: " & ex.Message & " - Original: " & message)
-'        End Try
-'    End Sub
-
-'    ''' <summary>
-'    ''' Helper method to write to the error RichTextBox with formatting
-'    ''' </summary>
-'    Private Sub WriteToErrorBox(message As String, messageType As String)
-'        Try
-'            Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
-'            Dim fullMessage As String = "[" & timestamp & "] " & message & vbCrLf
-
-'            ' Set color based on message type
-'            Dim color As Color = color.Black
-'            Select Case messageType.ToUpper()
-'                Case "ERROR"
-'                    color = color.Red
-'                Case "INFO"
-'                    color = color.Blue
-'                Case "SUCCESS"
-'                    color = color.Green
-'                Case Else
-'                    color = color.Black
-'            End Select
-
-'            ' Add colored text
-'            errorRichBox.SelectionStart = errorRichBox.TextLength
-'            errorRichBox.SelectionLength = 0
-'            errorRichBox.SelectionColor = color
-'            errorRichBox.AppendText(fullMessage)
-'            errorRichBox.SelectionColor = errorRichBox.ForeColor ' Reset to default color
-
-'            ' Auto-scroll to bottom
-'            errorRichBox.ScrollToCaret()
-
-'            ' Limit text length to prevent memory issues (keep last 10000 characters)
-'            If errorRichBox.TextLength > 10000 Then
-'                Dim textToKeep As String = errorRichBox.Text.Substring(errorRichBox.TextLength - 8000)
-'                errorRichBox.Clear()
-'                errorRichBox.AppendText("... (previous messages truncated) ..." & vbCrLf & textToKeep)
-'                errorRichBox.ScrollToCaret()
-'            End If
-
-'        Catch ex As Exception
-'            ' Last resort fallback
-'            System.Diagnostics.Debug.WriteLine("WriteToErrorBox Error: " & ex.Message)
-'        End Try
-'    End Sub
-'#End Region
-'#Region "InitalLoad"
-
-'    Private Sub SetupDataTables()
-'        ' Setup Salesmen DataTable
-'        salesmenTable = New DataTable()
-'        salesmenTable.Columns.Add("emp_id", GetType(Integer))
-'        salesmenTable.Columns.Add("emp_printname", GetType(String))
-'        salesmenTable.Columns.Add("emp_type", GetType(String))
-'        GridControlEmpHeader.DataSource = salesmenTable
-
-'        ' Setup Registered Fingerprints DataTable
-'        registeredFingerprints = New DataTable()
-'        registeredFingerprints.Columns.Add("id", GetType(Integer))
-'        registeredFingerprints.Columns.Add("emp_id", GetType(Integer))
-'        registeredFingerprints.Columns.Add("emp_printname", GetType(String))
-'        registeredFingerprints.Columns.Add("finger_name", GetType(String))
-'        registeredFingerprints.Columns.Add("fingertype", GetType(String))
-'        registeredFingerprints.Columns.Add("created_at", GetType(DateTime))
-'        GridControlEmpFingerHeader.DataSource = registeredFingerprints
-
-'    End Sub
-
-'    Private Sub LoadExistingFingerprints()
-'        Try
-'            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3")
-'            Dim parsedJson As JObject = JObject.Parse(json)
-
-'            registeredFingerprints.Clear()
-'            If parsedJson("Success").ToString() = "True" Then
-'                Dim dataArray = parsedJson("Data")
-
-
-'                For Each item In dataArray
-'                    Dim Id As Integer = 0
-'                    Dim EmpId As Integer = 0
-'                    Dim EmpName As String = ""
-'                    Dim FingerName As String = ""
-'                    Dim FingerType As String = ""
-'                    Id = item("id")
-'                    EmpId = item("emp_id")
-'                    EmpName = item("emp_printname")
-'                    FingerName = item("finger_name")
-'                    FingerType = item("fingertype")
-'                    registeredFingerprints.Rows.Add(Id, EmpId, EmpName, FingerName, FingerType)
-'                Next
-'            End If
-
-'        Catch ex As Exception
-'            ' Handle errors silently for now
-'        End Try
-'    End Sub
-
-
-'    Private Function GetEmployeeNameById(empId As Integer) As String
-'        Try
-'            For Each row As DataRow In salesmenTable.Rows
-'                If Convert.ToInt32(row("emp_id")) = empId Then
-'                    Return row("emp_printname").ToString()
-'                End If
-'            Next
-'            Return "Unknown Employee"
-'        Catch ex As Exception
-'            Return "Error Loading Name"
-'        End Try
-'    End Function
-
-'    Private Sub LoadSalesmen()
-'        Try
-'            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=1")
-'            Dim parsedJson As JObject = JObject.Parse(json)
-
-'            salesmenTable.Clear()
-'            If parsedJson("Success").ToString() = "True" Then
-'                Dim dataArray = parsedJson("Data")
-
-
-'                For Each item In dataArray
-'                    Dim empId As Integer = 0
-'                    Dim empName As String = ""
-'                    Dim empType As String = ""
-'                    empType = "Employee"
-'                    ' Try multiple possible field name variations for emp_id
-'                    If item("emp_id") IsNot Nothing AndAlso Not IsDBNull(item("emp_id")) Then
-'                        empId = Convert.ToInt32(item("emp_id"))
-'                    ElseIf item("EmpId") IsNot Nothing AndAlso Not IsDBNull(item("EmpId")) Then
-'                        empId = Convert.ToInt32(item("EmpId"))
-'                    ElseIf item("empid") IsNot Nothing AndAlso Not IsDBNull(item("empid")) Then
-'                        empId = Convert.ToInt32(item("empid"))
-'                    End If
-
-'                    ' Try multiple possible field name variations for employee name
-'                    If item("emp_printname") IsNot Nothing AndAlso item("emp_printname").ToString() <> "" Then
-'                        empName = item("emp_printname").ToString()
-'                    ElseIf item("EmpPrintName") IsNot Nothing AndAlso item("EmpPrintName").ToString() <> "" Then
-'                        empName = item("EmpPrintName").ToString()
-'                    ElseIf item("emp_firstname") IsNot Nothing AndAlso item("emp_firstname").ToString() <> "" Then
-'                        empName = item("emp_firstname").ToString()
-'                    ElseIf item("EmpFirstName") IsNot Nothing AndAlso item("EmpFirstName").ToString() <> "" Then
-'                        empName = item("EmpFirstName").ToString()
-'                    ElseIf item("emp_name") IsNot Nothing AndAlso item("emp_name").ToString() <> "" Then
-'                        empName = item("emp_name").ToString()
-'                    ElseIf item("EmpName") IsNot Nothing AndAlso item("EmpName").ToString() <> "" Then
-'                        empName = item("EmpName").ToString()
-'                    End If
-
-'                    salesmenTable.Rows.Add(empId, empName, empType)
-'                Next
-'                If _JsonData.UserTable.Rows.Count > 0 Then
-'                    For Each rs In _JsonData.UserTable.Rows
-'                        Dim Id As Integer = 0
-'                        Dim UserName As String = ""
-'                        Dim Type As String = "User"
-'                        Id = rs("Id")
-'                        UserName = rs("UserName")
-'                        salesmenTable.Rows.Add(Id, UserName, Type)
-'                    Next
-'                End If
-
-'            Else
-'                MessageBox.Show("Failed to load salesmen: " & parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-'            End If
-
-'            ' Refresh the Salesmen GridControl
-'            GridControlEmpHeader.RefreshDataSource()
-'            GridControlEmpHeader.Refresh()
-'        Catch ex As Exception
-'            MessageBox.Show("Error loading salesmen: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-'        End Try
-'    End Sub
-
-'    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-'        Try
-'            LoadSalesmen()
-'            LoadExistingFingerprints()
-'        Catch ex As Exception
-
-'        End Try
-'    End Sub
-
-'    Private Sub FrmFingerRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-'        Try
-'            SetupDataTables()
-'            LoadSalesmen()
-'            LoadExistingFingerprints()
-'        Catch ex As Exception
-
-'        End Try
-'    End Sub
-
-
-'#End Region
-'#Region "ScanFingerPrintModule"
-'    Private Sub GridViewEmpHeader_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridViewEmpHeader.RowClick
-'        Try
-'            Dim foucustedRow As Integer = 0
-'            foucustedRow = GridViewEmpHeader.FocusedRowHandle
-'            Dim empId = GridViewEmpHeader.GetFocusedRowCellValue("emp_id")
-'            Dim empName = GridViewEmpHeader.GetFocusedRowCellValue("emp_printname")
-'            Dim empType = GridViewEmpHeader.GetFocusedRowCellValue("emp_type")
-'            lblempid.Text = empId
-'            lblempname.Text = empName
-'            lbltype.Text = empType
-
-'            ' Update new tracking variables
-'            selectedEmployeeId = Convert.ToInt32(empId)
-'            selectedEmployeeName = empName.ToString()
-'            selectedFingerType = empType
-'            ' Enable enrollment button
-'            btnstartCapture.Enabled = True
-
-'        Catch ex As Exception
-'            MessageBox.Show("Error selecting employee: " & ex.Message)
-'        End Try
-'    End Sub
-
-'    Private Sub UpdateStatus(message As String)
-'        ' Add a status label or use existing UI element to show current status
-'        ' You might want to add a Label control for this
-'        Me.Text = "Fingerprint Registration - " & message
-'    End Sub
-
-'#End Region
-
-'    Private Sub btnstartCapture_Click(sender As Object, e As EventArgs) Handles btnstartCapture.Click
-'        Try
-'            If selectedEmployeeId = 0 Then
-'                MessageBox.Show("Please select an employee first.", "No Employee Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-'                Return
-'            End If
-'            EnrollmentControl.ShowDailogData(selectedEmployeeId, lbltype.Text)
-'            StoreFmdFile(selectedEmployeeId)
-'        Catch ex As Exception
-
-'        End Try
-'    End Sub
-
-'    Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
-'        Try
-'            If selectedEmployeeId = 0 Then
-'                MessageBox.Show("Please select an employee first.", "No Employee Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-'                Return
-'            End If
-'            IdentificationControl.ShowDailogData(selectedEmployeeId)
-'        Catch ex As Exception
-
-'        End Try
-'    End Sub
-'End Class
-
+﻿
 
 Imports System.Net
 Imports System.Linq
@@ -881,6 +575,7 @@ Public Class FrmFingerRegister
                     ' Check final enrollment status
                     Select Case Enroller.TemplateStatus
                         Case Enrollment.Status.Ready
+
                             UpdateStatus("Fingerprint template created successfully!")
                             SaveFingerprintTemplate()
 
@@ -2069,3 +1764,309 @@ Public Class FrmFingerRegister
     End Function
 
 End Class
+'Imports DPUruNet
+'Imports System.Net
+'Imports Newtonsoft.Json.Linq
+
+'Public Class FrmFingerRegister
+'    Private salesmenTable As DataTable
+'    Private registeredFingerprints As DataTable
+'    Private selectedEmployeeId As Integer = 0 ' Track selected employee ID
+'    Private selectedEmployeeName As String = "" ' Track selected employee name
+'    Private selectedFingerType As String = ""
+'#Region "Error Log"
+'    'Logging method to display messages in RichTextBox
+'    Private Sub LogMessage(message As String)
+'        Try
+'            If errorRichBox IsNot Nothing Then
+'                If errorRichBox.InvokeRequired Then
+'                    errorRichBox.Invoke(Sub()
+'                                            Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
+'                                            errorRichBox.AppendText("[" & timestamp & "] " & message & vbCrLf)
+'                                            errorRichBox.ScrollToCaret()
+'                                        End Sub)
+'                Else
+'                    Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
+'                    errorRichBox.AppendText("[" & timestamp & "] " & message & vbCrLf)
+'                    errorRichBox.ScrollToCaret()
+'                End If
+'            End If
+'        Catch ex As Exception
+'            ' Fallback to debug output if RichTextBox fails
+'            System.Diagnostics.Debug.WriteLine("Log Error: " & ex.Message & " - Original: " & message)
+'        End Try
+'    End Sub
+
+'    ''' <summary>
+'    ''' Logs messages to the error RichTextBox with color coding and timestamps
+'    ''' </summary>
+'    ''' <param name="message">The message to log</param>
+'    ''' <param name="messageType">The type of message: "Error", "Info", "Success"</param>
+'    Private Sub LogToErrorBox(message As String, messageType As String)
+'        Try
+'            If errorRichBox IsNot Nothing Then
+'                If errorRichBox.InvokeRequired Then
+'                    errorRichBox.Invoke(Sub() WriteToErrorBox(message, messageType))
+'                Else
+'                    WriteToErrorBox(message, messageType)
+'                End If
+'            End If
+'        Catch ex As Exception
+'            ' Fallback to debug output if RichTextBox fails
+'            System.Diagnostics.Debug.WriteLine("LogToErrorBox Error: " & ex.Message & " - Original: " & message)
+'        End Try
+'    End Sub
+
+'    ''' <summary>
+'    ''' Helper method to write to the error RichTextBox with formatting
+'    ''' </summary>
+'    Private Sub WriteToErrorBox(message As String, messageType As String)
+'        Try
+'            Dim timestamp As String = DateTime.Now.ToString("HH:mm:ss.fff")
+'            Dim fullMessage As String = "[" & timestamp & "] " & message & vbCrLf
+
+'            ' Set color based on message type
+'            Dim color As Color = color.Black
+'            Select Case messageType.ToUpper()
+'                Case "ERROR"
+'                    color = color.Red
+'                Case "INFO"
+'                    color = color.Blue
+'                Case "SUCCESS"
+'                    color = color.Green
+'                Case Else
+'                    color = color.Black
+'            End Select
+
+'            ' Add colored text
+'            errorRichBox.SelectionStart = errorRichBox.TextLength
+'            errorRichBox.SelectionLength = 0
+'            errorRichBox.SelectionColor = color
+'            errorRichBox.AppendText(fullMessage)
+'            errorRichBox.SelectionColor = errorRichBox.ForeColor ' Reset to default color
+
+'            ' Auto-scroll to bottom
+'            errorRichBox.ScrollToCaret()
+
+'            ' Limit text length to prevent memory issues (keep last 10000 characters)
+'            If errorRichBox.TextLength > 10000 Then
+'                Dim textToKeep As String = errorRichBox.Text.Substring(errorRichBox.TextLength - 8000)
+'                errorRichBox.Clear()
+'                errorRichBox.AppendText("... (previous messages truncated) ..." & vbCrLf & textToKeep)
+'                errorRichBox.ScrollToCaret()
+'            End If
+
+'        Catch ex As Exception
+'            ' Last resort fallback
+'            System.Diagnostics.Debug.WriteLine("WriteToErrorBox Error: " & ex.Message)
+'        End Try
+'    End Sub
+'#End Region
+'#Region "InitalLoad"
+
+'    Private Sub SetupDataTables()
+'        ' Setup Salesmen DataTable
+'        salesmenTable = New DataTable()
+'        salesmenTable.Columns.Add("emp_id", GetType(Integer))
+'        salesmenTable.Columns.Add("emp_printname", GetType(String))
+'        salesmenTable.Columns.Add("emp_type", GetType(String))
+'        GridControlEmpHeader.DataSource = salesmenTable
+
+'        ' Setup Registered Fingerprints DataTable
+'        registeredFingerprints = New DataTable()
+'        registeredFingerprints.Columns.Add("id", GetType(Integer))
+'        registeredFingerprints.Columns.Add("emp_id", GetType(Integer))
+'        registeredFingerprints.Columns.Add("emp_printname", GetType(String))
+'        registeredFingerprints.Columns.Add("finger_name", GetType(String))
+'        registeredFingerprints.Columns.Add("fingertype", GetType(String))
+'        registeredFingerprints.Columns.Add("created_at", GetType(DateTime))
+'        GridControlEmpFingerHeader.DataSource = registeredFingerprints
+
+'    End Sub
+
+'    Private Sub LoadExistingFingerprints()
+'        Try
+'            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3")
+'            Dim parsedJson As JObject = JObject.Parse(json)
+
+'            registeredFingerprints.Clear()
+'            If parsedJson("Success").ToString() = "True" Then
+'                Dim dataArray = parsedJson("Data")
+
+
+'                For Each item In dataArray
+'                    Dim Id As Integer = 0
+'                    Dim EmpId As Integer = 0
+'                    Dim EmpName As String = ""
+'                    Dim FingerName As String = ""
+'                    Dim FingerType As String = ""
+'                    Id = item("id")
+'                    EmpId = item("emp_id")
+'                    EmpName = item("emp_printname")
+'                    FingerName = item("finger_name")
+'                    FingerType = item("fingertype")
+'                    registeredFingerprints.Rows.Add(Id, EmpId, EmpName, FingerName, FingerType)
+'                Next
+'            End If
+
+'        Catch ex As Exception
+'            ' Handle errors silently for now
+'        End Try
+'    End Sub
+
+
+'    Private Function GetEmployeeNameById(empId As Integer) As String
+'        Try
+'            For Each row As DataRow In salesmenTable.Rows
+'                If Convert.ToInt32(row("emp_id")) = empId Then
+'                    Return row("emp_printname").ToString()
+'                End If
+'            Next
+'            Return "Unknown Employee"
+'        Catch ex As Exception
+'            Return "Error Loading Name"
+'        End Try
+'    End Function
+
+'    Private Sub LoadSalesmen()
+'        Try
+'            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=1")
+'            Dim parsedJson As JObject = JObject.Parse(json)
+
+'            salesmenTable.Clear()
+'            If parsedJson("Success").ToString() = "True" Then
+'                Dim dataArray = parsedJson("Data")
+
+
+'                For Each item In dataArray
+'                    Dim empId As Integer = 0
+'                    Dim empName As String = ""
+'                    Dim empType As String = ""
+'                    empType = "Employee"
+'                    ' Try multiple possible field name variations for emp_id
+'                    If item("emp_id") IsNot Nothing AndAlso Not IsDBNull(item("emp_id")) Then
+'                        empId = Convert.ToInt32(item("emp_id"))
+'                    ElseIf item("EmpId") IsNot Nothing AndAlso Not IsDBNull(item("EmpId")) Then
+'                        empId = Convert.ToInt32(item("EmpId"))
+'                    ElseIf item("empid") IsNot Nothing AndAlso Not IsDBNull(item("empid")) Then
+'                        empId = Convert.ToInt32(item("empid"))
+'                    End If
+
+'                    ' Try multiple possible field name variations for employee name
+'                    If item("emp_printname") IsNot Nothing AndAlso item("emp_printname").ToString() <> "" Then
+'                        empName = item("emp_printname").ToString()
+'                    ElseIf item("EmpPrintName") IsNot Nothing AndAlso item("EmpPrintName").ToString() <> "" Then
+'                        empName = item("EmpPrintName").ToString()
+'                    ElseIf item("emp_firstname") IsNot Nothing AndAlso item("emp_firstname").ToString() <> "" Then
+'                        empName = item("emp_firstname").ToString()
+'                    ElseIf item("EmpFirstName") IsNot Nothing AndAlso item("EmpFirstName").ToString() <> "" Then
+'                        empName = item("EmpFirstName").ToString()
+'                    ElseIf item("emp_name") IsNot Nothing AndAlso item("emp_name").ToString() <> "" Then
+'                        empName = item("emp_name").ToString()
+'                    ElseIf item("EmpName") IsNot Nothing AndAlso item("EmpName").ToString() <> "" Then
+'                        empName = item("EmpName").ToString()
+'                    End If
+
+'                    salesmenTable.Rows.Add(empId, empName, empType)
+'                Next
+'                If _JsonData.UserTable.Rows.Count > 0 Then
+'                    For Each rs In _JsonData.UserTable.Rows
+'                        Dim Id As Integer = 0
+'                        Dim UserName As String = ""
+'                        Dim Type As String = "User"
+'                        Id = rs("Id")
+'                        UserName = rs("UserName")
+'                        salesmenTable.Rows.Add(Id, UserName, Type)
+'                    Next
+'                End If
+
+'            Else
+'                MessageBox.Show("Failed to load salesmen: " & parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+'            End If
+
+'            ' Refresh the Salesmen GridControl
+'            GridControlEmpHeader.RefreshDataSource()
+'            GridControlEmpHeader.Refresh()
+'        Catch ex As Exception
+'            MessageBox.Show("Error loading salesmen: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+'        End Try
+'    End Sub
+
+'    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+'        Try
+'            LoadSalesmen()
+'            LoadExistingFingerprints()
+'        Catch ex As Exception
+
+'        End Try
+'    End Sub
+
+'    Private Sub FrmFingerRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+'        Try
+'            SetupDataTables()
+'            LoadSalesmen()
+'            LoadExistingFingerprints()
+'        Catch ex As Exception
+
+'        End Try
+'    End Sub
+
+
+'#End Region
+'#Region "ScanFingerPrintModule"
+'    Private Sub GridViewEmpHeader_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridViewEmpHeader.RowClick
+'        Try
+'            Dim foucustedRow As Integer = 0
+'            foucustedRow = GridViewEmpHeader.FocusedRowHandle
+'            Dim empId = GridViewEmpHeader.GetFocusedRowCellValue("emp_id")
+'            Dim empName = GridViewEmpHeader.GetFocusedRowCellValue("emp_printname")
+'            Dim empType = GridViewEmpHeader.GetFocusedRowCellValue("emp_type")
+'            lblempid.Text = empId
+'            lblempname.Text = empName
+'            lbltype.Text = empType
+
+'            ' Update new tracking variables
+'            selectedEmployeeId = Convert.ToInt32(empId)
+'            selectedEmployeeName = empName.ToString()
+'            selectedFingerType = empType
+'            ' Enable enrollment button
+'            btnstartCapture.Enabled = True
+
+'        Catch ex As Exception
+'            MessageBox.Show("Error selecting employee: " & ex.Message)
+'        End Try
+'    End Sub
+
+'    Private Sub UpdateStatus(message As String)
+'        ' Add a status label or use existing UI element to show current status
+'        ' You might want to add a Label control for this
+'        Me.Text = "Fingerprint Registration - " & message
+'    End Sub
+
+'#End Region
+
+'    Private Sub btnstartCapture_Click(sender As Object, e As EventArgs) Handles btnstartCapture.Click
+'        Try
+'            If selectedEmployeeId = 0 Then
+'                MessageBox.Show("Please select an employee first.", "No Employee Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+'                Return
+'            End If
+'            EnrollmentControl.ShowDailogData(selectedEmployeeId, lbltype.Text)
+'            StoreFmdFile(selectedEmployeeId)
+'        Catch ex As Exception
+
+'        End Try
+'    End Sub
+
+'    Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
+'        Try
+'            If selectedEmployeeId = 0 Then
+'                MessageBox.Show("Please select an employee first.", "No Employee Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+'                Return
+'            End If
+'            IdentificationControl.ShowDailogData(selectedEmployeeId)
+'        Catch ex As Exception
+
+'        End Try
+'    End Sub
+'End Class

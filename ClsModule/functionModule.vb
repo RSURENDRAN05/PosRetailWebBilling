@@ -12,8 +12,6 @@ Imports System.Text
 Imports System.Security.Cryptography
 Imports DevExpress.XtraEditors
 Imports System.Globalization
-Imports DPUruNet
-Imports DPXUru
 
 Module functionModule
     Public isTrial As Boolean
@@ -451,54 +449,54 @@ Module functionModule
     '        Return False
     '    End Try
     'End Function
-    Public Function StoreFmdFile(empIds As Integer) As Boolean
-        Try
-            ' Clear existing Fmds
-            FingerPrintReader.Fmds.Clear()
-            getFingerPrintData()
-            Dim dt As DataTable = Nothing
+    'Public Function StoreFmdFile(empIds As Integer) As Boolean
+    '    Try
+    '        ' Clear existing Fmds
+    '        ' FingerPrintReader.Fmds.Clear()
+    '        getFingerPrintData()
+    '        Dim dt As DataTable = Nothing
 
-            ' Filter rows by emp_id
-            Dim filteredRows = _JsonData.FingerPrintDataTable.AsEnumerable() _
-                               .Where(Function(r) Convert.ToInt32(r("emp_id")) = empIds)
+    '        ' Filter rows by emp_id
+    '        Dim filteredRows = _JsonData.FingerPrintDataTable.AsEnumerable() _
+    '                           .Where(Function(r) Convert.ToInt32(r("emp_id")) = empIds)
 
-            If filteredRows.Any() Then
-                ' Copy the filtered rows to a new DataTable
-                dt = filteredRows.CopyToDataTable()
-            End If
-            ' Loop through each row in your fingerprint data table
-            If dt.Rows.Count > 0 Then
-                For Each row As DataRow In dt.Rows
-                    Dim fingerPosition As Int16 = Convert.ToInt16(row("finger_name"))
-                    Dim empId As Integer = Convert.ToInt32(row("emp_id"))
-                    Dim empName As String = If(row.Table.Columns.Contains("emp_printname"), row("emp_printname").ToString(), "Unknown")
-                    Dim fingerType As String = If(row.Table.Columns.Contains("fingertype"), row("fingertype").ToString(), "")
-                    Dim base64Template As String = row("finger_template").ToString()
+    '        If filteredRows.Any() Then
+    '            ' Copy the filtered rows to a new DataTable
+    '            dt = filteredRows.CopyToDataTable()
+    '        End If
+    '        ' Loop through each row in your fingerprint data table
+    '        If dt.Rows.Count > 0 Then
+    '            For Each row As DataRow In dt.Rows
+    '                Dim fingerPosition As Int16 = Convert.ToInt16(row("finger_name"))
+    '                Dim empId As Integer = Convert.ToInt32(row("emp_id"))
+    '                Dim empName As String = If(row.Table.Columns.Contains("emp_printname"), row("emp_printname").ToString(), "Unknown")
+    '                Dim fingerType As String = If(row.Table.Columns.Contains("fingertype"), row("fingertype").ToString(), "")
+    '                Dim base64Template As String = row("finger_template").ToString()
 
-                    ' Convert XML/base64 template into Fmd object
-                    Dim templateXml As String = Encoding.UTF8.GetString(Convert.FromBase64String(base64Template))
+    '                ' Convert XML/base64 template into Fmd object
+    '                Dim templateXml As String = Encoding.UTF8.GetString(Convert.FromBase64String(base64Template))
 
-                    Dim fmd As Fmd = fmd.DeserializeXml(templateXml)
+    '                Dim fmd As Fmd = fmd.DeserializeXml(templateXml)
 
-                    ' Create EmployeeFinger object
-                    Dim empFinger As New EmployeeFinger() With {
-                        .EmpId = empId,
-                        .EmpName = empName,
-                        .FingerName = fingerPosition.ToString(),
-                        .FingerTemplate = fmd
-                    }
+    '                ' Create EmployeeFinger object
+    '                Dim empFinger As New EmployeeFinger() With {
+    '                    .EmpId = empId,
+    '                    .EmpName = empName,
+    '                    .FingerName = fingerPosition.ToString(),
+    '                    .FingerTemplate = fmd
+    '                }
 
-                    ' Add to dictionary
-                    FingerPrintReader.Fmds(fingerPosition) = empFinger
-                Next
-            End If
+    '                ' Add to dictionary
+    '                FingerPrintReader.Fmds(fingerPosition) = empFinger
+    '            Next
+    '        End If
 
-            Return True
-        Catch ex As Exception
-            ' Optional: log ex.Message
-            Return False
-        End Try
-    End Function
+    '        Return True
+    '    Catch ex As Exception
+    '        ' Optional: log ex.Message
+    '        Return False
+    '    End Try
+    'End Function
 
     Public Function getSalesManCommissionInfo() As Boolean
         Try

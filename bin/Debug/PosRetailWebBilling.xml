@@ -544,42 +544,6 @@ PosRetailWebBilling
 	<summary>
  Log sync process completion
  </summary>
-</member><member name="P:PosRetailWebBilling.FingerPrintReader.Reset">
-	<summary>
- Reset the UI causing the user to reselect a reader.
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:PosRetailWebBilling.FingerPrintReader.OpenReader">
-	<summary>
- Open a device and check result for errors.
- </summary>
-	<returns>Returns true if successful; false if unsuccessful</returns>
-</member><member name="M:PosRetailWebBilling.FingerPrintReader.StartCaptureAsync(DPUruNet.Reader.CaptureCallback)">
-	<summary>
- Hookup capture handler and start capture.
- </summary>
-	<param name="OnCaptured">Delegate to hookup as handler of the On_Captured event</param>
-	<returns>Returns true if successful; false if unsuccessful</returns>
-</member><member name="M:PosRetailWebBilling.FingerPrintReader.CancelCaptureAndCloseReader(DPUruNet.Reader.CaptureCallback)">
-	<summary>
- Cancel the capture and then close the reader.
- </summary>
-	<param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
-</member><member name="M:PosRetailWebBilling.FingerPrintReader.CheckCaptureResult(DPUruNet.CaptureResult)">
-	<summary>
- Check quality of the resulting capture.
- </summary>
-</member><member name="M:PosRetailWebBilling.FingerPrintReader.CreateBitmap(System.Byte[],System.Int32,System.Int32)">
-	<summary>
- Create a bitmap from raw data in row/column format.
- </summary>
-	<param name="bytes"></param>
-	<param name="width"></param>
-	<param name="height"></param>
-	<returns></returns>
-	<remarks></remarks>
 </member><member name="M:PosRetailWebBilling.frmPayouts.CleanJsonString(System.String)">
 	<summary>
  Clean JSON string to remove control characters that cause parsing errors
@@ -623,68 +587,6 @@ PosRetailWebBilling
 </member><member name="M:PosRetailWebBilling.frmPaymore.GridControlPaymore_DoubleClick(System.Object,System.EventArgs)">
 	<summary>
  Handle double-click on payment detail grid to edit amount
- </summary>
-</member><member name="P:PosRetailWebBilling.Form_Main.Fmds">
-	<summary>
- Holds fmds enrolled by the enrollment GUI.
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:PosRetailWebBilling.Form_Main.Reset">
-	<summary>
- Reset the UI causing the user to reselect a reader.
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:PosRetailWebBilling.Form_Main.OpenReader">
-	<summary>
- Open a device and check result for errors.
- </summary>
-	<returns>Returns true if successful; false if unsuccessful</returns>
-</member><member name="M:PosRetailWebBilling.Form_Main.StartCaptureAsync(DPUruNet.Reader.CaptureCallback)">
-	<summary>
- Hookup capture handler and start capture.
- </summary>
-	<param name="OnCaptured">Delegate to hookup as handler of the On_Captured event</param>
-	<returns>Returns true if successful; false if unsuccessful</returns>
-</member><member name="M:PosRetailWebBilling.Form_Main.CancelCaptureAndCloseReader(DPUruNet.Reader.CaptureCallback)">
-	<summary>
- Cancel the capture and then close the reader.
- </summary>
-	<param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
-</member><member name="M:PosRetailWebBilling.Form_Main.CheckCaptureResult(DPUruNet.CaptureResult)">
-	<summary>
- Check quality of the resulting capture.
- </summary>
-</member><member name="F:PosRetailWebBilling.IdentificationControl.components">
-	<summary>
- Required designer variable.
- </summary>
-</member><member name="M:PosRetailWebBilling.IdentificationControl.Dispose(System.Boolean)">
-	<summary>
- Clean up any resources being used.
- </summary>
-	<param name="disposing">true if managed resources should be disposed; otherwise, false</param>
-</member><member name="M:PosRetailWebBilling.IdentificationControl.InitializeComponent">
-	<summary>
- Required method for Designer support - do not modify
- the contents of this method with the code editor.
- </summary>
-</member><member name="F:PosRetailWebBilling.EnrollmentControl.components">
-	<summary>
- Required designer variable.
- </summary>
-</member><member name="M:PosRetailWebBilling.EnrollmentControl.Dispose(System.Boolean)">
-	<summary>
- Clean up any resources being used.
- </summary>
-	<param name="disposing">true if managed resources should be disposed; otherwise, false</param>
-</member><member name="M:PosRetailWebBilling.EnrollmentControl.InitializeComponent">
-	<summary>
- Required method for Designer support - do not modify
- the contents of this method with the code editor.
  </summary>
 </member><member name="P:PosRetailWebBilling.My.Resources.Resources.ResourceManager">
 	<summary>
