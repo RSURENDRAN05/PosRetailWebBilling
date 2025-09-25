@@ -140,11 +140,7 @@ Module FingerPrintReader
             End If
         End If
     End Sub
-
-    ''' <summary>
-    ''' Check the device status before starting capture.
-    ''' </summary>
-    ''' <returns></returns>
+ 
     Public Sub GetStatus()
         Dim result = _currentReader.GetStatus()
 
@@ -181,12 +177,7 @@ Module FingerPrintReader
         End If
         Return True
     End Function
-
-    ''' <summary>
-    ''' Function to capture a finger. Always get status first and calibrate or wait if necessary.  Always check status and capture errors.
-    ''' </summary>
-    ''' <param name="fid"></param>
-    ''' <returns></returns>
+ 
     Public Function CaptureFingerAsync() As Boolean
         Try
             GetStatus()

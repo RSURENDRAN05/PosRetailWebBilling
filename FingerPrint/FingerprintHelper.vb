@@ -12,12 +12,7 @@ Public Class FingerprintHelper
     ' ============================
     ' Enroll and Save Fingerprint
     ' ============================
-
-    ''' <summary>
-    ''' Enroll fingerprint and save to backend
-    ''' </summary>
-    ''' <param name="empId">Employee/User ID</param>
-    ''' <param name="fmd">FMD object from enrollment</param>
+ 
     Public Function EnrollAndSave(empId As Integer, selectedFingerType As String, selectedFingerName As String, fmdData As Fmd) As Boolean
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try

@@ -223,11 +223,6 @@ Public Class Form_Main
             End If
         End If
     End Sub
-
-    ''' <summary>
-    ''' Check the device status before starting capture.
-    ''' </summary>
-    ''' <returns></returns>
     Public Sub GetStatus()
         Dim result = _currentReader.GetStatus()
 
@@ -265,11 +260,7 @@ Public Class Form_Main
         Return True
     End Function
 
-    ''' <summary>
-    ''' Function to capture a finger. Always get status first and calibrate or wait if necessary.  Always check status and capture errors.
-    ''' </summary>
-    ''' <param name="fid"></param>
-    ''' <returns></returns>
+  
     Public Function CaptureFingerAsync() As Boolean
         Try
             GetStatus()
@@ -290,14 +281,6 @@ Public Class Form_Main
         End Try
     End Function
 
-    ''' <summary>
-    ''' Create a bitmap from raw data in row/column format.
-    ''' </summary>
-    ''' <param name="bytes"></param>
-    ''' <param name="width"></param>
-    ''' <param name="height"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function CreateBitmap(ByVal bytes As [Byte](), ByVal width As Integer, ByVal height As Integer) As Bitmap
         Dim rgbBytes As Byte() = New Byte(bytes.Length * 3 - 1) {}
 

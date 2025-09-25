@@ -436,6 +436,15 @@ PosRetailWebBilling
 	<summary>
  Helper method to write to the error RichTextBox with formatting
  </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.TestImmediateVerificationWithCurrentTemplate(DPFP.Template)">
+	<summary>
+ Tests verification immediately after registration using the just-registered template
+ This avoids potential server timing issues by using the template from memory
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerRegister.RecreateTemplateInCurrentContext(DPFP.Template)">
+	<summary>
+ Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors
+ </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>
  Centralized method to update shift information from JSON response
@@ -649,15 +658,6 @@ PosRetailWebBilling
 	<summary>
  Check quality of the resulting capture.
  </summary>
-</member><member name="M:PosRetailWebBilling.Form_Main.CreateBitmap(System.Byte[],System.Int32,System.Int32)">
-	<summary>
- Create a bitmap from raw data in row/column format.
- </summary>
-	<param name="bytes"></param>
-	<param name="width"></param>
-	<param name="height"></param>
-	<returns></returns>
-	<remarks></remarks>
 </member><member name="F:PosRetailWebBilling.IdentificationControl.components">
 	<summary>
  Required designer variable.
