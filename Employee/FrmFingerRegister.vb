@@ -31,7 +31,7 @@ Public Class FrmFingerRegister
     ' Single fingerprint verification settings
     Private ReadOnly customFARThreshold As Double = 0.001 ' More lenient FAR threshold
     Private qualityFailureCount As Integer = 0 ' Track consecutive quality failures
-
+#Region "ErrorLog"
     ' Logging method to display messages in RichTextBox
     Private Sub LogMessage(message As String)
         Try
@@ -118,6 +118,62 @@ Public Class FrmFingerRegister
             System.Diagnostics.Debug.WriteLine("WriteToErrorBox Error: " & ex.Message)
         End Try
     End Sub
+    Private Sub UpdateStatus(message As String)
+        ' Add a status label or use existing UI element to show current status
+        ' You might want to add a Label control for this
+        Me.Text = "Fingerprint Registration - " & message
+    End Sub
+#End Region
+#Region "ImageConversion"
+    Private Function ConvertSampleToBitmap(Sample As Sample) As Bitmap
+        Dim convertor As New DPFP.Capture.SampleConversion()
+        Dim bitmap As Bitmap = Nothing
+        convertor.ConvertToPicture(Sample, bitmap)
+        Return bitmap
+    End Function
+    ' Helper method to safely create a template from byte array using multiple approaches
+    Private Function CreateTemplateFromByteArray(templateData As Byte()) As DPFP.Template
+        If templateData Is Nothing OrElse templateData.Length = 0 Then
+            Return Nothing
+        End If
+
+        ' Method 1: Try direct memory stream deserialization
+        Try
+            Using ms As New System.IO.MemoryStream(templateData)
+                Dim template As New DPFP.Template()
+                template.DeSerialize(ms)
+                Return template
+            End Using
+        Catch ex As Exception
+            LogMessage("Template creation method 1 failed: " & ex.Message)
+        End Try
+
+        ' Method 2: Try fresh template with direct data assignment
+        Try
+            Dim template As New DPFP.Template()
+            ' Validate template data size and format
+            If templateData.Length > 16 Then ' Minimum template size
+                Using ms As New System.IO.MemoryStream(templateData)
+                    template.DeSerialize(ms)
+                    Return template
+                End Using
+            End If
+        Catch ex As Exception
+            LogMessage("Template creation method 2 failed: " & ex.Message)
+        End Try
+
+        ' Method 3: Try reconstructing from raw bytes
+        Try
+            Dim template As New DPFP.Template()
+            Return template
+        Catch ex As Exception
+            LogMessage("Template creation method 3 failed: " & ex.Message)
+        End Try
+
+        LogMessage("All template creation methods failed for data length: " & templateData.Length)
+        Return Nothing
+    End Function
+#End Region
 #Region "InitalLoad"
 
     Private Sub SetupDataTables()
@@ -270,59 +326,94 @@ Public Class FrmFingerRegister
 
 
 #End Region
-#Region "ScanFingerPrintModule"
-    Private Sub GridViewEmpHeader_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridViewEmpHeader.RowClick
+#Region "FingerPrintSample"
+    Private Sub ProcessSample(sample As DPFP.Sample)
         Try
-            Dim foucustedRow As Integer = 0
-            foucustedRow = GridViewEmpHeader.FocusedRowHandle
-            Dim empId = GridViewEmpHeader.GetFocusedRowCellValue("emp_id")
-            Dim empName = GridViewEmpHeader.GetFocusedRowCellValue("emp_printname")
-            Dim empType = GridViewEmpHeader.GetFocusedRowCellValue("emp_type")
-            lblempid.Text = empId
-            lblempname.Text = empName
-            lbltype.Text = empType
-            selectedEmpId = Convert.ToInt32(empId)
-
-            ' Update new tracking variables
-            selectedEmployeeId = selectedEmpId
-            selectedEmployeeName = empName.ToString()
-            selectedFingerType = empType
-            ' Enable enrollment button
-            btnstartCapture.Enabled = True
-
-            ' Reset enrollment when selecting new employee
-            ResetEnrollment()
-        Catch ex As Exception
-            MessageBox.Show("Error selecting employee: " & ex.Message)
-        End Try
-    End Sub
-
-    Private Sub ResetEnrollment()
-        Try
-            ' Only reset enrollment-specific variables, not verification state
-            fingerprintCount = 0
-            qualityAttempts = 0
-
-            ' Reset enrollment object only if not in verification mode
-            If Not isVerifying Then
-                If Enroller IsNot Nothing Then
-                    Enroller = Nothing
-                End If
-                Enroller = New Enrollment()
-                cmbFingerName.SelectedIndex = 0
-                ' Update UI to show progress
-                UpdateStatus("Employee selected. Ready to capture fingerprint. Please ensure finger is clean and dry.")
+            ' ==========================
+            ' VERIFICATION MODE
+            ' ==========================
+            If isVerifying Then
+                VerifyFingerprint(sample)
+                Return
             End If
+
+            ' ==========================
+            ' ENROLLMENT MODE
+            ' ==========================
+            Dim features As DPFP.FeatureSet = ExtractFeatures(sample, DPFP.Processing.DataPurpose.Enrollment)
+
+            If features IsNot Nothing Then
+                If Enroller Is Nothing Then
+                    Enroller = New Enrollment()
+                End If
+
+                Try
+                    Dim previousFeaturesNeeded As Integer = Enroller.FeaturesNeeded
+
+                    ' Add features to enrollment
+                    Enroller.AddFeatures(features)
+
+                    If Enroller.TemplateStatus <> Enrollment.Status.Failed AndAlso
+                       (Enroller.TemplateStatus = Enrollment.Status.Ready OrElse
+                        Enroller.FeaturesNeeded < previousFeaturesNeeded) Then
+
+                        fingerprintCount += 1
+                        UpdateStatus("Sample " & fingerprintCount & " of " & maxFingerprints & " captured successfully.")
+                    Else
+                        UpdateStatus("Poor quality sample detected. Please try again.")
+                        Return
+                    End If
+
+                    ' Check final enrollment status
+                    Select Case Enroller.TemplateStatus
+                        Case Enrollment.Status.Ready
+
+                            UpdateStatus("Fingerprint template created successfully!")
+                            SaveFingerprintTemplate()
+
+                        Case Enrollment.Status.Failed
+                            MessageBox.Show("Enrollment failed due to poor quality samples. Please try again.", "Enrollment Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            ResetEnrollment()
+
+                        Case Else
+                            If fingerprintCount < maxFingerprints Then
+                                UpdateStatus("Sample " & fingerprintCount & " captured. Please place finger again for sample " & (fingerprintCount + 1) & ".")
+                            Else
+                                Dim result As DialogResult = MessageBox.Show(
+                                    "Unable to create a reliable template with current samples." & vbCrLf &
+                                    "Possible causes:" & vbCrLf &
+                                    "• Dry/damaged finger" & vbCrLf &
+                                    "• Inconsistent placement" & vbCrLf &
+                                    "• Dirty scanner surface" & vbCrLf & vbCrLf &
+                                    "Would you like to retry enrollment?",
+                                    "Enrollment Retry Required",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question)
+
+                                If result = DialogResult.Yes Then
+                                    ResetEnrollment()
+                                    UpdateStatus("Ready to start enrollment again.")
+                                Else
+                                    StopCapture()
+                                    UpdateStatus("Enrollment cancelled.")
+                                End If
+                            End If
+                    End Select
+
+                Catch enrollEx As Exception
+                    MessageBox.Show("Error adding fingerprint features: " & enrollEx.Message, "Enrollment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ResetEnrollment()
+                End Try
+            Else
+                UpdateStatus("Poor quality sample detected. Please clean your finger and scanner, then try again.")
+            End If
+
         Catch ex As Exception
-            MessageBox.Show("Error resetting enrollment: " & ex.Message)
+            MessageBox.Show("Error processing sample: " & ex.Message, "Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-    Private Sub UpdateStatus(message As String)
-        ' Add a status label or use existing UI element to show current status
-        ' You might want to add a Label control for this
-        Me.Text = "Fingerprint Registration - " & message
-    End Sub
+#End Region
+#Region "StopStartCapture"
 
     Private Sub StartCapture()
         Try
@@ -414,213 +505,59 @@ Public Class FrmFingerRegister
         End Try
     End Sub
 
-    Public Sub OnComplete(Capture As Object, ReaderSerialNumber As String, Sample As Sample) _
-    Implements EventHandler.OnComplete
+
+
+
+#End Region
+#Region "ResetProcess"
+    Private Sub ResetEnrollment()
         Try
-            ' This runs on background thread - use Invoke for UI updates
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String, Sample)(AddressOf OnComplete), Capture, ReaderSerialNumber, Sample)
-                Return
-            End If
-
-            ' Convert the sample to an image and display
-            Dim bmp As Bitmap = ConvertSampleToBitmap(Sample)
-            lblfingerimage.Image = bmp  ' Show fingerprint image
-
-            ' Process the fingerprint sample
-            ProcessSample(Sample)
-        Catch ex As Exception
-            MessageBox.Show("Error in OnComplete: " & ex.Message)
-        End Try
-    End Sub
-
-    Public Sub OnFingerTouch(Capture As Object, ReaderSerialNumber As String) _
-        Implements EventHandler.OnFingerTouch
-        Try
-            ' This runs on background thread - use Invoke for UI updates
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String)(AddressOf OnFingerTouch), Capture, ReaderSerialNumber)
-                Return
-            End If
-
-            UpdateStatus("Finger detected. Hold steady...")
-        Catch ex As Exception
-            ' Handle silently to avoid interrupting capture
-        End Try
-    End Sub
-
-    Public Sub OnFingerGone(Capture As Object, ReaderSerialNumber As String) _
-        Implements EventHandler.OnFingerGone
-        Try
-            ' This runs on background thread - use Invoke for UI updates
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String)(AddressOf OnFingerGone), Capture, ReaderSerialNumber)
-                Return
-            End If
-
-            UpdateStatus("Finger removed. Place finger again when ready...")
-        Catch ex As Exception
-            ' Handle silently to avoid interrupting capture
-        End Try
-    End Sub
-
-    Public Sub OnReaderConnect(Capture As Object, ReaderSerialNumber As String) _
-        Implements EventHandler.OnReaderConnect
-        Try
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String)(AddressOf OnReaderConnect), Capture, ReaderSerialNumber)
-                Return
-            End If
-
-            UpdateStatus("Fingerprint reader connected: " & ReaderSerialNumber)
-        Catch ex As Exception
-            MessageBox.Show("Error in OnReaderConnect: " & ex.Message)
-        End Try
-    End Sub
-
-    Public Sub OnReaderDisconnect(Capture As Object, ReaderSerialNumber As String) _
-        Implements EventHandler.OnReaderDisconnect
-        Try
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String)(AddressOf OnReaderDisconnect), Capture, ReaderSerialNumber)
-                Return
-            End If
-
-            UpdateStatus("Fingerprint reader disconnected!")
-            StopCapture()
-        Catch ex As Exception
-            MessageBox.Show("Error in OnReaderDisconnect: " & ex.Message)
-        End Try
-    End Sub
-
-    Public Sub OnSampleQuality(Capture As Object, ReaderSerialNumber As String, Feedback As CaptureFeedback) _
-        Implements EventHandler.OnSampleQuality
-        Try
-            ' This runs on background thread - use Invoke for UI updates
-            If Me.InvokeRequired Then
-                Me.Invoke(New Action(Of Object, String, CaptureFeedback)(AddressOf OnSampleQuality), Capture, ReaderSerialNumber, Feedback)
-                Return
-            End If
-
-            ' Provide feedback based on sample quality
-            Select Case Feedback
-                Case CaptureFeedback.Good
-                    UpdateStatus("Good quality sample detected...")
-                Case CaptureFeedback.NoFinger
-                    UpdateStatus("Place finger on reader...")
-                Case CaptureFeedback.TooLight
-                    UpdateStatus("Press harder on the reader...")
-                Case CaptureFeedback.TooDark
-                    UpdateStatus("Press lighter on the reader...")
-                Case CaptureFeedback.TooLeft, CaptureFeedback.TooRight, CaptureFeedback.TooHigh, CaptureFeedback.TooLow
-                    UpdateStatus("Center finger on the reader...")
-                Case CaptureFeedback.TooFast
-                    UpdateStatus("Hold finger steady...")
-                Case CaptureFeedback.TooSlow
-                    UpdateStatus("Place finger more quickly...")
-                Case CaptureFeedback.TooSkewed
-                    UpdateStatus("Place finger straight on reader...")
-                Case CaptureFeedback.TooShort
-                    UpdateStatus("Place whole finger on reader...")
-                Case Else
-                    UpdateStatus("Adjust finger position and try again...")
-            End Select
-        Catch ex As Exception
-            ' Handle silently to avoid interrupting capture
-        End Try
-    End Sub
-    Private Function ConvertSampleToBitmap(Sample As Sample) As Bitmap
-        Dim convertor As New DPFP.Capture.SampleConversion()
-        Dim bitmap As Bitmap = Nothing
-        convertor.ConvertToPicture(Sample, bitmap)
-        Return bitmap
-    End Function
-    Private Sub ProcessSample(sample As DPFP.Sample)
-        Try
-            ' ==========================
-            ' VERIFICATION MODE
-            ' ==========================
-            If isVerifying Then
-                VerifyFingerprint(sample)
-                Return
-            End If
-
-            ' ==========================
-            ' ENROLLMENT MODE
-            ' ==========================
-            Dim features As DPFP.FeatureSet = ExtractFeatures(sample, DPFP.Processing.DataPurpose.Enrollment)
-
-            If features IsNot Nothing Then
-                If Enroller Is Nothing Then
-                    Enroller = New Enrollment()
+            ' Only reset enrollment-specific variables, not verification state
+            fingerprintCount = 0
+            qualityAttempts = 0
+            nudFingerIndex.Minimum = 1
+            nudFingerIndex.Maximum = 9
+            ' Reset enrollment object only if not in verification mode
+            If Not isVerifying Then
+                If Enroller IsNot Nothing Then
+                    Enroller = Nothing
                 End If
-
-                Try
-                    Dim previousFeaturesNeeded As Integer = Enroller.FeaturesNeeded
-
-                    ' Add features to enrollment
-                    Enroller.AddFeatures(features)
-
-                    If Enroller.TemplateStatus <> Enrollment.Status.Failed AndAlso
-                       (Enroller.TemplateStatus = Enrollment.Status.Ready OrElse
-                        Enroller.FeaturesNeeded < previousFeaturesNeeded) Then
-
-                        fingerprintCount += 1
-                        UpdateStatus("Sample " & fingerprintCount & " of " & maxFingerprints & " captured successfully.")
-                    Else
-                        UpdateStatus("Poor quality sample detected. Please try again.")
-                        Return
-                    End If
-
-                    ' Check final enrollment status
-                    Select Case Enroller.TemplateStatus
-                        Case Enrollment.Status.Ready
-
-                            UpdateStatus("Fingerprint template created successfully!")
-                            SaveFingerprintTemplate()
-
-                        Case Enrollment.Status.Failed
-                            MessageBox.Show("Enrollment failed due to poor quality samples. Please try again.", "Enrollment Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            ResetEnrollment()
-
-                        Case Else
-                            If fingerprintCount < maxFingerprints Then
-                                UpdateStatus("Sample " & fingerprintCount & " captured. Please place finger again for sample " & (fingerprintCount + 1) & ".")
-                            Else
-                                Dim result As DialogResult = MessageBox.Show(
-                                    "Unable to create a reliable template with current samples." & vbCrLf &
-                                    "Possible causes:" & vbCrLf &
-                                    "• Dry/damaged finger" & vbCrLf &
-                                    "• Inconsistent placement" & vbCrLf &
-                                    "• Dirty scanner surface" & vbCrLf & vbCrLf &
-                                    "Would you like to retry enrollment?",
-                                    "Enrollment Retry Required",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question)
-
-                                If result = DialogResult.Yes Then
-                                    ResetEnrollment()
-                                    UpdateStatus("Ready to start enrollment again.")
-                                Else
-                                    StopCapture()
-                                    UpdateStatus("Enrollment cancelled.")
-                                End If
-                            End If
-                    End Select
-
-                Catch enrollEx As Exception
-                    MessageBox.Show("Error adding fingerprint features: " & enrollEx.Message, "Enrollment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    ResetEnrollment()
-                End Try
-            Else
-                UpdateStatus("Poor quality sample detected. Please clean your finger and scanner, then try again.")
+                Enroller = New Enrollment()
+                ' Update UI to show progress
+                UpdateStatus("Employee selected. Ready to capture fingerprint. Please ensure finger is clean and dry.")
             End If
-
         Catch ex As Exception
-            MessageBox.Show("Error processing sample: " & ex.Message, "Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error resetting enrollment: " & ex.Message)
         End Try
     End Sub
+#End Region
+#Region "EnrollUser"
+    Private Sub GridViewEmpHeader_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridViewEmpHeader.RowClick
+        Try
+            Dim foucustedRow As Integer = 0
+            foucustedRow = GridViewEmpHeader.FocusedRowHandle
+            Dim empId = GridViewEmpHeader.GetFocusedRowCellValue("emp_id")
+            Dim empName = GridViewEmpHeader.GetFocusedRowCellValue("emp_printname")
+            Dim empType = GridViewEmpHeader.GetFocusedRowCellValue("emp_type")
+            lblempid.Text = empId
+            lblempname.Text = empName
+            lbltype.Text = empType
+            selectedEmpId = Convert.ToInt32(empId)
 
+            ' Update new tracking variables
+            selectedEmployeeId = selectedEmpId
+            selectedEmployeeName = empName.ToString()
+            selectedFingerType = empType
+            selectedFingerName = nudFingerIndex.Value
+            ' Enable enrollment button
+            btnstartCapture.Enabled = True
+
+            ' Reset enrollment when selecting new employee
+            ' ResetEnrollment()
+        Catch ex As Exception
+            MessageBox.Show("Error selecting employee: " & ex.Message)
+        End Try
+    End Sub
     Private Async Sub SaveFingerprintTemplate()
         Try
             If Enroller.TemplateStatus = Enrollment.Status.Ready Then
@@ -681,21 +618,7 @@ Public Class FrmFingerRegister
 
                     ' Refresh the fingerprint display
                     LoadExistingFingerprints()
-
-                    ' Important: Reset all DPFP states to allow immediate verification
-                    ReinitializeDPFPComponents()
-
-                    ' Auto-prompt for verification test
-                    Dim testResult As DialogResult = MessageBox.Show("Fingerprint registration successful!" & vbCrLf & vbCrLf &
-                                                                   "Would you like to test the verification now?",
-                                                                   "Test Verification",
-                                                                   MessageBoxButtons.YesNo,
-                                                                   MessageBoxIcon.Question)
-                    If testResult = DialogResult.Yes Then
-                        ' Use the template that was just registered for immediate verification
-                        ' This avoids potential server timing issues
-                        TestImmediateVerificationWithCurrentTemplate(template)
-                    End If
+                   
                 Else
                     MessageBox.Show("Failed to save fingerprint to server. Please try again.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -704,45 +627,6 @@ Public Class FrmFingerRegister
             MessageBox.Show("Error saving fingerprint template: " & ex.Message, "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-    ''' <summary>
-    ''' Tests verification immediately after registration using the just-registered template
-    ''' This avoids potential server timing issues by using the template from memory
-    ''' </summary>
-    Private Sub TestImmediateVerificationWithCurrentTemplate(registeredTemplate As DPFP.Template)
-        Try
-            LogToErrorBox("Starting immediate verification test with registered template...", "Info")
-
-            ' Ensure we have a valid template
-            If registeredTemplate Is Nothing OrElse registeredTemplate.Size = 0 Then
-                MessageBox.Show("Invalid template for immediate verification test.", "Verification Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
-            End If
-
-            LogToErrorBox("Using registered template for immediate verification. Size: " & registeredTemplate.Size, "Info")
-
-            ' Recreate template in current context to avoid "Expecting object to be local" errors
-            Dim localTemplate As DPFP.Template = RecreateTemplateInCurrentContext(registeredTemplate)
-            If localTemplate Is Nothing Then
-                LogToErrorBox("Failed to recreate template in current context for immediate verification", "Error")
-                MessageBox.Show("Failed to prepare template for verification. Please try manual verification.", "Template Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
-            End If
-
-            ' Small delay to ensure DPFP components are ready after reinitialization
-            Threading.Thread.Sleep(1000)
-
-            UpdateStatus("Ready for immediate verification test. Please place the same finger you just registered...")
-
-            ' Start verification with the locally recreated template
-            StartVerificationCapture(localTemplate)
-
-        Catch ex As Exception
-            LogToErrorBox("Error in immediate verification test: " & ex.Message, "Error")
-            MessageBox.Show("Error starting immediate verification test: " & ex.Message, "Verification Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
     Private Async Function SaveFingerprintToServer(empId As Integer, templateBase64 As String, fingerType As String, fingerName As String) As Task(Of Boolean)
         Try
             ' Validate input parameters
@@ -756,10 +640,8 @@ Public Class FrmFingerRegister
                 Return False
             End If
 
-            ' Add checksum for integrity validation
-            Dim templateChecksum As String = CalculateMD5Hash(templateBase64)
-
-            Dim postData As String = "{""EmpId"":" & empId.ToString() & ",""Template"":""" & templateBase64 & """,""FingerType"":""" & fingerType & """,""FingerName"":""" & fingerName & """,""Checksum"":""" & templateChecksum & """}"
+        
+            Dim postData As String = "{""EmpId"":" & empId.ToString() & ",""Template"":""" & templateBase64 & """,""FingerType"":""" & fingerType & """,""FingerName"":""" & fingerName & """}"
 
             Using client As New WebClient()
                 client.Headers(HttpRequestHeader.ContentType) = "application/json"
@@ -791,20 +673,6 @@ Public Class FrmFingerRegister
             Return False
         End Try
     End Function
-
-    ' Helper function to calculate MD5 hash for integrity validation
-    Private Function CalculateMD5Hash(input As String) As String
-        Try
-            Using md5 As System.Security.Cryptography.MD5 = System.Security.Cryptography.MD5.Create()
-                Dim inputBytes() As Byte = System.Text.Encoding.UTF8.GetBytes(input)
-                Dim hashBytes() As Byte = md5.ComputeHash(inputBytes)
-                Return BitConverter.ToString(hashBytes).Replace("-", "").ToLower()
-            End Using
-        Catch
-            Return ""
-        End Try
-    End Function
-
     Private Function ExtractFeatures(Sample As Sample, purpose As DPFP.Processing.DataPurpose) As DPFP.FeatureSet
         Try
             Dim extractor As New DPFP.Processing.FeatureExtraction()
@@ -897,7 +765,6 @@ Public Class FrmFingerRegister
             MessageBox.Show("Error managing capture: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
     Private Sub FrmFingerRegister_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
             ' Ensure capture is stopped when form closes
@@ -933,7 +800,6 @@ Public Class FrmFingerRegister
             LogToErrorBox("Error during form closing cleanup: " & ex.Message, "Error")
         End Try
     End Sub
-
     Private Sub ShowEnrollmentTips()
         Dim tips As String = "Fingerprint Enrollment Tips:" & vbCrLf & vbCrLf &
                            "1. Clean your finger and the scanner surface" & vbCrLf &
@@ -946,7 +812,6 @@ Public Class FrmFingerRegister
 
         MessageBox.Show(tips, "Enrollment Tips", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
-
     Private Sub ShowFingerprintQualityTips()
         Dim qualityTips As String = "Fingerprint Quality Improvement Tips:" & vbCrLf & vbCrLf &
                                   "📋 PREPARATION:" & vbCrLf &
@@ -971,9 +836,123 @@ Public Class FrmFingerRegister
         MessageBox.Show(qualityTips, "Fingerprint Quality Tips", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 #End Region
+#Region "EventHandler"
+    Public Sub OnComplete(Capture As Object, ReaderSerialNumber As String, Sample As Sample) _
+  Implements EventHandler.OnComplete
+        Try
+            ' This runs on background thread - use Invoke for UI updates
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String, Sample)(AddressOf OnComplete), Capture, ReaderSerialNumber, Sample)
+                Return
+            End If
+
+            ' Convert the sample to an image and display
+            Dim bmp As Bitmap = ConvertSampleToBitmap(Sample)
+            lblfingerimage.Image = bmp  ' Show fingerprint image
+
+            ' Process the fingerprint sample
+            ProcessSample(Sample)
+        Catch ex As Exception
+            MessageBox.Show("Error in OnComplete: " & ex.Message)
+        End Try
+    End Sub
+
+    Public Sub OnFingerTouch(Capture As Object, ReaderSerialNumber As String) _
+        Implements EventHandler.OnFingerTouch
+        Try
+            ' This runs on background thread - use Invoke for UI updates
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String)(AddressOf OnFingerTouch), Capture, ReaderSerialNumber)
+                Return
+            End If
+
+            UpdateStatus("Finger detected. Hold steady...")
+        Catch ex As Exception
+            ' Handle silently to avoid interrupting capture
+        End Try
+    End Sub
+
+    Public Sub OnFingerGone(Capture As Object, ReaderSerialNumber As String) _
+        Implements EventHandler.OnFingerGone
+        Try
+            ' This runs on background thread - use Invoke for UI updates
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String)(AddressOf OnFingerGone), Capture, ReaderSerialNumber)
+                Return
+            End If
+
+            UpdateStatus("Finger removed. Place finger again when ready...")
+        Catch ex As Exception
+            ' Handle silently to avoid interrupting capture
+        End Try
+    End Sub
+
+    Public Sub OnReaderConnect(Capture As Object, ReaderSerialNumber As String) _
+        Implements EventHandler.OnReaderConnect
+        Try
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String)(AddressOf OnReaderConnect), Capture, ReaderSerialNumber)
+                Return
+            End If
+
+            UpdateStatus("Fingerprint reader connected: " & ReaderSerialNumber)
+        Catch ex As Exception
+            MessageBox.Show("Error in OnReaderConnect: " & ex.Message)
+        End Try
+    End Sub
+
+    Public Sub OnReaderDisconnect(Capture As Object, ReaderSerialNumber As String) _
+        Implements EventHandler.OnReaderDisconnect
+        Try
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String)(AddressOf OnReaderDisconnect), Capture, ReaderSerialNumber)
+                Return
+            End If
+
+            UpdateStatus("Fingerprint reader disconnected!")
+            StopCapture()
+        Catch ex As Exception
+            MessageBox.Show("Error in OnReaderDisconnect: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub OnSampleQuality(Capture As Object, ReaderSerialNumber As String, Feedback As CaptureFeedback) _
+        Implements EventHandler.OnSampleQuality
+        Try
+            ' This runs on background thread - use Invoke for UI updates
+            If Me.InvokeRequired Then
+                Me.Invoke(New Action(Of Object, String, CaptureFeedback)(AddressOf OnSampleQuality), Capture, ReaderSerialNumber, Feedback)
+                Return
+            End If
+
+            ' Provide feedback based on sample quality
+            Select Case Feedback
+                Case CaptureFeedback.Good
+                    UpdateStatus("Good quality sample detected...")
+                Case CaptureFeedback.NoFinger
+                    UpdateStatus("Place finger on reader...")
+                Case CaptureFeedback.TooLight
+                    UpdateStatus("Press harder on the reader...")
+                Case CaptureFeedback.TooDark
+                    UpdateStatus("Press lighter on the reader...")
+                Case CaptureFeedback.TooLeft, CaptureFeedback.TooRight, CaptureFeedback.TooHigh, CaptureFeedback.TooLow
+                    UpdateStatus("Center finger on the reader...")
+                Case CaptureFeedback.TooFast
+                    UpdateStatus("Hold finger steady...")
+                Case CaptureFeedback.TooSlow
+                    UpdateStatus("Place finger more quickly...")
+                Case CaptureFeedback.TooSkewed
+                    UpdateStatus("Place finger straight on reader...")
+                Case CaptureFeedback.TooShort
+                    UpdateStatus("Place whole finger on reader...")
+                Case Else
+                    UpdateStatus("Adjust finger position and try again...")
+            End Select
+        Catch ex As Exception
+            ' Handle silently to avoid interrupting capture
+        End Try
+    End Sub
+#End Region
 #Region "FingerPrintVerfication"
-
-
     Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
         Try
             If selectedEmpId = 0 Then
@@ -1066,7 +1045,7 @@ Public Class FrmFingerRegister
                                                         End Function)
 
                 ' Debug: Log the raw response
-                LogToErrorBox("Raw server response: " & response, "Info")
+                'LogToErrorBox("Raw server response: " & response, "Info")
 
                 ' Clean up response if needed (remove any extra content)
                 response = response.Trim()
@@ -1153,133 +1132,7 @@ Public Class FrmFingerRegister
             Return Nothing
         End Try
     End Function
-
-    'Private Async Function GetAllFingerprintTemplatesFromServer(empId As Integer) As Task(Of List(Of DPFP.Template))
-    '    Try
-    '        Dim templates As New List(Of DPFP.Template)()
-
-    '        Using client As New WebClient()
-    '            client.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
-
-    '            ' Get all fingerprints for this employee
-    '            Dim postData As String = "AttRequest=3&emp_id=" & empId.ToString() & "&fingertype=" & selectedFingerType
-    '            Dim response As String = client.UploadString(M_Details.LinkAjaxRequest.Replace("getfunctionmgmt.php", "getfunctionmgmt.php"), postData)
-
-    '            If Not String.IsNullOrEmpty(response) AndAlso response <> "no_data" Then
-    '                ' Parse JSON response to get fingerprint data
-    '                Dim parsedResponse As JObject = JObject.Parse(response)
-
-    '                If parsedResponse("Success").ToString().ToLower() = "true" Then
-    '                    Dim dataArray = parsedResponse("Data")
-
-    '                    For Each fingerRecord In dataArray
-    '                        Dim fingerId As String = fingerRecord("id").ToString()
-    '                        Dim fingerName As String = fingerRecord("finger_name").ToString()
-
-    '                        ' Get the actual template for this finger
-    '                        Dim template As DPFP.Template = Await GetSpecificFingerprintTemplate(empId, fingerName, selectedFingerType)
-
-    '                        If template IsNot Nothing AndAlso template.Size > 0 Then
-    '                            templates.Add(template)
-    '                            LogToErrorBox("Added template for " & fingerName & " (Size: " & template.Size & ")", "Success")
-    '                        End If
-    '                    Next
-    '                End If
-    '            End If
-
-    '            Return templates
-
-    '        End Using
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error retrieving all fingerprint templates: " & ex.Message, "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '        Return New List(Of DPFP.Template)()
-    '    End Try
-    'End Function
-
-    'Private Async Function GetSpecificFingerprintTemplate(empId As Integer, fingerName As String, fingerType As String) As Task(Of DPFP.Template)
-    '    Try
-    '        Using client As New WebClient()
-    '            client.Headers(HttpRequestHeader.ContentType) = "application/json"
-
-    '            Dim postData As String = "{""EmpId"":" & empId.ToString() & ",""FingerName"":""" & fingerName & """,""FingerType"":""" & fingerType & """}"
-    '            Dim response As String = Await Task.Run(Function()
-    '                                                        Return client.UploadString(M_Details.LinkAjaxRequest & "AttRequest=2", postData)
-    '                                                    End Function)
-
-    '            ' Validate response
-    '            If String.IsNullOrEmpty(response) Then
-    '                LogToErrorBox("Empty response for " & fingerName, "Error")
-    '                Return Nothing
-    '            End If
-
-    '            ' Parse response
-    '            response = response.Trim()
-    '            If response.Contains("}{") Then
-    '                Dim firstBrace As Integer = response.IndexOf("}")
-    '                If firstBrace > 0 Then
-    '                    response = response.Substring(0, firstBrace + 1)
-    '                End If
-    '            End If
-
-    '            Dim parsedResponse As JObject = JObject.Parse(response)
-
-    '            If parsedResponse("Success").ToString().ToLower() = "true" Then
-    '                Dim templateBase64 As String = parsedResponse("Template").ToString()
-    '                If Not String.IsNullOrEmpty(templateBase64) Then
-    '                    Try
-    '                        ' Enhanced validation for specific fingerprint template
-    '                        Dim templateBytes() As Byte = Convert.FromBase64String(templateBase64)
-
-    '                        ' Validate template data size
-    '                        If templateBytes Is Nothing OrElse templateBytes.Length < 100 Then
-    '                            Dim templateSize As Integer = If(templateBytes IsNot Nothing, templateBytes.Length, 0)
-    '                            LogToErrorBox("Invalid template size for " & fingerName & ": " & templateSize & " bytes", "Error")
-    '                            Return Nothing
-    '                        End If
-
-    '                        Dim template As New DPFP.Template()
-    '                        Using stream As New IO.MemoryStream(templateBytes)
-    '                            Try
-    '                                template.DeSerialize(stream)
-
-    '                                ' Validate deserialized template
-    '                                If template.Size > 0 Then
-    '                                    LogToErrorBox("Successfully loaded template for " & fingerName & " (DPFP Size: " & template.Size & ")", "Success")
-    '                                    Return template
-    '                                Else
-    '                                    LogToErrorBox("Template deserialized for " & fingerName & " but has zero size", "Error")
-    '                                    Return Nothing
-    '                                End If
-    '                            Catch deserializeEx As Exception
-    '                                LogToErrorBox("Deserialization error for " & fingerName & ": " & deserializeEx.Message, "Error")
-    '                                Return Nothing
-    '                            End Try
-    '                        End Using
-    '                    Catch b64Ex As Exception
-    '                        LogToErrorBox("Base64 decode error for " & fingerName & ": " & b64Ex.Message, "Error")
-    '                        Return Nothing
-    '                    End Try
-    '                Else
-    '                    LogToErrorBox("Empty template data for " & fingerName, "Error")
-    '                    Return Nothing
-    '                End If
-    '            Else
-    '                Dim errorMsg As String = "Unknown error"
-    '                If parsedResponse("Msg") IsNot Nothing Then
-    '                    errorMsg = parsedResponse("Msg").ToString()
-    '                End If
-    '                LogToErrorBox("Server error for " & fingerName & ": " & errorMsg, "Error")
-    '                Return Nothing
-    '            End If
-
-    '            Return Nothing
-    '        End Using
-    '    Catch ex As Exception
-    '        LogToErrorBox("Error getting specific template for " & fingerName & ": " & ex.Message, "Error")
-    '        Return Nothing
-    '    End Try
-    'End Function
-
+ 
     Private storedTemplateForVerification As DPFP.Template = Nothing
     Private isVerifying As Boolean = False
 
@@ -1296,10 +1149,6 @@ Public Class FrmFingerRegister
             storedTemplateForVerification = template
             isVerifying = True
             qualityFailureCount = 0 ' Reset quality failure counter for new verification session
-
-            ' Initialize verifier with fresh instance
-            Verifier = New Verification()
-
             ' Force reinitialize capturer for verification to avoid device conflicts
             If Capturer IsNot Nothing Then
                 Try
@@ -1364,7 +1213,7 @@ Public Class FrmFingerRegister
             End If
 
             ' Extract features for verification
-            Dim features As DPFP.FeatureSet = ExtractFeatures(sample, DPFP.Processing.DataPurpose.Verification)
+            Dim features As DPFP.FeatureSet = ExtractFeatures(sample, DataPurpose.Verification)
 
             If features IsNot Nothing Then
                 Try
@@ -1378,103 +1227,37 @@ Public Class FrmFingerRegister
                         StopVerification()
                         Return
                     End If
-
                     LogToErrorBox("Starting verification - Template Size: " & storedTemplateForVerification.Size & ", FAR Threshold: " & customFARThreshold, "Info")
-
-                    ' Perform verification with enhanced settings
-                    Dim Verificator As New DPFP.Verification.Verification()
-                    Dim result As New DPFP.Verification.Verification.Result()
-
-                    ' Set a more lenient FAR threshold for better matching
-                    Verificator.FARRequested = customFARThreshold
-
-                    ' Track verification attempts for better user feedback
+                   
                     Dim verificationSuccessful As Boolean = False
-                    Dim finalResult As DPFP.Verification.Verification.Result = Nothing
 
+                    Verifier = New Verification
                     ' Try verification with multiple fallback strategies
                     Try
-                        ' First attempt with normal threshold
-                        Verificator.Verify(features, storedTemplateForVerification, result)
-                        verificationSuccessful = True
-                        finalResult = result
+                        
                         LogToErrorBox("Verification completed with standard threshold", "Info")
-                    Catch verifyEx As Exception When verifyEx.Message.Contains("0xFFFFFFFE")
-                        ' If verification fails with quality error, try with more lenient threshold
-                        LogToErrorBox("First verification attempt failed due to quality. Trying with more lenient threshold...", "Info")
-                        Try
-                            Verificator.FARRequested = customFARThreshold * 100 ' Much more lenient for poor quality samples
-                            Verificator.Verify(features, storedTemplateForVerification, result)
-                            verificationSuccessful = True
-                            finalResult = result
-                            LogToErrorBox("Verification completed with lenient threshold: " & (customFARThreshold * 100).ToString("F8"), "Info")
-                        Catch qualityEx As Exception When qualityEx.Message.Contains("0xFFFFFFFE")
-                            ' Even lenient threshold failed - provide user guidance
-                            qualityFailureCount += 1
-                            LogToErrorBox("Both standard and lenient verification failed due to sample quality (failure #" & qualityFailureCount & ")", "Error")
-
-                            If qualityFailureCount >= 3 Then
-                                ' After 3 consecutive failures, show detailed tips
-                                UpdateStatus("Multiple quality failures detected. Please review the fingerprint guidelines...")
-                                ShowFingerprintQualityTips()
-                                qualityFailureCount = 0 ' Reset counter after showing tips
-                            Else
-                                UpdateStatus("Sample quality too poor for verification. Try again with better finger placement...")
+                        Using ms As New MemoryStream(storedTemplateForVerification.Bytes())
+                            Dim tpl = New Template(ms)
+                            Dim res As New Verification.Result()
+                            Verifier.Verify(features, tpl, res)
+                            If res.Verified Then
+                                verificationSuccessful = True
                             End If
-                            Return ' Exit without stopping verification to allow retry
-                        End Try
-                    Catch localEx As Exception When localEx.Message.Contains("local")
-                        ' Handle template locality issues by recreating template in current context
-                        LogToErrorBox("Template locality error detected. Attempting to recreate template in current context...", "Info")
-                        Dim recreatedTemplate As DPFP.Template = RecreateTemplateInCurrentContext(storedTemplateForVerification)
-                        If recreatedTemplate IsNot Nothing Then
-                            storedTemplateForVerification = recreatedTemplate
-                            Verificator.Verify(features, storedTemplateForVerification, result)
-                            verificationSuccessful = True
-                            finalResult = result
-                            LogToErrorBox("Verification completed with recreated template", "Info")
-                        Else
-                            Throw New Exception("Failed to recreate template in current context")
-                        End If
+                        End Using
+                    Catch verifyEx As Exception 
+                        LogToErrorBox("Template Compatibility Issue Detected:", "Error")
                     End Try
 
                     ' Process results only if verification was successful
-                    If verificationSuccessful AndAlso finalResult IsNot Nothing Then
+                    If verificationSuccessful Then
                         ' Simplified debugging information
-                        Dim currentFingerName As String = selectedFingerName
-
-                        LogToErrorBox("Verification Result for " & currentFingerName & ":", "Info")
-                        LogToErrorBox("- Verified: " & finalResult.Verified, "Info")
-                        LogToErrorBox("- FAR Achieved: " & finalResult.FARAchieved.ToString("F8"), "Info")
-                        LogToErrorBox("- FAR Requested: " & Verificator.FARRequested.ToString("F8"), "Info")
-
-                        If finalResult.Verified Then
-                            ' Verification successful - reset quality failure counter
-                            qualityFailureCount = 0
-                            UpdateStatus("Fingerprint verification successful with " & currentFingerName & "!")
-                            lblstatusimage.Image = Img.Images(1)
-                            MessageBox.Show("Fingerprint verified successfully for " & lblempname.Text & " using " & currentFingerName & "!" & vbCrLf &
-                                          "Verification Details:" & vbCrLf &
-                                          "- FAR Achieved: " & finalResult.FARAchieved.ToString("F8"),
-                                          "Verification Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                            StopVerification()
-                        Else
-                            ' Verification failed - show simple failure message
-                            LogToErrorBox("Verification failed:", "Info")
-                            LogToErrorBox("- FAR Achieved: " & finalResult.FARAchieved.ToString("F8"), "Info")
-                            LogToErrorBox("- FAR Requested: " & Verificator.FARRequested.ToString("F8"), "Info")
-
-                            UpdateStatus("Verification failed (FAR: " & finalResult.FARAchieved.ToString("F8") & "). Please try again...")
-                            MessageBox.Show("Fingerprint verification failed." & vbCrLf &
-                                          "FAR Achieved: " & finalResult.FARAchieved.ToString("F8") & vbCrLf &
-                                          "Please ensure you're using the correct registered finger and try again.",
-                                          "Verification Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
-                            ' Simple logging for debugging
-                            LogToErrorBox("Verification failed - FAR: " & finalResult.FARAchieved.ToString("F8") & ", Threshold: " & Verificator.FARRequested.ToString("F8"), "Info")
-                            ' Don't stop automatically → allow retry
-                        End If
+                        Dim currentFingerName As String = selectedFingerName & " - " & selectedEmployeeName
+                        LogToErrorBox("Verification Result for " & currentFingerName & ":", "Success")
+                        lblstatusimage.Image = Img.Images(1)
+                    Else
+                        Dim currentFingerName As String = selectedFingerName & " - " & selectedEmployeeName
+                        LogToErrorBox("Verification Result for " & currentFingerName & ":", "Failed")
+                        lblstatusimage.Image = Img.Images(0)
                     End If
 
                 Catch dpfpEx As Exception When dpfpEx.Message.Contains("local")
@@ -1636,17 +1419,6 @@ Public Class FrmFingerRegister
 
 #End Region
 #Region "DeleteFinger"
-    Private Sub cmbFingerName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFingerName.SelectedIndexChanged
-        Try
-            If cmbFingerName.SelectedIndex = 0 Then
-                selectedFingerName = "Finger1"
-            Else
-                selectedFingerName = "Finger2"
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
     Private Async Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
             Dim EmpId As Integer = 0
@@ -1719,50 +1491,6 @@ Public Class FrmFingerRegister
         End Try
     End Sub
 #End Region
-
-    ' Helper method to safely create a template from byte array using multiple approaches
-    Private Function CreateTemplateFromByteArray(templateData As Byte()) As DPFP.Template
-        If templateData Is Nothing OrElse templateData.Length = 0 Then
-            Return Nothing
-        End If
-
-        ' Method 1: Try direct memory stream deserialization
-        Try
-            Using ms As New System.IO.MemoryStream(templateData)
-                Dim template As New DPFP.Template()
-                template.DeSerialize(ms)
-                Return template
-            End Using
-        Catch ex As Exception
-            LogMessage("Template creation method 1 failed: " & ex.Message)
-        End Try
-
-        ' Method 2: Try fresh template with direct data assignment
-        Try
-            Dim template As New DPFP.Template()
-            ' Validate template data size and format
-            If templateData.Length > 16 Then ' Minimum template size
-                Using ms As New System.IO.MemoryStream(templateData)
-                    template.DeSerialize(ms)
-                    Return template
-                End Using
-            End If
-        Catch ex As Exception
-            LogMessage("Template creation method 2 failed: " & ex.Message)
-        End Try
-
-        ' Method 3: Try reconstructing from raw bytes
-        Try
-            Dim template As New DPFP.Template()
-            Return template
-        Catch ex As Exception
-            LogMessage("Template creation method 3 failed: " & ex.Message)
-        End Try
-
-        LogMessage("All template creation methods failed for data length: " & templateData.Length)
-        Return Nothing
-    End Function
-
 End Class
 'Imports DPUruNet
 'Imports System.Net

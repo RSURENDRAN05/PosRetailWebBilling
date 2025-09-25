@@ -32,7 +32,6 @@ Partial Class FrmFingerRegister
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.lbltype = New System.Windows.Forms.Label()
-        Me.cmbFingerName = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btnstartCapture = New DevExpress.XtraEditors.SimpleButton()
@@ -57,6 +56,7 @@ Partial Class FrmFingerRegister
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.nudFingerIndex = New System.Windows.Forms.NumericUpDown()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +73,7 @@ Partial Class FrmFingerRegister
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Img, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -169,8 +170,8 @@ Partial Class FrmFingerRegister
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.nudFingerIndex)
         Me.PanelControl1.Controls.Add(Me.lbltype)
-        Me.PanelControl1.Controls.Add(Me.cmbFingerName)
         Me.PanelControl1.Controls.Add(Me.Label4)
         Me.PanelControl1.Controls.Add(Me.Label3)
         Me.PanelControl1.Controls.Add(Me.btnstartCapture)
@@ -198,23 +199,14 @@ Partial Class FrmFingerRegister
         Me.lbltype.TabIndex = 21
         Me.lbltype.Text = "Label4"
         '
-        'cmbFingerName
-        '
-        Me.cmbFingerName.FormattingEnabled = True
-        Me.cmbFingerName.Items.AddRange(New Object() {"Finger1", "Finger2"})
-        Me.cmbFingerName.Location = New System.Drawing.Point(109, 16)
-        Me.cmbFingerName.Name = "cmbFingerName"
-        Me.cmbFingerName.Size = New System.Drawing.Size(121, 21)
-        Me.cmbFingerName.TabIndex = 17
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(5, 19)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(74, 13)
+        Me.Label4.Size = New System.Drawing.Size(75, 13)
         Me.Label4.TabIndex = 15
-        Me.Label4.Text = "Finger Name :"
+        Me.Label4.Text = "Finger Index :"
         '
         'Label3
         '
@@ -227,11 +219,11 @@ Partial Class FrmFingerRegister
         '
         'btnstartCapture
         '
-        Me.btnstartCapture.Location = New System.Drawing.Point(321, 133)
+        Me.btnstartCapture.Location = New System.Drawing.Point(428, 171)
         Me.btnstartCapture.Name = "btnstartCapture"
-        Me.btnstartCapture.Size = New System.Drawing.Size(101, 46)
+        Me.btnstartCapture.Size = New System.Drawing.Size(120, 46)
         Me.btnstartCapture.TabIndex = 11
-        Me.btnstartCapture.Text = "Start"
+        Me.btnstartCapture.Text = "Enroll Employee"
         '
         'lblempname
         '
@@ -271,7 +263,7 @@ Partial Class FrmFingerRegister
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(287, 217)
+        Me.btnDelete.Location = New System.Drawing.Point(220, 229)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(101, 46)
         Me.btnDelete.TabIndex = 6
@@ -279,7 +271,7 @@ Partial Class FrmFingerRegister
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(393, 217)
+        Me.btnRefresh.Location = New System.Drawing.Point(326, 229)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(101, 46)
         Me.btnRefresh.TabIndex = 5
@@ -287,7 +279,7 @@ Partial Class FrmFingerRegister
         '
         'btnTest
         '
-        Me.btnTest.Location = New System.Drawing.Point(181, 217)
+        Me.btnTest.Location = New System.Drawing.Point(114, 229)
         Me.btnTest.Name = "btnTest"
         Me.btnTest.Size = New System.Drawing.Size(101, 46)
         Me.btnTest.TabIndex = 4
@@ -295,7 +287,7 @@ Partial Class FrmFingerRegister
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(75, 217)
+        Me.btnClear.Location = New System.Drawing.Point(8, 229)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(101, 46)
         Me.btnClear.TabIndex = 3
@@ -305,17 +297,17 @@ Partial Class FrmFingerRegister
         '
         Me.lblstatusimage.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.lblstatusimage.EditValue = CType(resources.GetObject("lblstatusimage.EditValue"), Object)
-        Me.lblstatusimage.Location = New System.Drawing.Point(2, 269)
+        Me.lblstatusimage.Location = New System.Drawing.Point(2, 281)
         Me.lblstatusimage.Name = "lblstatusimage"
         Me.lblstatusimage.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lblstatusimage.Properties.Appearance.Options.UseBackColor = True
         Me.lblstatusimage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze
-        Me.lblstatusimage.Size = New System.Drawing.Size(559, 90)
+        Me.lblstatusimage.Size = New System.Drawing.Size(559, 78)
         Me.lblstatusimage.TabIndex = 1
         '
         'lblfingerimage
         '
-        Me.lblfingerimage.Location = New System.Drawing.Point(428, 19)
+        Me.lblfingerimage.Location = New System.Drawing.Point(428, 5)
         Me.lblfingerimage.Name = "lblfingerimage"
         Me.lblfingerimage.Size = New System.Drawing.Size(120, 160)
         Me.lblfingerimage.TabIndex = 0
@@ -437,6 +429,16 @@ Partial Class FrmFingerRegister
         Me.Img.Images.SetKeyName(0, "red-success-144.png")
         Me.Img.Images.SetKeyName(1, "green-success-144.png")
         '
+        'nudFingerIndex
+        '
+        Me.nudFingerIndex.Location = New System.Drawing.Point(94, 17)
+        Me.nudFingerIndex.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudFingerIndex.Name = "nudFingerIndex"
+        Me.nudFingerIndex.Size = New System.Drawing.Size(50, 21)
+        Me.nudFingerIndex.TabIndex = 22
+        Me.nudFingerIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudFingerIndex.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
         'FrmFingerRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -463,6 +465,7 @@ Partial Class FrmFingerRegister
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Img, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
 End Sub
@@ -492,7 +495,6 @@ End Sub
     Friend WithEvents Img As DevExpress.Utils.ImageCollection
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents cmbFingerName As System.Windows.Forms.ComboBox
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -502,4 +504,5 @@ End Sub
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents errorRichBox As System.Windows.Forms.RichTextBox
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents nudFingerIndex As System.Windows.Forms.NumericUpDown
 End Class

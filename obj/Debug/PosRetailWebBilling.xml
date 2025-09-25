@@ -436,11 +436,6 @@ PosRetailWebBilling
 	<summary>
  Helper method to write to the error RichTextBox with formatting
  </summary>
-</member><member name="M:PosRetailWebBilling.FrmFingerRegister.TestImmediateVerificationWithCurrentTemplate(DPFP.Template)">
-	<summary>
- Tests verification immediately after registration using the just-registered template
- This avoids potential server timing issues by using the template from memory
- </summary>
 </member><member name="M:PosRetailWebBilling.FrmFingerRegister.RecreateTemplateInCurrentContext(DPFP.Template)">
 	<summary>
  Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors

@@ -5298,11 +5298,9 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
      */
     try {
         if ((int) $_REQUEST['AttRequest'] === 1) {
-            // Register Fingerprint with Base64-encoded XML template
             $rawInput = file_get_contents("php://input");
             $data = json_decode($rawInput, true);
 
-            // Check JSON parsing
             if ($data === null) {
                 echo json_encode([
                     "Success" => false,
@@ -5312,11 +5310,10 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                 exit;
             }
 
-            // Validate required fields
             if (!isset($data["EmpId"]) || !isset($data["Template"])) {
                 echo json_encode([
                     "Success" => false,
-                    "Msg" => "Invalid data: EmpId and Template (Base64 XML) are required"
+                    "Msg" => "Invalid data: EmpId and Template (Base64) are required"
                 ]);
                 exit;
             }
@@ -5326,7 +5323,6 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             $fingerName = isset($data["FingerName"]) ? $data["FingerName"] : 'Finger1';
             $fingerType = isset($data["FingerType"]) ? $data["FingerType"] : 'Employee';
 
-            // Validate EmpId
             if ($empId <= 0) {
                 echo json_encode([
                     "Success" => false,
@@ -5335,9 +5331,9 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                 exit;
             }
 
-            // Decode Base64 to get XML
-            $templateXml = base64_decode($templateBase64, true);
-            if ($templateXml === false) {
+            // Decode Base64 → binary fingerprint template
+            $templateBinary = base64_decode($templateBase64, true);
+            if ($templateBinary === false) {
                 echo json_encode([
                     "Success" => false,
                     "Msg" => "Failed to decode Base64 Template"
@@ -5345,30 +5341,14 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                 exit;
             }
 
-            // Validate XML template
-            libxml_use_internal_errors(true);
-            $xmlTest = simplexml_load_string($templateXml);
-            if ($xmlTest === false) {
-                $errors = array_map(function ($e) {
-                    return $e->message;
-                }, libxml_get_errors());
-                libxml_clear_errors();
-                echo json_encode([
-                    "Success" => false,
-                    "Msg" => "Invalid XML template data",
-                    "Errors" => $errors
-                ]);
-                exit;
-            }
-
-            // Store XML string in database
+            // Store binary data in DB (LONGBLOB)
             try {
-                $register = $clsfunreq->RegisterEmpFinger($empId, $templateXml, $fingerName, $fingerType);
+                $register = $clsfunreq->RegisterEmpFinger($empId, $templateBinary, $fingerName, $fingerType);
 
                 if ($register) {
                     echo json_encode([
                         "Success" => true,
-                        "Msg" => "Fingerprint (XML) registered successfully for $fingerType - $fingerName",
+                        "Msg" => "Fingerprint template registered successfully for $fingerType - $fingerName",
                         "FingerprintId" => $register
                     ]);
                 } else {
@@ -5392,13 +5372,14 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                 $fingerName = isset($data["FingerName"]) ? $data["FingerName"] : null;
                 $fingerType = isset($data["FingerType"]) ? $data["FingerType"] : null;
 
-                $templateXml = $clsfunreq->GetEmpFingerTemplate($empId, $fingerType, $fingerName);
+                // Get binary fingerprint template from DB (LONGBLOB)
+                $templateBinary = $clsfunreq->GetEmpFingerTemplate($empId, $fingerType, $fingerName);
 
-                if ($templateXml) {
-                    // Convert XML to Base64
-                    $templateBase64 = base64_encode($templateXml);
+                if ($templateBinary) {
+                    // Convert binary to Base64 for JSON transport
+                    $templateBase64 = base64_encode($templateBinary);
 
-                    $msg = 'Template retrieved successfully';
+                    $msg = 'Fingerprint template retrieved successfully';
                     if ($fingerName && $fingerType) {
                         $msg .= " for {$fingerType} - {$fingerName}";
                     }
@@ -5425,6 +5406,7 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                 ]);
             }
         }
+
 
         //Get All Employees with Fingerprint Templates and User Details
         elseif ((int) $_REQUEST['AttRequest'] === 3) {
