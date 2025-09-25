@@ -23,14 +23,15 @@ Partial Class FrmFingerRegister
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFingerRegister))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.errorRichBox = New System.Windows.Forms.RichTextBox()
-        Me.GridControlEmpFingerHeader = New DevExpress.XtraGrid.GridControl()
-        Me.GridViewEmpFingerHeader = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridControlEmpFingerDtl = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewEmpFingerDtl = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.nudFingerIndex = New System.Windows.Forms.NumericUpDown()
         Me.lbltype = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -56,13 +57,13 @@ Partial Class FrmFingerRegister
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.nudFingerIndex = New System.Windows.Forms.NumericUpDown()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridViewEmpFingerHeader, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControlEmpFingerDtl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewEmpFingerDtl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblstatusimage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblfingerimage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControlEmpHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,13 +74,12 @@ Partial Class FrmFingerRegister
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Img, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
         Me.LayoutControl1.Controls.Add(Me.errorRichBox)
-        Me.LayoutControl1.Controls.Add(Me.GridControlEmpFingerHeader)
+        Me.LayoutControl1.Controls.Add(Me.GridControlEmpFingerDtl)
         Me.LayoutControl1.Controls.Add(Me.PanelControl1)
         Me.LayoutControl1.Controls.Add(Me.GridControlEmpHeader)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -98,32 +98,32 @@ Partial Class FrmFingerRegister
         Me.errorRichBox.TabIndex = 7
         Me.errorRichBox.Text = ""
         '
-        'GridControlEmpFingerHeader
+        'GridControlEmpFingerDtl
         '
-        Me.GridControlEmpFingerHeader.Location = New System.Drawing.Point(433, 28)
-        Me.GridControlEmpFingerHeader.MainView = Me.GridViewEmpFingerHeader
-        Me.GridControlEmpFingerHeader.Name = "GridControlEmpFingerHeader"
-        Me.GridControlEmpFingerHeader.Size = New System.Drawing.Size(563, 308)
-        Me.GridControlEmpFingerHeader.TabIndex = 6
-        Me.GridControlEmpFingerHeader.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEmpFingerHeader})
+        Me.GridControlEmpFingerDtl.Location = New System.Drawing.Point(433, 28)
+        Me.GridControlEmpFingerDtl.MainView = Me.GridViewEmpFingerDtl
+        Me.GridControlEmpFingerDtl.Name = "GridControlEmpFingerDtl"
+        Me.GridControlEmpFingerDtl.Size = New System.Drawing.Size(563, 308)
+        Me.GridControlEmpFingerDtl.TabIndex = 6
+        Me.GridControlEmpFingerDtl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEmpFingerDtl})
         '
-        'GridViewEmpFingerHeader
+        'GridViewEmpFingerDtl
         '
-        Me.GridViewEmpFingerHeader.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewEmpFingerHeader.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridViewEmpFingerHeader.Appearance.HeaderPanel.Options.UseTextOptions = True
-        Me.GridViewEmpFingerHeader.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewEmpFingerHeader.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewEmpFingerHeader.Appearance.Row.Options.UseFont = True
-        Me.GridViewEmpFingerHeader.Appearance.Row.Options.UseTextOptions = True
-        Me.GridViewEmpFingerHeader.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewEmpFingerHeader.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
-        Me.GridViewEmpFingerHeader.GridControl = Me.GridControlEmpFingerHeader
-        Me.GridViewEmpFingerHeader.Name = "GridViewEmpFingerHeader"
-        Me.GridViewEmpFingerHeader.OptionsBehavior.Editable = False
-        Me.GridViewEmpFingerHeader.OptionsBehavior.ReadOnly = True
-        Me.GridViewEmpFingerHeader.OptionsView.ShowGroupPanel = False
-        Me.GridViewEmpFingerHeader.RowHeight = 30
+        Me.GridViewEmpFingerDtl.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpFingerDtl.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridViewEmpFingerDtl.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewEmpFingerDtl.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridViewEmpFingerDtl.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpFingerDtl.Appearance.Row.Options.UseFont = True
+        Me.GridViewEmpFingerDtl.Appearance.Row.Options.UseTextOptions = True
+        Me.GridViewEmpFingerDtl.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridViewEmpFingerDtl.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GridViewEmpFingerDtl.GridControl = Me.GridControlEmpFingerDtl
+        Me.GridViewEmpFingerDtl.Name = "GridViewEmpFingerDtl"
+        Me.GridViewEmpFingerDtl.OptionsBehavior.Editable = False
+        Me.GridViewEmpFingerDtl.OptionsBehavior.ReadOnly = True
+        Me.GridViewEmpFingerDtl.OptionsView.ShowGroupPanel = False
+        Me.GridViewEmpFingerDtl.RowHeight = 30
         '
         'GridColumn3
         '
@@ -189,6 +189,16 @@ Partial Class FrmFingerRegister
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(563, 361)
         Me.PanelControl1.TabIndex = 5
+        '
+        'nudFingerIndex
+        '
+        Me.nudFingerIndex.Location = New System.Drawing.Point(94, 17)
+        Me.nudFingerIndex.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudFingerIndex.Name = "nudFingerIndex"
+        Me.nudFingerIndex.Size = New System.Drawing.Size(50, 21)
+        Me.nudFingerIndex.TabIndex = 22
+        Me.nudFingerIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudFingerIndex.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'lbltype
         '
@@ -402,7 +412,7 @@ Partial Class FrmFingerRegister
         '
         'LayoutControlItem3
         '
-        Me.LayoutControlItem3.Control = Me.GridControlEmpFingerHeader
+        Me.LayoutControlItem3.Control = Me.GridControlEmpFingerDtl
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(421, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
@@ -429,16 +439,6 @@ Partial Class FrmFingerRegister
         Me.Img.Images.SetKeyName(0, "red-success-144.png")
         Me.Img.Images.SetKeyName(1, "green-success-144.png")
         '
-        'nudFingerIndex
-        '
-        Me.nudFingerIndex.Location = New System.Drawing.Point(94, 17)
-        Me.nudFingerIndex.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nudFingerIndex.Name = "nudFingerIndex"
-        Me.nudFingerIndex.Size = New System.Drawing.Size(50, 21)
-        Me.nudFingerIndex.TabIndex = 22
-        Me.nudFingerIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudFingerIndex.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        '
         'FrmFingerRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -450,11 +450,12 @@ Partial Class FrmFingerRegister
         Me.Text = "Finger Register"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.GridControlEmpFingerHeader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewEmpFingerHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControlEmpFingerDtl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewEmpFingerDtl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblstatusimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblfingerimage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControlEmpHeader, System.ComponentModel.ISupportInitialize).EndInit()
@@ -465,14 +466,13 @@ Partial Class FrmFingerRegister
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Img, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudFingerIndex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents GridControlEmpFingerHeader As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridViewEmpFingerHeader As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridControlEmpFingerDtl As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewEmpFingerDtl As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents btnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnRefresh As DevExpress.XtraEditors.SimpleButton

@@ -395,7 +395,7 @@ Module functionModule
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3")
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3&EmpId=0")
                 Dim Userparsejson As JObject = JObject.Parse(json)
                 _JsonData.FingerPrintDataTable = Userparsejson("Data").ToObject(Of DataTable)()
                 If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then

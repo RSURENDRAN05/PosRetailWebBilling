@@ -4906,10 +4906,13 @@ class funcProcessMgmt
         }
     }
     //SELECT `id`, `emp_id`, ei.emp_printname, `finger_template`, `created_at`, `finger_name`, `fingertype` FROM `employee_fingerprints` as ef inner join pos_employeeinfo as ei on ef.emp_id=ei.emp_id WHERE 1;
-    public function GetAllEmpFingerprints()
+    public function GetAllEmpFingerprints($empId = 0)
     {
         $conn = $this->conn;
-
+        $Sqlstr = "";
+        if ($empId > 0) {
+            $Sqlstr = " WHERE ef.emp_id='" . intval($empId) . "'";
+        }
         try {
             // Fixed SQL query - proper handling of employee vs user fingerprints
             // Note: Excluding finger_template BLOB field from general listing for performance
@@ -4933,6 +4936,7 @@ class funcProcessMgmt
                     FROM employee_fingerprints AS ef
                     LEFT JOIN pos_employeeinfo AS ei ON (ef.emp_id = ei.emp_id AND ef.fingertype = 'Employee')
                     LEFT JOIN users AS ui ON (ef.emp_id = ui.id AND ef.fingertype = 'User')
+                    $Sqlstr
                     ORDER BY ef.created_at DESC";
 
             $result = mysqli_query($conn, $sql);

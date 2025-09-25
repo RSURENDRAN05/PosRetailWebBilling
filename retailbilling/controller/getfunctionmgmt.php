@@ -5405,30 +5405,24 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                     "Msg" => "Invalid data: EmpId is required"
                 ]);
             }
-        }
+        } elseif ((int) $_REQUEST['AttRequest'] === 3) {
+            $data = json_decode(file_get_contents("php://input"), true);
 
+            // Default EmpId to 0 if missing/null
+            $empId = isset($data["EmpId"]) ? (int)$data["EmpId"] : 0;
 
-        //Get All Employees with Fingerprint Templates and User Details
-        elseif ((int) $_REQUEST['AttRequest'] === 3) {
-            $getData = $clsfunreq->GetAllEmpFingerprints();
+            // Call function (0 = all employees, >0 = specific employee)
+            $getData = $clsfunreq->GetAllEmpFingerprints($empId);
 
-            if ($getData) {
+            if ($getData && is_array($getData)) {
                 $dataArray = [];
 
-                if ($getData instanceof mysqli_result) {
-                    while ($row = mysqli_fetch_assoc($getData)) {
-                        if (isset($row['finger_template'])) {
-                            $row['finger_template'] = base64_encode($row['finger_template']);
-                        }
-                        $dataArray[] = $row;
+                foreach ($getData as $row) {
+                    if (isset($row['finger_template']) && $row['finger_template'] !== null) {
+                        // Convert BLOB to Base64 for JSON
+                        $row['finger_template'] = base64_encode($row['finger_template']);
                     }
-                } elseif (is_array($getData)) {
-                    foreach ($getData as $row) {
-                        if (isset($row['finger_template'])) {
-                            $row['finger_template'] = base64_encode($row['finger_template']);
-                        }
-                        $dataArray[] = $row;
-                    }
+                    $dataArray[] = $row;
                 }
 
                 echo json_encode([
@@ -5439,11 +5433,10 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             } else {
                 echo json_encode([
                     "Success" => false,
-                    "Msg" => "Failed to retrieve data"
+                    "Msg" => "No fingerprint records found"
                 ]);
             }
         }
-
         //Delete Employee Fingerprint Template(s)
         elseif ((int) $_REQUEST['AttRequest'] === 4) {
             $data = json_decode(file_get_contents("php://input"), true);
@@ -5460,8 +5453,6 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId is required for delete operation'));
             }
-        } else {
-            echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest parameter'));
         }
     } catch (Exception $e) {
         error_log("AttRequest Exception: " . $e->getMessage());

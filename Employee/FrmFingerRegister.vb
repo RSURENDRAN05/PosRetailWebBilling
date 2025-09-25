@@ -192,13 +192,13 @@ Public Class FrmFingerRegister
         registeredFingerprints.Columns.Add("finger_name", GetType(String))
         registeredFingerprints.Columns.Add("fingertype", GetType(String))
         registeredFingerprints.Columns.Add("created_at", GetType(DateTime))
-        GridControlEmpFingerHeader.DataSource = registeredFingerprints
+        GridControlEmpFingerDtl.DataSource = registeredFingerprints
 
     End Sub
 
     Private Sub LoadExistingFingerprints()
         Try
-            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3")
+            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=3&EmpId=0")
             Dim parsedJson As JObject = JObject.Parse(json)
 
             registeredFingerprints.Clear()
@@ -553,9 +553,36 @@ Public Class FrmFingerRegister
             btnstartCapture.Enabled = True
 
             ' Reset enrollment when selecting new employee
-            ' ResetEnrollment()
+            ResetEnrollment()
         Catch ex As Exception
             MessageBox.Show("Error selecting employee: " & ex.Message)
+        End Try
+    End Sub
+    Private Sub GridViewEmpFingerDtl_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridViewEmpFingerDtl.RowClick
+        Try
+            Dim foucustedRow As Integer = 0
+            foucustedRow = GridViewEmpFingerDtl.FocusedRowHandle
+            Dim FingerId = GridViewEmpFingerDtl.GetFocusedRowCellValue("id")
+            Dim empId = GridViewEmpFingerDtl.GetFocusedRowCellValue("emp_id")
+            Dim empName = GridViewEmpFingerDtl.GetFocusedRowCellValue("emp_printname")
+            Dim empType = GridViewEmpFingerDtl.GetFocusedRowCellValue("fingertype")
+            lblempid.Text = empId
+            lblempname.Text = empName
+            lbltype.Text = empType
+            selectedEmpId = Convert.ToInt32(empId)
+
+            ' Update new tracking variables
+            selectedEmployeeId = selectedEmpId
+            selectedEmployeeName = empName.ToString()
+            selectedFingerType = empType
+            selectedFingerName = nudFingerIndex.Value
+            ' Enable enrollment button
+            btnstartCapture.Enabled = True
+
+            ' Reset enrollment when selecting new employee
+            ResetEnrollment()
+        Catch ex As Exception
+
         End Try
     End Sub
     Private Async Sub SaveFingerprintTemplate()
@@ -1012,18 +1039,17 @@ Public Class FrmFingerRegister
             Return False
         End Try
     End Function
-
+    Dim FingerTable As DataTable
     Private Async Sub GetFingerprintDetailsAndVerify()
         Try
             UpdateStatus("Retrieving fingerprint template for verification...")
-
+            FingerTable = New DataTable
             ' Get fingerprint template from server for verification
-            Dim template As DPFP.Template = Await GetFingerprintFromServer(selectedEmpId)
-
-            If template IsNot Nothing AndAlso template.Size > 0 Then
+            FingerTable = Await GetFingerprintFromServerbyIdAllFinger(selectedEmpId)
+            If FingerTable.Rows.Count > 0 Then
                 UpdateStatus("Found fingerprint template. Please place your finger for verification...")
                 ' Start single fingerprint verification process
-                StartVerificationCapture(template)
+                StartVerificationCapture()
             Else
                 MessageBox.Show("No fingerprint template found for " & lblempname.Text & ". Please register fingerprint first.", "No Template Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 lblstatusimage.Image = Img.Images(0) ' Set to failure image
@@ -1132,11 +1158,63 @@ Public Class FrmFingerRegister
             Return Nothing
         End Try
     End Function
- 
+    Private Async Function GetFingerprintFromServerbyIdAllFinger(empId As Integer) As Task(Of DataTable)
+        Try
+            Using client As New WebClient()
+                client.Headers(HttpRequestHeader.ContentType) = "application/json"
+
+                Dim postData As String = "{""EmpId"":" & empId.ToString() & "}"
+                Dim response As String = Await Task.Run(Function()
+                                                            Return client.UploadString(M_Details.LinkAjaxRequest & "AttRequest=3", postData)
+                                                        End Function)
+
+                ' Debug: Log the raw response
+                'LogToErrorBox("Raw server response: " & response, "Info")
+
+                ' Clean up response if needed (remove any extra content)
+                response = response.Trim()
+                If response.Contains("}{") Then
+                    ' Multiple JSON objects detected, take only the first one
+                    Dim firstBrace As Integer = response.IndexOf("}")
+                    If firstBrace > 0 Then
+                        response = response.Substring(0, firstBrace + 1)
+                    End If
+                End If
+
+                If String.IsNullOrEmpty(response) Then
+                    MessageBox.Show("Empty response from server.", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return Nothing
+                End If
+
+                Dim parsedResponse As JObject = JObject.Parse(response)
+                Dim dt As New DataTable
+                If parsedResponse("Success").ToString().ToLower() = "true" Then
+                    dt = parsedResponse("Data").ToObject(Of DataTable)()
+                    If dt.Rows.Count > 0 Then
+                        Return dt
+                        'For Each rs In dt.Rows
+                        '    Dim FingerId = rs("id")
+                        '    Dim EmpIds = rs("emp_id")
+                        '    Dim FingerIndex = rs("finger_name")
+                        '    Dim FingerTemplate = rs("finger_template")
+                        '    Dim CreatedAt = rs("created_at")
+                        'Next
+                    End If
+                End If
+                Return Nothing
+            End Using
+        Catch jsonEx As Newtonsoft.Json.JsonReaderException
+            MessageBox.Show("Server returned invalid JSON response. Please check server configuration." & vbCrLf & "Error: " & jsonEx.Message, "JSON Parse Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        Catch ex As Exception
+            MessageBox.Show("Network error retrieving fingerprint: " & ex.Message, "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End Try
+    End Function
     Private storedTemplateForVerification As DPFP.Template = Nothing
     Private isVerifying As Boolean = False
 
-    Private Sub StartVerificationCapture(template As DPFP.Template)
+    Private Sub StartVerificationCapture()
         Try
             ' Ensure we're not in capture mode first
             If isCapturing Then
@@ -1146,7 +1224,7 @@ Public Class FrmFingerRegister
             End If
 
             ' Store template for verification
-            storedTemplateForVerification = template
+            'storedTemplateForVerification = template
             isVerifying = True
             qualityFailureCount = 0 ' Reset quality failure counter for new verification session
             ' Force reinitialize capturer for verification to avoid device conflicts
@@ -1207,7 +1285,7 @@ Public Class FrmFingerRegister
     End Sub
     Private Sub VerifyFingerprint(sample As DPFP.Sample)
         Try
-            If Not isVerifying OrElse storedTemplateForVerification Is Nothing Then
+            If Not isVerifying OrElse FingerTable.Rows.Count = 0 Then
                 LogMessage("Verification aborted: isVerifying=" & isVerifying & ", templateExists=" & (storedTemplateForVerification IsNot Nothing))
                 Return
             End If
@@ -1221,29 +1299,40 @@ Public Class FrmFingerRegister
                     LogToErrorBox("Sample Quality - Size: " & sample.Bytes.Length & " bytes", "Info")
 
                     ' Validate template before verification
-                    If storedTemplateForVerification.Size = 0 Then
+                    If FingerTable.Rows.Count = 0 Then
                         LogToErrorBox("Invalid template detected: Size = 0", "Error")
                         MessageBox.Show("Invalid template detected. Please re-register the fingerprint.", "Invalid Template", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         StopVerification()
                         Return
                     End If
-                    LogToErrorBox("Starting verification - Template Size: " & storedTemplateForVerification.Size & ", FAR Threshold: " & customFARThreshold, "Info")
+                    LogToErrorBox("Starting verification - Template Size: " & FingerTable.Rows.Count & ", FAR Threshold: " & customFARThreshold, "Info")
                    
                     Dim verificationSuccessful As Boolean = False
 
                     Verifier = New Verification
                     ' Try verification with multiple fallback strategies
                     Try
-                        
-                        LogToErrorBox("Verification completed with standard threshold", "Info")
-                        Using ms As New MemoryStream(storedTemplateForVerification.Bytes())
-                            Dim tpl = New Template(ms)
-                            Dim res As New Verification.Result()
-                            Verifier.Verify(features, tpl, res)
-                            If res.Verified Then
-                                verificationSuccessful = True
+                        For Each rs In FingerTable.Rows
+                            Dim templateBase64 As String = rs("finger_template")
+                            Dim templateBytes() As Byte = Convert.FromBase64String(templateBase64)
+
+                            ' Validate template data size
+                            If templateBytes Is Nothing OrElse templateBytes.Length < 100 Then
+                                MessageBox.Show("Invalid template data received from server (too small). Please re-register fingerprint.",
+                                              "Invalid Template", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
                             End If
-                        End Using
+                            LogToErrorBox("Verification completed with standard threshold", "Info")
+                            Using ms As New MemoryStream(templateBytes)
+                                Dim tpl = New Template(ms)
+                                Dim res As New Verification.Result()
+                                Verifier.Verify(features, tpl, res)
+                                If res.Verified Then
+                                    verificationSuccessful = True
+                                    Exit For
+                                End If
+                            End Using
+                        Next
                     Catch verifyEx As Exception 
                         LogToErrorBox("Template Compatibility Issue Detected:", "Error")
                     End Try
@@ -1423,9 +1512,9 @@ Public Class FrmFingerRegister
         Try
             Dim EmpId As Integer = 0
             Dim EmpName As String = "'"
-            If GridViewEmpFingerHeader.RowCount > 0 Then
-                EmpId = GridViewEmpFingerHeader.GetFocusedRowCellValue("id")
-                EmpName = GridViewEmpFingerHeader.GetFocusedRowCellValue("emp_printname")
+            If GridViewEmpFingerDtl.RowCount > 0 Then
+                EmpId = GridViewEmpFingerDtl.GetFocusedRowCellValue("id")
+                EmpName = GridViewEmpFingerDtl.GetFocusedRowCellValue("emp_printname")
             End If
             ' Check if an employee is selected
             If EmpId = 0 Then
@@ -1491,6 +1580,13 @@ Public Class FrmFingerRegister
         End Try
     End Sub
 #End Region
+End Class
+Public Class Fingerprint
+    Public Property FingerId As Integer
+    Public Property UserId As Integer
+    Public Property FingerIndex As Integer
+    Public Property Template As Byte()
+    Public Property CreatedAt As DateTime
 End Class
 'Imports DPUruNet
 'Imports System.Net
