@@ -107,6 +107,9 @@ Public Class MainMaster
                 barbtnadvancepaymentreport.Enabled = False
                 barbtnmonthlysummaryreport.Enabled = False
                 barbtnmaingrouppolicy.Enabled = False
+                barbtnfingerregister.Enabled = False
+                barbtnfingerscanner.Enabled = False
+                barbtnattendancereport.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -498,6 +501,30 @@ Public Class MainMaster
                             barbtnmonthlysummaryreport.Enabled = True
                         Else
                             barbtnmonthlysummaryreport.Enabled = False
+                        End If
+                    End If
+                    Dim FingerPrintScanner As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "FingerPrintScanner"
+                    If FingerPrintScanner.Any Then
+                        If FingerPrintScanner(0)("menu_active") = "1" Then
+                            barbtnfingerscanner.Enabled = True
+                        Else
+                            barbtnfingerscanner.Enabled = False
+                        End If
+                    End If
+                    Dim FingerPrintRegister As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "FingerPrintRegister"
+                    If FingerPrintRegister.Any Then
+                        If FingerPrintRegister(0)("menu_active") = "1" Then
+                            barbtnfingerregister.Enabled = True
+                        Else
+                            barbtnfingerregister.Enabled = False
+                        End If
+                    End If
+                    Dim AttendanceReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "AttendanceReport"
+                    If AttendanceReport.Any Then
+                        If AttendanceReport(0)("menu_active") = "1" Then
+                            barbtnattendancereport.Enabled = True
+                        Else
+                            barbtnattendancereport.Enabled = False
                         End If
                     End If
                 End If
@@ -1024,6 +1051,15 @@ Public Class MainMaster
         Try
             FrmFingerRegister.ShowDialog()
 
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnattendancereport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnattendancereport.ItemClick
+        Try
+            FrmAttendanceReport.MdiParent = Me
+            FrmAttendanceReport.Show()
         Catch ex As Exception
 
         End Try

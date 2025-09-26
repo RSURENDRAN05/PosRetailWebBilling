@@ -68,7 +68,7 @@ Partial Class FrmSalesmanList
         Me.GridViewSalesman.OptionsBehavior.ReadOnly = True
         Me.GridViewSalesman.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridViewSalesman.OptionsView.ShowGroupPanel = False
-        Me.GridViewSalesman.RowHeight = 30
+        Me.GridViewSalesman.RowHeight = 50
         '
         'GridColumnEmpId
         '
@@ -81,6 +81,8 @@ Partial Class FrmSalesmanList
         '
         'GridColumnSalesmanName
         '
+        Me.GridColumnSalesmanName.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnSalesmanName.AppearanceCell.Options.UseFont = True
         Me.GridColumnSalesmanName.Caption = "Salesman Name"
         Me.GridColumnSalesmanName.FieldName = "SalesMan"
         Me.GridColumnSalesmanName.Name = "GridColumnSalesmanName"
@@ -124,7 +126,7 @@ Partial Class FrmSalesmanList
         '
         Me.btnCancel.Image = CType(resources.GetObject("btnCancel.Image"), System.Drawing.Image)
         Me.btnCancel.Location = New System.Drawing.Point(322, 14)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(85, 31)
         Me.btnCancel.TabIndex = 1

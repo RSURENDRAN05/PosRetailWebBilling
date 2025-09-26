@@ -5534,6 +5534,57 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId, ComId, LocId, PM_ID, Action, and PunchTime are required'));
             }
+        } elseif ((int)$_REQUEST['AttRequest'] === 6) {
+            // Get Attendance Report
+            $data = json_decode(file_get_contents("php://input"), true);
+            if ($data && isset($data["Mode"]) && isset($data["Date"]) && isset($data["ComId"]) && isset($data["LocId"])) {
+                $mode = trim($data["Mode"]);
+                $date = trim($data["Date"]);
+                $comId = (int)$data["ComId"];
+                $locId = (int)$data["LocId"];
+                $empId = isset($data["EmpId"]) ? (int)$data["EmpId"] : 0;
+
+                // Validate date format
+                $dateObj = date_create($date);
+                if (!$dateObj) {
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid Date format. Use YYYY-MM-DD'));
+                    exit;
+                }
+                $formattedDate = $dateObj->format('Y-m-d');
+
+                try {
+                    $reportData = $clsfunreq->GetAttendanceReport(
+                        $mode,
+                        $formattedDate,
+                        $comId,
+                        $locId,
+                        $empId
+                    );
+
+                    if ($reportData && is_array($reportData)) {
+                        echo json_encode([
+                            "Success" => true,
+                            "Msg" => "Attendance report retrieved successfully",
+                            "Data" => $reportData
+                        ]);
+                    } else {
+                        echo json_encode([
+                            "Success" => false,
+                            "Msg" => "No attendance records found",
+                            "Data" => []
+                        ]);
+                    }
+                } catch (Exception $e) {
+                    error_log("GetAttendanceReport API Error: " . $e->getMessage());
+                    error_log("Stack trace: " . $e->getTraceAsString());
+                    echo json_encode([
+                        "Success" => false,
+                        "Msg" => "Error retrieving attendance report: " . $e->getMessage()
+                    ]);
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: Mode, Date, ComId, and LocId are required'));
+            }
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest specified. Use 1, 2, 3, 4, or 5'));
         }

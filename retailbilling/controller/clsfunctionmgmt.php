@@ -5038,4 +5038,70 @@ class funcProcessMgmt
             throw $e; // Re-throw for better error handling in calling code
         }
     }
+    public function GetAttendanceReport($mode, $formattedDate, $comId, $locId, $empId)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate input parameters
+            if (empty($comId) || !is_numeric($comId) || $comId <= 0) {
+                throw new Exception("Invalid company ID provided");
+            }
+
+            if (empty($locId) || !is_numeric($locId) || $locId <= 0) {
+                throw new Exception("Invalid location ID provided");
+            }
+
+            if (!empty($empId) && (!is_numeric($empId) || $empId <= 0)) {
+                throw new Exception("Invalid employee ID provided");
+            }
+
+            if (empty($formattedDate)) {
+                $formattedDate = date('Y-m-d'); // Default to current date
+            } else {
+                // Validate date format
+                $date = DateTime::createFromFormat('Y-m-d', $formattedDate);
+                if (!$date || $date->format('Y-m-d') !== $formattedDate) {
+                    throw new Exception("Invalid date format. Expected 'Y-m-d'");
+                }
+            }
+
+            $validModes = ['DATEWISE', 'MONTHLY'];
+            if (empty($mode) || !in_array($mode, $validModes)) {
+                throw new Exception("Invalid mode provided. Must be one of: " . implode(", ", $validModes));
+            }
+
+            // Prepare and execute the stored procedure call
+            $stmt = mysqli_prepare($conn, "CALL sp_get_attendance_report(?, ?, ?, ?, ?)");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "ssiii", $mode, $formattedDate, $comId, $locId, $empId);
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+                if ($result) {
+                    $attendanceRecords = [];
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $attendanceRecords[] = $row;
+                    }
+                    mysqli_free_result($result);
+                    mysqli_stmt_close($stmt);
+                    return $attendanceRecords;
+                } else {
+                    mysqli_stmt_close($stmt);
+                    return []; // No records found
+                }
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("GetAttendanceReport Error: " . $e->getMessage());
+            throw $e; // Re-throw for better error handling in calling code
+        }
+    }
 }
