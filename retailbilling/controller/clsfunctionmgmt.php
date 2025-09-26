@@ -4906,12 +4906,12 @@ class funcProcessMgmt
         }
     }
     //SELECT `id`, `emp_id`, ei.emp_printname, `finger_template`, `created_at`, `finger_name`, `fingertype` FROM `employee_fingerprints` as ef inner join pos_employeeinfo as ei on ef.emp_id=ei.emp_id WHERE 1;
-    public function GetAllEmpFingerprints($empId = 0)
+    public function GetAllEmpFingerprints($empId = 0, $fingertype = null)
     {
         $conn = $this->conn;
         $Sqlstr = "";
         if ($empId > 0) {
-            $Sqlstr = " WHERE ef.emp_id='" . intval($empId) . "'";
+            $Sqlstr = " WHERE ef.emp_id='" . intval($empId) . "' AND ef.fingertype='" . mysqli_real_escape_string($conn, $fingertype) . "'";
         }
         try {
             // Fixed SQL query - proper handling of employee vs user fingerprints
@@ -4955,6 +4955,87 @@ class funcProcessMgmt
         } catch (Exception $e) {
             error_log("GetAllEmpFingerprints Error: " . $e->getMessage());
             return false;
+        }
+    }
+    public function MarkEmployeeAttendance($empId, $comId, $locId, $pmId, $action, $formattedPunchTime)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate input parameters
+            if (empty($empId) || !is_numeric($empId) || $empId <= 0) {
+                throw new Exception("Invalid employee ID provided");
+            }
+
+            if (empty($comId) || !is_numeric($comId) || $comId <= 0) {
+                throw new Exception("Invalid company ID provided");
+            }
+
+            if (empty($locId) || !is_numeric($locId) || $locId <= 0) {
+                throw new Exception("Invalid location ID provided");
+            }
+
+            if (empty($pmId) || !is_numeric($pmId) || $pmId <= 0) {
+                throw new Exception("Invalid PM ID provided");
+            }
+
+            $validActions = ['MorningIn', 'BreakOut', 'BreakIn', 'EveningOut'];
+            if (empty($action) || !in_array($action, $validActions)) {
+                throw new Exception("Invalid action provided. Must be one of: " . implode(", ", $validActions));
+            }
+
+            if (empty($formattedPunchTime)) {
+                $formattedPunchTime = date('Y-m-d H:i:s'); // Default to current time
+            } else {
+                // Validate datetime format
+                $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $formattedPunchTime);
+                if (!$dateTime || $dateTime->format('Y-m-d H:i:s') !== $formattedPunchTime) {
+                    throw new Exception("Invalid punch time format. Expected 'Y-m-d H:i:s'");
+                }
+            }
+
+            // Prepare and execute the stored procedure call
+            $stmt = mysqli_prepare($conn, "CALL sp_mark_attendance(?, ?, ?, ?, ?, ?)");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "iiiiss", $empId, $comId, $locId, $pmId, $action, $formattedPunchTime);
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+                if ($result) {
+                    $response = mysqli_fetch_assoc($result);
+                    mysqli_free_result($result);
+                    mysqli_stmt_close($stmt);
+
+                    if ($response['status'] === 'already punched') {
+                        return [
+                            'status' => $response['status'],
+                            'attendanceId' => $response['attendanceId'],
+                        ];
+                    }
+
+                    return [
+                        'status' => $response['status'] ?? 'error',
+                        'attendanceId' => $response['attendanceId'] ?? null,
+                        'morningHours' => $response['morningHours'] ?? 0.00,
+                        'breakHours' => $response['breakHours'] ?? 0.00,
+                        'workHours' => $response['workHours'] ?? 0.00,
+                    ];
+                } else {
+                    mysqli_stmt_close($stmt);
+                    return true; // No result set, but execution was successful
+                }
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("MarkEmployeeAttendance Error: " . $e->getMessage() . " - EmpId: " . $empId);
+            throw $e; // Re-throw for better error handling in calling code
         }
     }
 }

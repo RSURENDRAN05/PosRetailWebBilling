@@ -5410,9 +5410,9 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
 
             // Default EmpId to 0 if missing/null
             $empId = isset($data["EmpId"]) ? (int)$data["EmpId"] : 0;
-
+            $fingerType = isset($data["FingerType"]) ? $data["FingerType"] : null;
             // Call function (0 = all employees, >0 = specific employee)
-            $getData = $clsfunreq->GetAllEmpFingerprints($empId);
+            $getData = $clsfunreq->GetAllEmpFingerprints($empId, $fingerType);
 
             if ($getData && is_array($getData)) {
                 $dataArray = [];
@@ -5453,6 +5453,89 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId is required for delete operation'));
             }
+        }
+        //Update Employee Fingerprint time
+        elseif ((int) $_REQUEST['AttRequest'] === 5) {
+            $data = json_decode(file_get_contents("php://input"), true);
+            if ($data && isset($data["EmpId"]) && isset($data["ComId"]) && isset($data["LocId"]) && isset($data["PM_ID"]) && isset($data["Action"]) && isset($data["PunchTime"])) {
+                $empId = (int)$data["EmpId"];
+                $comId = (int)$data["ComId"];
+                $locId = (int)$data["LocId"];
+                $pmId = (int)$data["PM_ID"];
+                $action = trim($data["Action"]);
+                $punchTime = trim($data["PunchTime"]);
+
+                // Validate punch time format
+                $dateTime = date_create($punchTime);
+                if (!$dateTime) {
+                    echo json_encode(array("Success" => false, "Msg" => 'Invalid PunchTime format. Use YYYY-MM-DD HH:MM:SS'));
+                    exit;
+                }
+                $formattedPunchTime = $dateTime->format('Y-m-d H:i:s');
+
+                try {
+                    $markAttendance = $clsfunreq->MarkEmployeeAttendance(
+                        $empId,
+                        $comId,
+                        $locId,
+                        $pmId,
+                        $action,
+                        $formattedPunchTime
+                    );
+
+                    if (is_array($markAttendance) && isset($markAttendance['status'])) {
+                        switch ($markAttendance['status']) {
+                            case 'success':
+                                echo json_encode([
+                                    "Success" => true,
+                                    "Msg" => "Attendance marked successfully for employee ID: $empId",
+                                    "Data" => $markAttendance
+                                ]);
+                                break;
+
+                            case 'already punched':
+                                echo json_encode([
+                                    "Success" => false,
+                                    "Msg" => "Attendance already punched for employee ID: $empId",
+                                    "Data" => $markAttendance
+                                ]);
+                                break;
+
+                            case 'error':
+                                echo json_encode([
+                                    "Success" => false,
+                                    "Msg" => "Invalid punch sequence for employee ID: $empId",
+                                    "Data" => $markAttendance
+                                ]);
+                                break;
+
+                            default:
+                                echo json_encode([
+                                    "Success" => false,
+                                    "Msg" => "Unexpected status: " . $markAttendance['status'],
+                                    "Data" => $markAttendance
+                                ]);
+                        }
+                    } else {
+                        echo json_encode([
+                            "Success" => false,
+                            "Msg" => "Failed to mark attendance for employee ID: $empId",
+                            "Data" => $markAttendance
+                        ]);
+                    }
+                } catch (Exception $e) {
+                    error_log("MarkEmployeeAttendance API Error: " . $e->getMessage());
+                    error_log("Stack trace: " . $e->getTraceAsString());
+                    echo json_encode([
+                        "Success" => false,
+                        "Msg" => "Error marking attendance: " . $e->getMessage()
+                    ]);
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: EmpId, ComId, LocId, PM_ID, Action, and PunchTime are required'));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest specified. Use 1, 2, 3, 4, or 5'));
         }
     } catch (Exception $e) {
         error_log("AttRequest Exception: " . $e->getMessage());

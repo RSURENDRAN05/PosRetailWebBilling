@@ -539,6 +539,20 @@ PosRetailWebBilling
 	<summary>
  Log sync process completion
  </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerScanner.LogToErrorBox(System.String,System.String)">
+	<summary>
+ Logs messages to the error RichTextBox with color coding and timestamps
+ </summary>
+	<param name="message">The message to log</param>
+	<param name="messageType">The type of message: "Error", "Info", "Success"</param>
+</member><member name="M:PosRetailWebBilling.FrmFingerScanner.WriteToErrorBox(System.String,System.String)">
+	<summary>
+ Helper method to write to the error RichTextBox with formatting
+ </summary>
+</member><member name="M:PosRetailWebBilling.FrmFingerScanner.RecreateTemplateInCurrentContext(DPFP.Template)">
+	<summary>
+ Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors
+ </summary>
 </member><member name="M:PosRetailWebBilling.frmPayouts.CleanJsonString(System.String)">
 	<summary>
  Clean JSON string to remove control characters that cause parsing errors

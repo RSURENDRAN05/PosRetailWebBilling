@@ -229,6 +229,7 @@ Partial Class FrmFingerRegister
         '
         'btnstartCapture
         '
+        Me.btnstartCapture.Image = CType(resources.GetObject("btnstartCapture.Image"), System.Drawing.Image)
         Me.btnstartCapture.Location = New System.Drawing.Point(428, 171)
         Me.btnstartCapture.Name = "btnstartCapture"
         Me.btnstartCapture.Size = New System.Drawing.Size(120, 46)
@@ -273,33 +274,37 @@ Partial Class FrmFingerRegister
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(220, 229)
+        Me.btnDelete.Image = CType(resources.GetObject("btnDelete.Image"), System.Drawing.Image)
+        Me.btnDelete.Location = New System.Drawing.Point(288, 229)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(101, 46)
+        Me.btnDelete.Size = New System.Drawing.Size(124, 46)
         Me.btnDelete.TabIndex = 6
         Me.btnDelete.Text = "Delete"
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(326, 229)
+        Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
+        Me.btnRefresh.Location = New System.Drawing.Point(428, 229)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(101, 46)
+        Me.btnRefresh.Size = New System.Drawing.Size(124, 46)
         Me.btnRefresh.TabIndex = 5
         Me.btnRefresh.Text = "Refresh"
         '
         'btnTest
         '
-        Me.btnTest.Location = New System.Drawing.Point(114, 229)
+        Me.btnTest.Image = CType(resources.GetObject("btnTest.Image"), System.Drawing.Image)
+        Me.btnTest.Location = New System.Drawing.Point(148, 229)
         Me.btnTest.Name = "btnTest"
-        Me.btnTest.Size = New System.Drawing.Size(101, 46)
+        Me.btnTest.Size = New System.Drawing.Size(124, 46)
         Me.btnTest.TabIndex = 4
-        Me.btnTest.Text = "Finger Test"
+        Me.btnTest.Text = "Verify "
         '
         'btnClear
         '
+        Me.btnClear.Image = CType(resources.GetObject("btnClear.Image"), System.Drawing.Image)
         Me.btnClear.Location = New System.Drawing.Point(8, 229)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(101, 46)
+        Me.btnClear.Size = New System.Drawing.Size(124, 46)
         Me.btnClear.TabIndex = 3
         Me.btnClear.Text = "Clear"
         '

@@ -8,6 +8,7 @@ Imports DPFP.Capture
 Imports DPFP.Processing
 Imports DPFP.Verification
 Imports System.IO
+Imports Newtonsoft.Json
 
 Public Class FrmFingerRegister
     Implements DPFP.Capture.EventHandler
@@ -645,7 +646,7 @@ Public Class FrmFingerRegister
 
                     ' Refresh the fingerprint display
                     LoadExistingFingerprints()
-                   
+
                 Else
                     MessageBox.Show("Failed to save fingerprint to server. Please try again.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -667,7 +668,7 @@ Public Class FrmFingerRegister
                 Return False
             End If
 
-        
+
             Dim postData As String = "{""EmpId"":" & empId.ToString() & ",""Template"":""" & templateBase64 & """,""FingerType"":""" & fingerType & """,""FingerName"":""" & fingerName & """}"
 
             Using client As New WebClient()
@@ -1163,7 +1164,14 @@ Public Class FrmFingerRegister
             Using client As New WebClient()
                 client.Headers(HttpRequestHeader.ContentType) = "application/json"
 
-                Dim postData As String = "{""EmpId"":" & empId.ToString() & "}"
+                Dim payload = New With {
+                     .EmpId = lblempid.Text,
+                     .FingerType = lbltype.Text
+                 }
+                Dim postData As String = JsonConvert.SerializeObject(payload)
+                client.Headers(HttpRequestHeader.ContentType) = "application/json"
+
+                ' Dim postData As String = "{""EmpId"":" & lblempid.Text.ToString() & "FingerType"":" & lbltype.Text.ToString & "}"
                 Dim response As String = Await Task.Run(Function()
                                                             Return client.UploadString(M_Details.LinkAjaxRequest & "AttRequest=3", postData)
                                                         End Function)
@@ -1306,7 +1314,7 @@ Public Class FrmFingerRegister
                         Return
                     End If
                     LogToErrorBox("Starting verification - Template Size: " & FingerTable.Rows.Count & ", FAR Threshold: " & customFARThreshold, "Info")
-                   
+
                     Dim verificationSuccessful As Boolean = False
 
                     Verifier = New Verification
@@ -1333,7 +1341,7 @@ Public Class FrmFingerRegister
                                 End If
                             End Using
                         Next
-                    Catch verifyEx As Exception 
+                    Catch verifyEx As Exception
                         LogToErrorBox("Template Compatibility Issue Detected:", "Error")
                     End Try
 
