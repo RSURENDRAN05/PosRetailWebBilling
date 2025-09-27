@@ -7,7 +7,6 @@ Imports DPFP.Processing
 Imports DPFP.Verification
 Imports System.IO
 Imports Newtonsoft.Json
-
 Public Class FrmFingerScanner
     Implements DPFP.Capture.EventHandler
     Private salesmenTable As DataTable
@@ -1407,6 +1406,5 @@ Public Class FrmFingerScanner
         End Try
     End Function
 #End Region
-
 
 End Class

@@ -55,25 +55,26 @@ Partial Class FrmFingerScanner
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
         Me.TimerAtten = New System.Windows.Forms.Timer(Me.components)
-        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.LayoutControl1.SuspendLayout
-        CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.PanelControl1.SuspendLayout
-        CType(Me.lblempname.Properties,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.lblempid.Properties,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.lblstatusimage.Properties,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.lblfingerimage.Properties,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.GridControlLog,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.GridViewLog,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.GridControlEmpHeader,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.GridViewEmpHeader,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.Img,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.btnFaceTrail = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.lblempname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lblempid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lblstatusimage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lblfingerimage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControlLog, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewLog, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControlEmpHeader, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewEmpHeader, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Img, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'LayoutControl1
         '
@@ -99,6 +100,7 @@ Partial Class FrmFingerScanner
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.btnFaceTrail)
         Me.PanelControl1.Controls.Add(Me.btnRefresh)
         Me.PanelControl1.Controls.Add(Me.lbltype)
         Me.PanelControl1.Controls.Add(Me.Label4)
@@ -131,7 +133,7 @@ Partial Class FrmFingerScanner
         '
         'lbltype
         '
-        Me.lbltype.AutoSize = true
+        Me.lbltype.AutoSize = True
         Me.lbltype.Location = New System.Drawing.Point(336, 112)
         Me.lbltype.Name = "lbltype"
         Me.lbltype.Size = New System.Drawing.Size(38, 13)
@@ -140,7 +142,7 @@ Partial Class FrmFingerScanner
         '
         'Label4
         '
-        Me.Label4.AutoSize = true
+        Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(265, 112)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
@@ -149,8 +151,8 @@ Partial Class FrmFingerScanner
         '
         'lblTimer
         '
-        Me.lblTimer.AutoSize = true
-        Me.lblTimer.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
+        Me.lblTimer.AutoSize = True
+        Me.lblTimer.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.lblTimer.ForeColor = System.Drawing.Color.Red
         Me.lblTimer.Location = New System.Drawing.Point(198, 76)
         Me.lblTimer.Name = "lblTimer"
@@ -160,7 +162,7 @@ Partial Class FrmFingerScanner
         '
         'lblempname
         '
-        Me.lblempname.Enabled = false
+        Me.lblempname.Enabled = False
         Me.lblempname.Location = New System.Drawing.Point(202, 144)
         Me.lblempname.Name = "lblempname"
         Me.lblempname.Size = New System.Drawing.Size(172, 20)
@@ -168,7 +170,7 @@ Partial Class FrmFingerScanner
         '
         'lblempid
         '
-        Me.lblempid.Enabled = false
+        Me.lblempid.Enabled = False
         Me.lblempid.Location = New System.Drawing.Point(202, 112)
         Me.lblempid.Name = "lblempid"
         Me.lblempid.Size = New System.Drawing.Size(43, 20)
@@ -176,8 +178,8 @@ Partial Class FrmFingerScanner
         '
         'lblSessionmode
         '
-        Me.lblSessionmode.AutoSize = true
-        Me.lblSessionmode.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
+        Me.lblSessionmode.AutoSize = True
+        Me.lblSessionmode.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.lblSessionmode.ForeColor = System.Drawing.Color.Blue
         Me.lblSessionmode.Location = New System.Drawing.Point(198, 46)
         Me.lblSessionmode.Name = "lblSessionmode"
@@ -186,7 +188,7 @@ Partial Class FrmFingerScanner
         '
         'Label3
         '
-        Me.Label3.AutoSize = true
+        Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(133, 147)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(64, 13)
@@ -195,7 +197,7 @@ Partial Class FrmFingerScanner
         '
         'Label2
         '
-        Me.Label2.AutoSize = true
+        Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(150, 112)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(47, 13)
@@ -204,7 +206,7 @@ Partial Class FrmFingerScanner
         '
         'Label1
         '
-        Me.Label1.AutoSize = true
+        Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(153, 50)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(40, 13)
@@ -214,12 +216,12 @@ Partial Class FrmFingerScanner
         'btnstartCapture
         '
         Me.btnstartCapture.Appearance.BackColor = System.Drawing.Color.Maroon
-        Me.btnstartCapture.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(0,Byte),Integer), CType(CType(0,Byte),Integer))
-        Me.btnstartCapture.Appearance.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
-        Me.btnstartCapture.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(128,Byte),Integer), CType(CType(0,Byte),Integer))
-        Me.btnstartCapture.Appearance.Options.UseBackColor = true
-        Me.btnstartCapture.Appearance.Options.UseFont = true
-        Me.btnstartCapture.Appearance.Options.UseForeColor = true
+        Me.btnstartCapture.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnstartCapture.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.btnstartCapture.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnstartCapture.Appearance.Options.UseBackColor = True
+        Me.btnstartCapture.Appearance.Options.UseFont = True
+        Me.btnstartCapture.Appearance.Options.UseForeColor = True
         Me.btnstartCapture.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btnstartCapture.Location = New System.Drawing.Point(149, 177)
         Me.btnstartCapture.Name = "btnstartCapture"
@@ -230,11 +232,11 @@ Partial Class FrmFingerScanner
         'btneveningout
         '
         Me.btneveningout.Appearance.BackColor = System.Drawing.Color.Navy
-        Me.btneveningout.Appearance.Font = New System.Drawing.Font("Tahoma", 10!, System.Drawing.FontStyle.Bold)
+        Me.btneveningout.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btneveningout.Appearance.ForeColor = System.Drawing.Color.White
-        Me.btneveningout.Appearance.Options.UseBackColor = true
-        Me.btneveningout.Appearance.Options.UseFont = true
-        Me.btneveningout.Appearance.Options.UseForeColor = true
+        Me.btneveningout.Appearance.Options.UseBackColor = True
+        Me.btneveningout.Appearance.Options.UseFont = True
+        Me.btneveningout.Appearance.Options.UseForeColor = True
         Me.btneveningout.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btneveningout.Location = New System.Drawing.Point(455, 5)
         Me.btneveningout.Name = "btneveningout"
@@ -245,12 +247,12 @@ Partial Class FrmFingerScanner
         '
         'btnbreakin
         '
-        Me.btnbreakin.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(0,Byte),Integer), CType(CType(0,Byte),Integer))
-        Me.btnbreakin.Appearance.Font = New System.Drawing.Font("Tahoma", 10!, System.Drawing.FontStyle.Bold)
+        Me.btnbreakin.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnbreakin.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnbreakin.Appearance.ForeColor = System.Drawing.Color.White
-        Me.btnbreakin.Appearance.Options.UseBackColor = true
-        Me.btnbreakin.Appearance.Options.UseFont = true
-        Me.btnbreakin.Appearance.Options.UseForeColor = true
+        Me.btnbreakin.Appearance.Options.UseBackColor = True
+        Me.btnbreakin.Appearance.Options.UseFont = True
+        Me.btnbreakin.Appearance.Options.UseForeColor = True
         Me.btnbreakin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btnbreakin.Location = New System.Drawing.Point(347, 5)
         Me.btnbreakin.Name = "btnbreakin"
@@ -262,11 +264,11 @@ Partial Class FrmFingerScanner
         'btnbreakout
         '
         Me.btnbreakout.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.btnbreakout.Appearance.Font = New System.Drawing.Font("Tahoma", 10!, System.Drawing.FontStyle.Bold)
+        Me.btnbreakout.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnbreakout.Appearance.ForeColor = System.Drawing.Color.White
-        Me.btnbreakout.Appearance.Options.UseBackColor = true
-        Me.btnbreakout.Appearance.Options.UseFont = true
-        Me.btnbreakout.Appearance.Options.UseForeColor = true
+        Me.btnbreakout.Appearance.Options.UseBackColor = True
+        Me.btnbreakout.Appearance.Options.UseFont = True
+        Me.btnbreakout.Appearance.Options.UseForeColor = True
         Me.btnbreakout.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btnbreakout.Location = New System.Drawing.Point(239, 5)
         Me.btnbreakout.Name = "btnbreakout"
@@ -277,12 +279,12 @@ Partial Class FrmFingerScanner
         '
         'btnmorningin
         '
-        Me.btnmorningin.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255,Byte),Integer), CType(CType(128,Byte),Integer), CType(CType(0,Byte),Integer))
-        Me.btnmorningin.Appearance.Font = New System.Drawing.Font("Tahoma", 10!, System.Drawing.FontStyle.Bold)
+        Me.btnmorningin.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnmorningin.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnmorningin.Appearance.ForeColor = System.Drawing.Color.White
-        Me.btnmorningin.Appearance.Options.UseBackColor = true
-        Me.btnmorningin.Appearance.Options.UseFont = true
-        Me.btnmorningin.Appearance.Options.UseForeColor = true
+        Me.btnmorningin.Appearance.Options.UseBackColor = True
+        Me.btnmorningin.Appearance.Options.UseFont = True
+        Me.btnmorningin.Appearance.Options.UseForeColor = True
         Me.btnmorningin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.btnmorningin.Location = New System.Drawing.Point(131, 5)
         Me.btnmorningin.Name = "btnmorningin"
@@ -294,15 +296,15 @@ Partial Class FrmFingerScanner
         'lblstatusimage
         '
         Me.lblstatusimage.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.lblstatusimage.EditValue = CType(resources.GetObject("lblstatusimage.EditValue"),Object)
+        Me.lblstatusimage.EditValue = CType(resources.GetObject("lblstatusimage.EditValue"), Object)
         Me.lblstatusimage.Location = New System.Drawing.Point(2, 249)
         Me.lblstatusimage.Name = "lblstatusimage"
-        Me.lblstatusimage.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128,Byte),Integer), CType(CType(128,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.lblstatusimage.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
-        Me.lblstatusimage.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(255,Byte),Integer))
-        Me.lblstatusimage.Properties.Appearance.Options.UseBackColor = true
-        Me.lblstatusimage.Properties.Appearance.Options.UseFont = true
-        Me.lblstatusimage.Properties.Appearance.Options.UseForeColor = true
+        Me.lblstatusimage.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lblstatusimage.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.lblstatusimage.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lblstatusimage.Properties.Appearance.Options.UseBackColor = True
+        Me.lblstatusimage.Properties.Appearance.Options.UseFont = True
+        Me.lblstatusimage.Properties.Appearance.Options.UseForeColor = True
         Me.lblstatusimage.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
         Me.lblstatusimage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze
         Me.lblstatusimage.Size = New System.Drawing.Size(555, 95)
@@ -328,7 +330,7 @@ Partial Class FrmFingerScanner
         '
         Me.GridViewLog.GridControl = Me.GridControlLog
         Me.GridViewLog.Name = "GridViewLog"
-        Me.GridViewLog.OptionsView.ShowGroupPanel = false
+        Me.GridViewLog.OptionsView.ShowGroupPanel = False
         '
         'GridControlEmpHeader
         '
@@ -341,20 +343,20 @@ Partial Class FrmFingerScanner
         '
         'GridViewEmpHeader
         '
-        Me.GridViewEmpHeader.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 12!, System.Drawing.FontStyle.Bold)
-        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseFont = true
-        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseTextOptions = true
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridViewEmpHeader.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewEmpHeader.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewEmpHeader.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10!, System.Drawing.FontStyle.Bold)
-        Me.GridViewEmpHeader.Appearance.Row.Options.UseFont = true
-        Me.GridViewEmpHeader.Appearance.Row.Options.UseTextOptions = true
+        Me.GridViewEmpHeader.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GridViewEmpHeader.Appearance.Row.Options.UseFont = True
+        Me.GridViewEmpHeader.Appearance.Row.Options.UseTextOptions = True
         Me.GridViewEmpHeader.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewEmpHeader.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8})
         Me.GridViewEmpHeader.GridControl = Me.GridControlEmpHeader
         Me.GridViewEmpHeader.Name = "GridViewEmpHeader"
-        Me.GridViewEmpHeader.OptionsBehavior.Editable = false
-        Me.GridViewEmpHeader.OptionsBehavior.ReadOnly = true
-        Me.GridViewEmpHeader.OptionsView.ShowGroupPanel = false
+        Me.GridViewEmpHeader.OptionsBehavior.Editable = False
+        Me.GridViewEmpHeader.OptionsBehavior.ReadOnly = True
+        Me.GridViewEmpHeader.OptionsView.ShowGroupPanel = False
         Me.GridViewEmpHeader.RowHeight = 30
         '
         'GridColumn1
@@ -362,7 +364,7 @@ Partial Class FrmFingerScanner
         Me.GridColumn1.Caption = "EmpId"
         Me.GridColumn1.FieldName = "emp_id"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = true
+        Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 66
         '
@@ -371,7 +373,7 @@ Partial Class FrmFingerScanner
         Me.GridColumn2.Caption = "EmpName"
         Me.GridColumn2.FieldName = "emp_printname"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = true
+        Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 248
         '
@@ -380,7 +382,7 @@ Partial Class FrmFingerScanner
         Me.GridColumn8.Caption = "Type"
         Me.GridColumn8.FieldName = "emp_type"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = true
+        Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
         Me.GridColumn8.Width = 85
         '
@@ -388,13 +390,13 @@ Partial Class FrmFingerScanner
         '
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = false
+        Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1008, 729)
         Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.TextVisible = false
+        Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
         '
@@ -443,13 +445,21 @@ Partial Class FrmFingerScanner
         'Img
         '
         Me.Img.ImageSize = New System.Drawing.Size(144, 144)
-        Me.Img.ImageStream = CType(resources.GetObject("Img.ImageStream"),DevExpress.Utils.ImageCollectionStreamer)
+        Me.Img.ImageStream = CType(resources.GetObject("Img.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
         Me.Img.Images.SetKeyName(0, "red-success-144.png")
         Me.Img.Images.SetKeyName(1, "green-success-144.png")
         '
         'TimerAtten
         '
-        Me.TimerAtten.Enabled = true
+        Me.TimerAtten.Enabled = True
+        '
+        'btnFaceTrail
+        '
+        Me.btnFaceTrail.Location = New System.Drawing.Point(414, 142)
+        Me.btnFaceTrail.Name = "btnFaceTrail"
+        Me.btnFaceTrail.Size = New System.Drawing.Size(131, 23)
+        Me.btnFaceTrail.TabIndex = 25
+        Me.btnFaceTrail.Text = "Face Trial"
         '
         'FrmFingerScanner
         '
@@ -516,4 +526,5 @@ End Sub
     Friend WithEvents lbltype As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents btnRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnFaceTrail As DevExpress.XtraEditors.SimpleButton
 End Class
