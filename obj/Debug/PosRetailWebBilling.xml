@@ -6,7 +6,45 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="M:PosRetailWebBilling.BillHoldDBHelper.SafeToInt32(System.Object,System.Int32)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Integer values
+ </summary>
+</member><member name="M:PosRetailWebBilling.BillHoldDBHelper.SafeToDecimal(System.Object,System.Decimal)">
+	<summary>
+ Safe conversion helper to handle DBNull and empty strings for Decimal values
+ </summary>
+</member><member name="M:PosRetailWebBilling.BillHoldDBHelper.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion to handle DBNull values
+ </summary>
+</member><member name="M:PosRetailWebBilling.BillHoldDBHelper.SafeToDateTime(System.Object,System.DateTime)">
+	<summary>
+ Safe date conversion to handle DBNull and invalid date strings
+ </summary>
+</member><member name="M:PosRetailWebBilling.BillHoldDBHelper.ConvertDataTableToSalesDetails(System.Data.DataTable)">
+	<summary>
+ Convert DataTable to List of SalesDetails
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewHoldReport.SafeToString(System.Object,System.String)">
+	<summary>
+ Safe string conversion helper for the module
+ </summary>
+</member><member name="M:PosRetailWebBilling.PrintViewHoldReport.GetHoldByBillLocal(System.String,System.Data.DataSet@,System.String@)">
+	<summary>
+ Get sales data by bill number for printing/viewing
+ </summary>
+	<param name="BillNo">Bill number to retrieve</param>
+	<param name="receDs">DataSet to populate with bill data</param>
+	<returns>True if bill data found and populated, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.PrintViewHoldReport.GetAllHold(System.String,System.Data.DataSet@)">
+	<summary>
+ Get all sales data for a specific date
+ </summary>
+	<param name="getdate">Date to retrieve sales for</param>
+	<param name="receDs">DataSet to populate with sales data</param>
+	<returns>True if sales data found and populated, False otherwise</returns>
+</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>

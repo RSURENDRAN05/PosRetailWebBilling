@@ -25,6 +25,7 @@ Public Class PosSalesII
     Private customerDisplayTable As DataTable
     Private _CashDraw As New RawPrinter
     Dim salesHelper As New SalesDBHelper(M_Details._Conn)
+    Dim billHoldHelper As New BillHoldDBHelper(M_Details._Conn)
     Private _isSelectionMode As Boolean = False
     Dim stpole1 As String = M_Details._shopName
     Dim NetAmountGlobal As Decimal = 0.0
@@ -142,7 +143,9 @@ Public Class PosSalesII
             'If _printProfileLoad() = False Then
 
             'End If
-
+            If RegistrationDetails._paymentPopupActive = False Then
+                btnpayment.Text = "Send Order"
+            End If
         Catch ex As Exception
 
         End Try
@@ -3068,20 +3071,298 @@ Public Class PosSalesII
 
 #End Region
 #Region "PaymentProcess"
+    Dim BillHoldTokenNo As Integer = 0
+    Dim BillHoldTrno As Integer = 0
     Private Sub btnpayment_Click(sender As Object, e As EventArgs) Handles btnpayment.Click
         Try
-            If GridDataTble_Insert.Rows.Count > 0 Then
-                For Each SalesData In GridDataTble_Insert.Rows
-                    SalesData("ITEMLOCK") = 2
-                Next
-                GridDataTble_Insert.AcceptChanges()
-
-                PaymentProcess()
+            If RegistrationDetails._paymentPopupActive = True Then
+                If GridDataTble_Insert.Rows.Count > 0 Then
+                    For Each SalesData In GridDataTble_Insert.Rows
+                        SalesData("ITEMLOCK") = 2
+                    Next
+                    GridDataTble_Insert.AcceptChanges()
+                    PaymentProcess()
+                    BillHoldTokenNo = 0
+                    BillHoldTrno = 0
+                    G_SalID = 0
+                End If
+            Else
+                If btnpayment.Text = "Send Order" Then
+                    BillHoldProcess()
+                    BillHoldTokenNo = 0
+                    BillHoldTrno = 0
+                    G_SalID = 0
+                End If
             End If
         Catch ex As Exception
 
         End Try
     End Sub
+    Private Sub BillHoldProcess()
+        Try
+            If BillHoldTokenNo = 0 Then
+                frmkeytablescaner.ShowDialog()
+                frmkeytablescaner.DialogResult = Windows.Forms.DialogResult.OK
+                BillHoldTokenNo = _FunctionKeyBoardModule.gs_keyboardValueInteger
+            End If
+            Dim _givenAmt As Decimal = 0.0
+            Dim _BalanceAmt As Decimal = 0.0
+            If modeOfSale = "New" Then
+                If GridViewPOS.RowCount > 0 Then
+
+                    ' No payments in table, use default cash
+                    _PaymentDtl.paymentModeSelection = "Hold Bill"
+                    _PaymentDtl.paymentMode = "hold"
+                    Dim _saleData As New SalesHeader
+                    _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
+                    _saleData.psih_invoice_trno = 0
+                    Dim invoicedate As String = ""
+                    _DateConversion(lblinvoicedate.Text, invoicedate)
+                    _saleData.psih_invoice_date = invoicedate
+                    _saleData.psih_invoice_prefix = billPrefix.ToString
+                    _saleData.psih_invoice_tqty = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("QTY"))
+                    _saleData.psih_invoice_tamount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
+                    _saleData.psih_invoice_titemdisper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("ITEM_DPER"))
+                    _saleData.psih_invoice_titemdisamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("ITEM_DAMT"))
+                    _saleData.psih_invoice_tbilldiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("BILL_DPER"))
+                    _saleData.psih_invoice_tbilldiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("BILL_DAMT"))
+                    _saleData.psih_invoice_totdiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("TOTAL_DPER"))
+                    _saleData.psih_invoice_totdiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TOTAL_DAMT"))
+                    _saleData.psih_invoice_tgrossamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("GAMOUNT"))
+                    _saleData.psih_invoice_ttaxamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
+                    _saleData.psih_invoice_sercharge = lblservchargetotal.Text
+                    _saleData.psih_invoice_roundoff = 0
+                    _saleData.psih_invoice_token = BillHoldTokenNo
+                    Dim nettotal As Decimal = 0
+                    Dim serviecharge As Decimal = 0
+                    If _globalSetting.ServiceTaxActive = True Then
+                        serviecharge = ConvertDecimal(lblservchargetotal.Text)
+                        nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                        nettotal = nettotal + serviecharge
+                    Else
+                        nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                    End If
+                    _saleData.psih_invoice_tnetamt = nettotal
+                    _saleData.psih_invoice_saletype = "BillHold"
+                    _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
+
+                    ' Handle both single and multiple payment modes for bill status
+                    If _PaymentDtl.paymentMode.Contains("hold") Then
+                        ' If any payment includes credit, bill remains open
+                        _saleData.psih_invoice_billstatus = "Open"
+                    Else
+                        ' If no credit payment (cash, card, bank, etc.), bill is closed
+                        _saleData.psih_invoice_billstatus = "Closed"
+                    End If
+
+                    _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
+                    If String.IsNullOrEmpty(selectedCustomerName) Then
+                        _saleData.psih_invoice_customerid = 1
+                        _saleData.psih_invoice_description = "Default Customer"
+                    Else
+                        _saleData.psih_invoice_customerid = selectedCustomerId
+                        _saleData.psih_invoice_description = selectedCustomerName
+                    End If
+                    _saleData.psih_invoice_userid = _companyInfo.UserId
+                    _saleData.psih_invoice_comid = _companyInfo.ComId
+                    _saleData.psih_invoice_locid = _companyInfo.LocId
+                    _saleData.psih_invoice_countername = Environment.MachineName
+                    _saleData.psih_invoice_billremarks = "-"
+
+                    ' Advance amount validation - only allow advance for credit bills
+                    If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                        _saleData.psih_invoice_advamt = 0
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    Else
+                        If frmPaymore.txtadvanceamt.EditValue > 0 Then
+                            _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                            _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
+                        ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
+                            _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
+                        Else
+                            _saleData.psih_invoice_advamt = 0
+                        End If
+                    End If
+
+                    If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                        _saleData.psih_invoice_givenamt = 0
+                    Else
+                        _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                        _givenAmt = _saleData.psih_invoice_givenamt
+                    End If
+                    If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                        _saleData.psih_invoice_balamt = 0
+                    Else
+                        _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                        _BalanceAmt = _saleData.psih_invoice_balamt
+                    End If
+                    _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
+                    _saleData.psih_invoice_dayno = _saleSetting._curDayno
+                    _saleData.psih_invoice_countername = Environment.MachineName
+                    _saleData.psih_invoice_print = "0"
+                    _saleData.psih_invoice_webhost = "0"
+                    ' Basic validation - check if we have items
+                    If GridDataTble_Insert.Rows.Count = 0 Then
+                        DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+
+
+                    Dim salesDetailsList As List(Of SalesDetails) = salesHelper.ConvertDataTableToSalesDetails(GridDataTble_Insert)
+                    Dim _errMsgResult As String = ""
+                    Dim ReturnBill As String = "0"
+
+                    ' Always use Dictionary method for both single and multiple payments
+                    If billHoldHelper.SaveHoldBill(_saleData, salesDetailsList, _errMsgResult, ReturnBill) = True Then
+                        barstatuslastbillno.Caption = ReturnBill
+                        ' _CashDraw.OpenCashdrawer(True)
+                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Saved Success.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        barbtnNewBill_ItemClick(Nothing, Nothing)
+                    Else
+                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+
+                End If
+
+            ElseIf modeOfSale = "Edit" Then
+                If GridViewPOS.RowCount > 0 Then
+                    ' No payments in table, use default cash
+                    _PaymentDtl.paymentModeSelection = "Hold Bill"
+                    _PaymentDtl.paymentMode = "hold"
+
+                    Dim _saleData As New SalesHeader
+                    _saleData.psih_invoice_pmid = _companyInfo.CompanyPMID
+                    Dim invoicedate As String = ""
+                    _DateConversion(lblinvoicedate.Text, invoicedate)
+                    _saleData.psih_invoice_date = invoicedate
+                    _saleData.psih_invoice_id = G_SalID
+                    _saleData.psih_invoice_trno = lblinvoiceno.Text
+                    _saleData.psih_invoice_prefix = billPrefix.ToString
+                    _saleData.psih_invoice_tqty = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("QTY"))
+                    _saleData.psih_invoice_tamount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAMOUNT"))
+                    _saleData.psih_invoice_titemdisper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("ITEM_DPER"))
+                    _saleData.psih_invoice_titemdisamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("ITEM_DAMT"))
+                    _saleData.psih_invoice_tbilldiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("BILL_DPER"))
+                    _saleData.psih_invoice_tbilldiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("BILL_DAMT"))
+                    _saleData.psih_invoice_totdiscper = GridDataTble_Insert.AsEnumerable().Average(Function(row) row.Field(Of Decimal)("TOTAL_DPER"))
+                    _saleData.psih_invoice_totdiscamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TOTAL_DAMT"))
+                    _saleData.psih_invoice_tgrossamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("GAMOUNT"))
+                    _saleData.psih_invoice_ttaxamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
+                    _saleData.psih_invoice_sercharge = lblservchargetotal.Text
+                    _saleData.psih_invoice_roundoff = 0
+                    _saleData.psih_invoice_token = BillHoldTokenNo
+                    Dim nettotal As Decimal = 0
+                    Dim serviecharge As Decimal = 0
+                    If _globalSetting.ServiceTaxActive = True Then
+                        serviecharge = ConvertDecimal(lblservchargetotal.Text)
+                        nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                        nettotal = nettotal + serviecharge
+                    Else
+                        nettotal = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("NETAMT"))
+                    End If
+                    _saleData.psih_invoice_tnetamt = nettotal
+                    _saleData.psih_invoice_saletype = "BillHold"
+                    _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
+
+                    ' Handle both single and multiple payment modes for bill status
+                    If _PaymentDtl.paymentMode.Contains("hold") Then
+                        ' If any payment includes credit, bill remains open
+                        _saleData.psih_invoice_billstatus = "Open"
+                    Else
+                        ' If no credit payment (cash, card, bank, etc.), bill is closed
+                        _saleData.psih_invoice_billstatus = "Closed"
+                    End If
+
+                    _saleData.psih_invoice_paymode = _PaymentDtl.paymentMode
+                    If String.IsNullOrEmpty(selectedCustomerName) Then
+                        _saleData.psih_invoice_customerid = 1
+                        _saleData.psih_invoice_description = "Default Customer"
+                    Else
+                        _saleData.psih_invoice_customerid = selectedCustomerId
+                        _saleData.psih_invoice_description = selectedCustomerName
+                    End If
+                    _saleData.psih_invoice_userid = _companyInfo.UserId
+                    _saleData.psih_invoice_comid = _companyInfo.ComId
+                    _saleData.psih_invoice_locid = _companyInfo.LocId
+                    _saleData.psih_invoice_billremarks = "-"
+
+                    ' Advance amount validation - only allow advance for credit bills
+                    If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                        _saleData.psih_invoice_advamt = 0
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    Else
+                        If frmPaymore.txtadvanceamt.EditValue > 0 Then
+                            _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                            _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
+                        ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
+                            _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
+                        Else
+                            _saleData.psih_invoice_advamt = 0
+                        End If
+                    End If
+
+                    If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                        _saleData.psih_invoice_givenamt = 0
+                    Else
+                        _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                        _givenAmt = _saleData.psih_invoice_givenamt
+                    End If
+                    If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                        _saleData.psih_invoice_balamt = 0
+                    Else
+                        _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                        _BalanceAmt = _saleData.psih_invoice_balamt
+                    End If
+                    _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
+                    _saleData.psih_invoice_dayno = _saleSetting._curDayno
+                    _saleData.psih_invoice_countername = Environment.MachineName
+                    _saleData.psih_invoice_print = "0"
+                    _saleData.psih_invoice_webhost = "0"
+                    ' Basic validation - check if we have items
+                    If GridDataTble_Insert.Rows.Count = 0 Then
+                        DevExpress.XtraEditors.XtraMessageBox.Show("No items to update", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+
+                    ' Update to database using stored procedure with payment modes
+
+                    Dim salesDetailsList As List(Of SalesDetails) = salesHelper.ConvertDataTableToSalesDetails(GridDataTble_Insert)
+                    Dim _errMsgResult As String = ""
+                    Dim ReturnBill As String = "0"
+
+                    ' Always use Dictionary method for both single and multiple payments
+                    If billHoldHelper.UpdateHoldBill(_saleData, salesDetailsList, _errMsgResult, ReturnBill) = True Then
+                        barstatuslastbillno.Caption = ReturnBill
+                        '_CashDraw.OpenCashdrawer(True)
+                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        barbtnNewBill_ItemClick(Nothing, Nothing)
+                    Else
+                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+
+                End If
+            Else
+                DevExpress.XtraEditors.XtraMessageBox.Show("View Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+            'If barchkcustomerpole.Checked = True Then
+            '    If CustomerPoleOpen(Errstr) = True Then
+            '        Dim stpole1 As String = ""
+            '        Dim stpole2 As String = ""
+            '        stpole1 = "Received RM " & Format(_givenAmt, "###0.00")
+            '        stpole2 = "Balance RM " & Format(_BalanceAmt, "###0.00")
+            '        If SetCustomerPole(stpole1, stpole2, Errstr) = False Then
+
+            '        End If
+            '        CustomerPoleClose(Errstr)
+            '    End If
+            'End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Hold Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+    End Sub
+
     Private Sub PaymentProcess()
         Try
             If barchkcustomerpole.Checked = True Then
@@ -3183,6 +3464,7 @@ Public Class PosSalesII
                         _saleData.psih_invoice_ttaxamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
                         _saleData.psih_invoice_sercharge = lblservchargetotal.Text
                         _saleData.psih_invoice_roundoff = 0
+                        _saleData.psih_invoice_token = BillHoldTokenNo
                         Dim nettotal As Decimal = 0
                         Dim serviecharge As Decimal = 0
                         If _globalSetting.ServiceTaxActive = True Then
@@ -3270,6 +3552,9 @@ Public Class PosSalesII
                             _CashDraw.OpenCashdrawer(True)
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
+                            If BillHoldTokenNo > 0 And BillHoldTrno > 0 Then
+                                billHoldHelper.UpdateHoldBillStatus(BillHoldTokenNo, BillHoldTrno)
+                            End If
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
@@ -3358,6 +3643,7 @@ Public Class PosSalesII
                         _saleData.psih_invoice_ttaxamt = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Decimal)("TAXAMT"))
                         _saleData.psih_invoice_sercharge = lblservchargetotal.Text
                         _saleData.psih_invoice_roundoff = 0
+                        _saleData.psih_invoice_token = BillHoldTokenNo
                         Dim nettotal As Decimal = 0
                         Dim serviecharge As Decimal = 0
                         If _globalSetting.ServiceTaxActive = True Then
@@ -3502,7 +3788,146 @@ Public Class PosSalesII
         End Try
     End Function
 #End Region
+#Region "ViewHold"
+    Private Sub barbtntokenno_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtntokenno.ItemClick
+        Try
+            frmkeytablescaner.ShowDialog()
+            If frmkeytablescaner.DialogResult = Windows.Forms.DialogResult.OK Then
+                If _FunctionKeyBoardModule.gs_keyboardValueInteger > 0 Then
+                    BillHoldTokenNo = _FunctionKeyBoardModule.gs_keyboardValueInteger
+                    Dim trno As Integer = 0
+                    If billHoldHelper.GetHoldDetails(BillHoldTokenNo, trno) Then
+                        GetHoldBySalID(trno, "Edit")
+                    End If
+                End If
+                Return
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Function GetHoldBySalID(ByVal Sal_id As Integer, ByRef ModeOfBill As String) As Boolean
+        Try
+            Dim resData As New DataSet
+            If GetHoldByBillLocal(Sal_id, resData, "H") = True Then
+                If RegistrationDetails._paymentPopupActive = False Then
+                    modeOfSale = "Edit"
+                Else
+                    modeOfSale = "New"
+                End If
+
+                If resData.Tables(0).Rows.Count > 0 Then
+                    Dim billno = resData.Tables(0).Rows(0)("psih_invoice_trno")
+                    lblinvoiceno.Text = billno
+                    BillHoldTrno = billno
+                    G_SalID = resData.Tables(0).Rows(0)("psih_invoice_id")
+                    Dim tokenno = resData.Tables(0).Rows(0)("psih_invoice_token")
+                    BillHoldTokenNo = tokenno
+                    barstatustoken.Caption = BillHoldTokenNo
+                    Dim CustomerId = resData.Tables(0).Rows(0)("psih_invoice_customerid")
+                    selectedCustomerId = CustomerId
+                    If _JsonData.CustomerTable.Rows.Count = 0 Then
+                        getCustomerMaster()
+                    End If
+                    If _JsonData.CustomerTable.Rows.Count > 0 Then
+                        Dim custonerRow = _JsonData.CustomerTable.AsEnumerable().
+                                           FirstOrDefault(Function(row) Convert.ToInt32(row("CustomerId")) = CustomerId)
+
+                        If custonerRow IsNot Nothing Then
+                            selectedCustomerName = custonerRow("CustomerName").ToString()
+                            selectedCustomerPhone = custonerRow("CustomerPhone").ToString()
+                            UpdateCustomerGrid()
+                        End If
+                    End If
+                    Dim Remarks = resData.Tables(0).Rows(0)("psih_invoice_billremarks")
+                    barbtnbilltype.Caption = "Bill Type : " & resData.Tables(0).Rows(0)("psih_invoice_billtype")
+                End If
+                If resData.Tables(1).Rows.Count > 0 Then
+                    _SnoCount = 0
+                    GridDataTble_Insert.Rows.Clear()
+                    GridDataTble_Insert.NewRow()
+                    GridDataTble_Insert.BeginInit()
+                    For Each rData In resData.Tables(1).Rows
+                        _SnoCount = _SnoCount + 1
+                        ' Declare variables for data mapping
+                        Dim barcode As Object = If(rData.Table.Columns.Contains("psid_invoice_barcode"), rData("psid_invoice_barcode"), 0)
+                        Dim itemCode As Object = rData("psid_invoice_procode")
+                        Dim itemName As String = Trim(rData("psid_invoice_description"))
+                        Dim serialNo As String = If(rData.Table.Columns.Contains("psid_invoice_serialno"), rData("psid_invoice_serialno"), "0")
+                        Dim uom As String = If(rData.Table.Columns.Contains("psid_invoice_uom"), rData("psid_invoice_uom"), "PCS")
+                        Dim rate As Object = rData("psid_invoice_rate")
+                        Dim qty As Object = rData("psid_invoice_proqty")
+                        Dim amount As Object = rData("psid_invoice_amt")
+                        Dim itemDiscPer As Object = rData("psid_invoice_itemdisp")
+                        Dim itemDiscAmt As Object = rData("psid_invoice_itemdisamt")
+                        Dim billDiscPer As Object = rData("psid_invoice_billdisp")
+                        Dim billDiscAmt As Object = rData("psid_invoice_billdisamt")
+                        Dim totalDiscPer As Object = rData("psid_invoice_totdper")
+                        Dim totalDiscAmt As Object = rData("psid_invoice_totdamt")
+                        Dim grossAmount As Object = rData("psid_invoice_gross")
+                        Dim taxValue As Object = rData("psid_invoice_taxvalue")
+                        Dim taxAmount As Object = rData("psid_invoice_taxamt")
+                        Dim netAmount As Decimal = _RoundOff(rData("psid_invoice_netamt"))
+                        Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
+                        Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
+                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salespersonid"), Convert.ToInt32(rData("psid_invoice_salespersonid")), 1)
+                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
+                        Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
+                        Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
+                        Dim psid As Object = If(rData.Table.Columns.Contains("psid_invoice_id"), rData("psid_invoice_id"), 0)
+
+                        ' Get salesperson name from _JsonData.SalesManCommissionTable using LINQ
+                        Dim salesPersonName As String = "Default"
+                        Try
+                            If _JsonData.SalesManCommissionTable.Rows.Count = 0 Then
+                                getSalesManCommissionInfo()
+                            End If
+
+                            If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                                Dim salesPersonRow = _JsonData.SalesManCommissionTable.AsEnumerable().
+                                                   FirstOrDefault(Function(row) Convert.ToInt32(row("EmpId")) = salesPersonId)
+
+                                If salesPersonRow IsNot Nothing Then
+                                    salesPersonName = salesPersonRow("SalesManName").ToString()
+                                End If
+                            End If
+                        Catch ex As Exception
+                            ' If error getting salesperson name, use default or from database if available
+                            If rData.Table.Columns.Contains("psid_invoice_salesperson") AndAlso rData("psid_invoice_salesperson") IsNot DBNull.Value Then
+                                salesPersonName = rData("psid_invoice_salesperson").ToString()
+                            End If
+                        End Try
+
+                        ' Map database fields to DataTable columns with PSID support
+                        ' Column order: SNO, BARCODE, ITEMCODE, ITEMNAME, SERIALNO, UOM, RATE, QTY, TAMOUNT,
+                        '              ITEM_DPER, ITEM_DAMT, BILL_DPER, BILL_DAMT, TOTAL_DPER, TOTAL_DAMT,
+                        '              GAMOUNT, TAXVALUE, TAXAMT, NETAMT, ITEMREMARS, BATCHNO, SALESPERSONID, SALESPERSON, SALESMANPER, DELETE, ITEMLOCK, PSID
+                        GridDataTble_Insert.Rows.Add(_SnoCount, barcode, itemCode, itemName, serialNo, uom, rate, qty, amount, _
+                                                    itemDiscPer, itemDiscAmt, billDiscPer, billDiscAmt, totalDiscPer, totalDiscAmt, _
+                                                    grossAmount, taxValue, taxAmount, netAmount, remarks, batchNo, _
+                                                    salesPersonId, salesPersonName, salesManPer, deleteFlag, itemLock, psid)
+                    Next
+                    GridDataTble_Insert.AcceptChanges()
+                    GridDataTble_Insert.EndInit()
+                    GridControlSalesData.DataSource = GridDataTble_Insert
+                    GridViewPOS.MoveNext()
+
+                    ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
+                    'txtnotes.Text = "-"
+                    If SalesGrandtotal(False) = False Then
+
+                    End If
+                End If
+            End If
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+#End Region
 #Region "ViewEdit"
+    
     Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
         Try
             frmKeyPassIIIMaster.ShowDialog()
@@ -3872,7 +4297,7 @@ Public Class PosSalesII
                     printcmd._printShiftClose(input, "S", Date.Now)
                 End If
             End If
-          
+
         Catch ex As Exception
 
         End Try
@@ -3882,7 +4307,7 @@ Public Class PosSalesII
 
     Private Rexstr As String = String.Empty
     Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
- 
+
     Private Sub barchkcustomerpole_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barchkcustomerpole.ItemClick
         Try
             frmKeyPassIIIMaster.ShowDialog()
@@ -3993,6 +4418,27 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
- 
- 
+#Region "FingerAttendance"
+    Private Sub barbtnfingernewregister_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnfingernewregister.ItemClick
+        Try
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                FrmFingerRegister.ShowDialog()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnattendance_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnattendance.ItemClick
+        Try
+            FrmFingerScanner.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
+
+   
+  
 End Class

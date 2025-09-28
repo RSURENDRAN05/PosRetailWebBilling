@@ -39,6 +39,18 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>40</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>40</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>AttendanceReport</menu_name>
+    <menu_code>S1042</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>18</menu_id>
     <menu_type>sub</menu_type>
     <header_menu_id>4</header_menu_id>
@@ -130,6 +142,30 @@
     <menu_active>1</menu_active>
     <menu_name>EmployeeInfo</menu_name>
     <menu_code>S1022</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>39</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>39</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>FingerPrintRegister</menu_name>
+    <menu_code>S1041</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>38</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>6</header_menu_id>
+    <sub_menu_id>38</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>FingerPrintScanner</menu_name>
+    <menu_code>S1040</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>

@@ -1342,6 +1342,7 @@ Public Class SalesHeader
     Public Property psih_invoice_dayno As String
     Public Property psih_invoice_countername As String
     Public Property psih_invoice_webhost As String = "0"
+    Public Property psih_invoice_token As String = "0"
 End Class
 Public Class SalesDetails
     Public Property psid_invoice_id As String
