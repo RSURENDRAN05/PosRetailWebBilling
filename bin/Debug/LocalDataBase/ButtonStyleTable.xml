@@ -20,7 +20,7 @@
   <ButtonStyleTable>
     <Id>74</Id>
     <Name>MAINH</Name>
-    <Value>80</Value>
+    <Value>75</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>75</Id>
@@ -65,7 +65,7 @@
   <ButtonStyleTable>
     <Id>83</Id>
     <Name>MAINCOL</Name>
-    <Value>3</Value>
+    <Value>5</Value>
   </ButtonStyleTable>
   <ButtonStyleTable>
     <Id>84</Id>
