@@ -29,7 +29,7 @@
   <UserTable>
     <Id>1</Id>
     <UserName>superadmin@mypos</UserName>
-    <Password>c81e728d9d4c2f636f067f89cc14862c</Password>
+    <Password>a29a5ba2cb7bdeabba22de8c83321b46</Password>
     <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
