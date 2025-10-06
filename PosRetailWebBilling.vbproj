@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -668,6 +668,18 @@
     <Compile Include="Sales\frmPayouts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmResendMail.designer.vb">
+      <DependentUpon>frmResendMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmResendMail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\FrmSelectSalesman.Designer.vb">
+      <DependentUpon>FrmSelectSalesman.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmSelectSalesman.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\frmShiftcloseII.designer.vb">
       <DependentUpon>frmShiftcloseII.vb</DependentUpon>
     </Compile>
@@ -986,6 +998,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPayouts.resx">
       <DependentUpon>frmPayouts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmResendMail.resx">
+      <DependentUpon>frmResendMail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmSelectSalesman.resx">
+      <DependentUpon>FrmSelectSalesman.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmShiftcloseII.resx">
       <DependentUpon>frmShiftcloseII.vb</DependentUpon>

@@ -2876,16 +2876,21 @@ Public Class PosSalesII
                 'MessageBox.Show("Please select an item to assign a salesman.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
-
-            ' Show salesman selection dialog
-            Dim salesmanForm As New FrmSalesmanList(True) ' True for selection mode
-            If salesmanForm.ShowDialog() = DialogResult.OK Then
-                ' Update the selected item with salesman information
+            Dim salesmanForm As New FrmSelectSalesman(True) ' True for selection mode
+            If salesmanForm.ShowDialog = Windows.Forms.DialogResult.OK Then
                 UpdateItemSalesman(GridViewPOS.FocusedRowHandle,
                                  salesmanForm.SelectedSalesmanId,
                                  salesmanForm.SelectedSalesmanName)
-
             End If
+            '' Show salesman selection dialog
+            'Dim salesmanForm As New FrmSalesmanList(True) ' True for selection mode
+            'If salesmanForm.ShowDialog() = DialogResult.OK Then
+            '    ' Update the selected item with salesman information
+            '    UpdateItemSalesman(GridViewPOS.FocusedRowHandle,
+            '                     salesmanForm.SelectedSalesmanId,
+            '                     salesmanForm.SelectedSalesmanName)
+
+            'End If
         Catch ex As Exception
             MessageBox.Show("Error selecting salesman: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -4291,11 +4296,13 @@ Public Class PosSalesII
         Try
             frmKeyPassIIIMaster.ShowDialog()
             If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
-                Dim printcmd As New PrintCommand
-                Dim input As Integer = InputBox("Enter Shift No")
-                If input > 0 Then
-                    printcmd._printShiftClose(input, "S", Date.Now)
-                End If
+                'Dim printcmd As New PrintCommand
+                'Dim input As Integer = InputBox("Enter Shift No")
+                'If input > 0 Then
+                '    printcmd._printShiftClose(input, "F", Date.Now)
+                '    sendMailShiftDosMode(input, True, Date.Now)
+                'End If
+                frmResendMail.ShowDialog()
             End If
 
         Catch ex As Exception

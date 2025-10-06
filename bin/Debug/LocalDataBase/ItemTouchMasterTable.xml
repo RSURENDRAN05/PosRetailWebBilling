@@ -51,7 +51,7 @@
   <ItemTouchMasterTable>
     <Id>1</Id>
     <BarCode>0</BarCode>
-    <ItemName>HAIR CUT   [Adult]</ItemName>
+    <ItemName>HAIR CUT            [Adult]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -87,7 +87,7 @@
   <ItemTouchMasterTable>
     <Id>2</Id>
     <BarCode>2</BarCode>
-    <ItemName>HAIR CUT -  SHAVE / TRIM</ItemName>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -406,7 +406,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>1</Position>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>12</Id>
@@ -442,12 +442,12 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>5</Position>
+    <Position>7</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>13</Id>
     <BarCode>13</BarCode>
-    <ItemName>FACIAL        [Basic]</ItemName>
+    <ItemName>HAIR CUT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -730,7 +730,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>3</Position>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>21</Id>
@@ -1235,5 +1235,41 @@
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
     <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>35</Id>
+    <BarCode>34</BarCode>
+    <ItemName>FACE MASK</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>46</LnkId>
+    <item_id>35</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
 </NewDataSet>

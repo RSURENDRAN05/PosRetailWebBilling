@@ -25,7 +25,20 @@ Public Class PosLogin
                 Application.Exit()
             Else
                 If _ReadSyncLocalCloud() Then
-                    txtusername.Properties.DataSource = _JsonData.UserTable
+                    Try
+                        Dim filteredRows() As DataRow = _JsonData.UserTable.Select("GroupId='4'")
+
+                        If filteredRows.Length > 0 Then
+                            Dim filteredTable As DataTable = filteredRows.CopyToDataTable()
+                            txtusername.Properties.DataSource = filteredTable
+                            txtusername.EditValue = filteredRows(0)("Id")
+                        Else
+                            txtusername.Properties.DataSource = Nothing
+                            txtusername.EditValue = Nothing
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show("Error loading data: " & ex.Message)
+                    End Try
                 End If
             End If
         Catch ex As Exception
