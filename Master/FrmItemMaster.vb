@@ -259,7 +259,7 @@ Public Class FrmItemMaster
             txtsellprice.EditValue = sell
             txtminprice.EditValue = minsell
             txtmaxprice.EditValue = maxsell
-            txtbusinesstype.Text = "Retail"
+            txtbusinesstype.EditValue = businesstype
             txtcompany.Text = comp
             txtlocation.Text = loc
             txtopeningstock.EditValue = 0
@@ -663,7 +663,26 @@ Public Class FrmItemMaster
         End Try
     End Sub
 
-     
+
+    Private Sub btnPackage_Click(sender As Object, e As EventArgs) Handles btnPackage.Click
+        Try
+            If txtitemid.Text = "" Or txtitemid.EditValue Is Nothing Then
+                MessageBox.Show("Please select an item first.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+            If txtbusinesstype.Text = "RETAIL" Then
+                MessageBox.Show("Package can only be created for Package items.", "Invalid Business Type", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+            If txtbusinesstype.Text = "PACKAGE" Then
+                Dim FrmPackageItem As New FrmPackageItem
+                FrmPackageItem.ShowDialogData(txtitemid.Text, txtitemname.Text)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
 
 Public Class itemmaster

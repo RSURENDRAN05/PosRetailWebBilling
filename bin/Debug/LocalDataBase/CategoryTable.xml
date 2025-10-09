@@ -158,12 +158,12 @@
     <id>47</id>
     <item_id>8</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>1</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>9</CateId>
@@ -175,12 +175,12 @@
     <id>48</id>
     <item_id>9</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>2</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>10</CateId>
@@ -192,12 +192,12 @@
     <id>49</id>
     <item_id>10</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>11</CateId>
@@ -209,12 +209,12 @@
     <id>50</id>
     <item_id>11</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>12</CateId>
@@ -226,20 +226,20 @@
     <id>51</id>
     <item_id>12</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>13</CateId>
-    <CateName>HAIR CUT</CateName>
+    <CateName>LADIES HAIR CUT</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>52</id>
     <item_id>13</item_id>
     <menu_type>Sub</menu_type>
@@ -252,88 +252,88 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>14</CateId>
-    <CateName>HAIR DYE</CateName>
+    <CateName>L. HAIR DYE</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>53</id>
     <item_id>14</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>2</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>15</CateId>
-    <CateName>FACIAL</CateName>
+    <CateName>L. FACIAL</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>54</id>
     <item_id>15</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>16</CateId>
-    <CateName>HAIR MASSAGE</CateName>
+    <CateName>L. HAIR MASSAGE</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>55</id>
     <item_id>16</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>17</CateId>
-    <CateName>HAIR TREATMENT</CateName>
+    <CateName>L. HAIR TREATMENT</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>56</id>
     <item_id>17</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>18</CateId>
-    <CateName>WAXING</CateName>
+    <CateName>L. WAXING</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>57</id>
     <item_id>18</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>19</CateId>
@@ -345,11 +345,11 @@
     <id>58</id>
     <item_id>19</item_id>
     <menu_type>Sub</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>7</Position>
   </CategoryTable>
 </NewDataSet>

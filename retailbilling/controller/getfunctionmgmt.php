@@ -3864,6 +3864,98 @@ elseif (isset($_REQUEST['MenuRequest'])) {
             ]);
         }
     }
+    //Package Items
+    if ((int) $_REQUEST['MenuRequest'] == 13) { //Get Package Items
+        $packageId = isset($_GET['PackageId']) ? $_GET['PackageId'] : 0;
+        $GetQueryData = $clsfunreq->GetPackageItems($packageId);
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($GetQueryData)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($GetQueryData) {
+            echo json_encode(array("Success" => true, "Msg" => 'Data Received', "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved', "Data" => "No Data"));
+        }
+    }
+    //Insert Package Items
+    //Id,ItemId, ItemName, ItemPrice, ItemActive
+    if ((int) $_REQUEST['MenuRequest'] == 14) { //Insert Package Items
+        try {
+            $data = null;
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Handle POST request
+                $jsonData = file_get_contents("php://input");
+                $data = json_decode($jsonData, true);
+            } else {
+                // Handle GET request - json parameter in URL
+                if (isset($_GET['json'])) {
+                    $data = json_decode($_GET['json'], true);
+                }
+            }
+
+            // Log received data for debugging
+            error_log("Received data: " . print_r($data, true));
+
+            if (!$data) {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid JSON data received'));
+                exit;
+            }
+
+            // Check if data is an array of items or a single item
+            if (isset($data[0])) {
+                // Handle array of items
+                $successCount = 0;
+                $failCount = 0;
+
+                foreach ($data as $item) {
+                    $result = $clsfunreq->processPackageItem($item);
+                    if ($result) {
+                        $successCount++;
+                    } else {
+                        $failCount++;
+                    }
+                }
+
+                if ($successCount > 0) {
+                    echo json_encode(array(
+                        "Success" => true,
+                        "Msg" => "Processed $successCount package items successfully" .
+                            ($failCount > 0 ? ", $failCount failed" : "")
+                    ));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => "Failed to process package items"));
+                }
+            } else {
+                // Handle single item
+                $result = $clsfunreq->processPackageItem($data);
+
+                if ($result) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Package Item ' . ($result == 'insert' ? 'Inserted' : 'Updated')));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to process package item'));
+                }
+            }
+        } catch (Exception $e) {
+            error_log("Package Item Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
+        }
+    }
+
+    if ((int) $_REQUEST['MenuRequest'] == 15) { //Delete Package Item
+        $jsonData = file_get_contents("php://input");
+        $data = json_decode($jsonData, true);
+        if ($data) {
+            $id = $data['id'];
+            $RequestInsert = $clsfunreq->DeletePackageItem($id);
+            if ($RequestInsert) {
+                echo json_encode(array("Success" => true, "Msg" => 'Package Item Deleted'));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'No Data Updated'));
+            }
+        }
+    }
 }
 //GroupPolicyRequest
 elseif (isset($_REQUEST['GroupPolicyRequest'])) {

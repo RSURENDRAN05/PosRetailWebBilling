@@ -178,6 +178,11 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "FingerPrintData Not Received"
             End If
+            If getPackageData() = True Then
+                dialog.Caption = "Loading FingerPrintData"
+            Else
+                dialog.Caption = "FingerPrintData Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

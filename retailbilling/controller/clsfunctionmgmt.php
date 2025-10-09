@@ -4613,7 +4613,10 @@ class funcProcessMgmt
      */
     public function UpdateButtonProperties($item_id, $menu_type, $font_size, $font_name, $font_style, $text_color, $back_color, $position, $item_name)
     {
-        $itemUpdate = $this->_UpdateProductMasterName($item_id, $item_name);
+        // Update product master name if item_name is provided
+        if (!empty($item_name) && in_array($menu_type, ['Item'])) {
+            $this->_UpdateProductMasterName($item_id, $item_name);
+        }
         $conn = $this->conn;
 
         $sqlUpdate = "UPDATE `pos_button_properties`
@@ -4764,7 +4767,197 @@ class funcProcessMgmt
             throw $e; // Re-throw for better error handling in calling code
         }
     }
+    //Package Item
+    //SELECT * FROM pos_packageitem WHERE ItemActive = TRUE;
+    //GetPackageItems()
+    public function GetPackageItems($packageId)
+    {
+        $conn = $this->conn;
+        $Condition = "WHERE ItemActive = TRUE";
+        if ($packageId > 0) {
+            $Condition = "WHERE PackageId = '" . intval($packageId) . "'";
+        }
+        $sql = "SELECT * FROM pos_packageitem " . $Condition . " ORDER BY ItemName ASC";
+        $result = mysqli_query($conn, $sql);
 
+        if ($result) {
+            return $result;
+        } else {
+            error_log("GetPackageItems Error: " . mysqli_error($conn));
+            return false;
+        }
+    }
+    //InsertPackageItem($item_id, $item_name, $item_price, $item_active,PackageId)
+    // Define the helper function first, outside of any conditional blocks
+    public function processPackageItem($item)
+    {
+        // Validate required fields
+        if (!isset($item['ItemName']) || !isset($item['ItemPrice'])) {
+            error_log("Missing required fields for package item");
+            return false;
+        }
+        $id = isset($item['Id']) ? $item['Id'] : 0;
+        $item_id = isset($item['ItemId']) ? $item['ItemId'] : 0;
+        $item_name = $item['ItemName'];
+        $item_price = $item['ItemPrice'];
+        $PackageId = isset($item['PackageId']) ? $item['PackageId'] : 0;
+        $item_active = isset($item['ItemActive']) ? $item['ItemActive'] : 1;
+
+        try {
+            if ($id == 0 || $id == null) {
+                // Insert new package item
+                $RequestInsert = $this->InsertPackageItem($item_id, $item_name, $item_price, $item_active, $PackageId);
+                return $RequestInsert ? 'insert' : false;
+            } else {
+                // Update existing package item
+                $RequestUpdate = $this->UpdatePackageItem($id, $item_id, $item_name, $item_price, $item_active, $PackageId);
+                return $RequestUpdate ? 'update' : false;
+            }
+        } catch (Exception $e) {
+            error_log("Database operation failed: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function InsertPackageItem($item_id, $item_name, $item_price, $item_active, $PackageId)
+    {
+        $conn = $this->conn;
+
+        try {
+            // Validate input parameters
+            if (empty($item_id) || !is_numeric($item_id) || $item_id <= 0) {
+                throw new Exception("Invalid item ID provided");
+            }
+
+            if (empty($item_name)) {
+                throw new Exception("Item name is required");
+            }
+
+            if (!is_numeric($item_price) || $item_price < 0) {
+                throw new Exception("Invalid item price provided");
+            }
+
+            if (!in_array($item_active, [0, 1])) {
+                throw new Exception("Invalid item active status provided");
+            }
+
+            if (empty($PackageId) || !is_numeric($PackageId) || $PackageId <= 0) {
+                throw new Exception("Invalid package ID provided");
+            }
+
+
+            // Prepare the statement for inserting package item data
+            // Schema: id, item_id, item_name, item_price, ItemActive, PackageId, created_at
+            $stmt = mysqli_prepare($conn, "INSERT INTO pos_packageitem (ItemId, ItemName, ItemPrice, ItemActive, PackageId, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            // Bind parameters - 'i' for integer (item_id, ItemActive, PackageId), 's' for string (item_name), 'd' for double (item_price)
+            mysqli_stmt_bind_param($stmt, "isdii", $item_id, $item_name, $item_price, $item_active, $PackageId);
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                $insertId = mysqli_insert_id($conn);
+                mysqli_stmt_close($stmt);
+
+                // Log successful insertion
+                error_log("Package item inserted successfully - ItemId: " . $item_id . ", ItemName: " . $item_name . ", PackageId: " . $PackageId);
+
+                return $insertId;
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("InsertPackageItem Error: " . $e->getMessage() . " - ItemId: " . $item_id . ", PackageId: " . $PackageId);
+            throw $e; // Re-throw for better error handling in calling code
+        }
+    }
+    //UpdatePackageItem($id, $item_id, $item_name, $item_price, $item_active, $PackageId);
+    public function UpdatePackageItem($id, $item_id, $item_name, $item_price, $item_active, $PackageId)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate input parameters
+            if (empty($id) || !is_numeric($id) || $id <= 0) {
+                throw new Exception("Invalid ID provided");
+            }
+            if (empty($item_id) || !is_numeric($item_id) || $item_id <= 0) {
+                throw new Exception("Invalid item ID provided");
+            }
+            if (empty($item_name)) {
+                throw new Exception("Item name is required");
+            }
+            if (!is_numeric($item_price) || $item_price < 0) {
+                throw new Exception("Invalid item price provided");
+            }
+            if (!in_array($item_active, [0, 1])) {
+                throw new Exception("Invalid item active status provided");
+            }
+            if (empty($PackageId) || !is_numeric($PackageId) || $PackageId <= 0) {
+                throw new Exception("Invalid package ID provided");
+            }
+            // Prepare the statement for updating package item data
+            $stmt = mysqli_prepare($conn, "UPDATE pos_packageitem SET ItemId = ?, ItemName = ?, ItemPrice = ?, ItemActive = ?, PackageId = ? WHERE id = ?");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            mysqli_stmt_bind_param($stmt, "isdiii", $item_id, $item_name, $item_price, $item_active, $PackageId, $id);
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                $affected = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $affected > 0;
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("UpdatePackageItem Error: " . $e->getMessage() . " - ID: " . $id);
+            throw $e; // Re-throw for better error handling in calling code
+        }
+    }
+    //DeletePackageItem($id)
+    public function DeletePackageItem($id)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate input parameter
+            if (empty($id) || !is_numeric($id) || $id <= 0) {
+                throw new Exception("Invalid ID provided");
+            }
+            // Prepare the statement for deleting package item data
+            $stmt = mysqli_prepare($conn, "DELETE FROM pos_packageitem WHERE id = ?");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            mysqli_stmt_bind_param($stmt, "i", $id);
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                $affected = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $affected > 0;
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("DeletePackageItem Error: " . $e->getMessage() . " - ID: " . $id);
+            throw $e; // Re-throw for better error handling in calling code
+        }
+    }
+    //=================== End Employee Finger Management=================
     /**
      * Get employee fingerprint template with enhanced multi-finger support
      * @param int $empId Employee ID

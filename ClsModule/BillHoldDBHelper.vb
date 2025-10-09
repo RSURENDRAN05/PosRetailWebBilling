@@ -81,7 +81,7 @@ Public Class BillHoldDBHelper
             Return defaultValue
         End If
     End Function
-     
+
     Public Function SaveHoldBill(salesHeader As SalesHeader, salesDetailsList As List(Of SalesDetails), ByRef errorMessage As String, ByRef returnBillNo As String) As Boolean
         Dim connection As SqlConnection = Nothing
         Dim transaction As SqlTransaction = Nothing
@@ -428,16 +428,39 @@ Public Class BillHoldDBHelper
             Return False
         End Try
     End Function
+    Public Function GetHoldHdrDetails() As DataTable
+        Dim dt As New DataTable()
+        Try
+            Dim connection = New SqlConnection(_connectionString)
+
+            Using command As New SqlCommand("SELECT psih_invoice_trno as Trno, psih_invoice_date as Date, psih_invoice_tnetamt as NetAmt, psih_invoice_token as Token FROM pos_sale_holdhdr WHERE psih_invoice_billstatus = 'open'", connection)
+                connection.Open()
+
+                ' Create a data adapter and fill the DataTable
+                Using adapter As New SqlDataAdapter(command)
+                    adapter.Fill(dt)
+                End Using
+            End Using
+
+            Return dt
+        Catch ex As Exception
+            ' Log the error for debugging
+            Debug.WriteLine("GetHoldHdrDetails Error: " & ex.Message)
+
+            ' Return empty DataTable on error
+            Return dt
+        End Try
+    End Function
     Public Function UpdateHoldBillStatus(token As Integer, transactionNumber As Integer) As Boolean
         Try
             Dim connection = New SqlConnection(_connectionString)
-            Using command As New SqlCommand("SELECT 1  FROM pos_sale_holdhdr   WHERE psih_invoice_token = @psih_invoice_token AND psih_invoice_billstatus = 'open' AND psih_invoice_trno=@psih_invoice_trno", connection)
+            Using command As New SqlCommand("SELECT 1  FROM pos_sale_holdhdr   WHERE psih_invoice_token = @psih_invoice_token AND psih_invoice_billstatus = 'Open' AND psih_invoice_trno=@psih_invoice_trno", connection)
                 command.Parameters.AddWithValue("@psih_invoice_token", token)
                 command.Parameters.AddWithValue("@psih_invoice_trno", transactionNumber)
+                connection.Open()
                 Dim result = command.ExecuteScalar()
                 If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
-                    transactionNumber = Convert.ToInt32(result)
-                    Using cmd As New SqlCommand("UPDATE pos_sale_holdhdr set psih_invoice_billstatus='Closed' WHERE psih_invoice_token = @psih_invoice_token AND psih_invoice_paymode = 'open' AND psih_invoice_trno=@psih_invoice_trno ", connection)
+                    Using cmd As New SqlCommand("UPDATE pos_sale_holdhdr set psih_invoice_billstatus='Closed' WHERE psih_invoice_token = @psih_invoice_token AND psih_invoice_billstatus = 'Open' AND psih_invoice_trno=@psih_invoice_trno", connection)
                         cmd.Parameters.AddWithValue("@psih_invoice_token", token)
                         cmd.Parameters.AddWithValue("@psih_invoice_trno", transactionNumber)
                         cmd.ExecuteNonQuery()
@@ -578,7 +601,7 @@ Module PrintViewHoldReport
                         Next
                     End If
                 End If
-                 
+
 
                 Return True
             Else

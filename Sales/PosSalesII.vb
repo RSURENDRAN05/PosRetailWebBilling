@@ -86,19 +86,19 @@ Public Class PosSalesII
     Private Sub PosSalesII_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             GridControlSalesData.DataSource = CreateSalesDataTable()
- 
+
             ' Load grid layout after setting data source
             LoadGridLayout()
             ' Load complete form layout
             RestoreFormLayout()
             InitializeCustomerGrid()
             InitialLoad()
-            
+
         Catch ex As Exception
 
         End Try
     End Sub
-     
+
     Private Sub InitialLoad()
         Try
             barbtnposstatus.Caption = "PMID-" & _companyInfo.CompanyPMID & "-" & _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
@@ -124,7 +124,7 @@ Public Class PosSalesII
             Else
                 barstatustaxtype.Caption = "Tax Inclusive"
             End If
-           
+
             If CustomerDisplaySettings.Startup = 0 Then
                 barchkcustomerpole.Checked = True
             Else
@@ -331,7 +331,7 @@ Public Class PosSalesII
             MessageBox.Show("Error importing grid layout: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
- 
+
 #End Region
 #Region "LoadMenu"
     'Private Sub mainMenu()
@@ -1500,6 +1500,7 @@ Public Class PosSalesII
                 Dim _taxValue As String = ""
                 Dim _serialno As String = ""
                 Dim _uom As String = ""
+                Dim _businessType As String = ""
                 Dim _dsMaterial As New DataTable
                 _dsMaterial = dtrows.CopyToDataTable
                 If _dsMaterial.Rows.Count > 0 Then
@@ -1511,9 +1512,73 @@ Public Class PosSalesII
                         _taxValue = _rows("TaxValue")
                         _serialno = 1
                         _uom = 1
-
+                        _businessType = _rows("BusinessType")
                     Next
-                    _InsertDt(_barcode, _Code, _item, _serialno, _uom, _srate, _taxValue)
+                    If _businessType = "71" Then
+                        If _JsonData.PackageDataTable.Rows.Count > 0 Then
+                            Dim packageRows = From pkgRow As DataRow In _JsonData.PackageDataTable Where String.Equals(pkgRow("PackageId"), _Code, StringComparison.CurrentCultureIgnoreCase)
+                            If packageRows IsNot Nothing AndAlso packageRows.Any Then
+                                For Each pkgRow In packageRows
+                                    Dim pkgItemCode As Integer = pkgRow("ItemId")
+                                    Dim pkgSellPrice As String = pkgRow("ItemPrice")
+                                    ' Create a DataTable view, filter, and convert result to DataRow array
+                                    Dim itemTable As DataTable = _JsonData.ItemTouchMasterTable
+
+                                      ' Try multiple filter approaches to find the matching rows
+                                    Dim filteredRows As DataRow() = Nothing
+                                    Try
+                                        ' Approach 1: Direct comparison with integer
+                                        filteredRows = itemTable.Select("Id = " & pkgItemCode)
+
+                                        ' If no rows found, try alternative approaches
+                                        If filteredRows Is Nothing OrElse filteredRows.Length = 0 Then
+                                            ' Approach 2: Try with string comparison
+                                            filteredRows = itemTable.Select("Id = '" & pkgItemCode.ToString() & "'")
+                                        End If
+
+                                        ' Approach 3: Case insensitive comparison
+                                        If filteredRows Is Nothing OrElse filteredRows.Length = 0 Then
+                                            filteredRows = itemTable.Select("LOWER(CONVERT(Id, 'System.String')) = '" & pkgItemCode.ToString().ToLower() & "'")
+                                        End If
+
+                                        ' If still no match, try a more direct approach with LINQ
+                                        If filteredRows Is Nothing OrElse filteredRows.Length = 0 Then
+                                            Dim linqFiltered = From row In itemTable.AsEnumerable()
+                                                              Where row.Field(Of Object)("Id").ToString() = pkgItemCode.ToString()
+                                                              Select row
+
+                                            If linqFiltered.Any() Then
+                                                filteredRows = linqFiltered.ToArray()
+                                            End If
+                                        End If
+                                    Catch ex As Exception
+                                        filteredRows = New DataRow() {} ' Empty array to avoid null reference
+                                    End Try
+
+                                    For Each itemRow As DataRow In filteredRows
+                                        Dim pkgBarcode As String = itemRow("BarCode")
+                                        Dim pkgItemName As String = itemRow("ItemName")
+                                        Dim pkgTaxValue As Integer = itemRow("TaxValue")
+                                        Dim pkgSerialNo As String = 1
+                                        Dim pkgUOM As String = 1
+                                        ' Insert each package item into the grid
+                                        _InsertDt(pkgBarcode, pkgItemCode, pkgItemName, pkgSerialNo, pkgUOM, pkgSellPrice, pkgTaxValue)
+                                    Next
+                                Next
+                            Else
+                                ' No package items found for this code
+                                ErrorMsg = "No package items found for the selected product."
+                                Return False
+                            End If
+                        Else
+                            ' Package table is empty
+                            ErrorMsg = "Package data is not available."
+                            Return False
+                        End If
+                    Else
+                        _InsertDt(_barcode, _Code, _item, _serialno, _uom, _srate, _taxValue)
+                    End If
+
                 End If
             End If
             Return True
@@ -1697,7 +1762,7 @@ Public Class PosSalesII
             If SalesManModeShow = True Then
                 barselectsalesman_ItemClick(Nothing, Nothing)
             End If
-           
+
             Return True
         Catch ex As Exception
             MsgBox("Error in SalesGrandtotal: " & ex.Message)
@@ -3103,6 +3168,20 @@ Public Class PosSalesII
 
         End Try
     End Sub
+
+    Private Sub barbtnSendOrderServer_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSendOrderServer.ItemClick
+        Try
+            If GridViewPOS.RowCount > 0 Then
+                BillHoldProcess()
+                BillHoldTokenNo = 0
+                BillHoldTrno = 0
+                G_SalID = 0
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+  
     Private Sub BillHoldProcess()
         Try
             If BillHoldTokenNo = 0 Then
@@ -3555,11 +3634,19 @@ Public Class PosSalesII
                         If salesHelper.SaveSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
                             _CashDraw.OpenCashdrawer(True)
-                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                            barbtnNewBill_ItemClick(Nothing, Nothing)
+
                             If BillHoldTokenNo > 0 And BillHoldTrno > 0 Then
                                 billHoldHelper.UpdateHoldBillStatus(BillHoldTokenNo, BillHoldTrno)
                             End If
+                            Dim frmMsgBox As New frmMsgBox
+                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved" & vbNewLine & "Do you want preview bill? " & ReturnBill
+                            barbtnNewBill_ItemClick(Nothing, Nothing)
+                            frmMsgBox.ShowDialogData(msgData.ToString)
+                            If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
+                                PrintPreview()
+                            End If
+
+                            'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
@@ -3733,8 +3820,14 @@ Public Class PosSalesII
                         If salesHelper.UpdateSalesBill(_saleData, salesDetailsList, GetPaymentModesDictionary(), _errMsgResult, ReturnBill) = True Then
                             barstatuslastbillno.Caption = ReturnBill
                             _CashDraw.OpenCashdrawer(True)
-                            DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
+                            Dim frmMsgBox As New frmMsgBox
+                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved" & vbNewLine & "Do you want preview bill " & ReturnBill
+                            frmMsgBox.ShowDialogData(msgData.ToString)
+                            If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
+                                PrintPreview()
+                            End If
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
@@ -3794,6 +3887,24 @@ Public Class PosSalesII
     End Function
 #End Region
 #Region "ViewHold"
+    Private Sub barbtnViewPendingOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnViewPendingOrder.ItemClick
+        Try
+            Dim FrmViewPendingOrder As New FrmViewPendingOrder
+            FrmViewPendingOrder.ShowDialog()
+            If FrmViewPendingOrder.DialogResult = Windows.Forms.DialogResult.OK Then
+                If _FunctionKeyBoardModule.gs_keyboardValueInteger > 0 Then
+                    BillHoldTokenNo = _FunctionKeyBoardModule.gs_keyboardValueInteger
+                    Dim trno As Integer = 0
+                    If billHoldHelper.GetHoldDetails(BillHoldTokenNo, trno) Then
+                        GetHoldBySalID(trno, "Edit")
+                    End If
+                End If
+                Return
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub barbtntokenno_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtntokenno.ItemClick
         Try
             frmkeytablescaner.ShowDialog()
@@ -3932,7 +4043,7 @@ Public Class PosSalesII
     End Function
 #End Region
 #Region "ViewEdit"
-    
+
     Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
         Try
             frmKeyPassIIIMaster.ShowDialog()
@@ -4228,7 +4339,22 @@ Public Class PosSalesII
         End Try
     End Sub
 
+    Private Sub PrintPreview()
+        Try
+            Dim _receDs As New DataSet
+            If (GetSalesByBillLocal(barstatuslastbillno.Caption, _receDs, "P")) = True Then
+                If (_receDs.Tables(0).Rows.Count > 0) Then
+                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                End If
 
+                If clsBillPrint.BillPrintMinPreivew(_receDs, Errstr, "SalesMinPrint.repx") = True Then
+
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 
     Private Sub barbtnprintprofiledesign_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintprofiledesign.ItemClick
@@ -4446,6 +4572,5 @@ Public Class PosSalesII
     End Sub
 #End Region
 
-   
-  
+
 End Class

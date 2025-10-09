@@ -25,6 +25,7 @@ Partial Class FrmItemMaster
         Me.txtposition = New DevExpress.XtraEditors.TextEdit()
         Me.colorEdit1 = New DevExpress.XtraEditors.ColorEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnPackage = New DevExpress.XtraEditors.SimpleButton()
         Me.btnmultipledelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -223,6 +224,7 @@ Partial Class FrmItemMaster
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.btnPackage)
         Me.GroupControl1.Controls.Add(Me.btnmultipledelete)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Controls.Add(Me.LabelControl5)
@@ -242,6 +244,14 @@ Partial Class FrmItemMaster
         Me.GroupControl1.Size = New System.Drawing.Size(269, 324)
         Me.GroupControl1.TabIndex = 22
         Me.GroupControl1.Text = "Item Settings Group"
+        '
+        'btnPackage
+        '
+        Me.btnPackage.Location = New System.Drawing.Point(187, 25)
+        Me.btnPackage.Name = "btnPackage"
+        Me.btnPackage.Size = New System.Drawing.Size(77, 23)
+        Me.btnPackage.TabIndex = 14
+        Me.btnPackage.Text = "Package "
         '
         'btnmultipledelete
         '
@@ -752,7 +762,7 @@ Partial Class FrmItemMaster
         Me.txtbusinesstype.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtbusinesstype.Properties.Appearance.Options.UseFont = True
         Me.txtbusinesstype.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtbusinesstype.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", 80, "Name")})
+        Me.txtbusinesstype.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Value", 80, "Name")})
         Me.txtbusinesstype.Properties.DisplayMember = "Value"
         Me.txtbusinesstype.Properties.ImmediatePopup = True
         Me.txtbusinesstype.Properties.NullText = ""
@@ -1246,4 +1256,5 @@ Partial Class FrmItemMaster
     Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnPackage As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -74,7 +74,7 @@
                 Dim fontName As String = GetSafeValue(currentRow.Row, "font_name", "Segoe UI")
                 Dim fontStyleString As String = GetSafeValue(currentRow.Row, "font_style", "Bold")
                 Dim textColor As Color = ParseArgbColor(GetSafeValue(currentRow.Row, "text_color", ""), Color.White)
-                Dim backColor As Color = ParseArgbColor(GetSafeValue(currentRow.Row, "back_color", ""), Color.FromArgb(52, 152, 219))
+                Dim backColor As Color = ParseArgbColor(GetSafeValue(currentRow.Row, "back_color", ""), Color.DarkBlue)
 
                 ' Convert font style string to FontStyle enum
                 Dim fontStyleEnum As FontStyle = FontStyle.Regular

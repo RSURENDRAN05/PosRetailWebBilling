@@ -442,6 +442,12 @@
     <Compile Include="Master\FrmMenuManager.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmPackageItem.Designer.vb">
+      <DependentUpon>FrmPackageItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmPackageItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\FrmAttendanceReport.Designer.vb">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>
     </Compile>
@@ -722,6 +728,12 @@
     <Compile Include="Master\FrmMenuDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\FrmViewPendingOrder.Designer.vb">
+      <DependentUpon>FrmViewPendingOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmViewPendingOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\PosLogin.designer.vb">
       <DependentUpon>PosLogin.vb</DependentUpon>
     </Compile>
@@ -891,6 +903,9 @@
     <EmbeddedResource Include="Master\FrmMenuManager.resx">
       <DependentUpon>FrmMenuManager.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmPackageItem.resx">
+      <DependentUpon>FrmPackageItem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmAttendanceReport.resx">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>
     </EmbeddedResource>
@@ -1025,6 +1040,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmMenuDesign.resx">
       <DependentUpon>FrmMenuDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmViewPendingOrder.resx">
+      <DependentUpon>FrmViewPendingOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PosLogin.resx">
       <DependentUpon>PosLogin.vb</DependentUpon>
