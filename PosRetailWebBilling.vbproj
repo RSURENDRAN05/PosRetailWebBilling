@@ -412,6 +412,12 @@
     <Compile Include="Employee\FRMPAYSLIP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Employee\FrmStaffLocationChanges.Designer.vb">
+      <DependentUpon>FrmStaffLocationChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\FrmStaffLocationChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainMaster.Designer.vb">
       <DependentUpon>MainMaster.vb</DependentUpon>
     </Compile>
@@ -886,6 +892,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\FRMPAYSLIP.resx">
       <DependentUpon>FRMPAYSLIP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\FrmStaffLocationChanges.resx">
+      <DependentUpon>FrmStaffLocationChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMaster.resx">
       <DependentUpon>MainMaster.vb</DependentUpon>

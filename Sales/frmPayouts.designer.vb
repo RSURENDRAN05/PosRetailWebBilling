@@ -49,14 +49,19 @@ Partial Class frmPayouts
         Me.btnSupp = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.btnModeofWeb = New DevExpress.XtraEditors.SimpleButton()
-        Me.PayDate = New DevExpress.XtraEditors.DateEdit()
+        Me.PayDateFrom = New DevExpress.XtraEditors.DateEdit()
         Me.btnSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.PayDateTo = New DevExpress.XtraEditors.DateEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDateFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PayDateTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblHead
@@ -200,10 +205,10 @@ Partial Class frmPayouts
         '
         'GridControl2
         '
-        Me.GridControl2.Location = New System.Drawing.Point(392, 181)
+        Me.GridControl2.Location = New System.Drawing.Point(392, 232)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(624, 531)
+        Me.GridControl2.Size = New System.Drawing.Size(624, 480)
         Me.GridControl2.TabIndex = 11
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -385,19 +390,19 @@ Partial Class frmPayouts
         Me.btnModeofWeb.TabIndex = 19
         Me.btnModeofWeb.Text = "WebMode"
         '
-        'PayDate
+        'PayDateFrom
         '
-        Me.PayDate.EditValue = Nothing
-        Me.PayDate.Location = New System.Drawing.Point(686, 12)
-        Me.PayDate.Name = "PayDate"
-        Me.PayDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.PayDate.Properties.Appearance.Options.UseFont = True
-        Me.PayDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.PayDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.PayDate.Properties.CalendarTimeProperties.CloseUpKey = New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4)
-        Me.PayDate.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
-        Me.PayDate.Size = New System.Drawing.Size(155, 30)
-        Me.PayDate.TabIndex = 20
+        Me.PayDateFrom.EditValue = Nothing
+        Me.PayDateFrom.Location = New System.Drawing.Point(505, 191)
+        Me.PayDateFrom.Name = "PayDateFrom"
+        Me.PayDateFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.PayDateFrom.Properties.Appearance.Options.UseFont = True
+        Me.PayDateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDateFrom.Properties.CalendarTimeProperties.CloseUpKey = New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4)
+        Me.PayDateFrom.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
+        Me.PayDateFrom.Size = New System.Drawing.Size(155, 30)
+        Me.PayDateFrom.TabIndex = 20
         '
         'btnSearch
         '
@@ -408,11 +413,49 @@ Partial Class frmPayouts
         Me.btnSearch.Appearance.Options.UseBackColor = True
         Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.btnSearch.Location = New System.Drawing.Point(847, 12)
+        Me.btnSearch.Location = New System.Drawing.Point(921, 183)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(134, 38)
+        Me.btnSearch.Size = New System.Drawing.Size(95, 38)
         Me.btnSearch.TabIndex = 21
         Me.btnSearch.Text = "Serach"
+        '
+        'PayDateTo
+        '
+        Me.PayDateTo.EditValue = Nothing
+        Me.PayDateTo.Location = New System.Drawing.Point(759, 191)
+        Me.PayDateTo.Name = "PayDateTo"
+        Me.PayDateTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.PayDateTo.Properties.Appearance.Options.UseFont = True
+        Me.PayDateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.PayDateTo.Properties.CalendarTimeProperties.CloseUpKey = New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4)
+        Me.PayDateTo.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
+        Me.PayDateTo.Size = New System.Drawing.Size(155, 30)
+        Me.PayDateTo.TabIndex = 22
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(392, 194)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(107, 21)
+        Me.Label1.TabIndex = 23
+        Me.Label1.Text = "From Date :"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.White
+        Me.Label6.Location = New System.Drawing.Point(666, 194)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(87, 21)
+        Me.Label6.TabIndex = 24
+        Me.Label6.Text = "To Date :"
         '
         'frmPayouts
         '
@@ -420,8 +463,11 @@ Partial Class frmPayouts
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.PayDateTo)
         Me.Controls.Add(Me.btnSearch)
-        Me.Controls.Add(Me.PayDate)
+        Me.Controls.Add(Me.PayDateFrom)
         Me.Controls.Add(Me.btnModeofWeb)
         Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.btnSupp)
@@ -449,8 +495,10 @@ Partial Class frmPayouts
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDateFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDateFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDateTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PayDateTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -481,6 +529,9 @@ Partial Class frmPayouts
     Friend WithEvents btnSupp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnModeofWeb As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PayDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents PayDateFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents btnSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PayDateTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 End Class

@@ -543,25 +543,26 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
     //SELECT `payd_id` as Id, `payd_refid` as StaffId,  `payd_name` as Name, `payd_amount` as Amount, `payd_remarks` as Remarks, `payd_shiftno`, `payd_dayno`, `payd_user`, `payd_datetime`, `PmId`, `ComId`, `LocId`, `CurrentDate` FROM `pos_payout_dtl` WHERE `payd_datetime`=$payd_datetime, `PmId` =$PmId, `ComId`=$ComId, `LocId`=$LocId
     if ((int)$_REQUEST['AjaxRequest'] == 13) { //get payout report with parameters
         try {
-            // Log the incoming request for debugging
-            error_log("AjaxRequest=13 called with GET parameters: " . print_r($_GET, true));
-            error_log("AjaxRequest=13 called with POST parameters: " . print_r($_POST, true));
-
+            //"AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd") & "&todate=" & toDate.ToString("yyyy-MM-dd") & "&empid=" & empId
             // Get parameters from REQUEST (works for both GET and POST)
             $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
             $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
             $startDate = isset($_REQUEST['fromdate']) ? $_REQUEST['fromdate'] : '';
+            $endDate = isset($_REQUEST['todate']) ? $_REQUEST['todate'] : '';
+            $empId = isset($_REQUEST['empid']) ? $_REQUEST['empid'] : '';
+
+
 
             // Validate required parameters
-            if (empty($comid) || empty($locid) || empty($startDate)) {
-                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, fromdate=$startDate");
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate) || empty($empId)) {
+                throw new Exception("Missing required parameters: comid=$comid, locid=$locid, fromdate=$startDate, todate=$endDate, empid=$empId");
             }
             $pm_id = $clsfunreq->GetPMid($comid, $locid);
             if (!$pm_id) {
                 throw new Exception("Invalid comid or locid - could not find pm_id");
             }
             // Fetch payout report data
-            $payoutReport = $clsfunreq->GetPayoutReport($comid, $locid, $pm_id, $startDate);
+            $payoutReport = $clsfunreq->GetPayoutReport($comid, $locid, $pm_id, $startDate, $endDate, $empId);
             $arr = array();
             if ($payoutReport) {
                 while ($row = mysqli_fetch_assoc($payoutReport)) {

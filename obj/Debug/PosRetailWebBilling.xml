@@ -6,11 +6,7 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="T:PosRetailWebBilling.BooleanConverter">
-	<summary>
- Custom JSON converter for handling integer values (0/1) as booleans
- </summary>
-</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>
@@ -453,6 +449,10 @@ PosRetailWebBilling
 	<summary>
  Centralized method to update day information from JSON response
  This ensures consistent handling and avoids duplicate code
+ </summary>
+</member><member name="T:PosRetailWebBilling.BooleanConverter">
+	<summary>
+ Custom JSON converter for handling integer values (0/1) as booleans
  </summary>
 </member><member name="M:PosRetailWebBilling.M_CONNECT.ValidateDBConnectionBeforeLogin(System.String@,System.String)">
 	<summary>

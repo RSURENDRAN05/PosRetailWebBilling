@@ -74,7 +74,8 @@ Public Class frmPayouts
                 GetPayoutDataCloud()
             End If
 
-            PayDate.EditValue = Date.Now
+            PayDateFrom.EditValue = Date.Now
+            PayDateTo.EditValue = Date.Now
         Catch ex As Exception
 
         End Try
@@ -192,7 +193,7 @@ Public Class frmPayouts
                     payoutcls.payd_shiftno = _saleSetting._curShiftno
                     payoutcls.payd_dayno = _saleSetting._curDayno
                     payoutcls.payd_user = _companyInfo.UserId
-                    Dim fromDate As Date = Convert.ToDateTime(PayDate.EditValue).Date
+                    Dim fromDate As Date = Convert.ToDateTime(PayDateFrom.EditValue).Date
                     payoutcls.payd_datetime = fromDate.ToString("yyyy-MM-dd")
                     Dim HdrData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payoutcls)
                     HdrData = CleanJsonString(HdrData)
@@ -346,7 +347,7 @@ Public Class frmPayouts
         Try
             If ModeOfUpload = "Web" Then
                 btnModeofWeb.Text = ModeOfUpload
-                GetPayoutDataCloud()
+                'GetPayoutDataCloud()
             Else
                 btnModeofWeb.Text = "Local"
                 ModeOfUpload = "Local"
@@ -520,21 +521,29 @@ Public Class frmPayouts
         End Try
     End Sub
     Private Sub GetPayoutDataCloud()
+        Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
             'Get date range from UI
+            dialog.Caption = "Loading Payout Data..."
             Dim Dts As DataTable
-            Dim fromDate As Date = Convert.ToDateTime(PayDate.EditValue).Date
+            Dim empId = GridView1.GetFocusedRowCellValue("Id")
+            Dim fromDate As Date = Convert.ToDateTime(PayDateFrom.EditValue).Date
+            Dim toDate As Date = Convert.ToDateTime(PayDateTo.EditValue).Date
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd"))
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd") & "&todate=" & toDate.ToString("yyyy-MM-dd") & "&empid=" & empId)
             Dim Userparsejson As JObject = JObject.Parse(json)
             Dts = Userparsejson("Data").ToObject(Of DataTable)()
             If Dts.Rows.Count > 0 Then
                 GridControl2.DataSource = Dts
+                dialog.Close()
             Else
                 GridControl2.DataSource = Nothing
             End If
         Catch ex As Exception
+            dialog.Close()
             WriteErroLog("Payout Search Error", ex.Message)
+        Finally
+            dialog.Close()
         End Try
     End Sub
 End Class

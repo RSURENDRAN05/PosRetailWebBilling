@@ -21,9 +21,9 @@ Partial Class PosSalesII
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PosSalesII))
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.PanelSubMenu = New DevExpress.XtraEditors.PanelControl()
         Me.PanelItemMenu = New DevExpress.XtraEditors.PanelControl()
@@ -85,6 +85,8 @@ Partial Class PosSalesII
         Me.barbtntokenno = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnfingernewregister = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnattendance = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnSendOrderServer = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnViewPendingOrder = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem5 = New DevExpress.XtraBars.BarSubItem()
         Me.barselectcustomer1 = New DevExpress.XtraBars.BarButtonItem()
         Me.barclearcustomer = New DevExpress.XtraBars.BarButtonItem()
@@ -185,8 +187,7 @@ Partial Class PosSalesII
         Me.SimpleSeparator5 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.SerialPortCustomerPole = New System.IO.Ports.SerialPort(Me.components)
-        Me.barbtnSendOrderServer = New DevExpress.XtraBars.BarButtonItem()
-        Me.barbtnViewPendingOrder = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnstafflocationchanges = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PanelSubMenu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -689,8 +690,8 @@ Partial Class PosSalesII
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.barbtncashdraweropen, Me.barbtnrefreshdata, Me.barbtnstaffadvance, Me.barbtnPrintShiftClose, Me.barbtnmaualprice, Me.barchkcustomerpole, Me.btnPoledisplaysetting, Me.barbtnback, Me.barbtntokenno, Me.BarStaticItem1, Me.barstatustoken, Me.barbtnfingernewregister, Me.barbtnattendance, Me.barbtnSendOrderServer, Me.barbtnViewPendingOrder})
-        Me.BarManager1.MaxItemId = 68
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarSubItem1, Me.BarButtonItem2, Me.BarSubItem2, Me.btnSaveLayout, Me.barbtnposstatus, Me.BarSubItem3, Me.BarButtonItem3, Me.barSearchProductCode, Me.BarDate, Me.Barshiftno, Me.Bardayno, Me.baruserinfomation, Me.barselectcustomer, Me.BarButtonItem4, Me.BarSubItem4, Me.barbtncounterclose, Me.BarButtonItem6, Me.barstatustaxtype, Me.barbilldiscount, Me.baritemdiscount, Me.barbtnNewBill, Me.barbtnselectprice, Me.BarSubItem5, Me.barselectcustomer1, Me.barclearcustomer, Me.barselectsalesman, Me.Barfromlayoutsave, Me.BarSubItem6, Me.BarButtonItem1, Me.BarButtonItem7, Me.BarButtonItem8, Me.barbtnviewbill, Me.BarButtonItem10, Me.BarButtonItem11, Me.BarButtonItem12, Me.BarButtonItem13, Me.BarButtonItem14, Me.BarButtonItem15, Me.barbtnhome, Me.barbtnprintonoff, Me.barstatuslastbillno, Me.barbtnstatus0, Me.barbtnstatus, Me.barbtnbilledit, Me.barbtnbilltype, Me.BarSubItem7, Me.barbtnprintprofiledesign, Me.btnlastprint, Me.barbtncashdraweropen, Me.barbtnrefreshdata, Me.barbtnstaffadvance, Me.barbtnPrintShiftClose, Me.barbtnmaualprice, Me.barchkcustomerpole, Me.btnPoledisplaysetting, Me.barbtnback, Me.barbtntokenno, Me.BarStaticItem1, Me.barstatustoken, Me.barbtnfingernewregister, Me.barbtnattendance, Me.barbtnSendOrderServer, Me.barbtnViewPendingOrder, Me.barbtnstafflocationchanges})
+        Me.BarManager1.MaxItemId = 69
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -800,7 +801,7 @@ Partial Class PosSalesII
         Me.BarSubItem7.Id = 48
         Me.BarSubItem7.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BarSubItem7.ItemAppearance.Normal.Options.UseFont = True
-        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintprofiledesign, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrintShiftClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnPoledisplaysetting)})
+        Me.BarSubItem7.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnprintprofiledesign, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrintShiftClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnPoledisplaysetting), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnstafflocationchanges)})
         Me.BarSubItem7.Name = "BarSubItem7"
         '
         'barbtnprintprofiledesign
@@ -955,6 +956,24 @@ Partial Class PosSalesII
         Me.barbtnattendance.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.barbtnattendance.ItemAppearance.Normal.Options.UseFont = True
         Me.barbtnattendance.Name = "barbtnattendance"
+        '
+        'barbtnSendOrderServer
+        '
+        Me.barbtnSendOrderServer.Caption = "Send Order"
+        Me.barbtnSendOrderServer.Glyph = CType(resources.GetObject("barbtnSendOrderServer.Glyph"), System.Drawing.Image)
+        Me.barbtnSendOrderServer.Id = 66
+        Me.barbtnSendOrderServer.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnSendOrderServer.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnSendOrderServer.Name = "barbtnSendOrderServer"
+        '
+        'barbtnViewPendingOrder
+        '
+        Me.barbtnViewPendingOrder.Caption = "View Pending Order"
+        Me.barbtnViewPendingOrder.Glyph = CType(resources.GetObject("barbtnViewPendingOrder.Glyph"), System.Drawing.Image)
+        Me.barbtnViewPendingOrder.Id = 67
+        Me.barbtnViewPendingOrder.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnViewPendingOrder.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnViewPendingOrder.Name = "barbtnViewPendingOrder"
         '
         'BarSubItem5
         '
@@ -1674,7 +1693,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditPrice
         '
         Me.RepositoryItemButtonEditPrice.AutoHeight = False
-        Me.RepositoryItemButtonEditPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditPrice.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditPrice.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditPrice.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditPrice.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditPrice.Name = "RepositoryItemButtonEditPrice"
@@ -1694,9 +1713,9 @@ Partial Class PosSalesII
         '
         'RepositoryItemButtonEditSelectSp
         '
-        SerializableAppearanceObject5.Options.UseTextOptions = True
-        SerializableAppearanceObject5.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.RepositoryItemButtonEditSelectSp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditSelectSp.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.Options.UseTextOptions = True
+        SerializableAppearanceObject2.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RepositoryItemButtonEditSelectSp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 25, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditSelectSp.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditSelectSp.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditSelectSp.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditSelectSp.Name = "RepositoryItemButtonEditSelectSp"
@@ -1732,7 +1751,7 @@ Partial Class PosSalesII
         'RepositoryItemButtonEditDelete
         '
         Me.RepositoryItemButtonEditDelete.AutoHeight = False
-        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True)})
+        Me.RepositoryItemButtonEditDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("RepositoryItemButtonEditDelete.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.RepositoryItemButtonEditDelete.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.RepositoryItemButtonEditDelete.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered
         Me.RepositoryItemButtonEditDelete.Name = "RepositoryItemButtonEditDelete"
@@ -1928,23 +1947,14 @@ Partial Class PosSalesII
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(156, 13)
         Me.LayoutControlItem13.TextToControlDistance = 5
         '
-        'barbtnSendOrderServer
+        'barbtnstafflocationchanges
         '
-        Me.barbtnSendOrderServer.Caption = "Send Order"
-        Me.barbtnSendOrderServer.Glyph = CType(resources.GetObject("barbtnSendOrderServer.Glyph"), System.Drawing.Image)
-        Me.barbtnSendOrderServer.Id = 66
-        Me.barbtnSendOrderServer.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.barbtnSendOrderServer.ItemAppearance.Normal.Options.UseFont = True
-        Me.barbtnSendOrderServer.Name = "barbtnSendOrderServer"
-        '
-        'barbtnViewPendingOrder
-        '
-        Me.barbtnViewPendingOrder.Caption = "View Pending Order"
-        Me.barbtnViewPendingOrder.Glyph = CType(resources.GetObject("barbtnViewPendingOrder.Glyph"), System.Drawing.Image)
-        Me.barbtnViewPendingOrder.Id = 67
-        Me.barbtnViewPendingOrder.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.barbtnViewPendingOrder.ItemAppearance.Normal.Options.UseFont = True
-        Me.barbtnViewPendingOrder.Name = "barbtnViewPendingOrder"
+        Me.barbtnstafflocationchanges.Caption = "Staff Location Change"
+        Me.barbtnstafflocationchanges.Glyph = CType(resources.GetObject("barbtnstafflocationchanges.Glyph"), System.Drawing.Image)
+        Me.barbtnstafflocationchanges.Id = 68
+        Me.barbtnstafflocationchanges.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.barbtnstafflocationchanges.ItemAppearance.Normal.Options.UseFont = True
+        Me.barbtnstafflocationchanges.Name = "barbtnstafflocationchanges"
         '
         'PosSalesII
         '
@@ -2175,4 +2185,5 @@ Partial Class PosSalesII
     Friend WithEvents barbtnattendance As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnSendOrderServer As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnViewPendingOrder As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnstafflocationchanges As DevExpress.XtraBars.BarButtonItem
 End Class

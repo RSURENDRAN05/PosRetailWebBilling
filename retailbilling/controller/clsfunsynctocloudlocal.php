@@ -763,13 +763,15 @@ class clsfuncsync
             return array('success' => false, 'message' => 'Error deleting payout record: ' . mysqli_error($this->conn));
         }
     }
-    public function GetPayoutReport($comid, $locid, $pm_id, $startDate)
+    public function GetPayoutReport($comid, $locid, $pm_id, $startDate, $endDate, $empId)
     {
         // Escape variables first
         $comid     = mysqli_real_escape_string($this->conn, $comid);
         $locid     = mysqli_real_escape_string($this->conn, $locid);
         $pm_id     = mysqli_real_escape_string($this->conn, $pm_id);
         $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+        $empId     = mysqli_real_escape_string($this->conn, $empId);
         //SELECT `payd_id` as Id, `payd_refid` as StaffId,  `payd_name` as Name, `payd_amount` as Amount, `payd_remarks` as Remarks, `payd_shiftno`, `payd_dayno`, `payd_user`, `payd_datetime`, `PmId`, `ComId`, `LocId`, `CurrentDate` FROM `pos_payout_dtl` WHERE `payd_datetime`=$payd_datetime, `PmId` =$PmId, `ComId`=$ComId, `LocId`=$LocId
         $sql = "SELECT
                     ppd.payd_id AS ID,
@@ -789,10 +791,12 @@ class clsfuncsync
                 FROM pos_payout_dtl AS ppd
                 INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
                 INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
-                WHERE DATE(ppd.payd_datetime) = '$startDate'
-                  AND ppd.ComId = '$comid'
-                  AND ppd.LocId = '$locid'
-                  AND ppd.PmId = '$pm_id'
+                WHERE DATE(ppd.payd_datetime) >= '$startDate'
+                  AND DATE(ppd.payd_datetime) <= '$endDate'
+                --   AND ppd.ComId = '$comid'
+                --   AND ppd.LocId = '$locid'
+                --   AND ppd.PmId = '$pm_id'
+                  AND ppd.payd_refid = '$empId'
                 ORDER BY ppd.payd_datetime DESC, ppd.payd_name";
         // Log the query for debugging (remove in production)
         error_log("Payout Report Query: " . $sql);

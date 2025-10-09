@@ -74,6 +74,7 @@ Partial Class MainMaster
         Me.barbtnRefreshAll = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnfingerscanner = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnfingerregister = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnattendancereport = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -108,7 +109,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barbtnattendancereport = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -547,6 +547,14 @@ Partial Class MainMaster
         Me.barbtnfingerregister.LargeGlyph = CType(resources.GetObject("barbtnfingerregister.LargeGlyph"), System.Drawing.Image)
         Me.barbtnfingerregister.Name = "barbtnfingerregister"
         '
+        'barbtnattendancereport
+        '
+        Me.barbtnattendancereport.Caption = "Attendance Report"
+        Me.barbtnattendancereport.Glyph = CType(resources.GetObject("barbtnattendancereport.Glyph"), System.Drawing.Image)
+        Me.barbtnattendancereport.Id = 60
+        Me.barbtnattendancereport.LargeGlyph = CType(resources.GetObject("barbtnattendancereport.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnattendancereport.Name = "barbtnattendancereport"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -848,14 +856,6 @@ Partial Class MainMaster
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
-        '
-        'barbtnattendancereport
-        '
-        Me.barbtnattendancereport.Caption = "Attendance Report"
-        Me.barbtnattendancereport.Glyph = CType(resources.GetObject("barbtnattendancereport.Glyph"), System.Drawing.Image)
-        Me.barbtnattendancereport.Id = 60
-        Me.barbtnattendancereport.LargeGlyph = CType(resources.GetObject("barbtnattendancereport.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnattendancereport.Name = "barbtnattendancereport"
         '
         'MainMaster
         '

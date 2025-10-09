@@ -2954,7 +2954,14 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
-
+    //UPDATE `pos_employeeinfo` set `emp_locid` = WHERE `emp_id`=
+    public function UpdateEmployeeLocation($emp_id, $new_loc_id)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("UPDATE `pos_employeeinfo` SET `emp_locid`='" . $new_loc_id . "' WHERE `emp_id`='" . $emp_id . "'");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
     /**
      * Get all sub groups (categories) for commission setup
      */

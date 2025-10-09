@@ -4545,6 +4545,20 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Failed to delete commission'));
         }
     }
+
+    if ((int) $_REQUEST['SalesManCommission'] == 15) { // Update Employee Location
+        $getjson = file_get_contents("php://input");
+        $row = json_decode($getjson, true);
+        $emp_id = $row['EmployeeId'];
+        $new_loc_id = $row['NewLocId'];
+
+        $RequestUpdate = $clsfunreq->UpdateEmployeeLocation($emp_id, $new_loc_id);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Msg" => 'Employee location updated successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to update employee location'));
+        }
+    }
 }
 //Mgmt Request
 elseif (isset($_REQUEST['MgmtRequest'])) {

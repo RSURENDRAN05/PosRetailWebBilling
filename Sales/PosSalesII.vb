@@ -4369,6 +4369,16 @@ Public Class PosSalesII
     End Sub
 #End Region
 #Region "ShiftClose/Staff/CashDrawer"
+    Private Sub barbtnstafflocationchanges_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnstafflocationchanges.ItemClick
+        Try
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                FrmStaffLocationChanges.ShowDialog()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub barbtncounterclose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtncounterclose.ItemClick
         Try
             If CheckSalesBeforeCounterClose() = False Then
@@ -4571,6 +4581,7 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+
 
 
 End Class
