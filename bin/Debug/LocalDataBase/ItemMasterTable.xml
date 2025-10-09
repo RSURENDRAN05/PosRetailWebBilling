@@ -253,7 +253,7 @@
   <ItemMasterTable>
     <ITEMCODE>15</ITEMCODE>
     <BARCODE>15</BARCODE>
-    <ITEMNAME>HAIR MASSAGE STEAMING WASH</ITEMNAME>
+    <ITEMNAME>OIL MASSAGE STEAMING WASH</ITEMNAME>
     <TAXID>1</TAXID>
     <TAXNAME>Tax 0%</TAXNAME>
     <TAXVALUE>0</TAXVALUE>
@@ -351,7 +351,7 @@
   <ItemMasterTable>
     <ITEMCODE>16</ITEMCODE>
     <BARCODE>16</BARCODE>
-    <ITEMNAME>HAIR MASSAGE</ITEMNAME>
+    <ITEMNAME>OIL MASSAGE</ITEMNAME>
     <TAXID>1</TAXID>
     <TAXNAME>Tax 0%</TAXNAME>
     <TAXVALUE>0</TAXVALUE>
@@ -365,7 +365,7 @@
   <ItemMasterTable>
     <ITEMCODE>17</ITEMCODE>
     <BARCODE>17</BARCODE>
-    <ITEMNAME>HAIR TREATMENT</ITEMNAME>
+    <ITEMNAME>KERATIN TREATMENT</ITEMNAME>
     <TAXID>1</TAXID>
     <TAXNAME>Tax 0%</TAXNAME>
     <TAXVALUE>0</TAXVALUE>
@@ -664,7 +664,7 @@
     <TAXNAME>Tax 0%</TAXNAME>
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
-    <SELL>25.00</SELL>
+    <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>1</LOCID>
@@ -771,12 +771,348 @@
   <ItemMasterTable>
     <ITEMCODE>58</ITEMCODE>
     <BARCODE>57</BARCODE>
-    <ITEMNAME>PACKAGE 1</ITEMNAME>
+    <ITEMNAME>MOISTURISER TREATMENT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>80.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>59</ITEMCODE>
+    <BARCODE>58</BARCODE>
+    <ITEMNAME>CLASSIC MENICURE - PEDICURE</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>88.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>60</ITEMCODE>
+    <BARCODE>59</BARCODE>
+    <ITEMNAME>SCALP TREATMENT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>50.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>61</ITEMCODE>
+    <BARCODE>60</BARCODE>
+    <ITEMNAME>KERATIN TREATMENT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>150.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>62</ITEMCODE>
+    <BARCODE>61</BARCODE>
+    <ITEMNAME>PERMING</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>150.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>63</ITEMCODE>
+    <BARCODE>62</BARCODE>
+    <ITEMNAME>RELAXING</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>150.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>64</ITEMCODE>
+    <BARCODE>63</BARCODE>
+    <ITEMNAME>REBONDING</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>150.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>65</ITEMCODE>
+    <BARCODE>64</BARCODE>
+    <ITEMNAME>SCALP - MOISTURISER TREATMENT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>120.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>66</ITEMCODE>
+    <BARCODE>65</BARCODE>
+    <ITEMNAME>WASH - BLOW</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>30.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>67</ITEMCODE>
+    <BARCODE>66</BARCODE>
+    <ITEMNAME>DRY CUT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>20.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>68</ITEMCODE>
+    <BARCODE>67</BARCODE>
+    <ITEMNAME>WASH - CUT - BLOW</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>55.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>69</ITEMCODE>
+    <BARCODE>68</BARCODE>
+    <ITEMNAME>HIGHLIGHT</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>150.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>70</ITEMCODE>
+    <BARCODE>69</BARCODE>
+    <ITEMNAME>COLOUR</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>80.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>71</ITEMCODE>
+    <BARCODE>70</BARCODE>
+    <ITEMNAME>ROOT TOUCH UP </ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>60.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>72</ITEMCODE>
+    <BARCODE>71</BARCODE>
+    <ITEMNAME>OIL MASSAGE</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>50.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>73</ITEMCODE>
+    <BARCODE>72</BARCODE>
+    <ITEMNAME>OIL MASSAGE STEAMING WASHING</ITEMNAME>
     <TAXID>1</TAXID>
     <TAXNAME>Tax 0%</TAXNAME>
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>100.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>74</ITEMCODE>
+    <BARCODE>73</BARCODE>
+    <ITEMNAME>HAIR SETTING</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>25.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>75</ITEMCODE>
+    <BARCODE>74</BARCODE>
+    <ITEMNAME>CLASSIC MANI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>45.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>76</ITEMCODE>
+    <BARCODE>75</BARCODE>
+    <ITEMNAME>CLASSIC PEDI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>55.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>77</ITEMCODE>
+    <BARCODE>76</BARCODE>
+    <ITEMNAME>EXTENSION</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>120.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>78</ITEMCODE>
+    <BARCODE>77</BARCODE>
+    <ITEMNAME>GEL MANI - PEDI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>158.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>79</ITEMCODE>
+    <BARCODE>78</BARCODE>
+    <ITEMNAME>GEL MANI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>80.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>80</ITEMCODE>
+    <BARCODE>79</BARCODE>
+    <ITEMNAME>GEL PEDI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>90.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>81</ITEMCODE>
+    <BARCODE>80</BARCODE>
+    <ITEMNAME>SPA MANI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>90.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>2</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>82</ITEMCODE>
+    <BARCODE>81</BARCODE>
+    <ITEMNAME>SPA PEDI</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>90.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>

@@ -150,11 +150,11 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>8</CateId>
-    <CateName>MANICURE</CateName>
+    <CateName>NAILS COMBO</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>47</id>
     <item_id>8</item_id>
     <menu_type>Sub</menu_type>
@@ -167,11 +167,11 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>9</CateId>
-    <CateName>PEDICURE</CateName>
+    <CateName>MANICURE PEDICURE</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>48</id>
     <item_id>9</item_id>
     <menu_type>Sub</menu_type>
@@ -218,11 +218,11 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>51</id>
     <item_id>12</item_id>
     <menu_type>Sub</menu_type>

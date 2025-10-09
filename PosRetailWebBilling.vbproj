@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationRevision>33</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -268,6 +268,12 @@
     <Compile Include="ClsModule\M_CONNECT.vb" />
     <Compile Include="ClsModule\SalesDBHelper.vb" />
     <Compile Include="ClsModule\shiftclosecheck.vb" />
+    <Compile Include="Controller\frmMsgBoxOkOnly.designer.vb">
+      <DependentUpon>frmMsgBoxOkOnly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\frmMsgBoxOkOnly.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controller\frmbusinessDate.designer.vb">
       <DependentUpon>frmbusinessDate.vb</DependentUpon>
     </Compile>
@@ -820,6 +826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChequeSystem\frmTodayCheque.resx">
       <DependentUpon>frmTodayCheque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\frmMsgBoxOkOnly.resx">
+      <DependentUpon>frmMsgBoxOkOnly.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\frmbusinessDate.resx">
       <DependentUpon>frmbusinessDate.vb</DependentUpon>

@@ -519,7 +519,7 @@
   <ItemTouchMasterTable>
     <Id>15</Id>
     <BarCode>15</BarCode>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -555,7 +555,7 @@
   <ItemTouchMasterTable>
     <Id>16</Id>
     <BarCode>16</BarCode>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -591,7 +591,7 @@
   <ItemTouchMasterTable>
     <Id>17</Id>
     <BarCode>17</BarCode>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1786,9 +1786,9 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>25.00</SellPrice>
+    <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -1822,7 +1822,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1858,7 +1858,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>35.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1894,7 +1894,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1930,7 +1930,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1966,7 +1966,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>45.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2002,7 +2002,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2038,7 +2038,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>12</CateId>
-    <CateName>OTHERS</CateName>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2067,16 +2067,52 @@
   <ItemTouchMasterTable>
     <Id>58</Id>
     <BarCode>57</BarCode>
-    <ItemName>PACKAGE 1</ItemName>
-    <BusinessType>71</BusinessType>
+    <ItemName>MOISTURISER TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
-    <CateId>13</CateId>
-    <CateName>LADIES HAIR CUT</CateName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>100.00</SellPrice>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>81</LnkId>
+    <item_id>58</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>59</Id>
+    <BarCode>58</BarCode>
+    <ItemName>CLASSIC MENICURE - PEDICURE</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>NAILS COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>88.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -2090,8 +2126,836 @@
     <ComId>2</ComId>
     <LocId>2</LocId>
     <Color>LightBlue</Color>
-    <LnkId>81</LnkId>
-    <item_id>58</item_id>
+    <LnkId>82</LnkId>
+    <item_id>59</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>60</Id>
+    <BarCode>59</BarCode>
+    <ItemName>SCALP TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>83</LnkId>
+    <item_id>60</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>61</Id>
+    <BarCode>60</BarCode>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>84</LnkId>
+    <item_id>61</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>62</Id>
+    <BarCode>61</BarCode>
+    <ItemName>PERMING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>85</LnkId>
+    <item_id>62</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>63</Id>
+    <BarCode>62</BarCode>
+    <ItemName>RELAXING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>86</LnkId>
+    <item_id>63</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>64</Id>
+    <BarCode>63</BarCode>
+    <ItemName>REBONDING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>87</LnkId>
+    <item_id>64</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>65</Id>
+    <BarCode>64</BarCode>
+    <ItemName>SCALP - MOISTURISER TREATMENT</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>88</LnkId>
+    <item_id>65</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>66</Id>
+    <BarCode>65</BarCode>
+    <ItemName>WASH - BLOW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>89</LnkId>
+    <item_id>66</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>67</Id>
+    <BarCode>66</BarCode>
+    <ItemName>DRY CUT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>90</LnkId>
+    <item_id>67</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>68</Id>
+    <BarCode>67</BarCode>
+    <ItemName>WASH - CUT - BLOW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>55.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>91</LnkId>
+    <item_id>68</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>69</Id>
+    <BarCode>68</BarCode>
+    <ItemName>HIGHLIGHT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>92</LnkId>
+    <item_id>69</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>70</Id>
+    <BarCode>69</BarCode>
+    <ItemName>COLOUR</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>93</LnkId>
+    <item_id>70</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>71</Id>
+    <BarCode>70</BarCode>
+    <ItemName>ROOT TOUCH UP </ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>94</LnkId>
+    <item_id>71</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>72</Id>
+    <BarCode>71</BarCode>
+    <ItemName>OIL MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>16</CateId>
+    <CateName>L. HAIR MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>95</LnkId>
+    <item_id>72</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>73</Id>
+    <BarCode>72</BarCode>
+    <ItemName>OIL MASSAGE STEAMING WASHING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>16</CateId>
+    <CateName>L. HAIR MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>96</LnkId>
+    <item_id>73</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>74</Id>
+    <BarCode>73</BarCode>
+    <ItemName>HAIR SETTING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>97</LnkId>
+    <item_id>74</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>75</Id>
+    <BarCode>74</BarCode>
+    <ItemName>CLASSIC MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>45.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>98</LnkId>
+    <item_id>75</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>76</Id>
+    <BarCode>75</BarCode>
+    <ItemName>CLASSIC PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>55.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>99</LnkId>
+    <item_id>76</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>77</Id>
+    <BarCode>76</BarCode>
+    <ItemName>EXTENSION</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>10</CateId>
+    <CateName>NAIL EXTENSION</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>100</LnkId>
+    <item_id>77</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>78</Id>
+    <BarCode>77</BarCode>
+    <ItemName>GEL MANI - PEDI</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>NAILS COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>158.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>101</LnkId>
+    <item_id>78</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>79</Id>
+    <BarCode>78</BarCode>
+    <ItemName>GEL MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>102</LnkId>
+    <item_id>79</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>80</Id>
+    <BarCode>79</BarCode>
+    <ItemName>GEL PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>90.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>103</LnkId>
+    <item_id>80</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>81</Id>
+    <BarCode>80</BarCode>
+    <ItemName>SPA MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>90.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>104</LnkId>
+    <item_id>81</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>82</Id>
+    <BarCode>81</BarCode>
+    <ItemName>SPA PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MANICURE PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>90.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>105</LnkId>
+    <item_id>82</item_id>
     <menu_type>Item</menu_type>
     <font_size>10.0</font_size>
     <font_name>Segoe UI</font_name>

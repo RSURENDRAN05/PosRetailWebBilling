@@ -324,7 +324,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -342,7 +342,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -378,7 +378,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -756,7 +756,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -774,7 +774,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -810,7 +810,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -1188,7 +1188,7 @@
     <SalesmanName>KAVI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -1206,7 +1206,7 @@
     <SalesmanName>KAVI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -1242,7 +1242,7 @@
     <SalesmanName>KAVI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -1620,7 +1620,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -1638,7 +1638,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -1674,7 +1674,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -2052,7 +2052,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2070,7 +2070,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2106,7 +2106,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -2484,7 +2484,7 @@
     <SalesmanName>MANI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2502,7 +2502,7 @@
     <SalesmanName>MANI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2538,7 +2538,7 @@
     <SalesmanName>MANI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -2916,7 +2916,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2934,7 +2934,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -2970,7 +2970,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -3330,7 +3330,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -3348,7 +3348,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -3384,7 +3384,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -3726,7 +3726,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -3744,7 +3744,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -3780,7 +3780,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -4140,7 +4140,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -4158,7 +4158,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -4194,7 +4194,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -4572,7 +4572,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -4590,7 +4590,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -4626,7 +4626,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -5004,7 +5004,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5022,7 +5022,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5058,7 +5058,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -5436,7 +5436,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5454,7 +5454,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5490,7 +5490,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -5868,7 +5868,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5886,7 +5886,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -5922,7 +5922,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -6282,7 +6282,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -6300,7 +6300,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -6336,7 +6336,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>
@@ -6696,7 +6696,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>16</ItemId>
-    <ItemName>HAIR MASSAGE</ItemName>
+    <ItemName>OIL MASSAGE</ItemName>
     <Barcode>16</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -6714,7 +6714,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>15</ItemId>
-    <ItemName>HAIR MASSAGE STEAMING WASH</ItemName>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <Barcode>15</Barcode>
     <SubGroupId>4</SubGroupId>
     <SubGroupName>HAIR MASSAGE</SubGroupName>
@@ -6750,7 +6750,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>17</ItemId>
-    <ItemName>HAIR TREATMENT</ItemName>
+    <ItemName>KERATIN TREATMENT</ItemName>
     <Barcode>17</Barcode>
     <SubGroupId>5</SubGroupId>
     <SubGroupName>HAIR TREATMENT</SubGroupName>

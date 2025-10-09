@@ -1,6 +1,6 @@
 ﻿Imports PosRetailWebBilling.clssalesProperty
 
-Public Class frmMsgBox
+Public Class frmMsgBoxOkOnly
     Dim _msg As String = ""
     Public Overloads Sub ShowDialogData(ByVal Msg As String)
         Try
@@ -13,7 +13,7 @@ Public Class frmMsgBox
     End Sub
     Private Sub btnYes_Click(sender As Object, e As EventArgs) Handles btnYes.Click
         Try
-            Me.DialogResult = Windows.Forms.DialogResult.Yes
+            Me.DialogResult = Windows.Forms.DialogResult.OK
             'properClass.R_YesOrNo = "Yes"
             Me.Close()
         Catch ex As Exception
@@ -21,7 +21,7 @@ Public Class frmMsgBox
         End Try
     End Sub
 
-    Private Sub btnNo_Click(sender As Object, e As EventArgs) Handles btnNo.Click
+    Private Sub btnNo_Click(sender As Object, e As EventArgs)
         Try
             Me.DialogResult = Windows.Forms.DialogResult.No
             'properClass.R_YesOrNo = "No"
@@ -39,13 +39,4 @@ Public Class frmMsgBox
 
     '    End Try
     'End Sub
-
-    Private Sub btnprint_Click(sender As Object, e As EventArgs) Handles btnprint.Click
-        Try
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            Me.Close()
-        Catch ex As Exception
-
-        End Try
-    End Sub
 End Class

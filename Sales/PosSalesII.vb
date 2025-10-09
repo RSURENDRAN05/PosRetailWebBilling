@@ -18,6 +18,7 @@ Public Class PosSalesII
     Dim Errstr As String
     Dim _SnoCount As Integer = 0
     Dim modeOfSale As String = "New"
+    Dim modeBillHold As String = "New"
     ' Customer Selection Variables
     Private selectedCustomerId As Integer = 0
     Private selectedCustomerName As String = String.Empty
@@ -2223,7 +2224,10 @@ Public Class PosSalesII
 
             ' Set mode to new
             modeOfSale = "New"
+            modeBillHold = "New"
             barbtnstatus.Caption = "Sales Mode : " & modeOfSale
+            barbtnbilltype.Caption = "Sales"
+            barbtntokenno.Caption = "0"
             ' Clear selected customer
             ClearSelectedCustomer()
 
@@ -3191,7 +3195,7 @@ Public Class PosSalesII
             End If
             Dim _givenAmt As Decimal = 0.0
             Dim _BalanceAmt As Decimal = 0.0
-            If modeOfSale = "New" Then
+            If modeBillHold = "New" Then
                 If GridViewPOS.RowCount > 0 Then
 
                     ' No payments in table, use default cash
@@ -3300,8 +3304,11 @@ Public Class PosSalesII
                     ' Always use Dictionary method for both single and multiple payments
                     If billHoldHelper.SaveHoldBill(_saleData, salesDetailsList, _errMsgResult, ReturnBill) = True Then
                         barstatuslastbillno.Caption = ReturnBill
+                        Dim frmMsgBox As New frmMsgBoxOkOnly
+                        Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Hold Saved - " & ReturnBill
+                        frmMsgBox.ShowDialogData(msgData.ToString)
                         ' _CashDraw.OpenCashdrawer(True)
-                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Saved Success.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Saved Success.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         barbtnNewBill_ItemClick(Nothing, Nothing)
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -3309,7 +3316,7 @@ Public Class PosSalesII
 
                 End If
 
-            ElseIf modeOfSale = "Edit" Then
+            ElseIf modeBillHold = "Edit" Then
                 If GridViewPOS.RowCount > 0 Then
                     ' No payments in table, use default cash
                     _PaymentDtl.paymentModeSelection = "Hold Bill"
@@ -3419,8 +3426,9 @@ Public Class PosSalesII
                     ' Always use Dictionary method for both single and multiple payments
                     If billHoldHelper.UpdateHoldBill(_saleData, salesDetailsList, _errMsgResult, ReturnBill) = True Then
                         barstatuslastbillno.Caption = ReturnBill
-                        '_CashDraw.OpenCashdrawer(True)
-                        DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Dim frmMsgBox As New frmMsgBoxOkOnly
+                        Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Hold Updated - " & ReturnBill
+                        frmMsgBox.ShowDialogData(msgData.ToString)
                         barbtnNewBill_ItemClick(Nothing, Nothing)
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -3638,13 +3646,11 @@ Public Class PosSalesII
                             If BillHoldTokenNo > 0 And BillHoldTrno > 0 Then
                                 billHoldHelper.UpdateHoldBillStatus(BillHoldTokenNo, BillHoldTrno)
                             End If
-                            Dim frmMsgBox As New frmMsgBox
-                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved" & vbNewLine & "Do you want preview bill? " & ReturnBill
+                            Dim frmMsgBox As New frmMsgBoxOkOnly
+                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved - " & ReturnBill
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                             frmMsgBox.ShowDialogData(msgData.ToString)
-                            If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
-                                PrintPreview()
-                            End If
+                           
 
                             'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Else
@@ -3822,12 +3828,9 @@ Public Class PosSalesII
                             _CashDraw.OpenCashdrawer(True)
                             'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             barbtnNewBill_ItemClick(Nothing, Nothing)
-                            Dim frmMsgBox As New frmMsgBox
-                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved" & vbNewLine & "Do you want preview bill " & ReturnBill
+                            Dim frmMsgBox As New frmMsgBoxOkOnly
+                            Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Updated - " & ReturnBill
                             frmMsgBox.ShowDialogData(msgData.ToString)
-                            If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
-                                PrintPreview()
-                            End If
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
@@ -3926,11 +3929,8 @@ Public Class PosSalesII
         Try
             Dim resData As New DataSet
             If GetHoldByBillLocal(Sal_id, resData, "H") = True Then
-                If RegistrationDetails._paymentPopupActive = False Then
-                    modeOfSale = "Edit"
-                Else
-                    modeOfSale = "New"
-                End If
+                
+                modeBillHold = "Edit"
 
                 If resData.Tables(0).Rows.Count > 0 Then
                     Dim billno = resData.Tables(0).Rows(0)("psih_invoice_trno")
@@ -3986,7 +3986,7 @@ Public Class PosSalesII
                         Dim netAmount As Decimal = _RoundOff(rData("psid_invoice_netamt"))
                         Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
                         Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
-                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salespersonid"), Convert.ToInt32(rData("psid_invoice_salespersonid")), 1)
+                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salesmanid"), Convert.ToInt32(rData("psid_invoice_salesmanid")), 1)
                         Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
                         Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
                         Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
@@ -4324,16 +4324,24 @@ Public Class PosSalesII
     End Sub
     Private Sub btnlastprint_Click(sender As Object, e As EventArgs) Handles btnlastprint.ItemClick
         Try
-            Dim _receDs As New DataSet
-            If (GetSalesByBillLocal(barstatuslastbillno.Caption, _receDs, "P")) = True Then
-                If (_receDs.Tables(0).Rows.Count > 0) Then
-                    _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
-                End If
+            Dim frmMsgBox As New frmMsgBox
+            Dim msgData = "Do you to show preview? This Bill - " & barstatuslastbillno.Caption & " ' Preview - Yes '" & vbNewLine & "'Print'"
+            frmMsgBox.ShowDialogData(msgData.ToString)
+            If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
+                PrintPreview()
+            ElseIf frmMsgBox.DialogResult = Windows.Forms.DialogResult.OK Then
+                Dim _receDs As New DataSet
+                If (GetSalesByBillLocal(barstatuslastbillno.Caption, _receDs, "P")) = True Then
+                    If (_receDs.Tables(0).Rows.Count > 0) Then
+                        _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
+                    End If
 
-                If clsBillPrint.BillPrintMin(_receDs, Errstr, "SalesMinPrint.repx") = True Then
-                    _CashDraw._paperCut(True)
+                    If clsBillPrint.BillPrintMin(_receDs, Errstr, "SalesMinPrint.repx") = True Then
+                        '_CashDraw._paperCut(True)
+                    End If
                 End If
             End If
+           
         Catch ex As Exception
 
         End Try
