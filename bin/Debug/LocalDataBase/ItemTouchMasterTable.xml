@@ -1059,7 +1059,7 @@
   <ItemTouchMasterTable>
     <Id>30</Id>
     <BarCode>29</BarCode>
-    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <ItemName>HAIR DYE [SERVICE ONLY]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1070,7 +1070,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>30.00</MinPrice>
+    <MinPrice>10.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1284,9 +1284,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>60.00</SellPrice>
+    <SellPrice>100.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>100.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1320,9 +1320,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>40.00</SellPrice>
+    <SellPrice>60.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>60.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1356,9 +1356,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>55.00</SellPrice>
+    <SellPrice>60.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>60.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1392,9 +1392,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>35.00</SellPrice>
+    <SellPrice>40.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>40.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1428,9 +1428,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>60.00</SellPrice>
+    <SellPrice>100.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>100.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1464,9 +1464,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>80.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>40.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1500,9 +1500,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>18.00</SellPrice>
+    <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>20.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1527,7 +1527,7 @@
   <ItemTouchMasterTable>
     <Id>43</Id>
     <BarCode>42</BarCode>
-    <ItemName>UPPERLIP</ItemName>
+    <ItemName>UPPER LIP</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1536,9 +1536,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>12.00</SellPrice>
+    <SellPrice>15.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>15.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1572,9 +1572,9 @@
     <CateId>18</CateId>
     <CateName>L. WAXING</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>10.00</SellPrice>
+    <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>15.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1642,7 +1642,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>11</CateId>
-    <CateName>NAIL DESIGN</CateName>
+    <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>8.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1678,7 +1678,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>11</CateId>
-    <CateName>NAIL DESIGN</CateName>
+    <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>15.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1714,7 +1714,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>11</CateId>
-    <CateName>NAIL DESIGN</CateName>
+    <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>5.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1750,7 +1750,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>11</CateId>
-    <CateName>NAIL DESIGN</CateName>
+    <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>5.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2067,7 +2067,7 @@
   <ItemTouchMasterTable>
     <Id>58</Id>
     <BarCode>57</BarCode>
-    <ItemName>MOISTURISER TREATMENT</ItemName>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2078,7 +2078,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>80.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>80.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2110,7 +2110,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>8</CateId>
-    <CateName>NAILS COMBO</CateName>
+    <CateName>MANI-PEDI COMBO</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>88.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2150,7 +2150,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>50.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>50.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2186,7 +2186,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>150.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>150.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2222,7 +2222,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>150.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>150.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2258,7 +2258,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>150.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>150.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2294,7 +2294,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>150.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>150.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2366,7 +2366,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2381,12 +2381,12 @@
     <LnkId>89</LnkId>
     <item_id>66</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>67</Id>
@@ -2400,9 +2400,9 @@
     <CateId>13</CateId>
     <CateName>LADIES HAIR CUT</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>25.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2438,7 +2438,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>55.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>55.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2463,7 +2463,7 @@
   <ItemTouchMasterTable>
     <Id>69</Id>
     <BarCode>68</BarCode>
-    <ItemName>HIGHLIGHT</ItemName>
+    <ItemName>HAIR HIGHLIGHTING</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2474,7 +2474,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>150.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>150.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2499,7 +2499,7 @@
   <ItemTouchMasterTable>
     <Id>70</Id>
     <BarCode>69</BarCode>
-    <ItemName>COLOUR</ItemName>
+    <ItemName>HAIR COLOURING [FULL HAIR]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2510,7 +2510,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>80.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>80.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2546,7 +2546,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>60.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>60.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2571,18 +2571,18 @@
   <ItemTouchMasterTable>
     <Id>72</Id>
     <BarCode>71</BarCode>
-    <ItemName>OIL MASSAGE</ItemName>
+    <ItemName>HOT OIL MASSAGE</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <CateId>16</CateId>
-    <CateName>L. HAIR MASSAGE</CateName>
+    <CateName>L. OIL MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>50.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>50.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2607,18 +2607,18 @@
   <ItemTouchMasterTable>
     <Id>73</Id>
     <BarCode>72</BarCode>
-    <ItemName>OIL MASSAGE STEAMING WASHING</ItemName>
+    <ItemName>HOT OIL MASSAGE STEAMING WASH</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <CateId>16</CateId>
-    <CateName>L. HAIR MASSAGE</CateName>
+    <CateName>L. OIL MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>100.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>100.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2654,7 +2654,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>25.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2669,12 +2669,12 @@
     <LnkId>97</LnkId>
     <item_id>74</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>75</Id>
@@ -2686,7 +2686,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>45.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2722,7 +2722,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>55.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2794,7 +2794,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>8</CateId>
-    <CateName>NAILS COMBO</CateName>
+    <CateName>MANI-PEDI COMBO</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>158.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2830,7 +2830,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>80.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2866,7 +2866,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>90.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2902,7 +2902,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>90.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2938,7 +2938,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>90.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -2956,6 +2956,330 @@
     <Color>LightBlue</Color>
     <LnkId>105</LnkId>
     <item_id>82</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>83</Id>
+    <BarCode>82</BarCode>
+    <ItemName>COLOUR PROTECTOR [FOR ALLERGY SCALP]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>106</LnkId>
+    <item_id>83</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>84</Id>
+    <BarCode>83</BarCode>
+    <ItemName>HERBAL KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>350.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>350.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>107</LnkId>
+    <item_id>84</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>85</Id>
+    <BarCode>84</BarCode>
+    <ItemName>SCALP - HAIR MOISTURISER TREATMENT </ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>120.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>108</LnkId>
+    <item_id>85</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>86</Id>
+    <BarCode>85</BarCode>
+    <ItemName>FULL NECK</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>109</LnkId>
+    <item_id>86</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>87</Id>
+    <BarCode>86</BarCode>
+    <ItemName>HALF NECK</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>110</LnkId>
+    <item_id>87</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>88</Id>
+    <BarCode>87</BarCode>
+    <ItemName>EYE COLLAGEN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>40.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>111</LnkId>
+    <item_id>88</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>89</Id>
+    <BarCode>88</BarCode>
+    <ItemName>FACE WASH</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>112</LnkId>
+    <item_id>89</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>90</Id>
+    <BarCode>89</BarCode>
+    <ItemName>FACIAL [EXPRESS]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>40.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>113</LnkId>
+    <item_id>90</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>10.0</font_size>
+    <font_name>Segoe UI</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,255,255)</text_color>
+    <back_color>Argb(255,72,61,139)</back_color>
+    <Position>0</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>91</Id>
+    <BarCode>90</BarCode>
+    <ItemName>FACIAL [CLASSIC]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>99.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>99.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>114</LnkId>
+    <item_id>91</item_id>
     <menu_type>Item</menu_type>
     <font_size>10.0</font_size>
     <font_name>Segoe UI</font_name>

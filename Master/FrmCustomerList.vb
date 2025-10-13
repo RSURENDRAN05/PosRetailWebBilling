@@ -36,6 +36,7 @@ Public Class FrmCustomerList
 
     Private Sub LoadCustomers()
         Try
+            getCustomerMaster()
             If _JsonData.CustomerTable.Rows.Count > 0 Then
                 GridControlCustomers.DataSource = _JsonData.CustomerTable
             End If
@@ -199,6 +200,16 @@ Public Class FrmCustomerList
             End If
         Catch ex As Exception
             MessageBox.Show("Error in key press: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Try
+            ' Close dialog with OK result
+            Me.DialogResult = DialogResult.Cancel
+            Me.Close()
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class

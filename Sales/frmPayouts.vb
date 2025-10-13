@@ -37,6 +37,7 @@ Public Class frmPayouts
             _dsDataLoad = New DataSet
             If _JsonData.SalesManDataTable.Rows.Count > 0 Then
                 StaffTable.BeginInit()
+                StaffTable.Rows.Add(0, "SelectAll")
                 For Each rowStaff In _JsonData.SalesManDataTable.Rows
                     Dim id = rowStaff("Id")
                     Dim name = rowStaff("SalesMan")
@@ -558,21 +559,15 @@ Public Class frmPayouts
             Dim fromDate As Date = Convert.ToDateTime(PayDateFrom.EditValue).Date
             Dim toDate As Date = Convert.ToDateTime(PayDateTo.EditValue).Date
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=6&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&startDate=" & fromDate.ToString("yyyy-MM-dd") & "&endDate=" & toDate.ToString("yyyy-MM-dd") & "&salesmanId=" & empId)
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=5&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&startDate=" & fromDate.ToString("yyyy-MM-dd") & "&endDate=" & toDate.ToString("yyyy-MM-dd") & "&salesmanId=" & empId)
             Dim Userparsejson As JObject = JObject.Parse(json)
             Dts = Userparsejson("Data").ToObject(Of DataTable)()
             If Dts.Rows.Count > 0 Then
                 ' Using LINQ to filter DataTable
                 ' Using LINQ with decimal conversion
-                Dim filteredRows = From row In Dts.AsEnumerable()
-                                  Where Convert.ToDecimal(row("Commission")) > 0
-                                  Select row
-
-                If filteredRows.Any() Then
-                    GridControl3.DataSource = filteredRows.CopyToDataTable()
-                Else
-                    GridControl3.DataSource = Nothing
-                End If
+               
+                GridControl3.DataSource = Dts
+               
             dialog.Close()
             Else
             GridControl3.DataSource = Nothing

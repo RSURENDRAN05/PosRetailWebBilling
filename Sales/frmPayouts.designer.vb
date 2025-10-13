@@ -41,6 +41,7 @@ Partial Class frmPayouts
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExit = New DevExpress.XtraEditors.SimpleButton()
         Me.btndelete = New DevExpress.XtraEditors.SimpleButton()
@@ -54,7 +55,6 @@ Partial Class frmPayouts
         Me.PayDateTo = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.btnAdvance = New DevExpress.XtraEditors.SimpleButton()
         Me.btnSales = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
@@ -62,7 +62,6 @@ Partial Class frmPayouts
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,6 +274,15 @@ Partial Class frmPayouts
         Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 90
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Date"
+        Me.GridColumn6.FieldName = "DateTime"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 128
+        '
         'btnSave
         '
         Me.btnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -409,7 +417,7 @@ Partial Class frmPayouts
         Me.PayDateFrom.Name = "PayDateFrom"
         Me.PayDateFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.PayDateFrom.Properties.Appearance.Options.UseFont = True
-        Me.PayDateFrom.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.PayDateFrom.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.PayDateFrom.Properties.AppearanceDropDown.Options.UseFont = True
         Me.PayDateFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.PayDateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -427,11 +435,11 @@ Partial Class frmPayouts
         Me.btnSearch.Appearance.Options.UseBackColor = True
         Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.btnSearch.Location = New System.Drawing.Point(921, 183)
+        Me.btnSearch.Location = New System.Drawing.Point(921, 190)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(95, 38)
         Me.btnSearch.TabIndex = 21
-        Me.btnSearch.Text = "Serach"
+        Me.btnSearch.Text = "Search"
         '
         'PayDateTo
         '
@@ -440,7 +448,7 @@ Partial Class frmPayouts
         Me.PayDateTo.Name = "PayDateTo"
         Me.PayDateTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.PayDateTo.Properties.Appearance.Options.UseFont = True
-        Me.PayDateTo.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.PayDateTo.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.PayDateTo.Properties.AppearanceDropDown.Options.UseFont = True
         Me.PayDateTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.PayDateTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -472,15 +480,6 @@ Partial Class frmPayouts
         Me.Label6.Size = New System.Drawing.Size(87, 21)
         Me.Label6.TabIndex = 24
         Me.Label6.Text = "To Date :"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Date"
-        Me.GridColumn6.FieldName = "DateTime"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        Me.GridColumn6.Width = 128
         '
         'btnAdvance
         '
@@ -531,7 +530,7 @@ Partial Class frmPayouts
         Me.GridView3.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridView3.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView3.Appearance.Row.Options.UseFont = True
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11})
         Me.GridView3.GridControl = Me.GridControl3
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
@@ -553,46 +552,37 @@ Partial Class frmPayouts
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "ItemName"
-        Me.GridColumn8.FieldName = "ItemName"
+        Me.GridColumn8.Caption = "Name"
+        Me.GridColumn8.FieldName = "Name"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.VisibleIndex = 1
         Me.GridColumn8.Width = 211
         '
         'GridColumn9
         '
         Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "SalAmt"
+        Me.GridColumn9.Caption = "TotalSales"
         Me.GridColumn9.DisplayFormat.FormatString = "n2"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "NetAmt"
+        Me.GridColumn9.FieldName = "TotalNetAmt"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmt", "", 0.0R)})
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalNetAmt", "", 0.0R)})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 136
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Date"
-        Me.GridColumn10.FieldName = "Date"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 87
         '
         'GridColumn11
         '
         Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "ComAmt"
-        Me.GridColumn11.FieldName = "Commission"
+        Me.GridColumn11.Caption = "Comm Amt"
+        Me.GridColumn11.FieldName = "TotalCommission"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 3
         Me.GridColumn11.Width = 113
         '
         'frmPayouts
@@ -685,6 +675,5 @@ Partial Class frmPayouts
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

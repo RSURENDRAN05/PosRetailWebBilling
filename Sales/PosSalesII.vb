@@ -1529,7 +1529,7 @@ Public Class PosSalesII
                                     Dim filteredRows As DataRow() = Nothing
                                     Try
                                         ' Approach 1: Direct comparison with integer
-                                        filteredRows = itemTable.Select("Id = " & pkgItemCode)
+                                        'filteredRows = itemTable.Select("Id = " & pkgItemCode)
 
                                         ' If no rows found, try alternative approaches
                                         If filteredRows Is Nothing OrElse filteredRows.Length = 0 Then

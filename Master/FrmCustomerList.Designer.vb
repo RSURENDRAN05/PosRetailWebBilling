@@ -25,26 +25,27 @@ Partial Class FrmCustomerList
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GridControlCustomers = New DevExpress.XtraGrid.GridControl()
         Me.GridViewCustomers = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemImageComboBoxStatus = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnDeleteCustomer = New DevExpress.XtraEditors.SimpleButton()
         Me.btnEditCustomer = New DevExpress.XtraEditors.SimpleButton()
         Me.btnNewCustomer = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.RepositoryItemImageComboBoxStatus = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControlCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemImageComboBoxStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemImageComboBoxStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -104,80 +105,6 @@ Partial Class FrmCustomerList
         Me.GridViewCustomers.OptionsView.ShowGroupPanel = False
         Me.GridViewCustomers.RowHeight = 40
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.btnRefresh)
-        Me.PanelControl2.Controls.Add(Me.btnDeleteCustomer)
-        Me.PanelControl2.Controls.Add(Me.btnEditCustomer)
-        Me.PanelControl2.Controls.Add(Me.btnNewCustomer)
-        Me.PanelControl2.Location = New System.Drawing.Point(12, 447)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(760, 40)
-        Me.PanelControl2.TabIndex = 2
-        '
-        'btnRefresh
-        '
-        Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRefresh.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
-        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnRefresh.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.btnRefresh.Appearance.Options.UseBackColor = True
-        Me.btnRefresh.Appearance.Options.UseFont = True
-        Me.btnRefresh.Appearance.Options.UseForeColor = True
-        Me.btnRefresh.Location = New System.Drawing.Point(675, 5)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(85, 30)
-        Me.btnRefresh.TabIndex = 6
-        Me.btnRefresh.Text = "Refresh (F5)"
-        '
-        'btnDeleteCustomer
-        '
-        Me.btnDeleteCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDeleteCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
-        Me.btnDeleteCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDeleteCustomer.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.btnDeleteCustomer.Appearance.Options.UseBackColor = True
-        Me.btnDeleteCustomer.Appearance.Options.UseFont = True
-        Me.btnDeleteCustomer.Appearance.Options.UseForeColor = True
-        Me.btnDeleteCustomer.Location = New System.Drawing.Point(584, 5)
-        Me.btnDeleteCustomer.Name = "btnDeleteCustomer"
-        Me.btnDeleteCustomer.Size = New System.Drawing.Size(85, 30)
-        Me.btnDeleteCustomer.TabIndex = 5
-        Me.btnDeleteCustomer.Text = "Delete (Del)"
-        '
-        'btnEditCustomer
-        '
-        Me.btnEditCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.btnEditCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnEditCustomer.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.btnEditCustomer.Appearance.Options.UseBackColor = True
-        Me.btnEditCustomer.Appearance.Options.UseFont = True
-        Me.btnEditCustomer.Appearance.Options.UseForeColor = True
-        Me.btnEditCustomer.Location = New System.Drawing.Point(493, 5)
-        Me.btnEditCustomer.Name = "btnEditCustomer"
-        Me.btnEditCustomer.Size = New System.Drawing.Size(85, 30)
-        Me.btnEditCustomer.TabIndex = 4
-        Me.btnEditCustomer.Text = "Edit (Enter)"
-        '
-        'btnNewCustomer
-        '
-        Me.btnNewCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnNewCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(167, Byte), Integer), CType(CType(69, Byte), Integer))
-        Me.btnNewCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnNewCustomer.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.btnNewCustomer.Appearance.Options.UseBackColor = True
-        Me.btnNewCustomer.Appearance.Options.UseFont = True
-        Me.btnNewCustomer.Appearance.Options.UseForeColor = True
-        Me.btnNewCustomer.Location = New System.Drawing.Point(402, 5)
-        Me.btnNewCustomer.Name = "btnNewCustomer"
-        Me.btnNewCustomer.Size = New System.Drawing.Size(85, 30)
-        Me.btnNewCustomer.TabIndex = 3
-        Me.btnNewCustomer.Text = "New (Insert)"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "CustomerId"
@@ -212,20 +139,6 @@ Partial Class FrmCustomerList
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Points"
-        Me.GridColumn5.FieldName = "CustomerPointsEarned"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        '
-        'imgcol
-        '
-        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
-        Me.imgcol.Images.SetKeyName(1, "accept.png")
-        '
         'RepositoryItemImageComboBoxStatus
         '
         Me.RepositoryItemImageComboBoxStatus.AutoHeight = False
@@ -234,6 +147,110 @@ Partial Class FrmCustomerList
         Me.RepositoryItemImageComboBoxStatus.Name = "RepositoryItemImageComboBoxStatus"
         Me.RepositoryItemImageComboBoxStatus.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
         Me.RepositoryItemImageComboBoxStatus.SmallImages = Me.imgcol
+        '
+        'imgcol
+        '
+        Me.imgcol.ImageStream = CType(resources.GetObject("imgcol.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
+        Me.imgcol.Images.SetKeyName(1, "accept.png")
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Points"
+        Me.GridColumn5.FieldName = "CustomerPointsEarned"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.btnRefresh)
+        Me.PanelControl2.Controls.Add(Me.btnDeleteCustomer)
+        Me.PanelControl2.Controls.Add(Me.btnEditCustomer)
+        Me.PanelControl2.Controls.Add(Me.btnNewCustomer)
+        Me.PanelControl2.Location = New System.Drawing.Point(12, 447)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(760, 40)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRefresh.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefresh.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.btnRefresh.Appearance.Options.UseBackColor = True
+        Me.btnRefresh.Appearance.Options.UseFont = True
+        Me.btnRefresh.Appearance.Options.UseForeColor = True
+        Me.btnRefresh.Location = New System.Drawing.Point(580, 7)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(85, 30)
+        Me.btnRefresh.TabIndex = 6
+        Me.btnRefresh.Text = "Refresh (F5)"
+        '
+        'btnDeleteCustomer
+        '
+        Me.btnDeleteCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDeleteCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
+        Me.btnDeleteCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnDeleteCustomer.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.btnDeleteCustomer.Appearance.Options.UseBackColor = True
+        Me.btnDeleteCustomer.Appearance.Options.UseFont = True
+        Me.btnDeleteCustomer.Appearance.Options.UseForeColor = True
+        Me.btnDeleteCustomer.Location = New System.Drawing.Point(489, 7)
+        Me.btnDeleteCustomer.Name = "btnDeleteCustomer"
+        Me.btnDeleteCustomer.Size = New System.Drawing.Size(85, 30)
+        Me.btnDeleteCustomer.TabIndex = 5
+        Me.btnDeleteCustomer.Text = "Delete (Del)"
+        '
+        'btnEditCustomer
+        '
+        Me.btnEditCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.btnEditCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnEditCustomer.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.btnEditCustomer.Appearance.Options.UseBackColor = True
+        Me.btnEditCustomer.Appearance.Options.UseFont = True
+        Me.btnEditCustomer.Appearance.Options.UseForeColor = True
+        Me.btnEditCustomer.Location = New System.Drawing.Point(398, 7)
+        Me.btnEditCustomer.Name = "btnEditCustomer"
+        Me.btnEditCustomer.Size = New System.Drawing.Size(85, 30)
+        Me.btnEditCustomer.TabIndex = 4
+        Me.btnEditCustomer.Text = "Edit (Enter)"
+        '
+        'btnNewCustomer
+        '
+        Me.btnNewCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnNewCustomer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(167, Byte), Integer), CType(CType(69, Byte), Integer))
+        Me.btnNewCustomer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnNewCustomer.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.btnNewCustomer.Appearance.Options.UseBackColor = True
+        Me.btnNewCustomer.Appearance.Options.UseFont = True
+        Me.btnNewCustomer.Appearance.Options.UseForeColor = True
+        Me.btnNewCustomer.Location = New System.Drawing.Point(307, 7)
+        Me.btnNewCustomer.Name = "btnNewCustomer"
+        Me.btnNewCustomer.Size = New System.Drawing.Size(85, 30)
+        Me.btnNewCustomer.TabIndex = 3
+        Me.btnNewCustomer.Text = "New (Insert)"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(671, 7)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(85, 30)
+        Me.SimpleButton1.TabIndex = 7
+        Me.SimpleButton1.Text = "Cancel"
         '
         'FrmCustomerList
         '
@@ -252,10 +269,10 @@ Partial Class FrmCustomerList
         Me.PanelControl1.PerformLayout()
         CType(Me.GridControlCustomers, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewCustomers, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemImageComboBoxStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemImageComboBoxStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -276,4 +293,5 @@ Partial Class FrmCustomerList
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents imgcol As DevExpress.Utils.ImageCollection
     Friend WithEvents RepositoryItemImageComboBoxStatus As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

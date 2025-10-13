@@ -150,7 +150,7 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>8</CateId>
-    <CateName>NAILS COMBO</CateName>
+    <CateName>MANI-PEDI COMBO</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
@@ -167,7 +167,7 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>9</CateId>
-    <CateName>MANICURE PEDICURE</CateName>
+    <CateName>MANICURE</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
@@ -188,7 +188,7 @@
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>49</id>
     <item_id>10</item_id>
     <menu_type>Sub</menu_type>
@@ -197,15 +197,15 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>3</Position>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>11</CateId>
-    <CateName>NAIL DESIGN</CateName>
+    <CateName>NAIL ART</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>50</id>
     <item_id>11</item_id>
     <menu_type>Sub</menu_type>
@@ -214,7 +214,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>4</Position>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>12</CateId>
@@ -231,7 +231,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>5</Position>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>13</CateId>
@@ -282,11 +282,11 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>3</Position>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>16</CateId>
-    <CateName>L. HAIR MASSAGE</CateName>
+    <CateName>L. OIL MASSAGE</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
@@ -316,7 +316,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>5</Position>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>18</CateId>
@@ -333,7 +333,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>6</Position>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>19</CateId>
@@ -351,5 +351,22 @@
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
     <Position>7</Position>
+  </CategoryTable>
+  <CategoryTable>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <Active>1</Active>
+    <Color>LightBlue</Color>
+    <id>115</id>
+    <item_id>20</item_id>
+    <menu_type>Sub</menu_type>
+    <font_size>12.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,128,0)</back_color>
+    <Position>3</Position>
   </CategoryTable>
 </NewDataSet>
