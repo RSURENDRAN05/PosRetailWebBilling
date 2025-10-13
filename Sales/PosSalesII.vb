@@ -2225,9 +2225,11 @@ Public Class PosSalesII
             ' Set mode to new
             modeOfSale = "New"
             modeBillHold = "New"
+            BillHoldTokenNo = 0
+            barstatustoken.Caption = 0
             barbtnstatus.Caption = "Sales Mode : " & modeOfSale
             barbtnbilltype.Caption = "Sales"
-            barbtntokenno.Caption = "0"
+
             ' Clear selected customer
             ClearSelectedCustomer()
 

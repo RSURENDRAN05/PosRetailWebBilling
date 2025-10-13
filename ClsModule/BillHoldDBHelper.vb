@@ -451,6 +451,32 @@ Public Class BillHoldDBHelper
             Return dt
         End Try
     End Function
+    Public Function DeleteHoldHdrDetails(transactionNumber As Integer) As Boolean
+        Try
+            Dim connection = New SqlConnection(_connectionString)
+            Using command As New SqlCommand("SELECT 1  FROM pos_sale_holdhdr   WHERE psih_invoice_trno=@psih_invoice_trno", connection)
+                command.Parameters.AddWithValue("@psih_invoice_trno", transactionNumber)
+                connection.Open()
+                Dim result = command.ExecuteScalar()
+                If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+                    Using cmd As New SqlCommand("delete from pos_sale_holdhdr where psih_invoice_trno =@psih_invoice_trno", connection)
+                        cmd.Parameters.AddWithValue("@psih_invoice_trno", transactionNumber)
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    Using cmd As New SqlCommand("delete from pos_sale_holddtl where psid_invoice_trno = @psid_invoice_trno", connection)
+                        cmd.Parameters.AddWithValue("@psid_invoice_trno", transactionNumber)
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    Return True
+                Else
+
+                    Return False
+                End If
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function UpdateHoldBillStatus(token As Integer, transactionNumber As Integer) As Boolean
         Try
             Dim connection = New SqlConnection(_connectionString)
