@@ -31,6 +31,7 @@ Public Class frmPayouts
             Return Nothing
         End Try
     End Function
+
     Private Sub _DsLoad(ByRef _mode As String)
         Try
             _dsDataLoad = New DataSet
@@ -516,6 +517,7 @@ Public Class frmPayouts
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Try
             GetPayoutDataCloud()
+            GetCommissionDataCloud()
         Catch ex As Exception
 
         End Try
@@ -544,6 +546,59 @@ Public Class frmPayouts
             WriteErroLog("Payout Search Error", ex.Message)
         Finally
             dialog.Close()
+        End Try
+    End Sub
+    Private Sub GetCommissionDataCloud()
+        Dim dialog As New DevExpress.Utils.WaitDialogForm()
+        Try
+            'Get date range from UI
+            dialog.Caption = "Loading Sales Data..."
+            Dim Dts As DataTable
+            Dim empId = GridView1.GetFocusedRowCellValue("Id")
+            Dim fromDate As Date = Convert.ToDateTime(PayDateFrom.EditValue).Date
+            Dim toDate As Date = Convert.ToDateTime(PayDateTo.EditValue).Date
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=6&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&startDate=" & fromDate.ToString("yyyy-MM-dd") & "&endDate=" & toDate.ToString("yyyy-MM-dd") & "&salesmanId=" & empId)
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dts = Userparsejson("Data").ToObject(Of DataTable)()
+            If Dts.Rows.Count > 0 Then
+                ' Using LINQ to filter DataTable
+                ' Using LINQ with decimal conversion
+                Dim filteredRows = From row In Dts.AsEnumerable()
+                                  Where Convert.ToDecimal(row("Commission")) > 0
+                                  Select row
+
+                If filteredRows.Any() Then
+                    GridControl3.DataSource = filteredRows.CopyToDataTable()
+                Else
+                    GridControl3.DataSource = Nothing
+                End If
+            dialog.Close()
+            Else
+            GridControl3.DataSource = Nothing
+            End If
+        Catch ex As Exception
+            dialog.Close()
+            WriteErroLog("Payout Search Error", ex.Message)
+        Finally
+            dialog.Close()
+        End Try
+    End Sub
+    Private Sub btnAdvance_Click(sender As Object, e As EventArgs) Handles btnAdvance.Click
+        Try
+            GridControl3.Visible = False
+            GridControl2.Visible = True
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnSales_Click(sender As Object, e As EventArgs) Handles btnSales.Click
+        Try
+            GridControl2.Visible = False
+            GridControl3.Visible = True
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class
