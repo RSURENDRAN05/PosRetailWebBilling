@@ -30,10 +30,9 @@
    Private Sub LoadMainMenu()
         Try
             PanelControlSalesMan.Controls.Clear()
-
-            ' Create sorted DataView ordered by SalesMan Asc
+            ' Create sorted DataView ordered by Position Asc
             Dim sortedView As DataView = New DataView(_JsonData.SalesManDataTable)
-            sortedView.Sort = "SalesMan ASC"
+            sortedView.Sort = "Position ASC"
 
             Dim btnWidth As Integer = ButtonStyleWH.MAINW
             Dim btnHeight As Integer = ButtonStyleWH.MAINH

@@ -550,11 +550,11 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
             $startDate = isset($_REQUEST['fromdate']) ? $_REQUEST['fromdate'] : '';
             $endDate = isset($_REQUEST['todate']) ? $_REQUEST['todate'] : '';
             $empId = isset($_REQUEST['empid']) ? $_REQUEST['empid'] : '';
-
-
+            error_log("AjaxRequest=13 called with POST parameters: " . print_r($_POST, true));
+            error_log("AjaxRequest=13 called with GET parameters: " . print_r($_GET, true));
 
             // Validate required parameters
-            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate) || empty($empId)) {
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate) || !isset($empId)) {
                 throw new Exception("Missing required parameters: comid=$comid, locid=$locid, fromdate=$startDate, todate=$endDate, empid=$empId");
             }
             $pm_id = $clsfunreq->GetPMid($comid, $locid);

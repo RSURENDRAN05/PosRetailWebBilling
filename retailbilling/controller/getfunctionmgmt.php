@@ -4559,6 +4559,23 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Failed to update employee location'));
         }
     }
+    if ((int) $_REQUEST['SalesManCommission'] == 16) { // Bulk Update Employee Positions
+        $jsonData = file_get_contents("php://input");
+        $data = json_decode($jsonData, true);
+
+        // Validate input data
+        if (!$data || empty($data)) {
+            echo json_encode(array("Success" => false, "Msg" => 'No data received'));
+            exit;
+        }
+
+        $result = $clsfunreq->BulkUpdateEmployeePositions($data);
+        if ($result) {
+            echo json_encode(array("Success" => true, "Msg" => 'Employee positions updated successfully for ' . count($data) . ' employees'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to update employee positions'));
+        }
+    }
 }
 //Mgmt Request
 elseif (isset($_REQUEST['MgmtRequest'])) {

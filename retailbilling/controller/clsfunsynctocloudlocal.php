@@ -763,6 +763,7 @@ class clsfuncsync
             return array('success' => false, 'message' => 'Error deleting payout record: ' . mysqli_error($this->conn));
         }
     }
+
     public function GetPayoutReport($comid, $locid, $pm_id, $startDate, $endDate, $empId)
     {
         // Escape variables first
@@ -772,32 +773,36 @@ class clsfuncsync
         $startDate = mysqli_real_escape_string($this->conn, $startDate);
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
         $empId     = mysqli_real_escape_string($this->conn, $empId);
-        //SELECT `payd_id` as Id, `payd_refid` as StaffId,  `payd_name` as Name, `payd_amount` as Amount, `payd_remarks` as Remarks, `payd_shiftno`, `payd_dayno`, `payd_user`, `payd_datetime`, `PmId`, `ComId`, `LocId`, `CurrentDate` FROM `pos_payout_dtl` WHERE `payd_datetime`=$payd_datetime, `PmId` =$PmId, `ComId`=$ComId, `LocId`=$LocId
+
+        // Optional filter for employee
+        $empFilter = '';
+        if ($empId > 0) {
+            $empFilter = " AND ppd.payd_refid = '$empId'";
+        }
+
         $sql = "SELECT
-                    ppd.payd_id AS ID,
-                    ppd.payd_refid AS StaffId,
-                    ppd.payd_name AS Name,
-                    ppd.payd_amount AS Amount,
-                    ppd.payd_remarks AS Remarks,
-                    ppd.payd_shiftno AS ShiftNo,
-                    ppd.payd_dayno AS DayNo,
-                    ppd.payd_user AS User,
-                    ppd.payd_datetime AS DateTime,
-                    ppd.PmId,
-                    ppd.ComId,
-                    ppd.LocId,
-                    pm.pcm_name AS CompanyName,
-                    pl.plm_name AS LocationName
-                FROM pos_payout_dtl AS ppd
-                INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
-                INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
-                WHERE DATE(ppd.payd_datetime) >= '$startDate'
-                  AND DATE(ppd.payd_datetime) <= '$endDate'
-                --   AND ppd.ComId = '$comid'
-                --   AND ppd.LocId = '$locid'
-                --   AND ppd.PmId = '$pm_id'
-                  AND ppd.payd_refid = '$empId'
-                ORDER BY ppd.payd_datetime DESC, ppd.payd_name";
+                ppd.payd_id AS ID,
+                ppd.payd_refid AS StaffId,
+                ppd.payd_name AS Name,
+                ppd.payd_amount AS Amount,
+                ppd.payd_remarks AS Remarks,
+                ppd.payd_shiftno AS ShiftNo,
+                ppd.payd_dayno AS DayNo,
+                ppd.payd_user AS User,
+                DATE_FORMAT(ppd.payd_datetime, '%Y-%m-%d') AS DateTime,
+                ppd.PmId,
+                ppd.ComId,
+                ppd.LocId,
+                pm.pcm_name AS CompanyName,
+                pl.plm_name AS LocationName
+            FROM pos_payout_dtl AS ppd
+            INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ppd.ComId
+            INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
+            WHERE DATE(ppd.payd_datetime) >= '$startDate'
+              AND DATE(ppd.payd_datetime) <= '$endDate'
+              $empFilter
+            ORDER BY ppd.payd_datetime DESC, ppd.payd_name";
+
         // Log the query for debugging (remove in production)
         error_log("Payout Report Query: " . $sql);
         $result = mysqli_query($this->conn, $sql);

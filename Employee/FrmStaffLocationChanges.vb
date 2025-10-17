@@ -165,9 +165,125 @@ Public Class FrmStaffLocationChanges
 
         End Try
     End Sub
+
+    Private Sub btnUp_Click(sender As Object, e As EventArgs) Handles btnUp.Click
+        Try
+            If GridView1.RowCount <= 1 Then Return
+
+            Dim focusedRowHandle As Integer = GridView1.FocusedRowHandle
+            If focusedRowHandle <= 0 Then Return
+
+            ' Swap rows in the data source
+            SwapRows(focusedRowHandle, focusedRowHandle - 1)
+
+            ' Renumber all positions sequentially
+            RenumberPositions()
+
+            ' Move focus and refresh
+            GridView1.FocusedRowHandle = focusedRowHandle - 1
+            GridView1.RefreshData()
+
+        Catch ex As Exception
+            MessageBox.Show("Error moving row up: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnDown_Click(sender As Object, e As EventArgs) Handles btnDown.Click
+        Try
+            If GridView1.RowCount <= 1 Then Return
+
+            Dim focusedRowHandle As Integer = GridView1.FocusedRowHandle
+            If focusedRowHandle >= GridView1.RowCount - 1 Then Return
+
+            ' Swap rows in the data source
+            SwapRows(focusedRowHandle, focusedRowHandle + 1)
+
+            ' Renumber all positions sequentially
+            RenumberPositions()
+
+            ' Move focus and refresh
+            GridView1.FocusedRowHandle = focusedRowHandle + 1
+            GridView1.RefreshData()
+
+        Catch ex As Exception
+            MessageBox.Show("Error moving row down: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub SwapRows(rowHandle1 As Integer, rowHandle2 As Integer)
+        ' This method should swap the actual data rows in your data source
+        ' The implementation depends on your data source type (DataTable, List, etc.)
+
+        ' Example for DataTable:
+        Dim dataTable As DataTable = TryCast(GridControlcurStaff.DataSource, DataTable)
+        If dataTable IsNot Nothing Then
+            Dim tempRow As DataRow = dataTable.NewRow()
+            tempRow.ItemArray = dataTable.Rows(rowHandle1).ItemArray
+            dataTable.Rows(rowHandle1).ItemArray = dataTable.Rows(rowHandle2).ItemArray
+            dataTable.Rows(rowHandle2).ItemArray = tempRow.ItemArray
+        End If
+    End Sub
+
+    Private Sub RenumberPositions()
+        ' Renumber all positions from 1 to RowCount
+        For i As Integer = 0 To GridView1.RowCount - 1
+            GridView1.SetRowCellValue(i, "Position", i + 1)
+        Next
+    End Sub
+
+    Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
+        Try
+            ChangePositionBulk()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ChangePositionBulk()
+        Dim dialog As New DevExpress.Utils.WaitDialogForm()
+        Try
+            _selectedLocationId = _companyInfo.LocId
+            dialog.Caption = "Please wait..."
+            
+            ' Create a list to hold all position changes
+            Dim positionChanges As New List(Of PositionChanges)()
+
+            ' Collect all position changes
+            For i As Integer = 0 To GridView1.RowCount - 1
+                Dim empid = GridView1.GetRowCellValue(i, "Id")
+                Dim empposition = GridView1.GetRowCellValue(i, "Position")
+                Dim position As New PositionChanges With {
+                    .EmpId = empid,
+                    .Position = empposition
+                }
+                positionChanges.Add(position)
+            Next
+            ' Serialize and send all changes in one request
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(positionChanges)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim response As String = New System.Net.WebClient().UploadString(M_Details.LinkAjaxRequest & "SalesManCommission=16", "POST", jsonData)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            If responseObj("Success").ToObject(Of Boolean)() Then
+                MessageBox.Show("Positions updated successfully for " & positionChanges.Count & " employees", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                btnRefresh.PerformClick()
+            Else
+                Dim errorMessage As String = If(responseObj("Msg").ToString(), "Failed to update positions")
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dialog.Close()
+        End Try
+    End Sub
 End Class
 
 Public Class NewLocation
     Public Property EmployeeId As String
     Public Property NewLocId As String
+End Class
+Public Class PositionChanges
+    Public Property EmpId As String
+    Public Property Position As String
 End Class

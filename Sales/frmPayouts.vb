@@ -533,7 +533,7 @@ Public Class frmPayouts
             Dim fromDate As Date = Convert.ToDateTime(PayDateFrom.EditValue).Date
             Dim toDate As Date = Convert.ToDateTime(PayDateTo.EditValue).Date
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd") & "&todate=" & toDate.ToString("yyyy-MM-dd") & "&empid=" & empId)
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=13&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&fromdate=" & fromDate.ToString("yyyy-MM-dd") & "&todate=" & toDate.ToString("yyyy-MM-dd") & "&empid=" & empId.ToString)
             Dim Userparsejson As JObject = JObject.Parse(json)
             Dts = Userparsejson("Data").ToObject(Of DataTable)()
             If Dts.Rows.Count > 0 Then

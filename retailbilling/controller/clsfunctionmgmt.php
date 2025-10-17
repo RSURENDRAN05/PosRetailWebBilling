@@ -2962,6 +2962,35 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
+    //bulkemployee emp_lastname update fron json
+    public function BulkUpdateEmployeePositions($data)
+    {
+        $success = true;
+        foreach ($data as $item) {
+            $emp_id = $item['EmpId'];
+            $new_position = $item['Position'];
+            $result = $this->UpdateEmployeePosition($emp_id, $new_position);
+            if (!$result) {
+                $success = false;
+            }
+        }
+        return $success;
+    }
+
+    public function UpdateEmployeePosition($emp_id, $new_position)
+    {
+        $conn = $this->conn;
+        $sqlQuery = "UPDATE `pos_employeeinfo` SET `emp_lastname` = ? WHERE `emp_id` = ?";
+
+        $stmt = mysqli_prepare($conn, $sqlQuery);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "si", $new_position, $emp_id);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            return $result;
+        }
+        return false;
+    }
     /**
      * Get all sub groups (categories) for commission setup
      */
@@ -3231,7 +3260,7 @@ class funcProcessMgmt
     public function GetSalesManByComidLocid($comid, $locid)
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT `emp_id` as Id , `emp_printname` as SalesMan FROM `pos_employeeinfo` WHERE `emp_compid`= " . intval($comid) . " and `emp_locid`= " . intval($locid));
+        $sqlQuery = ("SELECT `emp_id` as Id , `emp_printname` as SalesMan,`emp_lastname` as Position FROM `pos_employeeinfo` WHERE `emp_compid`= " . intval($comid) . " and `emp_locid`= " . intval($locid));
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }

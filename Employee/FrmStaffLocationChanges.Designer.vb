@@ -21,6 +21,8 @@ Partial Class FrmStaffLocationChanges
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmStaffLocationChanges))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnUp = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnDown = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControlnewLoction = New DevExpress.XtraGrid.GridControl()
@@ -38,6 +40,12 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.btnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControlnewLoction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,10 +59,16 @@ Partial Class FrmStaffLocationChanges
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.btnSaveChanges)
+        Me.LayoutControl1.Controls.Add(Me.btnUp)
+        Me.LayoutControl1.Controls.Add(Me.btnDown)
         Me.LayoutControl1.Controls.Add(Me.btnRefresh)
         Me.LayoutControl1.Controls.Add(Me.btnClose)
         Me.LayoutControl1.Controls.Add(Me.GridControlnewLoction)
@@ -68,12 +82,32 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'btnUp
+        '
+        Me.btnUp.Image = CType(resources.GetObject("btnUp.Image"), System.Drawing.Image)
+        Me.btnUp.Location = New System.Drawing.Point(210, 472)
+        Me.btnUp.Name = "btnUp"
+        Me.btnUp.Size = New System.Drawing.Size(95, 38)
+        Me.btnUp.StyleController = Me.LayoutControl1
+        Me.btnUp.TabIndex = 0
+        Me.btnUp.Text = "Up"
+        '
+        'btnDown
+        '
+        Me.btnDown.Image = CType(resources.GetObject("btnDown.Image"), System.Drawing.Image)
+        Me.btnDown.Location = New System.Drawing.Point(309, 472)
+        Me.btnDown.Name = "btnDown"
+        Me.btnDown.Size = New System.Drawing.Size(114, 38)
+        Me.btnDown.StyleController = Me.LayoutControl1
+        Me.btnDown.TabIndex = 1
+        Me.btnDown.Text = "Down"
+        '
         'btnRefresh
         '
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(441, 472)
+        Me.btnRefresh.Location = New System.Drawing.Point(649, 472)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(426, 38)
+        Me.btnRefresh.Size = New System.Drawing.Size(218, 38)
         Me.btnRefresh.StyleController = Me.LayoutControl1
         Me.btnRefresh.TabIndex = 8
         Me.btnRefresh.Text = "Refresh"
@@ -83,17 +117,17 @@ Partial Class FrmStaffLocationChanges
         Me.btnClose.Image = CType(resources.GetObject("btnClose.Image"), System.Drawing.Image)
         Me.btnClose.Location = New System.Drawing.Point(12, 472)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(425, 38)
+        Me.btnClose.Size = New System.Drawing.Size(194, 38)
         Me.btnClose.StyleController = Me.LayoutControl1
         Me.btnClose.TabIndex = 7
         Me.btnClose.Text = "Close"
         '
         'GridControlnewLoction
         '
-        Me.GridControlnewLoction.Location = New System.Drawing.Point(441, 72)
+        Me.GridControlnewLoction.Location = New System.Drawing.Point(427, 72)
         Me.GridControlnewLoction.MainView = Me.GridView2
         Me.GridControlnewLoction.Name = "GridControlnewLoction"
-        Me.GridControlnewLoction.Size = New System.Drawing.Size(426, 396)
+        Me.GridControlnewLoction.Size = New System.Drawing.Size(440, 396)
         Me.GridControlnewLoction.TabIndex = 5
         Me.GridControlnewLoction.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -107,7 +141,7 @@ Partial Class FrmStaffLocationChanges
         Me.GridView2.Appearance.Row.Options.UseFont = True
         Me.GridView2.Appearance.Row.Options.UseTextOptions = True
         Me.GridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn6})
         Me.GridView2.GridControl = Me.GridControlnewLoction
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -138,7 +172,7 @@ Partial Class FrmStaffLocationChanges
         Me.GridControlcurStaff.Location = New System.Drawing.Point(12, 28)
         Me.GridControlcurStaff.MainView = Me.GridView1
         Me.GridControlcurStaff.Name = "GridControlcurStaff"
-        Me.GridControlcurStaff.Size = New System.Drawing.Size(425, 440)
+        Me.GridControlcurStaff.Size = New System.Drawing.Size(411, 440)
         Me.GridControlcurStaff.TabIndex = 4
         Me.GridControlcurStaff.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -152,7 +186,7 @@ Partial Class FrmStaffLocationChanges
         Me.GridView1.Appearance.Row.Options.UseFont = True
         Me.GridView1.Appearance.Row.Options.UseTextOptions = True
         Me.GridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5})
         Me.GridView1.GridControl = Me.GridControlcurStaff
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -167,6 +201,7 @@ Partial Class FrmStaffLocationChanges
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 65
         '
         'GridColumn2
         '
@@ -175,11 +210,11 @@ Partial Class FrmStaffLocationChanges
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 300
+        Me.GridColumn2.Width = 246
         '
         'txtnewLocation
         '
-        Me.txtnewLocation.Location = New System.Drawing.Point(524, 12)
+        Me.txtnewLocation.Location = New System.Drawing.Point(510, 12)
         Me.txtnewLocation.Name = "txtnewLocation"
         Me.txtnewLocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 20.0!, System.Drawing.FontStyle.Bold)
         Me.txtnewLocation.Properties.Appearance.Options.UseFont = True
@@ -190,7 +225,7 @@ Partial Class FrmStaffLocationChanges
         Me.txtnewLocation.Properties.DisplayMember = "plm_name"
         Me.txtnewLocation.Properties.NullText = ""
         Me.txtnewLocation.Properties.ValueMember = "plm_id"
-        Me.txtnewLocation.Size = New System.Drawing.Size(343, 40)
+        Me.txtnewLocation.Size = New System.Drawing.Size(357, 40)
         Me.txtnewLocation.StyleController = Me.LayoutControl1
         Me.txtnewLocation.TabIndex = 6
         '
@@ -199,7 +234,7 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem8, Me.LayoutControlItem7, Me.LayoutControlItem6})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(879, 522)
@@ -212,7 +247,7 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControlItem1.CustomizationFormText = "Current Location"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(429, 460)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(415, 460)
         Me.LayoutControlItem1.Text = "Current Location"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
@@ -221,9 +256,9 @@ Partial Class FrmStaffLocationChanges
         '
         Me.LayoutControlItem2.Control = Me.GridControlnewLoction
         Me.LayoutControlItem2.CustomizationFormText = "New Location"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(429, 44)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(415, 44)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(430, 416)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(444, 416)
         Me.LayoutControlItem2.Text = "New Location"
         Me.LayoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(80, 13)
@@ -234,9 +269,9 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControlItem3.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem3.Control = Me.txtnewLocation
         Me.LayoutControlItem3.CustomizationFormText = "New Location :"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(429, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(415, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(430, 44)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(444, 44)
         Me.LayoutControlItem3.Text = "New Location :"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -246,7 +281,7 @@ Partial Class FrmStaffLocationChanges
         Me.LayoutControlItem4.CustomizationFormText = "LayoutControlItem4"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 460)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(429, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(198, 42)
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextToControlDistance = 0
@@ -256,13 +291,76 @@ Partial Class FrmStaffLocationChanges
         '
         Me.LayoutControlItem5.Control = Me.btnRefresh
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(429, 460)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(637, 460)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(430, 42)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(222, 42)
         Me.LayoutControlItem5.Text = "LayoutControlItem5"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextToControlDistance = 0
         Me.LayoutControlItem5.TextVisible = False
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.btnUp
+        Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem8"
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(198, 460)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(99, 42)
+        Me.LayoutControlItem8.Text = "LayoutControlItem8"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextToControlDistance = 0
+        Me.LayoutControlItem8.TextVisible = False
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.btnDown
+        Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem7"
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(297, 460)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(118, 42)
+        Me.LayoutControlItem7.Text = "LayoutControlItem7"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextToControlDistance = 0
+        Me.LayoutControlItem7.TextVisible = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Position"
+        Me.GridColumn5.FieldName = "Position"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.Width = 82
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Position"
+        Me.GridColumn6.FieldName = "Position"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        '
+        'btnSaveChanges
+        '
+        Me.btnSaveChanges.Image = CType(resources.GetObject("btnSaveChanges.Image"), System.Drawing.Image)
+        Me.btnSaveChanges.Location = New System.Drawing.Point(427, 472)
+        Me.btnSaveChanges.Name = "btnSaveChanges"
+        Me.btnSaveChanges.Size = New System.Drawing.Size(218, 38)
+        Me.btnSaveChanges.StyleController = Me.LayoutControl1
+        Me.btnSaveChanges.TabIndex = 9
+        Me.btnSaveChanges.Text = "Save Changes"
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.btnSaveChanges
+        Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(415, 460)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(222, 42)
+        Me.LayoutControlItem6.Text = "LayoutControlItem6"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem6.TextToControlDistance = 0
+        Me.LayoutControlItem6.TextVisible = False
         '
         'FrmStaffLocationChanges
         '
@@ -288,6 +386,9 @@ Partial Class FrmStaffLocationChanges
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -309,4 +410,12 @@ Partial Class FrmStaffLocationChanges
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents btnRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnUp As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnDown As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnSaveChanges As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
 End Class
