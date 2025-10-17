@@ -22,6 +22,42 @@
     </xs:element>
   </xs:schema>
   <PackageDataTable>
+    <Id>10</Id>
+    <PackageId>59</PackageId>
+    <ItemId>75</ItemId>
+    <ItemName>CLASSIC MANI [WITHOUT COLOUR]</ItemName>
+    <ItemPrice>30.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 22:55:15</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>11</Id>
+    <PackageId>59</PackageId>
+    <ItemId>92</ItemId>
+    <ItemName>CLASSIC PEDI [WITHOUT COLOUR]</ItemName>
+    <ItemPrice>39.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 22:55:15</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>14</Id>
+    <PackageId>99</PackageId>
+    <ItemId>79</ItemId>
+    <ItemName>GEL MANI</ItemName>
+    <ItemPrice>55.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:08:37</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>15</Id>
+    <PackageId>99</PackageId>
+    <ItemId>94</ItemId>
+    <ItemName>GEL PEDI</ItemName>
+    <ItemPrice>64.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:08:37</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
     <Id>1</Id>
     <PackageId>58</PackageId>
     <ItemId>1</ItemId>
@@ -67,13 +103,22 @@
     <created_at>2025-10-13 20:33:38</created_at>
   </PackageDataTable>
   <PackageDataTable>
-    <Id>6</Id>
-    <PackageId>65</PackageId>
-    <ItemId>60</ItemId>
-    <ItemName>SCALP TREATMENT</ItemName>
-    <ItemPrice>45.00</ItemPrice>
+    <Id>12</Id>
+    <PackageId>78</PackageId>
+    <ItemId>76</ItemId>
+    <ItemName>PREMIUM MANI [OPI COLOUR]</ItemName>
+    <ItemPrice>40.00</ItemPrice>
     <ItemActive>1</ItemActive>
-    <created_at>2025-10-09 23:47:43</created_at>
+    <created_at>2025-10-13 23:06:38</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>13</Id>
+    <PackageId>78</PackageId>
+    <ItemId>93</ItemId>
+    <ItemName>PREMIUM PEDI [OPI COLOUR]</ItemName>
+    <ItemPrice>49.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:06:38</created_at>
   </PackageDataTable>
   <PackageDataTable>
     <Id>8</Id>
@@ -83,5 +128,68 @@
     <ItemPrice>45.00</ItemPrice>
     <ItemActive>1</ItemActive>
     <created_at>2025-10-13 20:33:38</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>6</Id>
+    <PackageId>65</PackageId>
+    <ItemId>60</ItemId>
+    <ItemName>SCALP TREATMENT</ItemName>
+    <ItemPrice>45.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-09 23:47:43</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>20</Id>
+    <PackageId>102</PackageId>
+    <ItemId>82</ItemId>
+    <ItemName>SPA MANI [GEL COLOUR]</ItemName>
+    <ItemPrice>75.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:14:49</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>18</Id>
+    <PackageId>101</PackageId>
+    <ItemId>81</ItemId>
+    <ItemName>SPA MANI [OPI COLOUR]</ItemName>
+    <ItemPrice>65.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:11:58</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>16</Id>
+    <PackageId>100</PackageId>
+    <ItemId>80</ItemId>
+    <ItemName>SPA MANI [WITHOUT COLOUR]</ItemName>
+    <ItemPrice>55.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:10:38</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>21</Id>
+    <PackageId>102</PackageId>
+    <ItemId>97</ItemId>
+    <ItemName>SPA PEDI [GEL COLOUR]</ItemName>
+    <ItemPrice>84.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:14:49</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>19</Id>
+    <PackageId>101</PackageId>
+    <ItemId>96</ItemId>
+    <ItemName>SPA PEDI [OPI COLOUR]</ItemName>
+    <ItemPrice>74.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:11:58</created_at>
+  </PackageDataTable>
+  <PackageDataTable>
+    <Id>17</Id>
+    <PackageId>100</PackageId>
+    <ItemId>95</ItemId>
+    <ItemName>SPA PEDI [WITHOUT COLOUR]</ItemName>
+    <ItemPrice>64.00</ItemPrice>
+    <ItemActive>1</ItemActive>
+    <created_at>2025-10-13 23:10:38</created_at>
   </PackageDataTable>
 </NewDataSet>

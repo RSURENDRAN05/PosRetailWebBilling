@@ -526,7 +526,7 @@
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>4</CateId>
-    <CateName>HAIR MASSAGE</CateName>
+    <CateName>OIL MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>50.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -562,7 +562,7 @@
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
     <CateId>4</CateId>
-    <CateName>HAIR MASSAGE</CateName>
+    <CateName>OIL MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1059,7 +1059,7 @@
   <ItemTouchMasterTable>
     <Id>30</Id>
     <BarCode>29</BarCode>
-    <ItemName>HAIR DYE [SERVICE ONLY]</ItemName>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1306,7 +1306,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>2</Position>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>37</Id>
@@ -1342,7 +1342,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>4</Position>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>38</Id>
@@ -1378,7 +1378,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>1</Position>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>39</Id>
@@ -1414,7 +1414,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>3</Position>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>40</Id>
@@ -1450,7 +1450,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>5</Position>
+    <Position>7</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>41</Id>
@@ -1486,7 +1486,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>6</Position>
+    <Position>12</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>42</Id>
@@ -1522,7 +1522,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>7</Position>
+    <Position>9</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>43</Id>
@@ -1558,7 +1558,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>8</Position>
+    <Position>10</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>44</Id>
@@ -1594,7 +1594,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>9</Position>
+    <Position>11</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>45</Id>
@@ -1630,12 +1630,12 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>10</Position>
+    <Position>8</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>46</Id>
     <BarCode>45</BarCode>
-    <ItemName>DESIGN ARCYLIC OR GEL [SIMPLE]</ItemName>
+    <ItemName>COLOUR ART DESIGN [Per Nail]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1644,9 +1644,9 @@
     <CateId>11</CateId>
     <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>8.00</SellPrice>
+    <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>3.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1661,17 +1661,17 @@
     <LnkId>69</LnkId>
     <item_id>46</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>47</Id>
     <BarCode>46</BarCode>
-    <ItemName>DESIGN ARCYLIC OR GEL [COMPLICATED]</ItemName>
+    <ItemName>STONE ART DESIGN [Per Nail]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1680,9 +1680,9 @@
     <CateId>11</CateId>
     <CateName>NAIL ART</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>15.00</SellPrice>
+    <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>1.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1697,28 +1697,28 @@
     <LnkId>70</LnkId>
     <item_id>47</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>48</Id>
     <BarCode>47</BarCode>
-    <ItemName>DESIGN COLOUR [ART DESIGN]</ItemName>
+    <ItemName>REMOVE TIP EXTENSION</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
-    <CateId>11</CateId>
-    <CateName>NAIL ART</CateName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>5.00</SellPrice>
+    <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1733,28 +1733,28 @@
     <LnkId>71</LnkId>
     <item_id>48</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>10</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>49</Id>
     <BarCode>48</BarCode>
-    <ItemName>DESIGN COLOUR [STONE]</ItemName>
+    <ItemName>CALLUS REMOVER TREATMENT</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
-    <CateId>11</CateId>
-    <CateName>NAIL ART</CateName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>5.00</SellPrice>
+    <SellPrice>50.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>50.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1769,12 +1769,12 @@
     <LnkId>72</LnkId>
     <item_id>49</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>50</Id>
@@ -1790,7 +1790,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1815,7 +1815,7 @@
   <ItemTouchMasterTable>
     <Id>51</Id>
     <BarCode>50</BarCode>
-    <ItemName>NAIL POLISH WITH OPI COLOUR</ItemName>
+    <ItemName>OPI COLOUR ONLY</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1824,9 +1824,9 @@
     <CateId>12</CateId>
     <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>10.00</SellPrice>
+    <SellPrice>15.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>15.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1841,17 +1841,17 @@
     <LnkId>74</LnkId>
     <item_id>51</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>52</Id>
     <BarCode>51</BarCode>
-    <ItemName>NAIL POLISH WITH GEL HARMONY COLOUR</ItemName>
+    <ItemName>GEL COLOUR ONLY</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1860,9 +1860,9 @@
     <CateId>12</CateId>
     <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>35.00</SellPrice>
+    <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1877,12 +1877,12 @@
     <LnkId>75</LnkId>
     <item_id>52</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>53</Id>
@@ -1898,7 +1898,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>10.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1913,17 +1913,17 @@
     <LnkId>76</LnkId>
     <item_id>53</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>54</Id>
     <BarCode>53</BarCode>
-    <ItemName>FRENCH WITH OPI COLOUR</ItemName>
+    <ItemName>FRENCH NAIL WITH OPI / GEL COLOUR</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1934,7 +1934,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>25.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1949,17 +1949,17 @@
     <LnkId>77</LnkId>
     <item_id>54</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>55</Id>
     <BarCode>54</BarCode>
-    <ItemName>FRENCH WITH HARMONY COLOUR</ItemName>
+    <ItemName>REMOVER GEL</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1968,9 +1968,9 @@
     <CateId>12</CateId>
     <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>45.00</SellPrice>
+    <SellPrice>15.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>15.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1985,17 +1985,17 @@
     <LnkId>78</LnkId>
     <item_id>55</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>56</Id>
     <BarCode>55</BarCode>
-    <ItemName>REMOVER GEL</ItemName>
+    <ItemName>FRENCH NAIL OPI/GEL COLOUR [Per Nail]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2004,9 +2004,9 @@
     <CateId>12</CateId>
     <CateName>OTHERS [NAILS]</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>3.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>3.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2021,12 +2021,12 @@
     <LnkId>79</LnkId>
     <item_id>56</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>57</Id>
@@ -2042,7 +2042,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2057,12 +2057,12 @@
     <LnkId>80</LnkId>
     <item_id>57</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>9</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>58</Id>
@@ -2093,17 +2093,17 @@
     <LnkId>81</LnkId>
     <item_id>58</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>59</Id>
     <BarCode>58</BarCode>
-    <ItemName>CLASSIC MENICURE - PEDICURE</ItemName>
+    <ItemName>CLASSIC MANI-PEDI [Without Colour]</ItemName>
     <BusinessType>71</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2112,12 +2112,12 @@
     <CateId>8</CateId>
     <CateName>MANI-PEDI COMBO</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>88.00</SellPrice>
+    <SellPrice>69.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>1</AllowDiscount>
-    <AllowNegStock>1</AllowNegStock>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
     <AllowMultiPrice>1</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
@@ -2129,12 +2129,12 @@
     <LnkId>82</LnkId>
     <item_id>59</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>60</Id>
@@ -2165,12 +2165,12 @@
     <LnkId>83</LnkId>
     <item_id>60</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>61</Id>
@@ -2201,12 +2201,12 @@
     <LnkId>84</LnkId>
     <item_id>61</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>62</Id>
@@ -2237,12 +2237,12 @@
     <LnkId>85</LnkId>
     <item_id>62</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>63</Id>
@@ -2273,12 +2273,12 @@
     <LnkId>86</LnkId>
     <item_id>63</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>64</Id>
@@ -2309,26 +2309,26 @@
     <LnkId>87</LnkId>
     <item_id>64</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>65</Id>
     <BarCode>64</BarCode>
-    <ItemName>SCALP - MOISTURISER TREATMENT</ItemName>
-    <BusinessType>71</BusinessType>
+    <ItemName>ADMIN</ItemName>
+    <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
-    <CateId>17</CateId>
-    <CateName>L. HAIR TREATMENT</CateName>
+    <CateId>19</CateId>
+    <CateName>EYELASH EXTENSION</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>120.00</SellPrice>
+    <SellPrice>10.00</SellPrice>
     <CostPrice>0.00</CostPrice>
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
@@ -2345,12 +2345,12 @@
     <LnkId>88</LnkId>
     <item_id>65</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>66</Id>
@@ -2384,8 +2384,8 @@
     <font_size>15.0</font_size>
     <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,64,0,0)</text_color>
-    <back_color>Argb(255,255,128,0)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
@@ -2417,12 +2417,12 @@
     <LnkId>90</LnkId>
     <item_id>67</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>68</Id>
@@ -2453,12 +2453,12 @@
     <LnkId>91</LnkId>
     <item_id>68</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>69</Id>
@@ -2489,17 +2489,17 @@
     <LnkId>92</LnkId>
     <item_id>69</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>70</Id>
     <BarCode>69</BarCode>
-    <ItemName>HAIR COLOURING [FULL HAIR]</ItemName>
+    <ItemName>HAIR COLOURING [Full Hair]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2525,12 +2525,12 @@
     <LnkId>93</LnkId>
     <item_id>70</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>71</Id>
@@ -2561,12 +2561,12 @@
     <LnkId>94</LnkId>
     <item_id>71</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>72</Id>
@@ -2597,12 +2597,12 @@
     <LnkId>95</LnkId>
     <item_id>72</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>73</Id>
@@ -2633,12 +2633,12 @@
     <LnkId>96</LnkId>
     <item_id>73</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>74</Id>
@@ -2672,14 +2672,14 @@
     <font_size>15.0</font_size>
     <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,64,0,0)</text_color>
-    <back_color>Argb(255,255,128,0)</back_color>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
     <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>75</Id>
     <BarCode>74</BarCode>
-    <ItemName>CLASSIC MANI</ItemName>
+    <ItemName>CLASSIC MANI [Without Colour]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2688,9 +2688,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>45.00</SellPrice>
+    <SellPrice>39.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>39.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2705,17 +2705,17 @@
     <LnkId>98</LnkId>
     <item_id>75</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>76</Id>
     <BarCode>75</BarCode>
-    <ItemName>CLASSIC PEDI</ItemName>
+    <ItemName>PREMIUM MANI [OPI Colour]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2724,9 +2724,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>55.00</SellPrice>
+    <SellPrice>49.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>49.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2741,17 +2741,17 @@
     <LnkId>99</LnkId>
     <item_id>76</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>77</Id>
     <BarCode>76</BarCode>
-    <ItemName>EXTENSION</ItemName>
+    <ItemName>TIP EXTENSION [2 Hands]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2762,7 +2762,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>120.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>120.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2777,17 +2777,17 @@
     <LnkId>100</LnkId>
     <item_id>77</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>78</Id>
     <BarCode>77</BarCode>
-    <ItemName>GEL MANI - PEDI</ItemName>
+    <ItemName>PREMIUM MANI-PEDI    [OPI Colour]</ItemName>
     <BusinessType>71</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2796,9 +2796,9 @@
     <CateId>8</CateId>
     <CateName>MANI-PEDI COMBO</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>158.00</SellPrice>
+    <SellPrice>89.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>89.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2813,12 +2813,12 @@
     <LnkId>101</LnkId>
     <item_id>78</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>79</Id>
@@ -2832,9 +2832,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>80.00</SellPrice>
+    <SellPrice>59.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>59.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2849,17 +2849,17 @@
     <LnkId>102</LnkId>
     <item_id>79</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>80</Id>
     <BarCode>79</BarCode>
-    <ItemName>GEL PEDI</ItemName>
+    <ItemName>SPA MANI [Without Colour]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2868,9 +2868,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>90.00</SellPrice>
+    <SellPrice>59.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>59.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2885,17 +2885,17 @@
     <LnkId>103</LnkId>
     <item_id>80</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>81</Id>
     <BarCode>80</BarCode>
-    <ItemName>SPA MANI</ItemName>
+    <ItemName>SPA MANI       [OPI Colour]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2904,9 +2904,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>90.00</SellPrice>
+    <SellPrice>69.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>69.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2921,17 +2921,17 @@
     <LnkId>104</LnkId>
     <item_id>81</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>82</Id>
     <BarCode>81</BarCode>
-    <ItemName>SPA PEDI</ItemName>
+    <ItemName>SPA MANI       [Gel Colour]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2940,9 +2940,9 @@
     <CateId>9</CateId>
     <CateName>MANICURE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>90.00</SellPrice>
+    <SellPrice>79.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>0.00</MinPrice>
+    <MinPrice>79.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -2957,17 +2957,17 @@
     <LnkId>105</LnkId>
     <item_id>82</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>83</Id>
     <BarCode>82</BarCode>
-    <ItemName>COLOUR PROTECTOR [FOR ALLERGY SCALP]</ItemName>
+    <ItemName>COLOUR PROTECTOR     [For Allergy Scalp]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -2993,12 +2993,12 @@
     <LnkId>106</LnkId>
     <item_id>83</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>84</Id>
@@ -3029,12 +3029,12 @@
     <LnkId>107</LnkId>
     <item_id>84</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>85</Id>
@@ -3065,12 +3065,12 @@
     <LnkId>108</LnkId>
     <item_id>85</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>86</Id>
@@ -3101,12 +3101,12 @@
     <LnkId>109</LnkId>
     <item_id>86</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>87</Id>
@@ -3137,12 +3137,12 @@
     <LnkId>110</LnkId>
     <item_id>87</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>88</Id>
@@ -3173,12 +3173,12 @@
     <LnkId>111</LnkId>
     <item_id>88</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>89</Id>
@@ -3209,17 +3209,17 @@
     <LnkId>112</LnkId>
     <item_id>89</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>90</Id>
     <BarCode>89</BarCode>
-    <ItemName>FACIAL [EXPRESS]</ItemName>
+    <ItemName>FACIAL      [Express]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -3245,17 +3245,17 @@
     <LnkId>113</LnkId>
     <item_id>90</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>91</Id>
     <BarCode>90</BarCode>
-    <ItemName>FACIAL [CLASSIC]</ItemName>
+    <ItemName>FACIAL      [Classic]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -3281,11 +3281,407 @@
     <LnkId>114</LnkId>
     <item_id>91</item_id>
     <menu_type>Item</menu_type>
-    <font_size>10.0</font_size>
-    <font_name>Segoe UI</font_name>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
     <font_style>Bold</font_style>
-    <text_color>Argb(255,255,255,255)</text_color>
-    <back_color>Argb(255,72,61,139)</back_color>
-    <Position>0</Position>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>92</Id>
+    <BarCode>91</BarCode>
+    <ItemName>CLASSIC PEDI [Without Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>49.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>49.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>116</LnkId>
+    <item_id>92</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>93</Id>
+    <BarCode>92</BarCode>
+    <ItemName>PREMIUM PEDI [OPI Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>59.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>59.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>117</LnkId>
+    <item_id>93</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>94</Id>
+    <BarCode>93</BarCode>
+    <ItemName>GEL PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>69.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>69.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>118</LnkId>
+    <item_id>94</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>95</Id>
+    <BarCode>94</BarCode>
+    <ItemName>SPA PEDI [Without Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>69.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>69.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>119</LnkId>
+    <item_id>95</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>96</Id>
+    <BarCode>95</BarCode>
+    <ItemName>SPA PEDI       [OPI Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>79.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>79.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>120</LnkId>
+    <item_id>96</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>97</Id>
+    <BarCode>96</BarCode>
+    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>PEDICURE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>89.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>89.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>121</LnkId>
+    <item_id>97</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>98</Id>
+    <BarCode>97</BarCode>
+    <ItemName>TIP EXTENSION [1 Hand]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>10</CateId>
+    <CateName>NAIL EXTENSION</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>122</LnkId>
+    <item_id>98</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>99</Id>
+    <BarCode>98</BarCode>
+    <ItemName>GEL       MANI-PEDI</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>MANI-PEDI COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>119.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>123</LnkId>
+    <item_id>99</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>100</Id>
+    <BarCode>99</BarCode>
+    <ItemName>SPA MANI-PEDI [Without Colour]</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>MANI-PEDI COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>119.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>124</LnkId>
+    <item_id>100</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>101</Id>
+    <BarCode>100</BarCode>
+    <ItemName>SPA MANI-PEDI [OPI Colour]</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>MANI-PEDI COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>139.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>125</LnkId>
+    <item_id>101</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>102</Id>
+    <BarCode>101</BarCode>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>MANI-PEDI COMBO</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>159.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>126</LnkId>
+    <item_id>102</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
   </ItemTouchMasterTable>
 </NewDataSet>
