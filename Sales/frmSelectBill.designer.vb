@@ -49,8 +49,6 @@ Partial Class frmSelectBill
         Me.btnOk = New DevExpress.XtraEditors.SimpleButton()
         Me.btnget = New DevExpress.XtraEditors.SimpleButton()
         Me.txtOk = New DevExpress.XtraEditors.TextEdit()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -60,6 +58,13 @@ Partial Class frmSelectBill
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.SimpleLabelItem1 = New DevExpress.XtraLayout.SimpleLabelItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemImageComboBoxSales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollectionBillSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +78,6 @@ Partial Class frmSelectBill
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtprintprofile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +87,9 @@ Partial Class frmSelectBill
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemImageComboBoxSales
@@ -107,7 +114,7 @@ Partial Class frmSelectBill
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem2, Me.SimpleSeparator1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.SimpleLabelItem1, Me.LayoutControlItem11})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem2, Me.SimpleSeparator1, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.SimpleLabelItem1, Me.LayoutControlItem11, Me.LayoutControlItem12})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
@@ -120,7 +127,7 @@ Partial Class frmSelectBill
         Me.LayoutControlItem1.CustomizationFormText = "Select"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(624, 603)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(547, 603)
         Me.LayoutControlItem1.Text = "Select"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextToControlDistance = 0
@@ -132,7 +139,7 @@ Partial Class frmSelectBill
         Me.GridControlGRNSelector.MainView = Me.GridView1
         Me.GridControlGRNSelector.Name = "GridControlGRNSelector"
         Me.GridControlGRNSelector.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImageComboBoxSales})
-        Me.GridControlGRNSelector.Size = New System.Drawing.Size(620, 599)
+        Me.GridControlGRNSelector.Size = New System.Drawing.Size(543, 599)
         Me.GridControlGRNSelector.TabIndex = 4
         Me.GridControlGRNSelector.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -167,7 +174,7 @@ Partial Class frmSelectBill
         Me.GridColumnGRN.Name = "GridColumnGRN"
         Me.GridColumnGRN.Visible = True
         Me.GridColumnGRN.VisibleIndex = 0
-        Me.GridColumnGRN.Width = 80
+        Me.GridColumnGRN.Width = 102
         '
         'GridColumn2
         '
@@ -176,7 +183,7 @@ Partial Class frmSelectBill
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 219
+        Me.GridColumn2.Width = 155
         '
         'GridColumnDate
         '
@@ -192,7 +199,7 @@ Partial Class frmSelectBill
         Me.GridColumnDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 1
-        Me.GridColumnDate.Width = 73
+        Me.GridColumnDate.Width = 109
         '
         'GridColumnCompanyName
         '
@@ -220,7 +227,7 @@ Partial Class frmSelectBill
         Me.GridColumnSupplierName.Name = "GridColumnSupplierName"
         Me.GridColumnSupplierName.Visible = True
         Me.GridColumnSupplierName.VisibleIndex = 4
-        Me.GridColumnSupplierName.Width = 105
+        Me.GridColumnSupplierName.Width = 80
         '
         'GridColumn3
         '
@@ -231,6 +238,7 @@ Partial Class frmSelectBill
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 96
         '
         'GridColumn4
         '
@@ -283,6 +291,7 @@ Partial Class frmSelectBill
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.btngetquotebill)
         Me.LayoutControl1.Controls.Add(Me.txtprintprofile)
         Me.LayoutControl1.Controls.Add(Me.btna4print)
@@ -291,7 +300,6 @@ Partial Class frmSelectBill
         Me.LayoutControl1.Controls.Add(Me.btnOk)
         Me.LayoutControl1.Controls.Add(Me.btnget)
         Me.LayoutControl1.Controls.Add(Me.txtOk)
-        Me.LayoutControl1.Controls.Add(Me.RichTextBox1)
         Me.LayoutControl1.Controls.Add(Me.btnPrint)
         Me.LayoutControl1.Controls.Add(Me.GridControlGRNSelector)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -316,12 +324,12 @@ Partial Class frmSelectBill
         '
         'txtprintprofile
         '
-        Me.txtprintprofile.Location = New System.Drawing.Point(697, 7)
+        Me.txtprintprofile.Location = New System.Drawing.Point(620, 7)
         Me.txtprintprofile.Name = "txtprintprofile"
         Me.txtprintprofile.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtprintprofile.Properties.Appearance.Options.UseFont = True
         Me.txtprintprofile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtprintprofile.Size = New System.Drawing.Size(290, 26)
+        Me.txtprintprofile.Size = New System.Drawing.Size(367, 26)
         Me.txtprintprofile.StyleController = Me.LayoutControl1
         Me.txtprintprofile.TabIndex = 16
         '
@@ -371,7 +379,6 @@ Partial Class frmSelectBill
         '
         'btnget
         '
-        Me.btnget.Enabled = False
         Me.btnget.Image = CType(resources.GetObject("btnget.Image"), System.Drawing.Image)
         Me.btnget.Location = New System.Drawing.Point(406, 638)
         Me.btnget.Name = "btnget"
@@ -389,28 +396,6 @@ Partial Class frmSelectBill
         Me.txtOk.Size = New System.Drawing.Size(217, 40)
         Me.txtOk.StyleController = Me.LayoutControl1
         Me.txtOk.TabIndex = 9
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Font = New System.Drawing.Font("Courier New", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.RichTextBox1.Location = New System.Drawing.Point(631, 37)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(356, 569)
-        Me.RichTextBox1.TabIndex = 8
-        Me.RichTextBox1.Text = ""
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.RichTextBox1
-        Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(624, 30)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(360, 573)
-        Me.LayoutControlItem5.Text = "LayoutControlItem5"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem5.TextToControlDistance = 0
-        Me.LayoutControlItem5.TextVisible = False
         '
         'LayoutControlItem6
         '
@@ -488,9 +473,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem10.Control = Me.txtprintprofile
         Me.LayoutControlItem10.CustomizationFormText = "LayoutControlItem10"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(690, 0)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(613, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(294, 30)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(371, 30)
         Me.LayoutControlItem10.Text = "LayoutControlItem10"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextToControlDistance = 0
@@ -500,7 +485,7 @@ Partial Class frmSelectBill
         '
         Me.SimpleLabelItem1.AllowHotTrack = False
         Me.SimpleLabelItem1.CustomizationFormText = "Print Profile :"
-        Me.SimpleLabelItem1.Location = New System.Drawing.Point(624, 0)
+        Me.SimpleLabelItem1.Location = New System.Drawing.Point(547, 0)
         Me.SimpleLabelItem1.Name = "SimpleLabelItem1"
         Me.SimpleLabelItem1.Size = New System.Drawing.Size(66, 30)
         Me.SimpleLabelItem1.Text = "Print Profile :"
@@ -517,6 +502,84 @@ Partial Class frmSelectBill
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextToControlDistance = 0
         Me.LayoutControlItem11.TextVisible = False
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Location = New System.Drawing.Point(554, 37)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(433, 569)
+        Me.GridControl1.TabIndex = 18
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridView2.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridView2.Appearance.Row.Options.UseFont = True
+        Me.GridView2.Appearance.Row.Options.UseTextOptions = True
+        Me.GridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowFooter = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.GridControl1
+        Me.LayoutControlItem12.CustomizationFormText = "LayoutControlItem12"
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(547, 30)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(437, 573)
+        Me.LayoutControlItem12.Text = "LayoutControlItem12"
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem12.TextToControlDistance = 0
+        Me.LayoutControlItem12.TextVisible = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ItemName"
+        Me.GridColumn5.FieldName = "psid_invoice_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 177
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "Qty"
+        Me.GridColumn6.FieldName = "psid_invoice_proqty"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 42
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.Caption = "Amt"
+        Me.GridColumn7.FieldName = "psid_invoice_netamt"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 44
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "SalesMan"
+        Me.GridColumn8.FieldName = "SalesmanName"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 135
         '
         'frmSelectBill
         '
@@ -541,7 +604,6 @@ Partial Class frmSelectBill
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.txtprintprofile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -551,6 +613,9 @@ Partial Class frmSelectBill
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -580,8 +645,6 @@ Partial Class frmSelectBill
     Friend WithEvents btnOk As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnget As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txtOk As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
-    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
@@ -593,4 +656,11 @@ Partial Class frmSelectBill
     Friend WithEvents SimpleLabelItem1 As DevExpress.XtraLayout.SimpleLabelItem
     Friend WithEvents btngetquotebill As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -800,6 +800,8 @@ class clsfuncsync
             INNER JOIN pos_location_mast AS pl ON pl.plm_id = ppd.LocId
             WHERE DATE(ppd.payd_datetime) >= '$startDate'
               AND DATE(ppd.payd_datetime) <= '$endDate'
+                AND ppd.ComId = '$comid'
+                AND ppd.LocId = '$locid'
               $empFilter
             ORDER BY ppd.payd_datetime DESC, ppd.payd_name";
 

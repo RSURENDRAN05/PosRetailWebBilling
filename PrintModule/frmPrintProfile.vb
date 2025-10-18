@@ -59,7 +59,7 @@ Public Class frmPrintProfile
         End If
 
     End Sub
-     
+
     Public Function _createTable() As DataTable
         Try
             PrintTable = New DataTable
@@ -124,7 +124,7 @@ Public Class frmPrintProfile
 
         End Try
     End Sub
-   
+
     Private Sub GridView1_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView1.RowClick
         Try
             Dim state As String
@@ -147,7 +147,7 @@ Public Class frmPrintProfile
         End Try
     End Sub
 
-   
+
 
     Private Sub btnnew_Click(sender As Object, e As EventArgs) Handles btnnew.Click
         Try
@@ -193,10 +193,28 @@ Public Class frmPrintProfile
 
     Private Sub btnDel_Click(sender As Object, e As EventArgs) Handles btnDel.Click
         Try
-            GridView1.DeleteSelectedRows()
-            PrintTable.AcceptChanges()
-        Catch ex As Exception
+            ' Get the selected row handle
+            Dim rowHandle As Integer = GridView1.FocusedRowHandle
+            If rowHandle >= 0 AndAlso rowHandle < PrintTable.Rows.Count Then
+                ' Get the ProfileID from the selected row
+                Dim profileId As Integer = Convert.ToInt32(PrintTable.Rows(rowHandle)("ProfileID"))
 
+                ' Find the row in PrintTable by ProfileID and delete it
+                Dim foundRows = PrintTable.Select("ProfileID = " & profileId)
+                For Each row As DataRow In foundRows
+                    PrintTable.Rows.Remove(row)
+                Next
+
+                PrintTable.AcceptChanges()
+
+                ' Save the updated table to XML
+                PrintTable.WriteXml(M_Details._appPath & "\Settings\PrintProfileSetting.xml", Data.XmlWriteMode.WriteSchema, True)
+
+                ' Refresh the grid if needed
+                GridControl1.DataSource = PrintTable
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error deleting profile: " & ex.Message)
         End Try
     End Sub
 

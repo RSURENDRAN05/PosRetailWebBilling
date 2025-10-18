@@ -25,41 +25,41 @@
   <SalesManDataTable>
     <Id>11</Id>
     <SalesMan>CHINNAIYAH</SalesMan>
-    <Position>9</Position>
+    <Position>2</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>12</Id>
     <SalesMan>SUKHVEER</SalesMan>
-    <Position>2</Position>
+    <Position>3</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>13</Id>
     <SalesMan>PRAKASH</SalesMan>
-    <Position>3</Position>
+    <Position>4</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>14</Id>
     <SalesMan>SENTHIL</SalesMan>
-    <Position>4</Position>
+    <Position>5</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>15</Id>
     <SalesMan>KAVI</SalesMan>
-    <Position>5</Position>
+    <Position>6</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>16</Id>
     <SalesMan>LOVEJEET</SalesMan>
-    <Position>6</Position>
+    <Position>7</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>17</Id>
     <SalesMan>YASHU</SalesMan>
-    <Position>8</Position>
+    <Position>9</Position>
   </SalesManDataTable>
   <SalesManDataTable>
     <Id>18</Id>
     <SalesMan>KHUSHI</SalesMan>
-    <Position>7</Position>
+    <Position>8</Position>
   </SalesManDataTable>
 </NewDataSet>

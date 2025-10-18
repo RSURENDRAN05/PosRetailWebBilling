@@ -21,30 +21,6 @@
     </xs:element>
   </xs:schema>
   <ProfileSetting>
-    <ProfileID>1</ProfileID>
-    <ProfileName>ds</ProfileName>
-    <FileName>ChqNormal.repx</FileName>
-    <ProfileType>Cheque</ProfileType>
-    <ProfileSingle>Print</ProfileSingle>
-    <ProfileActive>Active</ProfileActive>
-  </ProfileSetting>
-  <ProfileSetting>
-    <ProfileID>2</ProfileID>
-    <ProfileName>SalesPrint</ProfileName>
-    <FileName>SalesPrint.repx</FileName>
-    <ProfileType>Sales</ProfileType>
-    <ProfileSingle>Print</ProfileSingle>
-    <ProfileActive>Active</ProfileActive>
-  </ProfileSetting>
-  <ProfileSetting>
-    <ProfileID>3</ProfileID>
-    <ProfileName>SalesQuotation</ProfileName>
-    <FileName>SalesQuotationPrint.repx</FileName>
-    <ProfileType>Sales</ProfileType>
-    <ProfileSingle>Print</ProfileSingle>
-    <ProfileActive>Active</ProfileActive>
-  </ProfileSetting>
-  <ProfileSetting>
     <ProfileID>4</ProfileID>
     <ProfileName>SaleMini</ProfileName>
     <FileName>SalesMinPrint.repx</FileName>

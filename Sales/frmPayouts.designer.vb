@@ -258,7 +258,7 @@ Partial Class frmPayouts
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 314
+        Me.GridColumn4.Width = 295
         '
         'GridColumn5
         '
@@ -272,7 +272,7 @@ Partial Class frmPayouts
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "", 0.0R)})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 90
+        Me.GridColumn5.Width = 109
         '
         'GridColumn6
         '

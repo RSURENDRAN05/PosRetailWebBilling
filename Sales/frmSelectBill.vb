@@ -179,4 +179,16 @@ Public Class frmSelectBill
 
         End Try
     End Sub
+
+    Private Sub GridView1_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView1.RowClick
+        Try
+            Dim _receDs As New DataSet
+            GetSalesByBillLocal(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo"), _receDs, "P")
+            If _receDs.Tables(0).Rows.Count > 0 Then
+                GridControl1.DataSource = _receDs.Tables(1)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
