@@ -13,6 +13,7 @@ Public Class frmMonthlySummaryReport
     Private dtSalesmanData As DataTable
     Private dtItemwiseData As DataTable
     Private dtAdvanceData As DataTable
+    Private dtAdvanceDataDtl As DataTable
     Private dtCurrentData As DataTable
     Dim Errstr As String
     Dim dsReport As DataSet
@@ -407,6 +408,9 @@ Public Class frmMonthlySummaryReport
                             If dataObj("AdvanceData") IsNot Nothing Then
                                 dtAdvanceData = JsonArrayToDataTable(CType(dataObj("AdvanceData"), JArray))
                             End If
+                            If dataObj("AdvanceDataDtl") IsNot Nothing Then
+                                dtAdvanceDataDtl = JsonArrayToDataTable(CType(dataObj("AdvanceDataDtl"), JArray))
+                            End If
                             ' Create a new DataSet
                             dsReport = New DataSet("ReportData")
 
@@ -430,6 +434,14 @@ Public Class frmMonthlySummaryReport
                                 copiedAdvance.TableName = "AdvanceData"
                                 dsReport.Tables.Add(copiedAdvance)
                             End If
+
+                            ' Add AdvanceDataDtl if it exists
+                            If dtAdvanceDataDtl IsNot Nothing Then
+                                Dim copiedAdvance As DataTable = dtAdvanceDataDtl.Copy()
+                                copiedAdvance.TableName = "AdvanceDataDtl"
+                                dsReport.Tables.Add(copiedAdvance)
+                            End If
+
                             If (dsReport.Tables(0).Rows.Count > 0) Then
                                 dsReport.WriteXml(M_Details._appPath & "\Reports\ReportMonthlyIndv.xml", Data.XmlWriteMode.WriteSchema)
                             End If
@@ -729,6 +741,7 @@ Public Class frmMonthlySummaryReport
         Try
             lblStatus.Text = "Refreshing data..."
             LoadMonthlySummaryData()
+
         Catch ex As Exception
 
         End Try

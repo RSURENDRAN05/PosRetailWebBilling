@@ -9,12 +9,21 @@
               <xs:sequence>
                 <xs:element name="ID" type="xs:string" minOccurs="0" />
                 <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalItems" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalNetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="AvgPercentage" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalCommission" type="xs:string" minOccurs="0" />
                 <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
                 <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalTransactions" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalAmount" type="xs:string" minOccurs="0" />
-                <xs:element name="FirstAdvance" type="xs:string" minOccurs="0" />
-                <xs:element name="LastAdvance" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="DateFilter">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FromDate" type="xs:string" minOccurs="0" />
+                <xs:element name="ToDate" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -24,22 +33,39 @@
   </xs:schema>
   <SalesData>
     <ID>1</ID>
-    <Name>FZULS</Name>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <TotalTransactions>1</TotalTransactions>
-    <TotalAmount>500.00</TotalAmount>
-    <FirstAdvance>2025-08-30 15:01:13</FirstAdvance>
-    <LastAdvance>2025-08-30 15:01:13</LastAdvance>
+    <Name>RAJKUMAR</Name>
+    <TotalItems>350</TotalItems>
+    <TotalNetAmt>7890.00</TotalNetAmt>
+    <AvgPercentage>1.43</AvgPercentage>
+    <TotalCommission>167.50</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>350.00</Qty>
   </SalesData>
   <SalesData>
-    <ID>2</ID>
-    <Name>SUREN</Name>
-    <CompanyName>MURIFA TECHNOLOGY</CompanyName>
-    <LocationName>@KL</LocationName>
-    <TotalTransactions>1</TotalTransactions>
-    <TotalAmount>200.00</TotalAmount>
-    <FirstAdvance>2025-08-30 15:01:13</FirstAdvance>
-    <LastAdvance>2025-08-30 15:01:13</LastAdvance>
+    <ID>4</ID>
+    <Name>KANAGARAJ</Name>
+    <TotalItems>241</TotalItems>
+    <TotalNetAmt>4895.00</TotalNetAmt>
+    <AvgPercentage>0.54</AvgPercentage>
+    <TotalCommission>37.50</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>241.00</Qty>
   </SalesData>
+  <SalesData>
+    <ID>6</ID>
+    <Name>SURYA</Name>
+    <TotalItems>5</TotalItems>
+    <TotalNetAmt>116.00</TotalNetAmt>
+    <AvgPercentage>0.00</AvgPercentage>
+    <TotalCommission>0.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>5.00</Qty>
+  </SalesData>
+  <DateFilter>
+    <FromDate>2025-10-01</FromDate>
+    <ToDate>2025-10-24</ToDate>
+  </DateFilter>
 </NewDataSet>

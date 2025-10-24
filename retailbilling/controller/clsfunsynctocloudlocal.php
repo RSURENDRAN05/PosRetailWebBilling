@@ -926,11 +926,12 @@ class clsfuncsync
             $resultSets = array(
                 'SalesmanData' => array(),
                 'ItemwiseData' => array(),
-                'AdvanceData' => array()
+                'AdvanceData' => array(),
+                'AdvanceDataDtl' => array()
             );
 
             $resultIndex = 0;
-            $resultNames = array('SalesmanData', 'ItemwiseData', 'AdvanceData');
+            $resultNames = array('SalesmanData', 'ItemwiseData', 'AdvanceData', 'AdvanceDataDtl');
 
             // Process each result set
             do {
@@ -951,7 +952,7 @@ class clsfuncsync
             } while (mysqli_next_result($this->conn));
 
             // Check if we have any data
-            $totalRecords = count($resultSets['SalesmanData']) + count($resultSets['ItemwiseData']) + count($resultSets['AdvanceData']);
+            $totalRecords = count($resultSets['SalesmanData']) + count($resultSets['ItemwiseData']) + count($resultSets['AdvanceData'] ) + count($resultSets['AdvanceDataDtl']);
 
             if ($totalRecords > 0) {
                 return array('success' => true, 'data' => $resultSets);

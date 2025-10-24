@@ -71,12 +71,14 @@ Partial Class frmSalesChronicalReport
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCurrencyEdit1, Me.RepositoryItemDateEdit1})
-        Me.GridControl1.Size = New System.Drawing.Size(1266, 499)
+        Me.GridControl1.Size = New System.Drawing.Size(1360, 499)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.DarkBlue
         Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black
@@ -136,15 +138,17 @@ Partial Class frmSalesChronicalReport
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1266, 124)
+        Me.PanelControl1.Size = New System.Drawing.Size(1360, 124)
         Me.PanelControl1.TabIndex = 1
         '
         'btnprintreport
         '
+        Me.btnprintreport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnprintreport.Appearance.Options.UseFont = True
         Me.btnprintreport.Image = CType(resources.GetObject("btnprintreport.Image"), System.Drawing.Image)
-        Me.btnprintreport.Location = New System.Drawing.Point(952, 5)
+        Me.btnprintreport.Location = New System.Drawing.Point(930, 5)
         Me.btnprintreport.Name = "btnprintreport"
-        Me.btnprintreport.Size = New System.Drawing.Size(115, 23)
+        Me.btnprintreport.Size = New System.Drawing.Size(131, 52)
         Me.btnprintreport.TabIndex = 16
         Me.btnprintreport.Text = "Print"
         '
@@ -243,37 +247,45 @@ Partial Class frmSalesChronicalReport
         '
         'btnExport
         '
+        Me.btnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnExport.Appearance.Options.UseFont = True
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(1079, 5)
+        Me.btnExport.Location = New System.Drawing.Point(1067, 5)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExport.Size = New System.Drawing.Size(112, 52)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
         'btnPrintPreview
         '
+        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintPreview.Appearance.Options.UseFont = True
         Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
-        Me.btnPrintPreview.Location = New System.Drawing.Point(825, 5)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(780, 5)
         Me.btnPrintPreview.Name = "btnPrintPreview"
-        Me.btnPrintPreview.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrintPreview.Size = New System.Drawing.Size(144, 52)
         Me.btnPrintPreview.TabIndex = 10
         Me.btnPrintPreview.Text = "Grid Preview"
         '
         'btnRefresh
         '
+        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefresh.Appearance.Options.UseFont = True
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(738, 5)
+        Me.btnRefresh.Location = New System.Drawing.Point(1185, 6)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.Size = New System.Drawing.Size(100, 51)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         '
         'btnSearch
         '
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
         Me.btnSearch.Location = New System.Drawing.Point(651, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(123, 52)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
         '
@@ -304,7 +316,7 @@ Partial Class frmSalesChronicalReport
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 623)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1266, 30)
+        Me.PanelControl2.Size = New System.Drawing.Size(1360, 30)
         Me.PanelControl2.TabIndex = 2
         '
         'lblTotalRecords
@@ -329,13 +341,13 @@ Partial Class frmSalesChronicalReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1266, 653)
+        Me.ClientSize = New System.Drawing.Size(1360, 653)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "frmSalesChronicalReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sales Report"
+        Me.Text = "Sales Chronical"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

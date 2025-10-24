@@ -95,6 +95,7 @@ Public Class frmAdvancePaymentReport
 
     Private Sub InitializeSalesManList()
         Try
+            LoadSalesManData()
             ' Clear existing items
             ListBoxControlSalemanList.Items.Clear()
 
@@ -123,6 +124,7 @@ Public Class frmAdvancePaymentReport
 
     Private Function GetSalesManDataFromAPI() As DataTable
         Try
+            GetSalesmanData()
             ' Use existing API call pattern
             Dim comId As String = _companyInfo.ComId
             Dim locId As String = _companyInfo.LocId
@@ -629,6 +631,7 @@ Public Class frmAdvancePaymentReport
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         lblStatusResults.Text = "Refreshing data..."
         LoadSalesData()
+        InitializeSalesManList()
     End Sub
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click

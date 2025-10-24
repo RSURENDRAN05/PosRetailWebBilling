@@ -95,6 +95,7 @@ Public Class frmSalesChronicalReport
 
     Private Sub InitializeSalesManList()
         Try
+            LoadSalesManData()
             ' Clear existing items
             ListBoxControlSalemanList.Items.Clear()
 
@@ -123,6 +124,7 @@ Public Class frmSalesChronicalReport
 
     Private Function GetSalesManDataFromAPI() As DataTable
         Try
+            GetSalesmanData()
             ' Use existing API call pattern
             Dim comId As String = _companyInfo.ComId
             Dim locId As String = _companyInfo.LocId
@@ -520,7 +522,22 @@ Public Class frmSalesChronicalReport
             Dim _receDs As New DataSet
             Dim copiedTable As DataTable = dtSalesData.Copy()
             copiedTable.TableName = "SalesData" ' Give it a meaningful name
+
+            ' Create DateFilter table
+            Dim dateFilterTable As New DataTable("DateFilter")
+            dateFilterTable.Columns.Add("FromDate", GetType(String))
+            dateFilterTable.Columns.Add("ToDate", GetType(String))
+
+            ' Add date filter values
+            Dim dateRow As DataRow = dateFilterTable.NewRow()
+            dateRow("FromDate") = dtStartDate.DateTime.ToString("yyyy-MM-dd")
+            dateRow("ToDate") = dtEndDate.DateTime.ToString("yyyy-MM-dd")
+            dateFilterTable.Rows.Add(dateRow)
+
+            ' Add tables to dataset
             _receDs.Tables.Add(copiedTable)
+            _receDs.Tables.Add(dateFilterTable)
+
             If (_receDs.Tables(0).Rows.Count > 0) Then
                 _receDs.WriteXml(M_Details._appPath & "\Reports\ReportChronical.xml", Data.XmlWriteMode.WriteSchema)
             End If
@@ -528,21 +545,21 @@ Public Class frmSalesChronicalReport
                 Case "SALES BY SALESMAN"
                     If reportType.ToUpper() = "SUMMARY" Then
                         If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                            lblStatusResults.Text = "Error: " & "ReportChronicalSummary.repx"
                         End If
                     Else
                         If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                            lblStatusResults.Text = "Error: " & "ReportChronicalDetailed.repx"
                         End If
                     End If
                 Case "SALES BY ALL BRANCH"
                     If reportType.ToUpper() = "SUMMARY" Then
                         If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                            lblStatusResults.Text = "Error: " & "ReportChronicalSummary.repx"
                         End If
                     Else
                         If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                            lblStatusResults.Text = "Error: " & "ReportChronicalDetailed.repx"
                         End If
                     End If
             End Select
@@ -669,6 +686,7 @@ Public Class frmSalesChronicalReport
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         lblStatusResults.Text = "Refreshing data..."
         LoadSalesData()
+        InitializeSalesManList()
     End Sub
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click

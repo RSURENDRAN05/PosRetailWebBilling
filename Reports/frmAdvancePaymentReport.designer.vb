@@ -25,6 +25,7 @@ Partial Class frmAdvancePaymentReport
         Me.RepositoryItemCurrencyEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnAdvance = New DevExpress.XtraEditors.SimpleButton()
         Me.btnprintreport = New DevExpress.XtraEditors.SimpleButton()
         Me.ListBoxControlSalemanList = New DevExpress.XtraEditors.ListBoxControl()
         Me.ListBoxControlReportList = New DevExpress.XtraEditors.ListBoxControl()
@@ -44,7 +45,6 @@ Partial Class frmAdvancePaymentReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
-        Me.btnAdvance = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCurrencyEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,12 +141,25 @@ Partial Class frmAdvancePaymentReport
         Me.PanelControl1.Size = New System.Drawing.Size(1266, 124)
         Me.PanelControl1.TabIndex = 1
         '
+        'btnAdvance
+        '
+        Me.btnAdvance.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnAdvance.Appearance.Options.UseFont = True
+        Me.btnAdvance.Image = CType(resources.GetObject("btnAdvance.Image"), System.Drawing.Image)
+        Me.btnAdvance.Location = New System.Drawing.Point(651, 84)
+        Me.btnAdvance.Name = "btnAdvance"
+        Me.btnAdvance.Size = New System.Drawing.Size(164, 36)
+        Me.btnAdvance.TabIndex = 17
+        Me.btnAdvance.Text = "Advance Pay"
+        '
         'btnprintreport
         '
+        Me.btnprintreport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnprintreport.Appearance.Options.UseFont = True
         Me.btnprintreport.Image = CType(resources.GetObject("btnprintreport.Image"), System.Drawing.Image)
-        Me.btnprintreport.Location = New System.Drawing.Point(952, 5)
+        Me.btnprintreport.Location = New System.Drawing.Point(921, 5)
         Me.btnprintreport.Name = "btnprintreport"
-        Me.btnprintreport.Size = New System.Drawing.Size(115, 23)
+        Me.btnprintreport.Size = New System.Drawing.Size(115, 44)
         Me.btnprintreport.TabIndex = 16
         Me.btnprintreport.Text = "Print"
         '
@@ -245,37 +258,45 @@ Partial Class frmAdvancePaymentReport
         '
         'btnExport
         '
+        Me.btnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnExport.Appearance.Options.UseFont = True
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(1079, 5)
+        Me.btnExport.Location = New System.Drawing.Point(1042, 5)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExport.Size = New System.Drawing.Size(116, 44)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
         'btnPrintPreview
         '
+        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintPreview.Appearance.Options.UseFont = True
         Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
-        Me.btnPrintPreview.Location = New System.Drawing.Point(825, 5)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(767, 5)
         Me.btnPrintPreview.Name = "btnPrintPreview"
-        Me.btnPrintPreview.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrintPreview.Size = New System.Drawing.Size(148, 44)
         Me.btnPrintPreview.TabIndex = 10
         Me.btnPrintPreview.Text = "Grid Preview"
         '
         'btnRefresh
         '
+        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefresh.Appearance.Options.UseFont = True
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(738, 5)
+        Me.btnRefresh.Location = New System.Drawing.Point(832, 84)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.Size = New System.Drawing.Size(105, 36)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         '
         'btnSearch
         '
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
         Me.btnSearch.Location = New System.Drawing.Point(651, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(110, 44)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
         '
@@ -326,15 +347,6 @@ Partial Class frmAdvancePaymentReport
         Me.lblTotalAmount.Size = New System.Drawing.Size(107, 13)
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
-        '
-        'btnAdvance
-        '
-        Me.btnAdvance.Image = CType(resources.GetObject("btnAdvance.Image"), System.Drawing.Image)
-        Me.btnAdvance.Location = New System.Drawing.Point(651, 34)
-        Me.btnAdvance.Name = "btnAdvance"
-        Me.btnAdvance.Size = New System.Drawing.Size(128, 36)
-        Me.btnAdvance.TabIndex = 17
-        Me.btnAdvance.Text = "Advance Pay"
         '
         'frmAdvancePaymentReport
         '

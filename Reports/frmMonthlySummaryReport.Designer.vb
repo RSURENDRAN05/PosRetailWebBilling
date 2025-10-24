@@ -59,7 +59,7 @@ Partial Class frmMonthlySummaryReport
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1200, 120)
+        Me.PanelControl1.Size = New System.Drawing.Size(1301, 120)
         Me.PanelControl1.TabIndex = 0
         '
         'GroupControl1
@@ -76,52 +76,62 @@ Partial Class frmMonthlySummaryReport
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(2, 2)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1196, 116)
+        Me.GroupControl1.Size = New System.Drawing.Size(1297, 116)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Report Parameters"
         '
         'btnprintreport
         '
+        Me.btnprintreport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnprintreport.Appearance.Options.UseFont = True
         Me.btnprintreport.Image = CType(resources.GetObject("btnprintreport.Image"), System.Drawing.Image)
-        Me.btnprintreport.Location = New System.Drawing.Point(907, 35)
+        Me.btnprintreport.Location = New System.Drawing.Point(864, 35)
         Me.btnprintreport.Name = "btnprintreport"
-        Me.btnprintreport.Size = New System.Drawing.Size(115, 23)
+        Me.btnprintreport.Size = New System.Drawing.Size(141, 48)
         Me.btnprintreport.TabIndex = 21
         Me.btnprintreport.Text = "Print Preview"
         '
         'SimpleButton1
         '
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.Options.UseFont = True
         Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
         Me.SimpleButton1.Location = New System.Drawing.Point(1034, 35)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton1.Size = New System.Drawing.Size(115, 48)
         Me.SimpleButton1.TabIndex = 20
         Me.SimpleButton1.Text = "Export"
         '
         'btnPrintPreview
         '
+        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintPreview.Appearance.Options.UseFont = True
         Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
-        Me.btnPrintPreview.Location = New System.Drawing.Point(780, 35)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(717, 35)
         Me.btnPrintPreview.Name = "btnPrintPreview"
-        Me.btnPrintPreview.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrintPreview.Size = New System.Drawing.Size(141, 48)
         Me.btnPrintPreview.TabIndex = 19
         Me.btnPrintPreview.Text = "Grid Preview"
         '
         'btnRefreshData
         '
+        Me.btnRefreshData.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefreshData.Appearance.Options.UseFont = True
         Me.btnRefreshData.Image = CType(resources.GetObject("btnRefreshData.Image"), System.Drawing.Image)
-        Me.btnRefreshData.Location = New System.Drawing.Point(693, 35)
+        Me.btnRefreshData.Location = New System.Drawing.Point(1172, 35)
         Me.btnRefreshData.Name = "btnRefreshData"
-        Me.btnRefreshData.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefreshData.Size = New System.Drawing.Size(115, 48)
         Me.btnRefreshData.TabIndex = 18
         Me.btnRefreshData.Text = "Refresh"
         '
         'btnSearch
         '
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
-        Me.btnSearch.Location = New System.Drawing.Point(606, 35)
+        Me.btnSearch.Location = New System.Drawing.Point(596, 35)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(115, 48)
         Me.btnSearch.TabIndex = 17
         Me.btnSearch.Text = "Search"
         '
@@ -137,7 +147,7 @@ Partial Class frmMonthlySummaryReport
         '
         Me.ListBoxControlReportType.Location = New System.Drawing.Point(350, 35)
         Me.ListBoxControlReportType.Name = "ListBoxControlReportType"
-        Me.ListBoxControlReportType.Size = New System.Drawing.Size(250, 70)
+        Me.ListBoxControlReportType.Size = New System.Drawing.Size(234, 70)
         Me.ListBoxControlReportType.TabIndex = 2
         '
         'LabelControl1
@@ -171,7 +181,7 @@ Partial Class frmMonthlySummaryReport
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 120)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1200, 430)
+        Me.GroupControl2.Size = New System.Drawing.Size(1301, 503)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Report Data"
         '
@@ -181,12 +191,14 @@ Partial Class frmMonthlySummaryReport
         Me.GridControl1.Location = New System.Drawing.Point(2, 21)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1196, 407)
+        Me.GridControl1.Size = New System.Drawing.Size(1297, 480)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
@@ -211,9 +223,9 @@ Partial Class frmMonthlySummaryReport
         Me.StatusPanel.Controls.Add(Me.lblFilterInfo)
         Me.StatusPanel.Controls.Add(Me.lblStatus)
         Me.StatusPanel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.StatusPanel.Location = New System.Drawing.Point(0, 550)
+        Me.StatusPanel.Location = New System.Drawing.Point(0, 623)
         Me.StatusPanel.Name = "StatusPanel"
-        Me.StatusPanel.Size = New System.Drawing.Size(1200, 30)
+        Me.StatusPanel.Size = New System.Drawing.Size(1301, 30)
         Me.StatusPanel.TabIndex = 2
         '
         'lblTotalAmount
@@ -227,7 +239,7 @@ Partial Class frmMonthlySummaryReport
         'lblFilterInfo
         '
         Me.lblFilterInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFilterInfo.Location = New System.Drawing.Point(1000, 8)
+        Me.lblFilterInfo.Location = New System.Drawing.Point(1101, 8)
         Me.lblFilterInfo.Name = "lblFilterInfo"
         Me.lblFilterInfo.Size = New System.Drawing.Size(24, 13)
         Me.lblFilterInfo.TabIndex = 1
@@ -245,7 +257,7 @@ Partial Class frmMonthlySummaryReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1200, 580)
+        Me.ClientSize = New System.Drawing.Size(1301, 653)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.StatusPanel)

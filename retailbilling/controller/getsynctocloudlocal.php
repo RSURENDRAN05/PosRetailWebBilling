@@ -414,7 +414,8 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                 $data = $monthlySummaryResult['data'];
                 error_log("Monthly summary report data fetched successfully. SalesmanData: " . count($data['SalesmanData']) .
                     ", ItemwiseData: " . count($data['ItemwiseData']) .
-                    ", AdvanceData: " . count($data['AdvanceData']));
+                    ", AdvanceData: " . count($data['AdvanceData']) .
+                    ", AdvanceDataDtl: " . count($data['AdvanceDataDtl']));
 
                 echo json_encode(array(
                     "Success" => true,
@@ -422,6 +423,7 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
                         "SalesmanData" => $data['SalesmanData'],
                         "ItemwiseData" => $data['ItemwiseData'],
                         "AdvanceData" => $data['AdvanceData'],
+                        "AdvanceDataDtl" => $data['AdvanceDataDtl'],
                         "Month" => $month,
                         "Year" => $year,
                         "MonthYear" => date('M-Y', mktime(0, 0, 0, $month, 1, $year))

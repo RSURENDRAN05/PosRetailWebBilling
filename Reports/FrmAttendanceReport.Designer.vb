@@ -114,37 +114,45 @@ Partial Class FrmAttendanceReport
         '
         'btnExport
         '
+        Me.btnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnExport.Appearance.Options.UseFont = True
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(1079, 5)
+        Me.btnExport.Location = New System.Drawing.Point(1119, 5)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExport.Size = New System.Drawing.Size(98, 40)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
         'btnPrintPreview
         '
+        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintPreview.Appearance.Options.UseFont = True
         Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
-        Me.btnPrintPreview.Location = New System.Drawing.Point(825, 5)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(833, 5)
         Me.btnPrintPreview.Name = "btnPrintPreview"
-        Me.btnPrintPreview.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrintPreview.Size = New System.Drawing.Size(138, 40)
         Me.btnPrintPreview.TabIndex = 10
         Me.btnPrintPreview.Text = "Grid Preview"
         '
         'btnRefresh
         '
+        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefresh.Appearance.Options.UseFont = True
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(738, 5)
+        Me.btnRefresh.Location = New System.Drawing.Point(730, 5)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.Size = New System.Drawing.Size(98, 40)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         '
         'btnSearch
         '
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
-        Me.btnSearch.Location = New System.Drawing.Point(651, 5)
+        Me.btnSearch.Location = New System.Drawing.Point(627, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(98, 40)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
         '
@@ -215,10 +223,12 @@ Partial Class FrmAttendanceReport
         '
         'btnprintreport
         '
+        Me.btnprintreport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnprintreport.Appearance.Options.UseFont = True
         Me.btnprintreport.Image = CType(resources.GetObject("btnprintreport.Image"), System.Drawing.Image)
-        Me.btnprintreport.Location = New System.Drawing.Point(952, 5)
+        Me.btnprintreport.Location = New System.Drawing.Point(976, 5)
         Me.btnprintreport.Name = "btnprintreport"
-        Me.btnprintreport.Size = New System.Drawing.Size(115, 23)
+        Me.btnprintreport.Size = New System.Drawing.Size(138, 40)
         Me.btnprintreport.TabIndex = 16
         Me.btnprintreport.Text = "Print"
         '
@@ -226,7 +236,7 @@ Partial Class FrmAttendanceReport
         '
         Me.ListBoxControlSalemanList.Location = New System.Drawing.Point(460, 5)
         Me.ListBoxControlSalemanList.Name = "ListBoxControlSalemanList"
-        Me.ListBoxControlSalemanList.Size = New System.Drawing.Size(186, 115)
+        Me.ListBoxControlSalemanList.Size = New System.Drawing.Size(161, 115)
         Me.ListBoxControlSalemanList.TabIndex = 15
         '
         'ListBoxControlReportList

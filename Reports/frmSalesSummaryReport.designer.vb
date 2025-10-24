@@ -63,6 +63,8 @@ Partial Class frmSalesSummaryReport
         Me.colDayNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCreated = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colModified = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
@@ -78,8 +80,6 @@ Partial Class frmSalesSummaryReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +108,8 @@ Partial Class frmSalesSummaryReport
         '
         'GridView1
         '
+        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.DarkBlue
         Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black
@@ -484,6 +486,22 @@ Partial Class frmSalesSummaryReport
         Me.colModified.Name = "colModified"
         Me.colModified.Width = 90
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Company"
+        Me.GridColumn1.FieldName = "pcm_name"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Location"
+        Me.GridColumn2.FieldName = "plm_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 8
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.btnSaveLayout)
@@ -505,46 +523,56 @@ Partial Class frmSalesSummaryReport
         '
         'btnSaveLayout
         '
+        Me.btnSaveLayout.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSaveLayout.Appearance.Options.UseFont = True
         Me.btnSaveLayout.Image = CType(resources.GetObject("btnSaveLayout.Image"), System.Drawing.Image)
-        Me.btnSaveLayout.Location = New System.Drawing.Point(692, 9)
+        Me.btnSaveLayout.Location = New System.Drawing.Point(1059, 5)
         Me.btnSaveLayout.Name = "btnSaveLayout"
-        Me.btnSaveLayout.Size = New System.Drawing.Size(95, 23)
+        Me.btnSaveLayout.Size = New System.Drawing.Size(134, 44)
         Me.btnSaveLayout.TabIndex = 12
         Me.btnSaveLayout.Text = "SaveLayout"
         '
         'btnExport
         '
+        Me.btnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnExport.Appearance.Options.UseFont = True
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(606, 10)
+        Me.btnExport.Location = New System.Drawing.Point(917, 5)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExport.Size = New System.Drawing.Size(134, 44)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
         'btnPrint
         '
+        Me.btnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrint.Appearance.Options.UseFont = True
         Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-        Me.btnPrint.Location = New System.Drawing.Point(480, 10)
+        Me.btnPrint.Location = New System.Drawing.Point(775, 5)
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(115, 23)
+        Me.btnPrint.Size = New System.Drawing.Size(134, 44)
         Me.btnPrint.TabIndex = 10
         Me.btnPrint.Text = "Grid Preview"
         '
         'btnRefresh
         '
+        Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnRefresh.Appearance.Options.UseFont = True
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(394, 10)
+        Me.btnRefresh.Location = New System.Drawing.Point(633, 5)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.Size = New System.Drawing.Size(134, 44)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         '
         'btnSearch
         '
+        Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
-        Me.btnSearch.Location = New System.Drawing.Point(308, 10)
+        Me.btnSearch.Location = New System.Drawing.Point(491, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(134, 44)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
         '
@@ -644,22 +672,6 @@ Partial Class frmSalesSummaryReport
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Company"
-        Me.GridColumn1.FieldName = "pcm_name"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Location"
-        Me.GridColumn2.FieldName = "plm_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
-        '
         'frmSalesSummaryReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -670,7 +682,7 @@ Partial Class frmSalesSummaryReport
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "frmSalesSummaryReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sales Report"
+        Me.Text = "Sales Report Summary"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
