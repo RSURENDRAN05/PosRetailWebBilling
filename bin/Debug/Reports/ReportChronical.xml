@@ -32,40 +32,40 @@
     </xs:element>
   </xs:schema>
   <SalesData>
-    <ID>1</ID>
-    <Name>RAJKUMAR</Name>
-    <TotalItems>350</TotalItems>
-    <TotalNetAmt>7890.00</TotalNetAmt>
-    <AvgPercentage>1.43</AvgPercentage>
-    <TotalCommission>167.50</TotalCommission>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <Qty>350.00</Qty>
-  </SalesData>
-  <SalesData>
-    <ID>4</ID>
-    <Name>KANAGARAJ</Name>
-    <TotalItems>241</TotalItems>
-    <TotalNetAmt>4895.00</TotalNetAmt>
-    <AvgPercentage>0.54</AvgPercentage>
-    <TotalCommission>37.50</TotalCommission>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <Qty>241.00</Qty>
-  </SalesData>
-  <SalesData>
-    <ID>6</ID>
-    <Name>SURYA</Name>
-    <TotalItems>5</TotalItems>
-    <TotalNetAmt>116.00</TotalNetAmt>
+    <ID>14</ID>
+    <Name>SENTHIL</Name>
+    <TotalItems>1</TotalItems>
+    <TotalNetAmt>30.00</TotalNetAmt>
     <AvgPercentage>0.00</AvgPercentage>
     <TotalCommission>0.00</TotalCommission>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BANGSAR</LocationName>
-    <Qty>5.00</Qty>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>1.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>12</ID>
+    <Name>SUKHVEER</Name>
+    <TotalItems>1</TotalItems>
+    <TotalNetAmt>25.00</TotalNetAmt>
+    <AvgPercentage>0.00</AvgPercentage>
+    <TotalCommission>0.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>1.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>11</ID>
+    <Name>CHINNAIYAH</Name>
+    <TotalItems>1</TotalItems>
+    <TotalNetAmt>18.00</TotalNetAmt>
+    <AvgPercentage>0.00</AvgPercentage>
+    <TotalCommission>0.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>1.00</Qty>
   </SalesData>
   <DateFilter>
-    <FromDate>2025-10-01</FromDate>
-    <ToDate>2025-10-24</ToDate>
+    <FromDate>2025-10-28</FromDate>
+    <ToDate>2025-10-28</ToDate>
   </DateFilter>
 </NewDataSet>

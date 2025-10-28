@@ -87,24 +87,24 @@ Module clsBillPrint
                     Else
                         dtSalesman = dsAdvanceData.Tables("SalesmanData").Clone()
                     End If
-                    ' --- NEW FILTER: skip Commission = 0 or NULL ---
-                    If dtSalesman.Rows.Count > 0 Then
-                        Dim rowsToKeep = dtSalesman.AsEnumerable().
-                            Where(Function(r)
-                                      Dim val As Decimal = 0D
-                                      ' Try safely converting Commission to decimal
-                                      If Not IsDBNull(r("Commission")) AndAlso Decimal.TryParse(r("Commission").ToString(), val) Then
-                                          Return val <> 0D  ' Keep only rows with non-zero Commission
-                                      End If
-                                      Return False ' Skip NULL or non-numeric
-                                  End Function)
+                    '' --- NEW FILTER: skip Commission = 0 or NULL ---
+                    'If dtSalesman.Rows.Count > 0 Then
+                    '    Dim rowsToKeep = dtSalesman.AsEnumerable().
+                    '        Where(Function(r)
+                    '                  Dim val As Decimal = 0D
+                    '                  ' Try safely converting Commission to decimal
+                    '                  If Not IsDBNull(r("Commission")) AndAlso Decimal.TryParse(r("Commission").ToString(), val) Then
+                    '                      Return val <> 0D  ' Keep only rows with non-zero Commission
+                    '                  End If
+                    '                  Return False ' Skip NULL or non-numeric
+                    '              End Function)
 
-                        If rowsToKeep.Any() Then
-                            dtSalesman = rowsToKeep.CopyToDataTable()
-                        Else
-                            dtSalesman = dtSalesman.Clone() ' empty table with same structure
-                        End If
-                    End If
+                    '    If rowsToKeep.Any() Then
+                    '        dtSalesman = rowsToKeep.CopyToDataTable()
+                    '    Else
+                    '        dtSalesman = dtSalesman.Clone() ' empty table with same structure
+                    '    End If
+                    'End If
 
                     dtSalesman.TableName = "SalesmanData"
 
