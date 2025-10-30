@@ -581,6 +581,32 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 14) { //get sales data with parameters
+        try {
+            $comid = $_REQUEST['comid'] ?? '';
+            $locid = $_REQUEST['locid'] ?? '';
+            $startDate = $_REQUEST['startDate'] ?? '';
+            $endDate = $_REQUEST['endDate'] ?? '';
+
+            if (empty($comid) || empty($locid) || empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters");
+            }
+
+            $salesData = $clsfunreq->GetSalesData($comid, $locid, $startDate, $endDate);
+
+            // Expected: [Header, Details, Payment]
+            $data = array(
+                "Header"  => $salesData[0] ?? [],
+                "Details" => $salesData[1] ?? [],
+                "Payment" => $salesData[2] ?? []
+            );
+
+            echo json_encode(array("Success" => true, "Data" => $data));
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Msg" => $e->getMessage()));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests

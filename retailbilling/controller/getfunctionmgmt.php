@@ -4576,6 +4576,15 @@ elseif (isset($_REQUEST['SalesManCommission'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Failed to update employee positions'));
         }
     }
+    if ((int) $_REQUEST['SalesManCommission'] == 17) { // Update Commission On Sales
+        $salesman_id = $_GET['salesman_id'];
+        $RequestUpdate = $clsfunreq->SpUpdateSalesmanCommission($salesman_id);
+        if ($RequestUpdate) {
+            echo json_encode(array("Success" => true, "Msg" => 'Commission Updated successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Failed to Updated commission'));
+        }
+    }
 }
 //Mgmt Request
 elseif (isset($_REQUEST['MgmtRequest'])) {

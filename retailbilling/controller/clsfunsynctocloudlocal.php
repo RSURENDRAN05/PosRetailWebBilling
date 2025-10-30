@@ -330,6 +330,37 @@ class clsfuncsync
 
         return trim($cleaned);
     }
+
+    public function GetSalesData($comid, $locid, $startDate, $endDate)
+    {
+        $comid     = mysqli_real_escape_string($this->conn, $comid);
+        $locid     = mysqli_real_escape_string($this->conn, $locid);
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
+
+        $sql = "CALL sp_GetSalesData('$comid', '$locid', '$startDate', '$endDate')";
+        error_log("Sales Data Query: " . $sql);
+
+        $resultSets = array();
+
+        if ($this->conn->multi_query($sql)) {
+            do {
+                if ($result = $this->conn->store_result()) {
+                    $rows = array();
+                    while ($row = $result->fetch_assoc()) {
+                        $rows[] = $row;
+                    }
+                    $resultSets[] = $rows;
+                    $result->free();
+                }
+            } while ($this->conn->more_results() && $this->conn->next_result());
+        } else {
+            throw new Exception("Error executing query: " . $this->conn->error);
+        }
+
+        return $resultSets;
+    }
+
     public function GetSalesReportSummary($comid, $locid, $startDate, $endDate)
     {
         // Escape variables first
@@ -405,8 +436,8 @@ class clsfuncsync
         INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
         WHERE psid.psid_invoice_comid = '$comid'
           AND psid.psid_invoice_locid = '$locid'
-          AND psid.psid_invoice_created >= '$startDate'
-          AND psid.psid_invoice_created <= '$endDate'
+          AND psid.psid_invoice_date >= '$startDate'
+          AND psid.psid_invoice_date <= '$endDate'
         ORDER BY psid.psid_invoice_date DESC
          ";
 
@@ -952,7 +983,7 @@ class clsfuncsync
             } while (mysqli_next_result($this->conn));
 
             // Check if we have any data
-            $totalRecords = count($resultSets['SalesmanData']) + count($resultSets['ItemwiseData']) + count($resultSets['AdvanceData'] ) + count($resultSets['AdvanceDataDtl']);
+            $totalRecords = count($resultSets['SalesmanData']) + count($resultSets['ItemwiseData']) + count($resultSets['AdvanceData']) + count($resultSets['AdvanceDataDtl']);
 
             if ($totalRecords > 0) {
                 return array('success' => true, 'data' => $resultSets);

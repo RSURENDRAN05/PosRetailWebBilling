@@ -110,6 +110,7 @@ Public Class MainMaster
                 barbtnfingerregister.Enabled = False
                 barbtnfingerscanner.Enabled = False
                 barbtnattendancereport.Enabled = False
+                barbtnmastersalesreport.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -466,11 +467,20 @@ Public Class MainMaster
                     Dim MasterSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSalesReport"
                     If MasterSalesReport.Any Then
                         If MasterSalesReport(0)("menu_active") = "1" Then
+                            barbtnmastersalesreport.Enabled = True
+                        Else
+                            barbtnmastersalesreport.Enabled = False
+                        End If
+                    End If
+                    Dim MasterSummaryReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterSummaryReport"
+                    If MasterSummaryReport.Any Then
+                        If MasterSummaryReport(0)("menu_active") = "1" Then
                             barsalessummaryreport.Enabled = True
                         Else
                             barsalessummaryreport.Enabled = False
                         End If
                     End If
+
                     Dim SalesDetailReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "SalesDetailReport"
                     If SalesDetailReport.Any Then
                         If SalesDetailReport(0)("menu_active") = "1" Then
@@ -1060,6 +1070,15 @@ Public Class MainMaster
         Try
             FrmAttendanceReport.MdiParent = Me
             FrmAttendanceReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnmastersalesreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmastersalesreport.ItemClick
+        Try
+            frmSalesMasterReport.MdiParent = Me
+            frmSalesMasterReport.Show()
         Catch ex As Exception
 
         End Try

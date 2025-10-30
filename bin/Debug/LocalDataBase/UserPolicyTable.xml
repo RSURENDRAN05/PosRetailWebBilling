@@ -291,12 +291,24 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>41</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>41</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MasterSalesReport</menu_name>
+    <menu_code>S2001</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>12</menu_id>
     <menu_type>sub</menu_type>
     <header_menu_id>8</header_menu_id>
     <sub_menu_id>12</sub_menu_id>
     <menu_active>1</menu_active>
-    <menu_name>MasterSalesReport</menu_name>
+    <menu_name>MasterSummaryReport</menu_name>
     <menu_code>S1012</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>

@@ -69,8 +69,11 @@ Public Class frmSelectBill
         Try
             _DateConversion(txtdatetimer.Text, dats)
             If GetAllSales(dats, SaleTabale) = False Then
-
+                GridControlGRNSelector.DataSource = SaleTabale.Tables(0)
+            Else
+                GridControlGRNSelector.DataSource = Nothing
             End If
+
         Catch ex As Exception
 
         End Try

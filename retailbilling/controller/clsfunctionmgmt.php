@@ -5333,4 +5333,28 @@ class funcProcessMgmt
             throw $e; // Re-throw for better error handling in calling code
         }
     }
+    public function SpUpdateSalesmanCommission($empId)
+    {
+        try {
+            // Escape the empId for security
+            $empId = (int)mysqli_real_escape_string($this->conn, $empId);
+
+            // Call the stored procedure
+            $sql = "CALL sp_UpdateSalesmanCommission($empId)";
+
+            // Log the query for debugging
+            error_log("Update Salesman Commission Query: " . $sql);
+
+            // Execute the stored procedure
+            $result = mysqli_query($this->conn, $sql);
+            if (!$result) {
+                throw new Exception("Error executing stored procedure: " . mysqli_error($this->conn));
+            }
+
+            return array('success' => true, 'message' => 'Salesman commission updated successfully');
+        } catch (Exception $e) {
+            error_log("UpdateSalesmanCommission Error: " . $e->getMessage());
+            return array('success' => false, 'message' => 'Error updating salesman commission: ' . $e->getMessage());
+        }
+    }
 }

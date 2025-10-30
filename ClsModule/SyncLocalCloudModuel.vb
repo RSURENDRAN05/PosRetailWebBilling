@@ -448,4 +448,71 @@ Module SyncLocalCloudModuel
         End Try
 
     End Function
+    Public Function GetSalesMasterDataFromAPI(AjaxRequest As String, comId As String, locId As String, startDate As String, endDate As String) As DataSet
+        Try
+            Dim dsSales As New DataSet("SalesReport")
+            If CheckForInternetConnection() Then
+                ' Internet available - fetch from server
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+                ' Build the URL properly - check if base URL already has parameters
+                Dim baseUrl As String = M_Details.LinkAjaxRequestSyncLocalCloud.TrimEnd("/"c)
+
+                Dim fullUrl As String = baseUrl & "AjaxRequest=" & AjaxRequest & "&comid=" & comId & "&locid=" & locId & "&startDate=" & startDate & "&endDate=" & endDate
+
+
+                Dim json As String = New System.Net.WebClient().DownloadString(fullUrl)
+
+                ' Handle concatenated JSON responses
+                If json.Contains("}{") Then
+                    ' Multiple JSON responses concatenated - take the first one
+                    Dim firstJsonEnd As Integer = json.IndexOf("}{") + 1
+                    json = json.Substring(0, firstJsonEnd)
+                End If
+
+                Dim Userparsejson As JObject = JObject.Parse(json)
+
+                ' Check if the response was successful
+                If Userparsejson("Success").ToString().ToLower() = "true" Then
+                    If Userparsejson("Data") IsNot Nothing Then
+                        Dim dataObj As JObject = Userparsejson("Data")
+
+                        Dim dtHeader As New DataTable()
+                        Dim dtDetails As New DataTable()
+                        Dim dtPayment As New DataTable()
+
+                        If dataObj("Header") IsNot Nothing Then
+                            dtHeader = dataObj("Header").ToObject(Of DataTable)()
+                        End If
+
+                        If dataObj("Details") IsNot Nothing Then
+                            dtDetails = dataObj("Details").ToObject(Of DataTable)()
+                        End If
+
+                        If dataObj("Payment") IsNot Nothing Then
+                            dtPayment = dataObj("Payment").ToObject(Of DataTable)()
+                        End If
+
+                        ' Optional: combine into a single dataset if needed
+
+                        dsSales.Tables.Add(dtHeader)
+                        dsSales.Tables.Add(dtDetails)
+                        dsSales.Tables.Add(dtPayment)
+                    End If
+                Else
+                    ' Show error message from API
+                    Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
+                    MessageBox.Show("API Error: " & errorMsg, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End If
+            Return dsSales
+        Catch jex As JsonException
+            MessageBox.Show("JSON parsing error: " & jex.Message & vbCrLf & "Raw response might be malformed.", "JSON Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        Catch ex As Exception
+            MessageBox.Show("API call error: " & ex.Message, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End Try
+
+    End Function
 End Module

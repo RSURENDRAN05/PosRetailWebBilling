@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>41</ApplicationRevision>
+    <ApplicationRevision>43</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -458,6 +458,12 @@
       <DependentUpon>FrmPackageItem.vb</DependentUpon>
     </Compile>
     <Compile Include="Master\FrmPackageItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmSalesMasterReport.designer.vb">
+      <DependentUpon>frmSalesMasterReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmSalesMasterReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\FrmAttendanceReport.Designer.vb">
@@ -923,6 +929,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmPackageItem.resx">
       <DependentUpon>FrmPackageItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmSalesMasterReport.resx">
+      <DependentUpon>frmSalesMasterReport.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmAttendanceReport.resx">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>

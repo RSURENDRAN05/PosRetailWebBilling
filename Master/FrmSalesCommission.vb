@@ -1578,4 +1578,25 @@ Public Class FrmSalesCommission
             MessageBox.Show("Error deleting commission: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub btnreupdateonsales_Click(sender As Object, e As EventArgs) Handles btnreupdateonsales.Click
+        Try
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to update sales this salesman?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                Dim url As String = M_Details.LinkAjaxRequest & "SalesManCommission=17&salesman_id=" & selectedEmpId
+                Dim json As String = New WebClient().DownloadString(url)
+                Dim parsedJson As JObject = JObject.Parse(json)
+
+                If parsedJson("Success").ToString() = "True" Then
+                    MessageBox.Show(parsedJson("Msg").ToString(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ClearForm()
+                    LoadAllCommissions()
+                Else
+                    MessageBox.Show(parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error Updating Commission On Sales: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

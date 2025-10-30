@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmSalesSummaryReport
+Partial Class frmSalesMasterReport
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,9 @@ Partial Class frmSalesSummaryReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesSummaryReport))
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesMasterReport))
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colInvoiceId = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -65,6 +67,7 @@ Partial Class frmSalesSummaryReport
         Me.colModified = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
@@ -80,8 +83,18 @@ Partial Class frmSalesSummaryReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridView2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,19 +108,25 @@ Partial Class frmSalesSummaryReport
         CType(Me.dtStartDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl1
         '
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        GridLevelNode1.LevelTemplate = Me.BandedGridView1
+        GridLevelNode1.RelationName = "HeaderDetails"
+        GridLevelNode2.LevelTemplate = Me.BandedGridView2
+        GridLevelNode2.RelationName = "HeaderPayment"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1, GridLevelNode2})
         Me.GridControl1.Location = New System.Drawing.Point(0, 80)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCurrencyEdit1, Me.RepositoryItemDateEdit1})
         Me.GridControl1.Size = New System.Drawing.Size(1200, 490)
         Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.BandedGridView1, Me.BandedGridView2})
         '
         'GridView1
         '
@@ -131,6 +150,7 @@ Partial Class frmSalesSummaryReport
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "psih_invoice_tnetamt", Me.colNetAmt, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "psih_invoice_id", Nothing, "Count: {0}")})
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsSelection.MultiSelect = True
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
         Me.GridView1.OptionsView.EnableAppearanceOddRow = True
@@ -169,7 +189,6 @@ Partial Class frmSalesSummaryReport
         Me.colDate.AppearanceCell.Options.UseTextOptions = True
         Me.colDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.colDate.Caption = "Date"
-        Me.colDate.ColumnEdit = Me.RepositoryItemDateEdit1
         Me.colDate.FieldName = "psih_invoice_date"
         Me.colDate.Name = "colDate"
         Me.colDate.Visible = True
@@ -183,11 +202,11 @@ Partial Class frmSalesSummaryReport
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.CloseUpKey = New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4)
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
-        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RepositoryItemDateEdit1.EditFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.EditFormat.FormatString = "dd/MM/yyyy"
         Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd/MM/yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd/MM/yyyy"
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
         'colPrefix
@@ -505,6 +524,14 @@ Partial Class frmSalesSummaryReport
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 8
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "BillCreated"
+        Me.GridColumn3.FieldName = "psih_invoice_created"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 9
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.btnSaveLayout)
@@ -675,20 +702,143 @@ Partial Class frmSalesSummaryReport
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
-        'GridColumn3
+        'BandedGridView1
         '
-        Me.GridColumn3.Caption = "BillCreated"
-        Me.GridColumn3.FieldName = "psih_invoice_created"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 9
+        Me.BandedGridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.Appearance.FooterPanel.Options.UseFont = True
+        Me.BandedGridView1.Appearance.FooterPanel.Options.UseTextOptions = True
+        Me.BandedGridView1.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.Appearance.HeaderPanel.Options.UseFont = True
+        Me.BandedGridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridView1.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView1.Appearance.Row.Options.UseFont = True
+        Me.BandedGridView1.Appearance.Row.Options.UseTextOptions = True
+        Me.BandedGridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
+        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.BandedGridView1.GridControl = Me.GridControl1
+        Me.BandedGridView1.Name = "BandedGridView1"
+        Me.BandedGridView1.OptionsBehavior.Editable = False
+        Me.BandedGridView1.OptionsBehavior.ReadOnly = True
+        Me.BandedGridView1.OptionsView.ShowFooter = True
+        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        Me.BandedGridView1.RowHeight = 30
         '
-        'GridView2
+        'GridBand1
         '
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
+        Me.GridBand1.Caption = "GridBand1"
+        Me.GridBand1.Columns.Add(Me.GridColumn4)
+        Me.GridBand1.Columns.Add(Me.GridColumn5)
+        Me.GridBand1.Columns.Add(Me.GridColumn6)
+        Me.GridBand1.Columns.Add(Me.GridColumn7)
+        Me.GridBand1.Columns.Add(Me.GridColumn8)
+        Me.GridBand1.Columns.Add(Me.GridColumn9)
+        Me.GridBand1.Columns.Add(Me.GridColumn10)
+        Me.GridBand1.Columns.Add(Me.GridColumn11)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 600
         '
-        'frmSalesSummaryReport
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "TRNO"
+        Me.GridColumn4.FieldName = "psid_invoice_trno"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GridColumn5.Caption = "ITEM NAME"
+        Me.GridColumn5.FieldName = "psid_invoice_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "Qty"
+        Me.GridColumn6.FieldName = "psid_invoice_proqty"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.Caption = "Price"
+        Me.GridColumn7.FieldName = "psid_invoice_rate"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.Caption = "Net Amount"
+        Me.GridColumn8.FieldName = "psid_invoice_netamt"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn8.Visible = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Salesman"
+        Me.GridColumn9.FieldName = "emp_printname"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "SalemanPer%"
+        Me.GridColumn10.FieldName = "psid_invoice_salemanper"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Commission"
+        Me.GridColumn11.FieldName = "Commission"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn11.Visible = True
+        '
+        'BandedGridView2
+        '
+        Me.BandedGridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView2.Appearance.HeaderPanel.Options.UseFont = True
+        Me.BandedGridView2.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridView2.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BandedGridView2.Appearance.Row.Options.UseFont = True
+        Me.BandedGridView2.Appearance.Row.Options.UseTextOptions = True
+        Me.BandedGridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridView2.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2})
+        Me.BandedGridView2.GridControl = Me.GridControl1
+        Me.BandedGridView2.Name = "BandedGridView2"
+        Me.BandedGridView2.OptionsBehavior.Editable = False
+        Me.BandedGridView2.OptionsBehavior.ReadOnly = True
+        Me.BandedGridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand2
+        '
+        Me.GridBand2.Caption = "GridBand2"
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.VisibleIndex = 0
+        '
+        'frmSalesMasterReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -696,9 +846,9 @@ Partial Class frmSalesSummaryReport
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Name = "frmSalesSummaryReport"
+        Me.Name = "frmSalesMasterReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sales Report Summary"
+        Me.Text = "Sales Master Report"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -715,7 +865,8 @@ Partial Class frmSalesSummaryReport
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -783,5 +934,16 @@ Partial Class frmSalesSummaryReport
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridView2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
