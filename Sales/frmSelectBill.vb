@@ -68,7 +68,7 @@ Public Class frmSelectBill
     Private Sub btnget_Click(sender As Object, e As EventArgs) Handles btnget.Click
         Try
             _DateConversion(txtdatetimer.Text, dats)
-            If GetAllSales(dats, SaleTabale) = False Then
+            If GetAllSales(dats, SaleTabale) = True Then
                 GridControlGRNSelector.DataSource = SaleTabale.Tables(0)
             Else
                 GridControlGRNSelector.DataSource = Nothing
