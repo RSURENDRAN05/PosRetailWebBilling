@@ -82,6 +82,9 @@ Module functionModule
     Public Structure LogFileText
         Public Shared _richTextBox As New RichTextBox
     End Structure
+    Public Structure FingerAndFaceAttendance
+        Public Shared IsOfflineMode As Boolean = True
+    End Structure
     Public Structure ButtonStyleWH
         Public Shared MAINH As String = "50"
         Public Shared MAINW As String = "50"
