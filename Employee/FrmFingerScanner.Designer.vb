@@ -24,6 +24,7 @@ Partial Class FrmFingerScanner
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.errorRichBox = New System.Windows.Forms.RichTextBox()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnFaceTrail = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.lbltype = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -55,7 +56,6 @@ Partial Class FrmFingerScanner
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Img = New DevExpress.Utils.ImageCollection(Me.components)
         Me.TimerAtten = New System.Windows.Forms.Timer(Me.components)
-        Me.btnFaceTrail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +122,14 @@ Partial Class FrmFingerScanner
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(559, 346)
         Me.PanelControl1.TabIndex = 6
+        '
+        'btnFaceTrail
+        '
+        Me.btnFaceTrail.Location = New System.Drawing.Point(414, 142)
+        Me.btnFaceTrail.Name = "btnFaceTrail"
+        Me.btnFaceTrail.Size = New System.Drawing.Size(131, 23)
+        Me.btnFaceTrail.TabIndex = 25
+        Me.btnFaceTrail.Text = "Face Trial"
         '
         'btnRefresh
         '
@@ -452,14 +460,6 @@ Partial Class FrmFingerScanner
         'TimerAtten
         '
         Me.TimerAtten.Enabled = True
-        '
-        'btnFaceTrail
-        '
-        Me.btnFaceTrail.Location = New System.Drawing.Point(414, 142)
-        Me.btnFaceTrail.Name = "btnFaceTrail"
-        Me.btnFaceTrail.Size = New System.Drawing.Size(131, 23)
-        Me.btnFaceTrail.TabIndex = 25
-        Me.btnFaceTrail.Text = "Face Trial"
         '
         'FrmFingerScanner
         '
