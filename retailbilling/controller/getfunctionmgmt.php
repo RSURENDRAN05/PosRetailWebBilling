@@ -5717,8 +5717,125 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
             } else {
                 echo json_encode(array("Success" => false, "Msg" => 'Invalid data: Mode, Date, ComId, and LocId are required'));
             }
+        } elseif ((int)$_REQUEST['AttRequest'] === 7) {
+
+            $getData = $clsfunreq->GetAllTimeProfiles();
+            if ($getData && is_array($getData)) {
+                echo json_encode([
+                    "Success" => true,
+                    "Msg" => "Time profiles retrieved successfully",
+                    "Data" => $getData
+                ]);
+            } else {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "No time profiles found",
+                    "Data" => []
+                ]);
+            }
+        } elseif ((int)$_REQUEST['AttRequest'] === 8) {
+            $data = null;
+
+            // Handle both POST and GET requests
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Handle POST request
+                $jsonData = file_get_contents("php://input");
+                error_log("AttRequest=8 raw POST data: " . $jsonData);
+                $data = json_decode($jsonData, true);
+            } else {
+                // Handle GET request - json parameter in URL
+                if (isset($_GET['json'])) {
+                    error_log("AttRequest=8 raw GET data: " . $_GET['json']);
+                    $data = json_decode($_GET['json'], true);
+                }
+            }
+
+            // Check for JSON decode errors
+            if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+                $jsonError = json_last_error_msg();
+                error_log("AttRequest=8 JSON decode error: " . $jsonError);
+                echo json_encode(array("Success" => false, "Msg" => "JSON decode error: " . $jsonError));
+                exit;
+            }
+
+            // Log the received data for debugging
+            error_log("AttRequest=8 received data: " . print_r($data, true));
+
+            if ($data && isset($data["ProfileName"]) && isset($data["CheckInStart"]) && isset($data["CheckInEnd"]) && isset($data["CheckOutStart"]) && isset($data["CheckOutEnd"]) && isset($data["BreakInStart"]) && isset($data["BreakInEnd"]) && isset($data["BreakOutStart"]) && isset($data["BreakOutEnd"]) && isset($data["WorkingHours"])) {
+
+                // Handle ProfileId - it can be 0 or string "0" for new records
+                $profile_id = isset($data["ProfileId"]) ? trim($data["ProfileId"]) : "0";
+
+                $profile_name = trim($data["ProfileName"]);
+                $check_in_start = trim($data["CheckInStart"]);
+                $check_in_end = trim($data["CheckInEnd"]);
+                $check_out_start = trim($data["CheckOutStart"]);
+                $check_out_end = trim($data["CheckOutEnd"]);
+                $break_in_start = trim($data["BreakInStart"]);
+                $break_in_end = trim($data["BreakInEnd"]);
+                $break_out_start = trim($data["BreakOutStart"]);
+                $break_out_end = trim($data["BreakOutEnd"]);
+                $working_hours = (float)$data["WorkingHours"];
+
+                try {
+                    $createProfile = $clsfunreq->createTimeProfile(
+                        $profile_id,
+                        $profile_name,
+                        $check_in_start,
+                        $check_in_end,
+                        $check_out_start,
+                        $check_out_end,
+                        $break_in_start,
+                        $break_in_end,
+                        $break_out_start,
+                        $break_out_end,
+                        $working_hours
+                    );
+
+                    if ($createProfile) {
+                        $action = ($profile_id == "0" || $profile_id == 0) ? "created" : "updated";
+                        echo json_encode([
+                            "Success" => true,
+                            "Msg" => "Time profile $action successfully",
+                            "ProfileId" => $createProfile
+                        ]);
+                    } else {
+                        echo json_encode([
+                            "Success" => false,
+                            "Msg" => "Failed to save time profile"
+                        ]);
+                    }
+                } catch (Exception $e) {
+                    error_log("createTimeProfile API Error: " . $e->getMessage());
+                    error_log("Stack trace: " . $e->getTraceAsString());
+                    echo json_encode([
+                        "Success" => false,
+                        "Msg" => "Error saving time profile: " . $e->getMessage()
+                    ]);
+                }
+            } else {
+                // Enhanced debugging - show what was actually received
+                if ($data === null) {
+                    echo json_encode(array("Success" => false, "Msg" => "Invalid JSON data received - data is null"));
+                } else {
+                    // List missing fields for better debugging
+                    $requiredFields = ["ProfileName", "CheckInStart", "CheckInEnd", "CheckOutStart", "CheckOutEnd", "BreakInStart", "BreakInEnd", "BreakOutStart", "BreakOutEnd", "WorkingHours"];
+                    $missingFields = [];
+
+                    foreach ($requiredFields as $field) {
+                        if (!isset($data[$field]) || (is_string($data[$field]) && trim($data[$field]) === '')) {
+                            $missingFields[] = $field;
+                        }
+                    }
+
+                    $errorMsg = !empty($missingFields) ? "Missing required fields: " . implode(", ", $missingFields) : "Invalid data structure received";
+                    error_log("AttRequest=8 validation error: " . $errorMsg);
+                    error_log("Received data keys: " . implode(", ", array_keys($data)));
+                    echo json_encode(array("Success" => false, "Msg" => $errorMsg, "ReceivedKeys" => array_keys($data)));
+                }
+            }
         } else {
-            echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest specified. Use 1, 2, 3, 4, or 5'));
+            echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest value'));
         }
     } catch (Exception $e) {
         error_log("AttRequest Exception: " . $e->getMessage());

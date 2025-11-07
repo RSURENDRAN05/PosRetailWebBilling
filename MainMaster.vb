@@ -111,6 +111,7 @@ Public Class MainMaster
                 barbtnfingerscanner.Enabled = False
                 barbtnattendancereport.Enabled = False
                 barbtnmastersalesreport.Enabled = False
+                barbtntimeProfile.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -1079,6 +1080,15 @@ Public Class MainMaster
         Try
             frmSalesMasterReport.MdiParent = Me
             frmSalesMasterReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtntimeProfile_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtntimeProfile.ItemClick
+        Try
+            FrmTimeProfile.MdiParent = Me
+            FrmTimeProfile.Show()
         Catch ex As Exception
 
         End Try

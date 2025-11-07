@@ -5357,4 +5357,236 @@ class funcProcessMgmt
             return array('success' => false, 'message' => 'Error updating salesman commission: ' . $e->getMessage());
         }
     }
+
+    public function getEmployeeTimeProfile($employee_id)
+    {
+        $conn = $this->conn;
+
+        try {
+            $query = "SELECT tp.* FROM time_profiles tp
+                  JOIN employee_time_profiles etp ON tp.id = etp.time_profile_id
+                  WHERE etp.employee_id = ?
+                  AND (etp.effective_date <= CURDATE() OR etp.effective_date IS NULL)
+                  ORDER BY etp.effective_date DESC
+                  LIMIT 1";
+
+            $stmt = mysqli_prepare($conn, $query);
+
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($stmt, "i", $employee_id);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    mysqli_stmt_close($stmt);
+                    return $row;
+                } else {
+                    mysqli_stmt_close($stmt);
+                    return null;
+                }
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("Error getting employee time profile: " . $e->getMessage());
+            return null;
+        }
+    }
+    // Time Profile Management
+    public function getAllTimeProfiles()
+    {
+        $conn = $this->conn;
+
+        try {
+            $query = "SELECT * FROM time_profiles ORDER BY profile_name";
+            $result = mysqli_query($conn, $query);
+
+            if (!$result) {
+                throw new Exception("Query failed: " . mysqli_error($conn));
+            }
+
+            $profiles = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $profiles[] = $row;
+            }
+
+            return $profiles;
+        } catch (Exception $e) {
+            error_log("Error getting time profiles: " . $e->getMessage());
+            return array();
+        }
+    }
+
+    public function createTimeProfile($id, $profile_name, $check_in_start, $check_in_end, $check_out_start, $check_out_end, $break_in_start, $break_in_end, $break_out_start, $break_out_end, $working_hours)
+    {
+        $conn = $this->conn;
+
+        try {
+            if ($id == 0 || $id == null) {
+                // Insert new time profile
+                $query = "INSERT INTO time_profiles
+                     (profile_name, check_in_start, check_in_end, check_out_start, check_out_end,
+                      break_in_start, break_in_end, break_out_start, break_out_end, working_hours)
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                $stmt = mysqli_prepare($conn, $query);
+
+                if (!$stmt) {
+                    throw new Exception("Prepare failed: " . mysqli_error($conn));
+                }
+
+                mysqli_stmt_bind_param(
+                    $stmt,
+                    "sssssssssd",
+                    $profile_name,
+                    $check_in_start,
+                    $check_in_end,
+                    $check_out_start,
+                    $check_out_end,
+                    $break_in_start,
+                    $break_in_end,
+                    $break_out_start,
+                    $break_out_end,
+                    $working_hours
+                );
+
+                if (mysqli_stmt_execute($stmt)) {
+                    $insertId = mysqli_insert_id($conn);
+                    mysqli_stmt_close($stmt);
+                    return $insertId;
+                } else {
+                    $executeError = mysqli_stmt_error($stmt);
+                    mysqli_stmt_close($stmt);
+                    throw new Exception("Execute failed: " . $executeError);
+                }
+            } else {
+                // Update existing time profile
+                $query = "UPDATE time_profiles SET
+                     profile_name = ?, check_in_start = ?, check_in_end = ?, 
+                     check_out_start = ?, check_out_end = ?, break_in_start = ?, 
+                     break_in_end = ?, break_out_start = ?, break_out_end = ?, 
+                     working_hours = ?, updated_at = NOW()
+                     WHERE id = ?";
+
+                $stmt = mysqli_prepare($conn, $query);
+
+                if (!$stmt) {
+                    throw new Exception("Prepare failed: " . mysqli_error($conn));
+                }
+
+                mysqli_stmt_bind_param(
+                    $stmt,
+                    "sssssssssdi",
+                    $profile_name,
+                    $check_in_start,
+                    $check_in_end,
+                    $check_out_start,
+                    $check_out_end,
+                    $break_in_start,
+                    $break_in_end,
+                    $break_out_start,
+                    $break_out_end,
+                    $working_hours,
+                    $id
+                );
+
+                if (mysqli_stmt_execute($stmt)) {
+                    $affectedRows = mysqli_stmt_affected_rows($stmt);
+                    mysqli_stmt_close($stmt);
+                    return $affectedRows > 0 ? $id : false;
+                } else {
+                    $executeError = mysqli_stmt_error($stmt);
+                    mysqli_stmt_close($stmt);
+                    throw new Exception("Execute failed: " . $executeError);
+                }
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("Error creating/updating time profile: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function assignTimeProfileToEmployee($employee_id, $time_profile_id, $effective_date = null)
+    {
+        $conn = $this->conn;
+
+        try {
+            if (!$effective_date) {
+                $effective_date = date('Y-m-d');
+            }
+
+            // Check if already assigned
+            $checkQuery = "SELECT id FROM employee_time_profiles
+                      WHERE employee_id = ? AND effective_date = ?";
+
+            $checkStmt = mysqli_prepare($conn, $checkQuery);
+
+            if (!$checkStmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+
+            mysqli_stmt_bind_param($checkStmt, "is", $employee_id, $effective_date);
+            mysqli_stmt_execute($checkStmt);
+            $checkResult = mysqli_stmt_get_result($checkStmt);
+
+            $exists = mysqli_num_rows($checkResult) > 0;
+            mysqli_stmt_close($checkStmt);
+
+            if ($exists) {
+                // Update existing
+                $query = "UPDATE employee_time_profiles SET
+                     time_profile_id = ?
+                     WHERE employee_id = ?
+                     AND effective_date = ?";
+
+                $stmt = mysqli_prepare($conn, $query);
+
+                if (!$stmt) {
+                    throw new Exception("Prepare failed: " . mysqli_error($conn));
+                }
+
+                mysqli_stmt_bind_param($stmt, "iis", $time_profile_id, $employee_id, $effective_date);
+            } else {
+                // Insert new
+                $query = "INSERT INTO employee_time_profiles
+                     (employee_id, time_profile_id, effective_date)
+                     VALUES (?, ?, ?)";
+
+                $stmt = mysqli_prepare($conn, $query);
+
+                if (!$stmt) {
+                    throw new Exception("Prepare failed: " . mysqli_error($conn));
+                }
+
+                mysqli_stmt_bind_param($stmt, "iis", $employee_id, $time_profile_id, $effective_date);
+            }
+
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_close($stmt);
+                return true;
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("Error assigning time profile: " . $e->getMessage());
+            return false;
+        }
+    }
 }
