@@ -424,6 +424,12 @@
     <Compile Include="Employee\FrmStaffLocationChanges.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FaceFingerAttendance\FrmTimeProfile.Designer.vb">
+      <DependentUpon>FrmTimeProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FaceFingerAttendance\FrmTimeProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainMaster.Designer.vb">
       <DependentUpon>MainMaster.vb</DependentUpon>
     </Compile>
@@ -910,6 +916,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\FrmStaffLocationChanges.resx">
       <DependentUpon>FrmStaffLocationChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FaceFingerAttendance\FrmTimeProfile.resx">
+      <DependentUpon>FrmTimeProfile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMaster.resx">
       <DependentUpon>MainMaster.vb</DependentUpon>
