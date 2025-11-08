@@ -60,7 +60,10 @@ Module functionModule
         Public Shared _MenuActive As Boolean = False
         Public Shared _registerdCounterName As String
         Public Shared _paymentPopupActive As Boolean = False
+        Public Shared _systemLock As String = ""
+        Public Shared _popMessage As String = ""
     End Structure
+   
     Public Structure _saleSetting
         Public Shared _modeSales As String = ""
         Public Shared _modeDefalueSales As String = "XA"

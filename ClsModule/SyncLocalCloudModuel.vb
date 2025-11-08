@@ -10,7 +10,6 @@ Imports Newtonsoft.Json
 Module SyncLocalCloudModuel
     Public Function _ReadSyncLocalCloud() As Boolean
         Try
-
             M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
             M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
             M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
@@ -31,6 +30,7 @@ Module SyncLocalCloudModuel
             If _ReadDefaultLocalData() = False Then
                 Return False
             End If
+            webCheckActive()
             Return True
         Catch ex As Exception
             Return False
@@ -61,6 +61,37 @@ Module SyncLocalCloudModuel
             Return False
         End Try
     End Function
+    Public Sub webCheckActive()
+        Try
+            Dim URL_Link = "http://sam.myposqr.com/model/webcrm.php?WebCrmRequest=200"
+            Dim webRequest As WebRequest = webRequest.Create(URL_Link & "&restid=" + M_Details._WebId)
+            webRequest.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials
+            webRequest.Method = "GET"
+            webRequest.Headers.Add("Accept-Language", "en-GB")
+            ServicePointManager.Expect100Continue = True
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim webResponse As WebResponse = webRequest.GetResponse
+            Dim webStream As Stream = webResponse.GetResponseStream
+            Dim reader As New StreamReader(webStream)
+            Dim rawresp As String = reader.ReadToEnd
+            If Not String.IsNullOrEmpty(rawresp) Then
+                Dim vares() = JsonConvert.DeserializeObject(Of InvoiceGroup())(rawresp)
+                For Each nor As InvoiceGroup In vares
+                    RegistrationDetails._systemLock = nor.branchlock
+                    RegistrationDetails._popMessage = nor.branchmessage
+                Next
+                If RegistrationDetails._systemLock = "1" Then
+                    MessageBox.Show("Software Expired ,Please Contact Admin WebId" & RegistrationDetails._popMessage, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Application.Exit()
+                End If
+
+            Else
+                '_PopUp("NoInvoice File Not Found", "Error")
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Public Function _ReadDefaultLocalData() As Boolean
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
@@ -516,3 +547,21 @@ Module SyncLocalCloudModuel
 
     End Function
 End Module
+Public Class InvoiceGroup
+    Public Property branchid As String
+    Public Property customerId As String
+    Public Property customerName As String
+    Public Property branchname As String
+    Public Property branchaddress As String
+    Public Property branchemail As String
+    Public Property branchcontact As String
+    Public Property branchanydesk As String
+    Public Property branchserver As String
+    Public Property branchclient As String
+    Public Property branchtab As String
+    Public Property branchlock As String
+    Public Property branchactivationcode As String
+    Public Property branchstatus As String
+    Public Property branchmessage As String
+
+End Class
