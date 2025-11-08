@@ -5834,6 +5834,82 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
                     echo json_encode(array("Success" => false, "Msg" => $errorMsg, "ReceivedKeys" => array_keys($data)));
                 }
             }
+        } elseif ((int)$_REQUEST['AttRequest'] === 9) {
+            // Delete Time Profile
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            if ($data && isset($data["ProfileId"])) {
+                $profileId = trim($data["ProfileId"]);
+                $delete = $clsfunreq->DeleteTimeProfile($profileId);
+
+                if ($delete) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Time profile deleted successfully for Profile ID: ' . $profileId));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to delete time profile or profile not found for Profile ID: ' . $profileId));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid data: ProfileId is required for delete operation'));
+            }
+        } elseif ((int) $_REQUEST['AttRequest'] === 10) {
+            //assignTimeProfileToEmployee($employee_id, $time_profile_id, $effective_date = null)
+            $data = json_decode(file_get_contents("php://input"), true);
+            if ($data && isset($data["EmployeeId"]) && isset($data["TimeProfileId"])) {
+                $employeeId = (int)$data["EmployeeId"];
+                $timeProfileId = trim($data["TimeProfileId"]);
+                $effectiveDate = isset($data["EffectiveDate"]) ? trim($data["EffectiveDate"]) : null;
+
+                $assign = $clsfunreq->assignTimeProfileToEmployee($employeeId, $timeProfileId, $effectiveDate);
+
+                if ($assign) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Time profile assigned successfully to Employee ID: ' . $employeeId));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to assign time profile to Employee ID: ' . $employeeId));
+                }
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest value'));
+            }
+        } elseif ((int) $_REQUEST['AttRequest'] === 11) {
+            //getEmployeeTimeProfile($employee_id, $date = null)
+            $data = json_decode(file_get_contents("php://input"), true);
+            if ($data && isset($data["EmployeeId"])) {
+                $employeeId = (int)$data["EmployeeId"];
+                $date = isset($data["Date"]) ? trim($data["Date"]) : null;
+
+                $timeProfile = $clsfunreq->getEmployeeTimeProfile($employeeId, $date);
+
+                if ($timeProfile) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Time profile retrieved successfully for Employee ID: ' . $employeeId, "Data" => $timeProfile));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'No time profile found for Employee ID: ' . $employeeId));
+                }
+            }
+        } elseif ((int) $_REQUEST['AttRequest'] === 12) {
+            $getData = $clsfunreq->getEmployeeTimeProfilesAll();
+            if ($getData && is_array($getData)) {
+                echo json_encode([
+                    "Success" => true,
+                    "Msg" => "Employee time profiles retrieved successfully",
+                    "Data" => $getData
+                ]);
+            } else {
+                echo json_encode([
+                    "Success" => false,
+                    "Msg" => "No employee time profiles found",
+                    "Data" => []
+                ]);
+            }
+        } elseif ((int)$_REQUEST['AttRequest'] === 13) {
+            //DeleteEmployeeTimeProfileAssignment($id)
+            $data = json_decode(file_get_contents("php://input"), true);
+            if ($data && isset($data["AssignmentId"])) {
+                $assignmentId = (int)$data["AssignmentId"];
+                $remove = $clsfunreq->DeleteEmployeeTimeProfileAssignment($assignmentId);
+                if ($remove) {
+                    echo json_encode(array("Success" => true, "Msg" => 'Time profile removed successfully from Employee ID: ' . $assignmentId));
+                } else {
+                    echo json_encode(array("Success" => false, "Msg" => 'Failed to remove time profile from Employee ID: ' . $assignmentId));
+                }
+            }
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'Invalid AttRequest value'));
         }

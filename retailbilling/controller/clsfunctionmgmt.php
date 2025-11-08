@@ -5408,7 +5408,22 @@ class funcProcessMgmt
         $conn = $this->conn;
 
         try {
-            $query = "SELECT * FROM time_profiles ORDER BY profile_name";
+            $query = "SELECT 
+                id AS ProfileId,
+                profile_name AS ProfileName,
+                check_in_start AS CheckInStart,
+                check_in_end AS CheckInEnd,
+                check_out_start AS CheckOutStart,
+                check_out_end AS CheckOutEnd,
+                break_in_start AS BreakInStart,
+                break_in_end AS BreakInEnd,
+                break_out_start AS BreakOutStart,
+                break_out_end AS BreakOutEnd,
+                working_hours AS WorkingHours,
+                created_at AS CreatedAt
+            FROM time_profiles
+            WHERE 1
+            ORDER BY profile_name";
             $result = mysqli_query($conn, $query);
 
             if (!$result) {
@@ -5475,7 +5490,7 @@ class funcProcessMgmt
                      profile_name = ?, check_in_start = ?, check_in_end = ?, 
                      check_out_start = ?, check_out_end = ?, break_in_start = ?, 
                      break_in_end = ?, break_out_start = ?, break_out_end = ?, 
-                     working_hours = ?, updated_at = NOW()
+                     working_hours = ?, created_at = NOW()
                      WHERE id = ?";
 
                 $stmt = mysqli_prepare($conn, $query);
@@ -5587,6 +5602,123 @@ class funcProcessMgmt
             }
             error_log("Error assigning time profile: " . $e->getMessage());
             return false;
+        }
+    }
+    //DeleteTimeProfile($id)
+    public function DeleteTimeProfile($id)
+    {
+        //Delete employee_time_profiles WHERE time_profile_id =?
+        //DELETE FROM time_profiles WHERE id = ?
+        $conn = $this->conn;
+        try {
+            // Validate input parameter
+            if (empty($id) || !is_numeric($id) || $id <= 0) {
+                throw new Exception("Invalid ID provided");
+            }
+            // First, delete from employee_time_profiles
+            $stmt1 = mysqli_prepare($conn, "DELETE FROM employee_time_profiles WHERE time_profile_id = ?");
+            if (!$stmt1) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            mysqli_stmt_bind_param($stmt1, "i", $id);
+            if (!mysqli_stmt_execute($stmt1)) {
+                $executeError = mysqli_stmt_error($stmt1);
+                mysqli_stmt_close($stmt1);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+            mysqli_stmt_close($stmt1);
+
+            // Then, delete from time_profiles
+            $stmt2 = mysqli_prepare($conn, "DELETE FROM time_profiles WHERE id = ?");
+            if (!$stmt2) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            mysqli_stmt_bind_param($stmt2, "i", $id);
+            if (mysqli_stmt_execute($stmt2)) {
+                $affected = mysqli_stmt_affected_rows($stmt2);
+                mysqli_stmt_close($stmt2);
+                return $affected > 0;
+            } else {
+                $executeError = mysqli_stmt_error($stmt2);
+                mysqli_stmt_close($stmt2);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt1)) {
+                mysqli_stmt_close($stmt1);
+            }
+            if (isset($stmt2)) {
+                mysqli_stmt_close($stmt2);
+            }
+            error_log("DeleteTimeProfile Error: " . $e->getMessage() . " - ID: " . $id);
+            throw $e; // Re-throw for better error handling in calling code
+        }
+    }
+    //employee_time_profiles selection
+    public function getEmployeeTimeProfilesAll()
+    {
+        $conn = $this->conn;
+
+        try {
+            $query = "SELECT 
+                etp.id AS AssignmentId,
+                etp.employee_id AS EmployeeId,
+                ei.emp_printname AS EmployeeName,
+                etp.time_profile_id AS TimeProfileId,
+                tp.profile_name AS ProfileName,
+                etp.effective_date AS EffectiveDate
+            FROM employee_time_profiles etp
+            JOIN pos_employeeinfo ei ON etp.employee_id = ei.emp_id
+            JOIN time_profiles tp ON etp.time_profile_id = tp.id
+            ORDER BY ei.emp_printname, etp.effective_date DESC";
+            $result = mysqli_query($conn, $query);
+
+            if (!$result) {
+                throw new Exception("Query failed: " . mysqli_error($conn));
+            }
+
+            $assignments = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $assignments[] = $row;
+            }
+
+            return $assignments;
+        } catch (Exception $e) {
+            error_log("Error getting employee time profile assignments: " . $e->getMessage());
+            return array();
+        }
+    }
+    //DELETE FROM employee_time_profiles WHERE id = ?
+    public function DeleteEmployeeTimeProfileAssignment($id)
+    {
+        $conn = $this->conn;
+        try {
+            // Validate input parameter
+            if (empty($id) || !is_numeric($id) || $id <= 0) {
+                throw new Exception("Invalid ID provided");
+            }
+            // Prepare the statement for deleting employee time profile assignment
+            $stmt = mysqli_prepare($conn, "DELETE FROM employee_time_profiles WHERE id = ?");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . mysqli_error($conn));
+            }
+            mysqli_stmt_bind_param($stmt, "i", $id);
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                $affected = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $affected > 0;
+            } else {
+                $executeError = mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                throw new Exception("Execute failed: " . $executeError);
+            }
+        } catch (Exception $e) {
+            if (isset($stmt)) {
+                mysqli_stmt_close($stmt);
+            }
+            error_log("DeleteEmployeeTimeProfileAssignment Error: " . $e->getMessage() . " - ID: " . $id);
+            throw $e; // Re-throw for better error handling in calling code
         }
     }
 }

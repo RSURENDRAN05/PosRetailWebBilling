@@ -538,6 +538,14 @@ Public Class MainMaster
                             barbtnattendancereport.Enabled = False
                         End If
                     End If
+                    Dim EmployeeTimeProfile As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "EmployeeTimeProfile"
+                    If EmployeeTimeProfile.Any Then
+                        If EmployeeTimeProfile(0)("menu_active") = "1" Then
+                            barbtntimeProfile.Enabled = True
+                        Else
+                            barbtntimeProfile.Enabled = False
+                        End If
+                    End If
                 End If
             End If
         Catch ex As Exception

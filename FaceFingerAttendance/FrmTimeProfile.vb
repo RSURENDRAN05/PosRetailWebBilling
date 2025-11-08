@@ -91,6 +91,7 @@ Public Class FrmTimeProfile
             SetupDataTables()
             LoadSalesmen()
             GridControlTimeProfile.DataSource = GetTimeProfileData()
+            getAllEmployeeTimeProfiles()
         Catch ex As Exception
             MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -112,6 +113,21 @@ Public Class FrmTimeProfile
         End Try
     End Function
 
+    Public Sub getAllEmployeeTimeProfiles()
+        Try
+            Dim dt As New DataTable
+            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=12")
+            Dim parsedJson As JObject = JObject.Parse(json)
+            If parsedJson("Success").ToString() = "True" Then
+                dt = parsedJson("Data").ToObject(Of DataTable)()
+                GridControl3.DataSource = dt
+            Else
+                MessageBox.Show("Failed to retrieve employee time profiles: " & parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        Catch ex As Exception
+            GridControl3.DataSource = Nothing
+        End Try
+    End Sub
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Try
             Clear()
@@ -162,7 +178,7 @@ Public Class FrmTimeProfile
 
             ' Send the JSON data to the server
             If PostDataToServer(M_Details.LinkAjaxRequest & "AttRequest=8", jsonData) Then
-                MessageBox.Show("Time profile saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ' MessageBox.Show("Time profile saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 GridControlTimeProfile.DataSource = GetTimeProfileData()
                 Clear()
             Else
@@ -252,6 +268,125 @@ Public Class FrmTimeProfile
         Return False
     End Function
 
+    Private Sub GridView2_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView2.RowClick
+        Try
+            Dim selectedRow As DataRow = GridView2.GetDataRow(e.RowHandle)
+            If selectedRow IsNot Nothing Then
+                txtprofileid.Text = selectedRow("ProfileId").ToString()
+                txtprofilename.Text = selectedRow("ProfileName").ToString()
+                txtcheckinstart.Text = selectedRow("CheckInStart").ToString()
+                txtcheckinend.Text = selectedRow("CheckInEnd").ToString()
+                txtcheckoutstart.Text = selectedRow("CheckOutStart").ToString()
+                txtcheckoutend.Text = selectedRow("CheckOutEnd").ToString()
+                txtbreakinstart.Text = selectedRow("BreakInStart").ToString()
+                txtbreakinend.Text = selectedRow("BreakInEnd").ToString()
+                txtbreakoutstart.Text = selectedRow("BreakOutStart").ToString()
+                txtbreakoutend.Text = selectedRow("BreakOutEnd").ToString()
+                txtworkinghours.Text = selectedRow("WorkingHours").ToString()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnDeleteprofileid_Click(sender As Object, e As EventArgs) Handles btnDeleteprofileid.Click
+        Try
+            Dim Id = GridView2.GetFocusedRowCellValue("ProfileId")
+            Dim attendanceProfile As New AttendanceProfile() With {
+                .ProfileId = Id.ToString()
+            }
+            ' Serialize the object to JSON
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(attendanceProfile)
+            ' Send the JSON data to the server
+            If PostDataToServer(M_Details.LinkAjaxRequest & "AttRequest=9", jsonData) Then
+                MessageBox.Show("Time profile deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                GridControlTimeProfile.DataSource = GetTimeProfileData()
+                Clear()
+            Else
+                MessageBox.Show("Failed to delete time profile. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnAsignProfile_Click(sender As Object, e As EventArgs) Handles btnAsignProfile.Click
+        Try
+            Dim EmpId = GridView1.GetFocusedRowCellValue("emp_id")
+            Dim ProfileID = GridView2.GetFocusedRowCellValue("ProfileId")
+            If EmpId Is Nothing Or ProfileID Is Nothing Then
+                MessageBox.Show("Please select both an employee and a time profile.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            Dim payload = New With {
+                    .EmployeeId = EmpId,
+                    .TimeProfileId = ProfileID
+                }
+            ' Serialize the object to JSON
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payload)
+            ' Send the JSON data to the server
+            If PostDataToServer(M_Details.LinkAjaxRequest & "AttRequest=10", jsonData) Then
+                getAllEmployeeTimeProfiles()
+                'MessageBox.Show("Time profile assigned to employee successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Failed to assign time profile to employee. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub GetEmployeeTimeProfile()
+        Try
+            Dim EmpId = GridView1.GetFocusedRowCellValue("EmpId")
+            If EmpId Is Nothing Then
+                MessageBox.Show("Please select an employee.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "AttRequest=11&EmployeeId=" & EmpId)
+            Dim parsedJson As JObject = JObject.Parse(json)
+            If parsedJson("Success").ToString() = "True" Then
+                Dim profileId As String = parsedJson("Data")("ProfileId").ToString()
+                Dim profileName As String = parsedJson("Data")("ProfileName").ToString()
+                MessageBox.Show("Employee is assigned to Profile: " & profileName & " (ID: " & profileId & ")", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Failed to retrieve employee time profile: " & parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving employee time profile: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    'Private Sub btnGetEmployeeProfile_Click(sender As Object, e As EventArgs) Handles btnGetEmployeeProfile.Click
+    '    Try
+    '        GetEmployeeTimeProfile()
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+   
+    Private Sub btnDeleteEmployeTimelist_Click(sender As Object, e As EventArgs) Handles btnDeleteEmployeTimelist.Click
+        Try
+            Dim AssignmentId = GridView3.GetFocusedRowCellValue("AssignmentId")
+            If AssignmentId Is Nothing Then
+                MessageBox.Show("Please select both an AssignmentId", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            Dim payload = New With {
+                    .AssignmentId = AssignmentId
+                }
+            ' Serialize the object to JSON
+            Dim jsonData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payload)
+            ' Send the JSON data to the server
+            If PostDataToServer(M_Details.LinkAjaxRequest & "AttRequest=13", jsonData) Then
+                getAllEmployeeTimeProfiles()
+                'MessageBox.Show("Time profile assigned to employee successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Failed to assign time profile to employee. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 End Class
 
 Public Class AttendanceProfile
