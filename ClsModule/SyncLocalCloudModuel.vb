@@ -8,8 +8,10 @@ Imports Newtonsoft.Json.Linq
 Imports Newtonsoft.Json
 
 Module SyncLocalCloudModuel
-    Public Function _ReadSyncLocalCloud() As Boolean
+    Dim URL_Link = "http://sam.myposqr.com/model/webcrm.php?"
+   Public Function _ReadSyncLocalCloud(Optional callLocalData As Boolean = True, Optional callWebCheck As Boolean = True) As Boolean
         Try
+            ' --- Read INI / configuration values ---
             M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
             M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
             M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
@@ -19,58 +21,45 @@ Module SyncLocalCloudModuel
             M_Details.LocationName = ini.ReadValue("Bank", "LocationName")
             M_Details.CompanyName = ini.ReadValue("Bank", "CompanyName")
             M_Details.PMID = ini.ReadValue("Bank", "PMID")
+
+            ' --- Populate _companyInfo ---
             _companyInfo.ComId = M_Details.CompanyId
             _companyInfo.CompanyName = M_Details.CompanyName
             _companyInfo.LocId = M_Details.LocationId
             _companyInfo.LocationName = M_Details.LocationName
             _companyInfo.CompanyPMID = M_Details.PMID
-            If chkRegistryKey(M_Details.licenceActive) = False Then
+
+            ' --- Check license key ---
+            If Not chkRegistryKey(M_Details.licenceActive) Then
                 End
             End If
-            If _ReadDefaultLocalData() = False Then
+
+            ' --- Optional: call local data load ---
+            If callLocalData AndAlso Not _ReadDefaultLocalData() Then
                 Return False
             End If
-            webCheckActive()
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-    Public Function _ReadSyncLocalCloudWebService() As Boolean
-        Try
 
-            M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
-            M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
-            M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
-            M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
-            M_Details.LocationId = ini.ReadValue("Bank", "LocationId")
-            M_Details.CompanyId = ini.ReadValue("Bank", "CompanyId")
-            M_Details.LocationName = ini.ReadValue("Bank", "LocationName")
-            M_Details.CompanyName = ini.ReadValue("Bank", "CompanyName")
-            M_Details.PMID = ini.ReadValue("Bank", "PMID")
-            _companyInfo.ComId = M_Details.CompanyId
-            _companyInfo.CompanyName = M_Details.CompanyName
-            _companyInfo.LocId = M_Details.LocationId
-            _companyInfo.LocationName = M_Details.LocationName
-            _companyInfo.CompanyPMID = M_Details.PMID
-            If chkRegistryKey(M_Details.licenceActive) = False Then
-                End
+            ' --- Optional: call web check ---
+            If callWebCheck Then
+                webCheckActive()
             End If
+
             Return True
+
         Catch ex As Exception
             Return False
         End Try
     End Function
+
     Public Sub webCheckActive()
         Try
-            Dim URL_Link = "http://sam.myposqr.com/model/webcrm.php?WebCrmRequest=200"
-            Dim webRequest As WebRequest = webRequest.Create(URL_Link & "&restid=" + M_Details._WebId)
-            webRequest.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials
-            webRequest.Method = "GET"
-            webRequest.Headers.Add("Accept-Language", "en-GB")
+            Dim _webRequest As WebRequest = WebRequest.Create(URL_Link & "WebCrmRequest=200&restid=" & M_Details._WebId)
+            _webRequest.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials
+            _webRequest.Method = "GET"
+            _webRequest.Headers.Add("Accept-Language", "en-GB")
             ServicePointManager.Expect100Continue = True
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim webResponse As WebResponse = webRequest.GetResponse
+            Dim webResponse As WebResponse = _webRequest.GetResponse
             Dim webStream As Stream = webResponse.GetResponseStream
             Dim reader As New StreamReader(webStream)
             Dim rawresp As String = reader.ReadToEnd
@@ -84,7 +73,7 @@ Module SyncLocalCloudModuel
                     MessageBox.Show("Software Expired ,Please Contact Admin WebId" & RegistrationDetails._popMessage, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Application.Exit()
                 End If
-
+                
             Else
                 '_PopUp("NoInvoice File Not Found", "Error")
             End If
@@ -92,6 +81,53 @@ Module SyncLocalCloudModuel
 
         End Try
     End Sub
+    Public Function GetClientSystemStatus() As pos_branch_systemstatus
+        Try
+            Dim clientinfo As pos_branch_systemstatus = Nothing
+            Dim requestUrl As String = URL_Link & "WebCrmRequest=205&branchId=" & M_Details._WebId
+
+            Dim _webRequest As WebRequest = WebRequest.Create(requestUrl)
+            _webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials
+            _webRequest.Method = "GET"
+            _webRequest.Headers.Add("Accept-Language", "en-GB")
+
+            ServicePointManager.Expect100Continue = True
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Using webResponse As WebResponse = _webRequest.GetResponse()
+                Using webStream As Stream = webResponse.GetResponseStream()
+                    Using reader As New StreamReader(webStream)
+                        Dim rawresp As String = reader.ReadToEnd()
+
+                        Dim responseResult As Dictionary(Of String, Object) =
+                            JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
+
+                        Dim success As Boolean = False
+                        If responseResult.ContainsKey("Success") Then
+                            Boolean.TryParse(responseResult("Success").ToString(), success)
+                        End If
+                        If Not success Then Return Nothing
+
+                        If responseResult.ContainsKey("Data") AndAlso Not String.IsNullOrEmpty(responseResult("Data").ToString()) Then
+                            Dim dataArray As List(Of pos_branch_systemstatus) =
+                                JsonConvert.DeserializeObject(Of List(Of pos_branch_systemstatus))(
+                                    responseResult("Data").ToString()
+                                )
+                            If dataArray IsNot Nothing AndAlso dataArray.Count > 0 Then
+                                clientinfo = dataArray(0)
+                            End If
+                        End If
+                    End Using
+                End Using
+            End Using
+
+            Return clientinfo
+
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving system status: " & ex.Message)
+            Return Nothing
+        End Try
+    End Function
     Public Function _ReadDefaultLocalData() As Boolean
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try
@@ -564,4 +600,21 @@ Public Class InvoiceGroup
     Public Property branchstatus As String
     Public Property branchmessage As String
 
+End Class
+
+Public Class pos_branch_systemstatus
+    Public Property Id As Integer
+    Public Property BranchId As Integer
+    Public Property BranchName As String
+    Public Property MailServerActive As Integer
+    Public Property PrintServerActive As Integer
+    Public Property OnSalesActive As Integer
+    Public Property QrSalesActive As Integer
+    Public Property ServerVer As String
+    Public Property MailVer As String
+    Public Property PrintVer As String
+    Public Property OnSalesVer As String
+    Public Property QrSalesVer As String
+    Public Property Created As DateTime
+    Public Property Updated As DateTime
 End Class

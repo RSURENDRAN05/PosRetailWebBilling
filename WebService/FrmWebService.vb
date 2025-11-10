@@ -5,6 +5,7 @@ Imports System.Net
 Imports System.IO
 Imports System.Timers
 Imports Newtonsoft.Json.Linq
+Imports PosRetailWebBilling.clssalesProperty
 
 Public Class FrmUploadSalesAutoSync
     Dim errMsg As String = ""
@@ -12,18 +13,28 @@ Public Class FrmUploadSalesAutoSync
     Private Sub FrmUploadSalesAutoSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Me.Text = "Web Ver 25.0.0.2 300825"
+            Dim clientinfo As New pos_branch_systemstatus
+            clientinfo = GetClientSystemStatus()
+            If clientinfo.OnSalesActive = 0 Then
+                properClass.R_Msgstring = "Online Sales Service Not Active"
+                Dim frmmsgOk As New frmMsgBoxOk
+                frmmsgOk.ShowDialog()
+                Application.Exit()
+            End If
         Catch ex As Exception
 
         End Try
     End Sub
     Private Sub TimerAutoSyncSales_Tick(sender As Object, e As EventArgs) Handles TimerAutoSyncSales.Tick
         Try
-            _ReadSyncLocalCloudWebService()
-            LoadPosSettings()
-            If _globalSetting.AutoSyncSales = True Then
-                UploadSalesToCloud()
-                Threading.Thread.Sleep(5000)
-                UploadPayoutToCloud()
+            If CheckForInternetConnection() Then
+                _ReadSyncLocalCloud(callLocalData:=False, callWebCheck:=False)
+                LoadPosSettings()
+                If _globalSetting.AutoSyncSales = True Then
+                    UploadSalesToCloud()
+                    Threading.Thread.Sleep(5000)
+                    UploadPayoutToCloud()
+                End If
             End If
         Catch ex As Exception
             WriteErroLog("UploadSalesToCloud()", ex.Message)
