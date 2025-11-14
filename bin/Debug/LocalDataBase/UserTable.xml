@@ -71,9 +71,9 @@
   <UserTable>
     <Id>4</Id>
     <UserName>ADMIN</UserName>
-    <Password>d41d8cd98f00b204e9800998ecf8427e</Password>
+    <Password>59a3adea76fadcb6dd9e54c96fc155d1</Password>
     <GroupName>Admin</GroupName>
-    <Status>InActive</Status>
+    <Status>Active</Status>
     <ComId>1</ComId>
     <LocId>1</LocId>
     <GroupId>2</GroupId>

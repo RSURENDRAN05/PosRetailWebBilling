@@ -7,8 +7,8 @@ class clsfuncsync
     public function __construct()
     {
         require_once 'dbconnect.php';
-        $db = new database();
-        $this->conn = $db->connect();
+        // Use direct connection method
+        $this->conn = $this->connect();
     }
     public function connect()
     {

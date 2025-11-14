@@ -36,4 +36,12 @@
     <Status>1</Status>
     <Created>2025-10-13 21:16:41</Created>
   </CustomerTable>
+  <CustomerTable>
+    <CustomerId>3</CustomerId>
+    <CustomerName>Mohan</CustomerName>
+    <CustomerPhone>0126174400</CustomerPhone>
+    <CustomerPointsEarned>0</CustomerPointsEarned>
+    <Status>1</Status>
+    <Created>2025-11-11 18:12:06</Created>
+  </CustomerTable>
 </NewDataSet>

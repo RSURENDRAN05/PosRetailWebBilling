@@ -733,9 +733,9 @@ Module PrintViewReport
                         For Each detailRow As DataRow In receDs.Tables(1).Rows
                             Dim salesmanId As String = SafeToString(detailRow("psid_invoice_salesmanid"), "")
                             If Not String.IsNullOrEmpty(salesmanId) AndAlso salesmanId <> "0" Then
-                                For Each salesmanRow As DataRow In _JsonData.SalesManCommissionTable.Rows
-                                    If SafeToString(salesmanRow("EmpId"), "") = salesmanId Then
-                                        detailRow("SalesmanName") = SafeToString(salesmanRow("SalesmanName"), "")
+                                For Each salesmanRow As DataRow In _JsonData.SalesManDataTable.Rows
+                                    If SafeToString(salesmanRow("Id"), "") = salesmanId Then
+                                        detailRow("SalesmanName") = SafeToString(salesmanRow("SalesMan"), "")
                                         Exit For
                                     End If
                                 Next

@@ -19,7 +19,7 @@
   </xs:schema>
   <PaymodeList>
     <pmode_id>1</pmode_id>
-    <pmode_name>CASH</pmode_name>
+    <pmode_name>RM</pmode_name>
     <pmode_type>cash</pmode_type>
   </PaymodeList>
   <PaymodeList>
@@ -29,7 +29,7 @@
   </PaymodeList>
   <PaymodeList>
     <pmode_id>3</pmode_id>
-    <pmode_name>CARD</pmode_name>
+    <pmode_name>DEBIT/CREDIT CARD</pmode_name>
     <pmode_type>card</pmode_type>
   </PaymodeList>
 </NewDataSet>

@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>PosRetailWebBilling</ProductName>
-    <ApplicationRevision>44</ApplicationRevision>
+    <ApplicationRevision>45</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -132,6 +132,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\FaceAttendance.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=8.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector NET 8.3.0\MySql.Data.dll</HintPath>
@@ -465,6 +466,11 @@
     </Compile>
     <Compile Include="Master\FrmPackageItem.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Settings1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Reports\frmSalesMasterReport.designer.vb">
       <DependentUpon>frmSalesMasterReport.vb</DependentUpon>
@@ -1106,7 +1112,10 @@
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
     <Content Include="mypos.ico" />
-    <None Include="My Project\Settings.settings" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.vb</LastGenOutput>
+    </None>
     <None Include="Resources\Action_Totals_Row_32x32.png" />
   </ItemGroup>
   <ItemGroup>

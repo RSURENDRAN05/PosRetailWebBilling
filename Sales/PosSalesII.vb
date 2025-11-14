@@ -30,6 +30,7 @@ Public Class PosSalesII
     Private _isSelectionMode As Boolean = False
     Dim stpole1 As String = M_Details._shopName
     Dim NetAmountGlobal As Decimal = 0.0
+    Private _recallHoldBill As Boolean = False
     Public Sub New()
 
         ' This call is required by the designer.
@@ -1102,7 +1103,12 @@ Public Class PosSalesII
             End If
             If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "SALESPERSON" Then
                 If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
-                    barselectsalesman_ItemClick(Nothing, Nothing)
+                    'lock when recal mode only allowed to admin to changes
+                    If _recallHoldBill = True AndAlso RegistrationDetails._serverClient = "ORDER" Then
+                        barselectsalesman_ItemClick(Nothing, Nothing)
+                    ElseIf _recallHoldBill = False AndAlso RegistrationDetails._serverClient = "SERVER" Then
+                        barselectsalesman_ItemClick(Nothing, Nothing)
+                    End If
                 End If
             End If
 
@@ -1110,9 +1116,14 @@ Public Class PosSalesII
                 If _globalSetting.SelectMultiplePriceActive = False Then
                     MessageBox.Show("You Don't Have Rights To opening multiple price selection", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
-                ElseIf _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                    'ElseIf _companyInfo.UserRoleId = 1 OrElse _companyInfo.UserRoleId = 2 Then
+                    '    ShowMultiplePriceSelection()
+                    'Else
+                    '    ShowMultiplePriceSelection()
+                    'End If
+                ElseIf _recallHoldBill = True AndAlso RegistrationDetails._serverClient = "ORDER" Then
                     ShowMultiplePriceSelection()
-                Else
+                ElseIf _recallHoldBill = False AndAlso RegistrationDetails._serverClient = "SERVER" Then
                     ShowMultiplePriceSelection()
                 End If
             End If
@@ -1471,6 +1482,10 @@ Public Class PosSalesII
     End Function
     Function Get_product_info(ByRef _productCode As String, ByRef itemQty As Decimal, ByRef _Mode As String, ByRef ErrorMsg As String) As Boolean  'Product Select from Table _dsPro.table
         Try
+            If modeOfSale = "View" Then
+                ErrorMsg = "You can't able to add new item when its View Mode"
+                Return False
+            End If
             Dim ReceivedProCode As String = _productCode
             If ReceivedProCode Is Nothing Then
                 Return False
@@ -1525,7 +1540,7 @@ Public Class PosSalesII
                                     ' Create a DataTable view, filter, and convert result to DataRow array
                                     Dim itemTable As DataTable = _JsonData.ItemTouchMasterTable
 
-                                      ' Try multiple filter approaches to find the matching rows
+                                    ' Try multiple filter approaches to find the matching rows
                                     Dim filteredRows As DataRow() = Nothing
                                     Try
                                         ' Approach 1: Direct comparison with integer
@@ -1675,7 +1690,7 @@ Public Class PosSalesII
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControlSalesData.DataSource = GridDataTble_Insert
-            GridViewPOS.MoveNext()
+            GridViewPOS.MoveLast()
 
             ' Reset quantity input to 1 for next item
             txtMqty.EditValue = 1
@@ -2229,7 +2244,10 @@ Public Class PosSalesII
             barstatustoken.Caption = 0
             barbtnstatus.Caption = "Sales Mode : " & modeOfSale
             barbtnbilltype.Caption = "Sales"
-
+            'Reset Bill
+            _recallHoldBill = False
+            BillHoldTrno = 0
+            G_SalID = 0
             ' Clear selected customer
             ClearSelectedCustomer()
 
@@ -3157,17 +3175,19 @@ Public Class PosSalesII
                         SalesData("ITEMLOCK") = 2
                     Next
                     GridDataTble_Insert.AcceptChanges()
-                    PaymentProcess()
-                    BillHoldTokenNo = 0
-                    BillHoldTrno = 0
-                    G_SalID = 0
+                    If PaymentProcess() Then
+                        BillHoldTokenNo = 0
+                        BillHoldTrno = 0
+                        G_SalID = 0
+                    End If
                 End If
             Else
                 If btnpayment.Text = "Send Order" Then
-                    BillHoldProcess()
-                    BillHoldTokenNo = 0
-                    BillHoldTrno = 0
-                    G_SalID = 0
+                    If BillHoldProcess() Then
+                        BillHoldTokenNo = 0
+                        BillHoldTrno = 0
+                        G_SalID = 0
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -3178,17 +3198,18 @@ Public Class PosSalesII
     Private Sub barbtnSendOrderServer_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSendOrderServer.ItemClick
         Try
             If GridViewPOS.RowCount > 0 Then
-                BillHoldProcess()
-                BillHoldTokenNo = 0
-                BillHoldTrno = 0
-                G_SalID = 0
+                If BillHoldProcess() Then
+                    BillHoldTokenNo = 0
+                    BillHoldTrno = 0
+                    G_SalID = 0
+                End If
             End If
         Catch ex As Exception
 
         End Try
     End Sub
   
-    Private Sub BillHoldProcess()
+    Private Function BillHoldProcess() As Boolean
         Try
             If BillHoldTokenNo = 0 Then
                 frmkeytablescaner.ShowDialog()
@@ -3263,7 +3284,7 @@ Public Class PosSalesII
                     If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                         _saleData.psih_invoice_advamt = 0
                         DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
+                        Return False
                     Else
                         If frmPaymore.txtadvanceamt.EditValue > 0 Then
                             _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
@@ -3295,7 +3316,7 @@ Public Class PosSalesII
                     ' Basic validation - check if we have items
                     If GridDataTble_Insert.Rows.Count = 0 Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
+                        Return False
                     End If
 
 
@@ -3384,7 +3405,7 @@ Public Class PosSalesII
                     If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                         _saleData.psih_invoice_advamt = 0
                         DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
+                        Return False
                     Else
                         If frmPaymore.txtadvanceamt.EditValue > 0 Then
                             _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
@@ -3416,7 +3437,7 @@ Public Class PosSalesII
                     ' Basic validation - check if we have items
                     If GridDataTble_Insert.Rows.Count = 0 Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("No items to update", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
+                        Return False
                     End If
 
                     ' Update to database using stored procedure with payment modes
@@ -3434,11 +3455,13 @@ Public Class PosSalesII
                         barbtnNewBill_ItemClick(Nothing, Nothing)
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return False
                     End If
 
                 End If
             Else
                 DevExpress.XtraEditors.XtraMessageBox.Show("View Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return False
             End If
             'If barchkcustomerpole.Checked = True Then
             '    If CustomerPoleOpen(Errstr) = True Then
@@ -3452,12 +3475,14 @@ Public Class PosSalesII
             '        CustomerPoleClose(Errstr)
             '    End If
             'End If
+            Return True
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Hold Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return False
         End Try
-    End Sub
+    End Function
 
-    Private Sub PaymentProcess()
+    Private Function PaymentProcess() As Boolean
         Try
             If barchkcustomerpole.Checked = True Then
                 If CustomerPoleOpen(Errstr) = True Then
@@ -3497,11 +3522,11 @@ Public Class PosSalesII
 
                                 ' Map payment names to payment modes
                                 Select Case paymentType.ToLower()
-                                    Case "cash"
+                                    Case "cash", "rm"
                                         paymentModes.Add("cash")
-                                    Case "credit card", "debit card", "card", "bank card"
+                                    Case "credit card", "debit card", "card", "bank card", "debit/credit card"
                                         paymentModes.Add("card")
-                                    Case "bank transfer", "upi", "online", "bank"
+                                    Case "bank transfer", "upi", "online", "bank", "qr pay"
                                         paymentModes.Add("bank")
                                     Case "credit"
                                         paymentModes.Add("credit")
@@ -3522,11 +3547,11 @@ Public Class PosSalesII
 
                             ' Map payment name to payment mode
                             Select Case paymentName.ToLower()
-                                Case "cash"
+                                Case "cash", "rm"
                                     _PaymentDtl.paymentMode = "cash"
-                                Case "credit card", "debit card", "card", "bank card"
+                                Case "credit card", "debit card", "card", "bank card", "debit/credit card"
                                     _PaymentDtl.paymentMode = "card"
-                                Case "bank transfer", "upi", "online", "bank"
+                                Case "bank transfer", "upi", "online", "bank", "qr pay"
                                     _PaymentDtl.paymentMode = "bank"
                                 Case "credit"
                                     _PaymentDtl.paymentMode = "credit"
@@ -3599,7 +3624,7 @@ Public Class PosSalesII
                         If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
                             DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         Else
                             If frmPaymore.txtadvanceamt.EditValue > 0 Then
                                 _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
@@ -3631,7 +3656,7 @@ Public Class PosSalesII
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to save", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
 
                         ' Save to database using stored procedure with payment modes
@@ -3652,7 +3677,7 @@ Public Class PosSalesII
                             Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved - " & ReturnBill
                             barbtnNewBill_ItemClick(Nothing, Nothing)
                             frmMsgBox.ShowDialogData(msgData.ToString)
-                           
+
 
                             'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Else
@@ -3680,9 +3705,9 @@ Public Class PosSalesII
 
                                 ' Map payment types to payment modes
                                 Select Case paymentType.ToLower()
-                                    Case "cash"
+                                    Case "cash", "rm"
                                         paymentModes.Add("cash")
-                                    Case "credit card", "debit card", "card", "bank card"
+                                    Case "credit card", "debit card", "card", "bank card", "debit/credit card"
                                         paymentModes.Add("card")
                                     Case "bank transfer", "upi", "online", "bank"
                                         paymentModes.Add("bank")
@@ -3706,11 +3731,11 @@ Public Class PosSalesII
 
                             ' Map payment type to payment mode
                             Select Case paymentType.ToLower()
-                                Case "cash"
+                                Case "cash", "rm"
                                     _PaymentDtl.paymentMode = "cash"
-                                Case "credit card", "debit card", "card", "bank card"
+                                Case "credit card", "debit card", "card", "bank card", "debit/credit card"
                                     _PaymentDtl.paymentMode = "card"
-                                Case "bank transfer", "upi", "online", "bank"
+                                Case "bank transfer", "upi", "online", "bank", "qr pay"
                                     _PaymentDtl.paymentMode = "bank"
                                 Case "credit"
                                     _PaymentDtl.paymentMode = "credit"
@@ -3783,7 +3808,7 @@ Public Class PosSalesII
                         If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
                             DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         Else
                             If frmPaymore.txtadvanceamt.EditValue > 0 Then
                                 _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
@@ -3815,7 +3840,7 @@ Public Class PosSalesII
                         ' Basic validation - check if we have items
                         If GridDataTble_Insert.Rows.Count = 0 Then
                             DevExpress.XtraEditors.XtraMessageBox.Show("No items to update", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
 
                         ' Update to database using stored procedure with payment modes
@@ -3829,17 +3854,19 @@ Public Class PosSalesII
                             barstatuslastbillno.Caption = ReturnBill
                             _CashDraw.OpenCashdrawer(True)
                             'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                            barbtnNewBill_ItemClick(Nothing, Nothing)
                             Dim frmMsgBox As New frmMsgBoxOkOnly
                             Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Updated - " & ReturnBill
                             frmMsgBox.ShowDialogData(msgData.ToString)
+                            barbtnNewBill_ItemClick(Nothing, Nothing)
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Return False
                         End If
                     End If
                 End If
             Else
                 DevExpress.XtraEditors.XtraMessageBox.Show("View Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return False
             End If
             'If barchkcustomerpole.Checked = True Then
             '    If CustomerPoleOpen(Errstr) = True Then
@@ -3853,10 +3880,12 @@ Public Class PosSalesII
             '        CustomerPoleClose(Errstr)
             '    End If
             'End If
+            Return True
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message & "Bill Not Processed", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return False
         End Try
-    End Sub
+    End Function
 
     ''' <summary>
     ''' Convert PaymentDetailTable to Dictionary for database operations
@@ -3927,13 +3956,14 @@ Public Class PosSalesII
 
         End Try
     End Sub
+
     Public Function GetHoldBySalID(ByVal Sal_id As Integer, ByRef ModeOfBill As String) As Boolean
         Try
             Dim resData As New DataSet
             If GetHoldByBillLocal(Sal_id, resData, "H") = True Then
                 
                 modeBillHold = "Edit"
-
+                _recallHoldBill = True
                 If resData.Tables(0).Rows.Count > 0 Then
                     Dim billno = resData.Tables(0).Rows(0)("psih_invoice_trno")
                     lblinvoiceno.Text = billno
@@ -3989,7 +4019,7 @@ Public Class PosSalesII
                         Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
                         Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
                         Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salesmanid"), Convert.ToInt32(rData("psid_invoice_salesmanid")), 1)
-                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
+                        Dim salesManPer As Decimal = If(rData.Table.Columns.Contains("psid_invoice_salemanper"), Convert.ToDecimal(rData("psid_invoice_salemanper")), 0)
                         Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
                         Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
                         Dim psid As Object = If(rData.Table.Columns.Contains("psid_invoice_id"), rData("psid_invoice_id"), 0)
@@ -4036,6 +4066,8 @@ Public Class PosSalesII
 
                     End If
                 End If
+            Else
+                _recallHoldBill = False
             End If
 
             Return True
@@ -4119,8 +4151,8 @@ Public Class PosSalesII
                         Dim netAmount As Decimal = _RoundOff(rData("psid_invoice_netamt"))
                         Dim remarks As String = If(rData.Table.Columns.Contains("psid_invoice_remarks"), rData("psid_invoice_remarks"), "Remarks")
                         Dim batchNo As Object = If(rData.Table.Columns.Contains("psid_invoice_batchno"), rData("psid_invoice_batchno"), 0)
-                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salespersonid"), Convert.ToInt32(rData("psid_invoice_salespersonid")), 1)
-                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salesmanper"), rData("psid_invoice_salesmanper"), 0)
+                        Dim salesPersonId As Integer = If(rData.Table.Columns.Contains("psid_invoice_salesmanid"), Convert.ToInt32(rData("psid_invoice_salesmanid")), 1)
+                        Dim salesManPer As Object = If(rData.Table.Columns.Contains("psid_invoice_salemanper"), rData("psid_invoice_salemanper"), 0)
                         Dim deleteFlag As Object = If(rData.Table.Columns.Contains("psid_invoice_delete"), rData("psid_invoice_delete"), 1)
                         Dim itemLock As Object = If(rData.Table.Columns.Contains("psid_invoice_itemlock"), rData("psid_invoice_itemlock"), 2)
                         Dim psid As Object = If(rData.Table.Columns.Contains("psid_invoice_id"), rData("psid_invoice_id"), 0)
