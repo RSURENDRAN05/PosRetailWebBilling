@@ -6,16 +6,38 @@ class clsfuncsync
 
     public function __construct()
     {
-        require_once 'dbconnect.php';
+        // Load database configuration
+        $dbConfigPath = __DIR__ . '/dbconnect.php';
+        if (!file_exists($dbConfigPath)) {
+            throw new Exception("Database configuration file not found at: " . $dbConfigPath);
+        }
+
+        require_once $dbConfigPath;
+
+        // Verify constants are defined
+        if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASSWORD') || !defined('DB_DATABASE')) {
+            throw new Exception("Database constants not properly defined in dbconnect.php");
+        }
+
         // Use direct connection method
         $this->conn = $this->connect();
     }
+
     public function connect()
     {
+        // Verify constants exist before using them
+        if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASSWORD') || !defined('DB_DATABASE')) {
+            error_log("Database constants not defined. Please check dbconnect.php");
+            die("Database configuration error. Please contact administrator.");
+        }
+
         $this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+
         if (!$this->conn) {
+            error_log("Database connection failed: " . mysqli_connect_error());
             die("Connection failed: " . mysqli_connect_error());
         }
+
         mysqli_set_charset($this->conn, "utf8");
         return $this->conn;
     }
