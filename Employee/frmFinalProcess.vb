@@ -87,21 +87,21 @@ Public Class frmFinalProcess
                                 Dim EmpComName = _rs("EmpComName")
                                 Dim EmpLocId = _rs("EmpLocId")
                                 Dim EmpLocName = _rs("EmpLocName")
-                                Dim EmpBasic = _rs("EmpBasic")
-                                Dim EmpNoOfDays = _rs("EmpNoOfDays")
-                                Dim EmpBasicRate = _rs("EmpBasicRate")
-                                Dim EmpExtraDays = _rs("EmpExtraDays")
-                                Dim ExtraDayRate = _rs("ExtraDayRate")
-                                Dim EmpExtraOtHrs = _rs("EmpExtraOtHrs")
-                                Dim EmpOTHrsRate = _rs("EmpHrsRate")
-                                Dim EmpAdvance = _rs("EmpAdvance")
+                                Dim EmpBasic = _rs("EmpBasic") 'ok
+                                Dim EmpBasicRate = _rs("EmpBasicRate") 'Ok
+                                Dim EmpBasicOTRate = _rs("EmpOtRate") 'Ok
+                                Dim EmpOTHrsRate = _rs("EmpOtHrsRate")
                                 Dim EmpAllowance = _rs("EmpAllowance")
                                 Dim EmpEpf = _rs("EmpEpf")
                                 Dim EmpSocso = _rs("EmpSocso")
+                                Dim EmpNoOfDays = _rs("EmpNoOfDays") 'ok
+                                Dim EmpExtraDays = _rs("EmpExtraDays")
+                                Dim EmpExtraOtHrs = _rs("EmpExtraOtHrs")
+                                Dim EmpAdvance = _rs("EmpAdvance")
                                 Dim EmpDeduction = _rs("EmpDeduction")
-                                Dim EmpBank = _rs("EmpBank")
+                                Dim EmpBank = _rs("EmpBankIn")
                                 TotWages = Val(EmpNoOfDays * EmpBasicRate)
-                                TotExtraDayAmt = Val(EmpExtraDays * ExtraDayRate)
+                                TotExtraDayAmt = Val(EmpExtraDays * EmpBasicOTRate)
                                 TotExtraOTAmt = Val(EmpExtraOtHrs * EmpOTHrsRate)
                                 TotGrossAmt = TotWages + TotExtraDayAmt + TotExtraOTAmt + Val(EmpAllowance)
                                 TotNetPay = TotGrossAmt - EmpAdvance - EmpEpf - EmpSocso - EmpDeduction
@@ -143,7 +143,7 @@ Public Class frmFinalProcess
                 End If
             End If
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message.ToString, "Error Loading", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

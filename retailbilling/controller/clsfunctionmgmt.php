@@ -2324,23 +2324,71 @@ class funcProcessMgmt
         return $sqlquery;
     }
 
-    //emp Final Process
+    // Employee Final Process with prepared statement
     public function SelectFinalProcess($pef_month, $pef_comid, $pef_locid)
     {
         $conn = $this->conn;
-        $sqlquery = ("SELECT pem.pemp_id as EmpTrId,pem.pemp_refid as EmpRefId,pe.emp_printname as EmpName,pem.pemp_month as EmpMonth,pem.pemp_comid AS EmpComId,"
-            . "pcm.pcm_name as EmpComName,pem.pemp_locid as EmpLocId,plm.plm_name as EmpLocName,pe.emp_basicsalary as EmpBasic,pem.pemp_noofdays as EmpNoOfDays,"
-            . " pef.`pef_wages` as EmpWages, pef.`pef_extraday` as EmpExtraDays, pef.`pef_extradayamt` as EmpExtraDayAmt, pef.`pef_extrahours` as EmpExtraOtHrs, "
-            . " pef.`pef_extrahrsamt` as EmpExtraOtAmt, pef.`pef_allowance` as EmpAllowance, pef.`pef_grossamt` as EmpGrossAmt, pef.`pef_advance` as EmpAdvance, "
-            . " pef.`pef_epf` as EmpEpf, pef.`pef_socso` as EmpSocso, pef.`pef_deduction` as EmpDeduction, pef.`pef_netpay` as EmpNetPay, pef.`pef_bank` as EmpBank,"
-            . " pef.`pef_netcash` as EmpNetCash FROM `pos_emp_monthprocess` as pem "
-            . "INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pem.pemp_refid "
-            . "INNER JOIN pos_company_mast as pcm ON pem.pemp_comid = pcm.pcm_id "
-            . "INNER JOIN pos_location_mast as plm ON pem.pemp_locid = plm.plm_id"
-            . " WHERE pem.pemp_comid='" . $pef_comid . "' AND pem.pemp_locid='" . $pef_locid . "' AND pe.emp_active=1 AND pem.pemp_month='" . $pef_month . "'");
-        $result = mysqli_query($conn, $sqlquery);
+
+        $sqlquery = "
+        SELECT 
+            pem.`pemp_id` AS EmpTrId,
+            pem.`pemp_refid` AS EmpRefId,
+            pe.`emp_printname` AS EmpName,
+            pem.`pemp_month` AS EmpMonth,
+            pem.`pemp_comid` AS EmpComId,
+            pcm.`pcm_name` AS EmpComName,
+            pem.`pemp_locid` AS EmpLocId,
+            plm.`plm_name` AS EmpLocName,
+            pe.`emp_basicsalary` AS EmpBasic,
+            pe.`emp_basicrate` AS EmpBasicRate,
+            pe.`emp_otrate` AS EmpOtRate,
+            pe.`emp_othrsrate` AS EmpOtHrsRate,
+            pe.`emp_allowance` AS EmpAllowance,
+            pe.`emp_epf` AS EmpEpf,
+            pe.`emp_socso` AS EmpSocso,
+            pem.`pemp_noofdays` AS EmpNoOfDays,
+            pem.`pemp_extradays` AS EmpExtraDays,
+            pem.`pemp_extrahrs` AS EmpExtraOtHrs,
+            pem.`pemp_advance` AS EmpAdvance,
+            pem.`pemp_deduction` AS EmpDeduction,
+            pem.`pemp_bankin` AS EmpBankIn
+        FROM 
+            `pos_emp_monthprocess` AS pem
+        INNER JOIN 
+            `pos_employeeinfo` AS pe ON pe.`emp_id` = pem.`pemp_refid`
+        INNER JOIN 
+            `pos_company_mast` AS pcm ON pem.`pemp_comid` = pcm.`pcm_id`
+        INNER JOIN 
+            `pos_location_mast` AS plm ON pem.`pemp_locid` = plm.`plm_id`
+        WHERE 
+            pem.`pemp_comid` = ?
+            AND pem.`pemp_locid` = ?
+            AND pe.`emp_active` = 1
+            AND pem.`pemp_month` = ?
+    ";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($conn, $sqlquery);
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . mysqli_error($conn));
+        }
+
+        // Bind parameters (s = string, i = integer). Here all are strings.
+        mysqli_stmt_bind_param($stmt, 'sss', $pef_comid, $pef_locid, $pef_month);
+
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
+
+        // Get result
+        $result = mysqli_stmt_get_result($stmt);
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
         return $result;
     }
+
 
     public function SelectOldFinalProcess($pef_month, $pef_comid, $pef_locid)
     {
@@ -2350,7 +2398,8 @@ class funcProcessMgmt
             . " pef.`pef_wages` as EmpWages, pef.`pef_extraday` as EmpExtraDays, pef.`pef_extradayamt` as EmpExtraDayAmt, pef.`pef_extrahours` as EmpExtraOtHrs, "
             . " pef.`pef_extrahrsamt` as EmpExtraOtAmt, pef.`pef_allowance` as EmpAllowance, pef.`pef_grossamt` as EmpGrossAmt, pef.`pef_advance` as EmpAdvance, "
             . " pef.`pef_epf` as EmpEpf, pef.`pef_socso` as EmpSocso, pef.`pef_deduction` as EmpDeduction, pef.`pef_netpay` as EmpNetPay, pef.`pef_bank` as EmpBank,"
-            . " pef.`pef_netcash` as EmpNetCash FROM `pos_emp_finalprocess` as pef INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pef.pef_refid "
+            . " pef.`pef_netcash` as EmpNetCash FROM `pos_emp_finalprocess` as pef "
+            . " INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pef.pef_refid "
             . " INNER JOIN pos_company_mast as pcm ON pcm.pcm_id = pef.pef_comid "
             . " INNER JOIN pos_location_mast as plm ON plm.plm_id = pef.pef_locid "
             . " WHERE   pef.`pef_month` ='" . $pef_month . "' AND  pef.`pef_comid`='" . $pef_comid . "' AND  pef.`pef_locid` ='" . $pef_locid . "'");
