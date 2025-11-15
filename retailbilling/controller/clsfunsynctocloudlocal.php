@@ -7,12 +7,9 @@ class clsfuncsync
     public function __construct()
     {
         // Load database configuration
-        $dbConfigPath = __DIR__ . '/dbconnect.php';
-        if (!file_exists($dbConfigPath)) {
-            throw new Exception("Database configuration file not found at: " . $dbConfigPath);
-        }
-
-        require_once $dbConfigPath;
+        require_once 'dbconnect.php';
+        $db = new database();
+        $this->conn = $db->connect();
 
         // Verify constants are defined
         if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASSWORD') || !defined('DB_DATABASE')) {
