@@ -86,21 +86,24 @@ Partial Class frmFinalProcess
         '
         Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 31)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 39)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1422, 725)
+        Me.LayoutControl1.Size = New System.Drawing.Size(2133, 1077)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'GridControl1
         '
         Me.GridControl1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.GridControl1.Location = New System.Drawing.Point(2, 18)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.Location = New System.Drawing.Point(2, 24)
         Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1418, 705)
+        Me.GridControl1.Size = New System.Drawing.Size(2129, 1051)
         Me.GridControl1.TabIndex = 4
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -108,20 +111,20 @@ Partial Class frmFinalProcess
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportDataToolStripMenuItem, Me.GenerateSlipToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(144, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(189, 64)
         '
         'ExportDataToolStripMenuItem
         '
         Me.ExportDataToolStripMenuItem.Image = CType(resources.GetObject("ExportDataToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportDataToolStripMenuItem.Name = "ExportDataToolStripMenuItem"
-        Me.ExportDataToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.ExportDataToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.ExportDataToolStripMenuItem.Text = "Export Data"
         '
         'GenerateSlipToolStripMenuItem
         '
         Me.GenerateSlipToolStripMenuItem.Image = CType(resources.GetObject("GenerateSlipToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GenerateSlipToolStripMenuItem.Name = "GenerateSlipToolStripMenuItem"
-        Me.GenerateSlipToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.GenerateSlipToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.GenerateSlipToolStripMenuItem.Text = "Generate Slip"
         '
         'GridView1
@@ -546,28 +549,32 @@ Partial Class frmFinalProcess
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1422, 31)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlTop.Size = New System.Drawing.Size(2133, 39)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 756)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1422, 23)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1116)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(2133, 23)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 725)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 39)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1077)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1422, 31)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 725)
+        Me.barDockControlRight.Location = New System.Drawing.Point(2133, 39)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1077)
         '
         'LayoutControlGroup1
         '
@@ -577,7 +584,7 @@ Partial Class frmFinalProcess
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1422, 725)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(2133, 1077)
         Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -587,21 +594,22 @@ Partial Class frmFinalProcess
         Me.LayoutControlItem1.CustomizationFormText = "Final Process"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1422, 725)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(2133, 1077)
         Me.LayoutControlItem1.Text = "Final Process"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(62, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(91, 19)
         '
         'frmFinalProcess
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1422, 779)
+        Me.ClientSize = New System.Drawing.Size(2133, 1139)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmFinalProcess"
         Me.Text = "FinalProcess"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
