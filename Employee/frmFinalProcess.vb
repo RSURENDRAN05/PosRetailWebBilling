@@ -125,8 +125,10 @@ Public Class frmFinalProcess
                                 _FinalMonthProcessTable.ImportRow(r)
 
                             Next
-                            For Each rs In _FinalMonthProcessTable.Rows
-                                rs("SNo") = rs("SNo") + 1
+                            Dim _sno As Integer = 0
+                            For Each rs As DataRow In _FinalMonthProcessTable.Rows
+                                _sno += 1
+                                rs("SNo") = _sno
                             Next
                             'For Each _rs In _dataTable.Rows
                             '    _FinalMonthProcessTable.ImportRow(_dataTable.Rows)
@@ -155,8 +157,10 @@ Public Class frmFinalProcess
                 If _JsonSend(M_Details.LinkAjaxRequest & "EmployeeReq=16&json=" & PostString) = True Then
                     _FinalMonthProcessTable.Rows.Clear()
                     dialog.Caption = "Data Saved Success.."
+                    MessageBox.Show("Data Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
                     dialog.Caption = "Data Not Saved"
+                    MessageBox.Show("Data Not Saved", "Failed to save", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
         Catch ex As Exception

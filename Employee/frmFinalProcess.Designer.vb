@@ -87,7 +87,7 @@ Partial Class frmFinalProcess
         Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 39)
-        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(2133, 1077)
@@ -97,10 +97,10 @@ Partial Class frmFinalProcess
         'GridControl1
         '
         Me.GridControl1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl1.Location = New System.Drawing.Point(2, 24)
         Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(2129, 1051)
@@ -165,6 +165,7 @@ Partial Class frmFinalProcess
         Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 111
         '
         'GridColumn3
         '
@@ -175,6 +176,7 @@ Partial Class frmFinalProcess
         Me.GridColumn3.OptionsColumn.AllowFocus = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 111
         '
         'GridColumn4
         '
@@ -203,7 +205,7 @@ Partial Class frmFinalProcess
         Me.GridColumn7.OptionsColumn.AllowFocus = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
-        Me.GridColumn7.Width = 92
+        Me.GridColumn7.Width = 145
         '
         'GridColumn8
         '
@@ -216,10 +218,12 @@ Partial Class frmFinalProcess
         Me.GridColumn8.OptionsColumn.AllowFocus = False
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 76
+        Me.GridColumn8.Width = 117
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.GridColumn9.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.Caption = "EmpBasic"
@@ -230,6 +234,7 @@ Partial Class frmFinalProcess
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 106
         '
         'GridColumn10
         '
@@ -243,10 +248,12 @@ Partial Class frmFinalProcess
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 6
-        Me.GridColumn10.Width = 97
+        Me.GridColumn10.Width = 152
         '
         'GridColumn11
         '
+        Me.GridColumn11.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridColumn11.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn11.Caption = "EmpWages"
         Me.GridColumn11.DisplayFormat.FormatString = "n0"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -255,7 +262,7 @@ Partial Class frmFinalProcess
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 7
-        Me.GridColumn11.Width = 79
+        Me.GridColumn11.Width = 121
         '
         'GridColumn12
         '
@@ -266,7 +273,7 @@ Partial Class frmFinalProcess
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 8
-        Me.GridColumn12.Width = 101
+        Me.GridColumn12.Width = 155
         '
         'GridColumn13
         '
@@ -280,7 +287,7 @@ Partial Class frmFinalProcess
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 9
-        Me.GridColumn13.Width = 121
+        Me.GridColumn13.Width = 186
         '
         'GridColumn14
         '
@@ -293,7 +300,7 @@ Partial Class frmFinalProcess
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 10
-        Me.GridColumn14.Width = 106
+        Me.GridColumn14.Width = 163
         '
         'GridColumn15
         '
@@ -307,7 +314,7 @@ Partial Class frmFinalProcess
         Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 11
-        Me.GridColumn15.Width = 111
+        Me.GridColumn15.Width = 170
         '
         'GridColumn16
         '
@@ -321,10 +328,12 @@ Partial Class frmFinalProcess
         Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 12
-        Me.GridColumn16.Width = 101
+        Me.GridColumn16.Width = 157
         '
         'GridColumn17
         '
+        Me.GridColumn17.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn17.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn17.Caption = "EmpGrossAmt"
@@ -335,7 +344,7 @@ Partial Class frmFinalProcess
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 13
-        Me.GridColumn17.Width = 98
+        Me.GridColumn17.Width = 150
         '
         'GridColumn18
         '
@@ -349,7 +358,7 @@ Partial Class frmFinalProcess
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 14
-        Me.GridColumn18.Width = 92
+        Me.GridColumn18.Width = 140
         '
         'GridColumn19
         '
@@ -363,6 +372,7 @@ Partial Class frmFinalProcess
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 15
+        Me.GridColumn19.Width = 87
         '
         'GridColumn20
         '
@@ -376,6 +386,7 @@ Partial Class frmFinalProcess
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 16
+        Me.GridColumn20.Width = 111
         '
         'GridColumn21
         '
@@ -389,10 +400,12 @@ Partial Class frmFinalProcess
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 17
-        Me.GridColumn21.Width = 100
+        Me.GridColumn21.Width = 156
         '
         'GridColumn22
         '
+        Me.GridColumn22.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn22.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn22.Caption = "EmpNetPay"
@@ -403,7 +416,7 @@ Partial Class frmFinalProcess
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 18
-        Me.GridColumn22.Width = 81
+        Me.GridColumn22.Width = 125
         '
         'GridColumn23
         '
@@ -417,9 +430,12 @@ Partial Class frmFinalProcess
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 19
+        Me.GridColumn23.Width = 105
         '
         'GridColumn24
         '
+        Me.GridColumn24.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn24.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.Caption = "EmpNetCash"
@@ -430,13 +446,17 @@ Partial Class frmFinalProcess
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 20
-        Me.GridColumn24.Width = 88
+        Me.GridColumn24.Width = 136
         '
         'GridColumn25
         '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn25.Caption = "SNo"
         Me.GridColumn25.FieldName = "SNo"
         Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.OptionsColumn.AllowFocus = False
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 0
         '
@@ -549,7 +569,7 @@ Partial Class frmFinalProcess
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(4)
         Me.barDockControlTop.Size = New System.Drawing.Size(2133, 39)
         '
         'barDockControlBottom
@@ -557,7 +577,7 @@ Partial Class frmFinalProcess
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1116)
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(4)
         Me.barDockControlBottom.Size = New System.Drawing.Size(2133, 23)
         '
         'barDockControlLeft
@@ -565,7 +585,7 @@ Partial Class frmFinalProcess
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 39)
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(4)
         Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1077)
         '
         'barDockControlRight
@@ -573,7 +593,7 @@ Partial Class frmFinalProcess
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(2133, 39)
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(4)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 1077)
         '
         'LayoutControlGroup1
@@ -609,7 +629,7 @@ Partial Class frmFinalProcess
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmFinalProcess"
         Me.Text = "FinalProcess"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
