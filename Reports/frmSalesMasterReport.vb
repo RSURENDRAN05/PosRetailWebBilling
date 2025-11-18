@@ -13,7 +13,7 @@ Imports DevExpress.XtraPrinting.PageHeaderFooter
 
 Public Class frmSalesMasterReport
     Private dtSalesData As DataTable
-
+    Dim Errstr As String = ""
     Private Sub frmSalesMasterReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize company info first
 
@@ -401,4 +401,83 @@ Public Class frmSalesMasterReport
             Return "Address Not Available"
         End Try
     End Function
+
+    Private Sub btnPrintPreview_Click(sender As Object, e As EventArgs) Handles btnPrintPreview.Click
+        Try
+            printReportDesign()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#Region "Load Report Data"
+    Private Sub printReportDesign()
+        Try
+            Dim _receDs As New DataSet
+            Dim copiedTable As DataTable = GetSalesByAllBranch()
+            copiedTable.TableName = "SalesData" ' Give it a meaningful name
+
+            ' Create DateFilter table
+            Dim dateFilterTable As New DataTable("DateFilter")
+            dateFilterTable.Columns.Add("FromDate", GetType(String))
+            dateFilterTable.Columns.Add("ToDate", GetType(String))
+
+            ' Add date filter values
+            Dim dateRow As DataRow = dateFilterTable.NewRow()
+            dateRow("FromDate") = dtStartDate.DateTime.ToString("yyyy-MM-dd")
+            dateRow("ToDate") = dtEndDate.DateTime.ToString("yyyy-MM-dd")
+            dateFilterTable.Rows.Add(dateRow)
+
+            ' Add tables to dataset
+            _receDs.Tables.Add(copiedTable)
+            _receDs.Tables.Add(dateFilterTable)
+
+            If (_receDs.Tables(0).Rows.Count > 0) Then
+                _receDs.WriteXml(M_Details._appPath & "\Reports\ReportByAllBrachSales.xml", Data.XmlWriteMode.WriteSchema)
+            End If
+            If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportByAllBrachSales.repx") = False Then
+                lblStatusResults.Text = "Error: " & "ReportByAllBrachSales.repx"
+            End If
+        Catch ex As Exception
+            lblStatusResults.Text = "Error: " & ex.Message
+            MessageBox.Show("Error loading sales data: " & ex.Message, "Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    
+    Private Function GetSalesByAllBranch() As DataTable
+        Try
+            Dim startDate As String = dtStartDate.DateTime.ToString("yyyy-MM-dd")
+            Dim endDate As String = dtEndDate.DateTime.ToString("yyyy-MM-dd")
+            Dim url As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=15"
+            Dim postData As String = String.Format("startDate={0}&endDate={1}", startDate, endDate)
+            Dim SalesData As New DataTable
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Using client As New WebClient()
+                client.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
+                Dim jsonResponse As String = client.UploadString(url, postData)
+                Dim Userparsejson As JObject = JObject.Parse(jsonResponse)
+                If Not String.IsNullOrEmpty(jsonResponse) Then
+                    If Userparsejson("Success").ToString().ToLower() = "true" Then
+                        If Userparsejson("Data") IsNot Nothing Then
+                            SalesData = Userparsejson("Data").ToObject(Of DataTable)()
+                            Return SalesData
+                        End If
+                    Else
+                        ' Show error message from API
+                        Dim errorMsg As String = If(Userparsejson("Msg") IsNot Nothing, Userparsejson("Msg").ToString(), "Unknown API error")
+                        MessageBox.Show("API Error: " & errorMsg, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+
+                End If
+            End Using
+            ' Check if the response was successful
+
+
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("Error fetching salesman summary report: " & ex.Message)
+        End Try
+
+        Return Nothing
+    End Function
+#End Region
 End Class

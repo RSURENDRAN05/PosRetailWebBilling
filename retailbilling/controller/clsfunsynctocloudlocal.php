@@ -379,7 +379,37 @@ class clsfuncsync
 
         return $resultSets;
     }
+    public function GetSalesReportAllBranch($startDate, $endDate)
+    {
+        // Escape variables first
+        $startDate = mysqli_real_escape_string($this->conn, $startDate);
+        $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
+        // Add time component to date range for proper filtering
+        // $startDateTime = $startDate . ' 00:00:00';
+        // $endDateTime = $endDate . ' 23:59:59';
+
+        // Build query with proper date range
+        $sql = "SELECT     pm.pcm_name AS CompanyName,    pl.plm_name AS LocationName,
+        SUM(IFNULL(ph.psih_invoice_tnetamt, 0)) AS NetAmt,    COUNT(*) AS InvoiceCount FROM pos_sale_invoicehdr AS ph
+        JOIN pos_company_mast AS pm 
+        ON pm.pcm_id = ph.psih_invoice_comid
+        JOIN pos_location_mast AS pl 
+        ON pl.plm_id = ph.psih_invoice_locid
+        WHERE ph.psih_invoice_date >= '$startDate'
+        AND ph.psih_invoice_date <= '$endDate'
+        GROUP BY pm.pcm_name, pl.plm_name
+        ORDER BY NetAmt DESC;";
+
+        // Log the query for debugging (remove in production)
+        error_log("Sales Report Query: " . $sql);
+
+        $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            throw new Exception("Error fetching sales report: " . mysqli_error($this->conn));
+        }
+        return $result;
+    }
     public function GetSalesReportSummary($comid, $locid, $startDate, $endDate)
     {
         // Escape variables first
@@ -920,7 +950,7 @@ class clsfuncsync
         // If OptionsSalesMan == 1, show all salesmen (no additional filter needed)
 
         // Apply Company and Location filter based on OptionComidLocid
-        if ($OptionComidLocid == 2) {
+        if ($OptionComidLocid == 1) {
             // Filter by specific Company and Location
             if (!empty($comid) && $comid != '0') {
                 $sql .= " AND ppd.ComId = '$comid'";

@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SalesData">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="InvoiceCount" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="DateFilter">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FromDate" type="xs:string" minOccurs="0" />
+                <xs:element name="ToDate" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SalesData>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>36873.00</NetAmt>
+    <InvoiceCount>1161</InvoiceCount>
+  </SalesData>
+  <SalesData>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>31033.00</NetAmt>
+    <InvoiceCount>1309</InvoiceCount>
+  </SalesData>
+  <SalesData>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>9380.00</NetAmt>
+    <InvoiceCount>357</InvoiceCount>
+  </SalesData>
+  <DateFilter>
+    <FromDate>2025-11-01</FromDate>
+    <ToDate>2025-11-18</ToDate>
+  </DateFilter>
+</NewDataSet>

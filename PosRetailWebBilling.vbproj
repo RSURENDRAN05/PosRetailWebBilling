@@ -484,6 +484,12 @@
     <Compile Include="Reports\FrmAttendanceReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\FrmCustomerSalesHis.Designer.vb">
+      <DependentUpon>FrmCustomerSalesHis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmCustomerSalesHis.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\FrmMultiplePriceSelection.designer.vb">
       <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>
     </Compile>
@@ -951,6 +957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmAttendanceReport.resx">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmCustomerSalesHis.resx">
+      <DependentUpon>FrmCustomerSalesHis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\FrmMultiplePriceSelection.resx">
       <DependentUpon>FrmMultiplePriceSelection.vb</DependentUpon>

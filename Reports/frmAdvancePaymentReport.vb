@@ -495,27 +495,27 @@ Public Class frmAdvancePaymentReport
             copiedTable.TableName = "SalesData" ' Give it a meaningful name
             _receDs.Tables.Add(copiedTable)
             If (_receDs.Tables(0).Rows.Count > 0) Then
-                _receDs.WriteXml(M_Details._appPath & "\Reports\ReportChronical.xml", Data.XmlWriteMode.WriteSchema)
+                _receDs.WriteXml(M_Details._appPath & "\Reports\ReportAdvance.xml", Data.XmlWriteMode.WriteSchema)
             End If
             Select Case reportName
                 Case "Advance Payment by Employee"
                     If reportType.ToUpper() = "SUMMARY" Then
-                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportAdvanceSummary.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportAdvanceSummary.repx"
                         End If
                     Else
-                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportAdvanceDetails.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportAdvanceDetails.repx"
                         End If
                     End If
                 Case "Advance Payment by All Branches"
                     If reportType.ToUpper() = "SUMMARY" Then
-                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalSummary.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportAdvanceSummary.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportAdvanceSummary.repx"
                         End If
                     Else
-                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportChronicalDetailed.repx") = False Then
-                            lblStatusResults.Text = "Error: " & "ReportChronical.repx"
+                        If clsBillPrint.GenrateReportA4Print(_receDs, Errstr, "ReportAdvanceDetails.repx") = False Then
+                            lblStatusResults.Text = "Error: " & "ReportAdvanceDetails.repx"
                         End If
                     End If
             End Select
@@ -591,7 +591,7 @@ Public Class frmAdvancePaymentReport
             ' For Advance Payment Report, use the GetAdvanceReport API (AjaxRequest=9)
             Dim operationType As String = If(reportType.ToUpper() = "SUMMARY", "1", "2")
             Dim optionsSalesMan As String = If(salesManId = "0", "1", "2")
-            Dim optionComidLocid As String = "2" ' Always filter by ComId and LocId
+            Dim optionComidLocid As String = If(reportName = "Advance Payment by Employee", "1", "2") ' Always filter by ComId and LocId
 
             ' Call the GetAdvanceReport API
             Return GetAdvanceReportFromAPI(comId, locId, startDate, endDate, salesManId, operationType, optionsSalesMan, optionComidLocid)

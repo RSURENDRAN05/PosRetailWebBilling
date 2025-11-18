@@ -1,0 +1,85 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SalesData">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:string" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalTransactions" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalAmount" type="xs:string" minOccurs="0" />
+                <xs:element name="FirstAdvance" type="xs:string" minOccurs="0" />
+                <xs:element name="LastAdvance" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SalesData>
+    <ID>14</ID>
+    <Name>SENTHIL</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>5</TotalTransactions>
+    <TotalAmount>2500.00</TotalAmount>
+    <FirstAdvance>2025-11-01 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-16 00:00:00</LastAdvance>
+  </SalesData>
+  <SalesData>
+    <ID>10</ID>
+    <Name>SUBRA</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>3</TotalTransactions>
+    <TotalAmount>600.00</TotalAmount>
+    <FirstAdvance>2025-11-10 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-17 00:00:00</LastAdvance>
+  </SalesData>
+  <SalesData>
+    <ID>16</ID>
+    <Name>LOVEJEET</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>5</TotalTransactions>
+    <TotalAmount>500.00</TotalAmount>
+    <FirstAdvance>2025-11-05 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-17 00:00:00</LastAdvance>
+  </SalesData>
+  <SalesData>
+    <ID>13</ID>
+    <Name>PRAKASH</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>4</TotalTransactions>
+    <TotalAmount>250.00</TotalAmount>
+    <FirstAdvance>2025-11-04 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-16 00:00:00</LastAdvance>
+  </SalesData>
+  <SalesData>
+    <ID>12</ID>
+    <Name>SUKHVEER</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>3</TotalTransactions>
+    <TotalAmount>200.00</TotalAmount>
+    <FirstAdvance>2025-11-05 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-12 00:00:00</LastAdvance>
+  </SalesData>
+  <SalesData>
+    <ID>15</ID>
+    <Name>KAVI</Name>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalTransactions>1</TotalTransactions>
+    <TotalAmount>50.00</TotalAmount>
+    <FirstAdvance>2025-11-07 00:00:00</FirstAdvance>
+    <LastAdvance>2025-11-07 00:00:00</LastAdvance>
+  </SalesData>
+</NewDataSet>

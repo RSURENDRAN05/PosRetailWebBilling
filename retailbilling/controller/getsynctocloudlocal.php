@@ -607,6 +607,39 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 15) { //get sales report
+        try {
+            // Log the incoming request for debugging (check both GET and POST)
+            error_log("AjaxRequest=15 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=15 called with POST parameters: " . print_r($_POST, true));
+
+            // Get parameters from REQUEST (works for both GET and POST)
+            $startDate = isset($_REQUEST['startDate']) ? $_REQUEST['startDate'] : '';
+            $endDate = isset($_REQUEST['endDate']) ? $_REQUEST['endDate'] : '';
+
+            // Validate required parameters
+            if (empty($startDate) || empty($endDate)) {
+                throw new Exception("Missing required parameters:  startDate=$startDate, endDate=$endDate");
+            }
+
+            // Fetch sales report data
+            $salesReport = $clsfunreq->GetSalesReportAllBranch($startDate, $endDate);
+            $arr = array();
+            if ($salesReport) {
+                while ($row = mysqli_fetch_assoc($salesReport)) {
+                    $arr[] = $row;
+                }
+                error_log("Sales report fetched successfully. Records found: " . count($arr));
+                echo json_encode(array("Success" => true, "Data" => $arr));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "No sales data found", "Data" => ""));
+            }
+        } catch (Exception $e) {
+            error_log("Request 15 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 3 Error: " . $e->getMessage(), "Data" => ""));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests

@@ -4623,7 +4623,18 @@ Public Class PosSalesII
         End Try
     End Sub
 #End Region
+#Region "Customer History"
+    Private Sub btnCustomerHistory_Click(sender As Object, e As EventArgs) Handles btnCustomerHistory.Click
+        Try
+            If selectedCustomerId <> 0 AndAlso selectedCustomerId <> 0 Then
+                FrmCustomerSalesHis.ShowDialog(1)
+            End If
+        Catch ex As Exception
+            ' Handle exception if needed
+        End Try
+    End Sub
 
+#End Region
 
 
 End Class
