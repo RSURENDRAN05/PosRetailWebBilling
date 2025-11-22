@@ -4627,7 +4627,7 @@ Public Class PosSalesII
     Private Sub btnCustomerHistory_Click(sender As Object, e As EventArgs) Handles btnCustomerHistory.Click
         Try
             If selectedCustomerId <> 0 AndAlso selectedCustomerId <> 0 Then
-                FrmCustomerSalesHis.ShowDialog(1)
+                FrmCustomerSalesHis.ShowDialog(selectedCustomerId)
             End If
         Catch ex As Exception
             ' Handle exception if needed

@@ -67,12 +67,18 @@ Public Class frmPaymore
             PaymentDetailTable = CreateTablePaymore()
             GridControlPaymore.DataSource = PaymentDetailTable
             txttpopenamt.EditValue = Billamt.ToString("###0.00") ' Auto-fill with bill amount for default cash payment
-            lblpaymode.Text = "Cash"
+            lblpaymode.Text = "RM"
             numstr = ""
             boolMultiplePayment = False
             Label2.Text = "MultiplePayment-No"
             txtentermultipleamount.Enabled = False
-            btnpopCash.Enabled = False
+            'btnpopCash.Enabled = False
+            lblbtnpayment.Enabled = False
+            If lblbtnpayment.Enabled = False Then
+                lblbtnpayment.BackColor = Color.Silver   ' or Color.White
+            Else
+                lblbtnpayment.BackColor = Color.Red
+            End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Form Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -84,92 +90,18 @@ Public Class frmPaymore
 
         End Try
     End Sub
-
-    Private Sub btnpopCash_Click(sender As Object, e As EventArgs) Handles btnpopCash.Click
-        Try
-            ' Initialize values if null
-            If txtadvanceamt.EditValue Is Nothing Then
-                txtadvanceamt.EditValue = 0
-            End If
-            If txtpopbalamt.EditValue Is Nothing OrElse String.IsNullOrEmpty(txtpopbalamt.EditValue) Then
-                txtpopbalamt.EditValue = 0
-            End If
-
-            ' Check if balance amount is negative and return if so
-            If ConvertDecimal(txtpopbalamt.EditValue) < 0 Then
-                txttpopenamt.EditValue = 0
-                Return
-            End If
-            If txttpopenamt.EditValue Is Nothing OrElse String.IsNullOrEmpty(txttpopenamt.EditValue) Then
-                txttpopenamt.EditValue = 0
-            End If
-
-            ' Check if PaymentDetailTable has any payments
-            If PaymentDetailTable.Rows.Count = 0 Then
-                ' No payments in table, check if user has entered an amount for default cash payment
-                Dim enteredAmount As Decimal = ConvertDecimal(txtPopBillamt.EditValue)
-
-                If enteredAmount > 0 Then
-                    ' Add default cash payment to the table
-                    Dim cashPaymentId As Integer = 1 ' Assuming Cash payment mode ID is 1
-                    Dim cashPaymentName As String = "Cash"
-                    Dim cashPaymentMode As String = "cash"
-
-                    ' Add cash payment to PaymentDetailTable
-                    PaymentDetailTable.BeginInit()
-                    PaymentDetailTable.Rows.Add(cashPaymentId, cashPaymentName, cashPaymentMode, enteredAmount)
-                    PaymentDetailTable.EndInit()
-                    PaymentDetailTable.AcceptChanges()
  
-                ElseIf Billamt > 0 Then
-                    ' Auto-fill with full bill amount for cash payment
-                    Dim cashPaymentId As Integer = 1 ' Assuming Cash payment mode ID is 1
-                    Dim cashPaymentName As String = "Cash"
-                    Dim cashPaymentMode As String = "cash"
-
-                    ' Add full bill amount as cash payment
-                    PaymentDetailTable.BeginInit()
-                    PaymentDetailTable.Rows.Add(cashPaymentId, cashPaymentName, cashPaymentMode, Billamt)
-                    PaymentDetailTable.EndInit()
-                    PaymentDetailTable.AcceptChanges()
-
-                   
-                Else
-                    DevExpress.XtraEditors.XtraMessageBox.Show("Please enter a payment amount or select payment modes", "No Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    txttpopenamt.Focus()
-                    Return
-                End If
-            End If
-
-            ' Validate multiple payment total if being used
-            If ConvertDecimal(txtmultipletotal.EditValue) > 0 Then
-                If Not ValidateMultiplePaymentTotal() Then
-                    Return
-                End If
-            End If
-
-            ' Validate that payment is sufficient
-            Dim totalPayments As Decimal = GetTotalPaymentAmount()
-            If totalPayments < Billamt Then
-                Dim remainingBalance As Decimal = Billamt - totalPayments
-                If DevExpress.XtraEditors.XtraMessageBox.Show("Payment incomplete. Balance remaining: ₹" & remainingBalance.ToString("N2") & vbCrLf & "Do you want to proceed anyway?",
-                                                             "Incomplete Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning) Then
-                    Return
-                End If
-            End If
-
-            ' All validations passed, close the form with OK result
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-
-        Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Payment Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
 
 
     Private Sub GridControl3_Click(sender As Object, e As EventArgs) Handles GridControl3.Click
         Try
-            btnpopCash.Enabled = True
+            btnpopClear_Click(Nothing, Nothing)
+            lblbtnpayment.Enabled = True
+            If lblbtnpayment.Enabled = False Then
+                lblbtnpayment.BackColor = Color.Silver   ' or Color.White
+            Else
+                lblbtnpayment.BackColor = Color.Red
+            End If
             Dim balanceamt As Decimal = 0.0
             Dim paidamt As Decimal = 0.0
             paidamt = GetTotalPaymentAmount()
@@ -321,7 +253,12 @@ Public Class frmPaymore
             txttpopenamt.EditValue = 0
             txtpopbalamt.EditValue = -Billamt.ToString("###0.00")
             ' Clear multiple payment fields
-            btnpopCash.Enabled = False
+            lblbtnpayment.Enabled = False
+            If lblbtnpayment.Enabled = False Then
+                lblbtnpayment.BackColor = Color.Silver   ' or Color.White
+            Else
+                lblbtnpayment.BackColor = Color.Red
+            End If
             ClearMultiplePaymentFields()
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Clear Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -553,6 +490,87 @@ Public Class frmPaymore
             End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub lblbtnpayment_Click(sender As Object, e As EventArgs) Handles lblbtnpayment.Click
+        Try
+            ' Initialize values if null
+            If txtadvanceamt.EditValue Is Nothing Then
+                txtadvanceamt.EditValue = 0
+            End If
+            If txtpopbalamt.EditValue Is Nothing OrElse String.IsNullOrEmpty(txtpopbalamt.EditValue) Then
+                txtpopbalamt.EditValue = 0
+            End If
+
+            ' Check if balance amount is negative and return if so
+            If ConvertDecimal(txtpopbalamt.EditValue) < 0 Then
+                txttpopenamt.EditValue = 0
+                Return
+            End If
+            If txttpopenamt.EditValue Is Nothing OrElse String.IsNullOrEmpty(txttpopenamt.EditValue) Then
+                txttpopenamt.EditValue = 0
+            End If
+
+            ' Check if PaymentDetailTable has any payments
+            If PaymentDetailTable.Rows.Count = 0 Then
+                ' No payments in table, check if user has entered an amount for default cash payment
+                Dim enteredAmount As Decimal = ConvertDecimal(txtPopBillamt.EditValue)
+
+                If enteredAmount > 0 Then
+                    ' Add default cash payment to the table
+                    Dim cashPaymentId As Integer = 1 ' Assuming Cash payment mode ID is 1
+                    Dim cashPaymentName As String = "Cash"
+                    Dim cashPaymentMode As String = "cash"
+
+                    ' Add cash payment to PaymentDetailTable
+                    PaymentDetailTable.BeginInit()
+                    PaymentDetailTable.Rows.Add(cashPaymentId, cashPaymentName, cashPaymentMode, enteredAmount)
+                    PaymentDetailTable.EndInit()
+                    PaymentDetailTable.AcceptChanges()
+
+                ElseIf Billamt > 0 Then
+                    ' Auto-fill with full bill amount for cash payment
+                    Dim cashPaymentId As Integer = 1 ' Assuming Cash payment mode ID is 1
+                    Dim cashPaymentName As String = "Cash"
+                    Dim cashPaymentMode As String = "cash"
+
+                    ' Add full bill amount as cash payment
+                    PaymentDetailTable.BeginInit()
+                    PaymentDetailTable.Rows.Add(cashPaymentId, cashPaymentName, cashPaymentMode, Billamt)
+                    PaymentDetailTable.EndInit()
+                    PaymentDetailTable.AcceptChanges()
+
+
+                Else
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Please enter a payment amount or select payment modes", "No Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    txttpopenamt.Focus()
+                    Return
+                End If
+            End If
+
+            ' Validate multiple payment total if being used
+            If ConvertDecimal(txtmultipletotal.EditValue) > 0 Then
+                If Not ValidateMultiplePaymentTotal() Then
+                    Return
+                End If
+            End If
+
+            ' Validate that payment is sufficient
+            Dim totalPayments As Decimal = GetTotalPaymentAmount()
+            If totalPayments < Billamt Then
+                Dim remainingBalance As Decimal = Billamt - totalPayments
+                If DevExpress.XtraEditors.XtraMessageBox.Show("Payment incomplete. Balance remaining: ₹" & remainingBalance.ToString("N2") & vbCrLf & "Do you want to proceed anyway?",
+                                                             "Incomplete Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning) Then
+                    Return
+                End If
+            End If
+
+            ' All validations passed, close the form with OK result
+            Me.DialogResult = Windows.Forms.DialogResult.OK
+
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Payment Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class
