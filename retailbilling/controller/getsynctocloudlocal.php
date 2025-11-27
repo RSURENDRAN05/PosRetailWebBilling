@@ -640,6 +640,31 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+    if ((int) $_REQUEST['AjaxRequest'] == 16) {
+        try {
+            // Get parameters from REQUEST (works for both GET and POST)
+            $pm_id = isset($_REQUEST['pm_id']) ? $_REQUEST['pm_id'] : '';
+            $trno = isset($_REQUEST['trno']) ? $_REQUEST['trno'] : '';
+            $comid = isset($_REQUEST['comid']) ? $_REQUEST['comid'] : '';
+            $locid = isset($_REQUEST['locid']) ? $_REQUEST['locid'] : '';
+
+            // Validate required parameters
+            if (empty($pm_id) || empty($trno) || empty($comid) || empty($locid)) {
+                throw new Exception("Missing required parameters: pm_id, trno, comid, or locid");
+            }
+
+            $result = $clsfunreq->UpdateBillCancelData($pm_id, $trno, $comid, $locid);
+
+            if ($result['success']) {
+                echo json_encode(array("Success" => true, "Msg" => $result['message'], "Data" => "Transaction Updated: " . $trno));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => $result['message'], "Data" => "Transaction failed: " . $trno));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("Success" => false, "Msg" => "Request 2 Error: " . $e->getMessage(), "Data" => "Transaction failed: " . (isset($trno) ? $trno : 'unknown')));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests

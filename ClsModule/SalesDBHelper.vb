@@ -854,6 +854,19 @@ Module PrintViewReport
             Return False
         End Try
     End Function
+    Public Function BillCancel(ByRef trno As Integer) As Boolean
+        Try
+            Dim _Sql(1) As SqlParameter
+            _Sql(0) = New SqlParameter("@mode", "C")
+            _Sql(1) = New SqlParameter("@trno", trno)
+            If _ExecuteNonQuery("sp_billcancel", _Sql, "er") = True Then
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function CheckSalesBeforeCounterClose() As Boolean
         Try
             Dim dds As New DataSet

@@ -19,8 +19,9 @@ Partial Class frmSalesMasterReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.components = New System.ComponentModel.Container()
+        Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode4 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesMasterReport))
         Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -81,6 +82,7 @@ Partial Class frmSalesMasterReport
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnPrintPreview = New DevExpress.XtraEditors.SimpleButton()
         Me.btnSaveLayout = New DevExpress.XtraEditors.SimpleButton()
         Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -95,7 +97,9 @@ Partial Class frmSalesMasterReport
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.lblTotalRecords = New DevExpress.XtraEditors.LabelControl()
         Me.lblTotalAmount = New DevExpress.XtraEditors.LabelControl()
-        Me.btnPrintPreview = New DevExpress.XtraEditors.SimpleButton()
+        Me.ImageCollectionBillSelect = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.RepositoryItemImageComboBoxMasterRpt = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.RepositoryItemImageComboBoxMasterPrint = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BandedGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +115,9 @@ Partial Class frmSalesMasterReport
         CType(Me.dtStartDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.ImageCollectionBillSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemImageComboBoxMasterRpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemImageComboBoxMasterPrint, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridView1
@@ -229,18 +236,16 @@ Partial Class frmSalesMasterReport
         'GridControl1
         '
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        GridLevelNode1.LevelTemplate = Me.BandedGridView1
-        GridLevelNode1.RelationName = "HeaderDetails"
-        GridLevelNode2.LevelTemplate = Me.BandedGridView2
-        GridLevelNode2.RelationName = "HeaderPayment"
-        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1, GridLevelNode2})
-        Me.GridControl1.Location = New System.Drawing.Point(0, 117)
+        GridLevelNode3.LevelTemplate = Me.BandedGridView1
+        GridLevelNode3.RelationName = "HeaderDetails"
+        GridLevelNode4.LevelTemplate = Me.BandedGridView2
+        GridLevelNode4.RelationName = "HeaderPayment"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3, GridLevelNode4})
+        Me.GridControl1.Location = New System.Drawing.Point(0, 80)
         Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCurrencyEdit1, Me.RepositoryItemDateEdit1})
-        Me.GridControl1.Size = New System.Drawing.Size(2097, 716)
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCurrencyEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemImageComboBoxMasterRpt, Me.RepositoryItemImageComboBoxMasterPrint})
+        Me.GridControl1.Size = New System.Drawing.Size(1398, 490)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView2, Me.GridView1, Me.BandedGridView1})
         '
@@ -483,6 +488,7 @@ Partial Class frmSalesMasterReport
         Me.colBillStatus.AppearanceCell.Options.UseTextOptions = True
         Me.colBillStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.colBillStatus.Caption = "Bill Status"
+        Me.colBillStatus.ColumnEdit = Me.RepositoryItemImageComboBoxMasterRpt
         Me.colBillStatus.FieldName = "psih_invoice_billstatus"
         Me.colBillStatus.Name = "colBillStatus"
         Me.colBillStatus.Width = 80
@@ -552,6 +558,7 @@ Partial Class frmSalesMasterReport
         'colPrint
         '
         Me.colPrint.Caption = "Print"
+        Me.colPrint.ColumnEdit = Me.RepositoryItemImageComboBoxMasterPrint
         Me.colPrint.FieldName = "psih_invoice_print"
         Me.colPrint.Name = "colPrint"
         Me.colPrint.Width = 50
@@ -687,20 +694,29 @@ Partial Class frmSalesMasterReport
         Me.PanelControl1.Controls.Add(Me.lblFillterDetails)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(2097, 117)
+        Me.PanelControl1.Size = New System.Drawing.Size(1398, 80)
         Me.PanelControl1.TabIndex = 1
+        '
+        'btnPrintPreview
+        '
+        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintPreview.Appearance.Options.UseFont = True
+        Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
+        Me.btnPrintPreview.Location = New System.Drawing.Point(1198, 5)
+        Me.btnPrintPreview.Name = "btnPrintPreview"
+        Me.btnPrintPreview.Size = New System.Drawing.Size(134, 44)
+        Me.btnPrintPreview.TabIndex = 13
+        Me.btnPrintPreview.Text = "Print"
         '
         'btnSaveLayout
         '
         Me.btnSaveLayout.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveLayout.Appearance.Options.UseFont = True
         Me.btnSaveLayout.Image = CType(resources.GetObject("btnSaveLayout.Image"), System.Drawing.Image)
-        Me.btnSaveLayout.Location = New System.Drawing.Point(1588, 7)
-        Me.btnSaveLayout.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveLayout.Location = New System.Drawing.Point(1059, 5)
         Me.btnSaveLayout.Name = "btnSaveLayout"
-        Me.btnSaveLayout.Size = New System.Drawing.Size(201, 64)
+        Me.btnSaveLayout.Size = New System.Drawing.Size(134, 44)
         Me.btnSaveLayout.TabIndex = 12
         Me.btnSaveLayout.Text = "SaveLayout"
         '
@@ -709,10 +725,9 @@ Partial Class frmSalesMasterReport
         Me.btnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnExport.Appearance.Options.UseFont = True
         Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
-        Me.btnExport.Location = New System.Drawing.Point(1376, 7)
-        Me.btnExport.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnExport.Location = New System.Drawing.Point(917, 5)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(201, 64)
+        Me.btnExport.Size = New System.Drawing.Size(134, 44)
         Me.btnExport.TabIndex = 11
         Me.btnExport.Text = "Export"
         '
@@ -721,10 +736,9 @@ Partial Class frmSalesMasterReport
         Me.btnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnPrint.Appearance.Options.UseFont = True
         Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-        Me.btnPrint.Location = New System.Drawing.Point(1162, 7)
-        Me.btnPrint.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnPrint.Location = New System.Drawing.Point(775, 5)
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(201, 64)
+        Me.btnPrint.Size = New System.Drawing.Size(134, 44)
         Me.btnPrint.TabIndex = 10
         Me.btnPrint.Text = "Grid Preview"
         '
@@ -733,10 +747,9 @@ Partial Class frmSalesMasterReport
         Me.btnRefresh.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnRefresh.Appearance.Options.UseFont = True
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(950, 7)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRefresh.Location = New System.Drawing.Point(633, 5)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(201, 64)
+        Me.btnRefresh.Size = New System.Drawing.Size(134, 44)
         Me.btnRefresh.TabIndex = 9
         Me.btnRefresh.Text = "Refresh"
         '
@@ -745,18 +758,16 @@ Partial Class frmSalesMasterReport
         Me.btnSearch.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnSearch.Appearance.Options.UseFont = True
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
-        Me.btnSearch.Location = New System.Drawing.Point(736, 7)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSearch.Location = New System.Drawing.Point(491, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(201, 64)
+        Me.btnSearch.Size = New System.Drawing.Size(134, 44)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
         '
         'dtEndDate
         '
         Me.dtEndDate.EditValue = Nothing
-        Me.dtEndDate.Location = New System.Drawing.Point(258, 18)
-        Me.dtEndDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dtEndDate.Location = New System.Drawing.Point(172, 12)
         Me.dtEndDate.Name = "dtEndDate"
         Me.dtEndDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -767,14 +778,13 @@ Partial Class frmSalesMasterReport
         Me.dtEndDate.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.dtEndDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtEndDate.Properties.Mask.EditMask = "dd/MM/yyyy"
-        Me.dtEndDate.Size = New System.Drawing.Size(150, 26)
+        Me.dtEndDate.Size = New System.Drawing.Size(100, 20)
         Me.dtEndDate.TabIndex = 7
         '
         'dtStartDate
         '
         Me.dtStartDate.EditValue = Nothing
-        Me.dtStartDate.Location = New System.Drawing.Point(58, 18)
-        Me.dtStartDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dtStartDate.Location = New System.Drawing.Point(39, 12)
         Me.dtStartDate.Name = "dtStartDate"
         Me.dtStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -785,44 +795,40 @@ Partial Class frmSalesMasterReport
         Me.dtStartDate.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.dtStartDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtStartDate.Properties.Mask.EditMask = "dd/MM/yyyy"
-        Me.dtStartDate.Size = New System.Drawing.Size(150, 26)
+        Me.dtStartDate.Size = New System.Drawing.Size(100, 20)
         Me.dtStartDate.TabIndex = 6
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(218, 22)
-        Me.LabelControl4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LabelControl4.Location = New System.Drawing.Point(145, 15)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(30, 19)
+        Me.LabelControl4.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl4.TabIndex = 5
         Me.LabelControl4.Text = "To :"
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(10, 22)
-        Me.LabelControl3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LabelControl3.Location = New System.Drawing.Point(7, 15)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(48, 19)
+        Me.LabelControl3.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl3.TabIndex = 4
         Me.LabelControl3.Text = "From :"
         '
         'lblStatusResults
         '
         Me.lblStatusResults.Appearance.ForeColor = System.Drawing.Color.Blue
-        Me.lblStatusResults.Location = New System.Drawing.Point(8, 92)
-        Me.lblStatusResults.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lblStatusResults.Location = New System.Drawing.Point(5, 63)
         Me.lblStatusResults.Name = "lblStatusResults"
-        Me.lblStatusResults.Size = New System.Drawing.Size(92, 19)
+        Me.lblStatusResults.Size = New System.Drawing.Size(61, 13)
         Me.lblStatusResults.TabIndex = 1
         Me.lblStatusResults.Text = "Location ID :"
         '
         'lblFillterDetails
         '
         Me.lblFillterDetails.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblFillterDetails.Location = New System.Drawing.Point(8, 60)
-        Me.lblFillterDetails.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lblFillterDetails.Location = New System.Drawing.Point(5, 41)
         Me.lblFillterDetails.Name = "lblFillterDetails"
-        Me.lblFillterDetails.Size = New System.Drawing.Size(100, 19)
+        Me.lblFillterDetails.Size = New System.Drawing.Size(66, 13)
         Me.lblFillterDetails.TabIndex = 0
         Me.lblFillterDetails.Text = "Company ID :"
         '
@@ -831,53 +837,61 @@ Partial Class frmSalesMasterReport
         Me.PanelControl2.Controls.Add(Me.lblTotalRecords)
         Me.PanelControl2.Controls.Add(Me.lblTotalAmount)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 833)
-        Me.PanelControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 570)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(2097, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(1398, 30)
         Me.PanelControl2.TabIndex = 2
         '
         'lblTotalRecords
         '
         Me.lblTotalRecords.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.lblTotalRecords.Location = New System.Drawing.Point(34, 12)
-        Me.lblTotalRecords.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lblTotalRecords.Location = New System.Drawing.Point(23, 8)
         Me.lblTotalRecords.Name = "lblTotalRecords"
-        Me.lblTotalRecords.Size = New System.Drawing.Size(139, 21)
+        Me.lblTotalRecords.Size = New System.Drawing.Size(91, 13)
         Me.lblTotalRecords.TabIndex = 1
         Me.lblTotalRecords.Text = "Total Records: 0"
         '
         'lblTotalAmount
         '
         Me.lblTotalAmount.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.lblTotalAmount.Location = New System.Drawing.Point(300, 12)
-        Me.lblTotalAmount.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lblTotalAmount.Location = New System.Drawing.Point(200, 8)
         Me.lblTotalAmount.Name = "lblTotalAmount"
-        Me.lblTotalAmount.Size = New System.Drawing.Size(165, 21)
+        Me.lblTotalAmount.Size = New System.Drawing.Size(107, 13)
         Me.lblTotalAmount.TabIndex = 0
         Me.lblTotalAmount.Text = "Total Amount: 0.00"
         '
-        'btnPrintPreview
+        'ImageCollectionBillSelect
         '
-        Me.btnPrintPreview.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btnPrintPreview.Appearance.Options.UseFont = True
-        Me.btnPrintPreview.Image = CType(resources.GetObject("btnPrintPreview.Image"), System.Drawing.Image)
-        Me.btnPrintPreview.Location = New System.Drawing.Point(1797, 7)
-        Me.btnPrintPreview.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnPrintPreview.Name = "btnPrintPreview"
-        Me.btnPrintPreview.Size = New System.Drawing.Size(201, 64)
-        Me.btnPrintPreview.TabIndex = 13
-        Me.btnPrintPreview.Text = "Print"
+        Me.ImageCollectionBillSelect.ImageStream = CType(resources.GetObject("ImageCollectionBillSelect.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImageCollectionBillSelect.Images.SetKeyName(0, "stop_green.png")
+        Me.ImageCollectionBillSelect.Images.SetKeyName(1, "stop_red.png")
+        Me.ImageCollectionBillSelect.Images.SetKeyName(2, "stop_blue.png")
+        Me.ImageCollectionBillSelect.Images.SetKeyName(3, "cancel-16x16.png")
+        '
+        'RepositoryItemImageComboBoxMasterRpt
+        '
+        Me.RepositoryItemImageComboBoxMasterRpt.AutoHeight = False
+        Me.RepositoryItemImageComboBoxMasterRpt.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemImageComboBoxMasterRpt.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("New", "Closed", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Cancel", "Cancel", 3)})
+        Me.RepositoryItemImageComboBoxMasterRpt.Name = "RepositoryItemImageComboBoxMasterRpt"
+        Me.RepositoryItemImageComboBoxMasterRpt.SmallImages = Me.ImageCollectionBillSelect
+        '
+        'RepositoryItemImageComboBoxMasterPrint
+        '
+        Me.RepositoryItemImageComboBoxMasterPrint.AutoHeight = False
+        Me.RepositoryItemImageComboBoxMasterPrint.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemImageComboBoxMasterPrint.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("No", "0", 2), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("YES", "1", 0)})
+        Me.RepositoryItemImageComboBoxMasterPrint.Name = "RepositoryItemImageComboBoxMasterPrint"
+        Me.RepositoryItemImageComboBoxMasterPrint.SmallImages = Me.ImageCollectionBillSelect
         '
         'frmSalesMasterReport
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(2097, 877)
+        Me.ClientSize = New System.Drawing.Size(1398, 600)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmSalesMasterReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Master Report"
@@ -899,6 +913,9 @@ Partial Class frmSalesMasterReport
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.ImageCollectionBillSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemImageComboBoxMasterRpt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemImageComboBoxMasterPrint, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -979,4 +996,7 @@ Partial Class frmSalesMasterReport
     Friend WithEvents BandedGridView2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents btnPrintPreview As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RepositoryItemImageComboBoxMasterRpt As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
+    Friend WithEvents ImageCollectionBillSelect As DevExpress.Utils.ImageCollection
+    Friend WithEvents RepositoryItemImageComboBoxMasterPrint As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
 End Class

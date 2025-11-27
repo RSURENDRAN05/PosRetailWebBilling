@@ -1,0 +1,320 @@
+﻿<XtraSerializer version="1.0" application="View">
+  <property name="#LayoutVersion" />
+  <property name="Columns" iskey="true" value="42">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colInvoiceId</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Width">70</property>
+      <property name="Name">colRefId</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Width">115</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">0</property>
+      <property name="Name">colTrNo</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Width">83</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">1</property>
+      <property name="Name">colDate</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Width">60</property>
+      <property name="Name">colPrefix</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colTotalQty</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_tqty</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Width">100</property>
+      <property name="Name">colTotalAmount</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_tamount</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colItemDiscPer</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colItemDiscAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_titemdisamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colBillDiscPer</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colBillDiscAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_tbilldiscamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colTotDiscPer</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colTotDiscAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_totdiscamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Width">100</property>
+      <property name="Name">colGrossAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_tgrossamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colTaxAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_ttaxamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colServiceCharge</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_sercharge</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Name">colRoundOff</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_roundoff</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Width">96</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">4</property>
+      <property name="Name">colNetAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_tnetamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="Width">81</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">2</property>
+      <property name="Name">colSaleType</property>
+    </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="Width">136</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">3</property>
+      <property name="Name">colBillType</property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Width">80</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">10</property>
+      <property name="Name">colBillStatus</property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colPayMode</property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colCustomerId</property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="Width">120</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">5</property>
+      <property name="Name">colDescription</property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="Width">110</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">6</property>
+      <property name="Name">colCounterName</property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="Width">70</property>
+      <property name="Name">colUserId</property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="Width">70</property>
+      <property name="Name">colComId</property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="Width">70</property>
+      <property name="Name">colLocId</property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="Width">60</property>
+      <property name="Name">colPmId</property>
+    </property>
+    <property name="Item30" isnull="true" iskey="true">
+      <property name="Width">50</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">11</property>
+      <property name="Name">colPrint</property>
+    </property>
+    <property name="Item31" isnull="true" iskey="true">
+      <property name="Width">100</property>
+      <property name="Name">colBillRemarks</property>
+    </property>
+    <property name="Item32" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colAdvAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_advamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item33" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colOutstanding</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_outstanding</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item34" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colGivenAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_givenamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item35" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colBalAmt</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="FieldName">psih_invoice_balamt</property>
+          <property name="Tag" isnull="true" />
+          <property name="DisplayFormat">{0:n2}</property>
+          <property name="SummaryType">Sum</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item36" isnull="true" iskey="true">
+      <property name="Width">70</property>
+      <property name="Name">colShiftNo</property>
+    </property>
+    <property name="Item37" isnull="true" iskey="true">
+      <property name="Width">60</property>
+      <property name="Name">colDayNo</property>
+    </property>
+    <property name="Item38" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colCreated</property>
+    </property>
+    <property name="Item39" isnull="true" iskey="true">
+      <property name="Width">90</property>
+      <property name="Name">colModified</property>
+    </property>
+    <property name="Item40" isnull="true" iskey="true">
+      <property name="Width">149</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">7</property>
+      <property name="Name">GridColumn1</property>
+    </property>
+    <property name="Item41" isnull="true" iskey="true">
+      <property name="Width">87</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">8</property>
+      <property name="Name">GridColumn2</property>
+    </property>
+    <property name="Item42" isnull="true" iskey="true">
+      <property name="Width">145</property>
+      <property name="Visible">true</property>
+      <property name="VisibleIndex">9</property>
+      <property name="Name">GridColumn3</property>
+    </property>
+  </property>
+  <property name="ActiveFilterEnabled">true</property>
+  <property name="OptionsView" isnull="true" iskey="true">
+    <property name="EnableAppearanceEvenRow">true</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="ShowFooter">true</property>
+    <property name="ShowAutoFilterRow">true</property>
+  </property>
+  <property name="ActiveFilterString" />
+  <property name="GroupSummarySortInfoState" />
+  <property name="FindFilterText" />
+  <property name="FindPanelVisible">false</property>
+</XtraSerializer>

@@ -452,43 +452,58 @@ class clsfuncsync
 
         // Build query with proper date range and JOINs for detailed information
         $sql = "
-        SELECT
-            psid.psid_invoice_date,
-            psid.psid_invoice_trno,
-            psid.psid_invoice_barcode,
-            psid.psid_invoice_procode,
-            psid.psid_invoice_description,
-            psid.psid_invoice_proqty,
-            psid.psid_invoice_rate,
-            psid.psid_invoice_amt,
-            psid.psid_invoice_totdper,
-            psid.psid_invoice_totdamt,
-            psid.psid_invoice_gross,
-            psid.psid_invoice_taxamt,
-            psid.psid_invoice_netamt,
-            psid.psid_invoice_salesmanid,
-            CONCAT(CAST(ROUND(psid_invoice_salemanper, 0) AS UNSIGNED), '%') AS psid_invoice_salemanper,
-            psid.psid_invoice_shiftno,
-            psid.psid_invoice_dayno,
-            psid.psid_invoice_created,
-            psid.psid_invoice_modified,
-            psid.psid_invoice_comid,
-            psid.psid_invoice_locid,
-            psid.psid_invoice_pmid,
-            pe.emp_printname,
-            pm.pcm_name,
-            pl.plm_name,
-            CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission
-        FROM pos_sale_invoicedtl AS psid
-        INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
-        INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
-        INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
-        WHERE psid.psid_invoice_comid = '$comid'
-          AND psid.psid_invoice_locid = '$locid'
-          AND psid.psid_invoice_date >= '$startDate'
-          AND psid.psid_invoice_date <= '$endDate'
-        ORDER BY psid.psid_invoice_date DESC
-         ";
+                    SELECT
+                psid.psid_invoice_date,
+                psid.psid_invoice_trno,
+                psid.psid_invoice_barcode,
+                psid.psid_invoice_procode,
+                psid.psid_invoice_description,
+                psid.psid_invoice_proqty,
+                psid.psid_invoice_rate,
+                psid.psid_invoice_amt,
+                psid.psid_invoice_totdper,
+                psid.psid_invoice_totdamt,
+                psid.psid_invoice_gross,
+                psid.psid_invoice_taxamt,
+                psid.psid_invoice_netamt,
+                psid.psid_invoice_salesmanid,
+                CONCAT(CAST(ROUND(psid_invoice_salemanper, 0) AS UNSIGNED), '%') AS psid_invoice_salemanper,
+                psid.psid_invoice_shiftno,
+                psid.psid_invoice_dayno,
+                psid.psid_invoice_created,
+                psid.psid_invoice_modified,
+                psid.psid_invoice_comid,
+                psid.psid_invoice_locid,
+                psid.psid_invoice_pmid,
+                pe.emp_printname,
+                pm.pcm_name,
+                pl.plm_name,
+                CAST((psid.psid_invoice_netamt * psid.psid_invoice_salemanper) / 100 AS DECIMAL(18,2)) AS Commission
+            FROM pos_sale_invoicedtl AS psid
+
+           INNER JOIN (
+                SELECT psih_invoice_trno
+                FROM pos_sale_invoicehdr
+                WHERE psih_invoice_billstatus = 'Closed'
+                GROUP BY psih_invoice_trno
+            ) AS hdr 
+            ON hdr.psih_invoice_trno = psid.psid_invoice_trno
+
+            INNER JOIN pos_employeeinfo AS pe 
+                ON psid.psid_invoice_salesmanid = pe.emp_id
+
+            INNER JOIN pos_company_mast AS pm 
+                ON pm.pcm_id = psid.psid_invoice_comid
+
+            INNER JOIN pos_location_mast AS pl 
+                ON pl.plm_id = psid.psid_invoice_locid
+
+            WHERE psid.psid_invoice_comid = '$comid'
+            AND psid.psid_invoice_locid = '$locid'
+            AND psid.psid_invoice_date >= '$startDate'
+            AND psid.psid_invoice_date <= '$endDate'
+
+            ORDER BY psid.psid_invoice_date DESC";
 
         // Log the query for debugging (remove in production)
         error_log("Sales Report Details Query: " . $sql);
@@ -523,6 +538,13 @@ class clsfuncsync
             pl.plm_name AS LocationName,
             SUM(CAST(psid.psid_invoice_proqty AS DECIMAL(18,2))) AS Qty
         FROM pos_sale_invoicedtl AS psid
+        INNER JOIN (
+                SELECT psih_invoice_trno
+                FROM pos_sale_invoicehdr
+                WHERE psih_invoice_billstatus = 'Closed'
+                GROUP BY psih_invoice_trno
+            ) AS hdr 
+            ON hdr.psih_invoice_trno = psid.psid_invoice_trno
         INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
         INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
         INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
@@ -573,6 +595,13 @@ class clsfuncsync
             pl.plm_name AS LocationName,
             CAST(SUM(psid.psid_invoice_proqty) AS DECIMAL(18,2)) AS Qty
         FROM pos_sale_invoicedtl AS psid
+        INNER JOIN (
+                SELECT psih_invoice_trno
+                FROM pos_sale_invoicehdr
+                WHERE psih_invoice_billstatus = 'Closed'
+                GROUP BY psih_invoice_trno
+            ) AS hdr 
+            ON hdr.psih_invoice_trno = psid.psid_invoice_trno
         INNER JOIN pos_employeeinfo AS pe ON psid.psid_invoice_salesmanid = pe.emp_id
         INNER JOIN pos_company_mast AS pm ON pm.pcm_id = psid.psid_invoice_comid
         INNER JOIN pos_location_mast AS pl ON pl.plm_id = psid.psid_invoice_locid
@@ -619,6 +648,13 @@ class clsfuncsync
             psid.psid_invoice_trno AS TransactionNo,
             CAST(SUM(psid.psid_invoice_proqty) AS DECIMAL(18,2)) AS Qty
         FROM pos_sale_invoicedtl AS psid
+       INNER JOIN (
+                SELECT psih_invoice_trno
+                FROM pos_sale_invoicehdr
+                WHERE psih_invoice_billstatus = 'Closed'
+                GROUP BY psih_invoice_trno
+            ) AS hdr 
+            ON hdr.psih_invoice_trno = psid.psid_invoice_trno
         INNER JOIN pos_employeeinfo AS pe
             ON psid.psid_invoice_salesmanid = pe.emp_id
         WHERE psid.psid_invoice_comid = '$comid'
@@ -1045,6 +1081,44 @@ class clsfuncsync
         }
     }
 
+    //Bill Cancel
+    public function UpdateBillCancelData($pm_id, $trno, $comid, $locid)
+    {
+        try {
+            // Escape variables for security
+            $pm_id = mysqli_real_escape_string($this->conn, $pm_id);
+            $trno = mysqli_real_escape_string($this->conn, $trno);
+            $comid = mysqli_real_escape_string($this->conn, $comid);
+            $locid = mysqli_real_escape_string($this->conn, $locid);
+
+            // Update the bill cancel status
+            $sql = "UPDATE pos_sale_invoicehdr 
+                SET psih_invoice_billstatus = 'Cancel', psih_invoice_modified = NOW() 
+                WHERE psih_invoice_trno = '$trno' 
+                  AND psih_invoice_comid = '$comid' 
+                  AND psih_invoice_locid = '$locid' 
+                  AND psih_invoice_pmid = '$pm_id'";
+
+            // Log the query for debugging
+            error_log("Update Bill Cancel Query: " . $sql);
+
+            $result = mysqli_query($this->conn, $sql);
+
+            if ($result) {
+                $affectedRows = mysqli_affected_rows($this->conn);
+                if ($affectedRows > 0) {
+                    return array('success' => true, 'message' => 'Bill cancelled successfully', 'Data' => $affectedRows);
+                } else {
+                    return array('success' => false, 'message' => 'No matching bill found to cancel');
+                }
+            } else {
+                throw new Exception(mysqli_error($this->conn));
+            }
+        } catch (Exception $e) {
+            error_log("UpdateBillCancelData Error: " . $e->getMessage());
+            return array('success' => false, 'message' => 'Error updating bill cancel status: ' . $e->getMessage());
+        }
+    }
     // /**
     //  * Process large datasets in batches to avoid memory and timeout issues
     //  */

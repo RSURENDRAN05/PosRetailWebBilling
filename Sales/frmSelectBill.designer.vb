@@ -36,6 +36,7 @@ Partial Class frmSelectBill
         Me.GridColumnSupplierName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.SimpleSeparator1 = New DevExpress.XtraLayout.SimpleSeparator()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -65,6 +66,8 @@ Partial Class frmSelectBill
         Me.SimpleLabelItem1 = New DevExpress.XtraLayout.SimpleLabelItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.btnBillCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.RepositoryItemImageComboBoxSales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollectionBillSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,13 +93,14 @@ Partial Class frmSelectBill
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemImageComboBoxSales
         '
         Me.RepositoryItemImageComboBoxSales.AutoHeight = False
         Me.RepositoryItemImageComboBoxSales.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
-        Me.RepositoryItemImageComboBoxSales.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("New", "SS", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Return", "SR", 1), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Exchange", "SE", 2), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Cancel", "SC", 3)})
+        Me.RepositoryItemImageComboBoxSales.Items.AddRange(New DevExpress.XtraEditors.Controls.ImageComboBoxItem() {New DevExpress.XtraEditors.Controls.ImageComboBoxItem("New", "Closed", 0), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Return", "SR", 1), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Exchange", "SE", 2), New DevExpress.XtraEditors.Controls.ImageComboBoxItem("Cancel", "Cancel", 3)})
         Me.RepositoryItemImageComboBoxSales.Name = "RepositoryItemImageComboBoxSales"
         Me.RepositoryItemImageComboBoxSales.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
         Me.RepositoryItemImageComboBoxSales.SmallImages = Me.ImageCollectionBillSelect
@@ -114,11 +118,11 @@ Partial Class frmSelectBill
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem2, Me.SimpleSeparator1, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.SimpleLabelItem1, Me.LayoutControlItem11, Me.LayoutControlItem12})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem2, Me.SimpleSeparator1, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.SimpleLabelItem1, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem5})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1160, 843)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(994, 685)
         Me.LayoutControlGroup1.Text = "Root"
         '
         'LayoutControlItem1
@@ -127,7 +131,7 @@ Partial Class frmSelectBill
         Me.LayoutControlItem1.CustomizationFormText = "Select"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(639, 754)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(547, 587)
         Me.LayoutControlItem1.Text = "Select"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextToControlDistance = 0
@@ -135,13 +139,11 @@ Partial Class frmSelectBill
         '
         'GridControlGRNSelector
         '
-        Me.GridControlGRNSelector.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GridControlGRNSelector.Location = New System.Drawing.Point(7, 7)
         Me.GridControlGRNSelector.MainView = Me.GridView1
-        Me.GridControlGRNSelector.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GridControlGRNSelector.Name = "GridControlGRNSelector"
         Me.GridControlGRNSelector.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImageComboBoxSales})
-        Me.GridControlGRNSelector.Size = New System.Drawing.Size(635, 750)
+        Me.GridControlGRNSelector.Size = New System.Drawing.Size(543, 583)
         Me.GridControlGRNSelector.TabIndex = 4
         Me.GridControlGRNSelector.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -151,7 +153,7 @@ Partial Class frmSelectBill
         Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPM_ID, Me.GridColumnGRN, Me.GridColumn2, Me.GridColumnDate, Me.GridColumnCompanyName, Me.GridColumn1, Me.GridColumnSupplierName, Me.GridColumn3, Me.GridColumn4})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPM_ID, Me.GridColumnGRN, Me.GridColumn2, Me.GridColumnDate, Me.GridColumnCompanyName, Me.GridColumn1, Me.GridColumnSupplierName, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9})
         Me.GridView1.CustomizationFormBounds = New System.Drawing.Rectangle(1012, 654, 216, 183)
         Me.GridView1.GridControl = Me.GridControlGRNSelector
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sal_TotAmt", Me.GridColumn1, "")})
@@ -248,13 +250,24 @@ Partial Class frmSelectBill
         Me.GridColumn4.FieldName = "Sal_SYS"
         Me.GridColumn4.Name = "GridColumn4"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Status"
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemImageComboBoxSales
+        Me.GridColumn9.FieldName = "BillStatus"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.CustomizationFormText = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(130, 756)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(214, 589)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(1020, 27)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(770, 42)
         Me.EmptySpaceItem2.Text = "EmptySpaceItem2"
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -262,18 +275,18 @@ Partial Class frmSelectBill
         '
         Me.SimpleSeparator1.AllowHotTrack = False
         Me.SimpleSeparator1.CustomizationFormText = "SimpleSeparator1"
-        Me.SimpleSeparator1.Location = New System.Drawing.Point(0, 754)
+        Me.SimpleSeparator1.Location = New System.Drawing.Point(0, 587)
         Me.SimpleSeparator1.Name = "SimpleSeparator1"
-        Me.SimpleSeparator1.Size = New System.Drawing.Size(1150, 2)
+        Me.SimpleSeparator1.Size = New System.Drawing.Size(984, 2)
         Me.SimpleSeparator1.Text = "SimpleSeparator1"
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btnPrint
         Me.LayoutControlItem4.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(1031, 783)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(882, 631)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(119, 50)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(102, 44)
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextToControlDistance = 0
@@ -284,16 +297,16 @@ Partial Class frmSelectBill
         Me.btnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btnPrint.Appearance.Options.UseFont = True
         Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-        Me.btnPrint.Location = New System.Drawing.Point(1038, 790)
-        Me.btnPrint.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnPrint.Location = New System.Drawing.Point(889, 638)
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(115, 38)
+        Me.btnPrint.Size = New System.Drawing.Size(98, 38)
         Me.btnPrint.StyleController = Me.LayoutControl1
         Me.btnPrint.TabIndex = 7
         Me.btnPrint.Text = "Print"
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.btnBillCancel)
         Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.btngetquotebill)
         Me.LayoutControl1.Controls.Add(Me.txtprintprofile)
@@ -307,22 +320,19 @@ Partial Class frmSelectBill
         Me.LayoutControl1.Controls.Add(Me.GridControlGRNSelector)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(926, 141, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1160, 843)
+        Me.LayoutControl1.Size = New System.Drawing.Size(994, 685)
         Me.LayoutControl1.TabIndex = 6
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'GridControl1
         '
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GridControl1.Location = New System.Drawing.Point(646, 41)
+        Me.GridControl1.Location = New System.Drawing.Point(554, 37)
         Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(507, 716)
+        Me.GridControl1.Size = New System.Drawing.Size(433, 553)
         Me.GridControl1.TabIndex = 18
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -386,10 +396,9 @@ Partial Class frmSelectBill
         'btngetquotebill
         '
         Me.btngetquotebill.Enabled = False
-        Me.btngetquotebill.Location = New System.Drawing.Point(7, 763)
-        Me.btngetquotebill.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btngetquotebill.Location = New System.Drawing.Point(7, 596)
         Me.btngetquotebill.Name = "btngetquotebill"
-        Me.btngetquotebill.Size = New System.Drawing.Size(126, 23)
+        Me.btngetquotebill.Size = New System.Drawing.Size(107, 22)
         Me.btngetquotebill.StyleController = Me.LayoutControl1
         Me.btngetquotebill.TabIndex = 17
         Me.btngetquotebill.Text = "Get Quote Bill"
@@ -397,13 +406,12 @@ Partial Class frmSelectBill
         '
         'txtprintprofile
         '
-        Me.txtprintprofile.Location = New System.Drawing.Point(725, 7)
-        Me.txtprintprofile.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtprintprofile.Location = New System.Drawing.Point(622, 7)
         Me.txtprintprofile.Name = "txtprintprofile"
         Me.txtprintprofile.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtprintprofile.Properties.Appearance.Options.UseFont = True
         Me.txtprintprofile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtprintprofile.Size = New System.Drawing.Size(428, 30)
+        Me.txtprintprofile.Size = New System.Drawing.Size(365, 26)
         Me.txtprintprofile.StyleController = Me.LayoutControl1
         Me.txtprintprofile.TabIndex = 16
         '
@@ -413,10 +421,9 @@ Partial Class frmSelectBill
         Me.btna4print.Appearance.Options.UseFont = True
         Me.btna4print.Enabled = False
         Me.btna4print.Image = CType(resources.GetObject("btna4print.Image"), System.Drawing.Image)
-        Me.btna4print.Location = New System.Drawing.Point(908, 790)
-        Me.btna4print.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btna4print.Location = New System.Drawing.Point(778, 638)
         Me.btna4print.Name = "btna4print"
-        Me.btna4print.Size = New System.Drawing.Size(126, 38)
+        Me.btna4print.Size = New System.Drawing.Size(107, 38)
         Me.btna4print.StyleController = Me.LayoutControl1
         Me.btna4print.TabIndex = 15
         Me.btna4print.Text = "A4 Print"
@@ -426,19 +433,17 @@ Partial Class frmSelectBill
         Me.txtdatetimer.CustomFormat = "yyyy/MM/dd"
         Me.txtdatetimer.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.txtdatetimer.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtdatetimer.Location = New System.Drawing.Point(265, 790)
-        Me.txtdatetimer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtdatetimer.Location = New System.Drawing.Point(228, 638)
         Me.txtdatetimer.Name = "txtdatetimer"
-        Me.txtdatetimer.Size = New System.Drawing.Size(204, 48)
+        Me.txtdatetimer.Size = New System.Drawing.Size(174, 40)
         Me.txtdatetimer.TabIndex = 14
         '
         'btnCancel
         '
         Me.btnCancel.Image = CType(resources.GetObject("btnCancel.Image"), System.Drawing.Image)
-        Me.btnCancel.Location = New System.Drawing.Point(637, 790)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnCancel.Location = New System.Drawing.Point(546, 638)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(151, 38)
+        Me.btnCancel.Size = New System.Drawing.Size(129, 38)
         Me.btnCancel.StyleController = Me.LayoutControl1
         Me.btnCancel.TabIndex = 13
         Me.btnCancel.Text = "Cancel"
@@ -446,10 +451,9 @@ Partial Class frmSelectBill
         'btnOk
         '
         Me.btnOk.Image = CType(resources.GetObject("btnOk.Image"), System.Drawing.Image)
-        Me.btnOk.Location = New System.Drawing.Point(792, 790)
-        Me.btnOk.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnOk.Location = New System.Drawing.Point(679, 638)
         Me.btnOk.Name = "btnOk"
-        Me.btnOk.Size = New System.Drawing.Size(112, 38)
+        Me.btnOk.Size = New System.Drawing.Size(95, 38)
         Me.btnOk.StyleController = Me.LayoutControl1
         Me.btnOk.TabIndex = 12
         Me.btnOk.Text = "Ok"
@@ -457,22 +461,20 @@ Partial Class frmSelectBill
         'btnget
         '
         Me.btnget.Image = CType(resources.GetObject("btnget.Image"), System.Drawing.Image)
-        Me.btnget.Location = New System.Drawing.Point(473, 790)
-        Me.btnget.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnget.Location = New System.Drawing.Point(406, 638)
         Me.btnget.Name = "btnget"
-        Me.btnget.Size = New System.Drawing.Size(160, 38)
+        Me.btnget.Size = New System.Drawing.Size(136, 38)
         Me.btnget.StyleController = Me.LayoutControl1
         Me.btnget.TabIndex = 11
         Me.btnget.Text = "Get Bill"
         '
         'txtOk
         '
-        Me.txtOk.Location = New System.Drawing.Point(7, 790)
-        Me.txtOk.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtOk.Location = New System.Drawing.Point(7, 638)
         Me.txtOk.Name = "txtOk"
         Me.txtOk.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.txtOk.Properties.Appearance.Options.UseFont = True
-        Me.txtOk.Size = New System.Drawing.Size(254, 46)
+        Me.txtOk.Size = New System.Drawing.Size(217, 40)
         Me.txtOk.StyleController = Me.LayoutControl1
         Me.txtOk.TabIndex = 9
         '
@@ -480,9 +482,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem6.Control = Me.txtOk
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 783)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 631)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(258, 50)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(221, 44)
         Me.LayoutControlItem6.Text = "LayoutControlItem6"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextToControlDistance = 0
@@ -492,9 +494,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem8.Control = Me.btnget
         Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem8"
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(466, 783)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(399, 631)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(164, 50)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(140, 44)
         Me.LayoutControlItem8.Text = "LayoutControlItem8"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextToControlDistance = 0
@@ -504,9 +506,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem2.Control = Me.btnCancel
         Me.LayoutControlItem2.CustomizationFormText = "LayoutControlItem2"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(630, 783)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(539, 631)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(155, 50)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(133, 44)
         Me.LayoutControlItem2.Text = "LayoutControlItem2"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextToControlDistance = 0
@@ -516,9 +518,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem3.Control = Me.btnOk
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(785, 783)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(672, 631)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(116, 50)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(99, 44)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextToControlDistance = 0
@@ -528,9 +530,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem7.Control = Me.txtdatetimer
         Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem7"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(258, 783)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(221, 631)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(208, 50)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(178, 44)
         Me.LayoutControlItem7.Text = "LayoutControlItem7"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextToControlDistance = 0
@@ -540,9 +542,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem9.Control = Me.btna4print
         Me.LayoutControlItem9.CustomizationFormText = "LayoutControlItem9"
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(901, 783)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(771, 631)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(130, 50)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(111, 44)
         Me.LayoutControlItem9.Text = "LayoutControlItem9"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextToControlDistance = 0
@@ -552,9 +554,9 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem10.Control = Me.txtprintprofile
         Me.LayoutControlItem10.CustomizationFormText = "LayoutControlItem10"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(718, 0)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(615, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(432, 34)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(369, 30)
         Me.LayoutControlItem10.Text = "LayoutControlItem10"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextToControlDistance = 0
@@ -564,19 +566,19 @@ Partial Class frmSelectBill
         '
         Me.SimpleLabelItem1.AllowHotTrack = False
         Me.SimpleLabelItem1.CustomizationFormText = "Print Profile :"
-        Me.SimpleLabelItem1.Location = New System.Drawing.Point(639, 0)
+        Me.SimpleLabelItem1.Location = New System.Drawing.Point(547, 0)
         Me.SimpleLabelItem1.Name = "SimpleLabelItem1"
-        Me.SimpleLabelItem1.Size = New System.Drawing.Size(79, 34)
+        Me.SimpleLabelItem1.Size = New System.Drawing.Size(68, 30)
         Me.SimpleLabelItem1.Text = "Print Profile :"
-        Me.SimpleLabelItem1.TextSize = New System.Drawing.Size(75, 16)
+        Me.SimpleLabelItem1.TextSize = New System.Drawing.Size(62, 13)
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.btngetquotebill
         Me.LayoutControlItem11.CustomizationFormText = "LayoutControlItem11"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 756)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 589)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(130, 27)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(111, 42)
         Me.LayoutControlItem11.Text = "LayoutControlItem11"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextToControlDistance = 0
@@ -586,22 +588,43 @@ Partial Class frmSelectBill
         '
         Me.LayoutControlItem12.Control = Me.GridControl1
         Me.LayoutControlItem12.CustomizationFormText = "LayoutControlItem12"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(639, 34)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(547, 30)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(511, 720)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(437, 557)
         Me.LayoutControlItem12.Text = "LayoutControlItem12"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextToControlDistance = 0
         Me.LayoutControlItem12.TextVisible = False
         '
+        'btnBillCancel
+        '
+        Me.btnBillCancel.Image = CType(resources.GetObject("btnBillCancel.Image"), System.Drawing.Image)
+        Me.btnBillCancel.Location = New System.Drawing.Point(118, 596)
+        Me.btnBillCancel.Name = "btnBillCancel"
+        Me.btnBillCancel.Size = New System.Drawing.Size(99, 38)
+        Me.btnBillCancel.StyleController = Me.LayoutControl1
+        Me.btnBillCancel.TabIndex = 19
+        Me.btnBillCancel.Text = "Bill Cancel"
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.btnBillCancel
+        Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(111, 589)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(103, 42)
+        Me.LayoutControlItem5.Text = "LayoutControlItem5"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextToControlDistance = 0
+        Me.LayoutControlItem5.TextVisible = False
+        '
         'frmSelectBill
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1160, 843)
+        Me.ClientSize = New System.Drawing.Size(994, 685)
         Me.Controls.Add(Me.LayoutControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmSelectBill"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmSelectBill"
@@ -630,6 +653,7 @@ Partial Class frmSelectBill
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -677,4 +701,7 @@ Partial Class frmSelectBill
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnBillCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
 End Class

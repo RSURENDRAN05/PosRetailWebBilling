@@ -1,12 +1,20 @@
 ﻿Imports System.Net
 Imports Newtonsoft.Json.Linq
 Imports System.IO
+Imports System.Data.SqlClient
 
 Public Class frmSelectBill
     Dim SaleTabale As DataSet
     Dim dats As String = ""
     Dim Errstr As String = ""
     Private Sub frmSelectBill_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            DataLoad()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub DataLoad()
         Try
             SaleTabale = New DataSet
             _DateConversion(Date.Now, dats)
@@ -45,7 +53,7 @@ Public Class frmSelectBill
             Return False
         End Try
     End Function
-    
+
     'Public Function GetSalesQuoteBill(ByVal getdate As String) As Boolean
     '    Try
     '        SaleTabale.TableName = "SaleTabale"
@@ -193,5 +201,62 @@ Public Class frmSelectBill
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub btnBillCancel_Click(sender As Object, e As EventArgs) Handles btnBillCancel.Click
+        Try
+            Dim Trno = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Sal_BillNo")
+            If BillCancel(Trno) Then
+                MessageBox.Show("Bill Cancel Success", "Bill Cancel", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+            'Update On cloud
+            SendBillCancelRequest(Trno)
+            DataLoad()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Sub SendBillCancelRequest(Trno As Integer)
+        Dim pm_id As Integer = _companyInfo.CompanyPMID
+        Dim comid As Integer = _companyInfo.ComId
+        Dim locid As Integer = _companyInfo.LocId
+
+        Dim ajaxurl As String = M_Details.LinkAjaxRequestSyncLocalCloud &
+                                "AjaxRequest=16&pm_id=" & pm_id &
+                                "&trno=" & Trno &
+                                "&comid=" & comid &
+                                "&locid=" & locid
+
+        Try
+            Dim request As HttpWebRequest = CType(WebRequest.Create(ajaxurl), HttpWebRequest)
+            request.Method = "GET"
+            request.Timeout = 15000   ' 15 sec timeout
+
+            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+
+            Using stream As Stream = response.GetResponseStream()
+                Using reader As New StreamReader(stream)
+                    Dim jsonText As String = reader.ReadToEnd()
+
+                    ' Parse JSON
+                    Dim json As JObject = JObject.Parse(jsonText)
+
+                    Dim success As Boolean = json("Success")
+                    Dim msg As String = json("Msg").ToString()
+                    Dim data As String = json("Data").ToString()
+
+                    If success Then
+                        MessageBox.Show("SUCCESS: " & msg & vbCrLf & data, "Bill Cancel Cloud", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("FAILED: " & msg & vbCrLf & data, "Bill Cancel Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+
+                End Using
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error calling API: " & ex.Message)
+        End Try
+
     End Sub
 End Class

@@ -1,10 +1,10 @@
 <?xml version="1.0" standalone="yes"?>
-<NewDataSet>
-  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+<ReportData>
+  <xs:schema id="ReportData" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="ReportData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
       <xs:complexType>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element name="SalesmanData" msdata:Locale="en-IN">
+          <xs:element name="SalesmanData">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -18,7 +18,7 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="ItemwiseData" msdata:Locale="en-IN">
+          <xs:element name="ItemwiseData">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -33,7 +33,7 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="AdvanceData" msdata:Locale="en-IN">
+          <xs:element name="AdvanceData">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -45,7 +45,7 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="AdvanceDataDtl" msdata:Locale="en-IN">
+          <xs:element name="AdvanceDataDtl">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -63,42 +63,2067 @@
     </xs:element>
   </xs:schema>
   <SalesmanData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>11502.00</NetAmt>
+    <Commission>316.30</Commission>
+    <Qty>506.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>9854.00</NetAmt>
+    <Commission>180.10</Commission>
+    <Qty>437.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>8975.00</NetAmt>
+    <Commission>189.50</Commission>
+    <Qty>404.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>8436.00</NetAmt>
+    <Commission>162.50</Commission>
+    <Qty>364.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>7899.00</NetAmt>
+    <Commission>264.60</Commission>
+    <Qty>317.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>7754.00</NetAmt>
+    <Commission>226.40</Commission>
+    <Qty>341.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>7428.00</NetAmt>
+    <Commission>227.00</Commission>
+    <Qty>326.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>7281.00</NetAmt>
+    <Commission>137.30</Commission>
+    <Qty>342.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>7169.00</NetAmt>
+    <Commission>64.00</Commission>
+    <Qty>370.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>7363.00</NetAmt>
-    <Commission>83.50</Commission>
-    <Qty>345.00</Qty>
+    <NetAmt>6398.00</NetAmt>
+    <Commission>43.80</Commission>
+    <Qty>314.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>5193.00</NetAmt>
+    <Commission>32.50</Commission>
+    <Qty>269.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>5156.00</NetAmt>
+    <Commission>49.00</Commission>
+    <Qty>259.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>5081.00</NetAmt>
+    <Commission>108.80</Commission>
+    <Qty>233.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>3733.00</NetAmt>
+    <Commission>74.00</Commission>
+    <Qty>167.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>3360.00</NetAmt>
+    <Commission>167.30</Commission>
+    <Qty>70.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>2800.00</NetAmt>
+    <Commission>150.50</Commission>
+    <Qty>78.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2785.00</NetAmt>
+    <Commission>29.50</Commission>
+    <Qty>151.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1575.00</NetAmt>
+    <Commission>56.30</Commission>
+    <Qty>61.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>1525.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>75.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>1161.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>56.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>942.00</NetAmt>
+    <Commission>11.50</Commission>
+    <Qty>44.00</Qty>
+  </SalesmanData>
+  <SalesmanData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>28.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
   </SalesmanData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>3496.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>191.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>3310.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>113.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>3299.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>183.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>3100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>172.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>2752.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>150.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2675.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>84.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>2520.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>76.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>2419.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>94.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2369.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>131.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>2322.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>126.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>2218.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>74.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2140.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>67.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2044.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>112.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2015.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>62.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>1996.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>105.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1973.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>66.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1918.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>101.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>1907.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>106.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1866.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>100.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1666.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>56.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>1445.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>44.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1352.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>69.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>1330.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>41.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1314.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>44.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>1175.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>37.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>1175.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>36.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>1140.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>63.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>965.00</NetAmt>
+    <Commission>96.50</Commission>
+    <Qty>16.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>CLASSIC PEDI [Without Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>918.00</NetAmt>
+    <Commission>46.90</Commission>
+    <Qty>22.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>903.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>61.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>894.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>49.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>855.00</NetAmt>
+    <Commission>85.50</Commission>
+    <Qty>34.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>832.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>44.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
     <ItemName>HAIR DYE [Cream]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>720.00</NetAmt>
+    <Commission>72.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>715.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>29.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>CLASSIC PEDI [Without Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>684.00</NetAmt>
+    <Commission>44.00</Commission>
+    <Qty>16.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>660.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>44.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>654.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>44.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>641.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>56.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>625.00</NetAmt>
+    <Commission>62.50</Commission>
+    <Qty>25.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR COLOURING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>600.00</NetAmt>
+    <Commission>60.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>594.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>585.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>39.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>579.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>48.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>535.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>40.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>530.00</NetAmt>
+    <Commission>53.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>520.00</NetAmt>
+    <Commission>52.00</Commission>
+    <Qty>21.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>485.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>483.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>480.00</NetAmt>
+    <Commission>48.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>470.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>31.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>470.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>CLASSIC MANI [Without Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>469.00</NetAmt>
+    <Commission>25.90</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>468.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>26.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>465.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>31.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>456.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>24.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>450.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>14.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>450.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>18.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>440.00</NetAmt>
+    <Commission>44.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>435.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>29.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>434.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>30.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>425.00</NetAmt>
+    <Commission>42.50</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>420.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>28.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>420.00</NetAmt>
+    <Commission>42.00</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>416.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>32.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>408.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>34.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>405.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>14.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>400.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>16.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>400.00</NetAmt>
+    <Commission>40.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>CLASSIC MANI [Without Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>399.00</NetAmt>
+    <Commission>21.90</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>396.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>22.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>380.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>375.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>25.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>WASH - BLOW</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>370.00</NetAmt>
+    <Commission>28.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>360.00</NetAmt>
+    <Commission>36.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>360.00</NetAmt>
+    <Commission>36.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>356.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>24.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>352.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>24.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>351.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>30.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>350.00</NetAmt>
+    <Commission>35.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>350.00</NetAmt>
+    <Commission>35.00</Commission>
+    <Qty>14.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>347.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>29.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>335.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>330.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>22.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>320.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>22.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>315.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>21.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>310.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>308.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>302.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>25.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>300.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>300.00</NetAmt>
+    <Commission>30.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>300.00</NetAmt>
+    <Commission>30.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>300.00</NetAmt>
+    <Commission>30.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>300.00</NetAmt>
+    <Commission>30.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>296.00</NetAmt>
+    <Commission>29.60</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>296.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>285.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>285.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>19.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>280.00</NetAmt>
+    <Commission>28.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>277.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>275.00</NetAmt>
+    <Commission>27.50</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>275.00</NetAmt>
+    <Commission>27.50</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>270.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>18.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>270.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>18.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>270.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>WASH - BLOW</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>265.00</NetAmt>
+    <Commission>13.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>264.00</NetAmt>
+    <Commission>26.40</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR PERMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>260.00</NetAmt>
+    <Commission>26.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>255.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>250.00</NetAmt>
+    <Commission>25.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>244.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>19.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>240.00</NetAmt>
-    <Commission>12.00</Commission>
+    <Commission>24.00</Commission>
     <Qty>4.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>240.00</NetAmt>
+    <Commission>24.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>240.00</NetAmt>
+    <Commission>24.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>240.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>237.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>18.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>235.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>235.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>230.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>225.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>225.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>220.00</NetAmt>
+    <Commission>22.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>220.00</NetAmt>
+    <Commission>22.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>220.00</NetAmt>
+    <Commission>22.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>210.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>14.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>210.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>14.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>210.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>21.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>207.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR COLOURING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>200.00</NetAmt>
+    <Commission>20.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>200.00</NetAmt>
+    <Commission>20.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
     <ItemName>OIL MASSAGE</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>225.00</NetAmt>
-    <Commission>22.50</Commission>
-    <Qty>9.00</Qty>
+    <NetAmt>200.00</NetAmt>
+    <Commission>20.00</Commission>
+    <Qty>8.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
-    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>200.00</NetAmt>
+    <Commission>20.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>200.00</NetAmt>
+    <Commission>20.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>200.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>20.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>198.00</NetAmt>
+    <Commission>9.90</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>GEL PEDI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>197.00</NetAmt>
+    <Commission>6.40</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>195.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>185.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>185.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>183.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>181.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>18.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>HAIR COLOURING [Full Hair]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>18.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>18.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>ROOT TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>18.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>176.00</NetAmt>
+    <Commission>17.60</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>175.00</NetAmt>
+    <Commission>17.50</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>175.00</NetAmt>
+    <Commission>17.50</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>170.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>170.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>17.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>165.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>165.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>L. THREADING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>163.00</NetAmt>
+    <Commission>13.00</Commission>
+    <Qty>15.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>160.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>160.00</NetAmt>
+    <Commission>16.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>152.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>7.50</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <NetAmt>150.00</NetAmt>
@@ -106,9 +2131,372 @@
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>145.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>144.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>140.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>128.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>11.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>DRY CUT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>125.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>125.00</NetAmt>
+    <Commission>12.50</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>122.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>FACE WAX [Full]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>12.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>TIP EXTENSION [2 Hands]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>120.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>PREMIUM PEDI [OPI Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>118.00</NetAmt>
+    <Commission>11.80</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>THREADING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>115.00</NetAmt>
+    <Commission>11.50</Commission>
+    <Qty>16.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>GEL MANI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>114.00</NetAmt>
+    <Commission>5.50</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>110.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>103.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR PERMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>HOT OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
     <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
@@ -117,32 +2505,648 @@
     <Qty>2.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>100.00</NetAmt>
+    <Commission>10.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
     <ItemName>BEARD TOUCH UP</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>80.00</NetAmt>
-    <Commission>3.00</Commission>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
     <Qty>3.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>SCALP TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>4.50</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>88.00</NetAmt>
+    <Commission>8.80</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>88.00</NetAmt>
+    <Commission>8.80</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>88.00</NetAmt>
+    <Commission>8.80</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>FACIAL [Classic]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>88.00</NetAmt>
+    <Commission>8.80</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>85.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>85.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
     <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>HAIR COLOURING [Full Hair]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>8.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>75.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>75.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>75.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>75.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>75.00</NetAmt>
+    <Commission>7.50</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>73.00</NetAmt>
+    <Commission>7.30</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>BALDING</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <NetAmt>70.00</NetAmt>
-    <Commission>7.00</Commission>
+    <Commission>0.00</Commission>
     <Qty>3.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>COLOUR PROTECTOR [For Allergy Scalp]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>7.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>GEL PEDI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>69.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>SPA PEDI [Without Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>69.00</NetAmt>
+    <Commission>6.90</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>64.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
     <ItemName>FACE WAX [Full]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACE WAX [Full]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <NetAmt>60.00</NetAmt>
@@ -150,20 +3154,504 @@
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
-    <ItemName>HAIR DYE [Powder]</ItemName>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>DRY CUT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>55.00</NetAmt>
+    <Commission>5.50</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>GEL MANI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>55.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>UPPER LIP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>55.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>WASH - CUT - BLOW</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>55.00</NetAmt>
+    <Commission>5.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>FACE MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR DESIGN</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>HOT OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>5.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>50.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>PREMIUM MANI [OPI Colour]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>49.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>45.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>45.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>45.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>40.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>FACE MASK</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>40.00</NetAmt>
+    <Commission>4.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
     <NetAmt>40.00</NetAmt>
     <Commission>4.00</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>40.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>35.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>UPPER LIP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>35.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>BEARD TOUCH UP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
     <ItemName>FACE WASH</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
@@ -172,58 +3660,1387 @@
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Oct-2025</MonYear>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>FACE WASH</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>GEL COLOUR ONLY</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
     <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>6.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>HEEL SCRUB</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>REMOVER GEL</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>27.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>OIL MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>2.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BALDING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACE MASK</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <ItemName>FACE MASK</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>SHAMPOO</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <ItemName>THREADING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>20.00</NetAmt>
+    <Commission>2.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR CUT [Adult]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>18.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>OPI COLOUR ONLY</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>1.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>COLOUR ART DESIGN [Per Nail]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>12.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>5</EmpID>
+    <Salesman>MANI</Salesman>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>12.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>18</EmpID>
+    <Salesman>KHUSHI</Salesman>
+    <ItemName>BUFFING SHINE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>10.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <ItemName>HAIR DESIGN</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>10.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>10.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <ItemName>SHAVING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>10.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <ItemName>THREADING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>10.00</NetAmt>
     <Commission>1.00</Commission>
-    <Qty>4.00</Qty>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>5.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <NetAmt>2.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <NetAmt>2.00</NetAmt>
+    <Commission>0.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>17</EmpID>
+    <Salesman>YASHU</Salesman>
+    <ItemName>ADMIN</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>1.00</NetAmt>
+    <Commission>0.10</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
   <AdvanceData>
-    <MonYear>Oct-2025</MonYear>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>2650.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <TotalAdvance>1960.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
-    <TotalAdvance>1800.00</TotalAdvance>
+    <TotalAdvance>1750.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <TotalAdvance>1500.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <TotalAdvance>1450.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>1000.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>800.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <TotalAdvance>550.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>450.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <TotalAdvance>450.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <TotalAdvance>400.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <TotalAdvance>250.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>250.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>150.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <TotalAdvance>150.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <TotalAdvance>50.00</TotalAdvance>
+  </AdvanceData>
+  <AdvanceData>
+    <MonYear>Nov-2025</MonYear>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <TotalAdvance>50.00</TotalAdvance>
   </AdvanceData>
   <AdvanceDataDtl>
-    <MonYear>Oct-2025</MonYear>
-    <PayDate>2025-10-04</PayDate>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-18</PayDate>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <DailyAdvance>500.00</DailyAdvance>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
   </AdvanceDataDtl>
   <AdvanceDataDtl>
-    <MonYear>Oct-2025</MonYear>
-    <PayDate>2025-10-08</PayDate>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-25</PayDate>
+    <EmpID>11</EmpID>
+    <Salesman>CHINNAIYAH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-01</PayDate>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>250.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <DailyAdvance>100.00</DailyAdvance>
   </AdvanceDataDtl>
   <AdvanceDataDtl>
-    <MonYear>Oct-2025</MonYear>
-    <PayDate>2025-10-10</PayDate>
-    <EmpID>9</EmpID>
-    <Salesman>THARSHAN</Salesman>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>19</EmpID>
+    <Salesman>GURUMOORTHY</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-03</PayDate>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>400.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>4</EmpID>
+    <Salesman>KANAGARAJ</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-07</PayDate>
+    <EmpID>15</EmpID>
+    <Salesman>KAVI</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-01</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-06</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-08</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-09</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-14</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>300.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-17</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-20</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>600.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-26</PayDate>
+    <EmpID>8</EmpID>
+    <Salesman>KILI FORN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-05</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-09</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-15</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-17</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-21</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>16</EmpID>
+    <Salesman>LOVEJEET</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-04</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-16</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-18</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-19</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-25</PayDate>
+    <EmpID>13</EmpID>
+    <Salesman>PRAKASH</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-13</PayDate>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-19</PayDate>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-22</PayDate>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-25</PayDate>
+    <EmpID>3</EmpID>
+    <Salesman>PRAVEEN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-07</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-11</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-13</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-16</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-19</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-27</PayDate>
+    <EmpID>1</EmpID>
+    <Salesman>RAJKUMAR</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-06</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-08</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-11</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>150.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-18</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-20</PayDate>
+    <EmpID>7</EmpID>
+    <Salesman>SAJAN</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <DailyAdvance>1000.00</DailyAdvance>
   </AdvanceDataDtl>
   <AdvanceDataDtl>
-    <MonYear>Oct-2025</MonYear>
-    <PayDate>2025-10-27</PayDate>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-01</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>2250.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-07</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-11</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-14</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-16</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-18</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-24</PayDate>
+    <EmpID>14</EmpID>
+    <Salesman>SENTHIL</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-17</PayDate>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-21</PayDate>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-24</PayDate>
+    <EmpID>10</EmpID>
+    <Salesman>SUBRA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>200.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-05</PayDate>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>100.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-09</PayDate>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-12</PayDate>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-21</PayDate>
+    <EmpID>12</EmpID>
+    <Salesman>SUKHVEER</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-01</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>1710.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-11</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-14</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-15</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-18</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-22</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-25</PayDate>
+    <EmpID>6</EmpID>
+    <Salesman>SURYA</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-10</PayDate>
     <EmpID>9</EmpID>
     <Salesman>THARSHAN</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>LUCKY GARDEN</LocationName>
     <DailyAdvance>200.00</DailyAdvance>
   </AdvanceDataDtl>
-</NewDataSet>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-14</PayDate>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>800.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-23</PayDate>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>50.00</DailyAdvance>
+  </AdvanceDataDtl>
+  <AdvanceDataDtl>
+    <MonYear>Nov-2025</MonYear>
+    <PayDate>2025-11-26</PayDate>
+    <EmpID>9</EmpID>
+    <Salesman>THARSHAN</Salesman>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <DailyAdvance>700.00</DailyAdvance>
+  </AdvanceDataDtl>
+</ReportData>

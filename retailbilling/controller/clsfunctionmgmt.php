@@ -976,7 +976,7 @@ class funcProcessMgmt
     public function GetPaymodeList()
     {
         $conn = $this->conn;
-        $sqlquery = ("SELECT `pmode_id`,`pmode_name`,`pmode_type` FROM `di_paymode_mast` WHERE  `pmode_status`=1");
+        $sqlquery = ("SELECT `pmode_id`,`pmode_name`,`pmode_type` FROM `di_paymode_mast` WHERE  `pmode_status`=1 ORDER BY pmode_id ASC");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }

@@ -143,11 +143,10 @@ Partial Class frmPaymore
         Me.LayoutControl1.Controls.Add(Me.GridControlPaymore)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(896, 330, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1317, 912)
+        Me.LayoutControl1.Size = New System.Drawing.Size(878, 624)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -158,30 +157,27 @@ Partial Class frmPaymore
         Me.lblbtnpayment.ForeColor = System.Drawing.Color.White
         Me.lblbtnpayment.Image = CType(resources.GetObject("lblbtnpayment.Image"), System.Drawing.Image)
         Me.lblbtnpayment.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.lblbtnpayment.Location = New System.Drawing.Point(804, 515)
-        Me.lblbtnpayment.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblbtnpayment.Location = New System.Drawing.Point(536, 353)
         Me.lblbtnpayment.Name = "lblbtnpayment"
-        Me.lblbtnpayment.Size = New System.Drawing.Size(499, 141)
+        Me.lblbtnpayment.Size = New System.Drawing.Size(328, 94)
         Me.lblbtnpayment.TabIndex = 48
         Me.lblbtnpayment.Text = "Pay"
         Me.lblbtnpayment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtentermultipleamount
         '
-        Me.txtentermultipleamount.Location = New System.Drawing.Point(536, 540)
-        Me.txtentermultipleamount.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtentermultipleamount.Location = New System.Drawing.Point(362, 371)
         Me.txtentermultipleamount.Name = "txtentermultipleamount"
         Me.txtentermultipleamount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
         Me.txtentermultipleamount.Properties.Appearance.Options.UseFont = True
         Me.txtentermultipleamount.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtentermultipleamount.Size = New System.Drawing.Size(264, 42)
+        Me.txtentermultipleamount.Size = New System.Drawing.Size(170, 30)
         Me.txtentermultipleamount.StyleController = Me.LayoutControl1
         Me.txtentermultipleamount.TabIndex = 45
         '
         'txtmultipletotal
         '
-        Me.txtmultipletotal.Location = New System.Drawing.Point(536, 862)
-        Me.txtmultipletotal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtmultipletotal.Location = New System.Drawing.Point(362, 584)
         Me.txtmultipletotal.Name = "txtmultipletotal"
         Me.txtmultipletotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtmultipletotal.Properties.Appearance.Options.UseFont = True
@@ -189,7 +185,7 @@ Partial Class frmPaymore
         Me.txtmultipletotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtmultipletotal.Properties.ReadOnly = True
         Me.txtmultipletotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtmultipletotal.Size = New System.Drawing.Size(264, 36)
+        Me.txtmultipletotal.Size = New System.Drawing.Size(170, 26)
         Me.txtmultipletotal.StyleController = Me.LayoutControl1
         Me.txtmultipletotal.TabIndex = 44
         '
@@ -212,15 +208,14 @@ Partial Class frmPaymore
         Me.TableLayoutPanel6.Controls.Add(Me.btnpop9, 2, 0)
         Me.TableLayoutPanel6.Controls.Add(Me.btnpop8, 1, 0)
         Me.TableLayoutPanel6.Controls.Add(Me.btnpop7, 0, 0)
-        Me.TableLayoutPanel6.Location = New System.Drawing.Point(16, 540)
-        Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TableLayoutPanel6.Location = New System.Drawing.Point(16, 371)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 4
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(397, 358)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(261, 239)
         Me.TableLayoutPanel6.TabIndex = 43
         '
         'btnpopNumClear
@@ -236,11 +231,10 @@ Partial Class frmPaymore
         Me.btnpopNumClear.Appearance.Options.UseForeColor = True
         Me.btnpopNumClear.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpopNumClear.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpopNumClear.Location = New System.Drawing.Point(269, 273)
+        Me.btnpopNumClear.Location = New System.Drawing.Point(176, 181)
         Me.btnpopNumClear.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpopNumClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpopNumClear.Name = "btnpopNumClear"
-        Me.btnpopNumClear.Size = New System.Drawing.Size(123, 79)
+        Me.btnpopNumClear.Size = New System.Drawing.Size(81, 54)
         Me.btnpopNumClear.TabIndex = 14
         Me.btnpopNumClear.Text = "X"
         '
@@ -257,11 +251,10 @@ Partial Class frmPaymore
         Me.btnpop00.Appearance.Options.UseForeColor = True
         Me.btnpop00.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop00.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop00.Location = New System.Drawing.Point(137, 273)
+        Me.btnpop00.Location = New System.Drawing.Point(90, 181)
         Me.btnpop00.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop00.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop00.Name = "btnpop00"
-        Me.btnpop00.Size = New System.Drawing.Size(123, 79)
+        Me.btnpop00.Size = New System.Drawing.Size(79, 54)
         Me.btnpop00.TabIndex = 13
         Me.btnpop00.Text = "00"
         '
@@ -278,11 +271,10 @@ Partial Class frmPaymore
         Me.btnpop0.Appearance.Options.UseForeColor = True
         Me.btnpop0.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop0.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop0.Location = New System.Drawing.Point(5, 273)
+        Me.btnpop0.Location = New System.Drawing.Point(4, 181)
         Me.btnpop0.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop0.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop0.Name = "btnpop0"
-        Me.btnpop0.Size = New System.Drawing.Size(123, 79)
+        Me.btnpop0.Size = New System.Drawing.Size(79, 54)
         Me.btnpop0.TabIndex = 12
         Me.btnpop0.Text = "0"
         '
@@ -299,11 +291,10 @@ Partial Class frmPaymore
         Me.btnpop3.Appearance.Options.UseForeColor = True
         Me.btnpop3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop3.Location = New System.Drawing.Point(269, 184)
+        Me.btnpop3.Location = New System.Drawing.Point(176, 122)
         Me.btnpop3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop3.Name = "btnpop3"
-        Me.btnpop3.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop3.Size = New System.Drawing.Size(81, 52)
         Me.btnpop3.TabIndex = 10
         Me.btnpop3.Text = "3"
         '
@@ -320,11 +311,10 @@ Partial Class frmPaymore
         Me.btnpop2.Appearance.Options.UseForeColor = True
         Me.btnpop2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop2.Location = New System.Drawing.Point(137, 184)
+        Me.btnpop2.Location = New System.Drawing.Point(90, 122)
         Me.btnpop2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop2.Name = "btnpop2"
-        Me.btnpop2.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop2.Size = New System.Drawing.Size(79, 52)
         Me.btnpop2.TabIndex = 9
         Me.btnpop2.Text = "2"
         '
@@ -341,11 +331,10 @@ Partial Class frmPaymore
         Me.btnpopn1.Appearance.Options.UseForeColor = True
         Me.btnpopn1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpopn1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpopn1.Location = New System.Drawing.Point(5, 184)
+        Me.btnpopn1.Location = New System.Drawing.Point(4, 122)
         Me.btnpopn1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpopn1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpopn1.Name = "btnpopn1"
-        Me.btnpopn1.Size = New System.Drawing.Size(123, 78)
+        Me.btnpopn1.Size = New System.Drawing.Size(79, 52)
         Me.btnpopn1.TabIndex = 8
         Me.btnpopn1.Text = "1"
         '
@@ -362,11 +351,10 @@ Partial Class frmPaymore
         Me.btnpop6.Appearance.Options.UseForeColor = True
         Me.btnpop6.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop6.Location = New System.Drawing.Point(269, 95)
+        Me.btnpop6.Location = New System.Drawing.Point(176, 63)
         Me.btnpop6.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop6.Name = "btnpop6"
-        Me.btnpop6.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop6.Size = New System.Drawing.Size(81, 52)
         Me.btnpop6.TabIndex = 6
         Me.btnpop6.Text = "6"
         '
@@ -383,11 +371,10 @@ Partial Class frmPaymore
         Me.btnpopn5.Appearance.Options.UseForeColor = True
         Me.btnpopn5.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpopn5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpopn5.Location = New System.Drawing.Point(137, 95)
+        Me.btnpopn5.Location = New System.Drawing.Point(90, 63)
         Me.btnpopn5.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpopn5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpopn5.Name = "btnpopn5"
-        Me.btnpopn5.Size = New System.Drawing.Size(123, 78)
+        Me.btnpopn5.Size = New System.Drawing.Size(79, 52)
         Me.btnpopn5.TabIndex = 5
         Me.btnpopn5.Text = "5"
         '
@@ -404,11 +391,10 @@ Partial Class frmPaymore
         Me.btnpop4.Appearance.Options.UseForeColor = True
         Me.btnpop4.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop4.Location = New System.Drawing.Point(5, 95)
+        Me.btnpop4.Location = New System.Drawing.Point(4, 63)
         Me.btnpop4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop4.Name = "btnpop4"
-        Me.btnpop4.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop4.Size = New System.Drawing.Size(79, 52)
         Me.btnpop4.TabIndex = 4
         Me.btnpop4.Text = "4"
         '
@@ -425,11 +411,10 @@ Partial Class frmPaymore
         Me.btnpop9.Appearance.Options.UseForeColor = True
         Me.btnpop9.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop9.Location = New System.Drawing.Point(269, 6)
+        Me.btnpop9.Location = New System.Drawing.Point(176, 4)
         Me.btnpop9.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop9.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop9.Name = "btnpop9"
-        Me.btnpop9.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop9.Size = New System.Drawing.Size(81, 52)
         Me.btnpop9.TabIndex = 2
         Me.btnpop9.Text = "9"
         '
@@ -446,11 +431,10 @@ Partial Class frmPaymore
         Me.btnpop8.Appearance.Options.UseForeColor = True
         Me.btnpop8.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop8.Location = New System.Drawing.Point(137, 6)
+        Me.btnpop8.Location = New System.Drawing.Point(90, 4)
         Me.btnpop8.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop8.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop8.Name = "btnpop8"
-        Me.btnpop8.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop8.Size = New System.Drawing.Size(79, 52)
         Me.btnpop8.TabIndex = 1
         Me.btnpop8.Text = "8"
         '
@@ -467,11 +451,10 @@ Partial Class frmPaymore
         Me.btnpop7.Appearance.Options.UseForeColor = True
         Me.btnpop7.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnpop7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnpop7.Location = New System.Drawing.Point(5, 6)
+        Me.btnpop7.Location = New System.Drawing.Point(4, 4)
         Me.btnpop7.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
-        Me.btnpop7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnpop7.Name = "btnpop7"
-        Me.btnpop7.Size = New System.Drawing.Size(123, 78)
+        Me.btnpop7.Size = New System.Drawing.Size(79, 52)
         Me.btnpop7.TabIndex = 0
         Me.btnpop7.Text = "7"
         '
@@ -480,10 +463,9 @@ Partial Class frmPaymore
         Me.lblpaymode.BackColor = System.Drawing.Color.Maroon
         Me.lblpaymode.Font = New System.Drawing.Font("Tahoma", 25.0!, System.Drawing.FontStyle.Bold)
         Me.lblpaymode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblpaymode.Location = New System.Drawing.Point(804, 406)
-        Me.lblpaymode.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblpaymode.Location = New System.Drawing.Point(536, 279)
         Me.lblpaymode.Name = "lblpaymode"
-        Me.lblpaymode.Size = New System.Drawing.Size(499, 105)
+        Me.lblpaymode.Size = New System.Drawing.Size(328, 70)
         Me.lblpaymode.TabIndex = 40
         Me.lblpaymode.Text = "Paymode"
         Me.lblpaymode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -493,10 +475,9 @@ Partial Class frmPaymore
         Me.FlowLayoutPanel1.Controls.Add(Me.btnpopClear)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnpopHome)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnmultipayment)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(16, 415)
-        Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(16, 286)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(784, 119)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(516, 79)
         Me.FlowLayoutPanel1.TabIndex = 39
         '
         'btnpopClear
@@ -514,10 +495,9 @@ Partial Class frmPaymore
         Me.btnpopClear.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
         Me.btnpopClear.Image = CType(resources.GetObject("btnpopClear.Image"), System.Drawing.Image)
         Me.btnpopClear.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.btnpopClear.Location = New System.Drawing.Point(4, 5)
-        Me.btnpopClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnpopClear.Location = New System.Drawing.Point(3, 3)
         Me.btnpopClear.Name = "btnpopClear"
-        Me.btnpopClear.Size = New System.Drawing.Size(186, 112)
+        Me.btnpopClear.Size = New System.Drawing.Size(124, 77)
         Me.btnpopClear.TabIndex = 48
         Me.btnpopClear.Text = "Clear"
         '
@@ -536,10 +516,9 @@ Partial Class frmPaymore
         Me.btnpopHome.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
         Me.btnpopHome.Image = CType(resources.GetObject("btnpopHome.Image"), System.Drawing.Image)
         Me.btnpopHome.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.btnpopHome.Location = New System.Drawing.Point(198, 5)
-        Me.btnpopHome.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnpopHome.Location = New System.Drawing.Point(133, 3)
         Me.btnpopHome.Name = "btnpopHome"
-        Me.btnpopHome.Size = New System.Drawing.Size(186, 112)
+        Me.btnpopHome.Size = New System.Drawing.Size(124, 77)
         Me.btnpopHome.TabIndex = 49
         Me.btnpopHome.Text = "Home"
         '
@@ -558,10 +537,9 @@ Partial Class frmPaymore
         Me.btnmultipayment.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.btnmultipayment.Image = CType(resources.GetObject("btnmultipayment.Image"), System.Drawing.Image)
         Me.btnmultipayment.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.btnmultipayment.Location = New System.Drawing.Point(392, 5)
-        Me.btnmultipayment.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnmultipayment.Location = New System.Drawing.Point(263, 3)
         Me.btnmultipayment.Name = "btnmultipayment"
-        Me.btnmultipayment.Size = New System.Drawing.Size(186, 112)
+        Me.btnmultipayment.Size = New System.Drawing.Size(124, 77)
         Me.btnmultipayment.TabIndex = 50
         Me.btnmultipayment.Text = "Multi Payment"
         '
@@ -575,26 +553,23 @@ Partial Class frmPaymore
         Me.PanelControl2.Controls.Add(Me.Label1)
         Me.PanelControl2.Controls.Add(Me.Label3)
         Me.PanelControl2.Controls.Add(Me.txtclientname)
-        Me.PanelControl2.Location = New System.Drawing.Point(16, 310)
-        Me.PanelControl2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PanelControl2.Location = New System.Drawing.Point(16, 216)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 99)
+        Me.PanelControl2.Size = New System.Drawing.Size(516, 64)
         Me.PanelControl2.TabIndex = 38
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(483, 74)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(322, 51)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 19)
+        Me.Label2.Size = New System.Drawing.Size(38, 13)
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Label2"
         '
         'txtadvanceamt
         '
-        Me.txtadvanceamt.Location = New System.Drawing.Point(240, 56)
-        Me.txtadvanceamt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtadvanceamt.Location = New System.Drawing.Point(160, 38)
         Me.txtadvanceamt.Name = "txtadvanceamt"
         Me.txtadvanceamt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtadvanceamt.Properties.Appearance.Options.UseFont = True
@@ -606,17 +581,16 @@ Partial Class frmPaymore
         Me.txtadvanceamt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtadvanceamt.Properties.Mask.EditMask = "n2"
         Me.txtadvanceamt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtadvanceamt.Size = New System.Drawing.Size(235, 42)
+        Me.txtadvanceamt.Size = New System.Drawing.Size(157, 30)
         Me.txtadvanceamt.TabIndex = 10
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(98, 68)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(65, 47)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(130, 29)
+        Me.Label1.Size = New System.Drawing.Size(89, 19)
         Me.Label1.TabIndex = 9
         Me.Label1.Text = "Advance :"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -625,22 +599,20 @@ Partial Class frmPaymore
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(6, 11)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(4, 8)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(221, 29)
+        Me.Label3.Size = New System.Drawing.Size(150, 19)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Customer Name :"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtclientname
         '
-        Me.txtclientname.Location = New System.Drawing.Point(240, 6)
-        Me.txtclientname.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtclientname.Location = New System.Drawing.Point(160, 4)
         Me.txtclientname.Name = "txtclientname"
         Me.txtclientname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtclientname.Properties.Appearance.Options.UseFont = True
-        Me.txtclientname.Size = New System.Drawing.Size(476, 42)
+        Me.txtclientname.Size = New System.Drawing.Size(317, 30)
         Me.txtclientname.TabIndex = 7
         '
         'TableLayoutPanel5
@@ -659,23 +631,21 @@ Partial Class frmPaymore
         Me.TableLayoutPanel5.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.TableLayoutPanel5.ForeColor = System.Drawing.Color.White
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(16, 14)
-        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 3
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(784, 266)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(516, 178)
         Me.TableLayoutPanel5.TabIndex = 36
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label14.Location = New System.Drawing.Point(5, 177)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Location = New System.Drawing.Point(4, 119)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(382, 88)
+        Me.Label14.Size = New System.Drawing.Size(250, 58)
         Me.Label14.TabIndex = 4
         Me.Label14.Text = "BAL AMT:"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -683,8 +653,7 @@ Partial Class frmPaymore
         'txtpopbalamt
         '
         Me.txtpopbalamt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtpopbalamt.Location = New System.Drawing.Point(396, 182)
-        Me.txtpopbalamt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtpopbalamt.Location = New System.Drawing.Point(261, 122)
         Me.txtpopbalamt.Name = "txtpopbalamt"
         Me.txtpopbalamt.Properties.Appearance.BackColor = System.Drawing.Color.Red
         Me.txtpopbalamt.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -705,7 +674,7 @@ Partial Class frmPaymore
         Me.txtpopbalamt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtpopbalamt.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtpopbalamt.Properties.ReadOnly = True
-        Me.txtpopbalamt.Size = New System.Drawing.Size(383, 66)
+        Me.txtpopbalamt.Size = New System.Drawing.Size(251, 46)
         Me.txtpopbalamt.TabIndex = 5
         '
         'Label16
@@ -713,10 +682,9 @@ Partial Class frmPaymore
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label16.Location = New System.Drawing.Point(5, 89)
-        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label16.Location = New System.Drawing.Point(4, 60)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(382, 87)
+        Me.Label16.Size = New System.Drawing.Size(250, 58)
         Me.Label16.TabIndex = 2
         Me.Label16.Text = "CASH AMT:"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -724,8 +692,7 @@ Partial Class frmPaymore
         'txttpopenamt
         '
         Me.txttpopenamt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txttpopenamt.Location = New System.Drawing.Point(396, 94)
-        Me.txttpopenamt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txttpopenamt.Location = New System.Drawing.Point(261, 63)
         Me.txttpopenamt.Name = "txttpopenamt"
         Me.txttpopenamt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 25.0!, System.Drawing.FontStyle.Bold)
         Me.txttpopenamt.Properties.Appearance.Options.UseFont = True
@@ -737,7 +704,7 @@ Partial Class frmPaymore
         Me.txttpopenamt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txttpopenamt.Properties.Mask.EditMask = "n2"
         Me.txttpopenamt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txttpopenamt.Size = New System.Drawing.Size(383, 66)
+        Me.txttpopenamt.Size = New System.Drawing.Size(251, 46)
         Me.txttpopenamt.TabIndex = 3
         '
         'Label17
@@ -745,10 +712,9 @@ Partial Class frmPaymore
         Me.Label17.AutoSize = True
         Me.Label17.BackColor = System.Drawing.Color.DimGray
         Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label17.Location = New System.Drawing.Point(5, 1)
-        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label17.Location = New System.Drawing.Point(4, 1)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(382, 87)
+        Me.Label17.Size = New System.Drawing.Size(250, 58)
         Me.Label17.TabIndex = 0
         Me.Label17.Text = "NET AMT:"
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -756,8 +722,7 @@ Partial Class frmPaymore
         'txtPopBillamt
         '
         Me.txtPopBillamt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtPopBillamt.Location = New System.Drawing.Point(396, 6)
-        Me.txtPopBillamt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtPopBillamt.Location = New System.Drawing.Point(261, 4)
         Me.txtPopBillamt.Name = "txtPopBillamt"
         Me.txtPopBillamt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 25.0!, System.Drawing.FontStyle.Bold)
         Me.txtPopBillamt.Properties.Appearance.Options.UseFont = True
@@ -770,18 +735,16 @@ Partial Class frmPaymore
         Me.txtPopBillamt.Properties.Mask.EditMask = "n2"
         Me.txtPopBillamt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtPopBillamt.Properties.ReadOnly = True
-        Me.txtPopBillamt.Size = New System.Drawing.Size(383, 66)
+        Me.txtPopBillamt.Size = New System.Drawing.Size(251, 46)
         Me.txtPopBillamt.TabIndex = 1
         '
         'GridControl3
         '
-        Me.GridControl3.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GridControl3.Location = New System.Drawing.Point(804, 36)
+        Me.GridControl3.Location = New System.Drawing.Point(536, 30)
         Me.GridControl3.MainView = Me.GridView3
-        Me.GridControl3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GridControl3.Name = "GridControl3"
         Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit6})
-        Me.GridControl3.Size = New System.Drawing.Size(499, 366)
+        Me.GridControl3.Size = New System.Drawing.Size(328, 245)
         Me.GridControl3.TabIndex = 29
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -845,12 +808,10 @@ Partial Class frmPaymore
         '
         'GridControlPaymore
         '
-        Me.GridControlPaymore.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GridControlPaymore.Location = New System.Drawing.Point(417, 586)
+        Me.GridControlPaymore.Location = New System.Drawing.Point(281, 405)
         Me.GridControlPaymore.MainView = Me.GridViewPayMore
-        Me.GridControlPaymore.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GridControlPaymore.Name = "GridControlPaymore"
-        Me.GridControlPaymore.Size = New System.Drawing.Size(383, 272)
+        Me.GridControlPaymore.Size = New System.Drawing.Size(251, 175)
         Me.GridControlPaymore.TabIndex = 0
         Me.GridControlPaymore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPayMore})
         '
@@ -917,7 +878,7 @@ Partial Class frmPaymore
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem4, Me.SimpleSeparator1, Me.SimpleSeparator2, Me.SimpleSeparator3, Me.SimpleSeparator4, Me.SimpleSeparator5, Me.SimpleSeparator6, Me.SimpleSeparator7, Me.LayoutControlItem5, Me.SimpleSeparator8, Me.SimpleSeparator9, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.txtmultipleamt, Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.EmptySpaceItem1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1317, 912)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(878, 624)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -927,7 +888,7 @@ Partial Class frmPaymore
         Me.LayoutControlItem2.CustomizationFormText = "LayoutControlItem2"
         Me.LayoutControlItem2.Location = New System.Drawing.Point(4, 2)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(788, 270)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(520, 182)
         Me.LayoutControlItem2.Text = "LayoutControlItem2"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextToControlDistance = 0
@@ -939,20 +900,20 @@ Partial Class frmPaymore
         Me.LayoutControlItem4.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem4.Control = Me.PanelControl2
         Me.LayoutControlItem4.CustomizationFormText = "Credit Details :"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(4, 276)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(4, 188)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(788, 125)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(520, 84)
         Me.LayoutControlItem4.Text = "Credit Details :"
         Me.LayoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(116, 19)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(78, 13)
         '
         'SimpleSeparator1
         '
         Me.SimpleSeparator1.AllowHotTrack = False
         Me.SimpleSeparator1.CustomizationFormText = "SimpleSeparator1"
-        Me.SimpleSeparator1.Location = New System.Drawing.Point(2, 890)
+        Me.SimpleSeparator1.Location = New System.Drawing.Point(2, 602)
         Me.SimpleSeparator1.Name = "SimpleSeparator1"
-        Me.SimpleSeparator1.Size = New System.Drawing.Size(790, 2)
+        Me.SimpleSeparator1.Size = New System.Drawing.Size(522, 2)
         Me.SimpleSeparator1.Text = "SimpleSeparator1"
         '
         'SimpleSeparator2
@@ -961,16 +922,16 @@ Partial Class frmPaymore
         Me.SimpleSeparator2.CustomizationFormText = "SimpleSeparator2"
         Me.SimpleSeparator2.Location = New System.Drawing.Point(2, 2)
         Me.SimpleSeparator2.Name = "SimpleSeparator2"
-        Me.SimpleSeparator2.Size = New System.Drawing.Size(2, 888)
+        Me.SimpleSeparator2.Size = New System.Drawing.Size(2, 600)
         Me.SimpleSeparator2.Text = "SimpleSeparator2"
         '
         'SimpleSeparator3
         '
         Me.SimpleSeparator3.AllowHotTrack = False
         Me.SimpleSeparator3.CustomizationFormText = "SimpleSeparator3"
-        Me.SimpleSeparator3.Location = New System.Drawing.Point(1295, 2)
+        Me.SimpleSeparator3.Location = New System.Drawing.Point(856, 2)
         Me.SimpleSeparator3.Name = "SimpleSeparator3"
-        Me.SimpleSeparator3.Size = New System.Drawing.Size(2, 890)
+        Me.SimpleSeparator3.Size = New System.Drawing.Size(2, 602)
         Me.SimpleSeparator3.Text = "SimpleSeparator3"
         '
         'SimpleSeparator4
@@ -979,7 +940,7 @@ Partial Class frmPaymore
         Me.SimpleSeparator4.CustomizationFormText = "SimpleSeparator4"
         Me.SimpleSeparator4.Location = New System.Drawing.Point(2, 0)
         Me.SimpleSeparator4.Name = "SimpleSeparator4"
-        Me.SimpleSeparator4.Size = New System.Drawing.Size(1295, 2)
+        Me.SimpleSeparator4.Size = New System.Drawing.Size(856, 2)
         Me.SimpleSeparator4.Text = "SimpleSeparator4"
         '
         'SimpleSeparator5
@@ -988,34 +949,34 @@ Partial Class frmPaymore
         Me.SimpleSeparator5.CustomizationFormText = "SimpleSeparator5"
         Me.SimpleSeparator5.Location = New System.Drawing.Point(0, 0)
         Me.SimpleSeparator5.Name = "SimpleSeparator5"
-        Me.SimpleSeparator5.Size = New System.Drawing.Size(2, 892)
+        Me.SimpleSeparator5.Size = New System.Drawing.Size(2, 604)
         Me.SimpleSeparator5.Text = "SimpleSeparator5"
         '
         'SimpleSeparator6
         '
         Me.SimpleSeparator6.AllowHotTrack = False
         Me.SimpleSeparator6.CustomizationFormText = "SimpleSeparator6"
-        Me.SimpleSeparator6.Location = New System.Drawing.Point(4, 272)
+        Me.SimpleSeparator6.Location = New System.Drawing.Point(4, 184)
         Me.SimpleSeparator6.Name = "SimpleSeparator6"
-        Me.SimpleSeparator6.Size = New System.Drawing.Size(788, 2)
+        Me.SimpleSeparator6.Size = New System.Drawing.Size(520, 2)
         Me.SimpleSeparator6.Text = "SimpleSeparator6"
         '
         'SimpleSeparator7
         '
         Me.SimpleSeparator7.AllowHotTrack = False
         Me.SimpleSeparator7.CustomizationFormText = "SimpleSeparator7"
-        Me.SimpleSeparator7.Location = New System.Drawing.Point(4, 401)
+        Me.SimpleSeparator7.Location = New System.Drawing.Point(4, 272)
         Me.SimpleSeparator7.Name = "SimpleSeparator7"
-        Me.SimpleSeparator7.Size = New System.Drawing.Size(788, 2)
+        Me.SimpleSeparator7.Size = New System.Drawing.Size(520, 2)
         Me.SimpleSeparator7.Text = "SimpleSeparator7"
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.FlowLayoutPanel1
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(4, 403)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(4, 274)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(788, 123)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(520, 83)
         Me.LayoutControlItem5.Text = "LayoutControlItem5"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextToControlDistance = 0
@@ -1025,27 +986,27 @@ Partial Class frmPaymore
         '
         Me.SimpleSeparator8.AllowHotTrack = False
         Me.SimpleSeparator8.CustomizationFormText = "SimpleSeparator8"
-        Me.SimpleSeparator8.Location = New System.Drawing.Point(4, 526)
+        Me.SimpleSeparator8.Location = New System.Drawing.Point(4, 357)
         Me.SimpleSeparator8.Name = "SimpleSeparator8"
-        Me.SimpleSeparator8.Size = New System.Drawing.Size(788, 2)
+        Me.SimpleSeparator8.Size = New System.Drawing.Size(520, 2)
         Me.SimpleSeparator8.Text = "SimpleSeparator8"
         '
         'SimpleSeparator9
         '
         Me.SimpleSeparator9.AllowHotTrack = False
         Me.SimpleSeparator9.CustomizationFormText = "SimpleSeparator9"
-        Me.SimpleSeparator9.Location = New System.Drawing.Point(4, 274)
+        Me.SimpleSeparator9.Location = New System.Drawing.Point(4, 186)
         Me.SimpleSeparator9.Name = "SimpleSeparator9"
-        Me.SimpleSeparator9.Size = New System.Drawing.Size(788, 2)
+        Me.SimpleSeparator9.Size = New System.Drawing.Size(520, 2)
         Me.SimpleSeparator9.Text = "SimpleSeparator9"
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TableLayoutPanel6
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(4, 528)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(4, 359)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(401, 362)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(265, 243)
         Me.LayoutControlItem6.Text = "LayoutControlItem6"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextToControlDistance = 0
@@ -1055,9 +1016,9 @@ Partial Class frmPaymore
         '
         Me.LayoutControlItem7.Control = Me.GridControlPaymore
         Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem7"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(405, 574)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(269, 393)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(387, 276)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(255, 179)
         Me.LayoutControlItem7.Text = "LayoutControlItem7"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextToControlDistance = 0
@@ -1069,11 +1030,11 @@ Partial Class frmPaymore
         Me.LayoutControlItem8.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem8.Control = Me.txtmultipletotal
         Me.LayoutControlItem8.CustomizationFormText = "Total Amount :"
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(405, 850)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(269, 572)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(387, 40)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(255, 30)
         Me.LayoutControlItem8.Text = "Total Amount :"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(116, 19)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(78, 13)
         '
         'txtmultipleamt
         '
@@ -1081,11 +1042,11 @@ Partial Class frmPaymore
         Me.txtmultipleamt.AppearanceItemCaption.Options.UseForeColor = True
         Me.txtmultipleamt.Control = Me.txtentermultipleamount
         Me.txtmultipleamt.CustomizationFormText = "MultiplePayment"
-        Me.txtmultipleamt.Location = New System.Drawing.Point(405, 528)
+        Me.txtmultipleamt.Location = New System.Drawing.Point(269, 359)
         Me.txtmultipleamt.Name = "txtmultipleamt"
-        Me.txtmultipleamt.Size = New System.Drawing.Size(387, 46)
+        Me.txtmultipleamt.Size = New System.Drawing.Size(255, 34)
         Me.txtmultipleamt.Text = "MultiplePayment"
-        Me.txtmultipleamt.TextSize = New System.Drawing.Size(116, 19)
+        Me.txtmultipleamt.TextSize = New System.Drawing.Size(78, 13)
         '
         'LayoutControlItem1
         '
@@ -1093,20 +1054,20 @@ Partial Class frmPaymore
         Me.LayoutControlItem1.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem1.Control = Me.GridControl3
         Me.LayoutControlItem1.CustomizationFormText = "Payment List"
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(792, 2)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(524, 2)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(503, 392)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(332, 265)
         Me.LayoutControlItem1.Text = "Payment List"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(116, 19)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(78, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.lblpaymode
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(792, 394)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(524, 267)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(503, 109)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(332, 74)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextToControlDistance = 0
@@ -1116,9 +1077,9 @@ Partial Class frmPaymore
         '
         Me.LayoutControlItem10.Control = Me.lblbtnpayment
         Me.LayoutControlItem10.CustomizationFormText = "LayoutControlItem10"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(792, 503)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(524, 341)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(503, 145)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(332, 98)
         Me.LayoutControlItem10.Text = "LayoutControlItem10"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextToControlDistance = 0
@@ -1128,20 +1089,19 @@ Partial Class frmPaymore
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(792, 648)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(524, 439)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(503, 244)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(332, 165)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmPaymore
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1317, 912)
+        Me.ClientSize = New System.Drawing.Size(878, 624)
         Me.Controls.Add(Me.LayoutControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmPaymore"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Payment"

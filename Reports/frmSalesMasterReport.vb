@@ -31,6 +31,7 @@ Public Class frmSalesMasterReport
 
         ' Load initial data
         LoadSalesData()
+        LoadGridLayout()
     End Sub
 
     Private Sub InitializeGrid()
@@ -480,4 +481,51 @@ Public Class frmSalesMasterReport
         Return Nothing
     End Function
 #End Region
+
+    Private Sub btnSaveLayout_Click(sender As Object, e As EventArgs) Handles btnSaveLayout.Click
+        Try
+            Try
+                SaveGridLayout()
+                MessageBox.Show("Grid layout saved successfully!", "Save Layout", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("Error saving grid layout: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub SaveGridLayout()
+        Try
+            Dim layoutPath As String = GetLayoutFilePath()
+            ' Create directory if it doesn't exist
+            Dim layoutDir As String = System.IO.Path.GetDirectoryName(layoutPath)
+            If Not System.IO.Directory.Exists(layoutDir) Then
+                System.IO.Directory.CreateDirectory(layoutDir)
+            End If
+
+            ' Save the grid view layout
+            GridView1.SaveLayoutToXml(layoutPath)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub LoadGridLayout()
+        Try
+            Dim layoutPath As String = GetLayoutFilePath()
+            If System.IO.File.Exists(layoutPath) Then
+                GridView1.RestoreLayoutFromXml(layoutPath)
+            End If
+        Catch ex As Exception
+            ' If there's an error loading the layout, just continue with default layout
+            ' This prevents the form from failing to load if the layout file is corrupted
+        End Try
+    End Sub
+
+    Private Function GetLayoutFilePath() As String
+        ' Create a layout file path in the application's folder
+        Dim appPath As String = Application.StartupPath
+        Dim layoutFolder As String = System.IO.Path.Combine(appPath, "Layout")
+        Return System.IO.Path.Combine(layoutFolder, "MasterSalesReport.xml")
+    End Function
 End Class
