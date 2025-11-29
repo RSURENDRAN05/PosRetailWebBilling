@@ -150,7 +150,7 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>8</CateId>
-    <CateName>MANI-PEDI COMBO</CateName>
+    <CateName>ADMIN ONLY</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
@@ -163,11 +163,11 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>1</Position>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>9</CateId>
-    <CateName>MANICURE</CateName>
+    <CateName>MEN</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
@@ -180,7 +180,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>2</Position>
+    <Position>1</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>10</CateId>
@@ -197,7 +197,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>4</Position>
+    <Position>3</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>11</CateId>
@@ -214,7 +214,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>5</Position>
+    <Position>4</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>12</CateId>
@@ -231,7 +231,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>6</Position>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>13</CateId>
@@ -282,7 +282,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>6</Position>
+    <Position>5</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>16</CateId>
@@ -333,15 +333,15 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>5</Position>
+    <Position>6</Position>
   </CategoryTable>
   <CategoryTable>
     <CateId>19</CateId>
-    <CateName>EYELASH EXTENSION</CateName>
+    <CateName>L. THREADING</CateName>
     <MainId>3</MainId>
     <MainName>LADIES</MainName>
     <Active>1</Active>
-    <Color />
+    <Color>LightBlue</Color>
     <id>58</id>
     <item_id>19</item_id>
     <menu_type>Sub</menu_type>
@@ -354,7 +354,7 @@
   </CategoryTable>
   <CategoryTable>
     <CateId>20</CateId>
-    <CateName>PEDICURE</CateName>
+    <CateName>LADIES</CateName>
     <MainId>2</MainId>
     <MainName>NAILS</MainName>
     <Active>1</Active>
@@ -367,6 +367,6 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,128,0)</back_color>
-    <Position>3</Position>
+    <Position>2</Position>
   </CategoryTable>
 </NewDataSet>

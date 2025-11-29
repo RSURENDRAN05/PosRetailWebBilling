@@ -7,73 +7,86 @@ THANJAVUR
 GST:000000000000000
 **************************************
 
-Shift Open  :28-08-2025 16:21:21
-Shift Close :28-08-2025 16:46:51
-Print Date  :28-08-2025 16:46:53
+Shift Open  :02-09-2025 20:05:56
+Shift Close :29-11-2025 11:26:01
+Print Date  :29-11-2025 12:26:24
 ======================================
-Shift No :2
-CurDate  :28-08-2025 00:00:00
-Sales                :      5021.95
+Shift No :1
+CurDate  :02-09-2025 00:00:00
+Sales                :      1475.00
 Discount         (-) :         0.00
                      ----------------------
-TotalGrossAmt    (=) :      5021.95
-Tax Sales        (+) :       451.38
+TotalGrossAmt    (=) :      1475.00
+Tax Sales        (+) :         0.00
 Service Charge   (+) :         0.00
 --------------------------------------
-Total Sales          :      5473.35
+Total Sales          :      1475.00
 ======================================
-Total Cash Sales     :      5452.15
-Payout Amount    (-) :       300.00
-Net Cash Sales       :      5152.15
+Total Cash Sales     :      1084.00
+Payout Amount    (-) :         0.00
+Net Cash Sales       :      1084.00
 ======================================
 
        ------Details----
-Total BillCount      :         2.00
-Average Bill         :      2736.68
-Cash On Hand         :      5152.15
+Total BillCount      :        32.00
+Average Bill         :        46.09
+Cash On Hand         :      1084.00
 
        Sales Method
 ======================================
-Cash                 :     5452.15
-Cash Bill,Bank Card  :       21.20
+RM                   :       582.00
+QR PAY               :       628.00
+DEBIT/CREDIT PAY     :       247.00
 ======================================
-Total Sales  :             5473.35
+Total Sales  :             1457.00
 ======================================
 
        Payout Details
 ======================================
 
-       Advance Payment
-======================================
-SUREN                :       50.00
-FZULS                :      250.00
-======================================
-Total Amount Paid :         300.00
-======================================
-
        Main Group
 ======================================
-SERVICE              5473.35  451.38
+NAILS                  69.00    0.00
+BARBER               1256.00    0.00
+LADIES                150.00    0.00
 ======================================
-Total Amount  :    5473.35  451.38
+Total Amount  :       1475.00  0.00
 ======================================
 
        Sub Group
 ======================================
-OTHERS               5450.00  450.00
-SERVICES               23.35    1.38
+MEN                    30.00    0.00
+LADIES                 39.00    0.00
+FACE WAX               80.00    0.00
+HAIR CUT             1176.00    0.00
+L. THREADING           10.00    0.00
+LADIES HAIR CUT       140.00    0.00
 ======================================
-Total Amount  :    5473.35  451.38
+Total Amount  :       1475.00  0.00
 ======================================
 
        Itemwise Sales
 ======================================
-MINI PC                1     5450.00
-80-60MM THERMAL RECE   1        2.15
-IPT PAPER BOX 100PCS
-HAIR CUT ADULT         1       21.20
+CLASSIC MANI [Withou   1       30.00
+t Colour]
+CLASSIC PEDI [Withou   1       39.00
+t Colour]
+FACE WAX    [Full]     1       60.00
+FACE WAX [Partial]     1       20.00
+HAIR CUT              19      348.00
+[Adult]
+HAIR CUT   [Adult]     6      108.00
+HAIR CUT -  SHAVE /    6      180.00
+TRIM
+HAIR CUT - SHAVE / T   9      300.00
+RIM
+HAIR CUT [Children]    4      195.00
+HAIR CUT [F]           3       45.00
+L. THREADING           1       10.00
+WASH - BLOW            1       30.00
+WASH - CUT - BLOW      2      110.00
 ======================================
-Total Sales     :   3.00 5473.35
+Total Sales     :     55.00 1475.00
 ++++++++++++++++++++++++++++++++++++++
 
 
@@ -82,8 +95,8 @@ Total Sales     :   3.00 5473.35
 |Coins| * |         0 =       0.00 |
 ======================================
 Total Note         :      0.00
-Tot Cash Sales (-) :   5452.15
-Balance In Hand    :  -5152.15
+Tot Cash Sales (-) :   1084.00
+Balance In Hand    :  -1084.00
 ======================================
 
 

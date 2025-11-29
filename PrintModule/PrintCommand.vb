@@ -172,7 +172,7 @@ Public Class PrintCommand
                 If mode = "F" Then
                     Return True
                 End If
-                If _globalSetting.PrintShiftClose = False Then
+                If _GlobalSettings.PrintShiftClose = False Then
                     Return True
                 End If
                 
@@ -206,7 +206,7 @@ Public Class PrintCommand
                 If mode = "F" Then
                     Return True
                 End If
-                If _globalSetting.PrintShiftClose = False Then
+                If _GlobalSettings.PrintShiftClose = False Then
                     Return True
                 End If
                  

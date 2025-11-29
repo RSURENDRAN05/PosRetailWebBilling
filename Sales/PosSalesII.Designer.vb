@@ -264,7 +264,7 @@ Partial Class PosSalesII
         '
         Me.btnCustomerHistory.Image = CType(resources.GetObject("btnCustomerHistory.Image"), System.Drawing.Image)
         Me.btnCustomerHistory.Location = New System.Drawing.Point(550, 48)
-        Me.btnCustomerHistory.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnCustomerHistory.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCustomerHistory.Name = "btnCustomerHistory"
         Me.btnCustomerHistory.Size = New System.Drawing.Size(80, 38)
         Me.btnCustomerHistory.StyleController = Me.LayoutControl1

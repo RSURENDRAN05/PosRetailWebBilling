@@ -119,7 +119,10 @@ Module clsfunction
 
                 Next
             End If
-
+            If TableCreation() = False Then
+                WriteErroLog(errMsg)
+                Return False
+            End If
             If _funMailConfiguration(errMsg) = False Then
                 WriteErroLog(errMsg)
                 Return False
@@ -130,7 +133,314 @@ Module clsfunction
             Return False
         End Try
     End Function
+    Public Function TableCreation() As Boolean
+        Try
+            POSsettingsdt = New DataTable
+            POSsettingsdt.TableName = "PosSetting"
+            POSsettingsdt.Columns.Add("Caption", GetType(String))
+            POSsettingsdt.Columns.Add("Value", GetType(String))
+            POSsettingsdt.Columns.Add("AdmID", GetType(Integer)).AutoIncrement = True
+            Dim _dstC As New DataSet
+            Dim _sqlpara(3) As SqlParameter
+            _sqlpara(0) = New SqlParameter("@mode", "SET")
+            _sqlpara(1) = New SqlParameter("@ComIds", 1)
+            _sqlpara(2) = New SqlParameter("@LocIds", 1)
+            _sqlpara(3) = New SqlParameter("@PcNames", RegistrationDetails._localPcname)
+            _dstC = _sqlDataAdapter2("sp_general_query", _sqlpara)
+            If _dstC.Tables(0).Rows.Count > 0 Then
+                POSsettingsdt.Rows.Clear()
+                POSsettingsdt.BeginInit()
+                For Each _rsettings In _dstC.Tables(0).Rows
+                    POSsettingsdt.Rows.Add(_rsettings("Caption"), _rsettings("Value"), _rsettings("AdmID"))
+                Next
+                POSsettingsdt.AcceptChanges()
+                POSsettingsdt.EndInit()
+            End If
 
+
+            '---------------------------------------------------Printer Type--------------
+          
+            Dim MainGroupLoad As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "MainGroupLoad"
+            If MainGroupLoad.Any Then
+
+                If MainGroupLoad(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.MainIdLoad = 0
+                Else
+                    _GlobalSettings.MainIdLoad = Convert.ToInt32(MainGroupLoad(0)("Value"))
+                End If
+            End If
+            Dim SubGroupLoad As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "SubGroupLoad"
+            If SubGroupLoad.Any Then
+
+                If SubGroupLoad(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.SubIdLoad = 0
+                Else
+                    _GlobalSettings.SubIdLoad = Convert.ToInt32(SubGroupLoad(0)("Value"))
+                End If
+            End If
+            Dim PrintShiftClose As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "PrintShiftClose"
+            If PrintShiftClose.Any Then
+                If PrintShiftClose(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.PrintShiftClose = False
+                Else
+                    If Convert.ToInt32(PrintShiftClose(0)("Value")) = 1 Then
+                        _GlobalSettings.PrintShiftClose = True
+                    End If
+                End If
+
+            End If
+            Dim PrintDayClose As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "PrintDayClose"
+            If PrintDayClose.Any Then
+                If PrintDayClose(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.PrintDayClose = False
+                Else
+                    If Convert.ToInt32(PrintDayClose(0)("Value")) = 1 Then
+                        _GlobalSettings.PrintDayClose = True
+                    End If
+                End If
+            End If
+            Dim SalePriceOnSales As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "SalePriceOnSales"
+            If SalePriceOnSales.Any Then
+                If SalePriceOnSales(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.SalePriceOnSales = False
+                Else
+                    If Convert.ToInt32(SalePriceOnSales(0)("Value")) = 1 Then
+                        _GlobalSettings.SalePriceOnSales = True
+                    End If
+                End If
+            End If
+            'Dim AutoLockClient As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "AutoLockClient"
+            'If AutoLockClient.Any Then
+            '    If AutoLockClient(0)("Value") Is DBNull.Value Then
+            '        _GlobalSettings.AutoLockClient = False
+            '    Else
+            '        If Convert.ToInt32(AutoLockClient(0)("Value")) = 1 Then
+            '            _GlobalSettings.AutoLockClient = True
+            '        End If
+            '    End If
+            'End If
+            Dim ProductWithBarcode As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "ProductWithBarcode"
+            If ProductWithBarcode.Any Then
+                If ProductWithBarcode(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.ProductWithBarcode = False
+                Else
+                    If Convert.ToInt32(ProductWithBarcode(0)("Value")) = 1 Then
+                        _GlobalSettings.ProductWithBarcode = True
+                    End If
+                End If
+            End If
+            Dim InSalesCardScan As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "InSalesCardScan"
+            If InSalesCardScan.Any Then
+                If InSalesCardScan(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.InSalesCardScan = 0
+                Else
+                    If Convert.ToInt32(InSalesCardScan(0)("Value")) = 1 Then
+                        _GlobalSettings.InSalesCardScan = 1
+                    End If
+                End If
+            End If
+            Dim PendingListOption As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "PendingListOption"
+            If PendingListOption.Any Then
+                If PendingListOption(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.PendingListOption = False
+                Else
+                    If Convert.ToInt32(PendingListOption(0)("Value")) = 1 Then
+                        _GlobalSettings.PendingListOption = True
+                    End If
+                End If
+            End If
+            Dim SuperUserPassword As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "SuperUserPassword"
+            If SuperUserPassword.Any Then
+                If SuperUserPassword(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.SuperUserPassword = False
+                Else
+                    If Convert.ToInt32(SuperUserPassword(0)("Value")) = 1 Then
+                        _GlobalSettings.SuperUserPassword = True
+                    End If
+                End If
+            End If
+            Dim BackDisplayClear As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "BackDisplayClear"
+            If BackDisplayClear.Any Then
+                If BackDisplayClear(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.BackDisplayClear = False
+                Else
+                    If Convert.ToInt32(BackDisplayClear(0)("Value")) = 1 Then
+                        _GlobalSettings.BackDisplayClear = True
+                    End If
+                End If
+            End If
+            Dim ServiceChargeActive As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "ServiceChargeActive"
+            If ServiceChargeActive.Any Then
+                If ServiceChargeActive(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.ServiceChargeActive = False
+                Else
+                    If Convert.ToInt32(ServiceChargeActive(0)("Value")) = 1 Then
+                        _GlobalSettings.ServiceChargeActive = True
+                    End If
+                End If
+            End If
+            Dim TakeawayChargeActive As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "TakeawayChargeActive"
+            If TakeawayChargeActive.Any Then
+                If TakeawayChargeActive(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.TakeawayChargeActive = False
+                Else
+                    If Convert.ToInt32(TakeawayChargeActive(0)("Value")) = 1 Then
+                        _GlobalSettings.TakeawayChargeActive = True
+                    End If
+                End If
+            End If
+            Dim ServiceChargeValue As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "ServiceChargeValue"
+            If ServiceChargeValue.Any Then
+                If ServiceChargeValue(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.ServiceChargeValue = 0
+                Else
+
+                    _GlobalSettings.ServiceChargeValue = Convert.ToInt32(ServiceChargeValue(0)("Value"))
+
+                End If
+            End If
+            Dim TakeawayChargeValue As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "TakeawayChargeValue"
+            If TakeawayChargeValue.Any Then
+                If TakeawayChargeValue(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.TakeawayChargeValue = 0
+                Else
+
+                    _GlobalSettings.TakeawayChargeValue = Convert.ToInt32(TakeawayChargeValue(0)("Value"))
+
+                End If
+            End If
+
+            Dim DayTaxPrint As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "DayTaxPrint"
+            If DayTaxPrint.Any Then
+                If Convert.ToInt32(DayTaxPrint(0)("Value")) = 0 Then
+                    _GlobalSettings.DayTaxPrint = False
+                Else
+                    If Convert.ToInt32(DayTaxPrint(0)("Value")) = 1 Then
+                        _GlobalSettings.DayTaxPrint = True
+                    End If
+                End If
+            End If
+            Dim MultiplePayment As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "MultiplePayment"
+            If MultiplePayment.Any Then
+                If Convert.ToInt32(MultiplePayment(0)("Value")) = 0 Then
+                    _GlobalSettings.MultiplePayment = False
+                Else
+                    If Convert.ToInt32(MultiplePayment(0)("Value")) = 1 Then
+                        _GlobalSettings.MultiplePayment = True
+                    End If
+                End If
+            End If
+            Dim CurrencySimple As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "CurrencySimple"
+            If CurrencySimple.Any Then
+                If CurrencySimple(0)("Value") = "RM" Then
+                    _GlobalSettings.CurrencySimple = "RM"
+                Else
+                    _GlobalSettings.CurrencySimple = CurrencySimple(0)("Value")
+                End If
+            End If
+            Dim ItemCancelPrint As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "ItemCancelPrint"
+            If ItemCancelPrint.Any Then
+                If Convert.ToInt32(ItemCancelPrint(0)("Value")) = 0 Then
+                    _GlobalSettings.ItemCancelPrint = False
+                Else
+                    If Convert.ToInt32(ItemCancelPrint(0)("Value")) = 1 Then
+                        _GlobalSettings.ItemCancelPrint = True
+                    End If
+                End If
+            End If
+            Dim TerminalWebApi As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "TerminalWebApi"
+            If TerminalWebApi.Any Then
+                If TerminalWebApi(0)("Value") = " " Then
+                    _GlobalSettings.TerminalWebApi = "http://localhost:8888"
+                Else
+                    _GlobalSettings.TerminalWebApi = TerminalWebApi(0)("Value")
+                End If
+            End If
+            Dim PaymentTerminal As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "PaymentTerminal"
+            If PaymentTerminal.Any Then
+                If Convert.ToInt32(PaymentTerminal(0)("Value")) = 0 Then
+                    _GlobalSettings.PaymentTerminal = False
+                Else
+                    If Convert.ToInt32(PaymentTerminal(0)("Value")) = 1 Then
+                        _GlobalSettings.PaymentTerminal = True
+                    End If
+                End If
+            End If
+            Dim AddonViewData As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "AddonViewData"
+            If AddonViewData.Any Then
+                If AddonViewData(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.AddonViewData = False
+                Else
+                    If Convert.ToInt32(AddonViewData(0)("Value")) = 1 Then
+                        _GlobalSettings.AddonViewData = True
+                    End If
+                End If
+            End If
+            Dim TakeAwayCardOption As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "TakeAwayCardOption"
+            If TakeAwayCardOption.Any Then
+                If TakeAwayCardOption(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.TakeAwayCardOption = False
+                Else
+                    If Convert.ToInt32(TakeAwayCardOption(0)("Value")) = 1 Then
+                        _GlobalSettings.TakeAwayCardOption = True
+                    End If
+                End If
+            End If
+            Dim ChangeToCash As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "ChangeToCash"
+            If ChangeToCash.Any Then
+                If ChangeToCash(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.ChangeToCash = False
+                Else
+                    If Convert.ToInt32(ChangeToCash(0)("Value")) = 1 Then
+                        _GlobalSettings.ChangeToCash = True
+                    End If
+                End If
+            End If
+            Dim AllowMemberNegativeBalance As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "AllowMemberNegativeBalance"
+            If AllowMemberNegativeBalance.Any Then
+                If AllowMemberNegativeBalance(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.AllowMemberNegativeBalance = False
+                Else
+                    If Convert.ToInt32(AllowMemberNegativeBalance(0)("Value")) = 1 Then
+                        _GlobalSettings.AllowMemberNegativeBalance = True
+                    End If
+                End If
+            End If
+            Dim GlobalMemberOnline As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "GlobalMemberOnline"
+            If GlobalMemberOnline.Any Then
+                If GlobalMemberOnline(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.GlobalMemberOnline = False
+                Else
+                    If Convert.ToInt32(GlobalMemberOnline(0)("Value")) = 1 Then
+                        _GlobalSettings.GlobalMemberOnline = True
+                    End If
+                End If
+            End If
+            Dim AutoUpdateQrOrder As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "AutoUpdateQrOrder"
+            If AutoUpdateQrOrder.Any Then
+
+                If AutoUpdateQrOrder(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.AutoUpdateQrOrder = False
+                Else
+                    If Convert.ToInt32(AutoUpdateQrOrder(0)("Value")) = 1 Then
+                        _GlobalSettings.AutoUpdateQrOrder = True
+                    End If
+                End If
+            End If
+            Dim KotLang1M2E As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In POSsettingsdt Where dtrow("Caption") = "KotLang1M2E"
+            If KotLang1M2E.Any Then
+                If KotLang1M2E(0)("Value") Is DBNull.Value Then
+                    _GlobalSettings.KotLang1M2E = 1
+                Else
+                    _GlobalSettings.KotLang1M2E = Convert.ToInt32(KotLang1M2E(0)("Value"))
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            WriteErroLog(ex.Message)
+            Return False
+        End Try
+    End Function
     Public Function _funMailConfiguration(ByRef ERR As String) As Boolean
         Try
             If File.Exists(M_Details._appPath & "\LayOut\MailConfiguration.xml") Then
@@ -846,16 +1156,16 @@ L:          Dim dtrow As Data.EnumerableRowCollection(Of DataRow) = From dtrows 
             _SqlShitClosePrint(0) = New SqlParameter("@mode", "S")
             _SqlShitClosePrint(1) = New SqlParameter("@shiftno", clsdShiftno)
             _dsshiftClose = _sqlDataAdapter2("sp_shiftclose_print", _SqlShitClosePrint)
-            _dsshiftClose.Tables(0).TableName = "ShiftClose"
-            _dsshiftClose.Tables(1).TableName = "InvoiceHdr"
-            _dsshiftClose.Tables(2).TableName = "InvoiceDtl"
-            _dsshiftClose.Tables(3).TableName = "MainGroup"
-            _dsshiftClose.Tables(4).TableName = "SubGroup"
-            _dsshiftClose.Tables(5).TableName = "Payment"
-            _dsshiftClose.Tables(6).TableName = "Payouts"
-            _dsshiftClose.Tables(7).TableName = "DeleteItem"
+            '_dsshiftClose.Tables(0).TableName = "ShiftClose"
+            '_dsshiftClose.Tables(1).TableName = "InvoiceHdr"
+            '_dsshiftClose.Tables(2).TableName = "InvoiceDtl"
+            '_dsshiftClose.Tables(3).TableName = "MainGroup"
+            '_dsshiftClose.Tables(4).TableName = "SubGroup"
+            '_dsshiftClose.Tables(5).TableName = "Payment"
+            '_dsshiftClose.Tables(6).TableName = "Payouts"
+            '_dsshiftClose.Tables(7).TableName = "DeleteItem"
             If _dsshiftClose.Tables(0).Rows.Count > 0 Then
-                _dsshiftClose.WriteXml(M_Details._appPath & "Reports\ShiftClosePrint.xml", XmlWriteMode.WriteSchema)
+                _dsshiftClose.WriteXml(M_Details._appPath & "\Reports\ShiftClosePrint.xml", XmlWriteMode.WriteSchema)
                 'If printShift(print) = False Then
                 '    eLog.WriteErroLog("ShiftClose Print Is Failed")
                 'End If
@@ -866,7 +1176,7 @@ L:          Dim dtrow As Data.EnumerableRowCollection(Of DataRow) = From dtrows 
                     Dim printCommand As New PrintCommand
                     If printCommand._printShiftClose(clsdShiftno, "S", _dateTime) = True Then
                         If printCommand._printShiftClose(clsdShiftno, "F", _dateTime) = True Then
-                            sendMailShiftDosMode(clsdShiftno, True, _dateTime)
+                            sendMailShiftDosMode(clsdShiftno, mail, _dateTime)
                         End If
                     End If
                 Else

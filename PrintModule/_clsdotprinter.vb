@@ -190,36 +190,60 @@ Public Class _clsdotprinter
                     Dim _sumSalemethod As Double = 0.0
                     Dim _RowsSaleslist As String = ""
 
-                    ' Dictionary to store bill type totals - Key: BillType, Value: NetAmt as string
-                    Dim billTypeTotals As New Dictionary(Of String, String)
 
-                    If _dsshiftClose.Tables("InvoiceHdr").Rows.Count > 0 Then
-                        ' Process each invoice to group by bill type
-                        For Each _rowSalesmethod As DataRow In _dsshiftClose.Tables("InvoiceHdr").Rows
-                            Dim billType As String = _rowSalesmethod("psih_invoice_billtype").ToString
-                            Dim netAmt As Double = CDbl(_rowSalesmethod("psih_invoice_tnetamt"))
+                    Dim billTypeTotals As New Dictionary(Of Integer, Double)
 
-                            ' Add or update totals for this bill type
-                            If billTypeTotals.ContainsKey(billType) Then
-                                Dim existingNet As Double = CDbl(billTypeTotals(billType))
-                                billTypeTotals(billType) = (existingNet + netAmt).ToString
+                    If _dsshiftClose.Tables("SalPaymode").Rows.Count > 0 Then
+
+                        For Each r As DataRow In _dsshiftClose.Tables("SalPaymode").Rows
+                            Dim rawType As String = r("psih_invoice_billtype").ToString.Trim.ToUpper()
+                            Dim netAmt As Double = CDbl(r("netamt"))
+
+                            Dim billType As Integer = 0
+
+                            ' --- BILL TYPE MAPPING ---
+                            If rawType = "CASH" Or rawType = "RM" Then
+                                billType = 1
+                            ElseIf rawType = "QR PAY" Or rawType = "QR PAY" Then
+                                billType = 2
+
+                            ElseIf rawType = "CARD" Or rawType = "DEBIT/CREDIT CARD" Then
+                                billType = 3
+
                             Else
-                                billTypeTotals.Add(billType, netAmt.ToString)
+                                billType = 0  ' unknown types (optional)
+                            End If
+
+                            If billType > 0 Then
+                                If billTypeTotals.ContainsKey(billType) Then
+                                    billTypeTotals(billType) += netAmt
+                                Else
+                                    billTypeTotals.Add(billType, netAmt)
+                                End If
                             End If
                         Next
 
-                        ' Display grouped results
-                        For Each kvp In billTypeTotals
-                            Dim groupNet As Double = CDbl(kvp.Value)
-                            _RowsSaleslist = kvp.Key.PadRight(20) & " :  " & groupNet.ToString("0.00").PadLeft(10)
-                            _content.AppendLine(_RowsSaleslist.ToString)
-                            _sumSalemethod += groupNet
+                        ' PRINT ORDER
+                        Dim printOrder As Integer() = {1, 2, 3}
+                        Dim billTypeNames As New Dictionary(Of Integer, String) From {
+                            {1, "RM"},
+                            {2, "QR PAY"},
+                            {3, "DEBIT/CREDIT PAY"}
+                        }
+
+                        For Each bType In printOrder
+                            If billTypeTotals.ContainsKey(bType) Then
+                                Dim total As Double = billTypeTotals(bType)
+                                _content.AppendLine(billTypeNames(bType).PadRight(20) & " :   " & total.ToString("0.00").PadLeft(10))
+                                _sumSalemethod += total
+                            End If
                         Next
 
                         _content.AppendLine(_dot4)
                         _content.AppendLine("Total Sales  :             " & _sumSalemethod.ToString("0.00"))
                         _content.AppendLine(_dot4)
                     End If
+
                 End If
                 _content.AppendLine(_EMPTY)
                 '------------------------------Payout Method 2--------------------------------
@@ -314,7 +338,7 @@ Public Class _clsdotprinter
                         Next
 
                         _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Amount  :    " & _sumgrpnet.ToString("0.00") & "  " & _sumgrptax.ToString("0.00"))
+                        _content.AppendLine("Total Amount  :       " & _sumgrpnet.ToString("0.00") & "  " & _sumgrptax.ToString("0.00"))
                         _content.AppendLine(_dot4)
 
                     End If
@@ -369,7 +393,7 @@ Public Class _clsdotprinter
                         Next
 
                         _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Amount  :    " & _sumsubgrpnet.ToString("0.00") & "  " & _sumsubgrptax.ToString("0.00"))
+                        _content.AppendLine("Total Amount  :       " & _sumsubgrpnet.ToString("0.00") & "  " & _sumsubgrptax.ToString("0.00"))
                         _content.AppendLine(_dot4)
 
                     End If
@@ -402,7 +426,7 @@ Public Class _clsdotprinter
                             _sumItemQty += _rowItem("psid_invoice_proqty")
                         Next
                         _content.AppendLine(_dot4)
-                        _content.AppendLine("Total Sales     :   " & _sumItemQty.ToString("0.00") & " " & _sumItemnet.ToString("0.00")) ' & "  " & _sumItemtax.ToString("0.00"))
+                        _content.AppendLine("Total Sales     :     " & _sumItemQty.ToString("0.00") & " " & _sumItemnet.ToString("0.00")) ' & "  " & _sumItemtax.ToString("0.00"))
                         _content.AppendLine(_dot3)
 
                     End If

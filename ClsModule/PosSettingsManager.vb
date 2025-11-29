@@ -28,8 +28,6 @@ Module PosSettingsManager
         Public Shared _AutoDayOpen As Boolean = True
         Public Shared _ShiftPrintDos As Boolean = True
         Public Shared ProductWithBarcode As Boolean = False
-        Public Shared PrintShiftClose As Boolean = False
-        Public Shared PrintDayClose As Boolean = False
         Public Shared SalePriceOnSales As Boolean = False
         Public Shared SuperUserPassword As Boolean = False
         Public Shared BackDisplayClear As Boolean = False
@@ -43,6 +41,56 @@ Module PosSettingsManager
         Public Shared ItemCancelPrint As Boolean = False
         Public Shared ChangeToCash As Boolean = False
         Public Shared AutoSyncSales As Boolean = True
+    End Structure
+    Public Structure _GlobalSettings
+        Public Shared _BillDiscountEnabled_Status As Boolean = False
+        Public Shared _ItemDiscountEnabled_Status As Boolean = False
+        Public Shared _IGSTEnabled_Status As Boolean = False
+        Public Shared _SalesItemMount As Boolean = False
+        Public Shared _TaxExclusiveActive As Boolean = False '1 is Exclusive Active =true 0 is inclusesive = false
+        Public Shared _AutoShiftClose As Boolean
+        Public Shared _AutoDayClose As Boolean
+        Public Shared _AutoShiftOpen As Boolean
+        Public Shared _AutoDayOpen As Boolean
+        Public Shared _ServerClientDayClose As Boolean 'if pc is server and  _ServerClientDayClose =1 then ok or if pc is client and _ServerClientDayClose=1 then not k
+        Public Shared _ShiftPrintDos As Boolean
+        Public Shared _ShiftCloseByClient As Boolean
+        Public Shared _AddonClick As Boolean
+        Public Shared _AddonItemManual As Boolean
+        Public Shared _AddonBusinessTypeThambah As String = 4
+        Public Shared _AddonBusinessTypeAddOn As String = 3
+        Public Shared ProductWithBarcode As Boolean = False
+        Public Shared AddOnMainIdExtra As String = String.Empty
+        Public Shared AddOnMainIdRequest As String = String.Empty
+        Public Shared PrintShiftClose As Boolean
+        Public Shared PrintDayClose As Boolean
+        Public Shared MainIdLoad As Integer = 0
+        Public Shared SubIdLoad As Integer = 0
+        Public Shared AutoUpdateQrOrder As Boolean = False
+        Public Shared SalePriceOnSales As Boolean = False
+        Public Shared AutoLockClient As Boolean = False
+        Public Shared InSalesCardScan As Integer = 0
+        Public Shared PendingListOption As Boolean = False
+        Public Shared SuperUserPassword As Boolean = False
+        Public Shared QrOrder As Boolean = False
+        Public Shared BackDisplayClear As Boolean = False
+        Public Shared DayTaxPrint As Boolean = False
+        Public Shared ServiceChargeActive As Boolean = False
+        Public Shared TakeawayChargeActive As Boolean = False
+        Public Shared ServiceChargeValue As Integer = 0
+        Public Shared TakeawayChargeValue As Integer = 0
+        Public Shared _ScanItemBarcode As Boolean = False
+        Public Shared MultiplePayment As Boolean = False
+        Public Shared CurrencySimple As String = "RM"
+        Public Shared ItemCancelPrint As Boolean = False
+        Public Shared PaymentTerminal As Boolean = False
+        Public Shared TerminalWebApi As String = String.Empty
+        Public Shared AddonViewData As Boolean = False
+        Public Shared TakeAwayCardOption As Boolean = False
+        Public Shared ChangeToCash As Boolean = False
+        Public Shared AllowMemberNegativeBalance As Boolean = False
+        Public Shared GlobalMemberOnline As Boolean = False
+        Public Shared KotLang1M2E As Integer = 1
     End Structure
     Public Structure _globalSettingValues
         Public Shared ServiceTaxValue As String = "0"

@@ -1741,22 +1741,148 @@
     <Updated>2025-10-07 20:38:32</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>445</CommissionId>
+    <CommissionId>481</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>65</ItemId>
-    <ItemName>ADMIN</ItemName>
-    <Barcode>64</Barcode>
-    <SubGroupId>19</SubGroupId>
-    <SubGroupName>EYELASH EXTENSION</SubGroupName>
+    <ItemId>99</ItemId>
+    <ItemName>GEL       MANI-PEDI</ItemName>
+    <Barcode>98</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:50</Created>
+    <Updated>2025-10-16 18:03:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>482</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>78</ItemId>
+    <ItemName>GEL MANI-PEDI</ItemName>
+    <Barcode>77</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:50</Created>
+    <Updated>2025-10-16 18:03:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>480</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>59</ItemId>
+    <ItemName>SPA MANI         [Gel Colour]</ItemName>
+    <Barcode>58</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:50</Created>
+    <Updated>2025-10-16 18:03:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>483</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>102</ItemId>
+    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
+    <Barcode>101</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:51</Created>
+    <Updated>2025-10-16 18:03:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>484</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:51</Created>
+    <Updated>2025-10-16 18:03:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>485</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>100</ItemId>
+    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
+    <Barcode>99</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:51</Created>
+    <Updated>2025-10-16 18:03:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>448</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>91</ItemId>
+    <ItemName>ADVANCE FACIAL</ItemName>
+    <Barcode>90</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-10-16 18:03:43</Created>
-    <Updated>2025-10-16 18:03:43</Updated>
+    <Created>2025-10-16 18:03:44</Created>
+    <Updated>2025-10-16 18:03:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>449</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>90</ItemId>
+    <ItemName>BASIC FACIAL</ItemName>
+    <Barcode>89</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:44</Created>
+    <Updated>2025-10-16 18:03:44</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>446</CommissionId>
@@ -1782,44 +1908,8 @@
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>89</ItemId>
-    <ItemName>FACE WASH</ItemName>
+    <ItemName>FACE WASH AND MASSAGE</ItemName>
     <Barcode>88</Barcode>
-    <SubGroupId>15</SubGroupId>
-    <SubGroupName>L. FACIAL</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:44</Created>
-    <Updated>2025-10-16 18:03:44</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>448</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>91</ItemId>
-    <ItemName>FACIAL      [Classic]</ItemName>
-    <Barcode>90</Barcode>
-    <SubGroupId>15</SubGroupId>
-    <SubGroupName>L. FACIAL</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:44</Created>
-    <Updated>2025-10-16 18:03:44</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>449</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>90</ItemId>
-    <ItemName>FACIAL      [Express]</ItemName>
-    <Barcode>89</Barcode>
     <SubGroupId>15</SubGroupId>
     <SubGroupName>L. FACIAL</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
@@ -2083,22 +2173,22 @@
     <Updated>2025-10-16 18:03:47</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>464</CommissionId>
+    <CommissionId>445</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>45</ItemId>
-    <ItemName>ARMPIT</ItemName>
-    <Barcode>44</Barcode>
-    <SubGroupId>18</SubGroupId>
-    <SubGroupName>L. WAXING</SubGroupName>
+    <ItemId>65</ItemId>
+    <ItemName>ADMIN ONLY</ItemName>
+    <Barcode>64</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-10-16 18:03:47</Created>
-    <Updated>2025-10-16 18:03:47</Updated>
+    <Created>2025-10-16 18:03:43</Created>
+    <Updated>2025-10-16 18:03:43</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>465</CommissionId>
@@ -2191,24 +2281,6 @@
     <Updated>2025-10-16 18:03:48</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>470</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>86</ItemId>
-    <ItemName>FULL NECK</ItemName>
-    <Barcode>85</Barcode>
-    <SubGroupId>18</SubGroupId>
-    <SubGroupName>L. WAXING</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:48</Created>
-    <Updated>2025-10-16 18:03:48</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
     <CommissionId>471</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
@@ -2250,7 +2322,7 @@
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>87</ItemId>
-    <ItemName>HALF NECK</ItemName>
+    <ItemName>HENNA</ItemName>
     <Barcode>86</Barcode>
     <SubGroupId>18</SubGroupId>
     <SubGroupName>L. WAXING</SubGroupName>
@@ -2261,6 +2333,24 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:49</Created>
     <Updated>2025-10-16 18:03:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>470</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>86</ItemId>
+    <ItemName>NECK</ItemName>
+    <Barcode>85</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:48</Created>
+    <Updated>2025-10-16 18:03:48</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>474</CommissionId>
@@ -2281,6 +2371,24 @@
     <Updated>2025-10-16 18:03:49</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>464</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>45</ItemId>
+    <ItemName>UNDERARM</ItemName>
+    <Barcode>44</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:47</Created>
+    <Updated>2025-10-16 18:03:47</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>475</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
@@ -2297,6 +2405,114 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:49</Created>
     <Updated>2025-10-16 18:03:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>510</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>96</ItemId>
+    <ItemName>GEL MANI</ItemName>
+    <Barcode>95</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:55</Created>
+    <Updated>2025-10-16 18:03:55</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>509</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>97</ItemId>
+    <ItemName>GEL PEDI</ItemName>
+    <Barcode>96</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:55</Created>
+    <Updated>2025-10-16 18:03:55</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>506</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>92</ItemId>
+    <ItemName>MANI</ItemName>
+    <Barcode>91</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:55</Created>
+    <Updated>2025-10-16 18:03:55</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>508</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>93</ItemId>
+    <ItemName>PEDI</ItemName>
+    <Barcode>92</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:55</Created>
+    <Updated>2025-10-16 18:03:55</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>507</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>94</ItemId>
+    <ItemName>SPA MANI</ItemName>
+    <Barcode>93</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:55</Created>
+    <Updated>2025-10-16 18:03:55</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>511</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>95</ItemId>
+    <ItemName>SPA PEDI</ItemName>
+    <Barcode>94</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:56</Created>
+    <Updated>2025-10-16 18:03:56</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>476</CommissionId>
@@ -2340,7 +2556,7 @@
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>103</ItemId>
-    <ItemName>L. THREADING</ItemName>
+    <ItemName>T. FULL FACE</ItemName>
     <Barcode>102</Barcode>
     <SubGroupId>13</SubGroupId>
     <SubGroupName>LADIES HAIR CUT</SubGroupName>
@@ -2389,159 +2605,15 @@
     <Updated>2025-10-16 18:03:50</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>480</CommissionId>
+    <CommissionId>490</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>59</ItemId>
-    <ItemName>CLASSIC MANI-PEDI [Without Colour]</ItemName>
-    <Barcode>58</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:50</Created>
-    <Updated>2025-10-16 18:03:50</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>481</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>99</ItemId>
-    <ItemName>GEL       MANI-PEDI</ItemName>
-    <Barcode>98</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:50</Created>
-    <Updated>2025-10-16 18:03:50</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>482</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>78</ItemId>
-    <ItemName>PREMIUM MANI-PEDI    [OPI Colour]</ItemName>
-    <Barcode>77</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:50</Created>
-    <Updated>2025-10-16 18:03:50</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>483</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>102</ItemId>
-    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
-    <Barcode>101</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:51</Created>
-    <Updated>2025-10-16 18:03:51</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>484</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>101</ItemId>
-    <ItemName>SPA MANI-PEDI [OPI Colour]</ItemName>
-    <Barcode>100</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:51</Created>
-    <Updated>2025-10-16 18:03:51</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>485</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>100</ItemId>
-    <ItemName>SPA MANI-PEDI [Without Colour]</ItemName>
-    <Barcode>99</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:51</Created>
-    <Updated>2025-10-16 18:03:51</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>486</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>75</ItemId>
-    <ItemName>CLASSIC MANI [Without Colour]</ItemName>
-    <Barcode>74</Barcode>
+    <ItemId>81</ItemId>
+    <ItemName>EXTRA 1</ItemName>
+    <Barcode>80</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:51</Created>
-    <Updated>2025-10-16 18:03:51</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>487</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>79</ItemId>
-    <ItemName>GEL MANI</ItemName>
-    <Barcode>78</Barcode>
-    <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:51</Created>
-    <Updated>2025-10-16 18:03:51</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>488</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>76</ItemId>
-    <ItemName>PREMIUM MANI [OPI Colour]</ItemName>
-    <Barcode>75</Barcode>
-    <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -2556,10 +2628,10 @@
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>82</ItemId>
-    <ItemName>SPA MANI       [Gel Colour]</ItemName>
+    <ItemName>EXTRA 2</ItemName>
     <Barcode>81</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -2569,15 +2641,33 @@
     <Updated>2025-10-16 18:03:52</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>490</CommissionId>
+    <CommissionId>486</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>81</ItemId>
-    <ItemName>SPA MANI       [OPI Colour]</ItemName>
-    <Barcode>80</Barcode>
+    <ItemId>75</ItemId>
+    <ItemName>MANICURE</ItemName>
+    <Barcode>74</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:51</Created>
+    <Updated>2025-10-16 18:03:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>488</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>76</ItemId>
+    <ItemName>PEDICURE</ItemName>
+    <Barcode>75</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -2585,6 +2675,24 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:52</Created>
     <Updated>2025-10-16 18:03:52</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>487</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>79</ItemId>
+    <ItemName>SPA MANICURE</ItemName>
+    <Barcode>78</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:51</Created>
+    <Updated>2025-10-16 18:03:51</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>491</CommissionId>
@@ -2592,10 +2700,10 @@
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>80</ItemId>
-    <ItemName>SPA MANI [Without Colour]</ItemName>
+    <ItemName>SPA PEDICURE</ItemName>
     <Barcode>79</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -2891,114 +2999,6 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:55</Created>
     <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>506</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>92</ItemId>
-    <ItemName>CLASSIC PEDI [Without Colour]</ItemName>
-    <Barcode>91</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:55</Created>
-    <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>507</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>94</ItemId>
-    <ItemName>GEL PEDI</ItemName>
-    <Barcode>93</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:55</Created>
-    <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>508</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>93</ItemId>
-    <ItemName>PREMIUM PEDI [OPI Colour]</ItemName>
-    <Barcode>92</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:55</Created>
-    <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>509</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>97</ItemId>
-    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
-    <Barcode>96</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:55</Created>
-    <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>510</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>96</ItemId>
-    <ItemName>SPA PEDI       [OPI Colour]</ItemName>
-    <Barcode>95</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:55</Created>
-    <Updated>2025-10-16 18:03:55</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>511</CommissionId>
-    <EmpId>18</EmpId>
-    <SalesmanName>KHUSHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>95</ItemId>
-    <ItemName>SPA PEDI [Without Colour]</ItemName>
-    <Barcode>94</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:56</Created>
-    <Updated>2025-10-16 18:03:56</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>202</CommissionId>
@@ -8563,15 +8563,123 @@
     <Updated>2025-10-07 20:40:47</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>512</CommissionId>
+    <CommissionId>548</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>65</ItemId>
-    <ItemName>ADMIN</ItemName>
-    <Barcode>64</Barcode>
-    <SubGroupId>19</SubGroupId>
-    <SubGroupName>EYELASH EXTENSION</SubGroupName>
+    <ItemId>99</ItemId>
+    <ItemName>GEL       MANI-PEDI</ItemName>
+    <Barcode>98</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>549</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>78</ItemId>
+    <ItemName>GEL MANI-PEDI</ItemName>
+    <Barcode>77</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>547</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>59</ItemId>
+    <ItemName>SPA MANI         [Gel Colour]</ItemName>
+    <Barcode>58</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>551</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>550</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>102</ItemId>
+    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
+    <Barcode>101</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>552</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>100</ItemId>
+    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
+    <Barcode>99</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:03</Created>
+    <Updated>2025-10-16 18:04:03</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>515</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>91</ItemId>
+    <ItemName>ADVANCE FACIAL</ItemName>
+    <Barcode>90</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -8579,6 +8687,24 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:56</Created>
     <Updated>2025-10-16 18:03:56</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>516</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>90</ItemId>
+    <ItemName>BASIC FACIAL</ItemName>
+    <Barcode>89</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:03:57</Created>
+    <Updated>2025-10-16 18:03:57</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>513</CommissionId>
@@ -8604,7 +8730,7 @@
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>89</ItemId>
-    <ItemName>FACE WASH</ItemName>
+    <ItemName>FACE WASH AND MASSAGE</ItemName>
     <Barcode>88</Barcode>
     <SubGroupId>15</SubGroupId>
     <SubGroupName>L. FACIAL</SubGroupName>
@@ -8615,42 +8741,6 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:56</Created>
     <Updated>2025-10-16 18:03:56</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>515</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>91</ItemId>
-    <ItemName>FACIAL      [Classic]</ItemName>
-    <Barcode>90</Barcode>
-    <SubGroupId>15</SubGroupId>
-    <SubGroupName>L. FACIAL</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:56</Created>
-    <Updated>2025-10-16 18:03:56</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>516</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>90</ItemId>
-    <ItemName>FACIAL      [Express]</ItemName>
-    <Barcode>89</Barcode>
-    <SubGroupId>15</SubGroupId>
-    <SubGroupName>L. FACIAL</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:03:57</Created>
-    <Updated>2025-10-16 18:03:57</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>517</CommissionId>
@@ -8905,22 +8995,22 @@
     <Updated>2025-10-16 18:03:59</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>531</CommissionId>
+    <CommissionId>512</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>45</ItemId>
-    <ItemName>ARMPIT</ItemName>
-    <Barcode>44</Barcode>
-    <SubGroupId>18</SubGroupId>
-    <SubGroupName>L. WAXING</SubGroupName>
+    <ItemId>65</ItemId>
+    <ItemName>ADMIN ONLY</ItemName>
+    <Barcode>64</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
     <FixedAmount>0.00</FixedAmount>
     <Status>1</Status>
-    <Created>2025-10-16 18:04:00</Created>
-    <Updated>2025-10-16 18:04:00</Updated>
+    <Created>2025-10-16 18:03:56</Created>
+    <Updated>2025-10-16 18:03:56</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>532</CommissionId>
@@ -9013,24 +9103,6 @@
     <Updated>2025-10-16 18:04:01</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>537</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>86</ItemId>
-    <ItemName>FULL NECK</ItemName>
-    <Barcode>85</Barcode>
-    <SubGroupId>18</SubGroupId>
-    <SubGroupName>L. WAXING</SubGroupName>
-    <MainGroupName>LADIES</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:01</Created>
-    <Updated>2025-10-16 18:04:01</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
     <CommissionId>538</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
@@ -9072,8 +9144,26 @@
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>87</ItemId>
-    <ItemName>HALF NECK</ItemName>
+    <ItemName>HENNA</ItemName>
     <Barcode>86</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:01</Created>
+    <Updated>2025-10-16 18:04:01</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>537</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>86</ItemId>
+    <ItemName>NECK</ItemName>
+    <Barcode>85</Barcode>
     <SubGroupId>18</SubGroupId>
     <SubGroupName>L. WAXING</SubGroupName>
     <MainGroupName>LADIES</MainGroupName>
@@ -9103,6 +9193,24 @@
     <Updated>2025-10-16 18:04:01</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>531</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>45</ItemId>
+    <ItemName>UNDERARM</ItemName>
+    <Barcode>44</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:00</Created>
+    <Updated>2025-10-16 18:04:00</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>542</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
@@ -9119,6 +9227,114 @@
     <Status>1</Status>
     <Created>2025-10-16 18:04:02</Created>
     <Updated>2025-10-16 18:04:02</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>577</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>96</ItemId>
+    <ItemName>GEL MANI</ItemName>
+    <Barcode>95</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:09</Created>
+    <Updated>2025-10-16 18:04:09</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>576</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>97</ItemId>
+    <ItemName>GEL PEDI</ItemName>
+    <Barcode>96</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:09</Created>
+    <Updated>2025-10-16 18:04:09</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>573</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>92</ItemId>
+    <ItemName>MANI</ItemName>
+    <Barcode>91</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:08</Created>
+    <Updated>2025-10-16 18:04:08</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>575</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>93</ItemId>
+    <ItemName>PEDI</ItemName>
+    <Barcode>92</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:08</Created>
+    <Updated>2025-10-16 18:04:08</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>574</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>94</ItemId>
+    <ItemName>SPA MANI</ItemName>
+    <Barcode>93</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:08</Created>
+    <Updated>2025-10-16 18:04:08</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>578</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>95</ItemId>
+    <ItemName>SPA PEDI</ItemName>
+    <Barcode>94</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:09</Created>
+    <Updated>2025-10-16 18:04:09</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>543</CommissionId>
@@ -9162,7 +9378,7 @@
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>103</ItemId>
-    <ItemName>L. THREADING</ItemName>
+    <ItemName>T. FULL FACE</ItemName>
     <Barcode>102</Barcode>
     <SubGroupId>13</SubGroupId>
     <SubGroupName>LADIES HAIR CUT</SubGroupName>
@@ -9211,159 +9427,15 @@
     <Updated>2025-10-16 18:04:02</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>547</CommissionId>
+    <CommissionId>557</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>59</ItemId>
-    <ItemName>CLASSIC MANI-PEDI [Without Colour]</ItemName>
-    <Barcode>58</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>548</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>99</ItemId>
-    <ItemName>GEL       MANI-PEDI</ItemName>
-    <Barcode>98</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>549</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>78</ItemId>
-    <ItemName>PREMIUM MANI-PEDI    [OPI Colour]</ItemName>
-    <Barcode>77</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>550</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>102</ItemId>
-    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
-    <Barcode>101</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>551</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>101</ItemId>
-    <ItemName>SPA MANI-PEDI [OPI Colour]</ItemName>
-    <Barcode>100</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>552</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>100</ItemId>
-    <ItemName>SPA MANI-PEDI [Without Colour]</ItemName>
-    <Barcode>99</Barcode>
-    <SubGroupId>8</SubGroupId>
-    <SubGroupName>MANI-PEDI COMBO</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:03</Created>
-    <Updated>2025-10-16 18:04:03</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>553</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>75</ItemId>
-    <ItemName>CLASSIC MANI [Without Colour]</ItemName>
-    <Barcode>74</Barcode>
+    <ItemId>81</ItemId>
+    <ItemName>EXTRA 1</ItemName>
+    <Barcode>80</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:04</Created>
-    <Updated>2025-10-16 18:04:04</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>554</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>79</ItemId>
-    <ItemName>GEL MANI</ItemName>
-    <Barcode>78</Barcode>
-    <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:04</Created>
-    <Updated>2025-10-16 18:04:04</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>555</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>76</ItemId>
-    <ItemName>PREMIUM MANI [OPI Colour]</ItemName>
-    <Barcode>75</Barcode>
-    <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -9378,10 +9450,10 @@
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>82</ItemId>
-    <ItemName>SPA MANI       [Gel Colour]</ItemName>
+    <ItemName>EXTRA 2</ItemName>
     <Barcode>81</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -9391,15 +9463,51 @@
     <Updated>2025-10-16 18:04:04</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>557</CommissionId>
+    <CommissionId>553</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>81</ItemId>
-    <ItemName>SPA MANI       [OPI Colour]</ItemName>
-    <Barcode>80</Barcode>
+    <ItemId>75</ItemId>
+    <ItemName>MANICURE</ItemName>
+    <Barcode>74</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:04</Created>
+    <Updated>2025-10-16 18:04:04</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>555</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>76</ItemId>
+    <ItemName>PEDICURE</ItemName>
+    <Barcode>75</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 18:04:04</Created>
+    <Updated>2025-10-16 18:04:04</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>554</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>79</ItemId>
+    <ItemName>SPA MANICURE</ItemName>
+    <Barcode>78</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -9414,10 +9522,10 @@
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>80</ItemId>
-    <ItemName>SPA MANI [Without Colour]</ItemName>
+    <ItemName>SPA PEDICURE</ItemName>
     <Barcode>79</Barcode>
     <SubGroupId>9</SubGroupId>
-    <SubGroupName>MANICURE</SubGroupName>
+    <SubGroupName>MEN</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
     <CommissionPercentage>10.00</CommissionPercentage>
     <CommissionType>PERCENTAGE</CommissionType>
@@ -9713,113 +9821,5 @@
     <Status>1</Status>
     <Created>2025-10-16 18:04:08</Created>
     <Updated>2025-10-16 18:04:08</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>573</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>92</ItemId>
-    <ItemName>CLASSIC PEDI [Without Colour]</ItemName>
-    <Barcode>91</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:08</Created>
-    <Updated>2025-10-16 18:04:08</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>574</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>94</ItemId>
-    <ItemName>GEL PEDI</ItemName>
-    <Barcode>93</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:08</Created>
-    <Updated>2025-10-16 18:04:08</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>575</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>93</ItemId>
-    <ItemName>PREMIUM PEDI [OPI Colour]</ItemName>
-    <Barcode>92</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:08</Created>
-    <Updated>2025-10-16 18:04:08</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>576</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>97</ItemId>
-    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
-    <Barcode>96</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:09</Created>
-    <Updated>2025-10-16 18:04:09</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>577</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>96</ItemId>
-    <ItemName>SPA PEDI       [OPI Colour]</ItemName>
-    <Barcode>95</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:09</Created>
-    <Updated>2025-10-16 18:04:09</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>578</CommissionId>
-    <EmpId>17</EmpId>
-    <SalesmanName>YASHU</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>95</ItemId>
-    <ItemName>SPA PEDI [Without Colour]</ItemName>
-    <Barcode>94</Barcode>
-    <SubGroupId>20</SubGroupId>
-    <SubGroupName>PEDICURE</SubGroupName>
-    <MainGroupName>NAILS</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 18:04:09</Created>
-    <Updated>2025-10-16 18:04:09</Updated>
   </SalesManCommissionTable>
 </NewDataSet>
