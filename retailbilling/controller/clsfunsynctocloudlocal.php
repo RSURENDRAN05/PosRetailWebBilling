@@ -485,6 +485,8 @@ class clsfuncsync
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
                 WHERE psih_invoice_billstatus = 'Closed'
+                AND psih_invoice_comid = '$comid'
+                AND psih_invoice_locid = '$locid'
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -542,6 +544,8 @@ class clsfuncsync
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
                 WHERE psih_invoice_billstatus = 'Closed'
+                AND psih_invoice_comid = '$comid'
+                AND psih_invoice_locid = '$locid'
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -599,6 +603,8 @@ class clsfuncsync
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
                 WHERE psih_invoice_billstatus = 'Closed'
+                AND psih_invoice_comid = '$comid'
+                AND psih_invoice_locid = '$locid'
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -652,6 +658,8 @@ class clsfuncsync
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
                 WHERE psih_invoice_billstatus = 'Closed'
+                AND psih_invoice_comid = '$comid'
+                AND psih_invoice_locid = '$locid'
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -1021,15 +1029,16 @@ class clsfuncsync
         }
     }
 
-    public function GetMonthlySummaryReportAll($year, $month)
+    public function GetMonthlySummaryReportAll($year, $month, $comid, $locid)
     {
         try {
             // Escape variables for security
             $year = (int)mysqli_real_escape_string($this->conn, $year);
             $month = (int)mysqli_real_escape_string($this->conn, $month);
-
+            $comid = (int) mysqli_real_escape_string($this->conn, $comid);
+            $locid = (int) mysqli_real_escape_string($this->conn, $locid);
             // Call stored procedure to get all result sets
-            $sql = "CALL sp_monthly_sales_report($year, $month)";
+            $sql = "CALL sp_monthly_sales_report($year, $month, '$comid', '$locid');";
 
             // Log the query for debugging
             error_log("Monthly Summary Report Query: " . $sql);

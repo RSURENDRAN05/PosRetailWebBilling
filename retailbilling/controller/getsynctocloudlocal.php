@@ -401,14 +401,15 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
             // Get parameters from REQUEST (works for both GET and POST)
             $month = isset($_REQUEST['month']) ? (int)$_REQUEST['month'] : 0;
             $year = isset($_REQUEST['year']) ? (int)$_REQUEST['year'] : 0;
-
+            $comid = isset($_REQUEST['comid']) ? (int)$_REQUEST['comid'] : 0;
+            $locid = isset($_REQUEST['locid']) ? (int)$_REQUEST['locid'] : 0;
             // Validate required parameters
             if (empty($month) || empty($year) || $month < 1 || $month > 12 || $year < 2020) {
                 throw new Exception("Invalid parameters: month=$month, year=$year. Month must be 1-12, year must be >= 2020");
             }
 
             // Call stored procedure for monthly summary report - get all result sets at once
-            $monthlySummaryResult = $clsfunreq->GetMonthlySummaryReportAll($year, $month);
+            $monthlySummaryResult = $clsfunreq->GetMonthlySummaryReportAll($year, $month, $comid, $locid);
 
             if ($monthlySummaryResult['success']) {
                 $data = $monthlySummaryResult['data'];

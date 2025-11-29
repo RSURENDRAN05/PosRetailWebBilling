@@ -379,7 +379,7 @@ Public Class frmMonthlySummaryReport
             Dim apiUrl As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=10"
 
             ' Build post data for API call - now gets all result sets at once
-            Dim postData As String = String.Format("AjaxRequest=10&year={0}&month={1}", year, month)
+            Dim postData As String = String.Format("AjaxRequest=10&year={0}&month={1}&comid={2}&locid={3}", year, month, _companyInfo.ComId, _companyInfo.LocId)
 
             Using client As New WebClient()
                 client.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
