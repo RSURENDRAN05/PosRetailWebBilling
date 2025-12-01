@@ -1482,4 +1482,18 @@
     <LOCID>1</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
+  <ItemMasterTable>
+    <ITEMCODE>109</ITEMCODE>
+    <BARCODE>104</BARCODE>
+    <ITEMNAME>L. HAIR CUT [Children]</ITEMNAME>
+    <TAXID>1</TAXID>
+    <TAXNAME>Tax 0%</TAXNAME>
+    <TAXVALUE>0</TAXVALUE>
+    <COST>0.00</COST>
+    <SELL>15.00</SELL>
+    <LIVESTOCK>0.00</LIVESTOCK>
+    <COMID>1</COMID>
+    <LOCID>1</LOCID>
+    <Remarks>-</Remarks>
+  </ItemMasterTable>
 </NewDataSet>

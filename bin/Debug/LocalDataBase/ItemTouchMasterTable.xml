@@ -2674,7 +2674,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>4</Position>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>75</Id>
@@ -3755,5 +3755,41 @@
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
     <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>109</Id>
+    <BarCode>104</BarCode>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>0</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>133</LnkId>
+    <item_id>109</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
   </ItemTouchMasterTable>
 </NewDataSet>

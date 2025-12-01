@@ -1885,6 +1885,24 @@
     <Updated>2025-10-16 18:03:44</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>608</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>104</ItemId>
+    <ItemName>BRIDAL FACIAL</ItemName>
+    <Barcode>103</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:41</Created>
+    <Updated>2025-11-30 23:20:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>446</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
@@ -2189,6 +2207,114 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:43</Created>
     <Updated>2025-10-16 18:03:43</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>609</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>87</ItemId>
+    <ItemName>HENNA</ItemName>
+    <Barcode>86</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:41</Created>
+    <Updated>2025-11-30 23:20:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>610</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>107</ItemId>
+    <ItemName>T. CHIN</ItemName>
+    <Barcode>106</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:42</Created>
+    <Updated>2025-11-30 23:20:42</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>611</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>105</ItemId>
+    <ItemName>T. EYEBROW</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:42</Created>
+    <Updated>2025-11-30 23:20:42</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>612</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>103</ItemId>
+    <ItemName>T. FULL FACE</ItemName>
+    <Barcode>102</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:42</Created>
+    <Updated>2025-11-30 23:20:42</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>613</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>108</ItemId>
+    <ItemName>T. SIDE</ItemName>
+    <Barcode>107</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:43</Created>
+    <Updated>2025-11-30 23:20:43</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>614</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>106</ItemId>
+    <ItemName>T. UPPER LIP</ItemName>
+    <Barcode>105</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:43</Created>
+    <Updated>2025-11-30 23:20:43</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>465</CommissionId>
@@ -2549,6 +2675,24 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:49</Created>
     <Updated>2025-10-16 18:03:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>615</CommissionId>
+    <EmpId>18</EmpId>
+    <SalesmanName>KHUSHI</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>109</ItemId>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:43</Created>
+    <Updated>2025-11-30 23:20:43</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>580</CommissionId>
@@ -8707,6 +8851,24 @@
     <Updated>2025-10-16 18:03:57</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>616</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>104</ItemId>
+    <ItemName>BRIDAL FACIAL</ItemName>
+    <Barcode>103</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:44</Created>
+    <Updated>2025-11-30 23:20:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>513</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
@@ -9011,6 +9173,114 @@
     <Status>1</Status>
     <Created>2025-10-16 18:03:56</Created>
     <Updated>2025-10-16 18:03:56</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>617</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>87</ItemId>
+    <ItemName>HENNA</ItemName>
+    <Barcode>86</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:44</Created>
+    <Updated>2025-11-30 23:20:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>618</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>107</ItemId>
+    <ItemName>T. CHIN</ItemName>
+    <Barcode>106</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:45</Created>
+    <Updated>2025-11-30 23:20:45</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>619</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>105</ItemId>
+    <ItemName>T. EYEBROW</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:46</Created>
+    <Updated>2025-11-30 23:20:46</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>620</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>103</ItemId>
+    <ItemName>T. FULL FACE</ItemName>
+    <Barcode>102</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:46</Created>
+    <Updated>2025-11-30 23:20:46</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>621</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>108</ItemId>
+    <ItemName>T. SIDE</ItemName>
+    <Barcode>107</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:46</Created>
+    <Updated>2025-11-30 23:20:46</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>622</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>106</ItemId>
+    <ItemName>T. UPPER LIP</ItemName>
+    <Barcode>105</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:46</Created>
+    <Updated>2025-11-30 23:20:46</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>532</CommissionId>
@@ -9371,6 +9641,24 @@
     <Status>1</Status>
     <Created>2025-10-16 18:04:02</Created>
     <Updated>2025-10-16 18:04:02</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>623</CommissionId>
+    <EmpId>17</EmpId>
+    <SalesmanName>YASHU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>109</ItemId>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-11-30 23:20:47</Created>
+    <Updated>2025-11-30 23:20:47</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>582</CommissionId>
