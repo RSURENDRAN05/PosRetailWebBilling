@@ -4360,7 +4360,7 @@ Public Class PosSalesII
         Try
             Dim frmMsgBox As New frmMsgBox
             Dim msgData = "Do you to show preview? This Bill - " & barstatuslastbillno.Caption & " ' Preview - Yes '" & vbNewLine & "'Print'"
-            frmMsgBox.ShowDialogData(msgData.ToString)
+            frmMsgBox.ShowDialogData(msgData.ToString, True)
             If frmMsgBox.DialogResult = Windows.Forms.DialogResult.Yes Then
                 PrintPreview()
             ElseIf frmMsgBox.DialogResult = Windows.Forms.DialogResult.OK Then

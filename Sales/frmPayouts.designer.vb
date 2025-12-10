@@ -408,7 +408,7 @@ Partial Class frmPayouts
         Me.btnModeofWeb.Name = "btnModeofWeb"
         Me.btnModeofWeb.Size = New System.Drawing.Size(134, 38)
         Me.btnModeofWeb.TabIndex = 19
-        Me.btnModeofWeb.Text = "WebMode"
+        Me.btnModeofWeb.Text = "Web"
         '
         'PayDateFrom
         '

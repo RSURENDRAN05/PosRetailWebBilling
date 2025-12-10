@@ -280,8 +280,8 @@ Public Class frmPayouts
                 If ModeOfUpload = "Local" Then
                     properClass.R_Msgstring = txtId.Text & " -" & txtName.Text & vbNewLine & "Do You Want To Delete?"
                     Dim frmmsg As New frmMsgBox
-                    frmmsg.ShowDialog()
-                    If properClass.R_YesOrNo = "Yes" Then
+                    frmmsg.ShowDialogData(properClass.R_Msgstring, False)
+                    If frmmsg.DialogResult = Windows.Forms.DialogResult.Yes Then
                         Dim _DSpayoyut As New DataSet
                         Dim _SqlpayoutSave(11) As SqlParameter
                         _SqlpayoutSave(0) = New SqlParameter("@mode", "D")
@@ -309,8 +309,8 @@ Public Class frmPayouts
                     'web
                     properClass.R_Msgstring = txtId.Text & " -" & txtName.Text & vbNewLine & "Do You Want To Delete?"
                     Dim frmmsg As New frmMsgBox 'YesNo
-                    frmmsg.ShowDialog() 'YesNo
-                    If properClass.R_YesOrNo = "Yes" Then
+                    frmmsg.ShowDialogData(properClass.R_Msgstring.ToString, False) 'YesNo
+                    If frmmsg.DialogResult = Windows.Forms.DialogResult.Yes Then
                         Dim payoutcls As New Payout
                         payoutcls.payd_id = txtId.Text
                         Dim HdrData As String = Newtonsoft.Json.JsonConvert.SerializeObject(payoutcls)
@@ -348,13 +348,18 @@ Public Class frmPayouts
     Private Sub btnModeofWeb_Click(sender As Object, e As EventArgs) Handles btnModeofWeb.Click
         Try
             If ModeOfUpload = "Web" Then
-                btnModeofWeb.Text = ModeOfUpload
-                'GetPayoutDataCloud()
-            Else
-                btnModeofWeb.Text = "Local"
                 ModeOfUpload = "Local"
+                btnModeofWeb.Text = "Local"
+                lblHead.Text = "Payout - Local Mode"
                 _PayoutDetailsLoad()
+
+            Else
+                ModeOfUpload = "Web"
+                btnModeofWeb.Text = "Web"
+                lblHead.Text = "Payout - Web Mode"
+                'GetPayoutDataCloud()
             End If
+
         Catch ex As Exception
 
         End Try
