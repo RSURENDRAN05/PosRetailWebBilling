@@ -1104,7 +1104,7 @@ Public Class PosSalesII
             If GridViewPOS.FocusedColumn IsNot Nothing AndAlso GridViewPOS.FocusedColumn.FieldName = "SALESPERSON" Then
                 If focusedRowHandle >= 0 AndAlso focusedRowHandle < GridDataTble_Insert.Rows.Count Then
                     'lock when recal mode only allowed to admin to changes
-                    If _recallHoldBill = True AndAlso RegistrationDetails._serverClient = "ORDER" Then
+                    If RegistrationDetails._serverClient = "ORDER" Then
                         barselectsalesman_ItemClick(Nothing, Nothing)
                     ElseIf _recallHoldBill = False AndAlso RegistrationDetails._serverClient = "SERVER" Then
                         barselectsalesman_ItemClick(Nothing, Nothing)
@@ -1121,7 +1121,7 @@ Public Class PosSalesII
                     'Else
                     '    ShowMultiplePriceSelection()
                     'End If
-                ElseIf _recallHoldBill = True AndAlso RegistrationDetails._serverClient = "ORDER" Then
+                ElseIf RegistrationDetails._serverClient = "ORDER" Then
                     ShowMultiplePriceSelection()
                 ElseIf _recallHoldBill = False AndAlso RegistrationDetails._serverClient = "SERVER" Then
                     ShowMultiplePriceSelection()
