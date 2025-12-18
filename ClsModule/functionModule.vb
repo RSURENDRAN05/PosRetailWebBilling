@@ -28,7 +28,7 @@ Module functionModule
     Public _posPrintHeadDesign As DataSet
 
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "Cli-VER25.0.0.61 R11 121225" '"Web" '"Ser" '"Cli"
+        Public Shared SoftwareVersion As String = "Web-VER25.0.0.63 R12 181225" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
@@ -323,9 +323,8 @@ Module functionModule
         End Try
     End Function
     Public Function getUserInfo() As Boolean
+        Dim Path As String = filePath & "UserTable.xml"
         Try
-
-            Dim Path As String = filePath & "UserTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 ' Internet available - fetch from server
@@ -356,6 +355,17 @@ Module functionModule
             End If
             Return True
         Catch ex As Exception
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.UserTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.UserTable.ReadXml(Path)
+                _JsonData.UserTable.TableName = "UserTable"
+
+                If _JsonData.UserTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
             XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
@@ -363,8 +373,9 @@ Module functionModule
 
 
     Public Function getUserPolicyInfo(ByRef user_id As String) As Boolean
+        Dim Path As String = filePath & "UserPolicyTable.xml"
         Try
-            Dim Path As String = filePath & "UserPolicyTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
@@ -392,13 +403,25 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.UserPolicyTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.UserPolicyTable.ReadXml(Path)
+                _JsonData.UserPolicyTable.TableName = "UserPolicyTable"
+
+                If _JsonData.UserPolicyTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getFingerPrintData() As Boolean
+        Dim Path As String = filePath & "FingerPrintDataTable.xml"
         Try
-            Dim Path As String = filePath & "FingerPrintDataTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
@@ -426,13 +449,25 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.FingerPrintDataTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.FingerPrintDataTable.ReadXml(Path)
+                _JsonData.FingerPrintDataTable.TableName = "FingerPrintDataTable"
+
+                If _JsonData.FingerPrintDataTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getPackageData() As Boolean
+        Dim Path As String = filePath & "PackageDataTable.xml"
         Try
-            Dim Path As String = filePath & "PackageDataTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
@@ -460,7 +495,18 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.PackageDataTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.PackageDataTable.ReadXml(Path)
+                _JsonData.PackageDataTable.TableName = "PackageDataTable"
+
+                If _JsonData.PackageDataTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -540,8 +586,8 @@ Module functionModule
     'End Function
 
     Public Function getSalesManCommissionInfo() As Boolean
+        Dim Path As String = filePath & "SalesManCommissionTable.xml"
         Try
-            Dim Path As String = filePath & "SalesManCommissionTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
@@ -569,13 +615,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.SalesManCommissionTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.SalesManCommissionTable.ReadXml(Path)
+                _JsonData.SalesManCommissionTable.TableName = "SalesManCommissionTable"
+                If _JsonData.SalesManCommissionTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function GetMultiplePricesFromServer() As Boolean
+        Dim Path As String = filePath & "MultiPriceTable.xml"
         Try
-            Dim Path As String = filePath & "MultiPriceTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.MultiPriceTable.TableName = "MultiPriceTable"
@@ -603,12 +659,23 @@ Module functionModule
             End If
             Return True
         Catch ex As Exception
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.MultiPriceTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.MultiPriceTable.ReadXml(Path)
+                _JsonData.MultiPriceTable.TableName = "MultiPriceTable"
+                If _JsonData.MultiPriceTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
             Return False
         End Try
     End Function
     Public Function getPosSettingsInfo() As Boolean
+        Dim Path As String = filePath & "PosSettingsTable.xml"
         Try
-            Dim Path As String = filePath & "PosSettingsTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
@@ -636,13 +703,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.PosSettingsTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.PosSettingsTable.ReadXml(Path)
+                _JsonData.PosSettingsTable.TableName = "PosSettingsTable"
+                If _JsonData.PosSettingsTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getComapnyInfo() As Boolean
+        Dim Path As String = filePath & "CompanyTable.xml"
         Try
-            Dim Path As String = filePath & "CompanyTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.CompanyTable.TableName = "CompanyTable"
@@ -670,13 +747,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.CompanyTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.CompanyTable.ReadXml(Path)
+                _JsonData.CompanyTable.TableName = "CompanyTable"
+                If _JsonData.CompanyTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getLocationInfo() As Boolean
+        Dim Path As String = filePath & "LocationTable.xml"
         Try
-            Dim Path As String = filePath & "LocationTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.LocationTable.TableName = "LocationTable"
@@ -704,13 +791,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.LocationTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.LocationTable.ReadXml(Path)
+                _JsonData.LocationTable.TableName = "LocationTable"
+                If _JsonData.LocationTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getComapnyLocationInfo() As Boolean
+        Dim Path As String = filePath & "CompanyLocationTable.xml"
         Try
-            Dim Path As String = filePath & "CompanyLocationTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
@@ -724,21 +821,22 @@ Module functionModule
                     Return True
                 End If
             Else
-                If File.Exists(Path) Then
-                    ' Clear existing data
-                    _JsonData.CompanyLocationTable.Clear()
-                    ' Read XML file into DataTable
-                    _JsonData.CompanyLocationTable.ReadXml(Path)
-                    _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
-                    If _JsonData.CompanyLocationTable.Rows.Count > 0 Then
-                        Return True
-                    End If
-                End If
+                
             End If
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.CompanyLocationTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.CompanyLocationTable.ReadXml(Path)
+                _JsonData.CompanyLocationTable.TableName = "CompanyLocationTable"
+                If _JsonData.CompanyLocationTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -759,8 +857,9 @@ Module functionModule
         End Try
     End Function
     Public Function getPaymentTermTable() As Boolean
+        Dim Path As String = filePath & "PaymentTermTable.xml"
         Try
-            Dim Path As String = filePath & "PaymentTermTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.PaymentTermTable.TableName = "PaymentTermTable"
@@ -788,13 +887,24 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.PaymentTermTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.PaymentTermTable.ReadXml(Path)
+                _JsonData.PaymentTermTable.TableName = "PaymentTermTable"
+                If _JsonData.PaymentTermTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getButtonStyleTable() As Boolean
+        Dim Path As String = filePath & "ButtonStyleTable.xml"
         Try
-            Dim Path As String = filePath & "ButtonStyleTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.ButtonStyleTable.TableName = "ButtonStyleTable"
@@ -822,7 +932,17 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.ButtonStyleTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.ButtonStyleTable.ReadXml(Path)
+                _JsonData.ButtonStyleTable.TableName = "ButtonStyleTable"
+                If _JsonData.ButtonStyleTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -843,8 +963,9 @@ Module functionModule
         End Try
     End Function
     Public Function getItemMaster() As Boolean
+        Dim Path As String = filePath & "ItemMasterTable.xml"
         Try
-            Dim Path As String = filePath & "ItemMasterTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
@@ -881,13 +1002,23 @@ Module functionModule
             End If
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.ItemMasterTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.ItemMasterTable.ReadXml(Path)
+                _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
+                If _JsonData.ItemMasterTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Function getTouchItemMaster() As Boolean
+        Dim Path As String = filePath & "ItemTouchMasterTable.xml"
         Try
-            Dim Path As String = filePath & "ItemTouchMasterTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 Dim _dt As New DataTable
@@ -915,12 +1046,22 @@ Module functionModule
             End If
             Return True
         Catch ex As Exception
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.ItemTouchMasterTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.ItemTouchMasterTable.ReadXml(Path)
+                _JsonData.ItemTouchMasterTable.TableName = "ItemTouchMasterTable"
+                If _JsonData.ItemTouchMasterTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
             Return False
         End Try
     End Function
     Public Function getMainMaster() As Boolean
+        Dim Path As String = filePath & "MainGroupTable.xml"
         Try
-            Dim Path As String = filePath & "MainGroupTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.MainGroupTable.TableName = "MainGroupTable"
@@ -948,13 +1089,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.MainGroupTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.MainGroupTable.ReadXml(Path)
+                _JsonData.MainGroupTable.TableName = "MainGroupTable"
+                If _JsonData.MainGroupTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getMainGroupPolicy() As Boolean
+        Dim Path As String = filePath & "MainGroupPolicyTable.xml"
         Try
-            Dim Path As String = filePath & "MainGroupPolicyTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 Dim url As String = M_Details.LinkAjaxRequest & "MgmtRequest=9&Operation=SELECTACTIVE&Comid=" & _companyInfo.ComId & "&Locid=" & _companyInfo.LocId
@@ -983,13 +1134,23 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.MainGroupPolicyTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.MainGroupPolicyTable.ReadXml(Path)
+                _JsonData.MainGroupPolicyTable.TableName = "MainGroupPolicyTable"
+                If _JsonData.MainGroupPolicyTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getCategoryMaster() As Boolean
+        Dim Path As String = filePath & "CategoryTable.xml"
         Try
-            Dim Path As String = filePath & "CategoryTable.xml"
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.CategoryTable.TableName = "CategoryTable"
@@ -1017,13 +1178,24 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.CategoryTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.CategoryTable.ReadXml(Path)
+                _JsonData.CategoryTable.TableName = "CategoryTable"
+                If _JsonData.CategoryTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getCustomerMaster() As Boolean
+        Dim Path As String = filePath & "CustomerTable.xml"
         Try
-            Dim Path As String = filePath & "CustomerTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.CustomerTable.TableName = "CustomerTable"
@@ -1051,13 +1223,24 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.CustomerTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.CustomerTable.ReadXml(Path)
+                _JsonData.CustomerTable.TableName = "CustomerTable"
+                If _JsonData.CustomerTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function GetSalesmanData() As Boolean
+        Dim Path As String = filePath & "SalesManDataTable.xml"
         Try
-            Dim Path As String = filePath & "SalesManDataTable.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.CustomerTable.TableName = "CustomerTable"
@@ -1085,7 +1268,17 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.SalesManDataTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.SalesManDataTable.ReadXml(Path)
+                _JsonData.SalesManDataTable.TableName = "SalesManDataTable"
+                If _JsonData.SalesManDataTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -1201,21 +1394,47 @@ Module functionModule
         End Try
     End Function
     Public Function getLedgerListTable() As Boolean
+        Dim Path As String = filePath & "LedgerListTable.xml"
         Try
-            _JsonData.LedgerListTable.TableName = "LedgerListTable"
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=1")
-            Dim Userparsejson As JObject = JObject.Parse(json)
-            _JsonData.LedgerListTable = Userparsejson("Data").ToObject(Of DataTable)()
+            If CheckForInternetConnection() Then
+                _JsonData.LedgerListTable.TableName = "LedgerListTable"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=1")
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _JsonData.LedgerListTable = Userparsejson("Data").ToObject(Of DataTable)()
+                Return True
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.LedgerListTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.LedgerListTable.ReadXml(Path)
+                    _JsonData.LedgerListTable.TableName = "LedgerListTable"
+                    If _JsonData.LedgerListTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.LedgerListTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.LedgerListTable.ReadXml(Path)
+                _JsonData.LedgerListTable.TableName = "LedgerListTable"
+                If _JsonData.LedgerListTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
     Public Function getPaymentList() As Boolean
+        Dim Path As String = filePath & "PaymodeList.xml"
         Try
-            Dim Path As String = filePath & "PaymodeList.xml"
+
             ' Check if internet is available
             If CheckForInternetConnection() Then
                 _JsonData.PaymodeList.TableName = "PaymodeList"
@@ -1243,7 +1462,17 @@ Module functionModule
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.PaymodeList.Clear()
+                ' Read XML file into DataTable
+                _JsonData.PaymodeList.ReadXml(Path)
+                _JsonData.PaymodeList.TableName = "PaymodeList"
+                If _JsonData.PaymodeList.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
