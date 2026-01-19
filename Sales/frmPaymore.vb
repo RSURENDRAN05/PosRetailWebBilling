@@ -69,9 +69,7 @@ Public Class frmPaymore
             txttpopenamt.EditValue = Billamt.ToString("###0.00") ' Auto-fill with bill amount for default cash payment
             lblpaymode.Text = "RM"
             numstr = ""
-            boolMultiplePayment = False
-            Label2.Text = "MultiplePayment-No"
-            txtentermultipleamount.Enabled = False
+           ClearMultiplePaymentFields()
             'btnpopCash.Enabled = False
             lblbtnpayment.Enabled = False
             If lblbtnpayment.Enabled = False Then
@@ -95,7 +93,7 @@ Public Class frmPaymore
 
     Private Sub GridControl3_Click(sender As Object, e As EventArgs) Handles GridControl3.Click
         Try
-            btnpopClear_Click(Nothing, Nothing)
+            'btnpopClear_Click(Nothing, Nothing)
             lblbtnpayment.Enabled = True
             If lblbtnpayment.Enabled = False Then
                 lblbtnpayment.BackColor = Color.Silver   ' or Color.White
