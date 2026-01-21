@@ -114,3 +114,9 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmSalesMasterReport.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmTimeProfile.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmCustomerSalesHis.resources
+D:\Projects\Retail Pro\PosRetailWebBilling\bin\Debug\PosRetailWebBilling.exe.config
+D:\Projects\Retail Pro\PosRetailWebBilling\obj\Debug\Interop.SpeechLib.dll
+D:\Projects\Retail Pro\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbproj.ResolveComReference.cache
+D:\Projects\Retail Pro\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.exe
+D:\Projects\Retail Pro\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.xml
+D:\Projects\Retail Pro\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.pdb
