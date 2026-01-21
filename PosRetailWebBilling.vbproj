@@ -208,6 +208,13 @@
     <Compile Include="Accounts\frmParent.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AppointmentBooking\AppointmentDBHelper.vb" />
+    <Compile Include="AppointmentBooking\frmAppointmentBooking.Designer.vb">
+      <DependentUpon>frmAppointmentBooking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AppointmentBooking\frmAppointmentBooking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ChequeSystem\chequeModule.vb" />
     <Compile Include="ChequeSystem\frmAbout.designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
@@ -826,6 +833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounts\frmParent.resx">
       <DependentUpon>frmParent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppointmentBooking\frmAppointmentBooking.resx">
+      <DependentUpon>frmAppointmentBooking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChequeSystem\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>

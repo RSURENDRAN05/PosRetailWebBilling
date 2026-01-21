@@ -8,7 +8,7 @@ Module M_CONNECT
     'Implements IDisposable
     'ReadOnly SCsrdr As New StreamReader(Application.StartupPath & "\M_CONNECT.dll")
     'Dim conn As New SqlConnection(SCsrdr.ReadLine())
-    Dim conn As New SqlConnection(M_Details._Conn)
+    Public conn As New SqlConnection(M_Details._Conn)
     Dim cmd As New SqlCommand
     Dim ds As DataSet
     Dim da As New SqlDataAdapter

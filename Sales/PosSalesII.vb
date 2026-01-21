@@ -4637,4 +4637,11 @@ Public Class PosSalesII
 #End Region
 
 
+    Private Sub barbtnsetappointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnsetappointment.ItemClick
+        Try
+            frmAppointmentBooking.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
