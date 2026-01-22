@@ -4635,7 +4635,7 @@ Public Class PosSalesII
     End Sub
 
 #End Region
-
+#Region "Appointment"
 
     Private Sub barbtnsetappointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnsetappointment.ItemClick
         Try
@@ -4644,4 +4644,6 @@ Public Class PosSalesII
 
         End Try
     End Sub
+#End Region
+
 End Class
