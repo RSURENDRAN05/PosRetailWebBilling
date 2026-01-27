@@ -479,6 +479,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Purchase\StockUpdate.Designer.vb">
+      <DependentUpon>StockUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\StockUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\frmSalesMasterReport.designer.vb">
       <DependentUpon>frmSalesMasterReport.vb</DependentUpon>
     </Compile>
@@ -960,6 +966,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmPackageItem.resx">
       <DependentUpon>FrmPackageItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\StockUpdate.resx">
+      <DependentUpon>StockUpdate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmSalesMasterReport.resx">
       <DependentUpon>frmSalesMasterReport.vb</DependentUpon>

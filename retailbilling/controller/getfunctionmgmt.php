@@ -1412,6 +1412,47 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => 'Failed to delete customer'));
         }
     }
+    //GetStock
+    if ((int) $_REQUEST['AjaxRequest'] == 75) {
+        $comid = $_GET['comid'];
+        $locid = $_GET['locid'];
+        $ResulQuery = $clsfunreq->_SelectStockProductBylocId($comid, $locid);
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($ResulQuery) {
+            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
+        }
+    }
+    //Recreate Stock
+    if ((int) $_REQUEST['AjaxRequest'] == 76) {
+        $comid = $_GET['comid'];
+        $locid = $_GET['locid'];
+        $ResulQuery = $clsfunreq->_ReCreateLiveStock($comid, $locid);
+        if ($ResulQuery) {
+            echo json_encode(array("Success" => true, "Msg" => 'Stock Recreated Successfully'));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'Stock Recreate Failed'));
+        }
+    }
+    //Livestock update 
+    if ((int) $_REQUEST['AjaxRequest'] == 77) {
+        $comid = $_POST['comid'];
+        $locid = $_POST['locid'];
+        $stockDataJson = $_POST['stockdata'];
+        $stockRows = json_decode($stockDataJson, true);
+
+        $success = $clsfunreq->_UpdateMultipleLiveStock($comid, $locid, $stockRows);
+
+        if ($success) {
+            echo json_encode(["Success" => true, "Msg" => "Stock Updated Successfully"]);
+        } else {
+            echo json_encode(["Success" => false, "Msg" => "Stock Update Failed"]);
+        }
+    }
 }
 //Sales
 elseif (isset($_REQUEST['SalesRequest'])) {

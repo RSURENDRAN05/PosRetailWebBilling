@@ -253,6 +253,82 @@ class funcProcessMgmt
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
+    public function _SelectStockProductBylocId($comid, $locid)
+    {
+        $conn = $this->conn;
+        $sql = "SELECT  dim.dim_item_id   AS Id,
+    dim.dim_item_barcode  AS BarCode,
+    dim.dim_item_name     AS ItemName,
+    pcm.pcm_name          AS CompanyName,
+    plm.plm_name          AS LocationName, IFNULL(stk.pl_opstok,0)    AS OpStock,
+    IFNULL(stk.pl_stockin,0)   AS StockIn,
+    IFNULL(stk.pl_stockout,0)  AS StockOut,
+    IFNULL(stk.pl_livestock,0) AS CurStock,
+    '0' as RequiredQty
+    FROM `pos_livestock` as stk  INNER JOIN  di_item_mast AS dim ON dim.dim_item_id=stk.pl_itemcode 
+    INNER JOIN pos_company_mast AS pcm 
+        ON stk.pl_comid = pcm.pcm_id
+	INNER JOIN pos_location_mast AS plm 
+        ON stk.pl_locid = plm.plm_id
+    WHERE  stk.pl_comid = ? AND stk.pl_locid = ?
+    ORDER BY dim.dim_item_name,dim.dim_item_id;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $comid, $locid);
+        $stmt->execute();
+
+        return $stmt->get_result();
+    }
+    public function _ReCreateLiveStock($comid, $locid)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("CALL sp_sync_stock_master();");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+    // Update single item's livestock safely
+    public function _UpdateLiveStockQuantity($comid, $locid, $itemcode, $quantity)
+    {
+        $stmt = $this->conn->prepare("UPDATE pos_livestock 
+                                      SET pl_livestock = ? 
+                                      WHERE pl_comid = ? 
+                                        AND pl_locid = ? 
+                                        AND pl_itemcode = ?");
+        $stmt->bind_param("diis", $quantity, $comid, $locid, $itemcode);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
+    // Update multiple items in a transaction
+    public function _UpdateMultipleLiveStock($comid, $locid, $stockRows)
+    {
+        $this->conn->begin_transaction();
+        $success = true;
+
+        try {
+            foreach ($stockRows as $row) {
+                $itemcode = $row['Id'];
+                $quantity = $row['RequiredQty'];
+                if (!$this->_UpdateLiveStockQuantity($comid, $locid, $itemcode, $quantity)) {
+                    $success = false;
+                    break;
+                }
+            }
+
+            if ($success) {
+                $this->conn->commit();
+            } else {
+                $this->conn->rollback();
+            }
+
+            return $success;
+        } catch (Exception $ex) {
+            $this->conn->rollback();
+            return false;
+        }
+    }
+
 
     public function _InsertProductMaster(
         $dim_item_barcode,

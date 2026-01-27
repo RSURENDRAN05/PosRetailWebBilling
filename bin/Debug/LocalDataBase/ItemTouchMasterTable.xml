@@ -483,7 +483,7 @@
   <ItemTouchMasterTable>
     <Id>14</Id>
     <BarCode>14</BarCode>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -492,9 +492,9 @@
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>128.00</SellPrice>
+    <SellPrice>138.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>120.00</MinPrice>
+    <MinPrice>138.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1095,7 +1095,7 @@
   <ItemTouchMasterTable>
     <Id>31</Id>
     <BarCode>30</BarCode>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -1104,9 +1104,9 @@
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>158.00</SellPrice>
+    <SellPrice>188.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>150.00</MinPrice>
+    <MinPrice>188.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>
@@ -1140,9 +1140,9 @@
     <CateId>5</CateId>
     <CateName>HAIR TREATMENT</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>60.00</SellPrice>
+    <SellPrice>88.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>60.00</MinPrice>
+    <MinPrice>88.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>0</AllowNegStock>

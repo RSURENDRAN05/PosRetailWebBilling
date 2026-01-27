@@ -121,3 +121,4 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.xml
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.pdb
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmAppointmentBooking.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.StockUpdate.resources

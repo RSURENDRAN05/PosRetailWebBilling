@@ -1101,4 +1101,13 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnstockreport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnstockreport.ItemClick
+        Try
+            StockUpdate.MdiParent = Me
+            StockUpdate.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

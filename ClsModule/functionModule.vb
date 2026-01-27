@@ -1148,6 +1148,7 @@ Module functionModule
             Return False
         End Try
     End Function
+
     Public Function getCategoryMaster() As Boolean
         Dim Path As String = filePath & "CategoryTable.xml"
         Try

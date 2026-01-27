@@ -162,7 +162,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -180,7 +180,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -594,7 +594,7 @@
     <SalesmanName>GURUMOORTHY</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -612,7 +612,7 @@
     <SalesmanName>GURUMOORTHY</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1008,7 +1008,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1026,7 +1026,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1440,7 +1440,7 @@
     <SalesmanName>KAVI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1458,7 +1458,7 @@
     <SalesmanName>KAVI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3276,7 +3276,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3294,7 +3294,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3708,7 +3708,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3726,7 +3726,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -4140,7 +4140,7 @@
     <SalesmanName>MANI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -4158,7 +4158,7 @@
     <SalesmanName>MANI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -4572,7 +4572,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -4590,7 +4590,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -4986,7 +4986,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5004,7 +5004,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5400,7 +5400,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5418,7 +5418,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5832,7 +5832,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5850,7 +5850,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6264,7 +6264,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6282,7 +6282,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6696,7 +6696,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6714,7 +6714,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7128,7 +7128,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7146,7 +7146,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7560,7 +7560,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7578,7 +7578,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7974,7 +7974,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -7992,7 +7992,7 @@
     <SalesmanName>SUVATHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8406,7 +8406,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>14</ItemId>
-    <ItemName>FACIAL    [Advance]</ItemName>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
     <Barcode>14</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8424,7 +8424,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>31</ItemId>
-    <ItemName>FACIAL [Bridegroom]</ItemName>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
     <Barcode>30</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
