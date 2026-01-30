@@ -1517,6 +1517,7 @@ Public Class PosSalesII
                 Dim _serialno As String = ""
                 Dim _uom As String = ""
                 Dim _businessType As String = ""
+                Dim _allownegativestock As Boolean = True
                 Dim _dsMaterial As New DataTable
                 _dsMaterial = dtrows.CopyToDataTable
                 If _dsMaterial.Rows.Count > 0 Then
@@ -1529,7 +1530,17 @@ Public Class PosSalesII
                         _serialno = 1
                         _uom = 1
                         _businessType = _rows("BusinessType")
+                        _allownegativestock = CBool(_rows("AllowNegStock"))
                     Next
+                    If Not _allownegativestock Then
+                        Dim stockqty As Integer = 0
+                        GetStockData(_Code, stockqty)
+                        If stockqty < 1 Then
+                            ErrorMsg = "Insufficient stock for the item: " & _item
+                            Return False
+                        End If
+
+                    End If
                     If _businessType = "71" Then
                         If _JsonData.PackageDataTable.Rows.Count > 0 Then
                             Dim packageRows = From pkgRow As DataRow In _JsonData.PackageDataTable Where String.Equals(pkgRow("PackageId"), _Code, StringComparison.CurrentCultureIgnoreCase)
@@ -1813,6 +1824,32 @@ Public Class PosSalesII
         End Try
     End Function
 
+#End Region
+#Region "StockManagement"
+    Dim _ds As DataTable
+    Private Sub GetStockData(ItemCode As String, ByRef RtnStock As Integer)
+        Dim dialog As New DevExpress.Utils.WaitDialogForm()
+        Try
+            If CheckForInternetConnection() Then
+                _ds = New DataTable
+                dialog.Caption = "Connecting Data"
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=78&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId & "&itemcode=" & ItemCode)
+                Dim Userparsejson As JObject = JObject.Parse(json)
+                _ds = Userparsejson("Data").ToObject(Of DataTable)()
+                If _ds.Rows.Count > 0 Then
+                    RtnStock = _ds.Rows(0)("CurStock").ToString()
+                    dialog.Caption = "Getting Data"
+                Else
+                    RtnStock = 0
+                End If
+            End If
+        Catch ex As Exception
+            dialog.Close()
+        Finally
+            dialog.Close()
+        End Try
+    End Sub
 #End Region
 #Region "OptionButton"
 

@@ -279,6 +279,32 @@ class funcProcessMgmt
 
         return $stmt->get_result();
     }
+    public function _SelectStockByItemCode($comid, $locid, $itemcode)
+    {
+        $conn = $this->conn;
+        $sql = "SELECT  dim.dim_item_id   AS Id,
+    dim.dim_item_barcode  AS BarCode,
+    dim.dim_item_name     AS ItemName,
+    pcm.pcm_name          AS CompanyName,
+    plm.plm_name          AS LocationName, IFNULL(stk.pl_opstok,0)    AS OpStock,
+    IFNULL(stk.pl_stockin,0)   AS StockIn,
+    IFNULL(stk.pl_stockout,0)  AS StockOut,
+    IFNULL(stk.pl_livestock,0) AS CurStock,
+    '0' as RequiredQty
+    FROM `pos_livestock` as stk  INNER JOIN  di_item_mast AS dim ON dim.dim_item_id=stk.pl_itemcode 
+    INNER JOIN pos_company_mast AS pcm 
+        ON stk.pl_comid = pcm.pcm_id
+	INNER JOIN pos_location_mast AS plm 
+        ON stk.pl_locid = plm.plm_id
+    WHERE  stk.pl_comid = ? AND stk.pl_locid = ? AND stk.pl_itemcode = ?
+    ORDER BY dim.dim_item_name,dim.dim_item_id;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iii", $comid, $locid, $itemcode);
+        $stmt->execute();
+
+        return $stmt->get_result();
+    }
     public function _ReCreateLiveStock($comid, $locid)
     {
         $conn = $this->conn;

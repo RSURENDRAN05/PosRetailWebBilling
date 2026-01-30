@@ -1453,6 +1453,22 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(["Success" => false, "Msg" => "Stock Update Failed"]);
         }
     }
+    //Get Stock By Item Code
+    if ((int) $_REQUEST['AjaxRequest'] == 78) {
+        $comid = $_GET['comid'];
+        $locid = $_GET['locid'];
+        $itemcode = $_GET['itemcode'];
+        $ResulQuery = $clsfunreq->_SelectStockByItemCode($comid, $locid, $itemcode);
+        $GetDataRes = array();
+        while ($rows = mysqli_fetch_assoc($ResulQuery)) {
+            $GetDataRes[] = $rows;
+        }
+        if ($ResulQuery) {
+            echo json_encode(array("Success" => true, "Data" => $GetDataRes));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
+        }
+    }
 }
 //Sales
 elseif (isset($_REQUEST['SalesRequest'])) {
