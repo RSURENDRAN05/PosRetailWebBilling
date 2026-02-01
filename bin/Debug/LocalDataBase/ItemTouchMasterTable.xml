@@ -818,7 +818,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>15.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>12.00</MinPrice>
+    <MinPrice>13.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -854,7 +854,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>25.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>20.00</MinPrice>
+    <MinPrice>22.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
