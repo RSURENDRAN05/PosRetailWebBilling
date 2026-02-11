@@ -355,6 +355,14 @@ class funcProcessMgmt
         }
     }
 
+    public function _UpdateSalesStock($p_mode, $p_itemcode, $p_qty, $p_old_qty, $p_comid, $p_locid, $p_tolocid, $p_refno)
+    {
+        $conn = $this->conn;
+        $sqlQuery = ("CALL sp_stock_process('" . $p_mode . "','" . $p_itemcode . "'," . $p_qty . "," . $p_old_qty . "," . $p_comid . "," . $p_locid . "," . $p_tolocid . ",'" . $p_refno . "');");
+        $result = mysqli_query($conn, $sqlQuery);
+        return $result;
+    }
+
 
     public function _InsertProductMaster(
         $dim_item_barcode,
