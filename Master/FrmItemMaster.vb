@@ -200,6 +200,7 @@ Public Class FrmItemMaster
             End If
         Catch ex As Exception
             dialog.Close()
+            MessageBox.Show(ex.Message.ToString, "Save", MessageBoxButtons.OK)
         Finally
             dialog.Close()
         End Try

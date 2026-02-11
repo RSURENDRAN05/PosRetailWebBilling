@@ -257,21 +257,21 @@ class funcProcessMgmt
     {
         $conn = $this->conn;
         $sql = "SELECT  dim.dim_item_id   AS Id,
-    dim.dim_item_barcode  AS BarCode,
-    dim.dim_item_name     AS ItemName,
-    pcm.pcm_name          AS CompanyName,
-    plm.plm_name          AS LocationName, IFNULL(stk.pl_opstok,0)    AS OpStock,
-    IFNULL(stk.pl_stockin,0)   AS StockIn,
-    IFNULL(stk.pl_stockout,0)  AS StockOut,
-    IFNULL(stk.pl_livestock,0) AS CurStock,
-    '0' as RequiredQty
-    FROM `pos_livestock` as stk  INNER JOIN  di_item_mast AS dim ON dim.dim_item_id=stk.pl_itemcode 
-    INNER JOIN pos_company_mast AS pcm 
-        ON stk.pl_comid = pcm.pcm_id
-	INNER JOIN pos_location_mast AS plm 
-        ON stk.pl_locid = plm.plm_id
-    WHERE  stk.pl_comid = ? AND stk.pl_locid = ?
-    ORDER BY dim.dim_item_name,dim.dim_item_id;";
+        dim.dim_item_barcode  AS BarCode,
+        dim.dim_item_name     AS ItemName,
+        pcm.pcm_name          AS CompanyName,
+        plm.plm_name          AS LocationName, IFNULL(stk.pl_opstok,0)    AS OpStock,
+        IFNULL(stk.pl_stockin,0)   AS StockIn,
+        IFNULL(stk.pl_stockout,0)  AS StockOut,
+        IFNULL(stk.pl_livestock,0) AS CurStock,
+        '0' as RequiredQty
+        FROM `pos_livestock` as stk  INNER JOIN  di_item_mast AS dim ON dim.dim_item_id=stk.pl_itemcode 
+        INNER JOIN pos_company_mast AS pcm 
+            ON stk.pl_comid = pcm.pcm_id
+        INNER JOIN pos_location_mast AS plm 
+            ON stk.pl_locid = plm.plm_id
+        WHERE  stk.pl_comid = ? AND stk.pl_locid = ?
+        ORDER BY dim.dim_item_name,dim.dim_item_id;";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $comid, $locid);
@@ -401,7 +401,7 @@ class funcProcessMgmt
     public function _InsertLiveStock($dim_item_id, $dim_item_barcode, $dim_cost_price, $dim_sell_price, $dim_op_stock, $dim_stock_cur, $dim_com_id, $dim_loc_id)
     {
         $conn = $this->conn;
-        $sqlQueryCheckItemcode = ("SELECT count(*) as counts FROM `pos_livestock` WHERE `pl_itemcode`='" . $dim_item_id . "'");
+        $sqlQueryCheckItemcode = ("SELECT count(*) as counts FROM `pos_livestock` WHERE `pl_itemcode`='" . $dim_item_id . "' AND `pl_comid`='" . $dim_com_id . "' AND  `pl_locid`='" . $dim_loc_id . "' ");
         $resultCheck = mysqli_query($conn, $sqlQueryCheckItemcode);
         $count = (mysqli_fetch_assoc($resultCheck));
         $rowitemcount = $count['counts'];
@@ -414,8 +414,7 @@ class funcProcessMgmt
             $result = mysqli_query($conn, $sqlQuery);
         } else {
             $sqlQuery = ("UPDATE `pos_livestock` SET  `pl_barcode`='" . $dim_item_barcode . "',`pl_cost`='" . $dim_cost_price . "',`pl_sell`='" . $dim_sell_price . "',"
-                . "`pl_opstok`='" . $dim_op_stock . "',`pl_livestock`= pl_opstok + pl_stockin -pl_stockout,"
-                . "`pl_comid`='" . $dim_com_id . "',`pl_locid`='" . $dim_loc_id . "' WHERE  `pl_itemcode`='" . $dim_item_id . "'");
+                . "`pl_opstok`='" . $dim_op_stock . "' WHERE  `pl_itemcode`='" . $dim_item_id . "'");
             $result = mysqli_query($conn, $sqlQuery);
         }
         return $result;
@@ -735,22 +734,43 @@ class funcProcessMgmt
 
 
     //Purchase Save
-    public function GetProductList()
+    public function GetProductList($comid, $locid)
     {
         $conn = $this->conn;
-        $sqlquery = ("SELECT dim.dim_item_id as ITEMCODE,pls.pl_barcode as BARCODE,dim.dim_item_name as ITEMNAME,taxs.taxid as TAXID,taxs.taxname as TAXNAME,taxs.taxvalue as TAXVALUE,
-                      pls.pl_cost as COST,pls.pl_sell as SELL,(pls.pl_opstok + pls.pl_stockin - pls.pl_stockout) as LIVESTOCK,pls.pl_comid as COMID,pls.pl_locid as LOCID, dim.dim_remark as Remarks
-                       FROM `di_item_mast` as dim
-                      INNER JOIN `pos_livestock` as pls ON dim.dim_item_id =pls.pl_itemcode INNER JOIN `taxmaster` AS taxs ON taxs.taxid=dim.dim_tax_id");
-        $result = mysqli_query($conn, $sqlquery);
-        return $result;
+        $sqlquery = ("SELECT  
+            dim.dim_item_id    AS ITEMCODE,
+            pls.pl_barcode     AS BARCODE,
+            dim.dim_item_name  AS ITEMNAME,
+            taxs.taxid         AS TAXID,
+            taxs.taxname       AS TAXNAME,
+            taxs.taxvalue      AS TAXVALUE,
+            pls.pl_cost        AS COST,
+            pls.pl_sell        AS SELL,
+            pls.pl_livestock   AS LIVESTOCK,
+            pls.pl_comid       AS COMID,
+            pls.pl_locid       AS LOCID,
+            dim.dim_remark     AS Remarks
+        FROM di_item_mast AS dim
+        INNER JOIN pos_livestock AS pls 
+            ON dim.dim_item_id = pls.pl_itemcode
+        INNER JOIN taxmaster AS taxs 
+            ON taxs.taxid = dim.dim_tax_id
+        WHERE pls.pl_comid = ? 
+        AND pls.pl_locid = ?
+        ORDER BY dim.dim_item_name, dim.dim_item_id;
+        ");
+        $stmt = $conn->prepare($sqlquery);
+        $stmt->bind_param("ii", $comid, $locid);
+        $stmt->execute();
+
+        return $stmt->get_result();
     }
 
     public function GetProductListByItemCode($ItemCode)
     {
         $conn = $this->conn;
         $sqlquery = ("SELECT dim.dim_item_id as ITEMCODE,pls.pl_barcode as BARCODE,dim.dim_item_name as ITEMNAME,taxs.taxid as TAXID,taxs.taxname as TAXNAME,taxs.taxvalue as TAXVALUE,
-                      pls.pl_cost as COST,pls.pl_sell as SELL,(pls.pl_opstok + pls.pl_stockin - pls.pl_stockout) as LIVESTOCK,pls.pl_comid as COMID,pls.pl_locid as LOCID FROM `di_item_mast` as dim
+                      pls.pl_cost as COST,pls.pl_sell as SELL,pl_livestock as LIVESTOCK,pls.pl_comid as COMID,pls.pl_locid as LOCID FROM `di_item_mast` as dim
                       INNER JOIN `pos_livestock` as pls ON dim.dim_item_id =pls.pl_itemcode INNER JOIN `taxmaster` AS taxs ON taxs.taxid=dim.dim_tax_id WHERE dim.dim_item_id='" . $ItemCode . "'");
         $result = mysqli_query($conn, $sqlquery);
         return $result;

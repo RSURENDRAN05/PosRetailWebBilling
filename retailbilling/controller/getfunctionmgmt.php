@@ -667,7 +667,9 @@ if (isset($_REQUEST['AjaxRequest'])) {
         }
     }
     if ((int) $_REQUEST['AjaxRequest'] == 42) {
-        $ResulQuery = $clsfunreq->GetProductList();
+        $comid = $_GET['comid'];
+        $locid = $_GET['locid'];
+        $ResulQuery = $clsfunreq->GetProductList($comid, $locid);
         $GetDataRes = array();
         while ($rows = mysqli_fetch_assoc($ResulQuery)) {
             $GetDataRes[] = $rows;

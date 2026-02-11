@@ -971,7 +971,8 @@ Module functionModule
                 _JsonData.ItemMasterTable.TableName = "ItemMasterTable"
                 Dim _dt As New DataTable
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42")
+                'Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=75&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId)
+                Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "AjaxRequest=42&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.LocId)
                 Dim Userparsejson As JObject = JObject.Parse(json)
 
                 'Dim dtrows As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _dt Where dtrow("COMID") = _companyInfo.ComId And dtrow("LOCID") = _companyInfo.LocId
