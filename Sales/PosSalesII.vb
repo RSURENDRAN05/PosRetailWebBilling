@@ -4114,7 +4114,17 @@ Public Class PosSalesII
     End Function
 #End Region
 #Region "ViewEdit"
+    Private Sub barbtnstockupdate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnstockupdate.ItemClick
+        Try
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                Dim stockupdatefrm As New StockUpdate
+                stockupdatefrm.ShowDialog()
+            End If
+        Catch ex As Exception
 
+        End Try
+    End Sub
     Private Sub barbtnviewbill_Click(sender As Object, e As EventArgs) Handles barbtnviewbill.ItemClick
         Try
             frmKeyPassIIIMaster.ShowDialog()
@@ -4683,4 +4693,5 @@ Public Class PosSalesII
     End Sub
 #End Region
 
+  
 End Class
