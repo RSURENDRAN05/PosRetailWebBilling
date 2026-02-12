@@ -567,13 +567,50 @@ Public Class SalesDBHelper
                 ' Safe conversion from output parameter
                 detailId = If(prmDetailId.Value Is DBNull.Value, 0, Convert.ToInt32(prmDetailId.Value))
 
+                ' Update Stock
+                Dim stockupdate As New StockUpdateParams
+                stockupdate.Mode = "Update"
+                stockupdate.ItemCode = SafeToInt32(salesDetail.psid_invoice_procode, 0)
+                stockupdate.ComId = _companyInfo.ComId
+                stockupdate.LocId = _companyInfo.LocId
+                stockupdate.OpStock = 0D
+                stockupdate.StockIn = 0D
+                stockupdate.StockOut = salesDetail.psid_invoice_proqty
+                stockupdate.LiveStock = -salesDetail.psid_invoice_proqty
+                ' Call the stock update function    
+                UpdateStockOffline(stockupdate)
                 Return True
             End Using
         Catch ex As Exception
             Return False
         End Try
     End Function
-
+    Public Function UpdateStockOffline(stockupdate As StockUpdateParams) As Boolean
+        Try
+            ' Implement the logic to update stock offline
+            ' This is a placeholder for the actual implementation
+            ' You would typically update a local database or data structure here
+            Using SqlConnection As New SqlConnection(M_Details._Conn)
+                Dim cmd As New SqlClient.SqlCommand("sp_upsert_livestock", SqlConnection)
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Parameters.AddWithValue("@Mode", stockupdate.Mode)
+                cmd.Parameters.AddWithValue("@pl_itemcode", stockupdate.ItemCode)
+                cmd.Parameters.AddWithValue("@pl_comid", stockupdate.ComId)
+                cmd.Parameters.AddWithValue("@pl_locid", stockupdate.LocId)
+                cmd.Parameters.AddWithValue("@pl_opstok", stockupdate.OpStock)
+                cmd.Parameters.AddWithValue("@pl_stockin", stockupdate.StockIn)
+                cmd.Parameters.AddWithValue("@pl_stockout", stockupdate.StockOut)
+                cmd.Parameters.AddWithValue("@pl_livestock", stockupdate.LiveStock)
+                SqlConnection.Open()
+                cmd.ExecuteNonQuery()
+                SqlConnection.Close()
+            End Using
+            Return True
+        Catch ex As Exception
+            MsgBox("Error in Updating Stock Offline: " & ex.Message, MsgBoxStyle.Critical)
+            Return False
+        End Try
+    End Function
     Private Function UpdateSalesHeader(salesHeader As SalesHeader, connection As SqlConnection, transaction As SqlTransaction) As Boolean
         Try
             Using command As New SqlCommand("SP_UpdateSalesHeader", connection, transaction)

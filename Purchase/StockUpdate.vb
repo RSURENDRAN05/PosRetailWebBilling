@@ -34,7 +34,21 @@ Public Class StockUpdate
 
     Private Sub btnresetstock_Click(sender As Object, e As EventArgs) Handles btnresetstock.Click
         Try
-
+            Dim stockupdate As New StockUpdateParams
+            stockupdate.Mode = "ResetSt"
+            stockupdate.ItemCode = 0
+            stockupdate.ComId = _companyInfo.ComId
+            stockupdate.LocId = _companyInfo.LocId
+            stockupdate.OpStock = 0D
+            stockupdate.StockIn = 0
+            stockupdate.StockOut = 0D
+            stockupdate.LiveStock = 0
+            ' Call the stock update function    
+            If ResetAllStock(stockupdate) Then
+                MessageBox.Show("Reset Stock Successfully Done", "Reset", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+            Else
+                MessageBox.Show("Reset Stock Not Done", "Reset", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+            End If
         Catch ex As Exception
 
         End Try
@@ -44,24 +58,7 @@ Public Class StockUpdate
             If OfflineMode Then 'Web Mode
                 GetStockData()
             Else
-                Dim dst As New DataSet
-                dst = GetStockDataOffline()
-                If dst IsNot Nothing AndAlso dst.Tables.Count > 0 AndAlso dst.Tables(0).Rows.Count > 0 AndAlso _JsonData.ItemMasterTable IsNot Nothing Then
-                    For Each stockRow As DataRow In dst.Tables(0).Rows
-                        For Each itemRow As DataRow In _JsonData.ItemMasterTable.Rows
-                            If String.Equals(Convert.ToString(itemRow("ITEMCODE")), Convert.ToString(stockRow("Id")), StringComparison.OrdinalIgnoreCase) Then
-                                stockRow("BarCode") = itemRow("BARCODE")
-                                stockRow("ItemName") = itemRow("ITEMNAME")
-                                stockRow("CompanyName") = _companyInfo.CompanyName
-                                stockRow("LocationName") = _companyInfo.LocationName
-                                Exit For
-                            End If
-                        Next
-                    Next
-                    GridControl1.DataSource = dst.Tables(0)
-                Else
-                    GridControl1.DataSource = Nothing
-                End If
+                GetDataOffline()
             End If
 
         Catch ex As Exception
@@ -74,7 +71,10 @@ Public Class StockUpdate
             If OfflineMode Then 'Web Mode
                 UpdateStock()
             Else
-
+                If UpdateStockOffline() Then
+                    MessageBox.Show("Stock Updated Successfully Done", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+                    GetDataOffline()
+                End If
             End If
         Catch ex As Exception
             MSgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
@@ -184,6 +184,76 @@ Public Class StockUpdate
     End Sub
 #End Region
 #Region "OfflineStock"
+    Private Sub GetDataOffline()
+        Try
+            Dim dst As New DataSet
+            dst = GetStockDataOffline()
+            _ds = dst.Tables(0).Copy
+
+            If _ds IsNot Nothing AndAlso _ds.Rows.Count > 0 AndAlso _ds.Rows.Count > 0 AndAlso _JsonData.ItemMasterTable IsNot Nothing Then
+                For Each stockRow As DataRow In _ds.Rows
+                    For Each itemRow As DataRow In _JsonData.ItemMasterTable.Rows
+                        If String.Equals(Convert.ToString(itemRow("ITEMCODE")), Convert.ToString(stockRow("Id")), StringComparison.OrdinalIgnoreCase) Then
+                            stockRow("BarCode") = itemRow("BARCODE")
+                            stockRow("ItemName") = itemRow("ITEMNAME")
+                            stockRow("CompanyName") = _companyInfo.CompanyName
+                            stockRow("LocationName") = _companyInfo.LocationName
+                            Exit For
+                        End If
+                    Next
+                Next
+                GridControl1.DataSource = _ds
+            Else
+                GridControl1.DataSource = Nothing
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Public Function UpdateStockOffline() As Boolean
+        Try
+            Dim stockList As New List(Of StockItem)
+            For Each row As DataRow In _ds.Rows
+                If Convert.ToDecimal(row("RequiredQty")) > 0D Then
+                    Dim stockItem As New StockItem With {
+                        .Id = Convert.ToInt32(row("Id")),
+                        .BarCode = row("BarCode").ToString(),
+                        .ItemName = row("ItemName").ToString(),
+                        .CompanyName = row("CompanyName").ToString(),
+                        .LocationName = row("LocationName").ToString(),
+                        .OpStock = Convert.ToDecimal(row("OpStock")),
+                        .StockIn = Convert.ToDecimal(row("StockIn")),
+                        .StockOut = Convert.ToDecimal(row("StockOut")),
+                        .CurStock = Convert.ToDecimal(row("CurStock")),
+                        .RequiredQty = Convert.ToDecimal(row("RequiredQty"))
+                    }
+                    stockList.Add(stockItem)
+                End If
+            Next
+
+            If stockList.Count = 0 Then
+                MsgBox("No stock to update.", MsgBoxStyle.Information)
+                Return False
+            End If
+            For Each rst In stockList
+                Dim stockupdate As New StockUpdateParams
+                stockupdate.Mode = "Update"
+                stockupdate.ItemCode = rst.Id
+                stockupdate.ComId = _companyInfo.ComId
+                stockupdate.LocId = _companyInfo.LocId
+                stockupdate.OpStock = 0D
+                stockupdate.StockIn = rst.RequiredQty
+                stockupdate.StockOut = 0D
+                stockupdate.LiveStock = rst.RequiredQty
+                ' Call the stock update function    
+                UpdateStockOffline(stockupdate)
+            Next
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function RecreateStockOffline() As Boolean
         Try
             If _JsonData.ItemMasterTable.Rows.Count > 0 Then
@@ -200,6 +270,7 @@ Public Class StockUpdate
                     stockupdate.LiveStock = rows("LIVESTOCK").ToString()
                     ' Call the stock update function    
                     UpdateStockOffline(stockupdate)
+
                 Next
             End If
             Return True
@@ -271,10 +342,25 @@ Public Class StockUpdate
             Return Nothing
         End Try
     End Function
+    Public Function ResetAllStock(stockupdate As StockUpdateParams) As Boolean
+        Try
+
+            Dim sql(7) As SqlParameter
+            sql(0) = New SqlParameter("@Mode", stockupdate.Mode)
+            sql(1) = New SqlParameter("@pl_itemcode", stockupdate.ItemCode)
+            sql(2) = New SqlParameter("@pl_comid", stockupdate.ComId)
+            sql(3) = New SqlParameter("@pl_locid", stockupdate.LocId)
+            sql(4) = New SqlParameter("@pl_opstok", stockupdate.OpStock)
+            sql(5) = New SqlParameter("@pl_stockin", stockupdate.StockIn)
+            sql(6) = New SqlParameter("@pl_stockout", stockupdate.StockOut)
+            sql(7) = New SqlParameter("@pl_livestock", stockupdate.LiveStock)
+            _ExecuteNonQuery("sp_upsert_livestock", sql, "")
+            Return True
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 #End Region
-
-
-
 End Class
 Public Class StockItem
     Public Property Id As Integer

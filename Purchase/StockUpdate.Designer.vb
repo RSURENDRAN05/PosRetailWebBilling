@@ -20,6 +20,7 @@ Partial Class StockUpdate
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnresetstock = New DevExpress.XtraEditors.SimpleButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.chkWebmode = New DevExpress.XtraEditors.CheckEdit()
         Me.btnUpdateStcok = New DevExpress.XtraEditors.SimpleButton()
@@ -47,7 +48,6 @@ Partial Class StockUpdate
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnresetstock = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -84,6 +84,15 @@ Partial Class StockUpdate
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'btnresetstock
+        '
+        Me.btnresetstock.Location = New System.Drawing.Point(897, 12)
+        Me.btnresetstock.Name = "btnresetstock"
+        Me.btnresetstock.Size = New System.Drawing.Size(82, 22)
+        Me.btnresetstock.StyleController = Me.LayoutControl1
+        Me.btnresetstock.TabIndex = 10
+        Me.btnresetstock.Text = "Reset All Stock"
+        '
         'Label1
         '
         Me.Label1.Location = New System.Drawing.Point(102, 12)
@@ -112,7 +121,7 @@ Partial Class StockUpdate
         '
         'btnFetchStcok
         '
-        Me.btnFetchStcok.Location = New System.Drawing.Point(829, 12)
+        Me.btnFetchStcok.Location = New System.Drawing.Point(826, 12)
         Me.btnFetchStcok.Name = "btnFetchStcok"
         Me.btnFetchStcok.Size = New System.Drawing.Size(67, 22)
         Me.btnFetchStcok.StyleController = Me.LayoutControl1
@@ -121,7 +130,7 @@ Partial Class StockUpdate
         '
         'btnGenerateStcokList
         '
-        Me.btnGenerateStcokList.Location = New System.Drawing.Point(721, 12)
+        Me.btnGenerateStcokList.Location = New System.Drawing.Point(718, 12)
         Me.btnGenerateStcokList.Name = "btnGenerateStcokList"
         Me.btnGenerateStcokList.Size = New System.Drawing.Size(104, 22)
         Me.btnGenerateStcokList.StyleController = Me.LayoutControl1
@@ -286,7 +295,7 @@ Partial Class StockUpdate
         '
         Me.LayoutControlItem2.Control = Me.btnGenerateStcokList
         Me.LayoutControlItem2.CustomizationFormText = "LayoutControlItem2"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(709, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(706, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(108, 26)
         Me.LayoutControlItem2.Text = "LayoutControlItem2"
@@ -298,7 +307,7 @@ Partial Class StockUpdate
         '
         Me.LayoutControlItem3.Control = Me.btnFetchStcok
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(817, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(814, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(71, 26)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
@@ -312,7 +321,7 @@ Partial Class StockUpdate
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(256, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(453, 26)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(450, 26)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -352,22 +361,13 @@ Partial Class StockUpdate
         Me.LayoutControlItem6.TextToControlDistance = 0
         Me.LayoutControlItem6.TextVisible = False
         '
-        'btnresetstock
-        '
-        Me.btnresetstock.Location = New System.Drawing.Point(900, 12)
-        Me.btnresetstock.Name = "btnresetstock"
-        Me.btnresetstock.Size = New System.Drawing.Size(79, 22)
-        Me.btnresetstock.StyleController = Me.LayoutControl1
-        Me.btnresetstock.TabIndex = 10
-        Me.btnresetstock.Text = "Reset Stock"
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.btnresetstock
         Me.LayoutControlItem7.CustomizationFormText = "LayoutControlItem7"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(888, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(885, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(83, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(86, 26)
         Me.LayoutControlItem7.Text = "LayoutControlItem7"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextToControlDistance = 0
