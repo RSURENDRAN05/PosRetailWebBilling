@@ -1276,7 +1276,9 @@ Public Class PosSalesII
                     SqlDel(1) = New SqlParameter("@psid", psid)
                     SqlDel(2) = New SqlParameter("@trno", trno)
                     If _ExecuteNonQuery("sp_DeleteSaleDetails", SqlDel, Errstr) = True Then
+                        StockUpdateOffline(itemCode, qty)
                         SendDeleteLogToServer(itemCode, itemName, qty, netAmount, "Item deleted by user", psid)
+
                     End If
                 End If
                 ' Only remove the row if server logging was successful
@@ -1534,7 +1536,7 @@ Public Class PosSalesII
                     Next
                     If Not _allownegativestock Then
                         Dim stockqty As Integer = 0
-                        GetStockData(_Code, stockqty)
+                        GetstockDataOffline(_Code, stockqty)
                         If stockqty < 1 Then
                             ErrorMsg = "Insufficient stock for the item: " & _item
                             Return False
@@ -1848,6 +1850,57 @@ Public Class PosSalesII
             dialog.Close()
         Finally
             dialog.Close()
+        End Try
+    End Sub
+    Private Sub GetstockDataOffline(ItemCode As String, ByRef RtnStock As Integer)
+        Try
+            Dim _DsStockTable As New DataSet
+            Dim stockupdate As New StockUpdateParams
+            stockupdate.Mode = "GetStockById"
+            stockupdate.ItemCode = ItemCode
+            stockupdate.ComId = _companyInfo.ComId
+            stockupdate.LocId = _companyInfo.LocId
+            stockupdate.OpStock = 0D
+            stockupdate.StockIn = 0D
+            stockupdate.StockOut = 0D
+            stockupdate.LiveStock = 0D
+
+            Dim sql(7) As SqlParameter
+            sql(0) = New SqlParameter("@Mode", stockupdate.Mode)
+            sql(1) = New SqlParameter("@pl_itemcode", stockupdate.ItemCode)
+            sql(2) = New SqlParameter("@pl_comid", stockupdate.ComId)
+            sql(3) = New SqlParameter("@pl_locid", stockupdate.LocId)
+            sql(4) = New SqlParameter("@pl_opstok", stockupdate.OpStock)
+            sql(5) = New SqlParameter("@pl_stockin", stockupdate.StockIn)
+            sql(6) = New SqlParameter("@pl_stockout", stockupdate.StockOut)
+            sql(7) = New SqlParameter("@pl_livestock", stockupdate.LiveStock)
+            _DsStockTable = _sqlDataAdapter2("sp_upsert_livestock", sql)
+            If _DsStockTable.Tables(0).Rows.Count > 0 Then
+                RtnStock = _DsStockTable.Tables(0).Rows(0)("pl_livestock").ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub StockUpdateOffline(ByRef ItemCode As Integer, ByRef qty As Decimal)
+        Try
+            Using SqlConnection As New SqlConnection(M_Details._Conn)
+                Dim cmd As New SqlClient.SqlCommand("sp_upsert_livestock", SqlConnection)
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Parameters.AddWithValue("@Mode", "Update")
+                cmd.Parameters.AddWithValue("@pl_itemcode", ItemCode)
+                cmd.Parameters.AddWithValue("@pl_comid", _companyInfo.ComId)
+                cmd.Parameters.AddWithValue("@pl_locid", _companyInfo.LocId)
+                cmd.Parameters.AddWithValue("@pl_opstok", 0)
+                cmd.Parameters.AddWithValue("@pl_stockin", 0)
+                cmd.Parameters.AddWithValue("@pl_stockout", -qty)
+                cmd.Parameters.AddWithValue("@pl_livestock", qty)
+                SqlConnection.Open()
+                cmd.ExecuteNonQuery()
+                SqlConnection.Close()
+            End Using
+        Catch ex As Exception
+
         End Try
     End Sub
 #End Region

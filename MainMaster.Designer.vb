@@ -77,11 +77,13 @@ Partial Class MainMaster
         Me.barbtnattendancereport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnmastersalesreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtntimeProfile = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnstockreport = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageSales = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup6 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup7 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -111,8 +113,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.barbtnstockreport = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -575,6 +575,15 @@ Partial Class MainMaster
         Me.barbtntimeProfile.LargeGlyph = CType(resources.GetObject("barbtntimeProfile.LargeGlyph"), System.Drawing.Image)
         Me.barbtntimeProfile.Name = "barbtntimeProfile"
         '
+        'barbtnstockreport
+        '
+        Me.barbtnstockreport.Caption = "Stock Report"
+        Me.barbtnstockreport.Glyph = CType(resources.GetObject("barbtnstockreport.Glyph"), System.Drawing.Image)
+        Me.barbtnstockreport.Id = 63
+        Me.barbtnstockreport.LargeGlyph = CType(resources.GetObject("barbtnstockreport.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnstockreport.Name = "barbtnstockreport"
+        Me.barbtnstockreport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -612,6 +621,12 @@ Partial Class MainMaster
         Me.RibbonPageGroup5.ItemLinks.Add(Me.barmasterpurchasereport)
         Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
         Me.RibbonPageGroup5.Text = "Purchase Master"
+        '
+        'RibbonPageGroup15
+        '
+        Me.RibbonPageGroup15.ItemLinks.Add(Me.barbtnstockreport)
+        Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
+        Me.RibbonPageGroup15.Text = "Stcok Report"
         '
         'RibbonPageSales
         '
@@ -878,20 +893,6 @@ Partial Class MainMaster
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
-        '
-        'RibbonPageGroup15
-        '
-        Me.RibbonPageGroup15.ItemLinks.Add(Me.barbtnstockreport)
-        Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
-        Me.RibbonPageGroup15.Text = "Stcok Report"
-        '
-        'barbtnstockreport
-        '
-        Me.barbtnstockreport.Caption = "Stock Report"
-        Me.barbtnstockreport.Glyph = CType(resources.GetObject("barbtnstockreport.Glyph"), System.Drawing.Image)
-        Me.barbtnstockreport.Id = 63
-        Me.barbtnstockreport.LargeGlyph = CType(resources.GetObject("barbtnstockreport.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnstockreport.Name = "barbtnstockreport"
         '
         'MainMaster
         '
