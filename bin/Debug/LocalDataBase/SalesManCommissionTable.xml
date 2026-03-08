@@ -31,6 +31,420 @@
     </xs:element>
   </xs:schema>
   <SalesManCommissionTable>
+    <CommissionId>107</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>25</ItemId>
+    <ItemName>FACE WAX    [Full]</ItemName>
+    <Barcode>24</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:20</Created>
+    <Updated>2025-09-21 22:20:20</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>108</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>19</ItemId>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <Barcode>19</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:20</Created>
+    <Updated>2025-09-21 22:20:20</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>109</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:20</Created>
+    <Updated>2025-09-21 22:20:20</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>110</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>20</ItemId>
+    <ItemName>FACE MASSAGE</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:21</Created>
+    <Updated>2025-09-21 22:20:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>111</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>FACE WASH</ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:21</Created>
+    <Updated>2025-09-21 22:20:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>113</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>FACIAL     [Classic]</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:22</Created>
+    <Updated>2025-09-21 22:20:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>112</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:21</Created>
+    <Updated>2025-09-21 22:20:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>114</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>31</ItemId>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
+    <Barcode>30</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:22</Created>
+    <Updated>2025-09-21 22:20:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>115</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>29</ItemId>
+    <ItemName>BEARD          TOUCH UP</ItemName>
+    <Barcode>28</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:22</Created>
+    <Updated>2025-09-21 22:20:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>118</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:23</Created>
+    <Updated>2025-09-21 22:20:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>119</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:23</Created>
+    <Updated>2025-09-21 22:20:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>120</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:24</Created>
+    <Updated>2025-09-21 22:20:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>121</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>30</ItemId>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <Barcode>29</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:24</Created>
+    <Updated>2025-09-21 22:20:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>116</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>28</ItemId>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <Barcode>27</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:22</Created>
+    <Updated>2025-09-21 22:20:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>117</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>27</ItemId>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <Barcode>26</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:22</Created>
+    <Updated>2025-09-21 22:20:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>124</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>32</ItemId>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <Barcode>31</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:24</Created>
+    <Updated>2025-09-21 22:20:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>125</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>17</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>17</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:25</Created>
+    <Updated>2025-09-21 22:20:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>123</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>16</ItemId>
+    <ItemName>OIL MASSAGE</ItemName>
+    <Barcode>16</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:24</Created>
+    <Updated>2025-09-21 22:20:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>122</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>15</ItemId>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <Barcode>15</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:24</Created>
+    <Updated>2025-09-21 22:20:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>126</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>34</ItemId>
+    <ItemName>HAIR PERMING</ItemName>
+    <Barcode>33</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:25</Created>
+    <Updated>2025-09-21 22:20:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>444</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>18</ItemId>
+    <ItemName>HAIR SETTING</ItemName>
+    <Barcode>18</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>0.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-16 17:58:06</Created>
+    <Updated>2025-10-16 17:58:06</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>128</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>21</ItemId>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:25</Created>
+    <Updated>2025-09-21 22:20:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>129</CommissionId>
+    <EmpId>2</EmpId>
+    <SalesmanName>AMAN</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>33</ItemId>
+    <ItemName>THREADING</ItemName>
+    <Barcode>32</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-09-21 22:20:25</Created>
+    <Updated>2025-09-21 22:20:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>130</CommissionId>
     <EmpId>11</EmpId>
     <SalesmanName>CHINNAIYAH</SalesmanName>
@@ -877,6 +1291,1266 @@
     <Updated>2025-10-28 13:29:05</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>665</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>65</ItemId>
+    <ItemName>ADMIN ONLY</ItemName>
+    <Barcode>64</Barcode>
+    <SubGroupId>8</SubGroupId>
+    <SubGroupName>ADMIN ONLY</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:41</Created>
+    <Updated>2026-03-08 21:02:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>624</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>91</ItemId>
+    <ItemName>ADVANCE FACIAL</ItemName>
+    <Barcode>90</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:22</Created>
+    <Updated>2026-03-08 21:02:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>625</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>90</ItemId>
+    <ItemName>BASIC FACIAL</ItemName>
+    <Barcode>89</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:23</Created>
+    <Updated>2026-03-08 21:02:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>626</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>104</ItemId>
+    <ItemName>BRIDAL FACIAL</ItemName>
+    <Barcode>103</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:23</Created>
+    <Updated>2026-03-08 21:02:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>627</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>88</ItemId>
+    <ItemName>EYE COLLAGEN TREATMENT</ItemName>
+    <Barcode>87</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:24</Created>
+    <Updated>2026-03-08 21:02:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>628</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>89</ItemId>
+    <ItemName>FACE WASH AND MASSAGE</ItemName>
+    <Barcode>88</Barcode>
+    <SubGroupId>15</SubGroupId>
+    <SubGroupName>L. FACIAL</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:24</Created>
+    <Updated>2026-03-08 21:02:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>629</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>83</ItemId>
+    <ItemName>COLOUR PROTECTOR     [For Allergy Scalp]</ItemName>
+    <Barcode>82</Barcode>
+    <SubGroupId>14</SubGroupId>
+    <SubGroupName>L. HAIR DYE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:24</Created>
+    <Updated>2026-03-08 21:02:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>630</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>70</ItemId>
+    <ItemName>HAIR COLOURING [Full Hair]</ItemName>
+    <Barcode>69</Barcode>
+    <SubGroupId>14</SubGroupId>
+    <SubGroupName>L. HAIR DYE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:25</Created>
+    <Updated>2026-03-08 21:02:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>631</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>69</ItemId>
+    <ItemName>HAIR HIGHLIGHTING</ItemName>
+    <Barcode>68</Barcode>
+    <SubGroupId>14</SubGroupId>
+    <SubGroupName>L. HAIR DYE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:25</Created>
+    <Updated>2026-03-08 21:02:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>632</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>71</ItemId>
+    <ItemName>ROOT TOUCH UP </ItemName>
+    <Barcode>70</Barcode>
+    <SubGroupId>14</SubGroupId>
+    <SubGroupName>L. HAIR DYE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:26</Created>
+    <Updated>2026-03-08 21:02:26</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>633</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>58</ItemId>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
+    <Barcode>57</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:26</Created>
+    <Updated>2026-03-08 21:02:26</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>634</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>84</ItemId>
+    <ItemName>HERBAL KERATIN TREATMENT</ItemName>
+    <Barcode>83</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:27</Created>
+    <Updated>2026-03-08 21:02:27</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>635</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>61</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>60</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:27</Created>
+    <Updated>2026-03-08 21:02:27</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>636</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>62</ItemId>
+    <ItemName>PERMING</ItemName>
+    <Barcode>61</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:27</Created>
+    <Updated>2026-03-08 21:02:27</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>637</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>64</ItemId>
+    <ItemName>REBONDING</ItemName>
+    <Barcode>63</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:28</Created>
+    <Updated>2026-03-08 21:02:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>638</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>63</ItemId>
+    <ItemName>RELAXING</ItemName>
+    <Barcode>62</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:28</Created>
+    <Updated>2026-03-08 21:02:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>639</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>85</ItemId>
+    <ItemName>SCALP - HAIR MOISTURISER TREATMENT </ItemName>
+    <Barcode>84</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:29</Created>
+    <Updated>2026-03-08 21:02:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>640</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>60</ItemId>
+    <ItemName>SCALP TREATMENT</ItemName>
+    <Barcode>59</Barcode>
+    <SubGroupId>17</SubGroupId>
+    <SubGroupName>L. HAIR TREATMENT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:29</Created>
+    <Updated>2026-03-08 21:02:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>641</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>72</ItemId>
+    <ItemName>HOT OIL MASSAGE</ItemName>
+    <Barcode>71</Barcode>
+    <SubGroupId>16</SubGroupId>
+    <SubGroupName>L. OIL MASSAGE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:29</Created>
+    <Updated>2026-03-08 21:02:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>642</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>73</ItemId>
+    <ItemName>HOT OIL MASSAGE STEAMING WASH</ItemName>
+    <Barcode>72</Barcode>
+    <SubGroupId>16</SubGroupId>
+    <SubGroupName>L. OIL MASSAGE</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:30</Created>
+    <Updated>2026-03-08 21:02:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>643</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>87</ItemId>
+    <ItemName>HENNA</ItemName>
+    <Barcode>86</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:30</Created>
+    <Updated>2026-03-08 21:02:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>644</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>107</ItemId>
+    <ItemName>T. CHIN</ItemName>
+    <Barcode>106</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:31</Created>
+    <Updated>2026-03-08 21:02:31</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>645</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>105</ItemId>
+    <ItemName>T. EYEBROW</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:31</Created>
+    <Updated>2026-03-08 21:02:31</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>646</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>103</ItemId>
+    <ItemName>T. FULL FACE</ItemName>
+    <Barcode>102</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:32</Created>
+    <Updated>2026-03-08 21:02:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>647</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>108</ItemId>
+    <ItemName>T. SIDE</ItemName>
+    <Barcode>107</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:32</Created>
+    <Updated>2026-03-08 21:02:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>648</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>106</ItemId>
+    <ItemName>T. UPPER LIP</ItemName>
+    <Barcode>105</Barcode>
+    <SubGroupId>19</SubGroupId>
+    <SubGroupName>L. THREADING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:33</Created>
+    <Updated>2026-03-08 21:02:33</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>649</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>44</ItemId>
+    <ItemName>CHIN</ItemName>
+    <Barcode>43</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:33</Created>
+    <Updated>2026-03-08 21:02:33</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>650</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>42</ItemId>
+    <ItemName>EYEBROW</ItemName>
+    <Barcode>41</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:34</Created>
+    <Updated>2026-03-08 21:02:34</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>651</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>40</ItemId>
+    <ItemName>FULL FACE</ItemName>
+    <Barcode>39</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:34</Created>
+    <Updated>2026-03-08 21:02:34</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>652</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>38</ItemId>
+    <ItemName>FULL HANDS</ItemName>
+    <Barcode>37</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:35</Created>
+    <Updated>2026-03-08 21:02:35</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>653</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>36</ItemId>
+    <ItemName>FULL LEGS</ItemName>
+    <Barcode>35</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:35</Created>
+    <Updated>2026-03-08 21:02:35</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>654</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>39</ItemId>
+    <ItemName>HALF HANDS</ItemName>
+    <Barcode>38</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:36</Created>
+    <Updated>2026-03-08 21:02:36</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>655</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>37</ItemId>
+    <ItemName>HALF LEGS</ItemName>
+    <Barcode>36</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:36</Created>
+    <Updated>2026-03-08 21:02:36</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>656</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>86</ItemId>
+    <ItemName>NECK</ItemName>
+    <Barcode>85</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:37</Created>
+    <Updated>2026-03-08 21:02:37</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>657</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>41</ItemId>
+    <ItemName>SIDE</ItemName>
+    <Barcode>40</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:37</Created>
+    <Updated>2026-03-08 21:02:37</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>658</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>45</ItemId>
+    <ItemName>UNDERARM</ItemName>
+    <Barcode>44</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:37</Created>
+    <Updated>2026-03-08 21:02:37</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>659</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>43</ItemId>
+    <ItemName>UPPER LIP</ItemName>
+    <Barcode>42</Barcode>
+    <SubGroupId>18</SubGroupId>
+    <SubGroupName>L. WAXING</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:38</Created>
+    <Updated>2026-03-08 21:02:38</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>666</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>96</ItemId>
+    <ItemName>GEL MANI</ItemName>
+    <Barcode>95</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:41</Created>
+    <Updated>2026-03-08 21:02:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>667</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>78</ItemId>
+    <ItemName>GEL MANI-PEDI</ItemName>
+    <Barcode>77</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:41</Created>
+    <Updated>2026-03-08 21:02:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>668</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>97</ItemId>
+    <ItemName>GEL PEDI</ItemName>
+    <Barcode>96</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:42</Created>
+    <Updated>2026-03-08 21:02:42</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>669</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>92</ItemId>
+    <ItemName>MANI</ItemName>
+    <Barcode>91</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:42</Created>
+    <Updated>2026-03-08 21:02:42</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>670</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>93</ItemId>
+    <ItemName>PEDI</ItemName>
+    <Barcode>92</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:43</Created>
+    <Updated>2026-03-08 21:02:43</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>671</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>94</ItemId>
+    <ItemName>SPA MANI</ItemName>
+    <Barcode>93</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:43</Created>
+    <Updated>2026-03-08 21:02:43</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>672</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>59</ItemId>
+    <ItemName>SPA MANI         [Gel Colour]</ItemName>
+    <Barcode>58</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:43</Created>
+    <Updated>2026-03-08 21:02:43</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>673</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:44</Created>
+    <Updated>2026-03-08 21:02:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>674</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>95</ItemId>
+    <ItemName>SPA PEDI</ItemName>
+    <Barcode>94</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:44</Created>
+    <Updated>2026-03-08 21:02:44</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>675</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>100</ItemId>
+    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
+    <Barcode>99</Barcode>
+    <SubGroupId>20</SubGroupId>
+    <SubGroupName>LADIES</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:45</Created>
+    <Updated>2026-03-08 21:02:45</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>660</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>67</ItemId>
+    <ItemName>DRY CUT</ItemName>
+    <Barcode>66</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:38</Created>
+    <Updated>2026-03-08 21:02:38</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>661</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>74</ItemId>
+    <ItemName>HAIR SETTING</ItemName>
+    <Barcode>73</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:39</Created>
+    <Updated>2026-03-08 21:02:39</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>662</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>109</ItemId>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
+    <Barcode>104</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:39</Created>
+    <Updated>2026-03-08 21:02:39</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>663</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>66</ItemId>
+    <ItemName>WASH - BLOW</ItemName>
+    <Barcode>65</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:40</Created>
+    <Updated>2026-03-08 21:02:40</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>664</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>68</ItemId>
+    <ItemName>WASH - CUT - BLOW</ItemName>
+    <Barcode>67</Barcode>
+    <SubGroupId>13</SubGroupId>
+    <SubGroupName>LADIES HAIR CUT</SubGroupName>
+    <MainGroupName>LADIES</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:40</Created>
+    <Updated>2026-03-08 21:02:40</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>676</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>75</ItemId>
+    <ItemName>MANICURE</ItemName>
+    <Barcode>74</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:45</Created>
+    <Updated>2026-03-08 21:02:45</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>677</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>76</ItemId>
+    <ItemName>PEDICURE</ItemName>
+    <Barcode>75</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:46</Created>
+    <Updated>2026-03-08 21:02:46</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>678</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>79</ItemId>
+    <ItemName>SPA MANICURE</ItemName>
+    <Barcode>78</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:46</Created>
+    <Updated>2026-03-08 21:02:46</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>679</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>80</ItemId>
+    <ItemName>SPA PEDICURE</ItemName>
+    <Barcode>79</Barcode>
+    <SubGroupId>9</SubGroupId>
+    <SubGroupName>MEN</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:47</Created>
+    <Updated>2026-03-08 21:02:47</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>680</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>46</ItemId>
+    <ItemName>COLOUR ART DESIGN [Per Nail]</ItemName>
+    <Barcode>45</Barcode>
+    <SubGroupId>11</SubGroupId>
+    <SubGroupName>NAIL ART</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:47</Created>
+    <Updated>2026-03-08 21:02:47</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>681</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>47</ItemId>
+    <ItemName>STONE ART DESIGN [Per Nail]</ItemName>
+    <Barcode>46</Barcode>
+    <SubGroupId>11</SubGroupId>
+    <SubGroupName>NAIL ART</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:48</Created>
+    <Updated>2026-03-08 21:02:48</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>682</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>98</ItemId>
+    <ItemName>TIP EXTENSION [1 Hand]</ItemName>
+    <Barcode>97</Barcode>
+    <SubGroupId>10</SubGroupId>
+    <SubGroupName>NAIL EXTENSION</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:48</Created>
+    <Updated>2026-03-08 21:02:48</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>683</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>77</ItemId>
+    <ItemName>TIP EXTENSION [2 Hands]</ItemName>
+    <Barcode>76</Barcode>
+    <SubGroupId>10</SubGroupId>
+    <SubGroupName>NAIL EXTENSION</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:49</Created>
+    <Updated>2026-03-08 21:02:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>684</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>53</ItemId>
+    <ItemName>BUFFING SHINE</ItemName>
+    <Barcode>52</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:49</Created>
+    <Updated>2026-03-08 21:02:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>685</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>49</ItemId>
+    <ItemName>CALLUS REMOVER TREATMENT</ItemName>
+    <Barcode>48</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:49</Created>
+    <Updated>2026-03-08 21:02:49</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>686</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>56</ItemId>
+    <ItemName>FRENCH NAIL OPI/GEL COLOUR [Per Nail]</ItemName>
+    <Barcode>55</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:50</Created>
+    <Updated>2026-03-08 21:02:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>687</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>54</ItemId>
+    <ItemName>FRENCH NAIL WITH OPI / GEL COLOUR</ItemName>
+    <Barcode>53</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:50</Created>
+    <Updated>2026-03-08 21:02:50</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>688</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>52</ItemId>
+    <ItemName>GEL COLOUR ONLY</ItemName>
+    <Barcode>51</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:51</Created>
+    <Updated>2026-03-08 21:02:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>689</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>50</ItemId>
+    <ItemName>HEEL SCRUB</ItemName>
+    <Barcode>49</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:51</Created>
+    <Updated>2026-03-08 21:02:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>690</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>51</ItemId>
+    <ItemName>OPI COLOUR ONLY</ItemName>
+    <Barcode>50</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:51</Created>
+    <Updated>2026-03-08 21:02:51</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>691</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>48</ItemId>
+    <ItemName>REMOVE TIP EXTENSION</ItemName>
+    <Barcode>47</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:52</Created>
+    <Updated>2026-03-08 21:02:52</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>692</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>57</ItemId>
+    <ItemName>REMOVER ARCYLIC</ItemName>
+    <Barcode>56</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:52</Created>
+    <Updated>2026-03-08 21:02:52</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>693</CommissionId>
+    <EmpId>20</EmpId>
+    <SalesmanName>JASPREET</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>55</ItemId>
+    <ItemName>REMOVER GEL</ItemName>
+    <Barcode>54</Barcode>
+    <SubGroupId>12</SubGroupId>
+    <SubGroupName>OTHERS [NAILS]</SubGroupName>
+    <MainGroupName>NAILS</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-03-08 21:02:52</Created>
+    <Updated>2026-03-08 21:02:52</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>154</CommissionId>
     <EmpId>4</EmpId>
     <SalesmanName>KANAGARAJ</SalesmanName>
@@ -1309,438 +2983,6 @@
     <Updated>2025-10-07 20:38:20</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>178</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>25</ItemId>
-    <ItemName>FACE WAX    [Full]</ItemName>
-    <Barcode>24</Barcode>
-    <SubGroupId>6</SubGroupId>
-    <SubGroupName>FACE WAX</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:21</Created>
-    <Updated>2025-10-07 20:38:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>179</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>19</ItemId>
-    <ItemName>FACE WAX [Partial]</ItemName>
-    <Barcode>19</Barcode>
-    <SubGroupId>6</SubGroupId>
-    <SubGroupName>FACE WAX</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:22</Created>
-    <Updated>2025-10-07 20:38:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>180</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
-    <Barcode>12</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:23</Created>
-    <Updated>2025-10-07 20:38:23</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>181</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>35</ItemId>
-    <ItemName>FACE MASK</ItemName>
-    <Barcode>34</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:23</Created>
-    <Updated>2025-10-07 20:38:23</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>182</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>20</ItemId>
-    <ItemName>FACE MASSAGE</ItemName>
-    <Barcode>20</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:23</Created>
-    <Updated>2025-10-07 20:38:23</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>183</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>10</ItemId>
-    <ItemName>FACE WASH</ItemName>
-    <Barcode>10</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:24</Created>
-    <Updated>2025-10-07 20:38:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>184</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
-    <Barcode>13</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:25</Created>
-    <Updated>2025-10-07 20:38:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>185</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>14</ItemId>
-    <ItemName>FACIAL    [ADVANCE]</ItemName>
-    <Barcode>14</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:25</Created>
-    <Updated>2025-10-07 20:38:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>186</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>31</ItemId>
-    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
-    <Barcode>30</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:26</Created>
-    <Updated>2025-10-07 20:38:26</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>187</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>29</ItemId>
-    <ItemName>BEARD          TOUCH UP</ItemName>
-    <Barcode>28</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:26</Created>
-    <Updated>2025-10-07 20:38:26</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>188</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>HAIR COLOURING</ItemName>
-    <Barcode>9</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:27</Created>
-    <Updated>2025-10-07 20:38:27</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>189</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>HAIR DYE [Cream]</ItemName>
-    <Barcode>8</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:28</Created>
-    <Updated>2025-10-07 20:38:28</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>190</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>7</ItemId>
-    <ItemName>HAIR DYE [Powder]</ItemName>
-    <Barcode>7</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:28</Created>
-    <Updated>2025-10-07 20:38:28</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>191</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>30</ItemId>
-    <ItemName>HAIR DYE [Service Only]</ItemName>
-    <Barcode>29</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:28</Created>
-    <Updated>2025-10-07 20:38:28</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>192</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>28</ItemId>
-    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
-    <Barcode>27</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:29</Created>
-    <Updated>2025-10-07 20:38:29</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>193</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>27</ItemId>
-    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
-    <Barcode>26</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:29</Created>
-    <Updated>2025-10-07 20:38:29</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>196</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>32</ItemId>
-    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
-    <Barcode>31</Barcode>
-    <SubGroupId>5</SubGroupId>
-    <SubGroupName>HAIR TREATMENT</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:30</Created>
-    <Updated>2025-10-07 20:38:30</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>197</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>17</ItemId>
-    <ItemName>KERATIN TREATMENT</ItemName>
-    <Barcode>17</Barcode>
-    <SubGroupId>5</SubGroupId>
-    <SubGroupName>HAIR TREATMENT</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:30</Created>
-    <Updated>2025-10-07 20:38:30</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>194</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>16</ItemId>
-    <ItemName>OIL MASSAGE</ItemName>
-    <Barcode>16</Barcode>
-    <SubGroupId>4</SubGroupId>
-    <SubGroupName>OIL MASSAGE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:29</Created>
-    <Updated>2025-10-07 20:38:29</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>195</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>15</ItemId>
-    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
-    <Barcode>15</Barcode>
-    <SubGroupId>4</SubGroupId>
-    <SubGroupName>OIL MASSAGE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:30</Created>
-    <Updated>2025-10-07 20:38:30</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>198</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>34</ItemId>
-    <ItemName>HAIR PERMING</ItemName>
-    <Barcode>33</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:31</Created>
-    <Updated>2025-10-07 20:38:31</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>199</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>18</ItemId>
-    <ItemName>HAIR SETTING</ItemName>
-    <Barcode>18</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>0.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:32</Created>
-    <Updated>2025-10-16 18:01:04</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>200</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>21</ItemId>
-    <ItemName>HAIR STRAIGHTENING</ItemName>
-    <Barcode>20</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:32</Created>
-    <Updated>2025-10-07 20:38:32</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>201</CommissionId>
-    <EmpId>15</EmpId>
-    <SalesmanName>KAVI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>33</ItemId>
-    <ItemName>THREADING</ItemName>
-    <Barcode>32</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-07 20:38:32</Created>
-    <Updated>2025-10-07 20:38:32</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
     <CommissionId>481</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
@@ -1795,13 +3037,13 @@
     <Updated>2025-10-16 18:03:50</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>483</CommissionId>
+    <CommissionId>484</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>102</ItemId>
-    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
-    <Barcode>101</Barcode>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
@@ -1813,13 +3055,13 @@
     <Updated>2025-10-16 18:03:51</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>484</CommissionId>
+    <CommissionId>483</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>101</ItemId>
-    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
-    <Barcode>100</Barcode>
+    <ItemId>102</ItemId>
+    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
+    <Barcode>101</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
@@ -4873,6 +6115,438 @@
     <Updated>2025-10-07 20:39:28</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
+    <CommissionId>178</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>25</ItemId>
+    <ItemName>FACE WAX    [Full]</ItemName>
+    <Barcode>24</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:21</Created>
+    <Updated>2025-10-07 20:38:21</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>179</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>19</ItemId>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <Barcode>19</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:22</Created>
+    <Updated>2025-10-07 20:38:22</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>180</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:23</Created>
+    <Updated>2025-10-07 20:38:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>181</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>35</ItemId>
+    <ItemName>FACE MASK</ItemName>
+    <Barcode>34</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:23</Created>
+    <Updated>2025-10-07 20:38:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>182</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>20</ItemId>
+    <ItemName>FACE MASSAGE</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:23</Created>
+    <Updated>2025-10-07 20:38:23</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>183</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>FACE WASH</ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:24</Created>
+    <Updated>2025-10-07 20:38:24</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>184</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>FACIAL     [Classic]</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:25</Created>
+    <Updated>2025-10-07 20:38:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>185</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:25</Created>
+    <Updated>2025-10-07 20:38:25</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>186</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>31</ItemId>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
+    <Barcode>30</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:26</Created>
+    <Updated>2025-10-07 20:38:26</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>187</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>29</ItemId>
+    <ItemName>BEARD          TOUCH UP</ItemName>
+    <Barcode>28</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:26</Created>
+    <Updated>2025-10-07 20:38:26</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>188</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:27</Created>
+    <Updated>2025-10-07 20:38:27</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>189</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:28</Created>
+    <Updated>2025-10-07 20:38:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>190</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:28</Created>
+    <Updated>2025-10-07 20:38:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>191</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>30</ItemId>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <Barcode>29</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:28</Created>
+    <Updated>2025-10-07 20:38:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>192</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>28</ItemId>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <Barcode>27</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:29</Created>
+    <Updated>2025-10-07 20:38:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>193</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>27</ItemId>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <Barcode>26</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:29</Created>
+    <Updated>2025-10-07 20:38:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>196</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>32</ItemId>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <Barcode>31</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:30</Created>
+    <Updated>2025-10-07 20:38:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>197</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>17</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>17</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:30</Created>
+    <Updated>2025-10-07 20:38:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>194</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>16</ItemId>
+    <ItemName>OIL MASSAGE</ItemName>
+    <Barcode>16</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:29</Created>
+    <Updated>2025-10-07 20:38:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>195</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>15</ItemId>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <Barcode>15</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:30</Created>
+    <Updated>2025-10-07 20:38:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>198</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>34</ItemId>
+    <ItemName>HAIR PERMING</ItemName>
+    <Barcode>33</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:31</Created>
+    <Updated>2025-10-07 20:38:31</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>199</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>18</ItemId>
+    <ItemName>HAIR SETTING</ItemName>
+    <Barcode>18</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>0.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:32</Created>
+    <Updated>2025-10-16 18:01:04</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>200</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>21</ItemId>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:32</Created>
+    <Updated>2025-10-07 20:38:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>201</CommissionId>
+    <EmpId>15</EmpId>
+    <SalesmanName>PRATHEEP</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>33</ItemId>
+    <ItemName>THREADING</ItemName>
+    <Barcode>32</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2025-10-07 20:38:32</Created>
+    <Updated>2025-10-07 20:38:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
     <CommissionId>61</CommissionId>
     <EmpId>3</EmpId>
     <SalesmanName>PRAVEEN</SalesmanName>
@@ -7861,420 +9535,6 @@
     <Updated>2025-10-07 20:40:35</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>107</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>25</ItemId>
-    <ItemName>FACE WAX    [Full]</ItemName>
-    <Barcode>24</Barcode>
-    <SubGroupId>6</SubGroupId>
-    <SubGroupName>FACE WAX</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:20</Created>
-    <Updated>2025-09-21 22:20:20</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>108</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>19</ItemId>
-    <ItemName>FACE WAX [Partial]</ItemName>
-    <Barcode>19</Barcode>
-    <SubGroupId>6</SubGroupId>
-    <SubGroupName>FACE WAX</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:20</Created>
-    <Updated>2025-09-21 22:20:20</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>109</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
-    <Barcode>12</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:20</Created>
-    <Updated>2025-09-21 22:20:20</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>110</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>20</ItemId>
-    <ItemName>FACE MASSAGE</ItemName>
-    <Barcode>20</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:21</Created>
-    <Updated>2025-09-21 22:20:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>111</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>10</ItemId>
-    <ItemName>FACE WASH</ItemName>
-    <Barcode>10</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:21</Created>
-    <Updated>2025-09-21 22:20:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>113</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
-    <Barcode>13</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:22</Created>
-    <Updated>2025-09-21 22:20:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>112</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>14</ItemId>
-    <ItemName>FACIAL    [ADVANCE]</ItemName>
-    <Barcode>14</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:21</Created>
-    <Updated>2025-09-21 22:20:21</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>114</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>31</ItemId>
-    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
-    <Barcode>30</Barcode>
-    <SubGroupId>3</SubGroupId>
-    <SubGroupName>FACIAL</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:22</Created>
-    <Updated>2025-09-21 22:20:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>115</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>29</ItemId>
-    <ItemName>BEARD          TOUCH UP</ItemName>
-    <Barcode>28</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:22</Created>
-    <Updated>2025-09-21 22:20:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>118</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>9</ItemId>
-    <ItemName>HAIR COLOURING</ItemName>
-    <Barcode>9</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:23</Created>
-    <Updated>2025-09-21 22:20:23</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>119</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>8</ItemId>
-    <ItemName>HAIR DYE [Cream]</ItemName>
-    <Barcode>8</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:23</Created>
-    <Updated>2025-09-21 22:20:23</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>120</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>7</ItemId>
-    <ItemName>HAIR DYE [Powder]</ItemName>
-    <Barcode>7</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:24</Created>
-    <Updated>2025-09-21 22:20:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>121</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>30</ItemId>
-    <ItemName>HAIR DYE [Service Only]</ItemName>
-    <Barcode>29</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:24</Created>
-    <Updated>2025-09-21 22:20:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>116</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>28</ItemId>
-    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
-    <Barcode>27</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:22</Created>
-    <Updated>2025-09-21 22:20:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>117</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>27</ItemId>
-    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
-    <Barcode>26</Barcode>
-    <SubGroupId>2</SubGroupId>
-    <SubGroupName>HAIR DYE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:22</Created>
-    <Updated>2025-09-21 22:20:22</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>124</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>32</ItemId>
-    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
-    <Barcode>31</Barcode>
-    <SubGroupId>5</SubGroupId>
-    <SubGroupName>HAIR TREATMENT</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:24</Created>
-    <Updated>2025-09-21 22:20:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>125</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>17</ItemId>
-    <ItemName>KERATIN TREATMENT</ItemName>
-    <Barcode>17</Barcode>
-    <SubGroupId>5</SubGroupId>
-    <SubGroupName>HAIR TREATMENT</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:25</Created>
-    <Updated>2025-09-21 22:20:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>123</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>16</ItemId>
-    <ItemName>OIL MASSAGE</ItemName>
-    <Barcode>16</Barcode>
-    <SubGroupId>4</SubGroupId>
-    <SubGroupName>OIL MASSAGE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:24</Created>
-    <Updated>2025-09-21 22:20:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>122</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>15</ItemId>
-    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
-    <Barcode>15</Barcode>
-    <SubGroupId>4</SubGroupId>
-    <SubGroupName>OIL MASSAGE</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:24</Created>
-    <Updated>2025-09-21 22:20:24</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>126</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>34</ItemId>
-    <ItemName>HAIR PERMING</ItemName>
-    <Barcode>33</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:25</Created>
-    <Updated>2025-09-21 22:20:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>444</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>18</ItemId>
-    <ItemName>HAIR SETTING</ItemName>
-    <Barcode>18</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>0.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-10-16 17:58:06</Created>
-    <Updated>2025-10-16 17:58:06</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>128</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>21</ItemId>
-    <ItemName>HAIR STRAIGHTENING</ItemName>
-    <Barcode>20</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:25</Created>
-    <Updated>2025-09-21 22:20:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
-    <CommissionId>129</CommissionId>
-    <EmpId>2</EmpId>
-    <SalesmanName>SUVATHI</SalesmanName>
-    <Designation>ACCOUNTANT</Designation>
-    <ItemId>33</ItemId>
-    <ItemName>THREADING</ItemName>
-    <Barcode>32</Barcode>
-    <SubGroupId>7</SubGroupId>
-    <SubGroupName>OTHERS</SubGroupName>
-    <MainGroupName>BARBER</MainGroupName>
-    <CommissionPercentage>10.00</CommissionPercentage>
-    <CommissionType>PERCENTAGE</CommissionType>
-    <FixedAmount>0.00</FixedAmount>
-    <Status>1</Status>
-    <Created>2025-09-21 22:20:25</Created>
-    <Updated>2025-09-21 22:20:25</Updated>
-  </SalesManCommissionTable>
-  <SalesManCommissionTable>
     <CommissionId>418</CommissionId>
     <EmpId>9</EmpId>
     <SalesmanName>THARSHAN</SalesmanName>
@@ -8761,13 +10021,13 @@
     <Updated>2025-10-16 18:04:03</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>551</CommissionId>
+    <CommissionId>550</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>101</ItemId>
-    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
-    <Barcode>100</Barcode>
+    <ItemId>102</ItemId>
+    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
+    <Barcode>101</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
@@ -8779,13 +10039,13 @@
     <Updated>2025-10-16 18:04:03</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>550</CommissionId>
+    <CommissionId>551</CommissionId>
     <EmpId>17</EmpId>
     <SalesmanName>YASHU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>102</ItemId>
-    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
-    <Barcode>101</Barcode>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>

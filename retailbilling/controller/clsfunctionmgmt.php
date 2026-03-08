@@ -3439,7 +3439,7 @@ class funcProcessMgmt
     public function GetSalesManByComidLocid($comid, $locid)
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT `emp_id` as Id , `emp_printname` as SalesMan,`emp_lastname` as Position FROM `pos_employeeinfo` WHERE `emp_compid`= " . intval($comid) . " and `emp_locid`= " . intval($locid));
+        $sqlQuery = ("SELECT `emp_id` as Id , `emp_printname` as SalesMan,`emp_lastname` as Position FROM `pos_employeeinfo` WHERE `emp_compid`= " . intval($comid) . " and `emp_locid`= " . intval($locid) . " and `emp_active`=1");
         $result = mysqli_query($conn, $sqlQuery);
         return $result;
     }
