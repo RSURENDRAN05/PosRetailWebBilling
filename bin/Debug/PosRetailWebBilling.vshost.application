@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PosRetailWebBilling.exe.manifest" size="100687">
+    <dependentAssembly dependencyType="install" codebase="PosRetailWebBilling.exe.manifest" size="98712">
       <assemblyIdentity name="PosRetailWebBilling.exe" version="1.0.0.66" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sctoD18M05srbvlaib2QZ4mV31NY/Dolva2ci/YSCAA=</dsig:DigestValue>
+        <dsig:DigestValue>dt+tIx7AM89ZnLMFwXEI5ceOhVu4jxyIUnQ3+hYKjuQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
