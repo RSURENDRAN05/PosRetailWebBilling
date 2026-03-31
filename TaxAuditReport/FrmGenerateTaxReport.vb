@@ -251,7 +251,7 @@ Public Class FrmGenerateTaxReport
             Else
                 lblHeaderNetAmt.Text = "Net Amount: 0"
                 GridControlHeader.DataSource = Nothing
-                lblstatusgroup.Text = "Details : Total Records 0 | Processable 0"
+                lblstatusgroup.Text = "Details : Total Records 0 | Processable 0 | No Data Found Process the Data Selected Date"
                 If Not apiOk AndAlso Not String.IsNullOrWhiteSpace(apiMsg) Then
                     MessageBox.Show(apiMsg, "Tax Audit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -302,7 +302,10 @@ Public Class FrmGenerateTaxReport
             Dim apiMsg As String = String.Empty
             Dim dtNet As DataTable = ExecuteTaxAuditApi("DetNetAmt", GetNoOfRowsValue(), 0, apiOk, apiMsg)
             If apiOk AndAlso dtNet IsNot Nothing AndAlso dtNet.Rows.Count > 0 Then
-                Dim totalNetAmount As Decimal = ParseDecimalValue(dtNet.Compute("SUM(NetAmt)", String.Empty).ToString(), 0D)
+                Dim totalNetAmount As Decimal = 0D
+                For Each dr As DataRow In dtNet.Rows
+                    totalNetAmount += ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                Next
                 lblDetailNetAmt.Text = "Net Amount: " & totalNetAmount.ToString("0.00")
             Else
                 lblDetailNetAmt.Text = "Net Amount: 0"
@@ -318,7 +321,10 @@ Public Class FrmGenerateTaxReport
             Dim apiMsg As String = String.Empty
             Dim dtNet As DataTable = ExecuteTaxAuditApi("HeadNetAmt", GetNoOfRowsValue(), 0, apiOk, apiMsg)
             If apiOk AndAlso dtNet IsNot Nothing AndAlso dtNet.Rows.Count > 0 Then
-                Dim totalNetAmount As Decimal = ParseDecimalValue(dtNet.Compute("SUM(NetAmt)", String.Empty).ToString(), 0D)
+                Dim totalNetAmount As Decimal = 0D
+                For Each dr As DataRow In dtNet.Rows
+                    totalNetAmount += ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                Next
                 lblHeaderNetAmt.Text = "Net Amount: " & totalNetAmount.ToString("0.00")
             Else
                 lblHeaderNetAmt.Text = "Net Amount: 0"
@@ -405,7 +411,7 @@ Public Class FrmGenerateTaxReport
             Return "Multiple payment mode transaction cannot be processed."
         End If
 
-        Dim isCashOnly As Boolean = normalizedPayment.Equals("CASH BILL", StringComparison.OrdinalIgnoreCase) OrElse normalizedPayment.Equals("Cash", StringComparison.OrdinalIgnoreCase)
+        Dim isCashOnly As Boolean = normalizedPayment.Equals("cash", StringComparison.OrdinalIgnoreCase) OrElse normalizedPayment.Equals("Cash", StringComparison.OrdinalIgnoreCase)
         If Not isCashOnly Then
             Return "Only cash bills can be processed."
         End If
@@ -952,6 +958,290 @@ Public Class FrmGenerateTaxReport
             End If
         Catch ex As Exception
             MessageBox.Show("Validation error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnTransferDataDuplicateProcess_Click(sender As Object, e As EventArgs) Handles btnTransferDataDuplicateProcess.Click
+        Try
+            Dim fromDate As String = FormatApiDate(FromDateEdit.EditValue)
+            Dim toDate As String = FormatApiDate(ToDateEdit.EditValue)
+
+            Dim pmId As Integer = 0
+            ' If ListBoxControlPayment.SelectedItem IsNot Nothing Then
+            '     If TypeOf ListBoxControlPayment.SelectedItem Is KeyValuePair(Of String, Integer) Then
+            '         pmId = DirectCast(ListBoxControlPayment.SelectedItem, KeyValuePair(Of String, Integer)).Value
+            '     End If
+            ' End If
+
+            Dim confirmMsg As String = "Do you want to transfer sale data to tax?" & vbCrLf & vbCrLf &
+                                       "From: " & fromDate & vbCrLf &
+                                       "To: " & toDate
+            Dim dialogResult As DialogResult = MessageBox.Show(confirmMsg, "Confirm Transfer", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If dialogResult <> dialogResult.Yes Then
+                Exit Sub
+            End If
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim payload = New With {
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId,
+                .PmId = pmId,
+                .FromDate = fromDate,
+                .ToDate = toDate
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(1, jsonPayload)
+
+            If String.IsNullOrWhiteSpace(url) Then
+                MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            Dim isSuccess As Boolean = False
+            If responseObj("Success") IsNot Nothing Then
+                Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+            End If
+
+            Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), String.Empty)
+
+            If isSuccess Then
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Data transferred successfully.", msg), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Transfer failed.", msg), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnDelSelectedTrno_Click(sender As Object, e As EventArgs) Handles btnDelSelectedTrno.Click
+        Try
+            Dim selectedRows() As Integer = GridViewHeader.GetSelectedRows()
+            If selectedRows Is Nothing OrElse selectedRows.Length = 0 Then
+                MessageBox.Show("Please select one or more bills in the header list.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Collect eligible invoices and check restrictions
+            Dim eligibleInvoices As New List(Of String)
+            Dim skippedCardBank As New List(Of String)
+
+            For Each rowHandle As Integer In selectedRows
+                Dim invoiceNo As String = GetHeaderFieldValue(rowHandle, "Trno", "")
+                If String.IsNullOrWhiteSpace(invoiceNo) Then Continue For
+
+                Dim payment As String = GetHeaderFieldValue(rowHandle, "Payment", "")
+                Dim upperPayment As String = payment.ToUpper().Trim()
+
+                If upperPayment.Contains("CARD") OrElse upperPayment.Contains("BANK") Then
+                    skippedCardBank.Add(invoiceNo & " (" & payment & ")")
+                Else
+                    eligibleInvoices.Add(invoiceNo)
+                End If
+            Next
+
+            If eligibleInvoices.Count = 0 Then
+                Dim msg As String = "No eligible invoices to delete."
+                If skippedCardBank.Count > 0 Then
+                    msg &= vbCrLf & vbCrLf & "Skipped (Card/Bank):" & vbCrLf & String.Join(vbCrLf, skippedCardBank.ToArray())
+                End If
+                MessageBox.Show(msg, "Delete Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Build confirmation message
+            Dim confirmMsg As String = "Do you want to delete " & eligibleInvoices.Count.ToString() & " selected invoice(s)?" & vbCrLf & vbCrLf &
+                                       "Bill No(s): " & String.Join(", ", eligibleInvoices.ToArray())
+            If skippedCardBank.Count > 0 Then
+                confirmMsg &= vbCrLf & vbCrLf & "Skipped (Card/Bank): " & skippedCardBank.Count.ToString() & " invoice(s)"
+            End If
+
+            Dim dialogResult As DialogResult = MessageBox.Show(confirmMsg, "Confirm Delete Invoice(s)", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If dialogResult <> DialogResult.Yes Then
+                Exit Sub
+            End If
+
+            Dim deletedCount As Integer = 0
+            Dim failedCount As Integer = 0
+            Dim errorDetails As New List(Of String)
+
+            Cursor.Current = Cursors.WaitCursor
+            StartProgressDialog("Deleting Invoices", eligibleInvoices.Count)
+
+            For idx As Integer = 0 To eligibleInvoices.Count - 1
+                Dim inv As String = eligibleInvoices(idx)
+                UpdateProgressDialog(idx + 1, "Deleting " & inv & " (" & (idx + 1).ToString() & "/" & eligibleInvoices.Count.ToString() & ")")
+
+                Dim billNo As Integer = 0
+                Integer.TryParse(inv, billNo)
+
+                Dim apiOk As Boolean = False
+                Dim apiMsg As String = String.Empty
+                ExecuteTaxAuditApi("DelInvoice", 0, billNo, apiOk, apiMsg)
+
+                If apiOk Then
+                    deletedCount += 1
+                Else
+                    failedCount += 1
+                    errorDetails.Add(inv & ": " & If(String.IsNullOrWhiteSpace(apiMsg), "Delete failed", apiMsg))
+                End If
+            Next
+
+            Cursor.Current = Cursors.Default
+            CloseProgressDialog()
+
+            ' Show summary
+            Dim summaryMsg As String = "Delete Complete!" & vbCrLf & vbCrLf &
+                                       "Deleted: " & deletedCount.ToString() & vbCrLf &
+                                       "Failed: " & failedCount.ToString()
+            If skippedCardBank.Count > 0 Then
+                summaryMsg &= vbCrLf & "Skipped (Card/Bank): " & skippedCardBank.Count.ToString()
+            End If
+            If errorDetails.Count > 0 Then
+                summaryMsg &= vbCrLf & vbCrLf & "Errors:" & vbCrLf & String.Join(vbCrLf, errorDetails.ToArray())
+            End If
+
+            MessageBox.Show(summaryMsg, "Delete Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            GetHeaderInfo()
+            GetHeaderNetAmt()
+            GetDetailsNetAmt()
+            GridControlItemList.DataSource = Nothing
+
+        Catch ex As Exception
+            Cursor.Current = Cursors.Default
+            CloseProgressDialog()
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub barbtnpurgebydate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnpurgebydate.ItemClick
+        Try
+            Dim fromDate As String = FormatApiDate(FromDateEdit.EditValue)
+            Dim toDate As String = FormatApiDate(ToDateEdit.EditValue)
+
+            Dim confirmMsg As String = "Do you want to purge (delete) all tax data for the selected date range?" & vbCrLf & vbCrLf &
+                                       "From: " & fromDate & vbCrLf &
+                                       "To: " & toDate & vbCrLf & vbCrLf &
+                                       "This action cannot be undone."
+            Dim dialogResult As DialogResult = MessageBox.Show(confirmMsg, "Confirm Purge By Date", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If dialogResult <> DialogResult.Yes Then
+                Exit Sub
+            End If
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim pmId As Integer = 0
+            Dim payload = New With {
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId,
+                .PmId = pmId,
+                .FromDate = fromDate,
+                .ToDate = toDate
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(2, jsonPayload)
+
+            If String.IsNullOrWhiteSpace(url) Then
+                MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            Dim isSuccess As Boolean = False
+            If responseObj("Success") IsNot Nothing Then
+                Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+            End If
+
+            Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), String.Empty)
+
+            If isSuccess Then
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Tax data purged successfully.", msg), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                GetHeaderInfo()
+                GetHeaderNetAmt()
+                GetDetailsNetAmt()
+                GridControlItemList.DataSource = Nothing
+            Else
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Purge failed.", msg), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub barbtnpurgebymonth_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnpurgebymonth.ItemClick
+        Try
+            Dim selectedDate As DateTime = DateTime.Now
+            Try
+                selectedDate = Convert.ToDateTime(FromDateEdit.EditValue)
+            Catch
+            End Try
+
+            Dim selectedYear As Integer = selectedDate.Year
+            Dim selectedMonth As Integer = selectedDate.Month
+            Dim monthName As String = selectedDate.ToString("MMMM yyyy")
+
+            Dim confirmMsg As String = "Do you want to purge (delete) all tax data for the selected month?" & vbCrLf & vbCrLf &
+                                       "Month: " & monthName & vbCrLf &
+                                       "Year: " & selectedYear.ToString() & vbCrLf &
+                                       "Month: " & selectedMonth.ToString() & vbCrLf & vbCrLf &
+                                       "This action cannot be undone."
+            Dim dialogResult As DialogResult = MessageBox.Show(confirmMsg, "Confirm Purge By Month", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If dialogResult <> DialogResult.Yes Then
+                Exit Sub
+            End If
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim pmId As Integer = 0
+            Dim payload = New With {
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId,
+                .PmId = pmId,
+                .Year = selectedYear,
+                .Month = selectedMonth
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(3, jsonPayload)
+
+            If String.IsNullOrWhiteSpace(url) Then
+                MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            Dim isSuccess As Boolean = False
+            If responseObj("Success") IsNot Nothing Then
+                Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+            End If
+
+            Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), String.Empty)
+
+            If isSuccess Then
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Tax data for " & monthName & " purged successfully.", msg), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                GetHeaderInfo()
+                GetHeaderNetAmt()
+                GetDetailsNetAmt()
+                GridControlItemList.DataSource = Nothing
+            Else
+                MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Purge failed.", msg), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

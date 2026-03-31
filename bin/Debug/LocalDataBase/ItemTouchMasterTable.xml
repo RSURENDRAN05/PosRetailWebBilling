@@ -51,7 +51,7 @@
   <ItemTouchMasterTable>
     <Id>1</Id>
     <BarCode>0</BarCode>
-    <ItemName>HAIR CUT            [Adult]</ItemName>
+    <ItemName>HAIR CUT            [ADULT]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -65,7 +65,7 @@
     <MinPrice>15.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
+    <AllowNegStock>1</AllowNegStock>
     <AllowMultiPrice>1</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
@@ -1288,7 +1288,7 @@
     <CostPrice>0.00</CostPrice>
     <MinPrice>70.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
-    <AllowDiscount>0</AllowDiscount>
+    <AllowDiscount>1</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
     <AllowMultiPrice>1</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>

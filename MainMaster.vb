@@ -1110,4 +1110,22 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnGenerateTaxReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnGenerateTaxReport.ItemClick
+        Try
+            FrmAudit.MdiParent = Me
+            FrmAudit.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
+        Try
+            FrmGenerateTaxReport.MdiParent = Me
+            FrmGenerateTaxReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
