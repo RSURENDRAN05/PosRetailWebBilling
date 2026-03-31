@@ -179,15 +179,21 @@ Namespace My
                 Try
                     M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
                     M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
+                    M_Details.LinkTaxAuditRequest = ini.ReadValue("Profile", "UrlLinkTaxAudit")
                     M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
                     LocationId = CInt(ini.ReadValue("Bank", "LocationId"))
                     CompanyId = CInt(ini.ReadValue("Bank", "CompanyId"))
                     BillScreen = ini.ReadValue("Bill", "PosBillScreen")
+
+                    If String.IsNullOrWhiteSpace(M_Details.LinkTaxAuditRequest) Then
+                        M_Details.LinkTaxAuditRequest = M_Details.LinkAjaxRequest
+                    End If
                 Catch iniEx As Exception
                     ' Handle INI file reading errors
                     System.Diagnostics.Debug.WriteLine("INI file error: " & iniEx.Message)
                     ' Set default values
                     M_Details.LinkAjaxRequest = "http://localhost/api/"
+                    M_Details.LinkTaxAuditRequest = M_Details.LinkAjaxRequest
                     LocationId = 1
                     CompanyId = 1
                     BillScreen = "0"

@@ -814,10 +814,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsModule\SyncLocalCloudModuel.vb" />
-    <Compile Include="TaxAuditReport\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="TaxAuditReport\FrmAudit.Designer.vb">
+      <DependentUpon>FrmAudit.vb</DependentUpon>
     </Compile>
-    <Compile Include="TaxAuditReport\Form1.vb">
+    <Compile Include="TaxAuditReport\FrmAudit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaxAuditReport\FrmGenerateTaxReport.designer.vb">
+      <DependentUpon>FrmGenerateTaxReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TaxAuditReport\FrmGenerateTaxReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WebService\FrmWebService.Designer.vb">
@@ -1136,8 +1142,11 @@
     <EmbeddedResource Include="Master\FrmDiscountMaster.resx">
       <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TaxAuditReport\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="TaxAuditReport\FrmAudit.resx">
+      <DependentUpon>FrmAudit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaxAuditReport\FrmGenerateTaxReport.resx">
+      <DependentUpon>FrmGenerateTaxReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebService\FrmWebService.resx">
       <DependentUpon>FrmWebService.vb</DependentUpon>

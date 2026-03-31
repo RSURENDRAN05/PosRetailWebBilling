@@ -34,6 +34,7 @@ Module functionModule
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
         Public Shared LinkAjaxRequestCheque As String = ""
         Public Shared LinkAjaxRequestSyncLocalCloud As String = ""
+        Public Shared LinkTaxAuditRequest As String = ""
         Public Shared licenceActive As String = ""
         Public Shared licenceServerCleint As String = ""
         Public Shared CompanyId As Integer = 0
@@ -194,12 +195,18 @@ Module functionModule
                 If String.IsNullOrEmpty(M_Details.LinkAjaxRequest) Then
                     M_Details.LinkAjaxRequest = "http://localhost/api/" ' Default fallback
                 End If
+
+                M_Details.LinkTaxAuditRequest = ini.ReadValue("Profile", "UrlLinkTaxAudit")
+                If String.IsNullOrEmpty(M_Details.LinkTaxAuditRequest) Then
+                    M_Details.LinkTaxAuditRequest = M_Details.LinkAjaxRequest
+                End If
             End If
         Catch ex As Exception
             ' Handle initialization errors gracefully
             System.Diagnostics.Debug.WriteLine("Module initialization error: " & ex.Message)
             ' Set default values
             M_Details.LinkAjaxRequest = "http://localhost/api/"
+            M_Details.LinkTaxAuditRequest = M_Details.LinkAjaxRequest
         End Try
     End Sub
     Public Structure _FunctionKeyBoardModule

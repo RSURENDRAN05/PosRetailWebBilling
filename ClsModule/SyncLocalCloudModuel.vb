@@ -15,6 +15,7 @@ Module SyncLocalCloudModuel
             M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
             M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
             M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
+            M_Details.LinkTaxAuditRequest = ini.ReadValue("Profile", "UrlLinkTaxAudit")
             M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
             M_Details.LocationId = ini.ReadValue("Bank", "LocationId")
             M_Details.CompanyId = ini.ReadValue("Bank", "CompanyId")
