@@ -814,6 +814,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsModule\SyncLocalCloudModuel.vb" />
+    <Compile Include="TaxAuditReport\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TaxAuditReport\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WebService\FrmWebService.Designer.vb">
       <DependentUpon>FrmWebService.vb</DependentUpon>
     </Compile>
@@ -1129,6 +1135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmDiscountMaster.resx">
       <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaxAuditReport\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebService\FrmWebService.resx">
       <DependentUpon>FrmWebService.vb</DependentUpon>
