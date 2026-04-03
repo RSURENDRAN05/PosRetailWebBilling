@@ -11,7 +11,10 @@ Public Class frmAppointmentBooking
     ' Collection to store appointments (in a real application, this would be saved to a database)
     Private appointments As New List(Of AppointmentData)
     Private currentAppointmentId As Integer = 0 ' Track current appointment being edited
-
+    Private selectedCustomerId As Integer = 0
+    Private selectedCustomerName As String = String.Empty
+    Private selectedCustomerPhone As String = String.Empty
+    Private selectedCustomerEmail As String = String.Empty
     Public Sub New()
         InitializeComponent()
         InitializeForm()
@@ -452,17 +455,24 @@ Public Class frmAppointmentBooking
         End Try
     End Sub
 
-    Private Sub txtCustomerId_DoubleClick(sender As Object, e As EventArgs) Handles txtCustomerId.DoubleClick
+  
+
+    Private Sub btnSelectCustomer_Click(sender As Object, e As EventArgs) Handles btnSelectCustomer.Click
         Try
+            ' Open customer selection dialog
             Dim customerListForm As New FrmCustomerList(True) ' True for selection mode
 
             If customerListForm.ShowDialog() = DialogResult.OK Then
                 ' Customer was selected
-                txtCustomerId.Text = customerListForm.SelectedCustomerId
-                txtCustomerName.Text = customerListForm.SelectedCustomerName
-                txtEmailAddress.Text = customerListForm.SelectedCustomerPhone
+                selectedCustomerId = customerListForm.SelectedCustomerId
+                selectedCustomerName = customerListForm.SelectedCustomerName
+                selectedCustomerPhone = customerListForm.SelectedCustomerPhone
+                selectedCustomerEmail = customerListForm.selectedCustomerEmail
+                txtCustomerId.Text = selectedCustomerId
+                txtCustomerName.Text = selectedCustomerName
+                txtEmailAddress.Text = selectedCustomerEmail
+                txtcustomerphone.Text = selectedCustomerPhone
             End If
-
         Catch ex As Exception
 
         End Try

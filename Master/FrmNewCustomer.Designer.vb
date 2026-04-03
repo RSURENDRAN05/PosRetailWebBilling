@@ -39,6 +39,8 @@ Partial Class FrmNewCustomer
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.txtCustomerEmail = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +58,8 @@ Partial Class FrmNewCustomer
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCustomerEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -68,7 +72,7 @@ Partial Class FrmNewCustomer
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(484, 35)
+        Me.PanelControl1.Size = New System.Drawing.Size(544, 35)
         Me.PanelControl1.TabIndex = 0
         '
         'LabelControl1
@@ -89,12 +93,13 @@ Partial Class FrmNewCustomer
         Me.GroupControl1.Controls.Add(Me.LayoutControl1)
         Me.GroupControl1.Location = New System.Drawing.Point(12, 41)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(460, 220)
+        Me.GroupControl1.Size = New System.Drawing.Size(520, 233)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Customer Information"
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.txtCustomerEmail)
         Me.LayoutControl1.Controls.Add(Me.btnAddPoints)
         Me.LayoutControl1.Controls.Add(Me.lblCreatedDate)
         Me.LayoutControl1.Controls.Add(Me.lblPointsEarned)
@@ -105,7 +110,7 @@ Partial Class FrmNewCustomer
         Me.LayoutControl1.Location = New System.Drawing.Point(2, 21)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(456, 197)
+        Me.LayoutControl1.Size = New System.Drawing.Size(516, 210)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -117,16 +122,16 @@ Partial Class FrmNewCustomer
         Me.btnAddPoints.Appearance.Options.UseBackColor = True
         Me.btnAddPoints.Appearance.Options.UseFont = True
         Me.btnAddPoints.Appearance.Options.UseForeColor = True
-        Me.btnAddPoints.Location = New System.Drawing.Point(115, 124)
+        Me.btnAddPoints.Location = New System.Drawing.Point(115, 148)
         Me.btnAddPoints.Name = "btnAddPoints"
-        Me.btnAddPoints.Size = New System.Drawing.Size(329, 22)
+        Me.btnAddPoints.Size = New System.Drawing.Size(389, 22)
         Me.btnAddPoints.StyleController = Me.LayoutControl1
         Me.btnAddPoints.TabIndex = 9
         Me.btnAddPoints.Text = "Add Points"
         '
         'lblCreatedDate
         '
-        Me.lblCreatedDate.Location = New System.Drawing.Point(104, 150)
+        Me.lblCreatedDate.Location = New System.Drawing.Point(104, 174)
         Me.lblCreatedDate.Name = "lblCreatedDate"
         Me.lblCreatedDate.Size = New System.Drawing.Size(4, 13)
         Me.lblCreatedDate.StyleController = Me.LayoutControl1
@@ -137,7 +142,7 @@ Partial Class FrmNewCustomer
         '
         Me.lblPointsEarned.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.lblPointsEarned.Appearance.ForeColor = System.Drawing.Color.Green
-        Me.lblPointsEarned.Location = New System.Drawing.Point(104, 124)
+        Me.lblPointsEarned.Location = New System.Drawing.Point(104, 148)
         Me.lblPointsEarned.Name = "lblPointsEarned"
         Me.lblPointsEarned.Size = New System.Drawing.Size(7, 13)
         Me.lblPointsEarned.StyleController = Me.LayoutControl1
@@ -146,21 +151,21 @@ Partial Class FrmNewCustomer
         '
         'cmbStatus
         '
-        Me.cmbStatus.Location = New System.Drawing.Point(104, 100)
+        Me.cmbStatus.Location = New System.Drawing.Point(104, 124)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmbStatus.Properties.Items.AddRange(New Object() {"1", "0"})
         Me.cmbStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cmbStatus.Size = New System.Drawing.Size(340, 20)
+        Me.cmbStatus.Size = New System.Drawing.Size(400, 20)
         Me.cmbStatus.StyleController = Me.LayoutControl1
         Me.cmbStatus.TabIndex = 6
         '
         'txtCustomerPhone
         '
-        Me.txtCustomerPhone.Location = New System.Drawing.Point(104, 56)
+        Me.txtCustomerPhone.Location = New System.Drawing.Point(104, 80)
         Me.txtCustomerPhone.Name = "txtCustomerPhone"
         Me.txtCustomerPhone.Properties.MaxLength = 20
-        Me.txtCustomerPhone.Size = New System.Drawing.Size(340, 20)
+        Me.txtCustomerPhone.Size = New System.Drawing.Size(400, 20)
         Me.txtCustomerPhone.StyleController = Me.LayoutControl1
         Me.txtCustomerPhone.TabIndex = 5
         '
@@ -169,7 +174,7 @@ Partial Class FrmNewCustomer
         Me.txtCustomerName.Location = New System.Drawing.Point(104, 12)
         Me.txtCustomerName.Name = "txtCustomerName"
         Me.txtCustomerName.Properties.MaxLength = 100
-        Me.txtCustomerName.Size = New System.Drawing.Size(340, 20)
+        Me.txtCustomerName.Size = New System.Drawing.Size(400, 20)
         Me.txtCustomerName.StyleController = Me.LayoutControl1
         Me.txtCustomerName.TabIndex = 4
         '
@@ -178,10 +183,10 @@ Partial Class FrmNewCustomer
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(456, 197)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(516, 210)
         Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -191,7 +196,7 @@ Partial Class FrmNewCustomer
         Me.LayoutControlItem1.CustomizationFormText = "Customer Name *:"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(436, 44)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(496, 44)
         Me.LayoutControlItem1.Spacing = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 20)
         Me.LayoutControlItem1.Text = "Customer Name *:"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(89, 13)
@@ -200,9 +205,9 @@ Partial Class FrmNewCustomer
         '
         Me.LayoutControlItem2.Control = Me.txtCustomerPhone
         Me.LayoutControlItem2.CustomizationFormText = "Customer Phone:"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 44)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 68)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(436, 44)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(496, 44)
         Me.LayoutControlItem2.Spacing = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 20)
         Me.LayoutControlItem2.Text = "Customer Phone:"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(89, 13)
@@ -211,9 +216,9 @@ Partial Class FrmNewCustomer
         '
         Me.LayoutControlItem3.Control = Me.cmbStatus
         Me.LayoutControlItem3.CustomizationFormText = "Status:"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 88)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 112)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(436, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(496, 24)
         Me.LayoutControlItem3.Text = "Status:"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(89, 13)
         '
@@ -221,7 +226,7 @@ Partial Class FrmNewCustomer
         '
         Me.LayoutControlItem4.Control = Me.lblPointsEarned
         Me.LayoutControlItem4.CustomizationFormText = "Points Earned:"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 112)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 136)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(103, 26)
         Me.LayoutControlItem4.Text = "Points Earned:"
@@ -231,9 +236,9 @@ Partial Class FrmNewCustomer
         '
         Me.LayoutControlItem5.Control = Me.lblCreatedDate
         Me.LayoutControlItem5.CustomizationFormText = "Created Date:"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 138)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 162)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(436, 17)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(496, 17)
         Me.LayoutControlItem5.Text = "Created Date:"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(89, 13)
         '
@@ -241,9 +246,9 @@ Partial Class FrmNewCustomer
         '
         Me.LayoutControlItem6.Control = Me.btnAddPoints
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(103, 112)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(103, 136)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(333, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(393, 26)
         Me.LayoutControlItem6.Text = "LayoutControlItem6"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextToControlDistance = 0
@@ -253,9 +258,9 @@ Partial Class FrmNewCustomer
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 155)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 179)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(436, 22)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(496, 11)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -268,7 +273,7 @@ Partial Class FrmNewCustomer
         Me.btnSave.Appearance.Options.UseBackColor = True
         Me.btnSave.Appearance.Options.UseFont = True
         Me.btnSave.Appearance.Options.UseForeColor = True
-        Me.btnSave.Location = New System.Drawing.Point(211, 275)
+        Me.btnSave.Location = New System.Drawing.Point(271, 288)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(171, 30)
         Me.btnSave.TabIndex = 2
@@ -283,17 +288,35 @@ Partial Class FrmNewCustomer
         Me.btnCancel.Appearance.Options.UseBackColor = True
         Me.btnCancel.Appearance.Options.UseFont = True
         Me.btnCancel.Appearance.Options.UseForeColor = True
-        Me.btnCancel.Location = New System.Drawing.Point(387, 275)
+        Me.btnCancel.Location = New System.Drawing.Point(447, 288)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(85, 30)
         Me.btnCancel.TabIndex = 3
         Me.btnCancel.Text = "Cancel"
         '
+        'txtCustomerEmail
+        '
+        Me.txtCustomerEmail.Location = New System.Drawing.Point(104, 56)
+        Me.txtCustomerEmail.Name = "txtCustomerEmail"
+        Me.txtCustomerEmail.Size = New System.Drawing.Size(400, 20)
+        Me.txtCustomerEmail.StyleController = Me.LayoutControl1
+        Me.txtCustomerEmail.TabIndex = 10
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.txtCustomerEmail
+        Me.LayoutControlItem7.CustomizationFormText = "EmailId :"
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 44)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(496, 24)
+        Me.LayoutControlItem7.Text = "EmailId :"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(89, 13)
+        '
         'FrmNewCustomer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 317)
+        Me.ClientSize = New System.Drawing.Size(544, 330)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.GroupControl1)
@@ -322,6 +345,8 @@ Partial Class FrmNewCustomer
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCustomerEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -346,4 +371,6 @@ Partial Class FrmNewCustomer
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents btnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txtCustomerEmail As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
 End Class

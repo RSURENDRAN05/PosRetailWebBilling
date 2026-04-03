@@ -439,7 +439,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $CustomerName = $row['customername'];
         $CustomerPhone = isset($row['customerphone']) ? $row['customerphone'] : '';
         $ActiveStatus = $row['cmbstatus'];
-        $res = $clsfunreq->storeCustomerData($CustomerName, $CustomerPhone, $ActiveStatus);
+        $comId = $row['comId'];
+        $locId = $row['locId'];
+        $CustomerEmail = isset($row['customeremail']) ? $row['customeremail'] : '';
+        $res = $clsfunreq->storeCustomerData($CustomerName, $CustomerPhone, $ActiveStatus, $comId, $locId, $CustomerEmail);
         if ($res) {
             echo json_encode(array("Success" => true, "Msg" => 'Customer saved successfully'));
         } else {
@@ -453,7 +456,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $txtCustomerName = $row['customername'];
         $txtCustomerPhone = isset($row['customerphone']) ? $row['customerphone'] : '';
         $status = $row['cmbstatus'];
-        $res = $clsfunreq->updateCustomerData($id, $txtCustomerName, $txtCustomerPhone, $status);
+        $comId = $row['comId'];
+        $locId = $row['locId'];
+        $CustomerEmail = isset($row['customeremail']) ? $row['customeremail'] : '';
+        $res = $clsfunreq->updateCustomerData($id, $txtCustomerName, $txtCustomerPhone, $status, $comId, $locId, $CustomerEmail);
         if ($res) {
             echo json_encode(array("Success" => true, "Msg" => 'Customer updated successfully'));
         } else {
@@ -471,7 +477,11 @@ if (isset($_REQUEST['AjaxRequest'])) {
                     "CustomerPhone" => $rows['customerPhone'] ?? '',
                     "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
                     "Status" => $rows['status'],
-                    "Created" => $rows['created'] ?? ''
+                    "Created" => $rows['created'] ?? '',
+                    "CustomerEmail" => $rows['customerEmail'] ?? '',
+                    "ComId" => $rows['comId'],
+                    "LocId" => $rows['locId']
+
                 );
             }
             echo json_encode(array("Success" => true, "Data" => $GetDataRes));
@@ -1362,7 +1372,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
                     "CustomerPhone" => $rows['customerPhone'] ?? '',
                     "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
                     "Status" => $rows['status'],
-                    "Created" => $rows['created'] ?? ''
+                    "Created" => $rows['created'] ?? '',
+                    "ComId" => $rows['comId'] ?? '',
+                    "LocId" => $rows['locId'] ?? '',
+                    "CustomerEmail" => $rows['customerEmail'] ?? ''
                 );
             }
             echo json_encode(array("Success" => true, "Data" => $GetDataRes));
@@ -1384,7 +1397,10 @@ if (isset($_REQUEST['AjaxRequest'])) {
                 "CustomerPhone" => $rows['customerPhone'] ?? '',
                 "CustomerPointsEarned" => $rows['customerPointsEarned'] ?? 0,
                 "Status" => $rows['status'],
-                "Created" => $rows['created'] ?? ''
+                "Created" => $rows['created'] ?? '',
+                "ComId" => $rows['comId'] ?? '',
+                "LocId" => $rows['locId'] ?? '',
+                "CustomerEmail" => $rows['customerEmail'] ?? ''
             );
             echo json_encode(array("Success" => true, "Data" => $GetDataRes));
         } else {

@@ -497,7 +497,7 @@ Partial Class xkeyboard
         Me.N3.Name = "N3"
         Me.N3.Size = New System.Drawing.Size(54, 52)
         Me.N3.TabIndex = 43
-        Me.N3.Text = "+"
+        Me.N3.Text = "@"
         Me.N3.UseVisualStyleBackColor = True
         '
         'N
@@ -589,7 +589,7 @@ Partial Class xkeyboard
         Me.BackSlash.Name = "BackSlash"
         Me.BackSlash.Size = New System.Drawing.Size(54, 52)
         Me.BackSlash.TabIndex = 53
-        Me.BackSlash.Text = "\"
+        Me.BackSlash.Text = "_"
         Me.BackSlash.UseVisualStyleBackColor = True
         '
         'Enter1

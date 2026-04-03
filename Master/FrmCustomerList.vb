@@ -6,6 +6,7 @@ Public Class FrmCustomerList
     Public Property SelectedCustomerId As Integer = 0
     Public Property SelectedCustomerName As String = ""
     Public Property SelectedCustomerPhone As String = ""
+    Public Property selectedCustomerEmail As String = String.Empty
     Public Property IsSelectionMode As Boolean = False
 
     Public Sub New()
@@ -151,7 +152,7 @@ Public Class FrmCustomerList
             ' Get selected customer data
             SelectedCustomerId = Convert.ToInt32(GridViewCustomers.GetFocusedRowCellValue("CustomerId"))
             SelectedCustomerName = GridViewCustomers.GetFocusedRowCellValue("CustomerName").ToString()
-
+            selectedCustomerEmail = GridViewCustomers.GetFocusedRowCellValue("CustomerEmail").ToString()
             ' Try to get phone number (check multiple possible field names)
             Try
                 If GridViewCustomers.GetFocusedRowCellValue("CustomerPhone") IsNot Nothing Then

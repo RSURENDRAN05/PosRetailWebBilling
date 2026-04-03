@@ -1,10 +1,11 @@
 Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports PosRetailWebBilling.clssalesProperty
 
 Public Class FrmNewCustomer
     Private _customerId As Integer = 0
     Private _isEditMode As Boolean = False
-    Private _companyInfo As Object
+    ' Private _companyInfoDetails As Object
 
     Public Property CustomerId As Integer
         Get
@@ -37,7 +38,7 @@ Public Class FrmNewCustomer
     Private Sub FrmNewCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Get company info from global variables
-            _companyInfo = M_Details.SoftwareVersion
+            '_companyInfoDetails = M_Details.SoftwareVersion
 
             ' Setup form based on mode
             If _isEditMode Then
@@ -77,6 +78,7 @@ Public Class FrmNewCustomer
                 txtCustomerName.Text = customerData("CustomerName").ToString()
                 txtCustomerPhone.Text = If(customerData("CustomerPhone") IsNot Nothing, customerData("CustomerPhone").ToString(), "")
                 lblPointsEarned.Text = If(customerData("CustomerPointsEarned") IsNot Nothing, customerData("CustomerPointsEarned").ToString(), "0")
+                txtCustomerEmail.Text = If(customerData("CustomerEmail") IsNot Nothing, customerData("CustomerEmail").ToString(), "")
                 Dim status = customerData("Status").ToString()
                 If status.ToString = "1" Then
                     cmbStatus.SelectedIndex = 0
@@ -97,9 +99,11 @@ Public Class FrmNewCustomer
     Private Sub ClearForm()
         txtCustomerName.Text = ""
         txtCustomerPhone.Text = ""
+        txtCustomerEmail.Text = ""
         lblPointsEarned.Text = "0"
         cmbStatus.Text = "1"
         lblCreatedDate.Text = ""
+
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -115,6 +119,9 @@ Public Class FrmNewCustomer
             Dim customerData As New Dictionary(Of String, Object)
             customerData("customername") = txtCustomerName.Text.Trim()
             customerData("customerphone") = txtCustomerPhone.Text.Trim()
+            customerData("customeremail") = txtCustomerEmail.Text.Trim()
+            customerData("comId") = _companyInfo.ComId
+            customerData("locId") = _companyInfo.locid
             If cmbStatus.Text = "Active" Then
                 customerData("cmbstatus") = 1
             Else
@@ -246,5 +253,31 @@ Public Class FrmNewCustomer
         End If
     End Sub
 
-    
+
+    Private Sub txtCustomerName_Click(sender As Object, e As EventArgs) Handles txtCustomerName.Click
+        Try
+            xkeyboard.ShowDialog()
+            txtCustomerName.Text = properClass.R_TextNumKey
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub txtCustomerEmail_Click(sender As Object, e As EventArgs) Handles txtCustomerEmail.Click
+        Try
+            xkeyboard.ShowDialog()
+            txtCustomerEmail.Text = properClass.R_TextNumKey
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub txtCustomerPhone_Click(sender As Object, e As EventArgs) Handles txtCustomerPhone.Click
+        Try
+            xkeyboard.ShowDialog()
+            txtCustomerPhone.Text = properClass.R_TextNumKey
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

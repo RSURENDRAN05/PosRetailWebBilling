@@ -117,29 +117,29 @@
     </xs:element>
   </xs:schema>
   <Table>
-    <psih_invoice_id>28</psih_invoice_id>
-    <psih_invoice_trno>34</psih_invoice_trno>
-    <psih_invoice_date>2025-11-14T00:00:00+08:00</psih_invoice_date>
+    <psih_invoice_id>45</psih_invoice_id>
+    <psih_invoice_trno>51</psih_invoice_trno>
+    <psih_invoice_date>2026-04-03T00:00:00+08:00</psih_invoice_date>
     <psih_invoice_prefix>Inv</psih_invoice_prefix>
-    <psih_invoice_tqty>1.00</psih_invoice_tqty>
-    <psih_invoice_tamount>30.00</psih_invoice_tamount>
-    <psih_invoice_titemdisper>0.00</psih_invoice_titemdisper>
-    <psih_invoice_titemdisamt>0.00</psih_invoice_titemdisamt>
-    <psih_invoice_tbilldiscper>0.00</psih_invoice_tbilldiscper>
-    <psih_invoice_tbilldiscamt>0.00</psih_invoice_tbilldiscamt>
-    <psih_invoice_totdiscper>0.00</psih_invoice_totdiscper>
-    <psih_invoice_totdiscamt>0.00</psih_invoice_totdiscamt>
-    <psih_invoice_tgrossamt>30.00</psih_invoice_tgrossamt>
+    <psih_invoice_tqty>2.00</psih_invoice_tqty>
+    <psih_invoice_tamount>48.00</psih_invoice_tamount>
+    <psih_invoice_titemdisper>5.00</psih_invoice_titemdisper>
+    <psih_invoice_titemdisamt>1.80</psih_invoice_titemdisamt>
+    <psih_invoice_tbilldiscper>0.42</psih_invoice_tbilldiscper>
+    <psih_invoice_tbilldiscamt>0.20</psih_invoice_tbilldiscamt>
+    <psih_invoice_totdiscper>5.42</psih_invoice_totdiscper>
+    <psih_invoice_totdiscamt>2.00</psih_invoice_totdiscamt>
+    <psih_invoice_tgrossamt>46.00</psih_invoice_tgrossamt>
     <psih_invoice_ttaxamt>0.00</psih_invoice_ttaxamt>
     <psih_invoice_sercharge>0.00</psih_invoice_sercharge>
     <psih_invoice_roundoff>0.00</psih_invoice_roundoff>
-    <psih_invoice_tnetamt>30.00</psih_invoice_tnetamt>
+    <psih_invoice_tnetamt>46.00</psih_invoice_tnetamt>
     <psih_invoice_saletype>Invoice</psih_invoice_saletype>
-    <psih_invoice_billtype>DEBIT/CREDIT CARD</psih_invoice_billtype>
+    <psih_invoice_billtype>RM</psih_invoice_billtype>
     <psih_invoice_billstatus>Closed</psih_invoice_billstatus>
-    <psih_invoice_paymode>card</psih_invoice_paymode>
+    <psih_invoice_paymode>cash</psih_invoice_paymode>
     <psih_invoice_customerid>1</psih_invoice_customerid>
-    <psih_invoice_description>Customer</psih_invoice_description>
+    <psih_invoice_description>Default Customer</psih_invoice_description>
     <psih_invoice_countername>OFFICE-PC</psih_invoice_countername>
     <psih_invoice_userid>3</psih_invoice_userid>
     <psih_invoice_comid>1</psih_invoice_comid>
@@ -149,23 +149,62 @@
     <psih_invoice_billremarks>-</psih_invoice_billremarks>
     <psih_invoice_advamt>0.00</psih_invoice_advamt>
     <psih_invoice_outstanding>0.00</psih_invoice_outstanding>
-    <psih_invoice_givenamt>30.00</psih_invoice_givenamt>
+    <psih_invoice_givenamt>46.00</psih_invoice_givenamt>
     <psih_invoice_balamt>0.00</psih_invoice_balamt>
-    <psih_invoice_shiftno>1</psih_invoice_shiftno>
+    <psih_invoice_shiftno>2</psih_invoice_shiftno>
     <psih_invoice_dayno>1</psih_invoice_dayno>
     <psih_invoice_webhost>0</psih_invoice_webhost>
-    <psih_invoice_created>2025-11-14T22:42:36.797+08:00</psih_invoice_created>
-    <psih_invoice_modified>2025-11-14T22:44:30.387+08:00</psih_invoice_modified>
+    <psih_invoice_created>2026-04-03T19:39:18.78+08:00</psih_invoice_created>
+    <psih_invoice_modified>2026-04-03T19:39:18.78+08:00</psih_invoice_modified>
     <psih_invoice_token>0</psih_invoice_token>
     <UserName>CASHIER</UserName>
     <Customer>Customer</Customer>
   </Table>
   <Table1>
-    <psid_invoice_id>58</psid_invoice_id>
-    <psid_invoice_salid>28</psid_invoice_salid>
+    <psid_invoice_id>86</psid_invoice_id>
+    <psid_invoice_salid>45</psid_invoice_salid>
     <psid_invoice_sno>1</psid_invoice_sno>
-    <psid_invoice_date>2025-11-14T00:00:00+08:00</psid_invoice_date>
-    <psid_invoice_trno>34</psid_invoice_trno>
+    <psid_invoice_date>2026-04-03T00:00:00+08:00</psid_invoice_date>
+    <psid_invoice_trno>51</psid_invoice_trno>
+    <psid_invoice_barcode>0</psid_invoice_barcode>
+    <psid_invoice_procode>1</psid_invoice_procode>
+    <psid_invoice_description>HAIR CUT            [ADULT]</psid_invoice_description>
+    <psid_invoice_serialno>1</psid_invoice_serialno>
+    <psid_invoice_uom>1</psid_invoice_uom>
+    <psid_invoice_proqty>1.00</psid_invoice_proqty>
+    <psid_invoice_rate>18.00</psid_invoice_rate>
+    <psid_invoice_amt>18.00</psid_invoice_amt>
+    <psid_invoice_itemdisp>10.00</psid_invoice_itemdisp>
+    <psid_invoice_itemdisamt>1.80</psid_invoice_itemdisamt>
+    <psid_invoice_billdisp>0.42</psid_invoice_billdisp>
+    <psid_invoice_billdisamt>0.08</psid_invoice_billdisamt>
+    <psid_invoice_totdper>10.42</psid_invoice_totdper>
+    <psid_invoice_totdamt>1.88</psid_invoice_totdamt>
+    <psid_invoice_gross>16.13</psid_invoice_gross>
+    <psid_invoice_taxinex>0</psid_invoice_taxinex>
+    <psid_invoice_taxvalue>0</psid_invoice_taxvalue>
+    <psid_invoice_taxamt>0.00</psid_invoice_taxamt>
+    <psid_invoice_netamt>16.13</psid_invoice_netamt>
+    <psid_invoice_remarks>Remarks</psid_invoice_remarks>
+    <psid_invoice_batchno>0</psid_invoice_batchno>
+    <psid_invoice_salesmanid>10</psid_invoice_salesmanid>
+    <psid_invoice_salemanper>0.00</psid_invoice_salemanper>
+    <psid_invoice_shiftno>2</psid_invoice_shiftno>
+    <psid_invoice_dayno>1</psid_invoice_dayno>
+    <psid_invoice_webhost>0</psid_invoice_webhost>
+    <psid_invoice_created>2026-04-03T19:39:18.807+08:00</psid_invoice_created>
+    <psid_invoice_modified>2026-04-03T19:39:18.807+08:00</psid_invoice_modified>
+    <psid_invoice_pmid>1</psid_invoice_pmid>
+    <psid_invoice_comid>1</psid_invoice_comid>
+    <psid_invoice_locid>2</psid_invoice_locid>
+    <SalesmanName>SUBRA</SalesmanName>
+  </Table1>
+  <Table1>
+    <psid_invoice_id>87</psid_invoice_id>
+    <psid_invoice_salid>45</psid_invoice_salid>
+    <psid_invoice_sno>2</psid_invoice_sno>
+    <psid_invoice_date>2026-04-03T00:00:00+08:00</psid_invoice_date>
+    <psid_invoice_trno>51</psid_invoice_trno>
     <psid_invoice_barcode>2</psid_invoice_barcode>
     <psid_invoice_procode>2</psid_invoice_procode>
     <psid_invoice_description>HAIR CUT - SHAVE / TRIM</psid_invoice_description>
@@ -176,40 +215,27 @@
     <psid_invoice_amt>30.00</psid_invoice_amt>
     <psid_invoice_itemdisp>0.00</psid_invoice_itemdisp>
     <psid_invoice_itemdisamt>0.00</psid_invoice_itemdisamt>
-    <psid_invoice_billdisp>0.00</psid_invoice_billdisp>
-    <psid_invoice_billdisamt>0.00</psid_invoice_billdisamt>
-    <psid_invoice_totdper>0.00</psid_invoice_totdper>
-    <psid_invoice_totdamt>0.00</psid_invoice_totdamt>
-    <psid_invoice_gross>30.00</psid_invoice_gross>
+    <psid_invoice_billdisp>0.42</psid_invoice_billdisp>
+    <psid_invoice_billdisamt>0.13</psid_invoice_billdisamt>
+    <psid_invoice_totdper>0.42</psid_invoice_totdper>
+    <psid_invoice_totdamt>0.13</psid_invoice_totdamt>
+    <psid_invoice_gross>29.88</psid_invoice_gross>
     <psid_invoice_taxinex>0</psid_invoice_taxinex>
     <psid_invoice_taxvalue>0</psid_invoice_taxvalue>
     <psid_invoice_taxamt>0.00</psid_invoice_taxamt>
-    <psid_invoice_netamt>30.00</psid_invoice_netamt>
+    <psid_invoice_netamt>29.88</psid_invoice_netamt>
     <psid_invoice_remarks>Remarks</psid_invoice_remarks>
     <psid_invoice_batchno>0</psid_invoice_batchno>
-    <psid_invoice_salesmanid>18</psid_invoice_salesmanid>
+    <psid_invoice_salesmanid>16</psid_invoice_salesmanid>
     <psid_invoice_salemanper>0.00</psid_invoice_salemanper>
-    <psid_invoice_shiftno>1</psid_invoice_shiftno>
+    <psid_invoice_shiftno>2</psid_invoice_shiftno>
     <psid_invoice_dayno>1</psid_invoice_dayno>
     <psid_invoice_webhost>0</psid_invoice_webhost>
-    <psid_invoice_created>2025-11-14T22:44:30.42+08:00</psid_invoice_created>
-    <psid_invoice_modified>2025-11-14T22:44:30.42+08:00</psid_invoice_modified>
+    <psid_invoice_created>2026-04-03T19:39:18.853+08:00</psid_invoice_created>
+    <psid_invoice_modified>2026-04-03T19:39:18.853+08:00</psid_invoice_modified>
     <psid_invoice_pmid>1</psid_invoice_pmid>
     <psid_invoice_comid>1</psid_invoice_comid>
     <psid_invoice_locid>2</psid_invoice_locid>
-    <SalesmanName>KHUSHI</SalesmanName>
+    <SalesmanName>LOVEJEET</SalesmanName>
   </Table1>
-  <Table2>
-    <S_ID>41</S_ID>
-    <Sal_ID>34</Sal_ID>
-    <Paymode>3</Paymode>
-    <Amount>30.00</Amount>
-    <ShiftNo>1</ShiftNo>
-    <Dayno>1</Dayno>
-    <Created>2025-11-14T22:44:30.44+08:00</Created>
-    <Webhost>0</Webhost>
-    <ComId>1</ComId>
-    <LocId>2</LocId>
-    <PaymodeName>DEBIT/CREDIT CARD</PaymodeName>
-  </Table2>
 </NewDataSet>

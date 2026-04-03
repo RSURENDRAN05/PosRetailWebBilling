@@ -13,6 +13,9 @@
                 <xs:element name="CustomerPointsEarned" type="xs:string" minOccurs="0" />
                 <xs:element name="Status" type="xs:string" minOccurs="0" />
                 <xs:element name="Created" type="xs:string" minOccurs="0" />
+                <xs:element name="ComId" type="xs:string" minOccurs="0" />
+                <xs:element name="LocId" type="xs:string" minOccurs="0" />
+                <xs:element name="CustomerEmail" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -27,6 +30,9 @@
     <CustomerPointsEarned>0</CustomerPointsEarned>
     <Status>1</Status>
     <Created>2025-08-20 15:54:52</Created>
+    <ComId>0</ComId>
+    <LocId>0</LocId>
+    <CustomerEmail />
   </CustomerTable>
   <CustomerTable>
     <CustomerId>2</CustomerId>
@@ -35,6 +41,9 @@
     <CustomerPointsEarned>0</CustomerPointsEarned>
     <Status>1</Status>
     <Created>2025-10-13 21:16:41</Created>
+    <ComId>0</ComId>
+    <LocId>0</LocId>
+    <CustomerEmail />
   </CustomerTable>
   <CustomerTable>
     <CustomerId>3</CustomerId>
@@ -43,5 +52,19 @@
     <CustomerPointsEarned>0</CustomerPointsEarned>
     <Status>1</Status>
     <Created>2025-11-11 18:12:06</Created>
+    <ComId>0</ComId>
+    <LocId>0</LocId>
+    <CustomerEmail />
+  </CustomerTable>
+  <CustomerTable>
+    <CustomerId>4</CustomerId>
+    <CustomerName>SUREN</CustomerName>
+    <CustomerPhone>01254</CustomerPhone>
+    <CustomerPointsEarned>0</CustomerPointsEarned>
+    <Status>1</Status>
+    <Created>2026-04-03 18:53:42</Created>
+    <ComId>1</ComId>
+    <LocId>2</LocId>
+    <CustomerEmail>RDN</CustomerEmail>
   </CustomerTable>
 </NewDataSet>

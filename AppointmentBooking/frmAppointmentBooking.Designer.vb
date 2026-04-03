@@ -21,6 +21,7 @@ Partial Class frmAppointmentBooking
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAppointmentBooking))
         Me.layoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnSelectCustomer = New DevExpress.XtraEditors.SimpleButton()
         Me.txtCustomerId = New DevExpress.XtraEditors.TextEdit()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnDelete = New DevExpress.XtraEditors.SimpleButton()
@@ -51,6 +52,9 @@ Partial Class frmAppointmentBooking
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.txtcustomerphone = New DevExpress.XtraEditors.TextEdit()
         CType(Me.layoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.layoutControl1.SuspendLayout()
         CType(Me.txtCustomerId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,10 +84,14 @@ Partial Class frmAppointmentBooking
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtcustomerphone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'layoutControl1
         '
+        Me.layoutControl1.Controls.Add(Me.btnSelectCustomer)
         Me.layoutControl1.Controls.Add(Me.txtCustomerId)
         Me.layoutControl1.Controls.Add(Me.btnRefresh)
         Me.layoutControl1.Controls.Add(Me.btnDelete)
@@ -98,6 +106,7 @@ Partial Class frmAppointmentBooking
         Me.layoutControl1.Controls.Add(Me.memoNotes)
         Me.layoutControl1.Controls.Add(Me.btnSave)
         Me.layoutControl1.Controls.Add(Me.btnClear)
+        Me.layoutControl1.Controls.Add(Me.txtcustomerphone)
         Me.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.layoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.layoutControl1.Name = "layoutControl1"
@@ -106,20 +115,30 @@ Partial Class frmAppointmentBooking
         Me.layoutControl1.TabIndex = 0
         Me.layoutControl1.Text = "layoutControl1"
         '
+        'btnSelectCustomer
+        '
+        Me.btnSelectCustomer.Image = CType(resources.GetObject("btnSelectCustomer.Image"), System.Drawing.Image)
+        Me.btnSelectCustomer.Location = New System.Drawing.Point(839, 12)
+        Me.btnSelectCustomer.Name = "btnSelectCustomer"
+        Me.btnSelectCustomer.Size = New System.Drawing.Size(114, 38)
+        Me.btnSelectCustomer.StyleController = Me.layoutControl1
+        Me.btnSelectCustomer.TabIndex = 19
+        Me.btnSelectCustomer.Text = "Customer"
+        '
         'txtCustomerId
         '
         Me.txtCustomerId.Location = New System.Drawing.Point(106, 12)
         Me.txtCustomerId.Name = "txtCustomerId"
         Me.txtCustomerId.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtCustomerId.Properties.Appearance.Options.UseFont = True
-        Me.txtCustomerId.Size = New System.Drawing.Size(117, 30)
+        Me.txtCustomerId.Size = New System.Drawing.Size(76, 30)
         Me.txtCustomerId.StyleController = Me.layoutControl1
         Me.txtCustomerId.TabIndex = 18
         '
         'btnRefresh
         '
         Me.btnRefresh.Image = CType(resources.GetObject("btnRefresh.Image"), System.Drawing.Image)
-        Me.btnRefresh.Location = New System.Drawing.Point(481, 325)
+        Me.btnRefresh.Location = New System.Drawing.Point(481, 306)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(293, 38)
         Me.btnRefresh.StyleController = Me.layoutControl1
@@ -129,7 +148,7 @@ Partial Class frmAppointmentBooking
         'btnDelete
         '
         Me.btnDelete.Image = CType(resources.GetObject("btnDelete.Image"), System.Drawing.Image)
-        Me.btnDelete.Location = New System.Drawing.Point(285, 325)
+        Me.btnDelete.Location = New System.Drawing.Point(285, 306)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(192, 38)
         Me.btnDelete.StyleController = Me.layoutControl1
@@ -138,10 +157,10 @@ Partial Class frmAppointmentBooking
         '
         'gridAppointments
         '
-        Me.gridAppointments.Location = New System.Drawing.Point(12, 383)
+        Me.gridAppointments.Location = New System.Drawing.Point(12, 364)
         Me.gridAppointments.MainView = Me.gridViewAppointments
         Me.gridAppointments.Name = "gridAppointments"
-        Me.gridAppointments.Size = New System.Drawing.Size(941, 244)
+        Me.gridAppointments.Size = New System.Drawing.Size(941, 263)
         Me.gridAppointments.TabIndex = 14
         Me.gridAppointments.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridViewAppointments})
         '
@@ -155,28 +174,28 @@ Partial Class frmAppointmentBooking
         '
         'txtCustomerName
         '
-        Me.txtCustomerName.Location = New System.Drawing.Point(321, 12)
+        Me.txtCustomerName.Location = New System.Drawing.Point(280, 12)
         Me.txtCustomerName.Name = "txtCustomerName"
         Me.txtCustomerName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtCustomerName.Properties.Appearance.Options.UseFont = True
-        Me.txtCustomerName.Size = New System.Drawing.Size(632, 30)
+        Me.txtCustomerName.Size = New System.Drawing.Size(555, 30)
         Me.txtCustomerName.StyleController = Me.layoutControl1
         Me.txtCustomerName.TabIndex = 4
         '
         'txtEmailAddress
         '
-        Me.txtEmailAddress.Location = New System.Drawing.Point(106, 46)
+        Me.txtEmailAddress.Location = New System.Drawing.Point(578, 54)
         Me.txtEmailAddress.Name = "txtEmailAddress"
         Me.txtEmailAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.txtEmailAddress.Properties.Appearance.Options.UseFont = True
-        Me.txtEmailAddress.Size = New System.Drawing.Size(847, 30)
+        Me.txtEmailAddress.Size = New System.Drawing.Size(375, 30)
         Me.txtEmailAddress.StyleController = Me.layoutControl1
         Me.txtEmailAddress.TabIndex = 5
         '
         'dateAppointment
         '
         Me.dateAppointment.EditValue = Nothing
-        Me.dateAppointment.Location = New System.Drawing.Point(106, 80)
+        Me.dateAppointment.Location = New System.Drawing.Point(106, 88)
         Me.dateAppointment.Name = "dateAppointment"
         Me.dateAppointment.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.dateAppointment.Properties.Appearance.Options.UseFont = True
@@ -191,7 +210,7 @@ Partial Class frmAppointmentBooking
         'timeStart
         '
         Me.timeStart.EditValue = New Date(2026, 1, 21, 0, 0, 0, 0)
-        Me.timeStart.Location = New System.Drawing.Point(106, 114)
+        Me.timeStart.Location = New System.Drawing.Point(106, 122)
         Me.timeStart.Name = "timeStart"
         Me.timeStart.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.timeStart.Properties.Appearance.Options.UseFont = True
@@ -205,7 +224,7 @@ Partial Class frmAppointmentBooking
         'timeEnd
         '
         Me.timeEnd.EditValue = New Date(2026, 1, 21, 0, 0, 0, 0)
-        Me.timeEnd.Location = New System.Drawing.Point(106, 148)
+        Me.timeEnd.Location = New System.Drawing.Point(106, 156)
         Me.timeEnd.Name = "timeEnd"
         Me.timeEnd.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.timeEnd.Properties.Appearance.Options.UseFont = True
@@ -219,7 +238,7 @@ Partial Class frmAppointmentBooking
         'spinReminderValue
         '
         Me.spinReminderValue.EditValue = New Decimal(New Integer() {30, 0, 0, 0})
-        Me.spinReminderValue.Location = New System.Drawing.Point(106, 182)
+        Me.spinReminderValue.Location = New System.Drawing.Point(106, 190)
         Me.spinReminderValue.Name = "spinReminderValue"
         Me.spinReminderValue.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.spinReminderValue.Properties.Appearance.Options.UseFont = True
@@ -233,7 +252,7 @@ Partial Class frmAppointmentBooking
         'cboReminderUnit
         '
         Me.cboReminderUnit.EditValue = "Minutes"
-        Me.cboReminderUnit.Location = New System.Drawing.Point(485, 182)
+        Me.cboReminderUnit.Location = New System.Drawing.Point(485, 190)
         Me.cboReminderUnit.Name = "cboReminderUnit"
         Me.cboReminderUnit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.cboReminderUnit.Properties.Appearance.Options.UseFont = True
@@ -246,16 +265,16 @@ Partial Class frmAppointmentBooking
         '
         'memoNotes
         '
-        Me.memoNotes.Location = New System.Drawing.Point(106, 216)
+        Me.memoNotes.Location = New System.Drawing.Point(106, 224)
         Me.memoNotes.Name = "memoNotes"
-        Me.memoNotes.Size = New System.Drawing.Size(847, 105)
+        Me.memoNotes.Size = New System.Drawing.Size(847, 78)
         Me.memoNotes.StyleController = Me.layoutControl1
         Me.memoNotes.TabIndex = 11
         '
         'btnSave
         '
         Me.btnSave.Image = CType(resources.GetObject("btnSave.Image"), System.Drawing.Image)
-        Me.btnSave.Location = New System.Drawing.Point(12, 325)
+        Me.btnSave.Location = New System.Drawing.Point(12, 306)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(269, 38)
         Me.btnSave.StyleController = Me.layoutControl1
@@ -265,7 +284,7 @@ Partial Class frmAppointmentBooking
         'btnClear
         '
         Me.btnClear.Image = CType(resources.GetObject("btnClear.Image"), System.Drawing.Image)
-        Me.btnClear.Location = New System.Drawing.Point(778, 325)
+        Me.btnClear.Location = New System.Drawing.Point(778, 306)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(175, 38)
         Me.btnClear.StyleController = Me.layoutControl1
@@ -277,7 +296,7 @@ Partial Class frmAppointmentBooking
         Me.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1"
         Me.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.layoutControlGroup1.GroupBordersVisible = False
-        Me.layoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.layoutControlItem1, Me.layoutControlItem2, Me.layoutControlItem3, Me.layoutControlItem4, Me.layoutControlItem5, Me.layoutControlItem6, Me.layoutControlItem7, Me.layoutControlItem8, Me.layoutControlItem9, Me.layoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem14, Me.LayoutControlItem15})
+        Me.layoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.layoutControlItem1, Me.layoutControlItem2, Me.layoutControlItem3, Me.layoutControlItem4, Me.layoutControlItem5, Me.layoutControlItem6, Me.layoutControlItem7, Me.layoutControlItem8, Me.layoutControlItem9, Me.layoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem16})
         Me.layoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.layoutControlGroup1.Name = "layoutControlGroup1"
         Me.layoutControlGroup1.Size = New System.Drawing.Size(965, 639)
@@ -288,9 +307,9 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem1.Control = Me.txtCustomerName
         Me.layoutControlItem1.CustomizationFormText = "Customer Name:"
-        Me.layoutControlItem1.Location = New System.Drawing.Point(215, 0)
+        Me.layoutControlItem1.Location = New System.Drawing.Point(174, 0)
         Me.layoutControlItem1.Name = "layoutControlItem1"
-        Me.layoutControlItem1.Size = New System.Drawing.Size(730, 34)
+        Me.layoutControlItem1.Size = New System.Drawing.Size(653, 42)
         Me.layoutControlItem1.Text = "Customer Name:"
         Me.layoutControlItem1.TextSize = New System.Drawing.Size(91, 13)
         '
@@ -298,9 +317,9 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem2.Control = Me.txtEmailAddress
         Me.layoutControlItem2.CustomizationFormText = "Email Address:"
-        Me.layoutControlItem2.Location = New System.Drawing.Point(0, 34)
+        Me.layoutControlItem2.Location = New System.Drawing.Point(472, 42)
         Me.layoutControlItem2.Name = "layoutControlItem2"
-        Me.layoutControlItem2.Size = New System.Drawing.Size(945, 34)
+        Me.layoutControlItem2.Size = New System.Drawing.Size(473, 34)
         Me.layoutControlItem2.Text = "Email Address:"
         Me.layoutControlItem2.TextSize = New System.Drawing.Size(91, 13)
         '
@@ -308,7 +327,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem3.Control = Me.dateAppointment
         Me.layoutControlItem3.CustomizationFormText = "Appointment Date:"
-        Me.layoutControlItem3.Location = New System.Drawing.Point(0, 68)
+        Me.layoutControlItem3.Location = New System.Drawing.Point(0, 76)
         Me.layoutControlItem3.Name = "layoutControlItem3"
         Me.layoutControlItem3.Size = New System.Drawing.Size(945, 34)
         Me.layoutControlItem3.Text = "Appointment Date:"
@@ -318,7 +337,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem4.Control = Me.timeStart
         Me.layoutControlItem4.CustomizationFormText = "Start Time:"
-        Me.layoutControlItem4.Location = New System.Drawing.Point(0, 102)
+        Me.layoutControlItem4.Location = New System.Drawing.Point(0, 110)
         Me.layoutControlItem4.Name = "layoutControlItem4"
         Me.layoutControlItem4.Size = New System.Drawing.Size(945, 34)
         Me.layoutControlItem4.Text = "Start Time:"
@@ -328,7 +347,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem5.Control = Me.timeEnd
         Me.layoutControlItem5.CustomizationFormText = "End Time:"
-        Me.layoutControlItem5.Location = New System.Drawing.Point(0, 136)
+        Me.layoutControlItem5.Location = New System.Drawing.Point(0, 144)
         Me.layoutControlItem5.Name = "layoutControlItem5"
         Me.layoutControlItem5.Size = New System.Drawing.Size(945, 34)
         Me.layoutControlItem5.Text = "End Time:"
@@ -338,7 +357,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem6.Control = Me.spinReminderValue
         Me.layoutControlItem6.CustomizationFormText = "Remind Before:"
-        Me.layoutControlItem6.Location = New System.Drawing.Point(0, 170)
+        Me.layoutControlItem6.Location = New System.Drawing.Point(0, 178)
         Me.layoutControlItem6.Name = "layoutControlItem6"
         Me.layoutControlItem6.Size = New System.Drawing.Size(473, 34)
         Me.layoutControlItem6.Text = "Remind Before:"
@@ -348,7 +367,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem7.Control = Me.cboReminderUnit
         Me.layoutControlItem7.CustomizationFormText = "layoutControlItem7"
-        Me.layoutControlItem7.Location = New System.Drawing.Point(473, 170)
+        Me.layoutControlItem7.Location = New System.Drawing.Point(473, 178)
         Me.layoutControlItem7.Name = "layoutControlItem7"
         Me.layoutControlItem7.Size = New System.Drawing.Size(472, 34)
         Me.layoutControlItem7.Text = "layoutControlItem7"
@@ -360,9 +379,9 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem8.Control = Me.memoNotes
         Me.layoutControlItem8.CustomizationFormText = "Notes:"
-        Me.layoutControlItem8.Location = New System.Drawing.Point(0, 204)
+        Me.layoutControlItem8.Location = New System.Drawing.Point(0, 212)
         Me.layoutControlItem8.Name = "layoutControlItem8"
-        Me.layoutControlItem8.Size = New System.Drawing.Size(945, 109)
+        Me.layoutControlItem8.Size = New System.Drawing.Size(945, 82)
         Me.layoutControlItem8.Text = "Notes:"
         Me.layoutControlItem8.TextSize = New System.Drawing.Size(91, 13)
         '
@@ -370,7 +389,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem9.Control = Me.btnSave
         Me.layoutControlItem9.CustomizationFormText = "layoutControlItem9"
-        Me.layoutControlItem9.Location = New System.Drawing.Point(0, 313)
+        Me.layoutControlItem9.Location = New System.Drawing.Point(0, 294)
         Me.layoutControlItem9.Name = "layoutControlItem9"
         Me.layoutControlItem9.Size = New System.Drawing.Size(273, 42)
         Me.layoutControlItem9.Text = "layoutControlItem9"
@@ -382,7 +401,7 @@ Partial Class frmAppointmentBooking
         '
         Me.layoutControlItem10.Control = Me.btnClear
         Me.layoutControlItem10.CustomizationFormText = "layoutControlItem10"
-        Me.layoutControlItem10.Location = New System.Drawing.Point(766, 313)
+        Me.layoutControlItem10.Location = New System.Drawing.Point(766, 294)
         Me.layoutControlItem10.Name = "layoutControlItem10"
         Me.layoutControlItem10.Size = New System.Drawing.Size(179, 42)
         Me.layoutControlItem10.Text = "layoutControlItem10"
@@ -394,9 +413,9 @@ Partial Class frmAppointmentBooking
         '
         Me.LayoutControlItem11.Control = Me.gridAppointments
         Me.LayoutControlItem11.CustomizationFormText = "LayoutControlItem11"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 355)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 336)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(945, 264)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(945, 283)
         Me.LayoutControlItem11.Text = "Appointment"
         Me.LayoutControlItem11.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(91, 13)
@@ -405,7 +424,7 @@ Partial Class frmAppointmentBooking
         '
         Me.LayoutControlItem12.Control = Me.btnDelete
         Me.LayoutControlItem12.CustomizationFormText = "LayoutControlItem12"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(273, 313)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(273, 294)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(196, 42)
         Me.LayoutControlItem12.Text = "LayoutControlItem12"
@@ -417,7 +436,7 @@ Partial Class frmAppointmentBooking
         '
         Me.LayoutControlItem14.Control = Me.btnRefresh
         Me.LayoutControlItem14.CustomizationFormText = "LayoutControlItem14"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(469, 313)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(469, 294)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(297, 42)
         Me.LayoutControlItem14.Text = "LayoutControlItem14"
@@ -431,9 +450,43 @@ Partial Class frmAppointmentBooking
         Me.LayoutControlItem15.CustomizationFormText = "Customer Id :"
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(215, 34)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(174, 42)
         Me.LayoutControlItem15.Text = "Customer Id :"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(91, 13)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.btnSelectCustomer
+        Me.LayoutControlItem13.CustomizationFormText = "LayoutControlItem13"
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(827, 0)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(118, 42)
+        Me.LayoutControlItem13.Text = "LayoutControlItem13"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem13.TextToControlDistance = 0
+        Me.LayoutControlItem13.TextVisible = False
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.txtcustomerphone
+        Me.LayoutControlItem16.CustomizationFormText = "Customer Phone :"
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(472, 34)
+        Me.LayoutControlItem16.Text = "Customer Phone :"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(91, 13)
+        '
+        'txtcustomerphone
+        '
+        Me.txtcustomerphone.Location = New System.Drawing.Point(106, 54)
+        Me.txtcustomerphone.Name = "txtcustomerphone"
+        Me.txtcustomerphone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.txtcustomerphone.Properties.Appearance.Options.UseFont = True
+        Me.txtcustomerphone.Properties.Mask.EditMask = "d"
+        Me.txtcustomerphone.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
+        Me.txtcustomerphone.Size = New System.Drawing.Size(374, 30)
+        Me.txtcustomerphone.StyleController = Me.layoutControl1
+        Me.txtcustomerphone.TabIndex = 20
         '
         'frmAppointmentBooking
         '
@@ -473,6 +526,9 @@ Partial Class frmAppointmentBooking
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtcustomerphone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -508,4 +564,8 @@ Partial Class frmAppointmentBooking
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtCustomerId As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnSelectCustomer As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtcustomerphone As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
 End Class

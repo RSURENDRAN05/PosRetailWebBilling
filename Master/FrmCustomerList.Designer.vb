@@ -33,11 +33,12 @@ Partial Class FrmCustomerList
         Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnDeleteCustomer = New DevExpress.XtraEditors.SimpleButton()
         Me.btnEditCustomer = New DevExpress.XtraEditors.SimpleButton()
         Me.btnNewCustomer = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControlCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,7 +95,7 @@ Partial Class FrmCustomerList
         Me.GridViewCustomers.Appearance.Row.Options.UseFont = True
         Me.GridViewCustomers.Appearance.Row.Options.UseTextOptions = True
         Me.GridViewCustomers.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewCustomers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GridViewCustomers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GridViewCustomers.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridViewCustomers.GridControl = Me.GridControlCustomers
         Me.GridViewCustomers.Name = "GridViewCustomers"
@@ -107,7 +108,7 @@ Partial Class FrmCustomerList
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "CustomerId"
+        Me.GridColumn1.Caption = "CustId"
         Me.GridColumn1.FieldName = "CustomerId"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
@@ -120,6 +121,7 @@ Partial Class FrmCustomerList
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 198
         '
         'GridColumn3
         '
@@ -128,6 +130,7 @@ Partial Class FrmCustomerList
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 152
         '
         'GridColumn4
         '
@@ -137,7 +140,8 @@ Partial Class FrmCustomerList
         Me.GridColumn4.ImageAlignment = System.Drawing.StringAlignment.Center
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.Width = 62
         '
         'RepositoryItemImageComboBoxStatus
         '
@@ -160,7 +164,8 @@ Partial Class FrmCustomerList
         Me.GridColumn5.FieldName = "CustomerPointsEarned"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 79
         '
         'PanelControl2
         '
@@ -176,6 +181,21 @@ Partial Class FrmCustomerList
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(760, 40)
         Me.PanelControl2.TabIndex = 2
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(671, 7)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(85, 30)
+        Me.SimpleButton1.TabIndex = 7
+        Me.SimpleButton1.Text = "Cancel"
         '
         'btnRefresh
         '
@@ -237,20 +257,14 @@ Partial Class FrmCustomerList
         Me.btnNewCustomer.TabIndex = 3
         Me.btnNewCustomer.Text = "New (Insert)"
         '
-        'SimpleButton1
+        'GridColumn6
         '
-        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.Location = New System.Drawing.Point(671, 7)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(85, 30)
-        Me.SimpleButton1.TabIndex = 7
-        Me.SimpleButton1.Text = "Cancel"
+        Me.GridColumn6.Caption = "CustomerName"
+        Me.GridColumn6.FieldName = "CustomerEmail"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.Width = 176
         '
         'FrmCustomerList
         '
@@ -294,4 +308,5 @@ Partial Class FrmCustomerList
     Friend WithEvents imgcol As DevExpress.Utils.ImageCollection
     Friend WithEvents RepositoryItemImageComboBoxStatus As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
