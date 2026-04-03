@@ -223,6 +223,7 @@ Module functionModule
         Public Shared UserRole As String = ""
         Public Shared UserRoleId As String = "1"
         Public Shared CompanyPMID As Integer = 0
+        Public Shared LocationAddress As String = ""
     End Structure
     Public Structure _JsonData
         Public Shared UserTable As New DataTable

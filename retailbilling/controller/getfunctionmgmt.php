@@ -98,7 +98,8 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $row = json_decode($getjson, true);
         $plm_name = $row['locationname'];
         $plm_active = $row['active'];
-        $saveCompay = $clsfunreq->SaveLocation($plm_name, $plm_active);
+        $plm_address = $row['address'];
+        $saveCompay = $clsfunreq->SaveLocation($plm_name, $plm_active, $plm_address);
         if ($saveCompay) {
             echo json_encode(array("Success" => true));
         } else {
@@ -111,7 +112,8 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $plm_id = $row['id'];
         $plm_name = $row['locationname'];
         $plm_active = $row['active'];
-        $saveCompay = $clsfunreq->UpdateLocation($plm_id, $plm_name, $plm_active);
+        $plm_address = $row['address'];
+        $saveCompay = $clsfunreq->UpdateLocation($plm_id, $plm_name, $plm_active, $plm_address);
         if ($saveCompay) {
             echo json_encode(array("Success" => true));
         } else {

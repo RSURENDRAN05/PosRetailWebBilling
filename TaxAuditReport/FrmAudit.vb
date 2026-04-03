@@ -1,5 +1,10 @@
-﻿Public Class FrmAudit
+﻿Imports System.Net
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
+Imports System.Text
 
+Public Class FrmAudit
+    Dim rtb As New RichTextBox
     Private Sub FrmAudit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             FromDate.EditValue = Date.Now
@@ -9,5 +14,270 @@
         End Try
     End Sub
 
-  
+    Private Function BuildTaxAuditUrl(ByVal ajaxRequest As Integer, ByVal jsonPayload As String) As String
+        Dim baseUrl As String = M_Details.LinkTaxAuditRequest
+        If String.IsNullOrWhiteSpace(baseUrl) Then
+            baseUrl = M_Details.LinkAjaxRequest
+        End If
+        If String.IsNullOrWhiteSpace(baseUrl) Then
+            Return String.Empty
+        End If
+        If baseUrl.Contains("?") Then
+            If Not baseUrl.EndsWith("?") AndAlso Not baseUrl.EndsWith("&") Then
+                baseUrl &= "&"
+            End If
+        Else
+            If Not baseUrl.EndsWith("?") Then
+                baseUrl &= "?"
+            End If
+        End If
+        Return baseUrl & "AjaxRequest=" & ajaxRequest.ToString() & "&json=" & Uri.EscapeDataString(jsonPayload)
+    End Function
+
+
+    Private Sub barbtnbyDay_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnbyDay.ItemClick
+        Try
+            Dim selectedDate As DateTime = DateTime.Now
+            Try
+                selectedDate = Convert.ToDateTime(FromDate.EditValue)
+            Catch
+            End Try
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim payload = New With {
+                .Date = selectedDate.ToString("yyyy-MM-dd"),
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(7, jsonPayload)
+
+            If String.IsNullOrWhiteSpace(url) Then
+                MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            Dim isSuccess As Boolean = False
+            If responseObj("Success") IsNot Nothing Then
+                Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+            End If
+
+            If Not isSuccess Then
+                Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), "Failed to load data.")
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtrichreport.Text = ""
+                Exit Sub
+            End If
+
+            Dim payModeArr As JArray = Nothing
+            If responseObj("PayMode") IsNot Nothing AndAlso responseObj("PayMode").Type = JTokenType.Array Then
+                payModeArr = CType(responseObj("PayMode"), JArray)
+            End If
+
+            Dim dataArr As JArray = Nothing
+            If responseObj("Data") IsNot Nothing AndAlso responseObj("Data").Type = JTokenType.Array Then
+                dataArr = CType(responseObj("Data"), JArray)
+            End If
+
+            BuildReportDay(selectedDate, dataArr, payModeArr)
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+    End Sub
+
+    Private Sub barbtnbymonth_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnbymonth.ItemClick
+        Try
+            Dim selectedDate As DateTime = DateTime.Now
+            Try
+                selectedDate = Convert.ToDateTime(FromDate.EditValue)
+            Catch
+            End Try
+
+            Dim selectedYear As Integer = selectedDate.Year
+            Dim selectedMonth As Integer = selectedDate.Month
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim payload = New With {
+                .Year = selectedYear,
+                .Month = selectedMonth,
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(8, jsonPayload)
+
+            If String.IsNullOrWhiteSpace(url) Then
+                MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Dim responseObj As JObject = JObject.Parse(response)
+
+            Dim isSuccess As Boolean = False
+            If responseObj("Success") IsNot Nothing Then
+                Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+            End If
+
+            If Not isSuccess Then
+                Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), "Failed to load data.")
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtrichreport.Text = ""
+                Exit Sub
+            End If
+            Dim payModeArr As JArray = Nothing
+            If responseObj("PayMode") IsNot Nothing AndAlso responseObj("PayMode").Type = JTokenType.Array Then
+                payModeArr = CType(responseObj("PayMode"), JArray)
+            End If
+
+            Dim dataArr As JArray = Nothing
+            If responseObj("Data") IsNot Nothing AndAlso responseObj("Data").Type = JTokenType.Array Then
+                dataArr = CType(responseObj("Data"), JArray)
+            End If
+            BuildReportMonth(selectedDate, dataArr, payModeArr)
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Function BuildReportMonth(selectedDate As DateTime, DataFinal As JArray, SalesMethod As JArray) As Boolean
+        Try
+            Return BuildReport(selectedDate, DataFinal, SalesMethod, True)
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Function BuildReport(selectedDate As DateTime, DataFinal As JArray, SalesMethod As JArray, isMonthReport As Boolean) As Boolean
+        Try
+            rtb.Text = ""
+
+            Dim _content As New StringBuilder()
+
+            ' SAFE: keep DateTime as DateTime
+            Dim _dates As DateTime = selectedDate.Date
+
+            Dim MontYear As String = MonthName(Month(_dates)) & "-" & Year(_dates).ToString()
+
+            Dim _ItemList As New StringBuilder()
+            Dim _EMPTY As String = String.Empty
+            Dim _dotline2 As String = New String("="c, 40)
+            Dim _title As String = "DATE".PadRight(25) & "TOTSALES(RM)".PadLeft(15)
+            Dim _HEAD As String = If(isMonthReport, "Tax Report Month Of- " & MontYear, "Tax Report Date Of- " & _dates.ToString("yyyy-MM-dd"))
+
+            Dim _ShopName As String = _companyInfo.CompanyName
+            Dim _LocationName As String = _companyInfo.LocationName
+            Dim _Address As String = _companyInfo.LocationAddress
+
+            _content.AppendLine(_HEAD)
+            _content.AppendLine(_ShopName)
+            _content.AppendLine(_LocationName)
+            _content.AppendLine(_Address)
+            _content.AppendLine(_EMPTY)
+            _content.AppendLine(_dotline2)
+            _content.AppendLine(_title)
+            _content.AppendLine(_dotline2)
+
+            Dim totTodaySales As Decimal = 0D
+            Dim totTaxSales As Decimal = 0D
+            Dim totTaxAmt As Decimal = 0D
+            Dim totZeroSales As Decimal = 0D
+            Dim totFoSales As Decimal = 0D
+
+            If DataFinal IsNot Nothing AndAlso DataFinal.Count > 0 Then
+                For Each item As JObject In DataFinal
+                    Dim ptfDate As String = ""
+                    If item("ptf_date") IsNot Nothing Then
+                        Try
+                            ptfDate = Convert.ToDateTime(item("ptf_date").ToString()).ToString("yyyy-MM-dd")
+                        Catch
+                            ptfDate = item("ptf_date").ToString()
+                        End Try
+                    End If
+
+                    Dim todaySales As Decimal = If(item("ptf_todaysales") IsNot Nothing, CDec(item("ptf_todaysales")), 0D)
+                    Dim taxSales As Decimal = If(item("ptf_taxsales") IsNot Nothing, CDec(item("ptf_taxsales")), 0D)
+                    Dim taxAmt As Decimal = If(item("ptf_taxamt") IsNot Nothing, CDec(item("ptf_taxamt")), 0D)
+                    Dim zeroSales As Decimal = If(item("ptf_zerosales") IsNot Nothing, CDec(item("ptf_zerosales")), 0D)
+                    Dim foSales As Decimal = If(item("ptf_fosales") IsNot Nothing, CDec(item("ptf_fosales")), 0D)
+
+                    totTodaySales += todaySales
+                    totTaxSales += taxSales
+                    totTaxAmt += taxAmt
+                    totZeroSales += zeroSales
+                    totFoSales += foSales
+
+                    Dim rowLine As String =
+                        ptfDate.PadRight(25) & todaySales.ToString("0.00").PadLeft(15)
+
+                    _ItemList.AppendLine(rowLine)
+                Next
+            End If
+
+            _content.AppendLine(_ItemList.ToString())
+            _content.AppendLine(_dotline2)
+            _content.AppendLine("TOTAL AMOUNT:".PadRight(25) & totTodaySales.ToString("0.00").PadLeft(15))
+            _content.AppendLine(_dotline2)
+            _content.AppendLine(_EMPTY)
+
+            _content.AppendLine("**********Groupwise Sales Method *********")
+            _content.AppendLine(_dotline2)
+            Dim _itemRowList As String = String.Empty
+            Dim _sumSalemethod As Decimal = 0D
+
+            If SalesMethod IsNot Nothing AndAlso SalesMethod.Count > 0 Then
+                For Each item As JObject In SalesMethod
+                    Dim payModeName As String = If(item("PayModeType") IsNot Nothing, item("PayModeType").ToString(), "")
+                    Dim netAmt As Decimal = If(item("NetAmt") IsNot Nothing, CDec(item("NetAmt")), 0D)
+                    _itemRowList = payModeName.PadRight(25) & netAmt.ToString("0.00").PadLeft(15)
+                    _content.AppendLine(_itemRowList)
+                    _sumSalemethod += netAmt
+                Next
+
+                _content.AppendLine(_dotline2)
+                _content.AppendLine("Total Sales Amount :".PadRight(25) & _sumSalemethod.ToString("0.00").PadLeft(15))
+                _content.AppendLine(_dotline2)
+            End If
+
+            rtb.AppendText(_content.ToString())
+            txtrichreport.Text = ""
+            txtrichreport.Text = rtb.Text
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Function BuildReportDay(selectedDate As DateTime, DataFinal As JArray, SalesMethod As JArray) As Boolean
+        Try
+            Return BuildReport(selectedDate, DataFinal, SalesMethod, False)
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Sub barbtnExport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnExport.ItemClick
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnprint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprint.ItemClick
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

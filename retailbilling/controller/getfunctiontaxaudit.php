@@ -85,4 +85,58 @@ if (isset($_REQUEST['AjaxRequest'])) {
             echo json_encode(array("Success" => false, "Msg" => $res['Msg'], "Data" => array()));
         }
     }
+
+    // ───────────────────────────────────────────────────────────────
+    //  pos_tax_final  endpoints (AjaxRequest 5 – 10)
+    // ───────────────────────────────────────────────────────────────
+
+    // AjaxRequest 5: Delete from pos_tax_final by Date
+    // json params: Date (YYYY-MM-DD), ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 5) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $res = $clsfunreq->DeletePosTaxFinalByDate($row['Date'], $row['ComId'], $row['LocId']);
+        echo json_encode($res);
+    }
+
+    // AjaxRequest 6: Delete from pos_tax_final by Month
+    // json params: Year, Month, ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 6) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $res = $clsfunreq->DeletePosTaxFinalByMonth($row['Year'], $row['Month'], $row['ComId'], $row['LocId']);
+        echo json_encode($res);
+    }
+
+    // AjaxRequest 7: Select final summary + paymode by Date
+    // json params: Date (YYYY-MM-DD), ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 7) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $res = $clsfunreq->SelectPosTaxFinalByDate($row['Date'], $row['ComId'], $row['LocId']);
+        echo json_encode($res);
+    }
+
+    // AjaxRequest 8: Select final summary + paymode by Month
+    // json params: Year, Month, ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 8) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $res = $clsfunreq->SelectPosTaxFinalByMonth($row['Year'], $row['Month'], $row['ComId'], $row['LocId']);
+        echo json_encode($res);
+    }
+
+    // AjaxRequest 10: Insert final tax record (delete existing + insert via SP)
+    // json params: Date (YYYY-MM-DD), ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 10) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $res = $clsfunreq->InsertPosTaxFinalSP($row['Date'], $row['ComId'], $row['LocId']);
+        echo json_encode($res);
+    }
 }

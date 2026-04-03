@@ -34,6 +34,7 @@ Public Class FrmLocation
                     comp.id = 0
                     comp.locationname = txtcompany.Text
                     comp.active = chkactive.CheckState
+                    comp.address = txtaddress.Text
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=7&json=" & PostString) = True Then
                         dialog.Caption = "Data Saved Success.."
@@ -41,6 +42,7 @@ Public Class FrmLocation
                     End If
                     txtid.Text = ""
                     txtcompany.Text = ""
+                    txtaddress.Text = ""
                     btnsave.Text = "Save"
                 End If
             Else
@@ -49,6 +51,7 @@ Public Class FrmLocation
                     comp.id = txtid.Text
                     comp.locationname = txtcompany.Text
                     comp.active = chkactive.CheckState
+                    comp.address = txtaddress.Text
                     Dim PostString As String = JsonConvert.SerializeObject(comp)
                     If _JsonSend(M_Details.LinkAjaxRequest & "AjaxRequest=8&json=" & PostString) = True Then
                         dialog.Caption = "Data Saved Success.."
@@ -57,6 +60,7 @@ Public Class FrmLocation
                 End If
                 txtid.Text = ""
                 txtcompany.Text = ""
+                txtaddress.Text = ""
                 btnsave.Text = "Save"
             End If
 
@@ -84,9 +88,10 @@ Public Class FrmLocation
             Dim id = GridView1.GetFocusedRowCellValue("plm_id")
             Dim bname = GridView1.GetFocusedRowCellValue("plm_name")
             Dim chkvalue = GridView1.GetFocusedRowCellValue("plm_active")
-
+            Dim address = GridView1.GetFocusedRowCellValue("plm_address")
             txtid.Text = id
             txtcompany.Text = bname
+            txtaddress.Text = address
             chkactive.Checked = chkvalue
         Catch ex As Exception
 
@@ -97,4 +102,5 @@ Class Locations
     Public Property id As String
     Public Property locationname As String
     Public Property active As String
+    Public Property address As String
 End Class

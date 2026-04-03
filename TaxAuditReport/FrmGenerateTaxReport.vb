@@ -854,17 +854,42 @@ Public Class FrmGenerateTaxReport
             dialogResults = MessageBox.Show("Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If dialogResults = DialogResult.Yes Then
-                'Dim finalSql(3) As SqlParameter
-                'finalSql(0) = New SqlParameter("@mode", "F")
-                'finalSql(1) = New SqlParameter("@date", FromDateEdit.EditValue)
-                'finalSql(2) = New SqlParameter("@comid", G_COID)
-                'finalSql(3) = New SqlParameter("@locid", G_LID)
-                'If dbcls._ExecuteNonQuery("sp_taxRepProcess", finalSql, "er") = True Then
-                '    MessageBox.Show("Final Process Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                'End If
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+                Dim reportDate As String = FormatApiDate(FromDateEdit.EditValue)
+
+                Dim payload = New With {
+                    .Date = reportDate,
+                    .ComId = _companyInfo.ComId,
+                    .LocId = _companyInfo.LocId
+                }
+
+                Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+                Dim url As String = BuildTaxAuditUrl(10, jsonPayload)
+
+                If String.IsNullOrWhiteSpace(url) Then
+                    MessageBox.Show("Tax audit URL is empty. Configure UrlLinkTaxAudit in settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+                Dim response As String = New WebClient().DownloadString(url)
+                Dim responseObj As JObject = JObject.Parse(response)
+
+                Dim isSuccess As Boolean = False
+                If responseObj("Success") IsNot Nothing Then
+                    Boolean.TryParse(responseObj("Success").ToString(), isSuccess)
+                End If
+
+                Dim msg As String = If(responseObj("Msg") IsNot Nothing, responseObj("Msg").ToString(), String.Empty)
+
+                If isSuccess Then
+                    MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Final process completed successfully.", msg), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show(If(String.IsNullOrWhiteSpace(msg), "Final process failed.", msg), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
         Catch ex As Exception
-
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

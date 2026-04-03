@@ -93,18 +93,18 @@ class funcProcessMgmt
         return ($result);
     }
 
-    public function SaveLocation($plm_name, $plm_active)
+    public function SaveLocation($plm_name, $plm_active, $plm_address)
     {
         $conn = $this->conn;
-        $sqlSelect = ("INSERT INTO `pos_location_mast`( `plm_name`, `plm_active`,`plm_default`) VALUES ('" . $plm_name . "','" . $plm_active . "','1')");
+        $sqlSelect = ("INSERT INTO `pos_location_mast`( `plm_name`, `plm_active`,`plm_address`,`plm_default`) VALUES ('" . $plm_name . "','" . $plm_active . "','" . $plm_address . "','1')");
         $result = mysqli_query($conn, $sqlSelect);
         return ($result);
     }
 
-    public function UpdateLocation($plm_id, $plm_name, $plm_active)
+    public function UpdateLocation($plm_id, $plm_name, $plm_active, $plm_address)
     {
         $conn = $this->conn;
-        $sqlSelect = ("UPDATE `pos_location_mast` SET `plm_name`='" . $plm_name . "',`plm_active`='" . $plm_active . "' ,`plm_default`='1' WHERE `plm_id`='" . $plm_id . "'");
+        $sqlSelect = ("UPDATE `pos_location_mast` SET `plm_name`='" . $plm_name . "',`plm_active`='" . $plm_active . "' ,`plm_address`='" . $plm_address . "',`plm_default`='1' WHERE `plm_id`='" . $plm_id . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return ($result);
     }

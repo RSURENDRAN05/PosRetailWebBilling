@@ -9,6 +9,7 @@
               <xs:sequence>
                 <xs:element name="plm_id" type="xs:string" minOccurs="0" />
                 <xs:element name="plm_name" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_address" type="xs:string" minOccurs="0" />
                 <xs:element name="plm_active" type="xs:string" minOccurs="0" />
                 <xs:element name="plm_create" type="xs:string" minOccurs="0" />
                 <xs:element name="plm_default" type="xs:string" minOccurs="0" />
@@ -22,6 +23,7 @@
   <LocationTable>
     <plm_id>1</plm_id>
     <plm_name>BANGSAR</plm_name>
+    <plm_address>TEST</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:40</plm_create>
     <plm_default>1</plm_default>
@@ -29,6 +31,7 @@
   <LocationTable>
     <plm_id>2</plm_id>
     <plm_name>BRICKFIELDS</plm_name>
+    <plm_address>TEST1</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:51</plm_create>
     <plm_default>1</plm_default>
@@ -36,6 +39,7 @@
   <LocationTable>
     <plm_id>3</plm_id>
     <plm_name>LUCKY GARDEN</plm_name>
+    <plm_address>TEST2</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2025-09-02 21:18:01</plm_create>
     <plm_default>1</plm_default>

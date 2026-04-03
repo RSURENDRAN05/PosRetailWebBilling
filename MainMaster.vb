@@ -845,6 +845,7 @@ Public Class MainMaster
             Dim r As DataRow = j.Row
             _companyInfo.LocId = r("plm_id")
             _companyInfo.LocationName = r("plm_name")
+            _companyInfo.LocationAddress = r("plm_address")
             barstatuscompany.Caption = _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
         Catch ex As Exception
 

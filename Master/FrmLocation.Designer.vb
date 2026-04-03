@@ -36,6 +36,7 @@ Partial Class FrmLocation
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageActive = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.imgcol = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.txtaddress = New DevExpress.XtraEditors.MemoEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -44,6 +45,9 @@ Partial Class FrmLocation
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -54,6 +58,7 @@ Partial Class FrmLocation
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageActive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.imgcol, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtaddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,6 +67,8 @@ Partial Class FrmLocation
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControlItem7
@@ -96,10 +103,11 @@ Partial Class FrmLocation
         Me.LayoutControl1.Controls.Add(Me.txtcompany)
         Me.LayoutControl1.Controls.Add(Me.txtid)
         Me.LayoutControl1.Controls.Add(Me.GridControl1)
+        Me.LayoutControl1.Controls.Add(Me.txtaddress)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(708, 179, 250, 350)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2779, 256, 250, 350)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(542, 671)
         Me.LayoutControl1.TabIndex = 1
@@ -112,7 +120,7 @@ Partial Class FrmLocation
         Me.btncancel.Appearance.Options.UseBackColor = True
         Me.btncancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
-        Me.btncancel.Location = New System.Drawing.Point(323, 72)
+        Me.btncancel.Location = New System.Drawing.Point(323, 139)
         Me.btncancel.Name = "btncancel"
         Me.btncancel.Size = New System.Drawing.Size(207, 38)
         Me.btncancel.StyleController = Me.LayoutControl1
@@ -126,7 +134,7 @@ Partial Class FrmLocation
         Me.btnsave.Appearance.Options.UseBackColor = True
         Me.btnsave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnsave.Image = CType(resources.GetObject("btnsave.Image"), System.Drawing.Image)
-        Me.btnsave.Location = New System.Drawing.Point(114, 72)
+        Me.btnsave.Location = New System.Drawing.Point(114, 139)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(205, 38)
         Me.btnsave.StyleController = Me.LayoutControl1
@@ -135,7 +143,7 @@ Partial Class FrmLocation
         '
         'chkactive
         '
-        Me.chkactive.Location = New System.Drawing.Point(12, 72)
+        Me.chkactive.Location = New System.Drawing.Point(12, 139)
         Me.chkactive.Name = "chkactive"
         Me.chkactive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.chkactive.Properties.Caption = "Active"
@@ -151,7 +159,7 @@ Partial Class FrmLocation
         Me.txtcompany.Properties.Appearance.Options.UseFont = True
         Me.txtcompany.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.txtcompany.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtcompany.Size = New System.Drawing.Size(438, 26)
+        Me.txtcompany.Size = New System.Drawing.Size(340, 26)
         Me.txtcompany.StyleController = Me.LayoutControl1
         Me.txtcompany.TabIndex = 6
         '
@@ -168,11 +176,11 @@ Partial Class FrmLocation
         '
         'GridControl1
         '
-        Me.GridControl1.Location = New System.Drawing.Point(12, 130)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 197)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemImageActive})
-        Me.GridControl1.Size = New System.Drawing.Size(518, 529)
+        Me.GridControl1.Size = New System.Drawing.Size(518, 462)
         Me.GridControl1.TabIndex = 4
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -180,7 +188,7 @@ Partial Class FrmLocation
         '
         Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -196,7 +204,7 @@ Partial Class FrmLocation
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 48
+        Me.GridColumn1.Width = 42
         '
         'GridColumn2
         '
@@ -205,7 +213,7 @@ Partial Class FrmLocation
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 372
+        Me.GridColumn2.Width = 111
         '
         'GridColumn3
         '
@@ -216,8 +224,8 @@ Partial Class FrmLocation
         Me.GridColumn3.FieldName = "plm_active"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 76
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 77
         '
         'RepositoryItemImageActive
         '
@@ -235,12 +243,24 @@ Partial Class FrmLocation
         Me.imgcol.Images.SetKeyName(0, "cancel-16x16.png")
         Me.imgcol.Images.SetKeyName(1, "accept.png")
         '
+        'txtaddress
+        '
+        Me.txtaddress.Location = New System.Drawing.Point(92, 72)
+        Me.txtaddress.Name = "txtaddress"
+        Me.txtaddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.txtaddress.Properties.Appearance.Options.UseFont = True
+        Me.txtaddress.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.txtaddress.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtaddress.Size = New System.Drawing.Size(340, 63)
+        Me.txtaddress.StyleController = Me.LayoutControl1
+        Me.txtaddress.TabIndex = 12
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem7})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.EmptySpaceItem2})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(542, 671)
@@ -251,9 +271,9 @@ Partial Class FrmLocation
         '
         Me.LayoutControlItem1.Control = Me.GridControl1
         Me.LayoutControlItem1.CustomizationFormText = "Details :"
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 102)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 169)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(522, 549)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(522, 482)
         Me.LayoutControlItem1.Text = "Details :"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(77, 13)
@@ -274,7 +294,7 @@ Partial Class FrmLocation
         Me.LayoutControlItem3.CustomizationFormText = "Company Name :"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(522, 30)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(424, 30)
         Me.LayoutControlItem3.Text = "Location Name :"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(77, 13)
         '
@@ -282,7 +302,7 @@ Partial Class FrmLocation
         '
         Me.LayoutControlItem5.Control = Me.chkactive
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 60)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 127)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(102, 42)
         Me.LayoutControlItem5.Text = "LayoutControlItem5"
@@ -294,7 +314,7 @@ Partial Class FrmLocation
         '
         Me.LayoutControlItem6.Control = Me.btncancel
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(311, 60)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(311, 127)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(211, 42)
         Me.LayoutControlItem6.Text = "LayoutControlItem6"
@@ -306,7 +326,7 @@ Partial Class FrmLocation
         '
         Me.LayoutControlItem4.Control = Me.btnsave
         Me.LayoutControlItem4.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(102, 60)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(102, 127)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(209, 42)
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
@@ -323,6 +343,35 @@ Partial Class FrmLocation
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(98, 30)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.txtaddress
+        Me.LayoutControlItem8.CustomizationFormText = "Address :"
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 60)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(424, 67)
+        Me.LayoutControlItem8.Text = "Address :"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(77, 13)
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.CustomizationFormText = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(424, 30)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(98, 97)
+        Me.EmptySpaceItem2.Text = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Address"
+        Me.GridColumn4.FieldName = "plm_address"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 270
         '
         'FrmLocation
         '
@@ -344,6 +393,7 @@ Partial Class FrmLocation
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageActive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.imgcol, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtaddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -352,6 +402,8 @@ Partial Class FrmLocation
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -378,4 +430,8 @@ Partial Class FrmLocation
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents txtaddress As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
