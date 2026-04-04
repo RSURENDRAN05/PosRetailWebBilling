@@ -2168,6 +2168,8 @@ Module functionModule
             FinalMonthDataTable.Columns.Add("EmpExtraOtHrs", GetType(Double)) '13
             FinalMonthDataTable.Columns.Add("EmpExtraOtAmt", GetType(Double)) '14
             FinalMonthDataTable.Columns.Add("EmpAllowance", GetType(Double)) '16
+            FinalMonthDataTable.Columns.Add("EmpSalesAllowance", GetType(Double)) '16
+            FinalMonthDataTable.Columns.Add("EmpSalesCommission", GetType(Double)) '16
             FinalMonthDataTable.Columns.Add("EmpGrossAmt", GetType(Double)) '17
             FinalMonthDataTable.Columns.Add("EmpAdvance", GetType(Double)) '18
             FinalMonthDataTable.Columns.Add("EmpEpf", GetType(Double)) '19
@@ -2176,8 +2178,12 @@ Module functionModule
             FinalMonthDataTable.Columns.Add("EmpNetPay", GetType(Double)) '22
             FinalMonthDataTable.Columns.Add("EmpBank", GetType(Double)) '23
             FinalMonthDataTable.Columns.Add("EmpNetCash", GetType(Double)) '23
+            '_FinalMonthProcessTable.Rows.Add(Sno, 0, EmpRefId, EmpName, EmpMonth, EmpComId,
+            ' EmpComName, EmpLocId, EmpLocName, EmpBasic, EmpNoOfDays, Math.Round(TotWages, 0), EmpExtraDays, Math.Round(TotExtraDayAmt, 0),
+            ' EmpExtraOtHrs, Math.Round(TotExtraOTAmt, 0), EmpAllowance, EmpSalesAllowance, EmpSalesCommission, Math.Round(TotGrossAmt, 0), EmpAdvance,
+            ' EmpEpf, EmpSocso, EmpDeduction, Math.Round(TotNetPay, 0), EmpBank, Math.Round(TotNetCash, 0))
             Return FinalMonthDataTable
-        Catch ex As Exception
+            Catch ex As Exception
             Return Nothing
         End Try
     End Function

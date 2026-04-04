@@ -2,6 +2,7 @@
 Imports Newtonsoft.Json
 Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports System.Globalization
 Public Class frmFinalProcess
     Dim _FinalMonthProcessTable As New DataTable
     Dim _monthofsalary As String = ""
@@ -43,7 +44,7 @@ Public Class frmFinalProcess
 
         End Try
     End Sub
-   
+
 
     Private Sub BarBtnSearch_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarBtnSearch.ItemClick
         Try
@@ -92,9 +93,18 @@ Public Class frmFinalProcess
                                 Dim EmpBasicOTRate = _rs("EmpOtRate") 'Ok
                                 Dim EmpOTHrsRate = _rs("EmpOtHrsRate")
                                 Dim EmpAllowance = _rs("EmpAllowance")
+                                Dim EmpSalesAllowance = _rs("EmpSalesAllowance")
+                                Dim EmpSalesCommission = _rs("EmpSalesCommission")
                                 Dim EmpEpf = _rs("EmpEpf")
                                 Dim EmpSocso = _rs("EmpSocso")
-                                Dim EmpNoOfDays = _rs("EmpNoOfDays") 'ok
+                                Dim EmpNoOfDays = "30" '_rs("EmpNoOfDays") 'ok 'get days based on month and year
+                                If DateTime.TryParseExact(EmpMonth, "MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, Nothing) Then
+                                    Dim month As Integer = DateTime.ParseExact(EmpMonth, "MMM-yyyy", CultureInfo.InvariantCulture).Month
+                                    Dim year As Integer = DateTime.ParseExact(EmpMonth, "MMM-yyyy", CultureInfo.InvariantCulture).Year
+                                    EmpNoOfDays = DateTime.DaysInMonth(year, month)
+                                Else
+                                    EmpNoOfDays = 30 ' Default to 30 if parsing fails
+                                End If
                                 Dim EmpExtraDays = _rs("EmpExtraDays")
                                 Dim EmpExtraOtHrs = _rs("EmpExtraOtHrs")
                                 Dim EmpAdvance = _rs("EmpAdvance")
@@ -103,15 +113,16 @@ Public Class frmFinalProcess
                                 TotWages = Val(EmpNoOfDays * EmpBasicRate)
                                 TotExtraDayAmt = Val(EmpExtraDays * EmpBasicOTRate)
                                 TotExtraOTAmt = Val(EmpExtraOtHrs * EmpOTHrsRate)
-                                TotGrossAmt = TotWages + TotExtraDayAmt + TotExtraOTAmt + Val(EmpAllowance)
+                                TotGrossAmt = TotWages + TotExtraDayAmt + TotExtraOTAmt + Val(EmpAllowance) + Val(EmpSalesAllowance) + Val(EmpSalesCommission)
                                 TotNetPay = TotGrossAmt - EmpAdvance - EmpEpf - EmpSocso - EmpDeduction
                                 TotNetCash = TotNetPay - EmpBank
-                                _FinalMonthProcessTable.Rows.Add(Sno, 0, EmpRefId, EmpName, EmpMonth, EmpComId, EmpComName, EmpLocId, EmpLocName, EmpBasic, EmpNoOfDays, Math.Round(TotWages, 0), EmpExtraDays, Math.Round(TotExtraDayAmt, 0), EmpExtraOtHrs, Math.Round(TotExtraOTAmt, 0), EmpAllowance, Math.Round(TotGrossAmt, 0), EmpAdvance, EmpEpf, EmpSocso, EmpDeduction, Math.Round(TotNetPay, 0), EmpBank, Math.Round(TotNetCash, 0))
+                                _FinalMonthProcessTable.Rows.Add(Sno, 0, EmpRefId, EmpName, EmpMonth, EmpComId, EmpComName, EmpLocId, EmpLocName, EmpBasic, EmpNoOfDays, Math.Round(TotWages, 2), EmpExtraDays, Math.Round(TotExtraDayAmt, 2), EmpExtraOtHrs, Math.Round(TotExtraOTAmt, 2), EmpAllowance, EmpSalesAllowance, EmpSalesCommission, Math.Round(TotGrossAmt, 2), EmpAdvance, EmpEpf, EmpSocso, EmpDeduction, Math.Ceiling(TotNetPay), EmpBank, Math.Ceiling(TotNetCash))
                                 Sno = Sno + 1
                             Next
                             _FinalMonthProcessTable.AcceptChanges()
                             _FinalMonthProcessTable.EndInit()
                             GridControl1.DataSource = _FinalMonthProcessTable
+                            UpdateEmpSalesCommissionFromMonthlyReport(_selectedMonth, _selectedCompany, _selectedLocation)
                         Else
 
                             GridControl1.DataSource = Nothing
@@ -136,6 +147,7 @@ Public Class frmFinalProcess
                             _FinalMonthProcessTable.AcceptChanges()
                             _FinalMonthProcessTable.EndInit()
                             GridControl1.DataSource = _FinalMonthProcessTable
+                            UpdateEmpSalesCommissionFromMonthlyReport(_selectedMonth, _selectedCompany, _selectedLocation)
                         Else
 
                             GridControl1.DataSource = Nothing
@@ -148,6 +160,150 @@ Public Class frmFinalProcess
             MessageBox.Show(ex.Message.ToString, "Error Loading", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub UpdateEmpSalesCommissionFromMonthlyReport(selectedMonth As String, selectedCompany As String, selectedLocation As String)
+        Try
+            Dim payoutDate As String = ConvertMonthToFirstDate(selectedMonth)
+            If String.IsNullOrWhiteSpace(payoutDate) OrElse _FinalMonthProcessTable Is Nothing OrElse _FinalMonthProcessTable.Rows.Count = 0 Then
+                Exit Sub
+            End If
+
+            Dim url As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=18&Date=" & payoutDate & "&ComId=" & selectedCompany & "&LocId=" & selectedLocation
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New WebClient().DownloadString(url)
+            Dim parsedJson As JObject = JObject.Parse(json)
+            Dim success As String = If(parsedJson("Success") IsNot Nothing, parsedJson("Success").ToString(), "False")
+            If success <> "True" Then Exit Sub
+
+            Dim dataToken As JToken = parsedJson("Data")
+            If dataToken Is Nothing OrElse dataToken.Type <> JTokenType.Array Then Exit Sub
+
+            Dim commissionByEmpId As New Dictionary(Of String, Double)(StringComparer.OrdinalIgnoreCase)
+            Dim netAmtByEmpId As New Dictionary(Of String, Double)(StringComparer.OrdinalIgnoreCase)
+            For Each item As JObject In CType(dataToken, JArray)
+                Dim empId As String = GetFirstNonEmptyValue(item, New String() {"EmpRefId", "emp_id", "EmpId", "StaffId", "ID"})
+                If String.IsNullOrWhiteSpace(empId) Then Continue For
+
+                Dim amountText As String = GetFirstNonEmptyValue(item, New String() {"EmpSalesCommission", "TotalCommission", "Commission", "Amount"})
+                Dim amount As Double = 0
+                Double.TryParse(amountText, NumberStyles.Any, CultureInfo.InvariantCulture, amount)
+
+                Dim netAmtText As String = GetFirstNonEmptyValue(item, New String() {"TotalNetAmt", "NetAmt", "TotalSales"})
+                Dim netAmt As Double = 0
+                Double.TryParse(netAmtText, NumberStyles.Any, CultureInfo.InvariantCulture, netAmt)
+
+                If commissionByEmpId.ContainsKey(empId) Then
+                    commissionByEmpId(empId) += amount
+                    netAmtByEmpId(empId) += netAmt
+                Else
+                    commissionByEmpId(empId) = amount
+                    netAmtByEmpId(empId) = netAmt
+                End If
+            Next
+
+            For Each row As DataRow In _FinalMonthProcessTable.Rows
+                Dim rowEmpId As String = row("EmpRefId").ToString().Trim()
+                If commissionByEmpId.ContainsKey(rowEmpId) Then
+                    row("EmpSalesCommission") = commissionByEmpId(rowEmpId)
+                Else
+                    row("EmpSalesCommission") = 0.0
+                End If
+
+                If netAmtByEmpId.ContainsKey(rowEmpId) Then
+                    row("EmpSalesAllowance") = GetSalesAllowanceByNetAmt(netAmtByEmpId(rowEmpId))
+                Else
+                    row("EmpSalesAllowance") = 0.0
+                End If
+
+                RecalculateFinalProcessAmounts(row)
+            Next
+
+            _FinalMonthProcessTable.AcceptChanges()
+            GridControl1.RefreshDataSource()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub RecalculateFinalProcessAmounts(row As DataRow)
+        Dim basicSalary As Double = Val(row("EmpBasic"))
+        Dim noOfDays As Double = Val(row("EmpNoOfDays"))
+        Dim wages As Double = Val(row("EmpWages"))
+        Dim extraDays As Double = Val(row("EmpExtraDays"))
+        Dim extraDayAmt As Double = Val(row("EmpExtraDayAmt"))
+        Dim extraOtHrs As Double = Val(row("EmpExtraOtHrs"))
+        Dim extraOtAmt As Double = Val(row("EmpExtraOtAmt"))
+        Dim allowance As Double = Val(row("EmpAllowance"))
+        Dim salesAllowance As Double = Val(row("EmpSalesAllowance"))
+        Dim salesCommission As Double = Val(row("EmpSalesCommission"))
+        Dim advance As Double = Val(row("EmpAdvance"))
+        Dim epf As Double = Val(row("EmpEpf"))
+        Dim socso As Double = Val(row("EmpSocso"))
+        Dim deduction As Double = Val(row("EmpDeduction"))
+        Dim bank As Double = Val(row("EmpBank"))
+
+        If wages = 0 AndAlso noOfDays > 0 Then
+            wages = noOfDays * (basicSalary / noOfDays)
+        End If
+        If extraDayAmt = 0 AndAlso extraDays > 0 AndAlso noOfDays > 0 Then
+            extraDayAmt = extraDays * (basicSalary / noOfDays)
+        End If
+
+        Dim grossAmt As Double = wages + extraDayAmt + extraOtAmt + allowance + salesAllowance + salesCommission
+        Dim netPay As Double = grossAmt - advance - epf - socso - deduction
+        Dim netCash As Double = netPay - bank
+
+        row("EmpWages") = Math.Round(wages, 2)
+        row("EmpExtraDayAmt") = Math.Round(extraDayAmt, 2)
+        row("EmpExtraOtAmt") = Math.Round(extraOtAmt, 2)
+        row("EmpGrossAmt") = Math.Round(grossAmt, 2)
+        row("EmpNetPay") = Math.Ceiling(netPay)
+        row("EmpNetCash") = Math.Ceiling(netCash)
+    End Sub
+
+    Private Function ConvertMonthToFirstDate(monthText As String) As String
+        Try
+            If String.IsNullOrWhiteSpace(monthText) Then Return ""
+
+            Dim parsed As DateTime
+            If DateTime.TryParseExact(monthText.Trim(), "MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, parsed) Then
+                Return New DateTime(parsed.Year, parsed.Month, 1).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+            End If
+
+            If DateTime.TryParse(monthText.Trim(), parsed) Then
+                Return New DateTime(parsed.Year, parsed.Month, 1).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return ""
+    End Function
+
+    Private Function GetFirstNonEmptyValue(item As JObject, keys As String()) As String
+        For Each key As String In keys
+            If item(key) IsNot Nothing Then
+                Dim value As String = item(key).ToString().Trim()
+                If Not String.IsNullOrWhiteSpace(value) Then
+                    Return value
+                End If
+            End If
+        Next
+        Return ""
+    End Function
+
+    ' Sales allowance tier table based on monthly TotalNetAmt (sales amount)
+    ' < 7,000          =   0  |  7,000 - 8,000  = 100  |  8,001 - 9,000  = 200
+    ' 9,001 - 10,000   = 300  | 10,001 - 11,000 = 400  | 11,001 - 12,000 = 500
+    ' 12,001 - 13,000  = 600  |        > 13,000 = 600
+    Private Function GetSalesAllowanceByNetAmt(totalNetAmt As Double) As Double
+        If totalNetAmt >= 12001 Then Return 600
+        If totalNetAmt >= 11001 Then Return 500
+        If totalNetAmt >= 10001 Then Return 400
+        If totalNetAmt >= 9001 Then Return 300
+        If totalNetAmt >= 8001 Then Return 200
+        If totalNetAmt >= 7000 Then Return 100
+        Return 0
+    End Function
 
     Private Sub BarBtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarBtnSave.ItemClick
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
@@ -259,7 +415,9 @@ Public Class frmFinalProcess
     Private Sub MonthItemCmbBox(sender As Object, e As EventArgs)
         Dim cmbmonth As New ComboBoxEdit
         cmbmonth = TryCast(sender, ComboBoxEdit)
-        _monthofsalary = cmbmonth.SelectedText.ToString
+        If cmbmonth IsNot Nothing Then
+            _monthofsalary = cmbmonth.Text.Trim()
+        End If
 
     End Sub
     Private Sub CmbBoxPrintProfile(sender As Object, e As EventArgs)

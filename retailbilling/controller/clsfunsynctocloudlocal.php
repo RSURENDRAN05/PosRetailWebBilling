@@ -934,6 +934,81 @@ class clsfuncsync
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
+
+    public function PayoutEmployeeMonthly($date, $comid, $locid)
+    {
+        try {
+            $dateObj = DateTime::createFromFormat('Y-m-d', $date);
+            if (!$dateObj || $dateObj->format('Y-m-d') !== $date) {
+                return array('success' => false, 'message' => 'Invalid date format. Use YYYY-MM-DD');
+            }
+
+            $safeDate = mysqli_real_escape_string($this->conn, $date);
+            $safeComId = (int)mysqli_real_escape_string($this->conn, $comid);
+            $safeLocId = (int)mysqli_real_escape_string($this->conn, $locid);
+
+            $sql = "CALL sp_payout_employee_monthly('$safeDate', $safeComId, $safeLocId)";
+            error_log("Payout Employee Monthly Query: " . $sql);
+
+            if (!mysqli_multi_query($this->conn, $sql)) {
+                throw new Exception('Error executing stored procedure: ' . mysqli_error($this->conn));
+            }
+
+            $rows = array();
+            do {
+                $result = mysqli_store_result($this->conn);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $rows[] = $row;
+                    }
+                    mysqli_free_result($result);
+                }
+            } while (mysqli_more_results($this->conn) && mysqli_next_result($this->conn));
+
+            return array('success' => true, 'message' => 'Monthly payout processed successfully', 'data' => $rows);
+        } catch (Exception $e) {
+            error_log('PayoutEmployeeMonthly Error: ' . $e->getMessage());
+            return array('success' => false, 'message' => 'Error processing monthly payout: ' . $e->getMessage(), 'data' => array());
+        }
+    }
+
+    public function SalesmanCommissionMonthly($date, $comid, $locid)
+    {
+        try {
+            $dateObj = DateTime::createFromFormat('Y-m-d', $date);
+            if (!$dateObj || $dateObj->format('Y-m-d') !== $date) {
+                return array('success' => false, 'message' => 'Invalid date format. Use YYYY-MM-DD');
+            }
+
+            $safeDate = mysqli_real_escape_string($this->conn, $date);
+            $safeComId = (int) mysqli_real_escape_string($this->conn, $comid);
+            $safeLocId = (int) mysqli_real_escape_string($this->conn, $locid);
+
+            $sql = "CALL sp_salesman_commission_monthly('$safeDate', $safeComId, $safeLocId)";
+            error_log("Salesman Commission Monthly Query: " . $sql);
+
+            if (!mysqli_multi_query($this->conn, $sql)) {
+                throw new Exception('Error executing stored procedure: ' . mysqli_error($this->conn));
+            }
+
+            $rows = array();
+            do {
+                $result = mysqli_store_result($this->conn);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $rows[] = $row;
+                    }
+                    mysqli_free_result($result);
+                }
+            } while (mysqli_more_results($this->conn) && mysqli_next_result($this->conn));
+
+            return array('success' => true, 'message' => 'Monthly salesman commission processed successfully', 'data' => $rows);
+        } catch (Exception $e) {
+            error_log('SalesmanCommissionMonthly Error: ' . $e->getMessage());
+            return array('success' => false, 'message' => 'Error processing monthly salesman commission: ' . $e->getMessage(), 'data' => array());
+        }
+    }
+
     public function GetAdvanceReport($comid, $locid, $startDate, $endDate, $salesmanId, $OperationType, $OptionsSalesMan, $OptionComidLocid)
     {
         // (Operation Type = 1: Summary, 2: Detailed), (OptionsSalesMan : 1: All, 2: By SalesManId as Payd_LedgerId)
@@ -1128,53 +1203,4 @@ class clsfuncsync
             return array('success' => false, 'message' => 'Error updating bill cancel status: ' . $e->getMessage());
         }
     }
-    // /**
-    //  * Process large datasets in batches to avoid memory and timeout issues
-    //  */
-    // public function SaveInvoiceDataBatch($data, $batchSize = 50)
-    // {
-    //     try {
-    //         $results = array('success' => true, 'message' => '', 'processed' => 0, 'errors' => array());
-
-    //         // Process headers in batches
-    //         if (isset($data['invoice_hdr']) && count($data['invoice_hdr']) > $batchSize) {
-    //             $hdrBatches = array_chunk($data['invoice_hdr'], $batchSize);
-    //             foreach ($hdrBatches as $batch) {
-    //                 $batchData = array('invoice_hdr' => $batch, 'invoice_dtl' => array());
-    //                 $result = $this->SaveInvoiceData($batchData);
-    //                 if (!$result['success']) {
-    //                     $results['errors'][] = 'Header batch error: ' . $result['message'];
-    //                 }
-    //                 $results['processed'] += count($batch);
-    //             }
-    //         }
-
-    //         // Process details in batches
-    //         if (isset($data['invoice_dtl']) && count($data['invoice_dtl']) > $batchSize) {
-    //             $dtlBatches = array_chunk($data['invoice_dtl'], $batchSize);
-    //             foreach ($dtlBatches as $batch) {
-    //                 $batchData = array('invoice_hdr' => array(), 'invoice_dtl' => $batch);
-    //                 $result = $this->SaveInvoiceData($batchData);
-    //                 if (!$result['success']) {
-    //                     $results['errors'][] = 'Detail batch error: ' . $result['message'];
-    //                 }
-    //                 $results['processed'] += count($batch);
-    //             }
-    //         } else {
-    //             // Process normally if not too large
-    //             return $this->SaveInvoiceData($data);
-    //         }
-
-    //         if (!empty($results['errors'])) {
-    //             $results['success'] = false;
-    //             $results['message'] = 'Batch processing completed with errors: ' . implode(', ', $results['errors']);
-    //         } else {
-    //             $results['message'] = 'Batch processing completed successfully. Processed ' . $results['processed'] . ' records.';
-    //         }
-
-    //         return $results;
-    //     } catch (Exception $e) {
-    //         return array('success' => false, 'message' => 'Batch processing error: ' . $e->getMessage());
-    //     }
-    // }
 }

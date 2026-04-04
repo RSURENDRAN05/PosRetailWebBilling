@@ -2474,6 +2474,8 @@ class funcProcessMgmt
             pe.`emp_otrate` AS EmpOtRate,
             pe.`emp_othrsrate` AS EmpOtHrsRate,
             pe.`emp_allowance` AS EmpAllowance,
+            0 as EmpSalesAllowance,
+            0 as EmpSalesCommission,
             pe.`emp_epf` AS EmpEpf,
             pe.`emp_socso` AS EmpSocso,
             pem.`pemp_noofdays` AS EmpNoOfDays,
@@ -2526,7 +2528,7 @@ class funcProcessMgmt
         $sqlquery = ("SELECT pef.`pef_id` as EmpTrId, pef.`pef_refid` as EmpRefId,pe.emp_printname as EmpName,pef.`pef_comid` as EmpComId,pcm.pcm_name as EmpComName, "
             . " pef.`pef_locid` as EmpLocId,plm.plm_name as EmpLocName,pef.`pef_month` as EmpMonth, pef.`pef_basicsalary` as EmpBasic, pef.`pef_workingdays` as EmpNoOfDays,"
             . " pef.`pef_wages` as EmpWages, pef.`pef_extraday` as EmpExtraDays, pef.`pef_extradayamt` as EmpExtraDayAmt, pef.`pef_extrahours` as EmpExtraOtHrs, "
-            . " pef.`pef_extrahrsamt` as EmpExtraOtAmt, pef.`pef_allowance` as EmpAllowance, pef.`pef_grossamt` as EmpGrossAmt, pef.`pef_advance` as EmpAdvance, "
+            . " pef.`pef_extrahrsamt` as EmpExtraOtAmt, pef.`pef_allowance` as EmpAllowance, pef.`pef_salesallowance` as EmpSalesAllowance, pef.`pef_salescommission` as EmpSalesCommission, pef.`pef_grossamt` as EmpGrossAmt, pef.`pef_advance` as EmpAdvance, "
             . " pef.`pef_epf` as EmpEpf, pef.`pef_socso` as EmpSocso, pef.`pef_deduction` as EmpDeduction, pef.`pef_netpay` as EmpNetPay, pef.`pef_bank` as EmpBank,"
             . " pef.`pef_netcash` as EmpNetCash FROM `pos_emp_finalprocess` as pef "
             . " INNER JOIN  pos_employeeinfo as pe ON pe.emp_id = pef.pef_refid "
@@ -2550,6 +2552,8 @@ class funcProcessMgmt
         $pef_extrahours,
         $pef_extrahrsamt,
         $pef_allowance,
+        $pef_salesallowance,
+        $pef_salescommission,
         $pef_grossamt,
         $pef_advance,
         $pef_epf,
@@ -2562,10 +2566,10 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlquery = ("INSERT INTO `pos_emp_finalprocess`(`pef_refid`, `pef_comid`, `pef_locid`, `pef_month`, `pef_basicsalary`,"
             . " `pef_workingdays`, `pef_wages`, `pef_extraday`, `pef_extradayamt`, `pef_extrahours`, `pef_extrahrsamt`, `pef_allowance`,"
-            . " `pef_grossamt`, `pef_advance`, `pef_epf`, `pef_socso`, `pef_deduction`, `pef_netpay`, `pef_bank`, `pef_netcash`) "
+            . " `pef_salesallowance`, `pef_salescommission`, `pef_grossamt`, `pef_advance`, `pef_epf`, `pef_socso`, `pef_deduction`, `pef_netpay`, `pef_bank`, `pef_netcash`) "
             . " VALUES ('" . $pef_refid . "','" . $pef_comid . "','" . $pef_locid . "','" . $pef_month . "','" . $pef_basicsalary . "','" . $pef_workingdays . "',"
             . " '" . $pef_wages . "','" . $pef_extraday . "','" . $pef_extradayamt . "','" . $pef_extrahours . "','" . $pef_extrahrsamt . "','" . $pef_allowance . "',"
-            . " '" . $pef_grossamt . "','" . $pef_advance . "','" . $pef_epf . "','" . $pef_socso . "','" . $pef_deduction . "','" . $pef_netpay . "',"
+            . " '" . $pef_salesallowance . "','" . $pef_salescommission . "','" . $pef_grossamt . "','" . $pef_advance . "','" . $pef_epf . "','" . $pef_socso . "','" . $pef_deduction . "','" . $pef_netpay . "',"
             . " '" . $pef_bank . "','" . $pef_netcash . "')");
         $result = mysqli_query($conn, $sqlquery);
         return $result;

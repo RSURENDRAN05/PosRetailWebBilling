@@ -606,7 +606,17 @@ Public Class PosLogin
             Using scannerForm As New FrmFingerLoginCapture()
                 If scannerForm.ShowDialog() = DialogResult.OK AndAlso Not String.IsNullOrEmpty(scannerForm.MatchedFeatureSet) Then
                     Dim matchedUserId As String = scannerForm.MatchedUserId
-
+                    If _JsonData.UserTable.Rows.Count > 0 Then
+                        Dim safeUserId As String = matchedUserId.Replace("'", "''")
+                        Dim userRow = _JsonData.UserTable.Select("Id = '" & safeUserId & "' AND GroupId IN (4)")
+                        If userRow.Length > 0 Then
+                            matchedUserId = userRow(0)("Id").ToString()
+                        Else
+                            matchedUserId = String.Empty
+                            MessageBox.Show("Fingerprint matched but user does not have access rights. Please contact administrator.", "Fingerprint Login", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                    End If
                     If Not String.IsNullOrEmpty(matchedUserId) Then
                         ' Fingerprint matched - proceed with login
                         txtpassword.Text = ""

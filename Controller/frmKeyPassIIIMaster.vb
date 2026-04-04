@@ -73,4 +73,37 @@ Public Class frmKeyPassIIIMaster
         Me.Close()
     End Sub
  
+    Private Sub btnfingerprint_Click(sender As Object, e As EventArgs) Handles btnfingerprint.Click
+        Try
+            ' Ensure fingerprint data is loaded
+            If _JsonData.FingerPrintDataTable Is Nothing OrElse _JsonData.FingerPrintDataTable.Rows.Count = 0 Then
+                If Not getFingerPrintData() Then
+                    MessageBox.Show("No fingerprint data available. Please register fingerprints first.", "Fingerprint Login", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End If
+
+            ' Show fingerprint capture dialog
+            Using scannerForm As New FrmFingerLoginCapture()
+                If scannerForm.ShowDialog() = DialogResult.OK AndAlso Not String.IsNullOrEmpty(scannerForm.MatchedFeatureSet) Then
+                    Dim matchedUserId As String = scannerForm.MatchedUserId
+                    If _JsonData.UserTable.Rows.Count > 0 Then
+                        Dim safeUserId As String = matchedUserId.Replace("'", "''")
+                        Dim userRow = _JsonData.UserTable.Select("Id = '" & safeUserId & "' AND GroupId IN (1, 2, 3)")
+                        If userRow.Length > 0 Then
+                            matchedUserId = userRow(0)("Id").ToString()
+                            Me.DialogResult = Windows.Forms.DialogResult.OK
+                            Me.Close()
+                        Else
+                            matchedUserId = String.Empty
+                            MessageBox.Show("Fingerprint matched but user does not have access rights. Please contact administrator.", "Fingerprint Login", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                    End If
+                End If
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show("Fingerprint login error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

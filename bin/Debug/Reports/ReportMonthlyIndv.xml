@@ -33,28 +33,33 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="AdvanceData" msdata:Locale="en-IN">
+          <xs:element name="AdvanceData">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
                 <xs:element name="EmpID" type="xs:string" minOccurs="0" />
                 <xs:element name="Salesman" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
                 <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
                 <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalAdvance" type="xs:string" minOccurs="0" />
+                <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="Commission" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="AdvanceDataDtl" msdata:Locale="en-IN">
+          <xs:element name="AdvanceDataDtl">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
-                <xs:element name="PayDate" type="xs:string" minOccurs="0" />
                 <xs:element name="EmpID" type="xs:string" minOccurs="0" />
                 <xs:element name="Salesman" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
                 <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
                 <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="DailyAdvance" type="xs:string" minOccurs="0" />
+                <xs:element name="NetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="Commission" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -63,147 +68,101 @@
     </xs:element>
   </xs:schema>
   <SalesmanData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>11351.00</NetAmt>
-    <Commission>213.10</Commission>
-    <Qty>503.00</Qty>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>350.00</NetAmt>
+    <Commission>35.00</Commission>
+    <Qty>22.00</Qty>
   </SalesmanData>
   <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>HAIR DYE [Cream]</ItemName>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>BASIC FACIAL</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>840.00</NetAmt>
-    <Commission>84.00</Commission>
-    <Qty>14.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>OIL MASSAGE</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>525.00</NetAmt>
-    <Commission>52.50</Commission>
-    <Qty>21.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>FACE WASH</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>180.00</NetAmt>
-    <Commission>18.00</Commission>
-    <Qty>6.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>FACIAL [Classic]</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>176.00</NetAmt>
-    <Commission>17.60</Commission>
-    <Qty>2.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>FACE MASSAGE</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>150.00</NetAmt>
-    <Commission>15.00</Commission>
-    <Qty>3.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>150.00</NetAmt>
-    <Commission>15.00</Commission>
-    <Qty>3.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>BEARD TOUCH UP</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>60.00</NetAmt>
-    <Commission>6.00</Commission>
-    <Qty>2.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>HAIR DYE [Powder]</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <NetAmt>30.00</NetAmt>
-    <Commission>3.00</Commission>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>99.00</NetAmt>
+    <Commission>9.90</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <ItemName>FACE WAX [Partial]</ItemName>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>T. EYEBROW</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>90.00</NetAmt>
+    <Commission>9.00</Commission>
+    <Qty>9.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>T. UPPER LIP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>40.00</NetAmt>
+    <Commission>4.00</Commission>
+    <Qty>5.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>PEDI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>35.00</NetAmt>
+    <Commission>3.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>MANI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>2.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>MANICURE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>2.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>HENNA</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>20.00</NetAmt>
     <Commission>2.00</Commission>
-    <Qty>1.00</Qty>
+    <Qty>2.00</Qty>
   </ItemwiseData>
-  <AdvanceData>
-    <MonYear>Nov-2025</MonYear>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
+  <ItemwiseData>
+    <MonYear>Mar-2026</MonYear>
+    <EmpID>20</EmpID>
+    <Salesman>JASPREET</Salesman>
+    <ItemName>T. CHIN</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <TotalAdvance>550.00</TotalAdvance>
-  </AdvanceData>
-  <AdvanceDataDtl>
-    <MonYear>Nov-2025</MonYear>
-    <PayDate>2025-11-01</PayDate>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <DailyAdvance>250.00</DailyAdvance>
-  </AdvanceDataDtl>
-  <AdvanceDataDtl>
-    <MonYear>Nov-2025</MonYear>
-    <PayDate>2025-11-10</PayDate>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <DailyAdvance>100.00</DailyAdvance>
-  </AdvanceDataDtl>
-  <AdvanceDataDtl>
-    <MonYear>Nov-2025</MonYear>
-    <PayDate>2025-11-12</PayDate>
-    <EmpID>19</EmpID>
-    <Salesman>GURUMOORTHY</Salesman>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>LUCKY GARDEN</LocationName>
-    <DailyAdvance>200.00</DailyAdvance>
-  </AdvanceDataDtl>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>16.00</NetAmt>
+    <Commission>1.60</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
 </NewDataSet>

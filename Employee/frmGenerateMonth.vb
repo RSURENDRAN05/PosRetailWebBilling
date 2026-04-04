@@ -2,6 +2,7 @@
 Imports Newtonsoft.Json
 Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports System.Globalization
 
 Public Class frmGenerateMonth
     Dim _monthProcessTable As New DataTable
@@ -68,6 +69,7 @@ Public Class frmGenerateMonth
                             _monthProcessTable.AcceptChanges()
                             _monthProcessTable.EndInit()
                             GridControl1.DataSource = _monthProcessTable
+                            UpdateEmpAdvanceFromMonthlyPayout(_selectedMonth, _selectedCompany, _selectedLocation)
                         Else
 
                             GridControl1.DataSource = Nothing
@@ -85,6 +87,7 @@ Public Class frmGenerateMonth
                             _monthProcessTable.AcceptChanges()
                             _monthProcessTable.EndInit()
                             GridControl1.DataSource = _monthProcessTable
+                            UpdateEmpAdvanceFromMonthlyPayout(_selectedMonth, _selectedCompany, _selectedLocation)
                         Else
 
                             GridControl1.DataSource = Nothing
@@ -98,14 +101,95 @@ Public Class frmGenerateMonth
         End Try
     End Sub
 
+    Private Sub UpdateEmpAdvanceFromMonthlyPayout(selectedMonth As String, selectedCompany As String, selectedLocation As String)
+        Try
+            Dim payoutDate As String = ConvertMonthToFirstDate(selectedMonth)
+            If String.IsNullOrWhiteSpace(payoutDate) OrElse _monthProcessTable Is Nothing OrElse _monthProcessTable.Rows.Count = 0 Then
+                Exit Sub
+            End If
+
+            Dim url As String = M_Details.LinkAjaxRequestSyncLocalCloud & "AjaxRequest=17&Date=" & payoutDate & "&ComId=" & selectedCompany & "&LocId=" & selectedLocation
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New WebClient().DownloadString(url)
+            Dim parsedJson As JObject = JObject.Parse(json)
+            Dim success As String = If(parsedJson("Success") IsNot Nothing, parsedJson("Success").ToString(), "False")
+            If success <> "True" Then Exit Sub
+
+            Dim dataToken As JToken = parsedJson("Data")
+            If dataToken Is Nothing OrElse dataToken.Type <> JTokenType.Array Then Exit Sub
+
+            Dim advanceByEmpId As New Dictionary(Of String, Double)(StringComparer.OrdinalIgnoreCase)
+            For Each item As JObject In CType(dataToken, JArray)
+                Dim empId As String = GetFirstNonEmptyValue(item, New String() {"EmpRefId", "emp_id", "EmpId", "StaffId", "payd_refid", "ID"})
+                If String.IsNullOrWhiteSpace(empId) Then Continue For
+
+                Dim amountText As String = GetFirstNonEmptyValue(item, New String() {"EmpAdvance", "advance", "Advance", "AdvanceAmount", "Amount", "payd_amount", "total_advance", "TotalAmount"})
+                Dim amount As Double = 0
+                Double.TryParse(amountText, NumberStyles.Any, CultureInfo.InvariantCulture, amount)
+
+                If advanceByEmpId.ContainsKey(empId) Then
+                    advanceByEmpId(empId) += amount
+                Else
+                    advanceByEmpId(empId) = amount
+                End If
+            Next
+
+            For Each row As DataRow In _monthProcessTable.Rows
+                Dim rowEmpId As String = row("EmpRefId").ToString().Trim()
+                If advanceByEmpId.ContainsKey(rowEmpId) Then
+                    row("EmpAdvance") = advanceByEmpId(rowEmpId)
+                Else
+                    row("EmpAdvance") = 0.0
+                End If
+            Next
+
+            _monthProcessTable.AcceptChanges()
+            GridControl1.RefreshDataSource()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Function ConvertMonthToFirstDate(monthText As String) As String
+        Try
+            If String.IsNullOrWhiteSpace(monthText) Then Return ""
+
+            Dim parsed As DateTime
+            If DateTime.TryParseExact(monthText.Trim(), "MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, parsed) Then
+                Return New DateTime(parsed.Year, parsed.Month, 1).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+            End If
+
+            If DateTime.TryParse(monthText.Trim(), parsed) Then
+                Return New DateTime(parsed.Year, parsed.Month, 1).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return ""
+    End Function
+
+    Private Function GetFirstNonEmptyValue(item As JObject, keys As String()) As String
+        For Each key As String In keys
+            If item(key) IsNot Nothing Then
+                Dim value As String = item(key).ToString().Trim()
+                If Not String.IsNullOrWhiteSpace(value) Then
+                    Return value
+                End If
+            End If
+        Next
+        Return ""
+    End Function
+
     Private Sub MonthItemCmbBox(sender As Object, e As EventArgs)
         Dim cmbmonth As New ComboBoxEdit
         cmbmonth = TryCast(sender, ComboBoxEdit)
-        _monthofsalary = cmbmonth.SelectedText.ToString
+        If cmbmonth IsNot Nothing Then
+            _monthofsalary = cmbmonth.Text.Trim()
+        End If
 
     End Sub
 
-    
+
     Private Sub BarBtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarBtnSave.ItemClick
         Dim dialog As New DevExpress.Utils.WaitDialogForm()
         Try

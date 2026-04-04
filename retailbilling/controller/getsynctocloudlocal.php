@@ -666,6 +666,76 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 17) { // Monthly employee payout by Date, ComId, LocId
+        try {
+            error_log("AjaxRequest=17 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=17 called with POST parameters: " . print_r($_POST, true));
+
+            $date = isset($_REQUEST['Date']) ? trim($_REQUEST['Date']) : (isset($_REQUEST['date']) ? trim($_REQUEST['date']) : '');
+            $comid = isset($_REQUEST['ComId']) ? (int)$_REQUEST['ComId'] : (isset($_REQUEST['comid']) ? (int)$_REQUEST['comid'] : 0);
+            $locid = isset($_REQUEST['LocId']) ? (int)$_REQUEST['LocId'] : (isset($_REQUEST['locid']) ? (int)$_REQUEST['locid'] : 0);
+
+            if (empty($date)) {
+                throw new Exception("Missing required parameter: Date");
+            }
+
+            $result = $clsfunreq->PayoutEmployeeMonthly($date, $comid, $locid);
+
+            if (!empty($result['success'])) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Msg" => isset($result['message']) ? $result['message'] : "Monthly payout processed successfully",
+                    "Data" => isset($result['data']) ? $result['data'] : array()
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Msg" => isset($result['message']) ? $result['message'] : "Monthly payout processing failed",
+                    "Data" => isset($result['data']) ? $result['data'] : array()
+                ));
+            }
+        } catch (Exception $e) {
+            error_log("Request 17 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 17 Error: " . $e->getMessage(), "Data" => array()));
+        }
+        exit;
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 18) { // Monthly salesman commission by Date, ComId, LocId
+        try {
+            error_log("AjaxRequest=18 called with GET parameters: " . print_r($_GET, true));
+            error_log("AjaxRequest=18 called with POST parameters: " . print_r($_POST, true));
+
+            $date = isset($_REQUEST['Date']) ? trim($_REQUEST['Date']) : (isset($_REQUEST['date']) ? trim($_REQUEST['date']) : '');
+            $comid = isset($_REQUEST['ComId']) ? (int)$_REQUEST['ComId'] : (isset($_REQUEST['comid']) ? (int)$_REQUEST['comid'] : 0);
+            $locid = isset($_REQUEST['LocId']) ? (int)$_REQUEST['LocId'] : (isset($_REQUEST['locid']) ? (int)$_REQUEST['locid'] : 0);
+
+            if (empty($date)) {
+                throw new Exception("Missing required parameter: Date");
+            }
+
+            $result = $clsfunreq->SalesmanCommissionMonthly($date, $comid, $locid);
+
+            if (!empty($result['success'])) {
+                echo json_encode(array(
+                    "Success" => true,
+                    "Msg" => isset($result['message']) ? $result['message'] : "Monthly salesman commission processed successfully",
+                    "Data" => isset($result['data']) ? $result['data'] : array()
+                ));
+            } else {
+                echo json_encode(array(
+                    "Success" => false,
+                    "Msg" => isset($result['message']) ? $result['message'] : "Monthly salesman commission processing failed",
+                    "Data" => isset($result['data']) ? $result['data'] : array()
+                ));
+            }
+        } catch (Exception $e) {
+            error_log("Request 18 Error: " . $e->getMessage());
+            echo json_encode(array("Success" => false, "Msg" => "Request 18 Error: " . $e->getMessage(), "Data" => array()));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests

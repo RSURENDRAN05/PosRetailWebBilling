@@ -2,245 +2,89 @@
 <DocumentElement>
   <FinalMonth>
     <SNo>1</SNo>
-    <EmpTrId>10</EmpTrId>
-    <EmpRefId>10</EmpRefId>
-    <EmpName>SUBRA</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
+    <EmpTrId>0</EmpTrId>
+    <EmpRefId>1</EmpRefId>
+    <EmpName>RAJKUMAR</EmpName>
+    <EmpMonth>Jan-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>2500</EmpBasic>
-    <EmpNoOfDays>29</EmpNoOfDays>
-    <EmpWages>2417</EmpWages>
-    <EmpExtraDays>2</EmpExtraDays>
-    <EmpExtraDayAmt>167</EmpExtraDayAmt>
-    <EmpExtraOtHrs>5</EmpExtraOtHrs>
-    <EmpExtraOtAmt>35</EmpExtraOtAmt>
-    <EmpAllowance>200</EmpAllowance>
-    <EmpGrossAmt>2818</EmpGrossAmt>
-    <EmpAdvance>100</EmpAdvance>
-    <EmpEpf>250</EmpEpf>
-    <EmpSocso>10</EmpSocso>
-    <EmpDeduction>10</EmpDeduction>
-    <EmpNetPay>2448</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>2448</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>11</EmpTrId>
-    <EmpRefId>11</EmpRefId>
-    <EmpName>CHINNAIYAH</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
+    <EmpLocId>1</EmpLocId>
+    <EmpLocName>BANGSAR</EmpLocName>
+    <EmpBasic>3000</EmpBasic>
+    <EmpNoOfDays>31</EmpNoOfDays>
+    <EmpWages>3100</EmpWages>
     <EmpExtraDays>0</EmpExtraDays>
     <EmpExtraDayAmt>0</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
+    <EmpAllowance>1000</EmpAllowance>
+    <EmpSalesAllowance>300</EmpSalesAllowance>
+    <EmpSalesCommission>211.4</EmpSalesCommission>
+    <EmpGrossAmt>4611.4</EmpGrossAmt>
+    <EmpAdvance>600</EmpAdvance>
+    <EmpEpf>100</EmpEpf>
+    <EmpSocso>50</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
+    <EmpNetPay>3862</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
+    <EmpNetCash>3862</EmpNetCash>
   </FinalMonth>
   <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>12</EmpTrId>
-    <EmpRefId>12</EmpRefId>
-    <EmpName>SUKHVEER</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
+    <SNo>2</SNo>
+    <EmpTrId>0</EmpTrId>
+    <EmpRefId>3</EmpRefId>
+    <EmpName>PRAVEEN</EmpName>
+    <EmpMonth>Jan-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
+    <EmpLocId>1</EmpLocId>
+    <EmpLocName>BANGSAR</EmpLocName>
+    <EmpBasic>4000</EmpBasic>
+    <EmpNoOfDays>31</EmpNoOfDays>
+    <EmpWages>4133.23</EmpWages>
     <EmpExtraDays>0</EmpExtraDays>
     <EmpExtraDayAmt>0</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
+    <EmpAllowance>300</EmpAllowance>
+    <EmpSalesAllowance>0</EmpSalesAllowance>
+    <EmpSalesCommission>141</EmpSalesCommission>
+    <EmpGrossAmt>4574.23</EmpGrossAmt>
+    <EmpAdvance>150</EmpAdvance>
+    <EmpEpf>200</EmpEpf>
+    <EmpSocso>100</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
+    <EmpNetPay>4125</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
+    <EmpNetCash>4125</EmpNetCash>
   </FinalMonth>
   <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>13</EmpTrId>
-    <EmpRefId>13</EmpRefId>
-    <EmpName>PRAKASH</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
+    <SNo>3</SNo>
+    <EmpTrId>0</EmpTrId>
+    <EmpRefId>21</EmpRefId>
+    <EmpName>GOPAL</EmpName>
+    <EmpMonth>Jan-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
+    <EmpLocId>1</EmpLocId>
+    <EmpLocName>BANGSAR</EmpLocName>
+    <EmpBasic>6000</EmpBasic>
+    <EmpNoOfDays>31</EmpNoOfDays>
+    <EmpWages>6200</EmpWages>
     <EmpExtraDays>0</EmpExtraDays>
     <EmpExtraDayAmt>0</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
+    <EmpAllowance>500</EmpAllowance>
+    <EmpSalesAllowance>0</EmpSalesAllowance>
+    <EmpSalesCommission>0</EmpSalesCommission>
+    <EmpGrossAmt>6700</EmpGrossAmt>
     <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
+    <EmpEpf>300</EmpEpf>
+    <EmpSocso>150</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
+    <EmpNetPay>6250</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>14</EmpTrId>
-    <EmpRefId>14</EmpRefId>
-    <EmpName>SENTHIL</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
-    <EmpExtraOtHrs>0</EmpExtraOtHrs>
-    <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
-    <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>15</EmpTrId>
-    <EmpRefId>15</EmpRefId>
-    <EmpName>KAVI</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
-    <EmpExtraOtHrs>0</EmpExtraOtHrs>
-    <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
-    <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>16</EmpTrId>
-    <EmpRefId>16</EmpRefId>
-    <EmpName>LOVEJEET</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
-    <EmpExtraOtHrs>0</EmpExtraOtHrs>
-    <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
-    <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>17</EmpTrId>
-    <EmpRefId>17</EmpRefId>
-    <EmpName>YASHU</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
-    <EmpExtraOtHrs>0</EmpExtraOtHrs>
-    <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
-    <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
-  </FinalMonth>
-  <FinalMonth>
-    <SNo>1</SNo>
-    <EmpTrId>18</EmpTrId>
-    <EmpRefId>18</EmpRefId>
-    <EmpName>KHUSHI</EmpName>
-    <EmpMonth>Nov-2025</EmpMonth>
-    <EmpComId>1</EmpComId>
-    <EmpComName>MESHAS BARBERSHOP</EmpComName>
-    <EmpLocId>2</EmpLocId>
-    <EmpLocName>BRICKFIELDS</EmpLocName>
-    <EmpBasic>0</EmpBasic>
-    <EmpNoOfDays>0</EmpNoOfDays>
-    <EmpWages>0</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
-    <EmpExtraOtHrs>0</EmpExtraOtHrs>
-    <EmpExtraOtAmt>0</EmpExtraOtAmt>
-    <EmpAllowance>0</EmpAllowance>
-    <EmpGrossAmt>0</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
-    <EmpEpf>0</EmpEpf>
-    <EmpSocso>0</EmpSocso>
-    <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>0</EmpNetPay>
-    <EmpBank>0</EmpBank>
-    <EmpNetCash>0</EmpNetCash>
+    <EmpNetCash>6250</EmpNetCash>
   </FinalMonth>
 </DocumentElement>

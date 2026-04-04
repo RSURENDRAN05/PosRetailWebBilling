@@ -84,7 +84,7 @@ Public Class FrmAttendanceReport
         Try
             ' Get SalesMan data from API or database
             dtSalesManData = GetSalesManDataFromAPI()
-
+            InitializeSalesManList()
         Catch ex As Exception
             ' Create a default empty datatable if API fails
             dtSalesManData = New DataTable()
@@ -131,18 +131,17 @@ Public Class FrmAttendanceReport
             dt.Columns.Add("Id", GetType(String))
             dt.Columns.Add("SalesMan", GetType(String))
             ' Parse JSON response to DataTable
-            If _JsonData.SalesManDataTable.Rows.Count = 0 Then
-                GetSalesmanData()
-            Else
-                For Each item In _JsonData.SalesManDataTable.Rows
-                    Dim row As DataRow = dt.NewRow()
-                    row("Id") = If(item("Id"), "")
-                    row("SalesMan") = If(item("SalesMan"), "")
-                    dt.Rows.Add(row)
-                Next
-                Return dt
-            End If
+
+            GetSalesmanData()
+
+            For Each item In _JsonData.SalesManDataTable.Rows
+                Dim row As DataRow = dt.NewRow()
+                row("Id") = If(item("Id"), "")
+                row("SalesMan") = If(item("SalesMan"), "")
+                dt.Rows.Add(row)
+            Next
             Return dt
+           
         Catch ex As Exception
             Return Nothing
         End Try
@@ -165,21 +164,27 @@ Public Class FrmAttendanceReport
             ConfigureColumn("morning_out", "Morning Out", 130, True, 4)
             ConfigureColumn("break_in", "Break In", 130, True, 5)
             ConfigureColumn("evening_out", "Evening Out", 130, True, 6)
-            ConfigureColumn("total_morning_hours", "Morning Hrs", 90, True, 7)
-            ConfigureColumn("total_break_hours", "Break Hrs", 90, True, 8)
-            ConfigureColumn("total_work_hours", "Work Hrs", 90, True, 9)
-            ConfigureColumn("pcm_name", "Company", 140, True, 10)
-            ConfigureColumn("plm_name", "Location", 140, True, 11)
+            ConfigureColumn("calc_break_hours", "Break Hrs", 90, True, 7)
+            ConfigureColumn("calc_total_work_hours", "Work Hrs", 90, True, 8)
+            ConfigureColumn("attendance_status", "Status", 110, True, 9)
+            ConfigureColumn("late_minutes", "Late (Min)", 90, True, 10)
+            ConfigureColumn("pcm_name", "Company", 140, True, 11)
+            ConfigureColumn("plm_name", "Location", 140, True, 12)
         ElseIf reportType.ToUpper() = "MONTHLY" Then
             ' MONTHLY summary columns - ordered logically
             ConfigureColumn("emp_id", "Emp ID", 60, True, 0)
             ConfigureColumn("emp_printname", "Employee Name", 200, True, 1)
             ConfigureColumn("total_days", "Total Days", 90, True, 2)
-            ConfigureColumn("total_morning_hours", "Total Morning Hrs", 120, True, 3)
+            ConfigureColumn("total_work_hours", "Total Work Hrs", 120, True, 3)
             ConfigureColumn("total_break_hours", "Total Break Hrs", 120, True, 4)
-            ConfigureColumn("total_work_hours", "Total Work Hrs", 120, True, 5)
-            ConfigureColumn("pcm_name", "Company", 140, True, 6)
-            ConfigureColumn("plm_name", "Location", 140, True, 7)
+            ConfigureColumn("absent_days", "Absent", 80, True, 5)
+            ConfigureColumn("incomplete_days", "Incomplete", 90, True, 6)
+            ConfigureColumn("good_days", "Good", 80, True, 7)
+            ConfigureColumn("late_days", "Late", 80, True, 8)
+            ConfigureColumn("too_late_days", "Too Late", 90, True, 9)
+            ConfigureColumn("total_rows", "Total Rows", 90, True, 10)
+            ConfigureColumn("pcm_name", "Company", 140, True, 11)
+            ConfigureColumn("plm_name", "Location", 140, True, 12)
         End If
     End Sub
 
@@ -190,6 +195,7 @@ Public Class FrmAttendanceReport
             col.Width = width
             col.OptionsColumn.AllowEdit = False
             If visible AndAlso visibleIndex >= 0 Then
+                col.Visible = True
                 col.VisibleIndex = visibleIndex
             ElseIf visible Then
                 col.Visible = True
@@ -354,7 +360,9 @@ Public Class FrmAttendanceReport
 
                 ' Bind data using DefaultView
                 GridControl1.BeginUpdate()
+                GridView1.Columns.Clear()
                 GridControl1.DataSource = DataTable.DefaultView
+                GridView1.PopulateColumns()
                 GridControl1.EndUpdate()
 
                 ' Configure grid columns based on report type
@@ -382,6 +390,14 @@ Public Class FrmAttendanceReport
                     For Each row As DataRow In dtSalesData.Rows
                         Dim hrs As Decimal = 0
                         Decimal.TryParse(row("total_work_hours").ToString(), hrs)
+                        totalHours += hrs
+                    Next
+                    lblTotalAmount.Text = "Total Work Hours: " & totalHours.ToString("F2")
+                ElseIf dtSalesData.Columns.Contains("calc_total_work_hours") Then
+                    Dim totalHours As Decimal = 0
+                    For Each row As DataRow In dtSalesData.Rows
+                        Dim hrs As Decimal = 0
+                        Decimal.TryParse(row("calc_total_work_hours").ToString(), hrs)
                         totalHours += hrs
                     Next
                     lblTotalAmount.Text = "Total Work Hours: " & totalHours.ToString("F2")
@@ -489,11 +505,43 @@ Public Class FrmAttendanceReport
                 End If
             End If
 
+            NormalizeAttendanceReportColumns(dt, mode)
+
         Catch ex As Exception
             Throw New Exception("Error fetching attendance report: " & ex.Message)
         End Try
         Return dt
     End Function
+
+    Private Sub NormalizeAttendanceReportColumns(dt As DataTable, mode As String)
+        If dt Is Nothing Then Return
+
+        If mode.ToUpper() = "MONTHLY" Then
+            EnsureColumn(dt, "total_work_hours", "0")
+            EnsureColumn(dt, "total_break_hours", "0")
+            EnsureColumn(dt, "absent_days", "0")
+            EnsureColumn(dt, "incomplete_days", "0")
+            EnsureColumn(dt, "good_days", "0")
+            EnsureColumn(dt, "late_days", "0")
+            EnsureColumn(dt, "too_late_days", "0")
+            EnsureColumn(dt, "total_rows", "0")
+            EnsureColumn(dt, "total_days", "0")
+        ElseIf mode.ToUpper() = "DATEWISE" Then
+            EnsureColumn(dt, "calc_break_hours", "0")
+            EnsureColumn(dt, "calc_total_work_hours", "0")
+            EnsureColumn(dt, "attendance_status", "")
+            EnsureColumn(dt, "late_minutes", "0")
+        End If
+    End Sub
+
+    Private Sub EnsureColumn(dt As DataTable, columnName As String, defaultValue As String)
+        If Not dt.Columns.Contains(columnName) Then
+            dt.Columns.Add(columnName, GetType(String))
+            For Each row As DataRow In dt.Rows
+                row(columnName) = defaultValue
+            Next
+        End If
+    End Sub
 #End Region
 #Region "Button/ListBox"
     ' Event handlers for ListBox selection changes
@@ -525,6 +573,7 @@ Public Class FrmAttendanceReport
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         lblStatusResults.Text = "Refreshing data..."
         LoadSalesData()
+        LoadSalesManData()
     End Sub
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click

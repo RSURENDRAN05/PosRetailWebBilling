@@ -432,10 +432,10 @@
     <Compile Include="Employee\FrmStaffLocationChanges.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FaceFingerAttendance\FrmTimeProfile.Designer.vb">
+    <Compile Include="Employee\FrmTimeProfile.Designer.vb">
       <DependentUpon>FrmTimeProfile.vb</DependentUpon>
     </Compile>
-    <Compile Include="FaceFingerAttendance\FrmTimeProfile.vb">
+    <Compile Include="Employee\FrmTimeProfile.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainMaster.Designer.vb">
@@ -491,10 +491,10 @@
     <Compile Include="Reports\frmSalesMasterReport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\FrmAttendanceReport.Designer.vb">
+    <Compile Include="Employee\FrmAttendanceReport.Designer.vb">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\FrmAttendanceReport.vb">
+    <Compile Include="Employee\FrmAttendanceReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\FrmCustomerSalesHis.Designer.vb">
@@ -960,7 +960,7 @@
     <EmbeddedResource Include="Employee\FrmStaffLocationChanges.resx">
       <DependentUpon>FrmStaffLocationChanges.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FaceFingerAttendance\FrmTimeProfile.resx">
+    <EmbeddedResource Include="Employee\FrmTimeProfile.resx">
       <DependentUpon>FrmTimeProfile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMaster.resx">
@@ -989,7 +989,7 @@
       <DependentUpon>frmSalesMasterReport.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\FrmAttendanceReport.resx">
+    <EmbeddedResource Include="Employee\FrmAttendanceReport.resx">
       <DependentUpon>FrmAttendanceReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\FrmCustomerSalesHis.resx">
@@ -1195,7 +1195,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FaceFingerAttendance\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

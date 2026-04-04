@@ -3459,6 +3459,8 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
             $pef_extrahours = $row['EmpExtraOtHrs'];
             $pef_extrahrsamt = $row['EmpExtraOtAmt'];
             $pef_allowance = $row['EmpAllowance'];
+            $pef_salesallowance = $row['EmpSalesAllowance'];
+            $pef_salescommission = $row['EmpSalesCommission'];
             $pef_grossamt = $row['EmpGrossAmt'];
             $pef_advance = $row['EmpAdvance'];
             $pef_epf = $row['EmpEpf'];
@@ -3470,7 +3472,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
 
             //            $data = $pef_refid . ',' . $pef_comid . ',' . $pef_locid . ',' . $pef_month . ',' .
             //                    $pef_basicsalary . ',' . $pef_workingdays . ',' . $pef_wages . ',' . $pef_extraday . ',' . $pef_extradayamt . ',' .
-            //                    $pef_extrahours . ',' . $pef_extrahrsamt . ',' . $pef_allowance . ',' . $pef_grossamt . ',' . $pef_advance . ',' .
+            //                    $pef_extrahours . ',' . $pef_extrahrsamt . ',' . $pef_allowance . ',' . $pef_salesallowance . ',' . $pef_salescommission . ',' . $pef_grossamt . ',' . $pef_advance . ',' .
             //                    $pef_epf . ',' . $pef_socso . ',' . $pef_deduction . ',' . $pef_netpay . ',' . $pef_bank . ',' . $pef_netcash;
             //2,1,1,m,10000,30,9999.9,1,333.33,,138.9,200,10672.13,,10672.13,200,18,10254.13,0,10254.13
             if ($pef_id == 0) {
@@ -3487,6 +3489,8 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
                     $pef_extrahours,
                     $pef_extrahrsamt,
                     $pef_allowance,
+                    $pef_salesallowance,
+                    $pef_salescommission,
                     $pef_grossamt,
                     $pef_advance,
                     $pef_epf,
@@ -3512,6 +3516,8 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
                         $pef_extrahours,
                         $pef_extrahrsamt,
                         $pef_allowance,
+                        $pef_salesallowance,
+                        $pef_salescommission,
                         $pef_grossamt,
                         $pef_advance,
                         $pef_epf,
