@@ -68,7 +68,7 @@ Public Class MainMaster
                 RibbonPageEmployee.Visible = False
                 RibbonPageSettings.Visible = False
                 RibbonReports.Visible = False
-
+                RibbonPageAuditReport.Visible = False
                 'SubMen
                 barcompany.Enabled = False
                 barlocation.Enabled = False
@@ -112,6 +112,10 @@ Public Class MainMaster
                 barbtnattendancereport.Enabled = False
                 barbtnmastersalesreport.Enabled = False
                 barbtntimeProfile.Enabled = False
+                barbtnmasterauditsalesrep.Enabled = False
+                barbtnauditgeneratesales.Enabled = False
+                barbtnauditsalesreport.Enabled = False
+
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -544,6 +548,38 @@ Public Class MainMaster
                             barbtntimeProfile.Enabled = True
                         Else
                             barbtntimeProfile.Enabled = False
+                        End If
+                    End If
+                    Dim MasterAuditSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MasterAuditSalesReport"
+                    If MasterAuditSalesReport.Any Then
+                        If MasterAuditSalesReport(0)("menu_active") = "1" Then
+                            barbtnmasterauditsalesrep.Enabled = True
+                        Else
+                            barbtnmasterauditsalesrep.Enabled = False
+                        End If
+                    End If
+                    Dim AuditGenerateSales As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "AuditGenerateSales"
+                    If AuditGenerateSales.Any Then
+                        If AuditGenerateSales(0)("menu_active") = "1" Then
+                            barbtnauditgeneratesales.Enabled = True
+                        Else
+                            barbtnauditgeneratesales.Enabled = False
+                        End If
+                    End If
+                    Dim AuditSalesReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "AuditSalesReport"
+                    If AuditSalesReport.Any Then
+                        If AuditSalesReport(0)("menu_active") = "1" Then
+                            barbtnauditsalesreport.Enabled = True
+                        Else
+                            barbtnauditsalesreport.Enabled = False
+                        End If
+                    End If
+                    Dim MenuAuditReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuAuditReport"
+                    If MenuAuditReport.Any Then
+                        If MenuAuditReport(0)("menu_active") = "1" Then
+                            RibbonPageAuditReport.Visible = True
+                        Else
+                            RibbonPageAuditReport.Visible = False
                         End If
                     End If
                 End If
@@ -1112,7 +1148,7 @@ Public Class MainMaster
         End Try
     End Sub
 
-    Private Sub barbtnGenerateTaxReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnGenerateTaxReport.ItemClick
+    Private Sub barbtnGenerateTaxReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnauditsalesreport.ItemClick
         Try
             FrmAudit.MdiParent = Me
             FrmAudit.Show()
@@ -1121,7 +1157,7 @@ Public Class MainMaster
         End Try
     End Sub
 
-    Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
+    Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnauditgeneratesales.ItemClick
         Try
             FrmGenerateTaxReport.MdiParent = Me
             FrmGenerateTaxReport.Show()
