@@ -7,14 +7,24 @@
           <xs:element name="SalesData">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="ID" type="xs:string" minOccurs="0" />
-                <xs:element name="Name" type="xs:string" minOccurs="0" />
-                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
-                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalTransactions" type="xs:string" minOccurs="0" />
-                <xs:element name="TotalAmount" type="xs:string" minOccurs="0" />
-                <xs:element name="FirstAdvance" type="xs:string" minOccurs="0" />
-                <xs:element name="LastAdvance" type="xs:string" minOccurs="0" />
+                <xs:element name="att_id" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_id" type="xs:string" minOccurs="0" />
+                <xs:element name="com_id" type="xs:string" minOccurs="0" />
+                <xs:element name="loc_id" type="xs:string" minOccurs="0" />
+                <xs:element name="pm_id" type="xs:string" minOccurs="0" />
+                <xs:element name="att_date" type="xs:string" minOccurs="0" />
+                <xs:element name="morning_in" type="xs:string" minOccurs="0" />
+                <xs:element name="morning_out" type="xs:string" minOccurs="0" />
+                <xs:element name="break_in" type="xs:string" minOccurs="0" />
+                <xs:element name="evening_out" type="xs:string" minOccurs="0" />
+                <xs:element name="total_morning_hours" type="xs:string" minOccurs="0" />
+                <xs:element name="total_break_hours" type="xs:string" minOccurs="0" />
+                <xs:element name="total_work_hours" type="xs:string" minOccurs="0" />
+                <xs:element name="created_at" type="xs:string" minOccurs="0" />
+                <xs:element name="updated_at" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_printname" type="xs:string" minOccurs="0" />
+                <xs:element name="pcm_name" type="xs:string" minOccurs="0" />
+                <xs:element name="plm_name" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -23,53 +33,23 @@
     </xs:element>
   </xs:schema>
   <SalesData>
-    <ID>14</ID>
-    <Name>SENTHIL</Name>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <TotalTransactions>2</TotalTransactions>
-    <TotalAmount>2350.00</TotalAmount>
-    <FirstAdvance>2025-11-01 00:00:00</FirstAdvance>
-    <LastAdvance>2025-11-07 00:00:00</LastAdvance>
-  </SalesData>
-  <SalesData>
-    <ID>16</ID>
-    <Name>LOVEJEET</Name>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <TotalTransactions>2</TotalTransactions>
-    <TotalAmount>200.00</TotalAmount>
-    <FirstAdvance>2025-11-05 00:00:00</FirstAdvance>
-    <LastAdvance>2025-11-09 00:00:00</LastAdvance>
-  </SalesData>
-  <SalesData>
-    <ID>12</ID>
-    <Name>SUKHVEER</Name>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <TotalTransactions>2</TotalTransactions>
-    <TotalAmount>150.00</TotalAmount>
-    <FirstAdvance>2025-11-05 00:00:00</FirstAdvance>
-    <LastAdvance>2025-11-09 00:00:00</LastAdvance>
-  </SalesData>
-  <SalesData>
-    <ID>15</ID>
-    <Name>KAVI</Name>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <TotalTransactions>1</TotalTransactions>
-    <TotalAmount>50.00</TotalAmount>
-    <FirstAdvance>2025-11-07 00:00:00</FirstAdvance>
-    <LastAdvance>2025-11-07 00:00:00</LastAdvance>
-  </SalesData>
-  <SalesData>
-    <ID>13</ID>
-    <Name>PRAKASH</Name>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <TotalTransactions>1</TotalTransactions>
-    <TotalAmount>50.00</TotalAmount>
-    <FirstAdvance>2025-11-04 00:00:00</FirstAdvance>
-    <LastAdvance>2025-11-04 00:00:00</LastAdvance>
+    <att_id>27</att_id>
+    <emp_id>1</emp_id>
+    <com_id>1</com_id>
+    <loc_id>2</loc_id>
+    <pm_id>1</pm_id>
+    <att_date>2026-04-04</att_date>
+    <morning_in>2026-04-04 11:24:31</morning_in>
+    <morning_out>2026-04-04 11:24:57</morning_out>
+    <break_in>2026-04-04 11:25:25</break_in>
+    <evening_out>2026-04-04 11:25:40</evening_out>
+    <total_morning_hours>0.00</total_morning_hours>
+    <total_break_hours>0.00</total_break_hours>
+    <total_work_hours>0.02</total_work_hours>
+    <created_at>2026-04-04 11:25:18</created_at>
+    <updated_at>2026-04-04 11:26:26</updated_at>
+    <emp_printname>RAJKUMAR</emp_printname>
+    <pcm_name>MESHAS BARBERSHOP</pcm_name>
+    <plm_name>BRICKFIELDS</plm_name>
   </SalesData>
 </NewDataSet>

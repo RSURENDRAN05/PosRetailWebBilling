@@ -44,6 +44,7 @@ Partial Class PosLogin
         Me.btnPos = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_close = New DevExpress.XtraEditors.SimpleButton()
         Me.btnClr = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnFingerprint = New DevExpress.XtraEditors.SimpleButton()
         Me.txtpassword = New DevExpress.XtraEditors.TextEdit()
         Me.txtusername = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -224,6 +225,7 @@ Partial Class PosLogin
         Me.TableLayoutPanel1.Controls.Add(Me.btn_0, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.btnPos, 0, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.btn_close, 2, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnFingerprint, 1, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.btnClr, 0, 4)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(533, 134)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -520,6 +522,25 @@ Partial Class PosLogin
         Me.btnClr.Size = New System.Drawing.Size(102, 78)
         Me.btnClr.TabIndex = 15
         Me.btnClr.Text = "X"
+        '
+        'btnFingerprint
+        '
+        Me.btnFingerprint.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnFingerprint.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnFingerprint.Appearance.BorderColor = System.Drawing.Color.White
+        Me.btnFingerprint.Appearance.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnFingerprint.Appearance.ForeColor = System.Drawing.Color.White
+        Me.btnFingerprint.Appearance.Options.UseBackColor = True
+        Me.btnFingerprint.Appearance.Options.UseBorderColor = True
+        Me.btnFingerprint.Appearance.Options.UseFont = True
+        Me.btnFingerprint.Appearance.Options.UseForeColor = True
+        Me.btnFingerprint.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnFingerprint.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnFingerprint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D
+        Me.btnFingerprint.Name = "btnFingerprint"
+        Me.btnFingerprint.Size = New System.Drawing.Size(102, 78)
+        Me.btnFingerprint.TabIndex = 39
+        Me.btnFingerprint.Text = "Finger" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Login"
         '
         'txtpassword
         '
@@ -868,6 +889,7 @@ Partial Class PosLogin
     Friend WithEvents btnPos As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btn_close As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnClr As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnFingerprint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txtpassword As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem

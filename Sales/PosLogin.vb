@@ -123,7 +123,7 @@ Public Class PosLogin
                 updateStr("Please Check File Name \LoyOut\SerSettings.xml")
                 Me.BeginInvoke(Sub() btn_close_Click(Nothing, Nothing))
             End If
-             
+
 
             lblDateTime.Text = Date.Now
             If File.Exists(M_Details._appPath & "mypos.jpg") Then
@@ -550,7 +550,7 @@ Public Class PosLogin
                 txtpassword.Select()
                 Exit Try
             End If
-            
+
             If AuthenticateUser(txtusername.Text, txtpassword.Text) = True Then
                 txtpassword.Text = ""
                 TSUser.Text = _companyInfo.UserId & "-" & _companyInfo.UserName
@@ -569,7 +569,7 @@ Public Class PosLogin
             Else
                 txtpassword.Text = ""
             End If
-                
+
         Catch ex As Exception
 
         End Try
@@ -589,6 +589,45 @@ Public Class PosLogin
             Login.Show()
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub btnFingerprint_Click(sender As Object, e As EventArgs) Handles btnFingerprint.Click
+        Try
+            ' Ensure fingerprint data is loaded
+            If _JsonData.FingerPrintDataTable Is Nothing OrElse _JsonData.FingerPrintDataTable.Rows.Count = 0 Then
+                If Not getFingerPrintData() Then
+                    MessageBox.Show("No fingerprint data available. Please register fingerprints first.", "Fingerprint Login", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End If
+
+            ' Show fingerprint capture dialog
+            Using scannerForm As New FrmFingerLoginCapture()
+                If scannerForm.ShowDialog() = DialogResult.OK AndAlso Not String.IsNullOrEmpty(scannerForm.MatchedFeatureSet) Then
+                    Dim matchedUserId As String = scannerForm.MatchedUserId
+
+                    If Not String.IsNullOrEmpty(matchedUserId) Then
+                        ' Fingerprint matched - proceed with login
+                        txtpassword.Text = ""
+                        TSUser.Text = _companyInfo.UserId & "-" & _companyInfo.UserName
+
+                        If _beforeValidationCheck() = True Then
+                            If _beforeDayCheck() = True Then
+                                Me.Hide()
+                                Timer1.Enabled = False
+                                GC.SuppressFinalize(Me)
+                                PosSalesII.Show()
+                            End If
+                        End If
+                    Else
+                        MessageBox.Show("Fingerprint not recognized. Please try again or use password.", "Fingerprint Login", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+            End Using
+        Catch ex As Exception
+            lblDateTime.Text = Date.Now.ToString()
+            MessageBox.Show("Fingerprint login error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

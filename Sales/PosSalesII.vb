@@ -2307,11 +2307,15 @@ Public Class PosSalesII
             'End If
 
             ' Clear the current bill and start fresh
-            ClearCurrentBill()
+            frmKeyPassIIIMaster.ShowDialog()
+            If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
+                ClearCurrentBill()
 
-            ' Set focus to search field for quick item entry
-            cmbMaterialSearch.Focus()
+                ' Set focus to search field for quick item entry
+                cmbMaterialSearch.Focus()
 
+            End If
+            
         Catch ex As Exception
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

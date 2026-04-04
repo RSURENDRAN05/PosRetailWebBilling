@@ -529,6 +529,11 @@ PosRetailWebBilling
 	<param name="password">Plain text password to verify</param>
 	<param name="storedHash">Stored MD5 hash from database</param>
 	<returns>True if password matches, False otherwise</returns>
+</member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateByFingerprint(DPFP.FeatureSet)">
+	<summary>
+ Authenticates user by fingerprint. Compares probeFmd against all cached fingerprint templates.
+ Returns the matched User ID (from UserTable) or empty string if no match.
+ </summary>
 </member><member name="M:PosRetailWebBilling.SyncLocalCloudModuel.AuthenticateUser(System.String,System.String)">
 	<summary>
  Authenticates user with username and password using MD5 hash comparison

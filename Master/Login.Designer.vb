@@ -26,6 +26,7 @@ Partial Class Login
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridLookUuCompany = New DevExpress.XtraEditors.LookUpEdit()
+        Me.btnFingerprint = New DevExpress.XtraEditors.SimpleButton()
         Me.btncancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btnlogin = New DevExpress.XtraEditors.SimpleButton()
         Me.txtpassword = New DevExpress.XtraEditors.TextEdit()
@@ -34,6 +35,7 @@ Partial Class Login
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.SimpleLabelItem1 = New DevExpress.XtraLayout.SimpleLabelItem()
@@ -50,6 +52,7 @@ Partial Class Login
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +119,7 @@ Partial Class Login
         '
         Me.LayoutControl1.Controls.Add(Me.GridLookUuCompany)
         Me.LayoutControl1.Controls.Add(Me.PictureEdit1)
+        Me.LayoutControl1.Controls.Add(Me.btnFingerprint)
         Me.LayoutControl1.Controls.Add(Me.btncancel)
         Me.LayoutControl1.Controls.Add(Me.btnlogin)
         Me.LayoutControl1.Controls.Add(Me.txtpassword)
@@ -149,15 +153,28 @@ Partial Class Login
         Me.GridLookUuCompany.StyleController = Me.LayoutControl1
         Me.GridLookUuCompany.TabIndex = 10
         '
+        'btnFingerprint
+        '
+        Me.btnFingerprint.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnFingerprint.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnFingerprint.Appearance.Options.UseBackColor = True
+        Me.btnFingerprint.Image = CType(resources.GetObject("btnFingerprint.Image"), System.Drawing.Image)
+        Me.btnFingerprint.Location = New System.Drawing.Point(291, 155)
+        Me.btnFingerprint.Name = "btnFingerprint"
+        Me.btnFingerprint.Size = New System.Drawing.Size(108, 38)
+        Me.btnFingerprint.StyleController = Me.LayoutControl1
+        Me.btnFingerprint.TabIndex = 11
+        Me.btnFingerprint.Text = "Finger Login"
+        '
         'btncancel
         '
         Me.btncancel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btncancel.Appearance.Options.UseBackColor = True
         Me.btncancel.Image = CType(resources.GetObject("btncancel.Image"), System.Drawing.Image)
-        Me.btncancel.Location = New System.Drawing.Point(347, 155)
+        Me.btncancel.Location = New System.Drawing.Point(403, 155)
         Me.btncancel.Name = "btncancel"
-        Me.btncancel.Size = New System.Drawing.Size(163, 38)
+        Me.btncancel.Size = New System.Drawing.Size(107, 38)
         Me.btncancel.StyleController = Me.LayoutControl1
         Me.btncancel.TabIndex = 7
         Me.btncancel.Text = "Cancel"
@@ -170,7 +187,7 @@ Partial Class Login
         Me.btnlogin.Image = CType(resources.GetObject("btnlogin.Image"), System.Drawing.Image)
         Me.btnlogin.Location = New System.Drawing.Point(179, 155)
         Me.btnlogin.Name = "btnlogin"
-        Me.btnlogin.Size = New System.Drawing.Size(164, 38)
+        Me.btnlogin.Size = New System.Drawing.Size(108, 38)
         Me.btnlogin.StyleController = Me.LayoutControl1
         Me.btnlogin.TabIndex = 6
         Me.btnlogin.Text = "Login"
@@ -214,7 +231,7 @@ Partial Class Login
         Me.LayoutControlGroup1.CustomizationFormText = "Root"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem7, Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.SimpleLabelItem1, Me.EmptySpaceItem2})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem8, Me.LayoutControlItem4, Me.LayoutControlItem7, Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.SimpleLabelItem1, Me.EmptySpaceItem2})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(522, 215)
@@ -251,19 +268,31 @@ Partial Class Login
         Me.LayoutControlItem3.CustomizationFormText = "LayoutControlItem3"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(167, 143)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(168, 42)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(112, 42)
         Me.LayoutControlItem3.Text = "LayoutControlItem3"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextToControlDistance = 0
         Me.LayoutControlItem3.TextVisible = False
         '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.btnFingerprint
+        Me.LayoutControlItem8.CustomizationFormText = "LayoutControlItem8"
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(279, 143)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(112, 42)
+        Me.LayoutControlItem8.Text = "LayoutControlItem8"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextToControlDistance = 0
+        Me.LayoutControlItem8.TextVisible = False
+        '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btncancel
         Me.LayoutControlItem4.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(335, 143)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(391, 143)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(167, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(111, 42)
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextToControlDistance = 0
@@ -323,6 +352,7 @@ Partial Class Login
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -346,4 +376,6 @@ Partial Class Login
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents SimpleLabelItem1 As DevExpress.XtraLayout.SimpleLabelItem
+    Friend WithEvents btnFingerprint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
 End Class

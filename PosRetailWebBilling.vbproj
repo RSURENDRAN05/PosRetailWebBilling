@@ -783,6 +783,9 @@
     <Compile Include="Sales\FrmViewPendingOrder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\FrmFingerLoginCapture.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\PosLogin.designer.vb">
       <DependentUpon>PosLogin.vb</DependentUpon>
     </Compile>

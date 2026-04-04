@@ -289,6 +289,7 @@ Public Class FrmFingerRegister
                         Dim Type As String = "User"
                         Id = rs("Id")
                         UserName = rs("UserName")
+                        'Type = rs("GroupName")
                         salesmenTable.Rows.Add(Id, UserName, Type)
                     Next
                 End If

@@ -353,6 +353,61 @@ Module SyncLocalCloudModuel
             Return False
         End Try
     End Function
+    ''' <summary>
+    ''' Authenticates user by fingerprint. Compares probeFmd against all cached fingerprint templates.
+    ''' Returns the matched User ID (from UserTable) or empty string if no match.
+    ''' </summary>
+    Public Function AuthenticateByFingerprint(probeFeatures As DPFP.FeatureSet) As String
+        Try
+            If probeFeatures Is Nothing Then Return ""
+            If _JsonData.FingerPrintDataTable Is Nothing OrElse _JsonData.FingerPrintDataTable.Rows.Count = 0 Then Return ""
+
+            Dim verifier As New DPFP.Verification.Verification()
+
+            For Each row As DataRow In _JsonData.FingerPrintDataTable.Rows
+                Try
+                    Dim templateBase64 As String = row("finger_template").ToString()
+                    If String.IsNullOrEmpty(templateBase64) Then Continue For
+
+                    Dim templateBytes() As Byte = Convert.FromBase64String(templateBase64)
+                    If templateBytes Is Nothing OrElse templateBytes.Length < 100 Then Continue For
+
+                    Using ms As New IO.MemoryStream(templateBytes)
+                        Dim tpl As New DPFP.Template(ms)
+                        Dim res As New DPFP.Verification.Verification.Result()
+                        verifier.Verify(probeFeatures, tpl, res)
+
+                        If res.Verified Then
+                            ' Match found - return emp_id and fingertype
+                            Dim empId As String = row("emp_id").ToString()
+                            Dim fingerType As String = If(row.Table.Columns.Contains("fingertype"), row("fingertype").ToString(), "User")
+
+                            ' For User type, empId maps to UserTable.Id
+                            If fingerType.Equals("User", StringComparison.OrdinalIgnoreCase) Then
+                                Dim userRows = From uRow In _JsonData.UserTable.AsEnumerable()
+                                              Where uRow.Field(Of String)("Id").Equals(empId, StringComparison.OrdinalIgnoreCase)
+                                              Select uRow
+                                If userRows.Any Then
+                                    Dim userRow As DataRow = userRows.First()
+                                    _companyInfo.UserId = userRow.Field(Of String)("Id")
+                                    _companyInfo.UserName = userRow.Field(Of String)("UserName")
+                                    Return empId
+                                End If
+                            End If
+                        End If
+                    End Using
+                Catch innerEx As Exception
+                    ' Skip invalid template and continue
+                    Continue For
+                End Try
+            Next
+
+            Return ""
+        Catch ex As Exception
+            MessageBox.Show("Error authenticating by fingerprint: " & ex.Message)
+            Return ""
+        End Try
+    End Function
 
     ''' <summary>
     ''' Authenticates user with username and password using MD5 hash comparison

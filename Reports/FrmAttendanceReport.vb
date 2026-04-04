@@ -151,49 +151,49 @@ Public Class FrmAttendanceReport
 #End Region
 #Region "ConfigureColumn"
     Private Sub ConfigureGridColumns(reportType As String)
+        ' First hide ALL columns
+        For Each col As DevExpress.XtraGrid.Columns.GridColumn In GridView1.Columns
+            col.Visible = False
+        Next
 
         If reportType.ToUpper() = "DATEWISE" Then
-            ' DATEWISE columns from sp_get_attendance_report
-            ConfigureColumn("att_id", "ID", 50, False)
-            ConfigureColumn("emp_id", "Emp ID", 60, True)
-            ConfigureColumn("emp_printname", "Employee Name", 180, True)
-            ConfigureColumn("pcm_name", "Company", 140, True)
-            ConfigureColumn("plm_name", "Location", 140, True)
-            ConfigureColumn("att_date", "Date", 100, True)
-            ConfigureColumn("morning_in", "Morning In", 100, True)
-            ConfigureColumn("morning_out", "Morning Out", 100, True)
-            ConfigureColumn("break_in", "Break In", 100, True)
-            ConfigureColumn("evening_out", "Evening Out", 100, True)
-            ConfigureColumn("total_morning_hours", "Morning Hrs", 90, True)
-            ConfigureColumn("total_break_hours", "Break Hrs", 90, True)
-            ConfigureColumn("total_work_hours", "Work Hrs", 90, True)
-            ConfigureColumn("com_id", "Com ID", 50, False)
-            ConfigureColumn("loc_id", "Loc ID", 50, False)
-            ConfigureColumn("pm_id", "PM ID", 50, False)
-            ConfigureColumn("created_at", "Created", 120, False)
-            ConfigureColumn("updated_at", "Updated", 120, False)
+            ' DATEWISE columns - ordered logically
+            ConfigureColumn("emp_id", "Emp ID", 60, True, 0)
+            ConfigureColumn("emp_printname", "Employee Name", 180, True, 1)
+            ConfigureColumn("att_date", "Date", 100, True, 2)
+            ConfigureColumn("morning_in", "Morning In", 130, True, 3)
+            ConfigureColumn("morning_out", "Morning Out", 130, True, 4)
+            ConfigureColumn("break_in", "Break In", 130, True, 5)
+            ConfigureColumn("evening_out", "Evening Out", 130, True, 6)
+            ConfigureColumn("total_morning_hours", "Morning Hrs", 90, True, 7)
+            ConfigureColumn("total_break_hours", "Break Hrs", 90, True, 8)
+            ConfigureColumn("total_work_hours", "Work Hrs", 90, True, 9)
+            ConfigureColumn("pcm_name", "Company", 140, True, 10)
+            ConfigureColumn("plm_name", "Location", 140, True, 11)
         ElseIf reportType.ToUpper() = "MONTHLY" Then
-            ' MONTHLY summary columns from sp_get_attendance_report
-            ConfigureColumn("emp_id", "Emp ID", 60, True)
-            ConfigureColumn("emp_printname", "Employee Name", 180, True)
-            ConfigureColumn("pcm_name", "Company", 140, True)
-            ConfigureColumn("plm_name", "Location", 140, True)
-            ConfigureColumn("total_morning_hours", "Total Morning Hrs", 120, True)
-            ConfigureColumn("total_break_hours", "Total Break Hrs", 120, True)
-            ConfigureColumn("total_work_hours", "Total Work Hrs", 120, True)
-            ConfigureColumn("total_days", "Total Days", 90, True)
-            ConfigureColumn("com_id", "Com ID", 50, False)
-            ConfigureColumn("loc_id", "Loc ID", 50, False)
+            ' MONTHLY summary columns - ordered logically
+            ConfigureColumn("emp_id", "Emp ID", 60, True, 0)
+            ConfigureColumn("emp_printname", "Employee Name", 200, True, 1)
+            ConfigureColumn("total_days", "Total Days", 90, True, 2)
+            ConfigureColumn("total_morning_hours", "Total Morning Hrs", 120, True, 3)
+            ConfigureColumn("total_break_hours", "Total Break Hrs", 120, True, 4)
+            ConfigureColumn("total_work_hours", "Total Work Hrs", 120, True, 5)
+            ConfigureColumn("pcm_name", "Company", 140, True, 6)
+            ConfigureColumn("plm_name", "Location", 140, True, 7)
         End If
     End Sub
 
-    Private Sub ConfigureColumn(fieldName As String, caption As String, width As Integer, visible As Boolean)
+    Private Sub ConfigureColumn(fieldName As String, caption As String, width As Integer, visible As Boolean, Optional visibleIndex As Integer = -1)
         Dim col As DevExpress.XtraGrid.Columns.GridColumn = GridView1.Columns(fieldName)
         If col IsNot Nothing Then
             col.Caption = caption
             col.Width = width
-            col.Visible = visible
             col.OptionsColumn.AllowEdit = False
+            If visible AndAlso visibleIndex >= 0 Then
+                col.VisibleIndex = visibleIndex
+            ElseIf visible Then
+                col.Visible = True
+            End If
         End If
     End Sub
 #End Region
