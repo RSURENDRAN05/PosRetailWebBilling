@@ -4,7 +4,10 @@
 # ============================================================
 
 # --- Cloud API Settings -------------------------------------
-API_BASE_URL = "https://yourdomain.com/face_attendance/api"
+# Point this to your web server's getfunctionfaceattendance.php
+# Example local  : http://localhost/posretailwebbilling/retailbilling/controller/getfunctionfaceattendance.php
+# Example cPanel : https://yourdomain.com/retailbilling/controller/getfunctionfaceattendance.php
+API_BASE_URL = "http://localhost/posretailwebbilling/retailbilling/controller/getfunctionfaceattendance.php"
 API_KEY      = "face_attendance_secret_2024"
 
 # --- Database Table Names (existing POS system) -------------
@@ -53,15 +56,15 @@ DEFAULT_COM_ID    = "COM001"
 DEFAULT_BRANCH_ID = ""
 DEFAULT_LOC_ID    = ""
 
-# --- API Endpoints ------------------------------------------
+# --- API Endpoints — all routed through the single PHP file ---
 ENDPOINTS = {
-    "auth":       f"{API_BASE_URL}/auth.php",
-    "employees":  f"{API_BASE_URL}/employees.php",
-    "faces":      f"{API_BASE_URL}/faces.php",
-    "attendance": f"{API_BASE_URL}/attendance.php",
-    "stats":      f"{API_BASE_URL}/stats.php",
-    "branches":   f"{API_BASE_URL}/branches.php",
-    "locations":  f"{API_BASE_URL}/locations.php",
+    "auth":       f"{API_BASE_URL}?endpoint=auth",
+    "employees":  f"{API_BASE_URL}?endpoint=employees",
+    "faces":      f"{API_BASE_URL}?endpoint=faces",
+    "attendance": f"{API_BASE_URL}?endpoint=attendance",
+    "stats":      f"{API_BASE_URL}?endpoint=stats",
+    "branches":   f"{API_BASE_URL}?endpoint=branches",
+    "locations":  f"{API_BASE_URL}?endpoint=locations",
 }
 
 # --- Face Recognition Settings ------------------------------
