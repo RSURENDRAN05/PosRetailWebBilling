@@ -7,6 +7,7 @@ import face_recognition
 import numpy as np
 import pickle
 import os
+import json
 import time
 from datetime import datetime
 from threading import Lock
@@ -42,7 +43,15 @@ class FaceCache:
         entries = []
         for row in rows:
             enc = row.get("encoding")
-            if enc and len(enc) == 128:
+
+            # API may return encoding either as list[float] or JSON string.
+            if isinstance(enc, str):
+                try:
+                    enc = json.loads(enc)
+                except Exception:
+                    enc = None
+
+            if isinstance(enc, list) and len(enc) == 128:
                 entries.append({
                     "emp_id":        row["emp_id"],
                     "employee_name": row.get("employee_name", row.get("emp_printname", row["emp_id"])),

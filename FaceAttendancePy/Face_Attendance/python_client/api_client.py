@@ -35,7 +35,19 @@ class APIClient:
                 json=body,
                 timeout=cls.TIMEOUT,
             )
-            return r.json()
+            try:
+                return r.json()
+            except ValueError:
+                snippet = (r.text or "").strip().replace("\n", " ")[:180]
+                if r.status_code >= 400:
+                    return {
+                        "success": False,
+                        "message": f"Server error {r.status_code}. Non-JSON response: {snippet or '<empty body>'}",
+                    }
+                return {
+                    "success": False,
+                    "message": f"Invalid JSON response from server: {snippet or '<empty body>'}",
+                }
         except requests.exceptions.ConnectionError:
             return {"success": False, "message": "Cannot connect to server. Check API_BASE_URL in config.py"}
         except requests.exceptions.Timeout:
@@ -54,6 +66,15 @@ class APIClient:
             "username": username,
             "password": password,
         })
+
+    @classmethod
+    def get_admin_users(cls, com_id: str = None, loc_id: str = None) -> dict:
+        params = {"action": "admin_users"}
+        if com_id:
+            params["com_id"] = com_id
+        if loc_id:
+            params["loc_id"] = loc_id
+        return cls._request("GET", ENDPOINTS["auth"], params=params)
 
     @classmethod
     def pin_login(cls, loc_id: str, pin: str) -> dict:
@@ -77,8 +98,12 @@ class APIClient:
 
     @classmethod
     def get_employees(cls, com_id: str = None, loc_id: str = None,
-                      search: str = None, active: int = 1) -> dict:
-        params = {"status": "active" if active else "inactive"}
+                      search: str = None, active: int = 1,
+                      status: str = None) -> dict:
+        if status is not None:
+            params = {"status": status}
+        else:
+            params = {"status": "active" if active else "inactive"}
         if com_id:  params["com_id"] = com_id
         if loc_id:  params["loc_id"] = loc_id
         if search:  params["search"] = search
@@ -131,7 +156,8 @@ class APIClient:
     @classmethod
     def check_in(cls, emp_id: str, com_id: str = None, loc_id: str = None,
                  liveness_pass: int = 1, latitude: float = None,
-                 longitude: float = None, source: str = "face") -> dict:
+                 longitude: float = None, gps_accuracy: float = None,
+                 source: str = "face") -> dict:
         body = {
             "emp_id":       emp_id,
             "action":       "checkin",
@@ -143,18 +169,29 @@ class APIClient:
         }
         if latitude  is not None: body["latitude"]  = latitude
         if longitude is not None: body["longitude"] = longitude
+        if gps_accuracy is not None: body["gps_accuracy"] = gps_accuracy
         return cls._request("POST", ENDPOINTS["attendance"], body=body)
 
     @classmethod
     def check_out(cls, emp_id: str, com_id: str = None, loc_id: str = None,
-                  source: str = "face") -> dict:
-        return cls._request("POST", ENDPOINTS["attendance"], body={
+                  source: str = "face", latitude: float = None,
+                  longitude: float = None, gps_accuracy: float = None) -> dict:
+        body = {
             "emp_id":   emp_id,
             "action":   "checkout",
             "source":   source,
             "com_id":   com_id or SESSION.get("com_id", ""),
             "loc_id":   loc_id or SESSION.get("loc_id", ""),
-        })
+            "method":   "face_scan",
+            "liveness_pass": 1,
+        }
+        if latitude is not None:
+            body["latitude"] = latitude
+        if longitude is not None:
+            body["longitude"] = longitude
+        if gps_accuracy is not None:
+            body["gps_accuracy"] = gps_accuracy
+        return cls._request("POST", ENDPOINTS["attendance"], body=body)
 
     @classmethod
     def get_attendance(cls, date: str = None, emp_id: str = None,

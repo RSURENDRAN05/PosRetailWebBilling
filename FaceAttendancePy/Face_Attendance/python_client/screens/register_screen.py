@@ -1,6 +1,6 @@
 # ============================================================
 # Employee Registration Screen
-# - Fill employee details
+# - Select employee from list
 # - Capture face samples via webcam
 # - Save to cloud via API
 # ============================================================
@@ -10,7 +10,6 @@ from tkinter import ttk, messagebox
 import threading
 import cv2
 from PIL import Image, ImageTk
-import numpy as np
 
 from config import *
 from api_client import APIClient
@@ -22,8 +21,10 @@ class RegisterScreen(tk.Frame):
         super().__init__(parent, bg=BG_COLOR)
         self.on_back  = on_back
         self.stream   = CameraStream()
-        self._running = False
+        self._running  = False
         self._after_id = None
+        self._selected_emp = None        # dict with emp details
+        self.encodings_captured = []
         self._build_ui()
 
     # ---- Layout --------------------------------------------
@@ -32,99 +33,187 @@ class RegisterScreen(tk.Frame):
         # Header
         hdr = tk.Frame(self, bg=THEME_COLOR, pady=12)
         hdr.pack(fill="x")
-        tk.Label(hdr, text="👤  Register New Employee",
+        tk.Label(hdr, text="👤  Register Employee Face",
                  font=FONT_LARGE, bg=THEME_COLOR, fg="white").pack(side="left", padx=20)
         tk.Button(hdr, text="← Back", font=FONT_NORMAL, bg=ACCENT_COLOR, fg="white",
                   relief="flat", padx=12, pady=4, cursor="hand2",
                   command=self._go_back).pack(side="right", padx=20)
 
-        # Body: left = form, right = camera
+        # Body: left = employee list, right = camera + controls
         body = tk.Frame(self, bg=BG_COLOR)
         body.pack(fill="both", expand=True, padx=20, pady=16)
 
-        self._build_form(body)
-        self._build_camera_panel(body)
+        self._build_emp_list(body)
+        self._build_right_panel(body)
 
-    def _build_form(self, parent):
+    # ---- Left: Employee List -------------------------------
+
+    def _build_emp_list(self, parent):
         card = tk.Frame(parent, bg=CARD_COLOR, bd=0, relief="flat",
                         highlightbackground="#DDE1E7", highlightthickness=1)
-        card.pack(side="left", fill="y", padx=(0, 12), ipadx=16, ipady=12)
+        card.pack(side="left", fill="y", padx=(0, 12), ipadx=10, ipady=10)
 
-        tk.Label(card, text="Employee Details", font=FONT_MEDIUM,
-                 bg=CARD_COLOR, fg=THEME_COLOR).pack(anchor="w", pady=(8, 12), padx=10)
+        tk.Label(card, text="Select Employee", font=FONT_MEDIUM,
+                 bg=CARD_COLOR, fg=THEME_COLOR).pack(anchor="w", padx=10, pady=(8, 6))
 
-        fields = [
-            ("Employee ID *",  "emp_id",     "e.g. EMP001"),
-            ("Full Name *",     "name",       "e.g. John Doe"),
-            ("Department",      "dept",       "e.g. IT / HR / Sales"),
-            ("Position",        "position",   "e.g. Software Engineer"),
-            ("Email",           "email",      "e.g. john@company.com"),
-            ("Phone",           "phone",      "e.g. +60123456789"),
-        ]
+        # Search row
+        search_row = tk.Frame(card, bg=CARD_COLOR)
+        search_row.pack(fill="x", padx=10, pady=(0, 6))
+        self.search_var = tk.StringVar()
+        self.search_var.trace_add("write", lambda *_: self._filter_list())
+        ttk.Entry(search_row, textvariable=self.search_var,
+                  font=FONT_NORMAL, width=20).pack(side="left")
+        tk.Button(search_row, text="🔄", font=FONT_SMALL, bg=BG_COLOR, fg=TEXT_COLOR,
+                  relief="flat", padx=6, cursor="hand2",
+                  command=self._load_employees).pack(side="left", padx=(4, 0))
 
-        self.vars = {}
-        for label, key, hint in fields:
-            tk.Label(card, text=label, font=FONT_SMALL, bg=CARD_COLOR,
-                     fg=MUTED_COLOR).pack(anchor="w", padx=10)
-            var = tk.StringVar()
-            entry = ttk.Entry(card, textvariable=var, font=FONT_NORMAL, width=26)
-            entry.pack(anchor="w", padx=10, pady=(0, 8), ipady=4)
-            self.vars[key] = var
+        # Treeview
+        cols = ("ID", "Name", "Department")
+        widths = (70, 160, 110)
+        frame = tk.Frame(card, bg=CARD_COLOR)
+        frame.pack(fill="both", expand=True, padx=10)
+        vsb = ttk.Scrollbar(frame, orient="vertical")
+        self.emp_tree = ttk.Treeview(frame, columns=cols, show="headings",
+                                     height=18, yscrollcommand=vsb.set)
+        for col, w in zip(cols, widths):
+            self.emp_tree.heading(col, text=col)
+            self.emp_tree.column(col, width=w, anchor="w")
+        vsb.config(command=self.emp_tree.yview)
+        vsb.pack(side="right", fill="y")
+        self.emp_tree.pack(fill="both", expand=True)
+        self.emp_tree.bind("<<TreeviewSelect>>", self._on_emp_select)
 
-        # Progress label
-        self.progress_var = tk.StringVar(value="Fill in details, then click Capture Face")
-        tk.Label(card, textvariable=self.progress_var, font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR, wraplength=240, justify="left"
-                 ).pack(anchor="w", padx=10, pady=(4, 6))
+        self._all_employees = []   # full list for filtering
+        self.list_status = tk.StringVar(value="Loading…")
+        tk.Label(card, textvariable=self.list_status, font=FONT_SMALL,
+                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w", padx=10, pady=(4, 0))
 
-        # Progress bar
-        self.progress_bar = ttk.Progressbar(card, length=240, mode="determinate", maximum=FACE_SAMPLES)
-        self.progress_bar.pack(padx=10, pady=(0, 8))
+    # ---- Right: Camera + controls --------------------------
 
-        # Buttons
-        btn_frame = tk.Frame(card, bg=CARD_COLOR)
-        btn_frame.pack(padx=10, fill="x")
+    def _build_right_panel(self, parent):
+        right = tk.Frame(parent, bg=BG_COLOR)
+        right.pack(side="left", fill="both", expand=True)
 
-        self.capture_btn = tk.Button(
-            btn_frame, text="📷  Capture Face", font=FONT_NORMAL,
-            bg=ACCENT_COLOR, fg="white", relief="flat", padx=10, pady=6, cursor="hand2",
-            command=self._start_capture
-        )
-        self.capture_btn.pack(fill="x", pady=(0, 6))
+        # Selected employee banner
+        sel_card = tk.Frame(right, bg=CARD_COLOR,
+                            highlightbackground="#DDE1E7", highlightthickness=1)
+        sel_card.pack(fill="x", pady=(0, 10), ipadx=10, ipady=8)
+        tk.Label(sel_card, text="Selected:", font=FONT_SMALL,
+                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(side="left", padx=(10, 4))
+        self.sel_name_var = tk.StringVar(value="— none —")
+        tk.Label(sel_card, textvariable=self.sel_name_var, font=FONT_MEDIUM,
+                 bg=CARD_COLOR, fg=THEME_COLOR).pack(side="left")
+        self.sel_id_var = tk.StringVar(value="")
+        tk.Label(sel_card, textvariable=self.sel_id_var, font=FONT_SMALL,
+                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(side="left", padx=(8, 0))
 
-        self.save_btn = tk.Button(
-            btn_frame, text="💾  Save Employee", font=FONT_NORMAL,
-            bg=THEME_COLOR, fg="white", relief="flat", padx=10, pady=6, cursor="hand2",
-            state="disabled", command=self._save_employee
-        )
-        self.save_btn.pack(fill="x")
+        # Camera + controls row
+        cam_row = tk.Frame(right, bg=BG_COLOR)
+        cam_row.pack(fill="both", expand=True)
 
-        self.encodings_captured = []
-
-    def _build_camera_panel(self, parent):
-        cam_card = tk.Frame(parent, bg=CARD_COLOR, bd=0, relief="flat",
+        # Camera card
+        cam_card = tk.Frame(cam_row, bg=CARD_COLOR,
                             highlightbackground="#DDE1E7", highlightthickness=1)
         cam_card.pack(side="left", fill="both", expand=True, ipadx=10, ipady=10)
-
         tk.Label(cam_card, text="Live Camera Preview", font=FONT_MEDIUM,
                  bg=CARD_COLOR, fg=THEME_COLOR).pack(pady=(8, 6))
-
         self.cam_label = tk.Label(cam_card, bg="#1A1A2E",
                                   width=PREVIEW_WIDTH, height=PREVIEW_HEIGHT)
-        self.cam_label.pack(padx=10, pady=(0, 10))
-
+        self.cam_label.pack(padx=10, pady=(0, 6))
         self.status_label = tk.Label(cam_card, text="Camera: Off",
                                      font=FONT_SMALL, bg=CARD_COLOR, fg=MUTED_COLOR)
         self.status_label.pack()
 
-    # ---- Camera Preview (idle) -----------------------------
+        # Controls card
+        ctrl_card = tk.Frame(cam_row, bg=CARD_COLOR,
+                             highlightbackground="#DDE1E7", highlightthickness=1)
+        ctrl_card.pack(side="left", fill="y", padx=(10, 0), ipadx=14, ipady=10)
+
+        tk.Label(ctrl_card, text="Face Capture", font=FONT_MEDIUM,
+                 bg=CARD_COLOR, fg=THEME_COLOR).pack(anchor="w", padx=10, pady=(8, 12))
+
+        self.progress_var = tk.StringVar(value="Select an employee, then capture")
+        tk.Label(ctrl_card, textvariable=self.progress_var, font=FONT_SMALL,
+                 bg=CARD_COLOR, fg=MUTED_COLOR, wraplength=200,
+                 justify="left").pack(anchor="w", padx=10, pady=(0, 8))
+
+        self.progress_bar = ttk.Progressbar(ctrl_card, length=200,
+                                            mode="determinate", maximum=FACE_SAMPLES)
+        self.progress_bar.pack(padx=10, pady=(0, 12))
+
+        self.capture_btn = tk.Button(
+            ctrl_card, text="📷  Capture Face", font=FONT_NORMAL,
+            bg=ACCENT_COLOR, fg="white", relief="flat", padx=10, pady=8,
+            cursor="hand2", state="disabled", command=self._start_capture)
+        self.capture_btn.pack(fill="x", padx=10, pady=(0, 6))
+
+        self.save_btn = tk.Button(
+            ctrl_card, text="💾  Save Face Data", font=FONT_NORMAL,
+            bg=THEME_COLOR, fg="white", relief="flat", padx=10, pady=8,
+            cursor="hand2", state="disabled", command=self._save_employee)
+        self.save_btn.pack(fill="x", padx=10)
+
+    # ---- Employee list loading / filtering -----------------
+
+    def _load_employees(self):
+        self.list_status.set("Loading…")
+        self.emp_tree.delete(*self.emp_tree.get_children())
+        threading.Thread(target=self._fetch_employees, daemon=True).start()
+
+    def _fetch_employees(self):
+        result = APIClient.get_employees(status="active")
+        if result.get("success"):
+            emps = result.get("data", [])
+            self._all_employees = emps
+            self.after(0, lambda: self._populate_tree(emps))
+        else:
+            msg = result.get("message", "Failed to load")
+            self.after(0, lambda: self.list_status.set(f"⚠ {msg}"))
+
+    def _populate_tree(self, emps):
+        self.emp_tree.delete(*self.emp_tree.get_children())
+        for e in emps:
+            self.emp_tree.insert("", "end", iid=str(e["emp_id"]), values=(
+                e.get("emp_id", ""),
+                e.get("emp_printname", e.get("emp_name", "")),
+                e.get("emp_designation", e.get("department", "")),
+            ))
+        self.list_status.set(f"{len(emps)} employees")
+
+    def _filter_list(self):
+        q = self.search_var.get().strip().lower()
+        filtered = [e for e in self._all_employees
+                    if q in str(e.get("emp_id", "")).lower()
+                    or q in (e.get("emp_printname") or "").lower()
+                    or q in (e.get("emp_designation") or "").lower()] if q else self._all_employees
+        self._populate_tree(filtered)
+
+    def _on_emp_select(self, _event=None):
+        sel = self.emp_tree.selection()
+        if not sel:
+            return
+        emp_id = sel[0]
+        emp = next((e for e in self._all_employees if str(e["emp_id"]) == emp_id), None)
+        if not emp:
+            return
+        self._selected_emp = emp
+        name = emp.get("emp_printname", emp.get("emp_name", emp_id))
+        self.sel_name_var.set(name)
+        self.sel_id_var.set(f"  (ID: {emp_id})")
+        self.capture_btn.config(state="normal")
+        self.save_btn.config(state="disabled")
+        self.progress_bar["value"] = 0
+        self.progress_var.set(f"Ready to capture face for {name}")
+        self.encodings_captured = []
+
+    # ---- Camera Preview ------------------------------------
 
     def start_preview(self):
         ok, msg = self.stream.open()
         if not ok:
             self.status_label.config(text=f"⚠ {msg}", fg=DANGER_COLOR)
             return
-        self._running  = True
+        self._running = True
         self.status_label.config(text="● Camera on", fg=ACCENT_COLOR)
         self._update_preview()
 
@@ -157,19 +246,17 @@ class RegisterScreen(tk.Frame):
     # ---- Capture -------------------------------------------
 
     def _start_capture(self):
-        emp_id = self.vars["emp_id"].get().strip()
-        name   = self.vars["name"].get().strip()
-        if not emp_id or not name:
-            messagebox.showwarning("Missing Info", "Employee ID and Full Name are required.")
+        if not self._selected_emp:
+            messagebox.showwarning("No Employee", "Please select an employee from the list.")
             return
 
         self.capture_btn.config(state="disabled")
         self.save_btn.config(state="disabled")
         self.progress_bar["value"] = 0
-        self.encodings_captured    = []
-        self.progress_var.set("Starting camera… look at the camera")
+        self.encodings_captured = []
+        name = self._selected_emp.get("emp_printname", self._selected_emp.get("emp_id"))
+        self.progress_var.set(f"Capturing {name}… look at the camera")
 
-        # Run capture in background thread
         threading.Thread(target=self._capture_thread, daemon=True).start()
 
     def _capture_thread(self):
@@ -182,31 +269,27 @@ class RegisterScreen(tk.Frame):
             num_samples=FACE_SAMPLES,
             progress_callback=progress
         )
-
         self.after(0, lambda: self._on_capture_done(encodings, msg))
 
     def _on_progress(self, current, total):
         self.progress_bar["value"] = current
-        self.progress_var.set(f"Captured {current}/{total} samples… keep looking at the camera")
+        self.progress_var.set(f"Captured {current}/{total} samples…")
 
     def _on_capture_done(self, encodings, msg):
         self.encodings_captured = encodings
         self.start_preview()
-
+        self.capture_btn.config(state="normal")
         if len(encodings) >= FACE_SAMPLES:
-            self.progress_var.set(f"✅ {len(encodings)} samples captured! Click Save Employee.")
+            self.progress_var.set(f"✅ {len(encodings)} samples ready. Click Save.")
             self.save_btn.config(state="normal")
         else:
-            self.progress_var.set(f"⚠ Only {len(encodings)} samples captured. Try again.")
-
-        self.capture_btn.config(state="normal")
+            self.progress_var.set(f"⚠ Only {len(encodings)} samples. Try again.")
 
     # ---- Save ----------------------------------------------
 
     def _save_employee(self):
-        data = {k: v.get().strip() for k, v in self.vars.items()}
-        if not data["emp_id"] or not data["name"]:
-            messagebox.showwarning("Missing Info", "Employee ID and Full Name are required.")
+        if not self._selected_emp:
+            messagebox.showwarning("No Employee", "Please select an employee first.")
             return
         if not self.encodings_captured:
             messagebox.showwarning("No Face", "Please capture face samples first.")
@@ -214,39 +297,38 @@ class RegisterScreen(tk.Frame):
 
         self.save_btn.config(state="disabled")
         self.progress_var.set("Saving to cloud…")
+        threading.Thread(target=self._save_thread, daemon=True).start()
 
-        threading.Thread(target=self._save_thread, args=(data,), daemon=True).start()
+    def _save_thread(self):
+        emp_id = self._selected_emp["emp_id"]
+        name   = self._selected_emp.get("emp_printname", str(emp_id))
+        com_id = self._selected_emp.get("emp_compid")
+        loc_id = self._selected_emp.get("emp_locid")
 
-    def _save_thread(self, data):
-        # NOTE: The face system is READ-ONLY for pos_employeeinfo.
-        # Step 1: Verify employee exists in pos_employeeinfo
-        check = APIClient.get_employee(data["emp_id"])
-        if not check.get("success"):
-            self.after(0, lambda: self._save_error(
-                f"Employee '{data['emp_id']}' not found in employee database.\n"
-                "Please register the employee in your POS system first."
-            ))
-            return
-
-        # Step 2: Save face encodings only
         result = APIClient.save_face_encodings(
-            emp_id    = data["emp_id"],
+            emp_id    = emp_id,
+            com_id    = com_id,
+            loc_id    = loc_id,
             encodings = self.encodings_captured,
             replace   = True,
         )
 
         if result.get("success"):
-            self.after(0, lambda: self._save_success(data["name"]))
+            saved_count = (result.get("data") or {}).get("saved_count", len(self.encodings_captured))
+            self.after(0, lambda: self._save_success(name, saved_count))
         else:
             self.after(0, lambda: self._save_error(result.get("message")))
 
-    def _save_success(self, name):
-        messagebox.showinfo("Success", f"✅ {name} registered successfully!")
-        for v in self.vars.values():
-            v.set("")
+    def _save_success(self, name, saved_count):
+        messagebox.showinfo("Success", f"✅ {name} registered successfully!\nSaved samples: {saved_count}")
+        self._selected_emp = None
+        self.sel_name_var.set("— none —")
+        self.sel_id_var.set("")
+        self.emp_tree.selection_remove(*self.emp_tree.selection())
         self.progress_bar["value"] = 0
-        self.progress_var.set("Employee saved! Ready for next registration.")
+        self.progress_var.set("Saved! Select next employee to register.")
         self.save_btn.config(state="disabled")
+        self.capture_btn.config(state="disabled")
         self.encodings_captured = []
 
     def _save_error(self, msg):
@@ -262,6 +344,7 @@ class RegisterScreen(tk.Frame):
             self.on_back()
 
     def on_show(self):
+        self._load_employees()
         self.start_preview()
 
     def on_hide(self):

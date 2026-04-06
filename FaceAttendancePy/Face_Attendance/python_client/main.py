@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import *
 from api_client import APIClient
 from face_utils import face_cache
+from screens.login_screen      import LoginScreen
 from screens.register_screen   import RegisterScreen
 from screens.attendance_screen import AttendanceScreen
 from screens.records_screen    import RecordsScreen
@@ -126,7 +127,7 @@ class DashboardScreen(tk.Frame):
 
         result = APIClient.get_stats()
         if result.get("success"):
-            d = result["data"]["today"]
+            d = result["data"].get("today", result["data"])
             self.after(0, lambda: self._update_stats(d))
 
     def _update_stats(self, data):
@@ -166,9 +167,10 @@ class App(tk.Tk):
         # Screen registry
         self.screens = {}
         self.current_screen = None
+        self.session_ctx = {}
 
         self._build_screens()
-        self._show("dashboard")
+        self._show("login")
         self.protocol("WM_DELETE_WINDOW", self._on_close)
 
     def _build_screens(self):
@@ -178,6 +180,11 @@ class App(tk.Tk):
         def nav(page):
             self._show(page)
 
+        def login_success(ctx):
+            self.session_ctx = ctx or {}
+            self._show("dashboard")
+
+        self.screens["login"]      = LoginScreen(container, on_success=login_success)
         self.screens["dashboard"]  = DashboardScreen(container, nav)
         self.screens["register"]   = RegisterScreen(container, on_back=lambda: self._show("dashboard"))
         self.screens["attendance"] = AttendanceScreen(container, on_back=lambda: self._show("dashboard"))

@@ -6,15 +6,18 @@ echo  (Use this if the normal install.bat fails)
 echo ================================================
 echo.
 
-python --version >nul 2>&1
+set PYTHON=c:\Python\Python314\python.exe
+set PIP=%PYTHON% -m pip
+
+"%PYTHON%" --version >nul 2>&1
 IF ERRORLEVEL 1 (
-    echo [ERROR] Python not found. Install from https://python.org
+    echo [ERROR] Python not found at c:\Python\Python314\python.exe
     pause
     exit /b 1
 )
 
 :: Get Python version
-for /f "tokens=2 delims= " %%v in ('python --version 2^>^&1') do set PYVER=%%v
+for /f "tokens=2 delims= " %%v in ('"%PYTHON%" --version 2^>^&1') do set PYVER=%%v
 echo Detected Python: %PYVER%
 
 echo.
@@ -24,17 +27,17 @@ echo Download: https://visualstudio.microsoft.com/visual-cpp-build-tools/
 echo.
 
 echo [2/3] Installing packages without dlib first...
-pip install opencv-python Pillow requests numpy
+"%PIP%" install opencv-python Pillow requests numpy
 
 echo.
 echo [3/3] Try installing face_recognition with pre-built wheel...
 echo Downloading pre-built dlib for Windows...
-pip install https://github.com/jloh02/dlib/releases/download/v19.22/dlib-19.22.99-cp39-cp39-win_amd64.whl 2>nul
+"%PIP%" install https://github.com/jloh02/dlib/releases/download/v19.22/dlib-19.22.99-cp39-cp39-win_amd64.whl 2>nul
 IF ERRORLEVEL 1 (
     echo Trying pip install dlib directly...
-    pip install dlib
+    "%PIP%" install dlib
 )
-pip install face_recognition
+"%PIP%" install face_recognition
 
 echo.
 echo ================================================

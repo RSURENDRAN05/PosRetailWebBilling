@@ -147,12 +147,26 @@ class AttendanceScreen(tk.Frame):
         self.after(0, lambda: self.face_count_lbl.config(
             text=f"Faces loaded: {len(data)}", fg=ACCENT_COLOR if data else DANGER_COLOR
         ))
+        if not data:
+            self.after(0, lambda: self.action_lbl.config(
+                text="No registered faces loaded. Register faces, then click Reload Faces.",
+                fg=WARNING_COLOR
+            ))
 
         # Load today's log
         result = APIClient.get_attendance()
         if result.get("success"):
-            records = result["data"]["records"]
-            summary = result["data"]["summary"]
+            data = result["data"]
+            # API returns flat list; "records"/"summary" wrapper is optional
+            if isinstance(data, dict) and "records" in data:
+                records = data["records"]
+                summary = data.get("summary", {})
+            else:
+                records = data if isinstance(data, list) else []
+                present = sum(1 for r in records if r.get("morning_in"))
+                late    = sum(1 for r in records if r.get("morning_in") and
+                              r.get("morning_in", "")[-8:] > "09:00:00")
+                summary = {"present": present, "late": late}
             self.after(0, lambda: self._refresh_log(records, summary))
 
         self.after(0, self._start_camera)
@@ -191,7 +205,7 @@ class AttendanceScreen(tk.Frame):
                     self._try_mark_attendance(emp_id, emp_name)
 
             frame = annotate_frame(frame, locations, identities)
-            self._update_action_label(identities)
+            self._update_action_label(identities, len(known))
             self._show_frame(frame)
 
         self._after_id = self.after(33, self._update_frame)  # ~30 FPS
@@ -203,10 +217,22 @@ class AttendanceScreen(tk.Frame):
         self.cam_label.imgtk = imtk
         self.cam_label.config(image=imtk)
 
-    def _update_action_label(self, identities):
+    def _update_action_label(self, identities, known_count=0):
         if not identities:
-            self.action_lbl.config(text="Scanning for faces…", fg=MUTED_COLOR)
+            if known_count == 0:
+                self.action_lbl.config(
+                    text="No registered faces loaded. Register faces, then click Reload Faces.",
+                    fg=WARNING_COLOR,
+                )
+            else:
+                self.action_lbl.config(text="Scanning for faces…", fg=MUTED_COLOR)
         else:
+            if known_count == 0:
+                self.action_lbl.config(
+                    text="Face detected, but no enrolled data found. Please register this employee first.",
+                    fg=WARNING_COLOR,
+                )
+                return
             names = [n for (_, n, _) in identities if n != "Unknown"]
             unk   = sum(1 for (i, _, _) in identities if i == "Unknown")
             parts = []
@@ -244,6 +270,16 @@ class AttendanceScreen(tk.Frame):
                 entry += "  ⚠ LATE"
             self.after(0, lambda: self._add_log_entry(entry, status))
             self.after(0, self._refresh_today_stats)
+            self.after(0, lambda: self.action_lbl.config(
+                text=f"{emp_name} {action} saved",
+                fg=ACCENT_COLOR,
+            ))
+        else:
+            msg = result.get("message", "Attendance save failed")
+            self.after(0, lambda: self.action_lbl.config(
+                text=f"Save failed: {msg}",
+                fg=DANGER_COLOR,
+            ))
 
     def _add_log_entry(self, text: str, status: str):
         color = WARNING_COLOR if status == "late" else ACCENT_COLOR
@@ -255,16 +291,24 @@ class AttendanceScreen(tk.Frame):
     def _refresh_today_stats(self):
         result = APIClient.get_attendance()
         if result.get("success"):
-            s = result["data"]["summary"]
+            data = result.get("data")
+            if isinstance(data, dict) and "summary" in data:
+                s = data["summary"]
+            else:
+                records = data if isinstance(data, list) else []
+                present = sum(1 for r in records if r.get("morning_in"))
+                late = sum(1 for r in records if r.get("morning_in") and r.get("morning_in", "")[-8:] > "09:00:00")
+                s = {"present": present, "late": late}
             self.present_var.set(str(s.get("present", 0)))
             self.late_var.set(str(s.get("late", 0)))
 
     def _refresh_log(self, records, summary):
         self.log_list.delete(0, tk.END)
         for r in records:
-            ci   = r.get("check_in",  "")[-8:] if r.get("check_in")  else "--:--"
-            co   = r.get("check_out", "")[-8:] if r.get("check_out") else "  --  "
-            name = r.get("employee_name", r.get("emp_id", ""))
+            ci   = (r.get("morning_in")  or r.get("check_in",  ""))[-8:] or "--:--"
+            co_r = (r.get("evening_out") or r.get("check_out", ""))
+            co   = co_r[-8:] if co_r else "  --  "
+            name = r.get("emp_printname", r.get("employee_name", r.get("emp_id", "")))
             st   = r.get("status", "present")
             text = f"{ci} → {co}  {name}"
             if st == "late": text += " ⚠"

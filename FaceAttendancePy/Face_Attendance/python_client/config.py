@@ -7,7 +7,7 @@
 # Point this to your web server's getfunctionfaceattendance.php
 # Example local  : http://localhost/posretailwebbilling/retailbilling/controller/getfunctionfaceattendance.php
 # Example cPanel : https://yourdomain.com/retailbilling/controller/getfunctionfaceattendance.php
-API_BASE_URL = "http://localhost/posretailwebbilling/retailbilling/controller/getfunctionfaceattendance.php"
+API_BASE_URL = "https://myposqr.com/retailbilling/controller/getfunctionfaceattendance.php"
 API_KEY      = "face_attendance_secret_2024"
 
 # --- Database Table Names (existing POS system) -------------

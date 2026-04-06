@@ -14,7 +14,7 @@ USE `myposqrc_posretail`;
 
 CREATE TABLE IF NOT EXISTS `employee_face_encodings` (
     `id`            INT          NOT NULL AUTO_INCREMENT,
-    `emp_id`        VARCHAR(50)  NOT NULL,
+    `emp_id`        INT          NOT NULL,
     `com_id`        VARCHAR(50)  NOT NULL DEFAULT '',
     `loc_id`        VARCHAR(50)  NOT NULL DEFAULT '',
     `encoding`      MEDIUMTEXT   NOT NULL,          -- JSON array of 128 floats
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `employee_face_encodings` (
     KEY `idx_emp_com`     (`emp_id`, `com_id`),
     KEY `idx_emp_loc`     (`emp_id`, `loc_id`),
     KEY `idx_com_loc`     (`com_id`, `loc_id`),
-    -- Reference existing employee table
+    -- Reference existing employee table (INT emp_id)
     CONSTRAINT `fk_face_emp`
         FOREIGN KEY (`emp_id`)
         REFERENCES `pos_employeeinfo` (`emp_id`)
@@ -223,98 +223,186 @@ GROUP BY
 -- ============================================================
 -- STORED PROCEDURE: sp_mark_face_attendance
 -- Call this from PHP when face is recognized
--- Usage: CALL sp_mark_face_attendance('EMP001','COM001','LOC001','face','web',1,3.1390,101.6869)
--- Usage: CALL sp_mark_face_attendance(1,'COM001','LOC001','face','face_scan',1,3.1390,101.6869)
+-- Usage: CALL sp_mark_face_attendance(2,1,3,1,'MorningIn','face','face_scan',1,3.1390,101.6869,5.0,NOW())
+-- Usage: CALL sp_mark_face_attendance(2,1,3,1,'EveningOut','face','face_scan',1,3.1390,101.6869,5.0,NOW())
 -- ============================================================
+
+ USE `myposqrc_posretail`;
+
+ALTER TABLE `employee_face_attendance`
+ADD COLUMN IF NOT EXISTS `gps_accuracy` FLOAT DEFAULT NULL COMMENT 'Accuracy in metres' AFTER `longitude`;
 
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS `sp_mark_face_attendance`$$
 
 CREATE PROCEDURE `sp_mark_face_attendance`(
-    IN p_emp_id     INT,           -- INT — matches employee_attendance.emp_id
-    IN p_com_id     VARCHAR(50),
-    IN p_loc_id     VARCHAR(50),
-    IN p_source     VARCHAR(20),   -- 'face','fingerprint','web','mobile','manual'
-    IN p_method     VARCHAR(30),   -- 'face_scan','web_face_api','fp_device', etc.
-    IN p_liveness   TINYINT(1),
-    IN p_lat        DECIMAL(10,7),
-    IN p_lng        DECIMAL(10,7)
+    IN p_emp_id        INT,
+    IN p_com_id        INT,
+    IN p_loc_id        INT,
+    IN p_pm_id         INT,
+    IN p_action        VARCHAR(20),    -- MorningIn|BreakOut|BreakIn|EveningOut
+    IN p_source        VARCHAR(20),    -- face|fingerprint|web|mobile|manual
+    IN p_method        VARCHAR(30),
+    IN p_liveness      TINYINT(1),
+    IN p_lat           DECIMAL(10,7),
+    IN p_lng           DECIMAL(10,7),
+    IN p_gps_accuracy  FLOAT,
+    IN p_punchtime     DATETIME
 )
-BEGIN
-    DECLARE v_today    DATE     DEFAULT CURDATE();
-    DECLARE v_now      DATETIME DEFAULT NOW();
-    DECLARE v_att_id   INT      DEFAULT NULL;
-    DECLARE v_checkin  DATETIME DEFAULT NULL;
-    DECLARE v_checkout DATETIME DEFAULT NULL;
-    DECLARE v_work_hrs DECIMAL(5,2) DEFAULT 0;
-    DECLARE v_status   VARCHAR(20);
+proc_begin: BEGIN
+    DECLARE v_today DATE DEFAULT DATE(p_punchtime);
+    DECLARE v_att_id INT DEFAULT NULL;
+    DECLARE v_morning_in DATETIME;
+    DECLARE v_morning_out DATETIME;
+    DECLARE v_break_in DATETIME;
+    DECLARE v_evening_out DATETIME;
+    DECLARE v_total_morning DECIMAL(5,2) DEFAULT 0.00;
+    DECLARE v_total_break DECIMAL(5,2) DEFAULT 0.00;
+    DECLARE v_total_work DECIMAL(5,2) DEFAULT 0.00;
+    DECLARE v_status VARCHAR(20) DEFAULT 'present';
+    DECLARE v_profile_id INT DEFAULT NULL;
+    DECLARE v_check_in_end TIME DEFAULT '09:00:00';
 
-    IF TIME(v_now) > '09:00:00' THEN SET v_status = 'late';
-    ELSE SET v_status = 'present'; END IF;
+    -- Time profile per employee (latest effective profile)
+    SELECT etp.time_profile_id
+      INTO v_profile_id
+      FROM employee_time_profiles etp
+     WHERE etp.employee_id = p_emp_id
+       AND etp.effective_date <= v_today
+     ORDER BY etp.effective_date DESC
+     LIMIT 1;
 
-    -- Read today's record from employee_attendance (timing lives here)
-    SELECT att_id, morning_in, evening_out
-    INTO   v_att_id,  v_checkin,  v_checkout
-    FROM   employee_attendance
-    WHERE  emp_id = p_emp_id AND att_date = v_today
-    LIMIT  1;
-
-    IF v_att_id IS NULL OR v_checkin IS NULL THEN
-        -- ---- CHECK IN: write morning_in into employee_attendance ----
-        INSERT INTO employee_attendance
-            (emp_id, com_id, loc_id, att_date, morning_in, created_at, updated_at)
-        VALUES
-            (p_emp_id, p_com_id, p_loc_id, v_today, v_now, v_now, v_now)
-        ON DUPLICATE KEY UPDATE
-            morning_in = IF(morning_in IS NULL, v_now, morning_in),
-            com_id     = p_com_id,
-            loc_id     = p_loc_id,
-            updated_at = v_now;
-
-        SET v_att_id = IF(v_att_id IS NULL, LAST_INSERT_ID(), v_att_id);
-
-        -- Store face biometric metadata (NO timing columns)
-        INSERT INTO employee_face_attendance
-            (emp_id, att_id, com_id, loc_id, att_date,
-             att_source, att_method, liveness_pass, latitude, longitude)
-        VALUES
-            (p_emp_id, v_att_id, p_com_id, p_loc_id, v_today,
-             p_source,  p_method,  p_liveness,  p_lat,  p_lng)
-        ON DUPLICATE KEY UPDATE
-            att_id        = v_att_id,
-            att_source    = p_source,
-            att_method    = p_method,
-            liveness_pass = p_liveness,
-            latitude      = p_lat,
-            longitude     = p_lng;
-
-        SELECT 'checkin' AS action, v_status AS status, v_now AS time_marked;
-
-    ELSEIF v_checkout IS NULL THEN
-        -- ---- CHECK OUT: write evening_out into employee_attendance ----
-        SET v_work_hrs = ROUND(TIMESTAMPDIFF(MINUTE, v_checkin, v_now) / 60.0, 2);
-
-        UPDATE employee_attendance
-        SET evening_out      = v_now,
-            total_work_hours = v_work_hrs,
-            updated_at       = v_now
-        WHERE att_id = v_att_id;
-
-        -- Update face metadata source/location
-        UPDATE employee_face_attendance
-        SET att_source = p_source,
-            com_id     = p_com_id,
-            loc_id     = p_loc_id
-        WHERE att_id = v_att_id;
-
-        SELECT 'checkout' AS action, 'present' AS status, v_now AS time_marked,
-               v_work_hrs AS hours_worked;
-
-    ELSE
-        SELECT 'already_complete' AS action, 'present' AS status, v_checkin AS time_marked;
+    IF v_profile_id IS NOT NULL THEN
+        SELECT tp.check_in_end
+          INTO v_check_in_end
+          FROM time_profiles tp
+         WHERE tp.id = v_profile_id
+         LIMIT 1;
     END IF;
-END$$
+
+    -- Attendance status only for MorningIn
+    IF p_action = 'MorningIn' THEN
+        IF TIME(p_punchtime) > v_check_in_end THEN
+            SET v_status = 'late';
+        ELSE
+            SET v_status = 'present';
+        END IF;
+    END IF;
+
+    -- check if record exists for today
+    SELECT att_id, morning_in, morning_out, break_in, evening_out
+      INTO v_att_id, v_morning_in, v_morning_out, v_break_in, v_evening_out
+      FROM employee_attendance
+     WHERE emp_id = p_emp_id AND att_date = v_today
+     LIMIT 1;
+
+    -- if no record exists and action is MorningIn, insert
+    IF v_att_id IS NULL AND p_action = 'MorningIn' THEN
+        INSERT INTO employee_attendance (
+            emp_id, com_id, loc_id, pm_id, att_date, morning_in
+        ) VALUES (
+            p_emp_id, p_com_id, p_loc_id, p_pm_id, v_today, p_punchtime
+        );
+        SET v_att_id = LAST_INSERT_ID();
+
+    ELSEIF v_att_id IS NULL THEN
+        SELECT 'error' AS status,
+               'No morning punch record for today' AS message,
+               NULL AS attendanceId,
+               0 AS morningHours,
+               0 AS breakHours,
+               0 AS workHours;
+        LEAVE proc_begin;
+    END IF;
+
+    -- prevent duplicate punches
+    IF (p_action = 'MorningIn'  AND v_morning_in  IS NOT NULL) OR
+       (p_action = 'BreakOut'   AND v_morning_out IS NOT NULL) OR
+       (p_action = 'BreakIn'    AND v_break_in    IS NOT NULL) OR
+       (p_action = 'EveningOut' AND v_evening_out IS NOT NULL) THEN
+        SELECT 'already punched' AS status,
+               v_att_id AS attendanceId,
+               COALESCE(total_morning_hours,0) AS morningHours,
+               COALESCE(total_break_hours,0) AS breakHours,
+               COALESCE(total_work_hours,0) AS workHours
+          FROM employee_attendance
+         WHERE att_id = v_att_id;
+        LEAVE proc_begin;
+    END IF;
+
+    -- update fields by action
+    IF p_action = 'MorningIn' THEN
+        UPDATE employee_attendance SET morning_in = p_punchtime WHERE att_id = v_att_id;
+    ELSEIF p_action = 'BreakOut' THEN
+        UPDATE employee_attendance SET morning_out = p_punchtime WHERE att_id = v_att_id;
+    ELSEIF p_action = 'BreakIn' THEN
+        UPDATE employee_attendance SET break_in = p_punchtime WHERE att_id = v_att_id;
+    ELSEIF p_action = 'EveningOut' THEN
+        UPDATE employee_attendance SET evening_out = p_punchtime WHERE att_id = v_att_id;
+    ELSE
+        SELECT 'error' AS status,
+               CONCAT('Unknown action: ', p_action) AS message,
+               v_att_id AS attendanceId,
+               0 AS morningHours,
+               0 AS breakHours,
+               0 AS workHours;
+        LEAVE proc_begin;
+    END IF;
+
+    -- recalc totals
+    SELECT morning_in, morning_out, break_in, evening_out
+      INTO v_morning_in, v_morning_out, v_break_in, v_evening_out
+      FROM employee_attendance
+     WHERE att_id = v_att_id;
+
+    IF v_morning_in IS NOT NULL AND v_morning_out IS NOT NULL THEN
+        SET v_total_morning = TIMESTAMPDIFF(MINUTE, v_morning_in, v_morning_out) / 60;
+    END IF;
+
+    IF v_morning_out IS NOT NULL AND v_break_in IS NOT NULL THEN
+        SET v_total_break = TIMESTAMPDIFF(MINUTE, v_morning_out, v_break_in) / 60;
+    END IF;
+
+    IF v_morning_in IS NOT NULL AND v_evening_out IS NOT NULL THEN
+        SET v_total_work = (TIMESTAMPDIFF(MINUTE, v_morning_in, v_evening_out) / 60) - v_total_break;
+    END IF;
+
+    UPDATE employee_attendance
+       SET total_morning_hours = v_total_morning,
+           total_break_hours = v_total_break,
+           total_work_hours = v_total_work,
+           updated_at = NOW()
+     WHERE att_id = v_att_id;
+
+    -- always upsert face metadata for the attendance row
+    INSERT INTO employee_face_attendance (
+        emp_id, att_id, com_id, loc_id, att_date,
+        att_source, att_method, liveness_pass, latitude, longitude, gps_accuracy
+    ) VALUES (
+        p_emp_id, v_att_id, p_com_id, p_loc_id, v_today,
+        p_source, p_method, p_liveness, p_lat, p_lng, p_gps_accuracy
+    )
+    ON DUPLICATE KEY UPDATE
+        att_id        = v_att_id,
+        com_id        = p_com_id,
+        loc_id        = p_loc_id,
+        att_source    = p_source,
+        att_method    = p_method,
+        liveness_pass = p_liveness,
+        latitude      = p_lat,
+        longitude     = p_lng,
+        gps_accuracy  = p_gps_accuracy;
+
+    SELECT 'success' AS status,
+           p_action AS action,
+           v_status AS attendance_status,
+           v_att_id AS attendanceId,
+           v_total_morning AS morningHours,
+           v_total_break AS breakHours,
+           v_total_work AS workHours;
+
+END proc_begin$$
 
 DELIMITER ;
 

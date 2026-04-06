@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // ---------- API Key validation ----------
 define('FACE_API_KEY', 'face_attendance_secret_2024');
 
-function getRequestHeader($name) {
+function getRequestHeader($name)
+{
     $key = 'HTTP_' . strtoupper(str_replace('-', '_', $name));
     return $_SERVER[$key] ?? ($_SERVER['HTTP_' . strtoupper($name)] ?? null);
 }
@@ -47,19 +48,25 @@ require_once 'clsfunctionfaceattendance.php';
 $fa = new FaceAttendanceFunc();
 
 // ---------- Helpers ----------
-function jsonBody() {
+function jsonBody()
+{
     $raw = file_get_contents('php://input');
     return $raw ? (json_decode($raw, true) ?? []) : [];
 }
 
-function rows($result) {
+function rows($result)
+{
     $out = [];
     if ($result) while ($r = mysqli_fetch_assoc($result)) $out[] = $r;
     return $out;
 }
 
-function ok($data)  { echo json_encode(['success' => true,  'data' => $data]); }
-function fail($msg, $code = 400) {
+function ok($data)
+{
+    echo json_encode(['success' => true,  'data' => $data]);
+}
+function fail($msg, $code = 400)
+{
     http_response_code($code);
     echo json_encode(['success' => false, 'message' => $msg]);
 }
@@ -76,7 +83,19 @@ switch ($endpoint) {
     // POST ?endpoint=auth  { action: "admin_login"|"pin_login", ... }
     // ============================================================
     case 'auth':
-        if ($method !== 'POST') { fail('POST required'); break; }
+        if ($method === 'GET') {
+            if (($_GET['action'] ?? '') === 'admin_users') {
+                $res = $fa->getAdminUsers($_GET['com_id'] ?? null, $_GET['loc_id'] ?? null);
+                ok(rows($res));
+            } else {
+                fail('Unknown auth action', 400);
+            }
+            break;
+        }
+        if ($method !== 'POST') {
+            fail('POST required');
+            break;
+        }
         $action = $body['action'] ?? '';
         if ($action === 'admin_login') {
             $user = $fa->adminLogin($body['username'] ?? '', $body['password'] ?? '');
@@ -114,7 +133,10 @@ switch ($endpoint) {
     // GET  ?endpoint=employees&id=EMP001
     // ============================================================
     case 'employees':
-        if ($method !== 'GET') { fail('GET required'); break; }
+        if ($method !== 'GET') {
+            fail('GET required');
+            break;
+        }
         if (!empty($_GET['id'])) {
             $emp = $fa->getEmployee($_GET['id']);
             $emp ? ok($emp) : fail('Employee not found', 404);
@@ -152,12 +174,22 @@ switch ($endpoint) {
             $com_id    = $body['com_id']    ?? '';
             $loc_id    = $body['loc_id']    ?? '';
             $replace   = (bool)($body['replace'] ?? true);
-            if (!$emp_id || !$encodings) { fail('emp_id and encodings required'); break; }
-            $ok = $fa->saveFaceEncodings($emp_id, $com_id, $loc_id, $encodings, $replace);
-            $ok ? ok(['saved' => true]) : fail('Failed to save face encodings');
+            if (!$emp_id || !$encodings) {
+                fail('emp_id and encodings required');
+                break;
+            }
+            $result = $fa->saveFaceEncodings($emp_id, $com_id, $loc_id, $encodings, $replace);
+            if (!empty($result['success'])) {
+                ok($result);
+            } else {
+                fail('Failed to save face encodings: ' . ($result['message'] ?? 'Unknown error'));
+            }
         } elseif ($method === 'DELETE') {
             $eid = $body['id'] ?? $_GET['id'] ?? '';
-            if (!$eid) { fail('id required'); break; }
+            if (!$eid) {
+                fail('id required');
+                break;
+            }
             $ok = $fa->deleteFaceEncodings($eid);
             $ok ? ok(['deleted' => true]) : fail('Failed to delete face encodings');
         } else {
@@ -186,21 +218,36 @@ switch ($endpoint) {
             $emp_id = $body['emp_id'] ?? '';
             $com_id = $body['com_id'] ?? '';
             $loc_id = $body['loc_id'] ?? '';
-            if (!$emp_id) { fail('emp_id required'); break; }
+            if (!$emp_id) {
+                fail('emp_id required');
+                break;
+            }
 
             if ($action === 'checkin') {
                 $result = $fa->checkIn(
-                    $emp_id, $com_id, $loc_id,
+                    $emp_id,
+                    $com_id,
+                    $loc_id,
                     $body['source']        ?? 'face',
                     $body['method']        ?? 'face_scan',
                     $body['liveness_pass'] ?? 1,
                     $body['latitude']      ?? null,
-                    $body['longitude']     ?? null
+                    $body['longitude']     ?? null,
+                    $body['gps_accuracy']  ?? null
                 );
                 ok($result);
             } elseif ($action === 'checkout') {
-                $result = $fa->checkOut($emp_id, $com_id, $loc_id,
-                                        $body['source'] ?? 'face');
+                $result = $fa->checkOut(
+                    $emp_id,
+                    $com_id,
+                    $loc_id,
+                    $body['source']        ?? 'face',
+                    $body['method']        ?? 'face_scan',
+                    $body['liveness_pass'] ?? 1,
+                    $body['latitude']      ?? null,
+                    $body['longitude']     ?? null,
+                    $body['gps_accuracy']  ?? null
+                );
                 ok($result);
             } else {
                 fail('action must be checkin or checkout');
@@ -215,7 +262,10 @@ switch ($endpoint) {
     // GET ?endpoint=stats[&com_id=&loc_id=]
     // ============================================================
     case 'stats':
-        if ($method !== 'GET') { fail('GET required'); break; }
+        if ($method !== 'GET') {
+            fail('GET required');
+            break;
+        }
         $data = $fa->getStats($_GET['com_id'] ?? null, $_GET['loc_id'] ?? null);
         ok($data);
         break;
@@ -225,7 +275,10 @@ switch ($endpoint) {
     // GET ?endpoint=branches[&com_id=]
     // ============================================================
     case 'branches':
-        if ($method !== 'GET') { fail('GET required'); break; }
+        if ($method !== 'GET') {
+            fail('GET required');
+            break;
+        }
         $res = $fa->getBranches($_GET['com_id'] ?? null);
         ok(rows($res));
         break;
@@ -235,7 +288,10 @@ switch ($endpoint) {
     // GET ?endpoint=locations[&branch=]
     // ============================================================
     case 'locations':
-        if ($method !== 'GET') { fail('GET required'); break; }
+        if ($method !== 'GET') {
+            fail('GET required');
+            break;
+        }
         $res = $fa->getLocations($_GET['branch'] ?? null);
         ok(rows($res));
         break;

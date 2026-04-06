@@ -6,7 +6,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import threading
-import requests
 
 from config import *
 from api_client import APIClient
@@ -16,6 +15,7 @@ class LoginScreen(tk.Frame):
     def __init__(self, parent, on_success):
         super().__init__(parent, bg=THEME_COLOR)
         self.on_success = on_success
+        self.admin_users = []
         self._build_ui()
 
     def _build_ui(self):
@@ -56,8 +56,15 @@ class LoginScreen(tk.Frame):
         tk.Label(self.admin_frame, text="USERNAME", font=FONT_SMALL,
                  bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
         self.user_var = tk.StringVar()
-        ttk.Entry(self.admin_frame, textvariable=self.user_var,
-                  font=FONT_NORMAL, width=36).pack(fill="x", ipady=4, pady=(2, 10))
+        self.user_combo = ttk.Combobox(
+            self.admin_frame,
+            textvariable=self.user_var,
+            font=FONT_NORMAL,
+            width=34,
+            state="readonly",
+            values=[],
+        )
+        self.user_combo.pack(fill="x", ipady=4, pady=(2, 10))
 
         tk.Label(self.admin_frame, text="PASSWORD", font=FONT_SMALL,
                  bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
@@ -103,6 +110,7 @@ class LoginScreen(tk.Frame):
         if tab == "admin":
             self.device_frame.pack_forget()
             self.admin_frame.pack(fill="x")
+            self._load_admin_users()
         else:
             self.admin_frame.pack_forget()
             self.device_frame.pack(fill="x")
@@ -112,23 +120,45 @@ class LoginScreen(tk.Frame):
         self.status_var.set("Signing in…")
         threading.Thread(target=self._login_thread, daemon=True).start()
 
+    def _load_admin_users(self):
+        self.status_var.set("Loading users…")
+        self.login_btn.config(state="disabled")
+        threading.Thread(target=self._load_admin_users_thread, daemon=True).start()
+
+    def _load_admin_users_thread(self):
+        data = APIClient.get_admin_users()
+        if data.get("success"):
+            users = data.get("data", [])
+            self.after(0, lambda: self._set_admin_users(users))
+        else:
+            self.after(0, lambda: self._load_users_failed(data.get("message", "Failed to load users")))
+
+    def _set_admin_users(self, users):
+        self.admin_users = users
+        usernames = [u.get("username", "") for u in users if u.get("username")]
+        self.user_combo["values"] = usernames
+        if usernames and not self.user_var.get():
+            self.user_var.set(usernames[0])
+        self.status_var.set("")
+        self.login_btn.config(state="normal")
+
+    def _load_users_failed(self, msg):
+        self.status_var.set(f"⚠ {msg}")
+        self.login_btn.config(state="normal")
+
     def _login_thread(self):
         tab = self.tab_var.get()
         try:
             if tab == "admin":
-                r = requests.post(ENDPOINTS["auth"], json={
-                    "action":   "admin_login",
-                    "username": self.user_var.get().strip(),
-                    "password": self.pass_var.get(),
-                }, timeout=10)
-                data = r.json()
+                data = APIClient.admin_login(
+                    self.user_var.get().strip(),
+                    self.pass_var.get(),
+                )
             else:
-                r = requests.post(ENDPOINTS["auth"], json={
-                    "action": "pin_login",
-                    "loc_id": self.loc_var.get().strip().upper(),
-                    "pin":    self.pin_var.get(),
-                }, timeout=10)
-                data = r.json()
+                data = APIClient.pin_login(
+                    self.loc_var.get().strip().upper(),
+                    self.pin_var.get(),
+                )
         except Exception as e:
             self.after(0, lambda: self._login_fail(str(e)))
             return
@@ -139,20 +169,16 @@ class LoginScreen(tk.Frame):
             self.after(0, lambda: self._login_fail(data.get("message", "Unknown error")))
 
     def _login_ok(self, data):
-        token = data["data"]["token"]
-        ctx   = data["data"].get("user") or data["data"].get("location") or {}
+        ctx   = data.get("data") or {}
+        token = ctx.get("token", "")
 
         # Save to SESSION
         SESSION["token"]     = token
-        SESSION["username"]  = ctx.get("username") or ctx.get("loc_name") or ""
+        SESSION["username"]  = ctx.get("username") or ""
         SESSION["com_id"]    = ctx.get("com_id",    DEFAULT_COM_ID)
-        SESSION["branch_id"] = ctx.get("branch_id") or ""
+        SESSION["branch_id"] = ctx.get("branch_id") or ctx.get("com_id") or ""
         SESSION["loc_id"]    = ctx.get("loc_id")    or ""
         SESSION["role"]      = ctx.get("role",      "admin")
-
-        # Update API client headers
-        from api_client import APIClient
-        APIClient.HEADERS["Authorization"] = f"Bearer {token}"
 
         self.status_var.set("")
         self.on_success(ctx)
@@ -160,3 +186,7 @@ class LoginScreen(tk.Frame):
     def _login_fail(self, msg):
         self.status_var.set(f"⚠ {msg}")
         self.login_btn.config(state="normal")
+
+    def on_show(self):
+        if self.tab_var.get() == "admin":
+            self._load_admin_users()
