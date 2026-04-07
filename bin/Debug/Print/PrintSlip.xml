@@ -5,86 +5,86 @@
     <EmpTrId>0</EmpTrId>
     <EmpRefId>1</EmpRefId>
     <EmpName>RAJKUMAR</EmpName>
-    <EmpMonth>Jan-2026</EmpMonth>
+    <EmpMonth>Apr-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
     <EmpLocId>1</EmpLocId>
     <EmpLocName>BANGSAR</EmpLocName>
     <EmpBasic>3000</EmpBasic>
-    <EmpNoOfDays>31</EmpNoOfDays>
-    <EmpWages>3100</EmpWages>
-    <EmpExtraDays>0</EmpExtraDays>
-    <EmpExtraDayAmt>0</EmpExtraDayAmt>
+    <EmpNoOfDays>30</EmpNoOfDays>
+    <EmpWages>3000</EmpWages>
+    <EmpExtraDays>1</EmpExtraDays>
+    <EmpExtraDayAmt>100</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
     <EmpAllowance>1000</EmpAllowance>
-    <EmpSalesAllowance>300</EmpSalesAllowance>
-    <EmpSalesCommission>211.4</EmpSalesCommission>
-    <EmpGrossAmt>4611.4</EmpGrossAmt>
-    <EmpAdvance>600</EmpAdvance>
+    <EmpSalesAllowance>0</EmpSalesAllowance>
+    <EmpSalesCommission>33.8</EmpSalesCommission>
+    <EmpGrossAmt>4133.8</EmpGrossAmt>
+    <EmpAdvance>200</EmpAdvance>
     <EmpEpf>100</EmpEpf>
     <EmpSocso>50</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>3862</EmpNetPay>
+    <EmpNetPay>3784</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>3862</EmpNetCash>
+    <EmpNetCash>3784</EmpNetCash>
   </FinalMonth>
   <FinalMonth>
     <SNo>2</SNo>
     <EmpTrId>0</EmpTrId>
     <EmpRefId>3</EmpRefId>
     <EmpName>PRAVEEN</EmpName>
-    <EmpMonth>Jan-2026</EmpMonth>
+    <EmpMonth>Apr-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
     <EmpLocId>1</EmpLocId>
     <EmpLocName>BANGSAR</EmpLocName>
     <EmpBasic>4000</EmpBasic>
-    <EmpNoOfDays>31</EmpNoOfDays>
-    <EmpWages>4133.23</EmpWages>
+    <EmpNoOfDays>30</EmpNoOfDays>
+    <EmpWages>3999.9</EmpWages>
     <EmpExtraDays>0</EmpExtraDays>
     <EmpExtraDayAmt>0</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
     <EmpAllowance>300</EmpAllowance>
     <EmpSalesAllowance>0</EmpSalesAllowance>
-    <EmpSalesCommission>141</EmpSalesCommission>
-    <EmpGrossAmt>4574.23</EmpGrossAmt>
-    <EmpAdvance>150</EmpAdvance>
+    <EmpSalesCommission>33.5</EmpSalesCommission>
+    <EmpGrossAmt>4333.4</EmpGrossAmt>
+    <EmpAdvance>0</EmpAdvance>
     <EmpEpf>200</EmpEpf>
     <EmpSocso>100</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>4125</EmpNetPay>
+    <EmpNetPay>4034</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>4125</EmpNetCash>
+    <EmpNetCash>4034</EmpNetCash>
   </FinalMonth>
   <FinalMonth>
     <SNo>3</SNo>
     <EmpTrId>0</EmpTrId>
     <EmpRefId>21</EmpRefId>
     <EmpName>GOPAL</EmpName>
-    <EmpMonth>Jan-2026</EmpMonth>
+    <EmpMonth>Apr-2026</EmpMonth>
     <EmpComId>1</EmpComId>
     <EmpComName>MESHAS BARBERSHOP</EmpComName>
     <EmpLocId>1</EmpLocId>
     <EmpLocName>BANGSAR</EmpLocName>
     <EmpBasic>6000</EmpBasic>
-    <EmpNoOfDays>31</EmpNoOfDays>
-    <EmpWages>6200</EmpWages>
+    <EmpNoOfDays>30</EmpNoOfDays>
+    <EmpWages>6000</EmpWages>
     <EmpExtraDays>0</EmpExtraDays>
     <EmpExtraDayAmt>0</EmpExtraDayAmt>
     <EmpExtraOtHrs>0</EmpExtraOtHrs>
     <EmpExtraOtAmt>0</EmpExtraOtAmt>
     <EmpAllowance>500</EmpAllowance>
     <EmpSalesAllowance>0</EmpSalesAllowance>
-    <EmpSalesCommission>0</EmpSalesCommission>
-    <EmpGrossAmt>6700</EmpGrossAmt>
-    <EmpAdvance>0</EmpAdvance>
+    <EmpSalesCommission>6.5</EmpSalesCommission>
+    <EmpGrossAmt>6506.5</EmpGrossAmt>
+    <EmpAdvance>50</EmpAdvance>
     <EmpEpf>300</EmpEpf>
     <EmpSocso>150</EmpSocso>
     <EmpDeduction>0</EmpDeduction>
-    <EmpNetPay>6250</EmpNetPay>
+    <EmpNetPay>6007</EmpNetPay>
     <EmpBank>0</EmpBank>
-    <EmpNetCash>6250</EmpNetCash>
+    <EmpNetCash>6007</EmpNetCash>
   </FinalMonth>
 </DocumentElement>
