@@ -240,3 +240,5 @@ D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailW
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.application
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmAudit.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmGenerateTaxReport.resources
+D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmAudit.resources
+D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmGenerateTaxReport.resources

@@ -2320,6 +2320,17 @@ Public Class PosSalesII
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub ClearNewBill()
+        Try
+            ClearCurrentBill()
+
+            ' Set focus to search field for quick item entry
+            cmbMaterialSearch.Focus()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Dim billPrefix As String = "Inv"
     ' Helper method to clear current bill and reset form
     Private Sub ClearCurrentBill()
@@ -3426,7 +3437,7 @@ Public Class PosSalesII
                         frmMsgBox.ShowDialogData(msgData.ToString)
                         ' _CashDraw.OpenCashdrawer(True)
                         'DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Saved Success.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        barbtnNewBill_ItemClick(Nothing, Nothing)
+                        ClearNewBill()
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Order Not Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -3546,7 +3557,7 @@ Public Class PosSalesII
                         Dim frmMsgBox As New frmMsgBoxOkOnly
                         Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Hold Updated - " & ReturnBill
                         frmMsgBox.ShowDialogData(msgData.ToString)
-                        barbtnNewBill_ItemClick(Nothing, Nothing)
+                        ClearNewBill()
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Hold Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Return False
@@ -3769,7 +3780,7 @@ Public Class PosSalesII
                             End If
                             Dim frmMsgBox As New frmMsgBoxOkOnly
                             Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved - " & ReturnBill
-                            barbtnNewBill_ItemClick(Nothing, Nothing)
+                            ClearNewBill()
                             frmMsgBox.ShowDialogData(msgData.ToString)
 
 
@@ -3951,7 +3962,7 @@ Public Class PosSalesII
                             Dim frmMsgBox As New frmMsgBoxOkOnly
                             Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Updated - " & ReturnBill
                             frmMsgBox.ShowDialogData(msgData.ToString)
-                            barbtnNewBill_ItemClick(Nothing, Nothing)
+                            ClearNewBill()
                         Else
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & " Bill Not Updated", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             Return False
