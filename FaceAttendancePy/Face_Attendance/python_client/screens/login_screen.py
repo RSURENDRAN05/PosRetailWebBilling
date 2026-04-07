@@ -1,11 +1,12 @@
 # ============================================================
-# Login Screen — Admin + Device PIN tabs
-# Sets SESSION context (com_id, branch_id, loc_id, token)
+# Login Screen — Split-panel design
+# Left: branding panel  |  Right: login form
 # ============================================================
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 import threading
+import datetime
 
 from config import *
 from api_client import APIClient
@@ -14,99 +15,177 @@ from api_client import APIClient
 class LoginScreen(tk.Frame):
     def __init__(self, parent, on_success):
         super().__init__(parent, bg=THEME_COLOR)
-        self.on_success = on_success
+        self.on_success  = on_success
         self.admin_users = []
+        self._clock_job  = None
         self._build_ui()
 
+    # ---- Layout --------------------------------------------
+
     def _build_ui(self):
-        # Center card
-        outer = tk.Frame(self, bg=THEME_COLOR)
-        outer.pack(fill="both", expand=True)
-        outer.grid_rowconfigure(0, weight=1)
-        outer.grid_columnconfigure(0, weight=1)
+        # ---- Left branding panel -------------------------
+        left = tk.Frame(self, bg=THEME_COLOR, width=380)
+        left.pack(side="left", fill="y")
+        left.pack_propagate(False)
 
-        card = tk.Frame(outer, bg=CARD_COLOR, padx=32, pady=28,
-                        highlightbackground="#DDE1E7", highlightthickness=1)
-        card.place(relx=0.5, rely=0.5, anchor="center", width=420)
+        inner_left = tk.Frame(left, bg=THEME_COLOR)
+        inner_left.place(relx=0.5, rely=0.46, anchor="center")
 
-        # Logo
-        tk.Label(card, text="🎯", font=("Segoe UI", 40), bg=CARD_COLOR).pack()
-        tk.Label(card, text=APP_TITLE, font=FONT_LARGE,
-                 bg=CARD_COLOR, fg=THEME_COLOR).pack(pady=(4, 2))
-        tk.Label(card, text=f"v{APP_VERSION}", font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(pady=(0, 16))
+        tk.Label(inner_left, text="🎯", font=("Segoe UI", 56),
+                 bg=THEME_COLOR, fg="white").pack(pady=(0, 18))
+        tk.Label(inner_left, text=APP_TITLE,
+                 font=("Segoe UI", 20, "bold"),
+                 bg=THEME_COLOR, fg="white").pack()
+        tk.Label(inner_left,
+                 text="Smart Face Recognition\nAttendance Management",
+                 font=("Segoe UI", 10), bg=THEME_COLOR, fg="#A8BDD0",
+                 justify="center").pack(pady=(8, 30))
 
-        # Tab switcher
-        tab_frame = tk.Frame(card, bg=BG_COLOR, bd=0)
-        tab_frame.pack(fill="x", pady=(0, 16))
+        # Feature bullets
+        for icon, feat in [
+            ("✅", "Real-time Face Detection"),
+            ("📊", "Instant Attendance Reports"),
+            ("🔒", "Secure Admin Access"),
+            ("☁",  "Cloud-Synced Data"),
+        ]:
+            row = tk.Frame(inner_left, bg=THEME_COLOR)
+            row.pack(anchor="w", pady=3)
+            tk.Label(row, text=icon, font=("Segoe UI", 10),
+                     bg=THEME_COLOR, fg="white").pack(side="left", padx=(0, 10))
+            tk.Label(row, text=feat, font=("Segoe UI", 10),
+                     bg=THEME_COLOR, fg="#B8CAD8").pack(side="left")
+
+        # Version + live clock at the bottom
+        self.clock_lbl = tk.Label(left, text="", font=("Segoe UI", 9),
+                                  bg=THEME_COLOR, fg="#5A7C96")
+        self.clock_lbl.pack(side="bottom", pady=(0, 12))
+        tk.Label(left, text=f"v{APP_VERSION}", font=("Segoe UI", 9),
+                 bg=THEME_COLOR, fg="#4A6C84").pack(side="bottom")
+
+        # Thin right border on left panel
+        tk.Frame(self, bg=BORDER_COLOR, width=1).pack(side="left", fill="y")
+
+        # ---- Right form panel ----------------------------
+        right = tk.Frame(self, bg=BG_COLOR)
+        right.pack(side="left", fill="both", expand=True)
+
+        form_card = tk.Frame(right, bg=CARD_COLOR,
+                             highlightbackground=BORDER_COLOR,
+                             highlightthickness=1)
+        form_card.place(relx=0.5, rely=0.5, anchor="center", width=390)
+
+        tk.Label(form_card, text="Welcome Back",
+                 font=("Segoe UI", 20, "bold"),
+                 bg=CARD_COLOR, fg=TEXT_COLOR).pack(pady=(28, 2))
+        tk.Label(form_card, text="Sign in to continue",
+                 font=("Segoe UI", 10), bg=CARD_COLOR,
+                 fg=MUTED_COLOR).pack(pady=(0, 18))
+
+        # ---- Tab switcher (pill style) -------------------
+        tab_bg = tk.Frame(form_card, bg="#F1F5F9", padx=4, pady=4)
+        tab_bg.pack(fill="x", padx=24, pady=(0, 20))
+
         self.tab_var = tk.StringVar(value="admin")
+        self._tab_btns = {}
         for t, lbl in [("admin", "Admin Login"), ("device", "Device PIN")]:
-            v = t
-            tk.Radiobutton(tab_frame, text=lbl, variable=self.tab_var, value=v,
-                           font=FONT_NORMAL, bg=BG_COLOR, command=self._switch_tab,
-                           indicatoron=0, padx=12, pady=6,
-                           selectcolor=THEME_COLOR, fg=MUTED_COLOR,
-                           activebackground=THEME_COLOR, activeforeground="white"
-                           ).pack(side="left", expand=True, fill="x")
+            btn = tk.Button(
+                tab_bg, text=lbl, font=FONT_NORMAL,
+                relief="flat", cursor="hand2",
+                command=lambda v=t: self._switch_tab_to(v)
+            )
+            btn.pack(side="left", expand=True, fill="x", padx=2, pady=2, ipady=5)
+            self._tab_btns[t] = btn
+        self._highlight_tab("admin")
 
-        # Admin fields
-        self.admin_frame = tk.Frame(card, bg=CARD_COLOR)
+        # ---- Admin fields --------------------------------
+        self.form_area = tk.Frame(form_card, bg=CARD_COLOR)
+        self.form_area.pack(fill="x", padx=24)
+
+        self.admin_frame = tk.Frame(self.form_area, bg=CARD_COLOR)
         self.admin_frame.pack(fill="x")
 
-        tk.Label(self.admin_frame, text="USERNAME", font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
+        self._field_label(self.admin_frame, "USERNAME")
         self.user_var = tk.StringVar()
         self.user_combo = ttk.Combobox(
-            self.admin_frame,
-            textvariable=self.user_var,
-            font=FONT_NORMAL,
-            width=34,
-            state="readonly",
-            values=[],
+            self.admin_frame, textvariable=self.user_var,
+            font=FONT_NORMAL, width=36, state="readonly", values=[]
         )
-        self.user_combo.pack(fill="x", ipady=4, pady=(2, 10))
+        self.user_combo.pack(fill="x", ipady=5, pady=(2, 14))
 
-        tk.Label(self.admin_frame, text="PASSWORD", font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
+        self._field_label(self.admin_frame, "PASSWORD")
         self.pass_var = tk.StringVar()
-        ttk.Entry(self.admin_frame, textvariable=self.pass_var,
-                  font=FONT_NORMAL, show="•", width=36).pack(fill="x", ipady=4, pady=(2, 16))
+        self.pass_entry = ttk.Entry(
+            self.admin_frame, textvariable=self.pass_var,
+            font=FONT_NORMAL, show="•", width=36
+        )
+        self.pass_entry.pack(fill="x", ipady=5, pady=(2, 0))
+        self.pass_entry.bind("<Return>", lambda _e: self._do_login())
 
-        # Device PIN fields
-        self.device_frame = tk.Frame(card, bg=CARD_COLOR)
+        # ---- Device PIN fields ---------------------------
+        self.device_frame = tk.Frame(self.form_area, bg=CARD_COLOR)
 
-        tk.Label(self.device_frame, text="LOCATION ID", font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
+        self._field_label(self.device_frame, "LOCATION ID")
         self.loc_var = tk.StringVar()
         ttk.Entry(self.device_frame, textvariable=self.loc_var,
-                  font=FONT_NORMAL, width=36).pack(fill="x", ipady=4, pady=(2, 10))
+                  font=FONT_NORMAL, width=36).pack(fill="x", ipady=5, pady=(2, 14))
 
-        tk.Label(self.device_frame, text="DEVICE PIN", font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
+        self._field_label(self.device_frame, "DEVICE PIN")
         self.pin_var = tk.StringVar()
-        ttk.Entry(self.device_frame, textvariable=self.pin_var,
-                  font=FONT_NORMAL, show="•", width=36).pack(fill="x", ipady=4, pady=(2, 16))
+        pin_entry = ttk.Entry(self.device_frame, textvariable=self.pin_var,
+                              font=FONT_NORMAL, show="•", width=36)
+        pin_entry.pack(fill="x", ipady=5, pady=(2, 0))
+        pin_entry.bind("<Return>", lambda _e: self._do_login())
 
-        # Status
+        # ---- Status + Login button -----------------------
         self.status_var = tk.StringVar(value="")
-        tk.Label(card, textvariable=self.status_var, font=FONT_SMALL,
-                 bg=CARD_COLOR, fg=DANGER_COLOR, wraplength=340).pack()
+        tk.Label(form_card, textvariable=self.status_var, font=FONT_SMALL,
+                 bg=CARD_COLOR, fg=DANGER_COLOR, wraplength=340).pack(pady=(10, 0))
 
-        # Login button
         self.login_btn = tk.Button(
-            card, text="🔓  Sign In", font=FONT_MEDIUM,
+            form_card, text="Sign In  →",
+            font=("Segoe UI", 12, "bold"),
             bg=ACCENT_COLOR, fg="white", relief="flat",
-            padx=16, pady=10, cursor="hand2",
+            padx=16, pady=12, cursor="hand2",
             command=self._do_login
         )
-        self.login_btn.pack(fill="x", pady=(12, 0))
+        self.login_btn.pack(fill="x", padx=24, pady=(12, 28))
+        self.login_btn.bind("<Enter>",
+            lambda _e: self.login_btn.configure(bg=self._darken(ACCENT_COLOR)))
+        self.login_btn.bind("<Leave>",
+            lambda _e: self.login_btn.configure(bg=ACCENT_COLOR))
 
-        # Bind Enter
-        for widget in [self.user_var, self.pass_var, self.pin_var]:
-            card.bind("<Return>", lambda e: self._do_login())
+        self._tick_clock()
 
-    def _switch_tab(self):
-        tab = self.tab_var.get()
+    # ---- Helpers -------------------------------------------
+
+    @staticmethod
+    def _field_label(parent, text):
+        tk.Label(parent, text=text, font=("Segoe UI", 9, "bold"),
+                 bg=CARD_COLOR, fg=MUTED_COLOR).pack(anchor="w")
+
+    @staticmethod
+    def _darken(hex_color, factor=0.85):
+        h = hex_color.lstrip("#")
+        r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+        return f"#{int(r*factor):02x}{int(g*factor):02x}{int(b*factor):02x}"
+
+    def _tick_clock(self):
+        now = datetime.datetime.now().strftime("%A, %d %B %Y  •  %H:%M:%S")
+        self.clock_lbl.configure(text=now)
+        self._clock_job = self.after(1000, self._tick_clock)
+
+    def _highlight_tab(self, active):
+        for key, btn in self._tab_btns.items():
+            if key == active:
+                btn.configure(bg=CARD_COLOR, fg=THEME_COLOR,
+                              font=("Segoe UI", 11, "bold"))
+            else:
+                btn.configure(bg="#F1F5F9", fg=MUTED_COLOR,
+                              font=FONT_NORMAL)
+
+    def _switch_tab_to(self, tab):
+        self.tab_var.set(tab)
+        self._highlight_tab(tab)
         if tab == "admin":
             self.device_frame.pack_forget()
             self.admin_frame.pack(fill="x")
@@ -115,9 +194,11 @@ class LoginScreen(tk.Frame):
             self.admin_frame.pack_forget()
             self.device_frame.pack(fill="x")
 
+    # ---- Auth logic ----------------------------------------
+
     def _do_login(self):
-        self.login_btn.config(state="disabled")
-        self.status_var.set("Signing in…")
+        self.login_btn.config(state="disabled", text="Signing in…")
+        self.status_var.set("")
         threading.Thread(target=self._login_thread, daemon=True).start()
 
     def _load_admin_users(self):
@@ -131,7 +212,8 @@ class LoginScreen(tk.Frame):
             users = data.get("data", [])
             self.after(0, lambda: self._set_admin_users(users))
         else:
-            self.after(0, lambda: self._load_users_failed(data.get("message", "Failed to load users")))
+            self.after(0, lambda: self._load_users_failed(
+                data.get("message", "Failed to load users")))
 
     def _set_admin_users(self, users):
         self.admin_users = users
@@ -143,7 +225,7 @@ class LoginScreen(tk.Frame):
         self.login_btn.config(state="normal")
 
     def _load_users_failed(self, msg):
-        self.status_var.set(f"⚠ {msg}")
+        self.status_var.set(f"⚠  {msg}")
         self.login_btn.config(state="normal")
 
     def _login_thread(self):
@@ -166,13 +248,13 @@ class LoginScreen(tk.Frame):
         if data.get("success"):
             self.after(0, lambda: self._login_ok(data))
         else:
-            self.after(0, lambda: self._login_fail(data.get("message", "Unknown error")))
+            self.after(0, lambda: self._login_fail(
+                data.get("message", "Unknown error")))
 
     def _login_ok(self, data):
         ctx   = data.get("data") or {}
         token = ctx.get("token", "")
 
-        # Save to SESSION
         SESSION["token"]     = token
         SESSION["username"]  = ctx.get("username") or ""
         SESSION["com_id"]    = ctx.get("com_id",    DEFAULT_COM_ID)
@@ -181,12 +263,20 @@ class LoginScreen(tk.Frame):
         SESSION["role"]      = ctx.get("role",      "admin")
 
         self.status_var.set("")
+        self.login_btn.config(text="Sign In  →", state="normal")
         self.on_success(ctx)
 
     def _login_fail(self, msg):
-        self.status_var.set(f"⚠ {msg}")
-        self.login_btn.config(state="normal")
+        self.status_var.set(f"⚠  {msg}")
+        self.login_btn.config(state="normal", text="Sign In  →")
+
+    # ---- Lifecycle -----------------------------------------
 
     def on_show(self):
         if self.tab_var.get() == "admin":
             self._load_admin_users()
+
+    def on_hide(self):
+        if self._clock_job:
+            self.after_cancel(self._clock_job)
+            self._clock_job = None

@@ -6,7 +6,7 @@
 # ============================================================
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 import threading
 import cv2
 from PIL import Image, ImageTk
@@ -14,6 +14,7 @@ from PIL import Image, ImageTk
 from config import *
 from api_client import APIClient
 from face_utils import capture_face_encodings, CameraStream, encode_frame, annotate_frame
+from ui_dialogs import dialogs as messagebox
 
 
 class RegisterScreen(tk.Frame):
@@ -29,15 +30,39 @@ class RegisterScreen(tk.Frame):
 
     # ---- Layout --------------------------------------------
 
+    @staticmethod
+    def _darken_color(hex_color, factor=0.85):
+        h = hex_color.lstrip("#")
+        r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+        return f"#{int(r*factor):02x}{int(g*factor):02x}{int(b*factor):02x}"
+
     def _build_ui(self):
-        # Header
-        hdr = tk.Frame(self, bg=THEME_COLOR, pady=12)
+        # ---- Header ------------------------------------------
+        hdr = tk.Frame(self, bg=THEME_COLOR)
         hdr.pack(fill="x")
-        tk.Label(hdr, text="👤  Register Employee Face",
-                 font=FONT_LARGE, bg=THEME_COLOR, fg="white").pack(side="left", padx=20)
-        tk.Button(hdr, text="← Back", font=FONT_NORMAL, bg=ACCENT_COLOR, fg="white",
-                  relief="flat", padx=12, pady=4, cursor="hand2",
-                  command=self._go_back).pack(side="right", padx=20)
+
+        left_hdr = tk.Frame(hdr, bg=THEME_COLOR)
+        left_hdr.pack(side="left", padx=20, pady=14)
+        tk.Label(left_hdr, text="👤", font=("Segoe UI", 18),
+                 bg=THEME_COLOR, fg="white").pack(side="left", padx=(0, 10))
+        col = tk.Frame(left_hdr, bg=THEME_COLOR)
+        col.pack(side="left")
+        tk.Label(col, text="Register Employee Face",
+                 font=("Segoe UI", 15, "bold"),
+                 bg=THEME_COLOR, fg="white").pack(anchor="w")
+        tk.Label(col, text="Capture face samples for recognition",
+                 font=("Segoe UI", 9),
+                 bg=THEME_COLOR, fg="#A8BDD0").pack(anchor="w")
+
+        back_btn = tk.Button(hdr, text="← Back", font=FONT_NORMAL,
+                             bg=ACCENT_COLOR, fg="white",
+                             relief="flat", padx=14, pady=6,
+                             cursor="hand2", command=self._go_back)
+        back_btn.pack(side="right", padx=20, pady=14)
+        back_btn.bind("<Enter>",
+            lambda _e: back_btn.configure(bg=self._darken_color(ACCENT_COLOR)))
+        back_btn.bind("<Leave>",
+            lambda _e: back_btn.configure(bg=ACCENT_COLOR))
 
         # Body: left = employee list, right = camera + controls
         body = tk.Frame(self, bg=BG_COLOR)
@@ -50,7 +75,7 @@ class RegisterScreen(tk.Frame):
 
     def _build_emp_list(self, parent):
         card = tk.Frame(parent, bg=CARD_COLOR, bd=0, relief="flat",
-                        highlightbackground="#DDE1E7", highlightthickness=1)
+                        highlightbackground=BORDER_COLOR, highlightthickness=1)
         card.pack(side="left", fill="y", padx=(0, 12), ipadx=10, ipady=10)
 
         tk.Label(card, text="Select Employee", font=FONT_MEDIUM,
@@ -96,7 +121,7 @@ class RegisterScreen(tk.Frame):
 
         # Selected employee banner
         sel_card = tk.Frame(right, bg=CARD_COLOR,
-                            highlightbackground="#DDE1E7", highlightthickness=1)
+                            highlightbackground=BORDER_COLOR, highlightthickness=1)
         sel_card.pack(fill="x", pady=(0, 10), ipadx=10, ipady=8)
         tk.Label(sel_card, text="Selected:", font=FONT_SMALL,
                  bg=CARD_COLOR, fg=MUTED_COLOR).pack(side="left", padx=(10, 4))
@@ -113,7 +138,7 @@ class RegisterScreen(tk.Frame):
 
         # Camera card
         cam_card = tk.Frame(cam_row, bg=CARD_COLOR,
-                            highlightbackground="#DDE1E7", highlightthickness=1)
+                            highlightbackground=BORDER_COLOR, highlightthickness=1)
         cam_card.pack(side="left", fill="both", expand=True, ipadx=10, ipady=10)
         tk.Label(cam_card, text="Live Camera Preview", font=FONT_MEDIUM,
                  bg=CARD_COLOR, fg=THEME_COLOR).pack(pady=(8, 6))
@@ -126,7 +151,7 @@ class RegisterScreen(tk.Frame):
 
         # Controls card
         ctrl_card = tk.Frame(cam_row, bg=CARD_COLOR,
-                             highlightbackground="#DDE1E7", highlightthickness=1)
+                             highlightbackground=BORDER_COLOR, highlightthickness=1)
         ctrl_card.pack(side="left", fill="y", padx=(10, 0), ipadx=14, ipady=10)
 
         tk.Label(ctrl_card, text="Face Capture", font=FONT_MEDIUM,

@@ -111,7 +111,13 @@ CARD_COLOR     = "#FFFFFF"
 TEXT_COLOR     = "#2C3E50"
 MUTED_COLOR    = "#95A5A6"
 
+BORDER_COLOR   = "#DDE1E7"
+HOVER_COLOR    = "#EEF2F7"
+SELECTED_COLOR = "#E8F4FD"
+
 FONT_FAMILY    = "Segoe UI"
+FONT_TITLE     = ("Segoe UI", 32, "bold")
+FONT_SUBTITLE  = ("Segoe UI", 12)
 FONT_LARGE     = ("Segoe UI", 18, "bold")
 FONT_MEDIUM    = ("Segoe UI", 13, "bold")
 FONT_NORMAL    = ("Segoe UI", 11)

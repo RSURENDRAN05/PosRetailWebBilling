@@ -6,12 +6,12 @@ echo  (Use this if the normal install.bat fails)
 echo ================================================
 echo.
 
-set PYTHON=c:\Python\Python314\python.exe
+set PYTHON=C:\Python\Python314\python.exe
 set PIP=%PYTHON% -m pip
 
 "%PYTHON%" --version >nul 2>&1
 IF ERRORLEVEL 1 (
-    echo [ERROR] Python not found at c:\Python\Python314\python.exe
+    echo [ERROR] Python not found at C:\Python\Python314\python.exe
     pause
     exit /b 1
 )

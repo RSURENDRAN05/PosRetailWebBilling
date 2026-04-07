@@ -5,13 +5,13 @@ echo   Face Attendance System - Python Installer
 echo ================================================
 echo.
 
-set PYTHON=c:\Python\Python314\python.exe
+set PYTHON=C:\Python\Python314\python.exe
 set PIP=%PYTHON% -m pip
 
 :: Check Python
 "%PYTHON%" --version >nul 2>&1
 IF ERRORLEVEL 1 (
-    echo [ERROR] Python not found at c:\Python\Python314\python.exe
+    echo [ERROR] Python not found at C:\Python\Python314\python.exe
     echo Please install Python 3.9+ from https://python.org
     pause
     exit /b 1
