@@ -438,7 +438,6 @@ class App(tk.Tk):
 if __name__ == "__main__":
     # Quick dependency check
     try:
-        import face_recognition
         import cv2
         from PIL import Image
     except ImportError as e:
@@ -451,6 +450,25 @@ if __name__ == "__main__":
             f"Required package not found:\n{e}\n\nPlease run:\n  install.bat\nor:\n  pip install -r requirements.txt"
         )
         sys.exit(1)
+
+    # Face engine is optional at startup: allow dashboard/records/employees access.
+    try:
+        from face_utils import face_engine_available
+        ok, msg = face_engine_available()
+        if not ok:
+            import tkinter as tk
+            from tkinter import messagebox
+            root = tk.Tk()
+            root.withdraw()
+            messagebox.showwarning(
+                "Face Engine Unavailable",
+                "Face recognition engine could not be loaded.\n\n"
+                f"Details: {msg}\n\n"
+                "You can still use non-face pages (Dashboard, Employees, Records).\n"
+                "Live Attendance and Face Registration may be unavailable on this PC."
+            )
+    except Exception:
+        pass
 
     app = App()
     app.mainloop()

@@ -3,7 +3,6 @@
 # ============================================================
 
 import cv2
-import face_recognition
 import numpy as np
 import pickle
 import os
@@ -17,6 +16,19 @@ from config import (
     CACHE_ENCODINGS, CACHE_FILE, CACHE_TTL_MINS
 )
 from api_client import APIClient
+
+try:
+    import face_recognition
+    _FACE_LIB_ERROR = None
+except Exception as e:
+    face_recognition = None
+    _FACE_LIB_ERROR = str(e)
+
+
+def face_engine_available() -> tuple[bool, str]:
+    if face_recognition is None:
+        return False, _FACE_LIB_ERROR or "face_recognition/dlib is not available"
+    return True, "OK"
 
 
 class FaceCache:
@@ -117,6 +129,10 @@ def capture_face_encodings(num_samples: int = FACE_SAMPLES,
     return (list_of_128_dim_lists, message).
     progress_callback(current, total) called each capture.
     """
+    ok, msg = face_engine_available()
+    if not ok:
+        return [], f"Face engine unavailable: {msg}"
+
     cap = cv2.VideoCapture(CAMERA_INDEX)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH,  FRAME_WIDTH)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
@@ -167,6 +183,10 @@ def encode_frame(frame_bgr: np.ndarray) -> tuple[list, list]:
     """
     Given a BGR frame, return (face_locations, face_encodings_as_np_arrays).
     """
+    ok, _ = face_engine_available()
+    if not ok:
+        return [], []
+
     rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
     # Resize to small for speed, then scale locations back
     small = cv2.resize(rgb, (0, 0), fx=0.5, fy=0.5)
@@ -189,6 +209,10 @@ def identify_face(encoding: np.ndarray,
     Returns (emp_id, employee_name, confidence_pct).
     confidence_pct is 0–100 (100 = perfect match).
     """
+    ok, _ = face_engine_available()
+    if not ok:
+        return "Unknown", "Unknown", 0.0
+
     if not known_data:
         return "Unknown", "Unknown", 0.0
 

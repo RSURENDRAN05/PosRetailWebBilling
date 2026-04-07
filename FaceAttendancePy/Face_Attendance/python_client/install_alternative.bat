@@ -7,11 +7,21 @@ echo ================================================
 echo.
 
 set PYTHON=C:\Python\Python314\python.exe
+if not exist "%PYTHON%" (
+    for /f "delims=" %%P in ('where python 2^>nul') do (
+        set PYTHON=%%P
+        goto :python_found
+    )
+)
+
+:python_found
 set PIP=%PYTHON% -m pip
 
 "%PYTHON%" --version >nul 2>&1
 IF ERRORLEVEL 1 (
-    echo [ERROR] Python not found at C:\Python\Python314\python.exe
+    echo [ERROR] Python not found.
+    echo Expected: C:\Python\Python314\python.exe
+    echo Or any python.exe available in PATH.
     pause
     exit /b 1
 )
