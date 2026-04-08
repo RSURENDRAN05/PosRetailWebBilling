@@ -52,8 +52,6 @@ class FaceAttendanceFunc
     {
         $conn  = $this->conn;
         $where = ["status='1'"];
-        if ($com_id) $where[] = "comid='" . mysqli_real_escape_string($conn, $com_id) . "'";
-        if ($loc_id) $where[] = "locid='" . mysqli_real_escape_string($conn, $loc_id) . "'";
         $sql = "SELECT id, username, comid AS com_id, locid AS loc_id, group_id
                 FROM users
                 WHERE " . implode(' AND ', $where) . "
@@ -469,11 +467,28 @@ class FaceAttendanceFunc
     {
         $conn  = $this->conn;
         $where = ['1=1'];
-        if ($branch_id) $where[] = "plm_compid = '" . mysqli_real_escape_string($conn, $branch_id) . "'";
-        $sql = "SELECT plm_id AS id, plm_name AS name, plm_compid AS branch_id
+        if ($branch_id !== null && $branch_id !== '') {
+            $where[] = "plm_id = '" . mysqli_real_escape_string($conn, $branch_id) . "'";
+        }
+        $sql = "SELECT plm_id, plm_name, plm_address, plm_active, plm_create, plm_default
                 FROM pos_location_mast
                 WHERE " . implode(' AND ', $where) . "
                 ORDER BY plm_name";
         return mysqli_query($conn, $sql);
+    }
+
+    public function GetComapanyLocation()
+    {
+        $conn = $this->conn;
+        $sqlSelect = "SELECT pcm.pcm_id AS COID,
+                             pcm.pcm_name AS CompanyName,
+                             plm.plm_id AS LID,
+                             plm.plm_name AS LocationName,
+                             pcm.pcm_active AS Active
+                      FROM pos_company_mast pcm
+                      INNER JOIN pos_location_mast plm
+                          ON plm.plm_compid = pcm.pcm_id";
+        $result = mysqli_query($conn, $sqlSelect);
+        return $result;
     }
 }

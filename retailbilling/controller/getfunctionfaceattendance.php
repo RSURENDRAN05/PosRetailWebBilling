@@ -8,6 +8,7 @@
 //   ENDPOINTS = {
 //       "auth"       : API_BASE_URL + "?endpoint=auth",
 //       "employees"  : API_BASE_URL + "?endpoint=employees",
+//       "encode"     : API_BASE_URL + "?endpoint=encode",  // proxies to Python recognition service
 //       "faces"      : API_BASE_URL + "?endpoint=faces",
 //       "attendance" : API_BASE_URL + "?endpoint=attendance",
 //       "stats"      : API_BASE_URL + "?endpoint=stats",
@@ -29,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // ---------- API Key validation ----------
 define('FACE_API_KEY', 'face_attendance_secret_2024');
+define('RECOGNITION_SERVICE_URL', 'http://127.0.0.1');
 
 function getRequestHeader($name)
 {
@@ -153,11 +155,56 @@ switch ($endpoint) {
         break;
 
     // ============================================================
+    // ENCODE
+    // POST ?endpoint=encode  { image: base64 }
+    // Proxies to the Python recognition service to compute a
+    // 128-float face encoding from a raw base64 image.
+    // Response: { success: true, encoding: [128 floats] }
+    // ============================================================
+    case 'encode':
+        if ($method !== 'POST') {
+            fail('POST required');
+            break;
+        }
+        $image = $body['image'] ?? '';
+        if (!$image) {
+            fail('image required');
+            break;
+        }
+        $pyUrl = RECOGNITION_SERVICE_URL;
+        $ch = curl_init($pyUrl . '/encode');
+        curl_setopt_array($ch, [
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 20,
+            CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+            CURLOPT_POSTFIELDS     => json_encode(['image' => $image]),
+        ]);
+        $pyRaw  = curl_exec($ch);
+        $pyErr  = curl_error($ch);
+        $pyCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if ($pyErr || !$pyRaw) {
+            fail('Recognition service unavailable: ' . ($pyErr ?: 'empty response'), 503);
+            break;
+        }
+        $pyData = json_decode($pyRaw, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            fail('Recognition service returned invalid JSON', 502);
+            break;
+        }
+        if (!isset($pyData['success'])) {
+            $pyData['success'] = ($pyCode >= 200 && $pyCode < 300);
+        }
+        echo json_encode($pyData);
+        break;
+
+    // ============================================================
     // FACES
     // GET    ?endpoint=faces[&com_id=&loc_id=]   → all encodings
-    // GET    ?endpoint=faces&id=EMP001           → one employee
+    // GET    ?endpoint=faces&id=1           → one employee
     // POST   ?endpoint=faces  { emp_id, encodings, com_id, loc_id, replace }
-    // DELETE ?endpoint=faces  { id: emp_id }  OR  ?id=EMP001
+    // DELETE ?endpoint=faces  { id: emp_id }  OR  ?id=1
     // ============================================================
     case 'faces':
         if ($method === 'GET') {
