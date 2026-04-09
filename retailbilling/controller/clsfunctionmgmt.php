@@ -3130,7 +3130,7 @@ class funcProcessMgmt
     public function GetSalesmanList()
     {
         $conn = $this->conn;
-        $sqlQuery = ("SELECT `emp_id`, `emp_printname`, `emp_firstname`, `emp_lastname`, `emp_designation`, `emp_active`
+        $sqlQuery = ("SELECT `emp_id`, `emp_printname`, `emp_firstname`, `emp_lastname`, `emp_designation`, `emp_active`,`emp_compid`,`emp_locid`
                      FROM `pos_employeeinfo`
                      WHERE `emp_active`='1'
                      ORDER BY `emp_printname` ASC");

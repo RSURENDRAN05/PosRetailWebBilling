@@ -196,6 +196,54 @@ Public Class FrmFingerScanner
             Return "Error Loading Name"
         End Try
     End Function
+    Private Function ValuesMatch(leftValue As String, rightValue As String) As Boolean
+        Dim leftNumber As Integer
+        Dim rightNumber As Integer
+
+        If Integer.TryParse(leftValue, leftNumber) AndAlso Integer.TryParse(rightValue, rightNumber) Then
+            Return leftNumber = rightNumber
+        End If
+
+        Return String.Equals(leftValue.Trim(), rightValue.Trim(), StringComparison.OrdinalIgnoreCase)
+    End Function
+    Private Function GetJsonFieldValue(item As JToken, ParamArray fieldNames() As String) As String
+        Try
+            For Each fieldName As String In fieldNames
+                If item(fieldName) IsNot Nothing AndAlso Not IsDBNull(item(fieldName)) Then
+                    Return item(fieldName).ToString().Trim()
+                End If
+            Next
+        Catch
+        End Try
+
+        Return String.Empty
+    End Function
+    Private Function RowMatchesCompanyLocation(row As DataRow, companyId As String, locationId As String) As Boolean
+        Dim rowCompanyId As String = String.Empty
+        Dim rowLocationId As String = String.Empty
+
+        If row.Table.Columns.Contains("ComId") Then
+            rowCompanyId = row("ComId").ToString()
+        ElseIf row.Table.Columns.Contains("comid") Then
+            rowCompanyId = row("comid").ToString()
+        ElseIf row.Table.Columns.Contains("emp_compid") Then
+            rowCompanyId = row("emp_compid").ToString()
+        End If
+
+        If row.Table.Columns.Contains("LocId") Then
+            rowLocationId = row("LocId").ToString()
+        ElseIf row.Table.Columns.Contains("locid") Then
+            rowLocationId = row("locid").ToString()
+        ElseIf row.Table.Columns.Contains("emp_locid") Then
+            rowLocationId = row("emp_locid").ToString()
+        End If
+
+        If String.IsNullOrWhiteSpace(rowCompanyId) OrElse String.IsNullOrWhiteSpace(rowLocationId) Then
+            Return True
+        End If
+
+        Return ValuesMatch(rowCompanyId, companyId) AndAlso ValuesMatch(rowLocationId, locationId)
+    End Function
     Private Sub DataLoad()
         Try
             lblstatusimage.Image = Img.Images(0)
@@ -220,6 +268,8 @@ Public Class FrmFingerScanner
         Try
             Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=1")
             Dim parsedJson As JObject = JObject.Parse(json)
+            Dim currentCompanyId As String = _companyInfo.ComId.ToString()
+            Dim currentLocationId As String = _companyInfo.LocId.ToString()
 
             salesmenTable.Clear()
             If parsedJson("Success").ToString() = "True" Then
@@ -255,18 +305,26 @@ Public Class FrmFingerScanner
                         empName = item("EmpName").ToString()
                     End If
 
-                    salesmenTable.Rows.Add(empId, empName, empType)
+                    Dim employeeCompanyId As String = GetJsonFieldValue(item, "emp_compid", "EmpComId", "comid", "ComId")
+                    Dim employeeLocationId As String = GetJsonFieldValue(item, "emp_locid", "EmpLocId", "locid", "LocId")
+
+                    If ValuesMatch(employeeCompanyId, currentCompanyId) AndAlso ValuesMatch(employeeLocationId, currentLocationId) Then
+                        salesmenTable.Rows.Add(empId, empName, empType)
+                    End If
                 Next
-                If _JsonData.UserTable.Rows.Count > 0 Then
-                    For Each rs In _JsonData.UserTable.Rows
-                        Dim Id As Integer = 0
-                        Dim UserName As String = ""
-                        Dim Type As String = "User"
-                        Id = rs("Id")
-                        UserName = rs("UserName")
-                        salesmenTable.Rows.Add(Id, UserName, Type)
-                    Next
-                End If
+                'If _JsonData.UserTable.Rows.Count > 0 Then
+                '    For Each rs As DataRow In _JsonData.UserTable.Rows
+                '        Dim Id As Integer = 0
+                '        Dim UserName As String = ""
+                '        Dim Type As String = "User"
+                '        Id = rs("Id")
+                '        UserName = rs("UserName")
+
+                '        If RowMatchesCompanyLocation(rs, currentCompanyId, currentLocationId) Then
+                '            salesmenTable.Rows.Add(Id, UserName, Type)
+                '        End If
+                '    Next
+                'End If
 
             Else
                 MessageBox.Show("Failed to load salesmen: " & parsedJson("Msg").ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)

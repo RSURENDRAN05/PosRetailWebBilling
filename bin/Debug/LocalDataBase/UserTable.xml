@@ -70,15 +70,15 @@
   </UserTable>
   <UserTable>
     <Id>4</Id>
-    <UserName>ADMIN</UserName>
-    <Password>59a3adea76fadcb6dd9e54c96fc155d1</Password>
-    <GroupName>Admin</GroupName>
+    <UserName>GHUGAN</UserName>
+    <Password>22722a343513ed45f14905eb07621686</Password>
+    <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
-    <LocId>1</LocId>
-    <GroupId>2</GroupId>
+    <LocId>2</LocId>
+    <GroupId>1</GroupId>
     <Created>2025-09-17 17:06:17</Created>
-    <GroupDescription>Administrative access with most permissions</GroupDescription>
+    <GroupDescription>Full system access with all permissions</GroupDescription>
     <GroupActive>1</GroupActive>
     <GroupCreatedDate>2025-08-15 13:30:14</GroupCreatedDate>
   </UserTable>
