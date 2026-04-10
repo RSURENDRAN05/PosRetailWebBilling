@@ -22,6 +22,7 @@ Module SyncLocalCloudModuel
             M_Details.LocationName = ini.ReadValue("Bank", "LocationName")
             M_Details.CompanyName = ini.ReadValue("Bank", "CompanyName")
             M_Details.PMID = ini.ReadValue("Bank", "PMID")
+            M_Details.BillingScreen = ini.ReadValue("Bill", "PosBillScreen")
 
             ' --- Populate _companyInfo ---
             _companyInfo.ComId = M_Details.CompanyId

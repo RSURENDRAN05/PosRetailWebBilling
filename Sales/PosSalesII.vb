@@ -3386,13 +3386,13 @@ Public Class PosSalesII
                     _saleData.psih_invoice_billremarks = "-"
 
                     ' Advance amount validation - only allow advance for credit bills
-                    If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                    If frmPaymoreII.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                         _saleData.psih_invoice_advamt = 0
                         DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     Else
-                        If frmPaymore.txtadvanceamt.EditValue > 0 Then
-                            _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                        If frmPaymoreII.txtadvanceamt.EditValue > 0 Then
+                            _saleData.psih_invoice_advamt = frmPaymoreII.txtadvanceamt.EditValue
                             _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
                         ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
@@ -3401,16 +3401,16 @@ Public Class PosSalesII
                         End If
                     End If
 
-                    If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                    If frmPaymoreII.txttpopenamt.EditValue Is Nothing Then
                         _saleData.psih_invoice_givenamt = 0
                     Else
-                        _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                        _saleData.psih_invoice_givenamt = frmPaymoreII.txttpopenamt.EditValue
                         _givenAmt = _saleData.psih_invoice_givenamt
                     End If
-                    If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                    If frmPaymoreII.txtpopbalamt.EditValue Is Nothing Then
                         _saleData.psih_invoice_balamt = 0
                     Else
-                        _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                        _saleData.psih_invoice_balamt = frmPaymoreII.txtpopbalamt.EditValue
                         _BalanceAmt = _saleData.psih_invoice_balamt
                     End If
                     _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
@@ -3507,13 +3507,13 @@ Public Class PosSalesII
                     _saleData.psih_invoice_billremarks = "-"
 
                     ' Advance amount validation - only allow advance for credit bills
-                    If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                    If frmPaymoreII.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                         _saleData.psih_invoice_advamt = 0
                         DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     Else
-                        If frmPaymore.txtadvanceamt.EditValue > 0 Then
-                            _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                        If frmPaymoreII.txtadvanceamt.EditValue > 0 Then
+                            _saleData.psih_invoice_advamt = frmPaymoreII.txtadvanceamt.EditValue
                             _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
                         ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
@@ -3522,16 +3522,16 @@ Public Class PosSalesII
                         End If
                     End If
 
-                    If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                    If frmPaymoreII.txttpopenamt.EditValue Is Nothing Then
                         _saleData.psih_invoice_givenamt = 0
                     Else
-                        _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                        _saleData.psih_invoice_givenamt = frmPaymoreII.txttpopenamt.EditValue
                         _givenAmt = _saleData.psih_invoice_givenamt
                     End If
-                    If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                    If frmPaymoreII.txtpopbalamt.EditValue Is Nothing Then
                         _saleData.psih_invoice_balamt = 0
                     Else
-                        _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                        _saleData.psih_invoice_balamt = frmPaymoreII.txtpopbalamt.EditValue
                         _BalanceAmt = _saleData.psih_invoice_balamt
                     End If
                     _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
@@ -3611,16 +3611,16 @@ Public Class PosSalesII
             Dim _BalanceAmt As Decimal = 0.0
             If modeOfSale = "New" Then
                 If GridViewPOS.RowCount > 0 Then
-                    frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
-                    If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
+                    frmPaymoreII.ShowDialog(lblnetamt.Text, selectedCustomerName)
+                    If frmPaymoreII.DialogResult = Windows.Forms.DialogResult.OK Then
                         ' Get payment details from PaymentDetailTable
                         Dim paymentModeSelections As New List(Of String)()
                         Dim paymentModes As New List(Of String)()
 
                         ' Check if multiple payments or single payment
-                        If frmPaymore.PaymentDetailTable.Rows.Count > 1 Then
+                        If frmPaymoreII.PaymentDetailTable.Rows.Count > 1 Then
                             ' Multiple payments - combine all payment modes
-                            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                            For Each paymentRow As DataRow In frmPaymoreII.PaymentDetailTable.Rows
                                 Dim paymentName As String = paymentRow("pmode_name").ToString()
                                 Dim paymentType As String = paymentRow("pmode_type").ToString()
                                 paymentModeSelections.Add(paymentName)
@@ -3644,9 +3644,9 @@ Public Class PosSalesII
                             _PaymentDtl.paymentModeSelection = String.Join(",", paymentModeSelections)
                             _PaymentDtl.paymentMode = String.Join(",", paymentModes.Distinct())
 
-                        ElseIf frmPaymore.PaymentDetailTable.Rows.Count = 1 Then
+                        ElseIf frmPaymoreII.PaymentDetailTable.Rows.Count = 1 Then
                             ' Single payment mode
-                            Dim paymentRow As DataRow = frmPaymore.PaymentDetailTable.Rows(0)
+                            Dim paymentRow As DataRow = frmPaymoreII.PaymentDetailTable.Rows(0)
                             Dim paymentName As String = paymentRow("pmode_name").ToString()
                             _PaymentDtl.paymentModeSelection = paymentName
 
@@ -3726,13 +3726,13 @@ Public Class PosSalesII
                         _saleData.psih_invoice_billremarks = "-"
 
                         ' Advance amount validation - only allow advance for credit bills
-                        If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                        If frmPaymoreII.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
                             DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         Else
-                            If frmPaymore.txtadvanceamt.EditValue > 0 Then
-                                _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                            If frmPaymoreII.txtadvanceamt.EditValue > 0 Then
+                                _saleData.psih_invoice_advamt = frmPaymoreII.txtadvanceamt.EditValue
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
                             ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
@@ -3741,16 +3741,16 @@ Public Class PosSalesII
                             End If
                         End If
 
-                        If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                        If frmPaymoreII.txttpopenamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_givenamt = 0
                         Else
-                            _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                            _saleData.psih_invoice_givenamt = frmPaymoreII.txttpopenamt.EditValue
                             _givenAmt = _saleData.psih_invoice_givenamt
                         End If
-                        If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                        If frmPaymoreII.txtpopbalamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_balamt = 0
                         Else
-                            _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                            _saleData.psih_invoice_balamt = frmPaymoreII.txtpopbalamt.EditValue
                             _BalanceAmt = _saleData.psih_invoice_balamt
                         End If
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
@@ -3793,17 +3793,17 @@ Public Class PosSalesII
 
             ElseIf modeOfSale = "Edit" Then
                 If GridViewPOS.RowCount > 0 Then
-                    frmPaymore.ShowDialog(lblnetamt.Text, selectedCustomerName)
+                    frmPaymoreII.ShowDialog(lblnetamt.Text, selectedCustomerName)
 
-                    If frmPaymore.DialogResult = Windows.Forms.DialogResult.OK Then
+                    If frmPaymoreII.DialogResult = Windows.Forms.DialogResult.OK Then
                         ' Get payment details from PaymentDetailTable
                         Dim paymentModeSelections As New List(Of String)()
                         Dim paymentModes As New List(Of String)()
 
                         ' Check if multiple payments or single payment
-                        If frmPaymore.PaymentDetailTable.Rows.Count > 1 Then
+                        If frmPaymoreII.PaymentDetailTable.Rows.Count > 1 Then
                             ' Multiple payments - combine all payment modes
-                            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+                            For Each paymentRow As DataRow In frmPaymoreII.PaymentDetailTable.Rows
                                 Dim paymentName As String = paymentRow("pmode_name").ToString()
                                 Dim paymentType As String = paymentRow("pmode_type").ToString()
                                 paymentModeSelections.Add(paymentName)
@@ -3827,9 +3827,9 @@ Public Class PosSalesII
                             _PaymentDtl.paymentModeSelection = String.Join(",", paymentModeSelections)
                             _PaymentDtl.paymentMode = String.Join(",", paymentModes.Distinct())
 
-                        ElseIf frmPaymore.PaymentDetailTable.Rows.Count = 1 Then
+                        ElseIf frmPaymoreII.PaymentDetailTable.Rows.Count = 1 Then
                             ' Single payment mode
-                            Dim paymentRow As DataRow = frmPaymore.PaymentDetailTable.Rows(0)
+                            Dim paymentRow As DataRow = frmPaymoreII.PaymentDetailTable.Rows(0)
                             Dim paymentName As String = paymentRow("pmode_name").ToString()
                             Dim paymentType As String = paymentRow("pmode_type").ToString()
                             _PaymentDtl.paymentModeSelection = paymentName
@@ -3910,13 +3910,13 @@ Public Class PosSalesII
                         _saleData.psih_invoice_billremarks = "-"
 
                         ' Advance amount validation - only allow advance for credit bills
-                        If frmPaymore.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
+                        If frmPaymoreII.txtadvanceamt.EditValue > 0 And Not _PaymentDtl.paymentMode.Contains("credit") Then
                             _saleData.psih_invoice_advamt = 0
                             DevExpress.XtraEditors.XtraMessageBox.Show("Advance Amount Can Only Be Accepted For Credit Bills.", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         Else
-                            If frmPaymore.txtadvanceamt.EditValue > 0 Then
-                                _saleData.psih_invoice_advamt = frmPaymore.txtadvanceamt.EditValue
+                            If frmPaymoreII.txtadvanceamt.EditValue > 0 Then
+                                _saleData.psih_invoice_advamt = frmPaymoreII.txtadvanceamt.EditValue
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt - _saleData.psih_invoice_advamt
                             ElseIf _PaymentDtl.paymentMode.Contains("credit") Then
                                 _saleData.psih_invoice_outstanding = _saleData.psih_invoice_tnetamt
@@ -3925,16 +3925,16 @@ Public Class PosSalesII
                             End If
                         End If
 
-                        If frmPaymore.txttpopenamt.EditValue Is Nothing Then
+                        If frmPaymoreII.txttpopenamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_givenamt = 0
                         Else
-                            _saleData.psih_invoice_givenamt = frmPaymore.txttpopenamt.EditValue
+                            _saleData.psih_invoice_givenamt = frmPaymoreII.txttpopenamt.EditValue
                             _givenAmt = _saleData.psih_invoice_givenamt
                         End If
-                        If frmPaymore.txtpopbalamt.EditValue Is Nothing Then
+                        If frmPaymoreII.txtpopbalamt.EditValue Is Nothing Then
                             _saleData.psih_invoice_balamt = 0
                         Else
-                            _saleData.psih_invoice_balamt = frmPaymore.txtpopbalamt.EditValue
+                            _saleData.psih_invoice_balamt = frmPaymoreII.txtpopbalamt.EditValue
                             _BalanceAmt = _saleData.psih_invoice_balamt
                         End If
                         _saleData.psih_invoice_shiftno = _saleSetting._curShiftno
@@ -3999,7 +3999,7 @@ Public Class PosSalesII
         Try
             Dim paymentModes As New Dictionary(Of Integer, Decimal)()
 
-            For Each paymentRow As DataRow In frmPaymore.PaymentDetailTable.Rows
+            For Each paymentRow As DataRow In frmPaymoreII.PaymentDetailTable.Rows
                 Dim paymentId As Integer = Convert.ToInt32(paymentRow("pmode_id"))
                 Dim amount As Decimal = ConvertDecimal(paymentRow("pmode_amount"))
                 paymentModes.Add(paymentId, amount)

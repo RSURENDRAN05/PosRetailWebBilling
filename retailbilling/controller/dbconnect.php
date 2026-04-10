@@ -25,6 +25,7 @@ class database
         if (!$this->conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
+        // echo "Connected successfully";
         mysqli_set_charset($this->conn, "utf8");
         return $this->conn;
     }

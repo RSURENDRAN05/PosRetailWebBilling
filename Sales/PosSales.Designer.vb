@@ -68,7 +68,7 @@ Partial Class PosSales
         Me.txtinvoiceno = New DevExpress.XtraEditors.TextEdit()
         Me.txtprintprofile = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtclientname = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txtclientname = New DevExpress.XtraEditors.TextEdit()
         Me.txtnotes = New DevExpress.XtraEditors.MemoEdit()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -654,20 +654,13 @@ Partial Class PosSales
         '
         'txtclientname
         '
-        Me.txtclientname.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtclientname.Location = New System.Drawing.Point(236, 33)
         Me.txtclientname.MenuManager = Me.BarManager1
         Me.txtclientname.Name = "txtclientname"
         Me.txtclientname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtclientname.Properties.Appearance.Options.UseFont = True
-        Me.txtclientname.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtclientname.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "LedgerId", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", 100, "LedgerName")})
-        Me.txtclientname.Properties.DisplayMember = "Name"
-        Me.txtclientname.Properties.NullText = ""
-        Me.txtclientname.Properties.PopupResizeMode = DevExpress.XtraEditors.Controls.ResizeMode.FrameResize
-        Me.txtclientname.Properties.ValueMember = "Id"
         Me.txtclientname.Size = New System.Drawing.Size(290, 26)
-        Me.txtclientname.TabIndex = 6
+        Me.txtclientname.TabIndex = 10
         '
         'txtnotes
         '
@@ -1360,7 +1353,6 @@ Partial Class PosSales
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents btnView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents txtclientname As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents RepositoryItemTextEditRate As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEditQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BarSubItem1 As DevExpress.XtraBars.BarSubItem
@@ -1379,4 +1371,5 @@ Partial Class PosSales
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents barbtnposstatus As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents txtclientname As DevExpress.XtraEditors.TextEdit
 End Class

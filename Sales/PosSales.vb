@@ -34,13 +34,15 @@ Public Class PosSales
             Return Nothing
         End Try
     End Function
-
+    Private selectedCustomerId As Integer = 0
+    Private selectedCustomerName As String = String.Empty
+    Private selectedCustomerPhone As String = String.Empty
     Private Sub PosSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitialLoad()
         CreateTable()
         GridControl1.DataSource = GridDataTble_Insert
         cmbMaterialSearch.Focus()
-        txtclientname.EditValue = _JsonData.LedgerListTable.Rows(0)(0)
+        'txtclientname.EditValue = _JsonData.LedgerListTable.Rows(0)(0)
         barbtnposstatus.Caption = _companyInfo.ComId & "-" & _companyInfo.CompanyName & "-" & _companyInfo.LocId & "-" & _companyInfo.LocationName
     End Sub
     Private Sub InitialLoad()
@@ -79,7 +81,7 @@ Public Class PosSales
             End If
             If getLedgerListTable() = True Then
                 If _JsonData.LedgerListTable.Rows.Count > 0 Then
-                    txtclientname.Properties.DataSource = _JsonData.LedgerListTable
+                    'txtclientname.Properties.DataSource = _JsonData.LedgerListTable
 
                 End If
             End If
@@ -781,6 +783,23 @@ Public Class PosSales
 
 #End Region
 #Region "Sales Payment"
+   
+
+    Private Sub txtclientname_Click(sender As Object, e As EventArgs) Handles txtclientname.Click
+        Try
+            Dim customerListForm As New FrmCustomerList(True) ' True for selection mode
+
+            If customerListForm.ShowDialog() = DialogResult.OK Then
+                ' Customer was selected
+                selectedCustomerId = customerListForm.SelectedCustomerId
+                selectedCustomerName = customerListForm.SelectedCustomerName
+                selectedCustomerPhone = customerListForm.SelectedCustomerPhone
+                txtclientname.Text = selectedCustomerName
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub btnCash_Click(sender As Object, e As EventArgs) Handles btnCash.Click
         Try
 
@@ -795,8 +814,8 @@ Public Class PosSales
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
-                            _saleData.psih_invoice_customerid = txtclientname.EditValue
-                            _saleData.psih_invoice_description = txtclientname.Text
+                            _saleData.psih_invoice_customerid = selectedCustomerId
+                            _saleData.psih_invoice_description = selectedCustomerName
                         End If
 
                         _saleData.psih_invoice_tqty = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("QTY"))
@@ -818,13 +837,26 @@ Public Class PosSales
                             _PaymentDtl.paymentModeSelection = "Cash Bill"
                             _saleData.psih_invoice_billtype = _PaymentDtl.paymentModeSelection
                         End If
-                        If _PaymentDtl.paymentMode = "cash" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        ElseIf _PaymentDtl.paymentMode = "credit" Then
-                            _saleData.psih_invoice_billstatus = "Open"
-                        ElseIf _PaymentDtl.paymentMode = "card" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        End If
+                        'If _PaymentDtl.paymentMode = "cash" Then
+                        '    _saleData.psih_invoice_billstatus = "Closed"
+                        'ElseIf _PaymentDtl.paymentMode = "credit" Then
+                        '    _saleData.psih_invoice_billstatus = "Open"
+                        'ElseIf _PaymentDtl.paymentMode = "card" Then
+                        '    _saleData.psih_invoice_billstatus = "Closed"
+                        'End If
+                        Select Case _PaymentDtl.paymentModeSelection.ToLower()
+                            Case "cash", "rm"
+                                _PaymentDtl.paymentMode = "cash"
+                            Case "credit card", "debit card", "card", "bank card", "debit/credit card"
+                                _PaymentDtl.paymentMode = "card"
+                            Case "bank transfer", "upi", "online", "bank", "qr pay"
+                                _PaymentDtl.paymentMode = "bank"
+                            Case "credit"
+                                _PaymentDtl.paymentMode = "credit"
+                            Case Else
+                                _PaymentDtl.paymentMode = "cash" ' Default to cash
+                        End Select
+
                         If txtattenname.Text = "" Then
                             _saleData.psih_invoice_billremarks = "-"
                         Else
@@ -882,8 +914,8 @@ Public Class PosSales
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
-                            _saleData.psih_invoice_customerid = txtclientname.EditValue
-                            _saleData.psih_invoice_description = txtclientname.Text
+                            _saleData.psih_invoice_customerid = selectedCustomerId
+                            _saleData.psih_invoice_description = selectedCustomerName
                         End If
                         _saleData.psih_invoice_id = G_SalID
                         _saleData.psih_invoice_trno = txtinvoiceno.Text
@@ -902,13 +934,25 @@ Public Class PosSales
                         Dim invoicedate As String = ""
                         _DateConversion(txtinvoicedate.EditValue, invoicedate)
                         _saleData.psih_invoice_date = invoicedate
-                        If _PaymentDtl.paymentMode = "cash" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        ElseIf _PaymentDtl.paymentMode = "credit" Then
-                            _saleData.psih_invoice_billstatus = "Open"
-                        ElseIf _PaymentDtl.paymentMode = "card" Then
-                            _saleData.psih_invoice_billstatus = "Closed"
-                        End If
+                        'If _PaymentDtl.paymentMode = "cash" Then
+                        '    _saleData.psih_invoice_billstatus = "Closed"
+                        'ElseIf _PaymentDtl.paymentMode = "credit" Then
+                        '    _saleData.psih_invoice_billstatus = "Open"
+                        'ElseIf _PaymentDtl.paymentMode = "card" Then
+                        '    _saleData.psih_invoice_billstatus = "Closed"
+                        'End If
+                        Select Case _PaymentDtl.paymentModeSelection.ToLower()
+                            Case "cash", "rm"
+                                _PaymentDtl.paymentMode = "cash"
+                            Case "credit card", "debit card", "card", "bank card", "debit/credit card"
+                                _PaymentDtl.paymentMode = "card"
+                            Case "bank transfer", "upi", "online", "bank", "qr pay"
+                                _PaymentDtl.paymentMode = "bank"
+                            Case "credit"
+                                _PaymentDtl.paymentMode = "credit"
+                            Case Else
+                                _PaymentDtl.paymentMode = "cash" ' Default to cash
+                        End Select
                         _saleData.psih_invoice_billremarks = txtattenname.Text
                         If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
                             _saleData.psih_invoice_advamt = 0
@@ -1036,7 +1080,7 @@ Public Class PosSales
             Return False
         End Try
     End Function
-   
+
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         Try
             If modeOfSale = "View" Then
@@ -1048,7 +1092,7 @@ Public Class PosSales
             Else
                 DevExpress.XtraEditors.XtraMessageBox.Show("New Mode Cant Be Save Bill", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-           
+
         Catch ex As Exception
 
         End Try
@@ -1122,8 +1166,8 @@ Public Class PosSales
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
-                            _saleData.psih_invoice_customerid = txtclientname.EditValue
-                            _saleData.psih_invoice_description = txtclientname.Text
+                            _saleData.psih_invoice_customerid = selectedCustomerId
+                            _saleData.psih_invoice_description = selectedCustomerName
                         End If
                         _saleData.psih_invoice_tqty = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("QTY"))
                         _saleData.psih_invoice_tamount = GridDataTble_Insert.AsEnumerable().Sum(Function(row) row.Field(Of Double)("TAMOUNT"))
@@ -1176,8 +1220,8 @@ Public Class PosSales
                             DevExpress.XtraEditors.XtraMessageBox.Show("Client Not Selected", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
                         Else
-                            _saleData.psih_invoice_customerid = txtclientname.EditValue
-                            _saleData.psih_invoice_description = txtclientname.Text
+                            _saleData.psih_invoice_customerid = selectedCustomerId
+                            _saleData.psih_invoice_description = selectedCustomerName
                         End If
                         _saleData.psih_invoice_id = G_SalID
                         _saleData.psih_invoice_trno = txtinvoiceno.Text
@@ -1230,4 +1274,6 @@ Public Class PosSales
         End Try
     End Sub
 #End Region
+
+
 End Class

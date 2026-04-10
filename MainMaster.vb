@@ -703,9 +703,16 @@ Public Class MainMaster
 
     Private Sub barpossales_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barpossales.ItemClick
         Try
-            ' Show the new DevExpress LayoutControl-based POS form
-            PosSalesII.MdiParent = Me
-            PosSalesII.Show()
+            If M_Details.BillingScreen = 1 Then
+                ' Show the new DevExpress LayoutControl-based POS form
+                PosSalesII.MdiParent = Me
+                PosSalesII.Show()
+            Else
+                ' Show the new DevExpress LayoutControl-based POS form
+                PosSales.MdiParent = Me
+                PosSales.Show()
+            End If
+          
         Catch ex As Exception
 
         End Try

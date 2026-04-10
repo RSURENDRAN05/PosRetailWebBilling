@@ -42,6 +42,7 @@ Module functionModule
         Public Shared CompanyName As String = "DefalutCompany"
         Public Shared LocationName As String = "DefalutLocation"
         Public Shared PMID As Integer = 0
+        Public Shared BillingScreen As Integer = 1
         Shared _logPath As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("LogPath")
         Shared _Conn As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("Conn")
         Shared _shopName As String = Registry.CurrentUser.OpenSubKey("SOFTWARE").OpenSubKey("POSAPP").GetValue("Rest_Name")

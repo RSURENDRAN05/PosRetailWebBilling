@@ -23,8 +23,12 @@ class funcProcessMgmt
     public function GetUser()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT pusr.id AS Id, pusr.username AS UserName, pusr.password AS Password, pu.pug_name AS GroupName, CASE pusr.status WHEN 1 THEN 'Active' WHEN 0 THEN 'InActive' END AS Status, pusr.comid AS ComId, pusr.locid AS LocId, pusr.group_id AS GroupId, pusr.created AS Created, pu.pug_description AS GroupDescription, pu.pug_active AS GroupActive, pu.pug_created_date AS GroupCreatedDate FROM users AS pusr INNER JOIN pos_usergroups AS pu ON pusr.group_id = pu.pug_id;");
+        $sqlSelect = ("SELECT pusr.id AS Id, pusr.username AS UserName, pusr.password AS Password, pu.pug_name AS GroupName, CASE pusr.status WHEN 1 THEN 'Active' WHEN 0 THEN 'InActive' END AS Status, pusr.comid AS ComId, pusr.locid AS LocId, pusr.group_id AS GroupId, pusr.created AS Created, pu.pug_description AS GroupDescription, pu.pug_active AS GroupActive, pu.pug_created_date AS GroupCreatedDate FROM users AS pusr LEFT JOIN pos_usergroups AS pu ON pusr.group_id = pu.pug_id;");
         $result = mysqli_query($conn, $sqlSelect);
+        if (!$result) {
+            error_log('GetUser query failed: ' . mysqli_error($conn));
+            return false;
+        }
         return ($result);
     }
 
