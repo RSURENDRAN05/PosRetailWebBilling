@@ -3,6 +3,7 @@ Imports Newtonsoft.Json.Linq
 Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
 Imports System.IO
+Imports DevExpress.XtraEditors
 
 Public Class PosSales
     Dim Errstr As String
@@ -25,7 +26,7 @@ Public Class PosSales
             GridDataTble_Insert.Columns.Add("BPER", GetType(Double)).DefaultValue = 0 '6
             GridDataTble_Insert.Columns.Add("BAMT", GetType(Double)).DefaultValue = 0 '7
             GridDataTble_Insert.Columns.Add("GAMOUNT", GetType(Double)) '8
-            GridDataTble_Insert.Columns.Add("TAXVALUE", GetType(Integer)) '9
+            GridDataTble_Insert.Columns.Add("TAXVALUE", GetType(Double)) '9
             GridDataTble_Insert.Columns.Add("TAXINEX", GetType(Integer)) '10
             GridDataTble_Insert.Columns.Add("TAXAMT", GetType(Double)) '11
             GridDataTble_Insert.Columns.Add("NETAMT", GetType(Decimal)) '12
@@ -279,7 +280,6 @@ Public Class PosSales
                         DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Else
                         cmbMaterialSearch.Text = ""
-                        cmbMaterialSearch.Focus()
                         cmbMaterialSearch.EditValue = Nothing
                     End If
                 End If
@@ -305,7 +305,6 @@ Public Class PosSales
                 If OnSearch(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "BARCODE"), _productCode, errstr) = False Then
                     DevExpress.XtraEditors.XtraMessageBox.Show(errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    cmbMaterialSearch.Focus()
                     cmbMaterialSearch.ClosePopup()
                     cmbMaterialSearch.Text = ""
                 End If
@@ -329,9 +328,7 @@ Public Class PosSales
                 DevExpress.XtraEditors.XtraMessageBox.Show(Errstr, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 cmbMaterialSearch.Text = ""
-                cmbMaterialSearch.Focus()
                 cmbMaterialSearch.EditValue = Nothing
-
             End If
             Return True
         Catch ex As Exception
@@ -427,7 +424,9 @@ Public Class PosSales
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             GridControl1.DataSource = GridDataTble_Insert
-            GridViewPOS.MoveNext()
+            GridViewPOS.FocusedRowHandle = GridViewPOS.RowCount - 1
+            GridViewPOS.FocusedColumn = GCItemqty
+            GridViewPOS.ShowEditor()
             ' GridDataTble_Insert.WriteXml(M_Details._appPath & "Layout\SaleRecentData.xml", True, System.Data.XmlWriteMode.WriteSchema)
             txtnotes.Text = "-"
             If SalesGrandtotal("ER") = False Then
@@ -462,6 +461,7 @@ Public Class PosSales
                 GridViewPOS.SetFocusedRowCellValue(GCItemqty, iQty)
                 QtyEditUpdate(iQty, False)
                 GridViewPOS.FocusedColumn = GCItemRate
+                GridViewPOS.ShowEditor()
 
             End If
         Catch ex As Exception
@@ -474,10 +474,8 @@ Public Class PosSales
                 Dim iSaleRate As Decimal = DirectCast(sender, DevExpress.XtraEditors.TextEdit).EditValue
                 GridViewPOS.SetFocusedRowCellValue(GCItemRate, iSaleRate)
                 QtyEditUpdate(iSaleRate, True)
-                'GCItemRate.OptionsColumn.AllowFocus = False
-                'GCItemRate.OptionsColumn.AllowEdit = False
                 GridViewPOS.CloseEditor()
-                cmbMaterialSearch.Focus()
+                Me.BeginInvoke(Sub() cmbMaterialSearch.Focus())
             End If
         Catch ex As Exception
 
@@ -783,7 +781,7 @@ Public Class PosSales
 
 #End Region
 #Region "Sales Payment"
-   
+
 
     Private Sub txtclientname_Click(sender As Object, e As EventArgs) Handles txtclientname.Click
         Try
@@ -847,14 +845,19 @@ Public Class PosSales
                         Select Case _PaymentDtl.paymentModeSelection.ToLower()
                             Case "cash", "rm"
                                 _PaymentDtl.paymentMode = "cash"
+                                _saleData.psih_invoice_billstatus = "Closed"
                             Case "credit card", "debit card", "card", "bank card", "debit/credit card"
                                 _PaymentDtl.paymentMode = "card"
+                                _saleData.psih_invoice_billstatus = "Closed"
                             Case "bank transfer", "upi", "online", "bank", "qr pay"
+                                _saleData.psih_invoice_billstatus = "Closed"
                                 _PaymentDtl.paymentMode = "bank"
                             Case "credit"
                                 _PaymentDtl.paymentMode = "credit"
+                                _saleData.psih_invoice_billstatus = "Open"
                             Case Else
                                 _PaymentDtl.paymentMode = "cash" ' Default to cash
+                                _saleData.psih_invoice_billstatus = "Closed"
                         End Select
 
                         If txtattenname.Text = "" Then
@@ -891,10 +894,13 @@ Public Class PosSales
                         _saleData.psih_invoice_userid = _companyInfo.UserId
                         _saleData.psih_invoice_comid = _companyInfo.ComId
                         _saleData.psih_invoice_locid = _companyInfo.LocId
-                        Dim jsondtl As String = JsonConvert.SerializeObject(GridDataTble_Insert)
+                        Dim invoicedate4 As String = ""
+                        _DateConversion(txtinvoicedate.EditValue, invoicedate4)
+                        Dim dtlList4 As List(Of SalesDtl) = BuildSalesDtlList(invoicedate4, txtinvoiceno.Text)
+                        Dim jsondtl As String = JsonConvert.SerializeObject(dtlList4)
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=4&dtl=" & jsondtl & "&hdr=" & jsonhdr, _errMsgResult) = True Then
+                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=4&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.ComId & "&pm_id=" & _companyInfo.CompanyPMID, _errMsgResult) = True Then
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             btnNew_Click(Nothing, Nothing)
                             btnPrint_Click(Nothing, Nothing)
@@ -944,14 +950,19 @@ Public Class PosSales
                         Select Case _PaymentDtl.paymentModeSelection.ToLower()
                             Case "cash", "rm"
                                 _PaymentDtl.paymentMode = "cash"
+                                _saleData.psih_invoice_billstatus = "Closed"
                             Case "credit card", "debit card", "card", "bank card", "debit/credit card"
+                                _saleData.psih_invoice_billstatus = "Closed"
                                 _PaymentDtl.paymentMode = "card"
                             Case "bank transfer", "upi", "online", "bank", "qr pay"
+                                _saleData.psih_invoice_billstatus = "Closed"
                                 _PaymentDtl.paymentMode = "bank"
                             Case "credit"
                                 _PaymentDtl.paymentMode = "credit"
+                                _saleData.psih_invoice_billstatus = "Open"
                             Case Else
                                 _PaymentDtl.paymentMode = "cash" ' Default to cash
+                                _saleData.psih_invoice_billstatus = "Closed"
                         End Select
                         _saleData.psih_invoice_billremarks = txtattenname.Text
                         If frmPaymore.txtadvanceamt.EditValue > 0 And _PaymentDtl.paymentMode = "cash" Then
@@ -982,10 +993,13 @@ Public Class PosSales
                         _saleData.psih_invoice_userid = _companyInfo.UserId
                         _saleData.psih_invoice_comid = _companyInfo.ComId
                         _saleData.psih_invoice_locid = _companyInfo.LocId
-                        Dim jsondtl As String = JsonConvert.SerializeObject(GridDataTble_Insert)
+                        Dim invoicedate7 As String = ""
+                        _DateConversion(txtinvoicedate.EditValue, invoicedate7)
+                        Dim dtlList7 As List(Of SalesDtl) = BuildSalesDtlList(invoicedate7, txtinvoiceno.Text)
+                        Dim jsondtl As String = JsonConvert.SerializeObject(dtlList7)
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=7&dtl=" & jsondtl & "&hdr=" & jsonhdr, _errMsgResult) = True Then
+                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=7&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.ComId & "&pm_id=" & _companyInfo.CompanyPMID, _errMsgResult) = True Then
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             btnNew_Click(Nothing, Nothing)
                             btnPrint_Click(Nothing, Nothing)
@@ -1049,10 +1063,13 @@ Public Class PosSales
                     Dim billno = billHdr.Rows(0)("psih_invoice_trno")
                     txtinvoiceno.Text = billno
                     Dim CustomerId = billHdr.Rows(0)("psih_invoice_customerid")
-                    txtclientname.EditValue = CustomerId
+                    selectedCustomerId = CustomerId
+                    selectedCustomerName = billHdr.Rows(0)("psih_invoice_description")
+                    txtclientname.Text = selectedCustomerName
                     Dim Remarks = billHdr.Rows(0)("psih_invoice_billremarks")
                     txtattenname.Text = Remarks
                     barbtnbilltype.Caption = "Bill Type : " & billHdr.Rows(0)("psih_invoice_billtype")
+
                 End If
                 If billDtl.Rows.Count > 0 Then
                     _SnoCount = 0
@@ -1107,7 +1124,7 @@ Public Class PosSales
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Try
             Dim _receDs As New DataSet
-            If (GetSalesByBillLocal(txtinvoiceno.EditValue - 1, _receDs, "P")) = True Then
+            If (GetSalesByBill(txtinvoiceno.EditValue - 1, _receDs)) = True Then
                 If (_receDs.Tables(0).Rows.Count > 0) Then
                     _receDs.WriteXml(M_Details._appPath & "\Reports\Sales.xml", Data.XmlWriteMode.WriteSchema)
                 End If
@@ -1197,10 +1214,13 @@ Public Class PosSales
                         _saleData.psih_invoice_userid = _companyInfo.UserId
                         _saleData.psih_invoice_comid = _companyInfo.ComId
                         _saleData.psih_invoice_locid = _companyInfo.LocId
-                        Dim jsondtl As String = JsonConvert.SerializeObject(GridDataTble_Insert)
+                        Dim invoicedate9 As String = ""
+                        _DateConversion(txtinvoicedate.EditValue, invoicedate9)
+                        Dim dtlList9 As List(Of SalesDtl) = BuildSalesDtlList(invoicedate9, txtinvoiceno.Text)
+                        Dim jsondtl As String = JsonConvert.SerializeObject(dtlList9)
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=9&dtl=" & jsondtl & "&hdr=" & jsonhdr, _errMsgResult) = True Then
+                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=9&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.ComId & "&pm_id=" & _companyInfo.CompanyPMID, _errMsgResult) = True Then
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Quotation Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             btnNew_Click(Nothing, Nothing)
                             btnPrint_Click(Nothing, Nothing)
@@ -1253,10 +1273,13 @@ Public Class PosSales
                         _saleData.psih_invoice_userid = _companyInfo.UserId
                         _saleData.psih_invoice_comid = _companyInfo.ComId
                         _saleData.psih_invoice_locid = _companyInfo.LocId
-                        Dim jsondtl As String = JsonConvert.SerializeObject(GridDataTble_Insert)
+                        Dim invoicedate10 As String = ""
+                        _DateConversion(txtinvoicedate.EditValue, invoicedate10)
+                        Dim dtlList10 As List(Of SalesDtl) = BuildSalesDtlList(invoicedate10, txtinvoiceno.Text)
+                        Dim jsondtl As String = JsonConvert.SerializeObject(dtlList10)
                         Dim jsonhdr As String = JsonConvert.SerializeObject(_saleData)
                         Dim _errMsgResult As String = ""
-                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=10&dtl=" & jsondtl & "&hdr=" & jsonhdr, _errMsgResult) = True Then
+                        If _JsonSend(M_Details.LinkAjaxRequest & "SalesRequest=10&dtl=" & jsondtl & "&hdr=" & jsonhdr & "&comid=" & _companyInfo.ComId & "&locid=" & _companyInfo.ComId & "&pm_id=" & _companyInfo.CompanyPMID, _errMsgResult) = True Then
                             DevExpress.XtraEditors.XtraMessageBox.Show(_errMsgResult & "Bill Saved", M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
                             btnNew_Click(Nothing, Nothing)
                             btnPrint_Click(Nothing, Nothing)
@@ -1274,6 +1297,130 @@ Public Class PosSales
         End Try
     End Sub
 #End Region
-
+    Public Function GetSalesByBill(ByVal Billno As Integer, ByRef _ds As DataSet) As Boolean
+        Try
+            Dim billDtl As New DataTable
+            Dim billHdr As New DataTable
+            billDtl.TableName = "billDtl"
+            billHdr.TableName = "billHdr"
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesRequest=8&billno=" & Billno)
+            Dim Userparsejson As JObject = JObject.Parse(json)
+            Dim Msg = Userparsejson("Success").ToString
+            If Msg.ToString = "True" Then
+                billDtl = Userparsejson("DTL").ToObject(Of DataTable)()
+                billHdr = Userparsejson("HDR").ToObject(Of DataTable)()
+                _ds.Tables.Add(billDtl)
+                _ds.Tables.Add(billHdr)
+                _
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function BuildSalesDtlList(invoiceDate As String, invoiceNo As String) As List(Of SalesDtl)
+        Dim result As New List(Of SalesDtl)
+        For Each row As DataRow In GridDataTble_Insert.Rows
+            Dim dtl As New SalesDtl
+            dtl.psid_invoice_sno = Convert.ToInt32(row("SNO"))
+            dtl.psid_invoice_salid = 0                                          ' assigned by PHP after HDR insert
+            dtl.psid_invoice_date = invoiceDate
+            dtl.psid_invoice_trno = invoiceNo
+            dtl.psid_invoice_id = Convert.ToInt32(row("UID"))
+            dtl.psid_invoice_description = Convert.ToString(row("ITEMNAME"))
+            dtl.psid_invoice_procode = Convert.ToString(row("CODE"))
+            dtl.psid_invoice_barcode = ""
+            dtl.psid_invoice_serialno = ""
+            dtl.psid_invoice_uom = ""
+            dtl.psid_invoice_proqty = Convert.ToDouble(row("QTY"))
+            dtl.psid_invoice_rate = Convert.ToDouble(row("RATE"))
+            dtl.psid_invoice_amt = Convert.ToDouble(row("TAMOUNT"))
+            dtl.psid_invoice_itemdisp = Convert.ToDouble(row("DPER"))
+            dtl.psid_invoice_itemdisamt = Convert.ToDouble(row("DAMT"))
+            dtl.psid_invoice_billdisp = Convert.ToDouble(row("BPER"))
+            dtl.psid_invoice_billdisamt = Convert.ToDouble(row("BAMT"))
+            dtl.psid_invoice_totdper = 0
+            dtl.psid_invoice_totdamt = 0
+            dtl.psid_invoice_gross = Convert.ToDouble(row("GAMOUNT"))
+            dtl.psid_invoice_taxinex = Convert.ToInt32(row("TAXINEX"))
+            dtl.psid_invoice_taxvalue = Convert.ToDouble(row("TAXVALUE"))
+            dtl.psid_invoice_taxamt = Convert.ToDouble(row("TAXAMT"))
+            dtl.psid_invoice_netamt = Convert.ToDouble(row("NETAMT"))
+            dtl.psid_invoice_remarks = "-"
+            dtl.psid_invoice_batchno = "-"
+            dtl.psid_invoice_salesmanid = 0
+            dtl.psid_invoice_salemanper = 0
+            dtl.psid_invoice_shiftno = _saleSetting._curShiftno
+            dtl.psid_invoice_dayno = _saleSetting._curDayno
+            result.Add(dtl)
+        Next
+        Return result
+    End Function
 
 End Class
+'create class for sales dtl $psid_invoice_sno = $row['psid_invoice_sno'];
+' $psid_invoice_salid = $Sa_id;
+' $psid_invoice_date = $psih_invoice_date;
+' $psid_invoice_trno = $invoiceno;
+' $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "0";
+' $psid_invoice_description = $row['psid_invoice_description'];
+' $psid_invoice_procode = $row['psid_invoice_procode'];
+' $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
+' $psid_invoice_serialno = isset($row['psid_invoice_serialno']) ? $row['psid_invoice_serialno'] : "";
+' $psid_invoice_uom = isset($row['psid_invoice_uom']) ? $row['psid_invoice_uom'] : "";
+' $psid_invoice_proqty = $row['psid_invoice_proqty'];
+' $psid_invoice_rate = $row['psid_invoice_rate'];
+' $psid_invoice_amt = $row['psid_invoice_amt'];
+' $psid_invoice_itemdisp = $row['psid_invoice_itemdisp'];
+' $psid_invoice_itemdisamt = $row['psid_invoice_itemdisamt'];
+' $psid_invoice_billdisp = $row['psid_invoice_billdisp'];
+' $psid_invoice_billdisamt = $row['psid_invoice_billdisamt'];
+' $psid_invoice_totdper = isset($row['psid_invoice_totdper']) ? $row['psid_invoice_totdper'] : 0;
+' $psid_invoice_totdamt = isset($row['psid_invoice_totdamt']) ? $row['psid_invoice_totdamt'] : 0;
+' $psid_invoice_gross = isset($row['psid_invoice_gross']) ? $row['psid_invoice_gross'] : 0;
+' $psid_invoice_taxinex =  isset($row['psid_invoice_taxinex']) ? $row['psid_invoice_taxinex'] : 0;
+' $psid_invoice_taxvalue = isset($row['psid_invoice_taxvalue']) ? $row['psid_invoice_taxvalue'] : 0;
+' $psid_invoice_taxamt = isset($row['psid_invoice_taxamt']) ? $row['psid_invoice_taxamt'] : 0;
+' $psid_invoice_netamt = isset($row['psid_invoice_netamt']) ? $row['psid_invoice_netamt'] : 0;
+' $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "0";
+' $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "0";
+' $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "0";
+' $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
+' $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "0";
+' $psid_invoice_dayno = isset($row['psid_invoice_dayno']) ? $row['psid_invoice_dayno'] : "0";
+Public Class SalesDtl
+    Public Property psid_invoice_sno As Integer
+    Public Property psid_invoice_salid As Integer
+    Public Property psid_invoice_date As String
+    Public Property psid_invoice_trno As String
+    Public Property psid_invoice_id As Integer
+    Public Property psid_invoice_description As String
+    Public Property psid_invoice_procode As String
+    Public Property psid_invoice_barcode As String
+    Public Property psid_invoice_serialno As String
+    Public Property psid_invoice_uom As String
+    Public Property psid_invoice_proqty As Double
+    Public Property psid_invoice_rate As Double
+    Public Property psid_invoice_amt As Double
+    Public Property psid_invoice_itemdisp As Double
+    Public Property psid_invoice_itemdisamt As Double
+    Public Property psid_invoice_billdisp As Double
+    Public Property psid_invoice_billdisamt As Double
+    Public Property psid_invoice_totdper As Double
+    Public Property psid_invoice_totdamt As Double
+    Public Property psid_invoice_gross As Double
+    Public Property psid_invoice_taxinex As Integer
+    Public Property psid_invoice_taxvalue As Double
+    Public Property psid_invoice_taxamt As Double
+    Public Property psid_invoice_netamt As Double
+    Public Property psid_invoice_remarks As String
+    Public Property psid_invoice_batchno As String
+    Public Property psid_invoice_salesmanid As Integer
+    Public Property psid_invoice_salemanper As Double
+    Public Property psid_invoice_shiftno As String
+    Public Property psid_invoice_dayno As String
+End Class
+
+

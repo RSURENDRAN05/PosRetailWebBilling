@@ -1169,7 +1169,11 @@ class funcProcessMgmt
         $psih_invoice_balamt,
         $psih_invoice_shiftno,
         $psih_invoice_dayno,
-        $psih_invoice_countername
+        $psih_invoice_countername,
+        $psih_invoice_pmid = 0,
+        $psih_invoice_print = 0,
+        $psih_invoice_refid = 0,
+        $InvoiceGUID = ''
     ) {
         $conn = $this->conn;
         $sqlquery = ("INSERT INTO `pos_sale_invoicehdr`(`psih_invoice_trno`, `psih_invoice_date`, `psih_invoice_prefix`, `psih_invoice_description`,"
@@ -1178,14 +1182,14 @@ class funcProcessMgmt
             . "`psih_invoice_sercharge`, `psih_invoice_roundoff`, `psih_invoice_tnetamt`, `psih_invoice_saletype`, `psih_invoice_billtype`,"
             . "`psih_invoice_billstatus`, `psih_invoice_paymode`, `psih_invoice_customerid`, `psih_invoice_userid`, `psih_invoice_comid`,"
             . "`psih_invoice_locid`, `psih_invoice_billremarks`, `psih_invoice_advamt`, `psih_invoice_outstanding`, `psih_invoice_givenamt`,"
-            . "`psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`, `psih_invoice_countername`)"
+            . "`psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`, `psih_invoice_modified`, `psih_invoice_countername`, `psih_invoice_pmid`, `psih_invoice_print`, `psih_invoice_refid`, `InvoiceGUID`)"
             . " VALUES ('" . $psih_invoice_trno . "','" . $psih_invoice_date . "','" . $psih_invoice_prefix . "','" . $psih_invoice_description . "',"
             . "'" . $psih_invoice_tqty . "','" . $psih_invoice_tamount . "','" . $psih_invoice_titemdisper . "','" . $psih_invoice_titemdisamt . "','" . $psih_invoice_tbilldiscper . "',"
             . "'" . $psih_invoice_tbilldiscamt . "','" . $psih_invoice_totdiscper . "','" . $psih_invoice_totdiscamt . "','" . $psih_invoice_tgrossamt . "','" . $psih_invoice_ttaxamt . "',"
             . "'" . $psih_invoice_sercharge . "','" . $psih_invoice_roundoff . "','" . $psih_invoice_tnetamt . "','" . $psih_invoice_saletype . "','" . $psih_invoice_billtype . "',"
             . "'" . $psih_invoice_billstatus . "','" . $psih_invoice_paymode . "','" . $psih_invoice_customerid . "','" . $psih_invoice_userid . "','" . $psih_invoice_comid . "',"
             . "'" . $psih_invoice_locid . "','" . $psih_invoice_billremarks . "','" . $psih_invoice_advamt . "','" . $psih_invoice_outstanding . "','" . $psih_invoice_givenamt . "',"
-            . "'" . $psih_invoice_balamt . "','" . $psih_invoice_shiftno . "','" . $psih_invoice_dayno . "','" . date("Y-m-d H:i:s") . "','" . $psih_invoice_countername . "')");
+            . "'" . $psih_invoice_balamt . "','" . $psih_invoice_shiftno . "','" . $psih_invoice_dayno . "','" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . $psih_invoice_countername . "','" . (int)$psih_invoice_pmid . "','" . (int)$psih_invoice_print . "','" . (int)$psih_invoice_refid . "','" . $InvoiceGUID . "')");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }
@@ -1272,7 +1276,12 @@ class funcProcessMgmt
         $psid_invoice_salesmanid,
         $psid_invoice_salemanper,
         $psid_invoice_shiftno,
-        $psid_invoice_dayno
+        $psid_invoice_dayno,
+        $psid_invoice_comid,
+        $psid_invoice_locid,
+        $psid_invoice_pmid = 0,
+        $psid_invoice_refid = 0,
+        $InvoiceGUID = ''
     ) {
         $conn = $this->conn;
         $sqlquery = ("INSERT INTO `pos_sale_invoicedtl`(`psid_invoice_sno`,`psid_invoice_salid`,  `psid_invoice_date`,`psid_invoice_trno`,"
@@ -1280,14 +1289,14 @@ class funcProcessMgmt
             . "`psid_invoice_proqty`, `psid_invoice_rate`,`psid_invoice_amt`, `psid_invoice_itemdisp`, `psid_invoice_itemdisamt`,"
             . "`psid_invoice_billdisp`,`psid_invoice_billdisamt`, `psid_invoice_totdper`, `psid_invoice_totdamt`, `psid_invoice_gross`,"
             . "`psid_invoice_taxinex`, `psid_invoice_taxvalue`, `psid_invoice_taxamt`, `psid_invoice_netamt`, `psid_invoice_remarks`,"
-            . "`psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`, `psid_invoice_created`)"
+            . "`psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`, `psid_invoice_created`, `psid_invoice_modified`, `psid_invoice_comid`, `psid_invoice_locid`, `psid_invoice_pmid`, `psid_invoice_refid`, `InvoiceGUID`)"
             . " VALUES ('" . $psid_invoice_sno . "','" . $psid_invoice_salid . "','" . $psid_invoice_date . "','" . $psid_invoice_trno . "',"
             . "'" . $psid_invoice_description . "','" . $psid_invoice_procode . "','" . $psid_invoice_barcode . "','" . $psid_invoice_serialno . "','" . $psid_invoice_uom . "',"
             . "'" . $psid_invoice_proqty . "','" . $psid_invoice_rate . "','" . $psid_invoice_amt . "','" . $psid_invoice_itemdisp . "','" . $psid_invoice_itemdisamt . "',"
             . "'" . $psid_invoice_billdisp . "','" . $psid_invoice_billdisamt . "','" . $psid_invoice_totdper . "','" . $psid_invoice_totdamt . "','" . $psid_invoice_gross . "',"
             . "'" . $psid_invoice_taxinex . "','" . $psid_invoice_taxvalue . "','" . $psid_invoice_taxamt . "','" . $psid_invoice_netamt . "','" . $psid_invoice_remarks . "',"
             . "'" . $psid_invoice_batchno . "','" . $psid_invoice_salesmanid . "','" . $psid_invoice_salemanper . "','" . $psid_invoice_shiftno . "','" . $psid_invoice_dayno . "',"
-            . "'" . date("Y/m/d H:i:s") . "')");
+            . "'" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . (int)$psid_invoice_comid . "','" . (int)$psid_invoice_locid . "','" . (int)$psid_invoice_pmid . "','" . (int)$psid_invoice_refid . "','" . $InvoiceGUID . "')");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }
@@ -1324,7 +1333,10 @@ class funcProcessMgmt
         $psid_invoice_shiftno,
         $psid_invoice_dayno,
         $psih_invoice_comid,
-        $psih_invoice_locid
+        $psih_invoice_locid,
+        $psid_invoice_pmid = 0,
+        $psid_invoice_refid = 0,
+        $InvoiceGUID = ''
     ) {
         // Log all input parameters
         $params = compact(
@@ -1387,14 +1399,14 @@ class funcProcessMgmt
                 . " `psid_invoice_billdisp`,`psid_invoice_billdisamt`, `psid_invoice_totdper`, `psid_invoice_totdamt`, `psid_invoice_gross`,"
                 . " `psid_invoice_taxinex`, `psid_invoice_taxvalue`, `psid_invoice_taxamt`, `psid_invoice_netamt`, `psid_invoice_remarks`,"
                 . " `psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`,"
-                . " `psid_invoice_created`)"
+                . " `psid_invoice_created`, `psid_invoice_modified`, `psid_invoice_comid`, `psid_invoice_locid`, `psid_invoice_pmid`, `psid_invoice_refid`, `InvoiceGUID`)"
                 . " VALUES ('" . $psid_invoice_sno . "','" . $psid_invoice_salid . "','" . $psid_invoice_date . "','" . $psid_invoice_trno . "',"
                 . "'" . $psid_invoice_barcode . "','" . $psid_invoice_procode . "','" . $psid_invoice_description . "','" . $psid_invoice_serialno . "','" . $psid_invoice_uom . "',"
                 . "'" . $psid_invoice_proqty . "','" . $psid_invoice_rate . "','" . $psid_invoice_amt . "','" . $psid_invoice_itemdisp . "','" . $psid_invoice_itemdisamt . "',"
                 . "'" . $psid_invoice_billdisp . "','" . $psid_invoice_billdisamt . "','" . $psid_invoice_totdper . "','" . $psid_invoice_totdamt . "','" . $psid_invoice_gross . "',"
                 . "'" . $psid_invoice_taxinex . "','" . $psid_invoice_taxvalue . "','" . $psid_invoice_taxamt . "','" . $psid_invoice_netamt . "','" . $psid_invoice_remarks . "',"
                 . "'" . $psid_invoice_batchno . "','" . $psid_invoice_salesmanid . "','" . $psid_invoice_salemanper . "','" . $psid_invoice_shiftno . "','" . $psid_invoice_dayno . "',"
-                . "'" . date("Y/m/d H:i:s") . "')");
+                . "'" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . (int)$psih_invoice_comid . "','" . (int)$psih_invoice_locid . "','" . (int)$psid_invoice_pmid . "','" . (int)$psid_invoice_refid . "','" . $InvoiceGUID . "')");
 
             // Log the complete SQL query with actual values
 
@@ -1431,14 +1443,14 @@ class funcProcessMgmt
                 . " `psid_invoice_billdisp`,`psid_invoice_billdisamt`, `psid_invoice_totdper`, `psid_invoice_totdamt`, `psid_invoice_gross`,"
                 . " `psid_invoice_taxinex`, `psid_invoice_taxvalue`, `psid_invoice_taxamt`, `psid_invoice_netamt`, `psid_invoice_remarks`,"
                 . " `psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`,"
-                . " `psid_invoice_created`)"
+                . " `psid_invoice_created`, `psid_invoice_modified`, `psid_invoice_comid`, `psid_invoice_locid`, `psid_invoice_pmid`, `psid_invoice_refid`, `InvoiceGUID`)"
                 . " VALUES ('" . $psid_invoice_sno . "','" . $psid_invoice_salid . "','" . $psid_invoice_date . "','" . $psid_invoice_trno . "',"
                 . "'" . $psid_invoice_barcode . "','" . $psid_invoice_procode . "','" . $psid_invoice_description . "','" . $psid_invoice_serialno . "','" . $psid_invoice_uom . "',"
                 . "'" . $psid_invoice_proqty . "','" . $psid_invoice_rate . "','" . $psid_invoice_amt . "','" . $psid_invoice_itemdisp . "','" . $psid_invoice_itemdisamt . "',"
                 . "'" . $psid_invoice_billdisp . "','" . $psid_invoice_billdisamt . "','" . $psid_invoice_totdper . "','" . $psid_invoice_totdamt . "','" . $psid_invoice_gross . "',"
                 . "'" . $psid_invoice_taxinex . "','" . $psid_invoice_taxvalue . "','" . $psid_invoice_taxamt . "','" . $psid_invoice_netamt . "','" . $psid_invoice_remarks . "',"
                 . "'" . $psid_invoice_batchno . "','" . $psid_invoice_salesmanid . "','" . $psid_invoice_salemanper . "','" . $psid_invoice_shiftno . "','" . $psid_invoice_dayno . "',"
-                . "'" . date("Y/m/d H:i:s") . "')");
+                . "'" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . (int)$psih_invoice_comid . "','" . (int)$psih_invoice_locid . "','" . (int)$psid_invoice_pmid . "','" . (int)$psid_invoice_refid . "','" . $InvoiceGUID . "')");
 
             // Log the complete SQL query with actual values
 
@@ -1490,12 +1502,15 @@ class funcProcessMgmt
         $psih_invoice_givenamt,
         $psih_invoice_balamt,
         $psih_invoice_shiftno,
-        $psih_invoice_dayno
+        $psih_invoice_dayno,
+        $psih_invoice_pmid = 0,
+        $psih_invoice_print = 0,
+        $psih_invoice_refid = 0,
+        $InvoiceGUID = ''
     ) {
         $conn = $this->conn;
 
-        // Generate default values for pmid and id if not provided
-        $psih_invoice_pmid = 0; // or generate unique ID if needed
+        // Generate default value for id if not provided
         $psih_invoice_id = 0;   // or generate unique ID if needed
 
         $sqlquery = ("INSERT INTO `pos_quote_invoicehdr`(`psih_invoice_pmid`, `psih_invoice_id`, `psih_invoice_trno`, `psih_invoice_date`, `psih_invoice_prefix`, `psih_invoice_description`,"
@@ -1504,14 +1519,14 @@ class funcProcessMgmt
             . "`psih_invoice_sercharge`, `psih_invoice_roundoff`, `psih_invoice_tnetamt`, `psih_invoice_saletype`, `psih_invoice_billtype`,"
             . "`psih_invoice_billstatus`, `psih_invoice_paymode`, `psih_invoice_customerid`, `psih_invoice_userid`, `psih_invoice_comid`,"
             . "`psih_invoice_locid`, `psih_invoice_billremarks`, `psih_invoice_advamt`, `psih_invoice_outstanding`, `psih_invoice_givenamt`,"
-            . "`psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`)"
+            . "`psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`, `psih_invoice_modified`, `psih_invoice_print`, `psih_invoice_refid`, `InvoiceGUID`)"
             . " VALUES ('" . $psih_invoice_pmid . "','" . $psih_invoice_id . "','" . $psih_invoice_trno . "','" . $psih_invoice_date . "','" . $psih_invoice_prefix . "','" . $psih_invoice_description . "',"
             . "'" . $psih_invoice_tqty . "','" . $psih_invoice_tamount . "','" . $psih_invoice_titemdisper . "','" . $psih_invoice_titemdisamt . "','" . $psih_invoice_tbilldiscper . "',"
             . "'" . $psih_invoice_tbilldiscamt . "','" . $psih_invoice_totdiscper . "','" . $psih_invoice_totdiscamt . "','" . $psih_invoice_tgrossamt . "','" . $psih_invoice_ttaxamt . "',"
             . "'" . $psih_invoice_sercharge . "','" . $psih_invoice_roundoff . "','" . $psih_invoice_tnetamt . "','" . $psih_invoice_saletype . "','" . $psih_invoice_billtype . "',"
             . "'" . $psih_invoice_billstatus . "','" . $psih_invoice_paymode . "','" . $psih_invoice_customerid . "','" . $psih_invoice_userid . "','" . $psih_invoice_comid . "',"
             . "'" . $psih_invoice_locid . "','" . $psih_invoice_billremarks . "','" . $psih_invoice_advamt . "','" . $psih_invoice_outstanding . "','" . $psih_invoice_givenamt . "',"
-            . "'" . $psih_invoice_balamt . "','" . $psih_invoice_shiftno . "','" . $psih_invoice_dayno . "','" . date("Y-m-d H:i:s") . "')");
+            . "'" . $psih_invoice_balamt . "','" . $psih_invoice_shiftno . "','" . $psih_invoice_dayno . "','" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . (int)$psih_invoice_print . "','" . (int)$psih_invoice_refid . "','" . $InvoiceGUID . "')");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }
@@ -1546,7 +1561,12 @@ class funcProcessMgmt
         $psid_invoice_salesmanid,
         $psid_invoice_salemanper,
         $psid_invoice_shiftno,
-        $psid_invoice_dayno
+        $psid_invoice_dayno,
+        $psid_invoice_comid,
+        $psid_invoice_locid,
+        $psid_invoice_pmid = 0,
+        $psid_invoice_refid = 0,
+        $InvoiceGUID = ''
     ) {
         $conn = $this->conn;
         $sqlquery = ("INSERT INTO `pos_quote_invoicedtl`(`psid_invoice_sno`,`psid_invoice_salid`, `psid_invoice_prf`, `psid_invoice_date`,`psid_invoice_trno`,"
@@ -1554,14 +1574,14 @@ class funcProcessMgmt
             . "`psid_invoice_proqty`, `psid_invoice_rate`,`psid_invoice_amt`, `psid_invoice_itemdisp`, `psid_invoice_itemdisamt`,"
             . "`psid_invoice_billdisp`,`psid_invoice_billdisamt`, `psid_invoice_totdper`, `psid_invoice_totdamt`, `psid_invoice_gross`,"
             . "`psid_invoice_taxinex`, `psid_invoice_taxvalue`, `psid_invoice_taxamt`, `psid_invoice_netamt`, `psid_invoice_remarks`,"
-            . "`psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`, `psid_invoice_created`)"
+            . "`psid_invoice_batchno`, `psid_invoice_salesmanid`, `psid_invoice_salemanper`, `psid_invoice_shiftno`, `psid_invoice_dayno`, `psid_invoice_created`, `psid_invoice_modified`, `psid_invoice_comid`, `psid_invoice_locid`, `psid_invoice_pmid`, `psid_invoice_refid`, `InvoiceGUID`)"
             . " VALUES ('" . $psid_invoice_sno . "','" . $psid_invoice_salid . "','SH','" . $psid_invoice_date . "','" . $psid_invoice_trno . "',"
             . "'" . $psid_invoice_id . "','" . $psid_invoice_description . "','" . $psid_invoice_procode . "','" . $psid_invoice_barcode . "','" . $psid_invoice_serialno . "','" . $psid_invoice_uom . "',"
             . "'" . $psid_invoice_proqty . "','" . $psid_invoice_rate . "','" . $psid_invoice_amt . "','" . $psid_invoice_itemdisp . "','" . $psid_invoice_itemdisamt . "',"
             . "'" . $psid_invoice_billdisp . "','" . $psid_invoice_billdisamt . "','" . $psid_invoice_totdper . "','" . $psid_invoice_totdamt . "','" . $psid_invoice_gross . "',"
             . "'" . $psid_invoice_taxinex . "','" . $psid_invoice_taxvalue . "','" . $psid_invoice_taxamt . "','" . $psid_invoice_netamt . "','" . $psid_invoice_remarks . "',"
             . "'" . $psid_invoice_batchno . "','" . $psid_invoice_salesmanid . "','" . $psid_invoice_salemanper . "','" . $psid_invoice_shiftno . "','" . $psid_invoice_dayno . "',"
-            . "'" . date("Y/m/d H:i:s") . "')");
+            . "'" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s") . "','" . (int)$psid_invoice_comid . "','" . (int)$psid_invoice_locid . "','" . (int)$psid_invoice_pmid . "','" . (int)$psid_invoice_refid . "','" . $InvoiceGUID . "')");
         $result = mysqli_query($conn, $sqlquery);
         return $result;
     }

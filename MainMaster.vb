@@ -115,7 +115,7 @@ Public Class MainMaster
                 barbtnmasterauditsalesrep.Enabled = False
                 barbtnauditgeneratesales.Enabled = False
                 barbtnauditsalesreport.Enabled = False
-
+                barbtnprintbarcode.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -582,6 +582,15 @@ Public Class MainMaster
                             RibbonPageAuditReport.Visible = False
                         End If
                     End If
+                    Dim BarcodePrint As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "BarcodePrint"
+                    If BarcodePrint.Any Then
+                        If BarcodePrint(0)("menu_active") = "1" Then
+                            barbtnprintbarcode.Enabled = True
+                        Else
+                            barbtnprintbarcode.Enabled = False
+                        End If
+                    End If
+
                 End If
             End If
         Catch ex As Exception
@@ -1168,6 +1177,15 @@ Public Class MainMaster
         Try
             FrmGenerateTaxReport.MdiParent = Me
             FrmGenerateTaxReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnprintbarcode_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprintbarcode.ItemClick
+        Try
+            frmBarcodeMateriallabel.MdiParent = Me
+            frmBarcodeMateriallabel.Show()
         Catch ex As Exception
 
         End Try

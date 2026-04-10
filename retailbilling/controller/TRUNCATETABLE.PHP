@@ -1,10 +1,10 @@
-TRUNCATE TABLE pos_sale_invoicehdr;
-TRUNCATE TABLE pos_sale_invoicedtl;
-TRUNCATE TABLE pos_sale_paymode;
-TRUNCATE TABLE journaldetails;
-TRUNCATE TABLE pos_sale_deletelog;
-TRUNCATE TABLE pos_payout_dtl;
-UPDATE POS_MASTER SET PM_TRANS_NO =0;
+-- TRUNCATE TABLE pos_sale_invoicehdr;
+-- TRUNCATE TABLE pos_sale_invoicedtl;
+-- TRUNCATE TABLE pos_sale_paymode;
+-- TRUNCATE TABLE journaldetails;
+-- TRUNCATE TABLE pos_sale_deletelog;
+-- TRUNCATE TABLE pos_payout_dtl;
+-- UPDATE POS_MASTER SET PM_TRANS_NO =0;
 select * from pos_sale_invoicehdr;
 select * from pos_sale_invoicedtl;
 select * from pos_sale_paymode;

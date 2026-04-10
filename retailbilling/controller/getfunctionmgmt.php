@@ -1622,6 +1622,10 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
             $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
             $psih_invoice_countername = isset($datahdr["psih_invoice_countername"]) ? $datahdr["psih_invoice_countername"] : "";
+            $psih_invoice_pmid = $pm_id;
+            $psih_invoice_print = isset($datahdr["psih_invoice_print"]) ? (int)$datahdr["psih_invoice_print"] : 0;
+            $psih_invoice_refid = isset($datahdr["psih_invoice_refid"]) ? (int)$datahdr["psih_invoice_refid"] : 0;
+            $InvoiceGUID = (isset($datahdr["InvoiceGUID"]) && preg_match('/^[0-9a-f\-]{36}$/i', $datahdr["InvoiceGUID"])) ? $datahdr["InvoiceGUID"] : sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
 
             $saveHdr = $clsfunreq->SaveSaleHdr(
                 $psih_invoice_trno,
@@ -1656,7 +1660,11 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                 $psih_invoice_balamt,
                 $psih_invoice_shiftno,
                 $psih_invoice_dayno,
-                $psih_invoice_countername
+                $psih_invoice_countername,
+                $psih_invoice_pmid,
+                $psih_invoice_print,
+                $psih_invoice_refid,
+                $InvoiceGUID
             );
 
 
@@ -1673,7 +1681,7 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_salid = $Sa_id;
                     $psid_invoice_date = $psih_invoice_date;
                     $psid_invoice_trno = $invoiceno;
-                    $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "";
+                    $psid_invoice_id = isset($row['psid_invoice_id']) ? $row['psid_invoice_id'] : "0";
                     $psid_invoice_description = $row['psid_invoice_description'];
                     $psid_invoice_procode = $row['psid_invoice_procode'];
                     $psid_invoice_barcode = isset($row['psid_invoice_barcode']) ? $row['psid_invoice_barcode'] : "";
@@ -1693,8 +1701,8 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_taxvalue = isset($row['psid_invoice_taxvalue']) ? $row['psid_invoice_taxvalue'] : 0;
                     $psid_invoice_taxamt = isset($row['psid_invoice_taxamt']) ? $row['psid_invoice_taxamt'] : 0;
                     $psid_invoice_netamt = isset($row['psid_invoice_netamt']) ? $row['psid_invoice_netamt'] : 0;
-                    $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "-";
-                    $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "-";
+                    $psid_invoice_remarks = isset($row['psid_invoice_remarks']) ? $row['psid_invoice_remarks'] : "0";
+                    $psid_invoice_batchno = isset($row['psid_invoice_batchno']) ? $row['psid_invoice_batchno'] : "0";
                     $psid_invoice_salesmanid = isset($row['psid_invoice_salesmanid']) ? $row['psid_invoice_salesmanid'] : "0";
                     $psid_invoice_salemanper = isset($row['psid_invoice_salemanper']) ? $row['psid_invoice_salemanper'] : 0;
                     $psid_invoice_shiftno = isset($row['psid_invoice_shiftno']) ? $row['psid_invoice_shiftno'] : "0";
@@ -1728,8 +1736,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                         $psid_invoice_salesmanid,
                         $psid_invoice_salemanper,
                         $psid_invoice_shiftno,
-                        $psid_invoice_dayno
-
+                        $psid_invoice_dayno,
+                        $psih_invoice_comid,
+                        $psih_invoice_locid,
+                        $psih_invoice_pmid,
+                        0,
+                        $InvoiceGUID
                     );
 
 
@@ -2285,6 +2297,10 @@ elseif (isset($_REQUEST['SalesRequest'])) {
         $psih_invoice_balamt = $datahdr["psih_invoice_balamt"];
         $psih_invoice_shiftno = isset($datahdr["psih_invoice_shiftno"]) ? $datahdr["psih_invoice_shiftno"] : "";
         $psih_invoice_dayno = isset($datahdr["psih_invoice_dayno"]) ? $datahdr["psih_invoice_dayno"] : "";
+        $psih_invoice_pmid = isset($datahdr["psih_invoice_pmid"]) ? (int)$datahdr["psih_invoice_pmid"] : 0;
+        $psih_invoice_print = isset($datahdr["psih_invoice_print"]) ? (int)$datahdr["psih_invoice_print"] : 0;
+        $psih_invoice_refid = isset($datahdr["psih_invoice_refid"]) ? (int)$datahdr["psih_invoice_refid"] : 0;
+        $InvoiceGUID = (isset($datahdr["InvoiceGUID"]) && preg_match('/^[0-9a-f\-]{36}$/i', $datahdr["InvoiceGUID"])) ? $datahdr["InvoiceGUID"] : sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
         //        $saveHdr = $psih_invoice_trno . ',' . $psih_invoice_description . ',' . $psih_invoice_tqty . ',' . $psih_invoice_tamount . ',' .
         //                $psih_invoice_titemdisper . ',' . $psih_invoice_titemdisamt . ',' . $psih_invoice_tbilldiscper . ',' . $psih_invoice_tbilldiscamt . ',' . $psih_invoice_tgrossamt . ',' .
         //                $psih_invoice_ttaxamt . ',' . $psih_invoice_tnetamt . ',' . $psih_invoice_saletype . ',' . $psih_invoice_billtype . ',' . $psih_invoice_billstatus . ',' . $psih_invoice_customerid . ',' .
@@ -2324,7 +2340,11 @@ elseif (isset($_REQUEST['SalesRequest'])) {
             $psih_invoice_givenamt,
             $psih_invoice_balamt,
             $psih_invoice_shiftno,
-            $psih_invoice_dayno
+            $psih_invoice_dayno,
+            $psih_invoice_pmid,
+            $psih_invoice_print,
+            $psih_invoice_refid,
+            $InvoiceGUID
         );
 
         if ($saveHdr) {
@@ -2390,7 +2410,12 @@ elseif (isset($_REQUEST['SalesRequest'])) {
                     $psid_invoice_salesmanid,
                     $psid_invoice_salemanper,
                     $psid_invoice_shiftno,
-                    $psid_invoice_dayno
+                    $psid_invoice_dayno,
+                    $psih_invoice_comid,
+                    $psih_invoice_locid,
+                    $psih_invoice_pmid,
+                    0,
+                    $InvoiceGUID
                 );
             }
         }

@@ -493,6 +493,16 @@ Module clsfunction
 
         End Try
     End Sub
+    Public Function _DateConversionyyyy_MM_dd(ByRef recDate As DateTime, ByRef dateFormat As String) As Boolean
+        Try
+            Dim reformatted As String = ""
+            Dim _dateTime As DateTime = DateTime.Parse(recDate)
+            dateFormat = _dateTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function _DateConversion(ByRef fromDate As DateTime, ByRef toDate As DateTime, ByRef retfromdate As String, ByRef rettodate As String) As Boolean
         Try
             Dim reformatted As String = ""

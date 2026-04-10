@@ -243,3 +243,8 @@ D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmAudit.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmGenerateTaxReport.resources
 D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmPaymoreII.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmSelectBillII.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmBarcodedesigner.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmBarcodeMateriallabel.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmBarcodeSelector.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmInputBox.resources

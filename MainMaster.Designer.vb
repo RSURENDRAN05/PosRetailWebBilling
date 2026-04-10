@@ -80,6 +80,8 @@ Partial Class MainMaster
         Me.barbtnstockreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnauditsalesreport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnauditgeneratesales = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnmasterauditsalesrep = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnprintbarcode = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -117,7 +119,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barbtnmasterauditsalesrep = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,9 +138,9 @@ Partial Class MainMaster
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll, Me.barbtnfingerscanner, Me.barbtnfingerregister, Me.barbtnattendancereport, Me.barbtnmastersalesreport, Me.barbtntimeProfile, Me.barbtnstockreport, Me.barbtnauditsalesreport, Me.barbtnauditgeneratesales, Me.barbtnmasterauditsalesrep})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll, Me.barbtnfingerscanner, Me.barbtnfingerregister, Me.barbtnattendancereport, Me.barbtnmastersalesreport, Me.barbtntimeProfile, Me.barbtnstockreport, Me.barbtnauditsalesreport, Me.barbtnauditgeneratesales, Me.barbtnmasterauditsalesrep, Me.barbtnprintbarcode})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 67
+        Me.RibbonControl.MaxItemId = 68
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.PageHeaderItemLinks.Add(Me.barbtnRefreshAll)
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageAuditReport, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
@@ -605,6 +606,22 @@ Partial Class MainMaster
         Me.barbtnauditgeneratesales.LargeGlyph = CType(resources.GetObject("barbtnauditgeneratesales.LargeGlyph"), System.Drawing.Image)
         Me.barbtnauditgeneratesales.Name = "barbtnauditgeneratesales"
         '
+        'barbtnmasterauditsalesrep
+        '
+        Me.barbtnmasterauditsalesrep.Caption = "Master Audit Sales Report"
+        Me.barbtnmasterauditsalesrep.Glyph = CType(resources.GetObject("barbtnmasterauditsalesrep.Glyph"), System.Drawing.Image)
+        Me.barbtnmasterauditsalesrep.Id = 66
+        Me.barbtnmasterauditsalesrep.LargeGlyph = CType(resources.GetObject("barbtnmasterauditsalesrep.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnmasterauditsalesrep.Name = "barbtnmasterauditsalesrep"
+        '
+        'barbtnprintbarcode
+        '
+        Me.barbtnprintbarcode.Caption = "Barcode Print"
+        Me.barbtnprintbarcode.Glyph = CType(resources.GetObject("barbtnprintbarcode.Glyph"), System.Drawing.Image)
+        Me.barbtnprintbarcode.Id = 67
+        Me.barbtnprintbarcode.LargeGlyph = CType(resources.GetObject("barbtnprintbarcode.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnprintbarcode.Name = "barbtnprintbarcode"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -646,6 +663,7 @@ Partial Class MainMaster
         'RibbonPageGroup15
         '
         Me.RibbonPageGroup15.ItemLinks.Add(Me.barbtnstockreport)
+        Me.RibbonPageGroup15.ItemLinks.Add(Me.barbtnprintbarcode)
         Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
         Me.RibbonPageGroup15.Text = "Stcok Report"
         '
@@ -835,7 +853,7 @@ Partial Class MainMaster
         '
         'cmbCompany
         '
-        Me.cmbCompany.Location = New System.Drawing.Point(87, 2)
+        Me.cmbCompany.Location = New System.Drawing.Point(94, 7)
         Me.cmbCompany.MenuManager = Me.RibbonControl
         Me.cmbCompany.Name = "cmbCompany"
         Me.cmbCompany.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
@@ -846,7 +864,7 @@ Partial Class MainMaster
         Me.cmbCompany.Properties.DisplayMember = "CompanyName"
         Me.cmbCompany.Properties.NullText = ""
         Me.cmbCompany.Properties.ValueMember = "COID"
-        Me.cmbCompany.Size = New System.Drawing.Size(213, 22)
+        Me.cmbCompany.Size = New System.Drawing.Size(197, 22)
         Me.cmbCompany.StyleController = Me.LayoutControl1
         Me.cmbCompany.TabIndex = 3
         '
@@ -865,7 +883,7 @@ Partial Class MainMaster
         '
         'cmbLocation
         '
-        Me.cmbLocation.Location = New System.Drawing.Point(389, 2)
+        Me.cmbLocation.Location = New System.Drawing.Point(387, 7)
         Me.cmbLocation.MenuManager = Me.RibbonControl
         Me.cmbLocation.Name = "cmbLocation"
         Me.cmbLocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
@@ -876,7 +894,7 @@ Partial Class MainMaster
         Me.cmbLocation.Properties.DisplayMember = "plm_name"
         Me.cmbLocation.Properties.NullText = ""
         Me.cmbLocation.Properties.ValueMember = "plm_id"
-        Me.cmbLocation.Size = New System.Drawing.Size(221, 22)
+        Me.cmbLocation.Size = New System.Drawing.Size(209, 22)
         Me.cmbLocation.StyleController = Me.LayoutControl1
         Me.cmbLocation.TabIndex = 4
         '
@@ -888,7 +906,7 @@ Partial Class MainMaster
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.EmptySpaceItem1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1179, 33)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1162, 36)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -898,27 +916,33 @@ Partial Class MainMaster
         Me.LayoutControlItem1.CustomizationFormText = "Company Name :"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(302, 33)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(298, 36)
+        Me.LayoutControlItem1.Spacing = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
         Me.LayoutControlItem1.Text = "Company Name :"
+        Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(82, 13)
+        Me.LayoutControlItem1.TextToControlDistance = 5
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmbLocation
         Me.LayoutControlItem2.CustomizationFormText = "Location Name :"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(302, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(298, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(310, 33)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(305, 36)
+        Me.LayoutControlItem2.Spacing = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
         Me.LayoutControlItem2.Text = "Location Name :"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(82, 13)
+        Me.LayoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(77, 13)
+        Me.LayoutControlItem2.TextToControlDistance = 5
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(612, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(603, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(567, 33)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(559, 36)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -930,14 +954,6 @@ Partial Class MainMaster
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
-        '
-        'barbtnmasterauditsalesrep
-        '
-        Me.barbtnmasterauditsalesrep.Caption = "Master Audit Sales Report"
-        Me.barbtnmasterauditsalesrep.Glyph = CType(resources.GetObject("barbtnmasterauditsalesrep.Glyph"), System.Drawing.Image)
-        Me.barbtnmasterauditsalesrep.Id = 66
-        Me.barbtnmasterauditsalesrep.LargeGlyph = CType(resources.GetObject("barbtnmasterauditsalesrep.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnmasterauditsalesrep.Name = "barbtnmasterauditsalesrep"
         '
         'MainMaster
         '
@@ -1071,6 +1087,7 @@ Partial Class MainMaster
     Friend WithEvents RibbonPageGroup16 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents barbtnauditgeneratesales As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnmasterauditsalesrep As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnprintbarcode As DevExpress.XtraBars.BarButtonItem
 
 
 End Class

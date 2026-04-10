@@ -4198,8 +4198,8 @@ Public Class PosSalesII
             frmKeyPassIIIMaster.ShowDialog()
             If frmKeyPassIIIMaster.DialogResult = Windows.Forms.DialogResult.OK Then
                 Dim modeofbill As String = ""
-                frmSelectBill.ShowDialog()
-                If frmSelectBill.DialogResult = Windows.Forms.DialogResult.OK Then
+                frmSelectBillII.ShowDialog()
+                If frmSelectBillII.DialogResult = Windows.Forms.DialogResult.OK Then
                     modeOfSale = "View"
                     If GetSalesBySalID(G_SalID, modeofbill) = True Then
                         modeOfSale = modeofbill

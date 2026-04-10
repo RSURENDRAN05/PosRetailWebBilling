@@ -76,6 +76,10 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BarcodeLib.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Dashboard.v13.1.Core, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v13.1.Extensions, Version=13.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -479,6 +483,31 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Purchase\BarcodePrint.vb" />
+    <Compile Include="Purchase\frmBarcodedesigner.designer.vb">
+      <DependentUpon>frmBarcodedesigner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frmBarcodedesigner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frmBarcodeMateriallabel.designer.vb">
+      <DependentUpon>frmBarcodeMateriallabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frmBarcodeMateriallabel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frmBarcodeSelector.designer.vb">
+      <DependentUpon>frmBarcodeSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frmBarcodeSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frmInputBox.designer.vb">
+      <DependentUpon>frmInputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frmInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Purchase\StockUpdate.Designer.vb">
       <DependentUpon>StockUpdate.vb</DependentUpon>
     </Compile>
@@ -735,6 +764,12 @@
     <Compile Include="Sales\frmResendMail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmSelectBill.designer.vb">
+      <DependentUpon>frmSelectBill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmSelectBill.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\FrmSelectSalesman.Designer.vb">
       <DependentUpon>FrmSelectSalesman.vb</DependentUpon>
     </Compile>
@@ -771,10 +806,10 @@
     <Compile Include="Sales\FrmSalesmanList.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\frmSelectBill.designer.vb">
-      <DependentUpon>frmSelectBill.vb</DependentUpon>
+    <Compile Include="Sales\frmSelectBillII.designer.vb">
+      <DependentUpon>frmSelectBillII.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\frmSelectBill.vb">
+    <Compile Include="Sales\frmSelectBillII.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\FrmMenuDesign.Designer.vb">
@@ -988,6 +1023,18 @@
     <EmbeddedResource Include="Master\FrmPackageItem.resx">
       <DependentUpon>FrmPackageItem.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frmBarcodedesigner.resx">
+      <DependentUpon>frmBarcodedesigner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frmBarcodeMateriallabel.resx">
+      <DependentUpon>frmBarcodeMateriallabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frmBarcodeSelector.resx">
+      <DependentUpon>frmBarcodeSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frmInputBox.resx">
+      <DependentUpon>frmInputBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchase\StockUpdate.resx">
       <DependentUpon>StockUpdate.vb</DependentUpon>
     </EmbeddedResource>
@@ -1112,6 +1159,9 @@
     <EmbeddedResource Include="Sales\frmResendMail.resx">
       <DependentUpon>frmResendMail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmSelectBill.resx">
+      <DependentUpon>frmSelectBill.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\FrmSelectSalesman.resx">
       <DependentUpon>FrmSelectSalesman.vb</DependentUpon>
     </EmbeddedResource>
@@ -1130,8 +1180,8 @@
     <EmbeddedResource Include="Sales\FrmSalesmanList.resx">
       <DependentUpon>FrmSalesmanList.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\frmSelectBill.resx">
-      <DependentUpon>frmSelectBill.vb</DependentUpon>
+    <EmbeddedResource Include="Sales\frmSelectBillII.resx">
+      <DependentUpon>frmSelectBillII.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmMenuDesign.resx">
       <DependentUpon>FrmMenuDesign.vb</DependentUpon>

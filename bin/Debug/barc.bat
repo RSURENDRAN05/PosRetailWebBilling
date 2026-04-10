@@ -1,0 +1,1 @@
+copy D:\RetailSolution\barcode.txt \\STOCK\BAR
