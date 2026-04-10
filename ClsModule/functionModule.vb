@@ -2200,6 +2200,27 @@ Module functionModule
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+    Public Function ValuesMatch(leftValue As String, rightValue As String) As Boolean
+        Dim leftNumber As Integer
+        Dim rightNumber As Integer
 
+        If Integer.TryParse(leftValue, leftNumber) AndAlso Integer.TryParse(rightValue, rightNumber) Then
+            Return leftNumber = rightNumber
+        End If
+
+        Return String.Equals(leftValue.Trim(), rightValue.Trim(), StringComparison.OrdinalIgnoreCase)
+    End Function
+    Public Function GetJsonFieldValue(item As JToken, ParamArray fieldNames() As String) As String
+        Try
+            For Each fieldName As String In fieldNames
+                If item(fieldName) IsNot Nothing AndAlso Not IsDBNull(item(fieldName)) Then
+                    Return item(fieldName).ToString().Trim()
+                End If
+            Next
+        Catch
+        End Try
+
+        Return String.Empty
+    End Function
 End Module
 

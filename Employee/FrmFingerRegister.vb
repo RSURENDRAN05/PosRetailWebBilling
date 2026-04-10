@@ -245,7 +245,8 @@ Public Class FrmFingerRegister
         Try
             Dim json As String = New WebClient().DownloadString(M_Details.LinkAjaxRequest & "SalesManCommission=1")
             Dim parsedJson As JObject = JObject.Parse(json)
-
+            Dim currentCompanyId As String = _companyInfo.ComId.ToString()
+            Dim currentLocationId As String = _companyInfo.LocId.ToString()
             salesmenTable.Clear()
             If parsedJson("Success").ToString() = "True" Then
                 Dim dataArray = parsedJson("Data")
@@ -279,8 +280,12 @@ Public Class FrmFingerRegister
                     ElseIf item("EmpName") IsNot Nothing AndAlso item("EmpName").ToString() <> "" Then
                         empName = item("EmpName").ToString()
                     End If
+                    Dim employeeCompanyId As String = GetJsonFieldValue(item, "emp_compid", "EmpComId", "comid", "ComId")
+                    Dim employeeLocationId As String = GetJsonFieldValue(item, "emp_locid", "EmpLocId", "locid", "LocId")
 
-                    salesmenTable.Rows.Add(empId, empName, empType)
+                    If ValuesMatch(employeeCompanyId, currentCompanyId) AndAlso ValuesMatch(employeeLocationId, currentLocationId) Then
+                        salesmenTable.Rows.Add(empId, empName, empType)
+                    End If
                 Next
                 If _JsonData.UserTable.Rows.Count > 0 Then
                     For Each rs In _JsonData.UserTable.Rows

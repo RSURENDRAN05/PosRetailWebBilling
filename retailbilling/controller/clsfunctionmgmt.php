@@ -2326,8 +2326,12 @@ class funcProcessMgmt
         $conn = $this->conn;
         $sqlquery = ("SELECT `emp_id` Id, `emp_firstname` as FirstName, `emp_lastname` as LastName, `emp_printname` as PrintName,`emp_passportic` as Passport,"
             . "`emp_nationality` as National, `emp_passexpire` as PPExpire, `emp_visaexpire` as VisaExpire, `emp_joindate` as JoinDate, `emp_resigndate` as ResignDate,"
-            . "loc.plm_name as Location,`emp_currentstatus` as CurStatus,`emp_monthexpire` as MonthExpire,`emp_remarks` as Notes  FROM `pos_employeeinfo` as pe inner JOIN `pos_location_mast` as loc ON pe.emp_locid= loc.plm_id ORDER BY `emp_id` ASC");
+            . "loc.plm_name as Location,`emp_currentstatus` as CurStatus,`emp_monthexpire` as MonthExpire,`emp_remarks` as Notes  FROM `pos_employeeinfo` as pe LEFT JOIN `pos_location_mast` as loc ON pe.emp_locid= loc.plm_id ORDER BY `emp_id` ASC");
         $result = mysqli_query($conn, $sqlquery);
+        if (!$result) {
+            error_log('SelectEmpDataByView query failed: ' . mysqli_error($conn));
+            return false;
+        }
         return $result;
     }
 

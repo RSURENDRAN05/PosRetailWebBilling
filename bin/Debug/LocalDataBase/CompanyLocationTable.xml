@@ -21,23 +21,37 @@
   </xs:schema>
   <CompanyLocationTable>
     <COID>1</COID>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <CompanyName>DI NAINAS SDN BHD</CompanyName>
     <LID>1</LID>
-    <LocationName>BANGSAR</LocationName>
+    <LocationName>A2B MASJID INDIA</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
   <CompanyLocationTable>
     <COID>1</COID>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <CompanyName>DI NAINAS SDN BHD</CompanyName>
     <LID>2</LID>
-    <LocationName>BRICKFIELDS</LocationName>
+    <LocationName>A2B BRICKFIELDS</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
   <CompanyLocationTable>
     <COID>1</COID>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <CompanyName>DI NAINAS SDN BHD</CompanyName>
     <LID>3</LID>
-    <LocationName>LUCKY GARDEN</LocationName>
+    <LocationName>A2B PUDU</LocationName>
+    <Active>1</Active>
+  </CompanyLocationTable>
+  <CompanyLocationTable>
+    <COID>1</COID>
+    <CompanyName>DI NAINAS SDN BHD</CompanyName>
+    <LID>4</LID>
+    <LocationName>A2B KLANG</LocationName>
+    <Active>1</Active>
+  </CompanyLocationTable>
+  <CompanyLocationTable>
+    <COID>1</COID>
+    <CompanyName>DI NAINAS SDN BHD</CompanyName>
+    <LID>5</LID>
+    <LocationName>A2B PENANG</LocationName>
     <Active>1</Active>
   </CompanyLocationTable>
 </NewDataSet>

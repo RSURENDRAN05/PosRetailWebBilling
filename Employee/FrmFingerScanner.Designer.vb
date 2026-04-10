@@ -92,9 +92,9 @@ Partial Class FrmFingerScanner
         '
         'errorRichBox
         '
-        Me.errorRichBox.Location = New System.Drawing.Point(12, 382)
+        Me.errorRichBox.Location = New System.Drawing.Point(12, 492)
         Me.errorRichBox.Name = "errorRichBox"
-        Me.errorRichBox.Size = New System.Drawing.Size(421, 335)
+        Me.errorRichBox.Size = New System.Drawing.Size(421, 225)
         Me.errorRichBox.TabIndex = 7
         Me.errorRichBox.Text = ""
         '
@@ -345,7 +345,7 @@ Partial Class FrmFingerScanner
         Me.GridControlEmpHeader.Location = New System.Drawing.Point(12, 28)
         Me.GridControlEmpHeader.MainView = Me.GridViewEmpHeader
         Me.GridControlEmpHeader.Name = "GridControlEmpHeader"
-        Me.GridControlEmpHeader.Size = New System.Drawing.Size(421, 334)
+        Me.GridControlEmpHeader.Size = New System.Drawing.Size(421, 444)
         Me.GridControlEmpHeader.TabIndex = 4
         Me.GridControlEmpHeader.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEmpHeader})
         '
@@ -412,7 +412,7 @@ Partial Class FrmFingerScanner
         Me.LayoutControlItem1.CustomizationFormText = "Empolyee Info"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(425, 354)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(425, 464)
         Me.LayoutControlItem1.Text = "Empolyee Info"
         Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(95, 13)
@@ -443,9 +443,9 @@ Partial Class FrmFingerScanner
         '
         Me.LayoutControlItem4.Control = Me.errorRichBox
         Me.LayoutControlItem4.CustomizationFormText = "Error Log"
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 354)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 464)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(425, 355)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(425, 245)
         Me.LayoutControlItem4.Text = "Error Log"
         Me.LayoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(95, 13)
