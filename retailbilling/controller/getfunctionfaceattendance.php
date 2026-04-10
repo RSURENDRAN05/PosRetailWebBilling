@@ -4,7 +4,7 @@
 // Single entry-point for the Python face-recognition client.
 //
 // Python config.py must set:
-//   API_BASE_URL = "http://<your-server>/retailbilling/controller/getfunctionfaceattendance.php"
+//   API_BASE_URL = "https://myposqr.com/retailbilling/controller/getfunctionfaceattendance.php"
 //   ENDPOINTS = {
 //       "auth"       : API_BASE_URL + "?endpoint=auth",
 //       "employees"  : API_BASE_URL + "?endpoint=employees",
