@@ -4,11 +4,12 @@
 // Single entry-point for the Python face-recognition client.
 //
 // Python config.py must set:
-//   API_BASE_URL = "http://<your-server>/retailbilling/controller/getfunctionfaceattendance.php"
+//   API_BASE_URL = "https://myposqr.com/retailbilling/controller/getfunctionfaceattendance.php"
 //   ENDPOINTS = {
 //       "auth"       : API_BASE_URL + "?endpoint=auth",
 //       "employees"  : API_BASE_URL + "?endpoint=employees",
 //       "encode"     : API_BASE_URL + "?endpoint=encode",  // proxies to Python recognition service
+//       "recognize"  : API_BASE_URL + "?endpoint=recognize", // identify employee from image
 //       "faces"      : API_BASE_URL + "?endpoint=faces",
 //       "attendance" : API_BASE_URL + "?endpoint=attendance",
 //       "stats"      : API_BASE_URL + "?endpoint=stats",
@@ -197,6 +198,119 @@ switch ($endpoint) {
             $pyData['success'] = ($pyCode >= 200 && $pyCode < 300);
         }
         echo json_encode($pyData);
+        break;
+
+    // ============================================================
+    // RECOGNIZE
+    // POST ?endpoint=recognize  { image: base64, threshold?: 0..1, top_k?: int }
+    // Proxies to recognition service and normalizes response to:
+    // {
+    //   success: true,
+    //   matched: true|false,
+    //   emp_id: "133"|null,
+    //   confidence: 0.91,
+    //   raw: { ...serviceResponse }
+    // }
+    // ============================================================
+    case 'recognize':
+        if ($method !== 'POST') {
+            fail('POST required');
+            break;
+        }
+
+        $image = $body['image'] ?? '';
+        if (!$image) {
+            fail('image required');
+            break;
+        }
+
+        $threshold = isset($body['threshold']) ? (float)$body['threshold'] : 0.82;
+        $topK = isset($body['top_k']) ? max(1, (int)$body['top_k']) : 3;
+
+        $payload = [
+            'image' => $image,
+            'threshold' => $threshold,
+            'top_k' => $topK,
+            // Optional passthrough context for backends that support filtering
+            'com_id' => $body['com_id'] ?? null,
+            'loc_id' => $body['loc_id'] ?? null,
+        ];
+
+        $pyUrl = RECOGNITION_SERVICE_URL;
+        $ch = curl_init($pyUrl . '/recognize');
+        curl_setopt_array($ch, [
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 25,
+            CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+            CURLOPT_POSTFIELDS     => json_encode($payload),
+        ]);
+        $pyRaw  = curl_exec($ch);
+        $pyErr  = curl_error($ch);
+        $pyCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($pyErr || !$pyRaw) {
+            fail('Recognition service unavailable: ' . ($pyErr ?: 'empty response'), 503);
+            break;
+        }
+
+        $pyData = json_decode($pyRaw, true);
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($pyData)) {
+            fail('Recognition service returned invalid JSON', 502);
+            break;
+        }
+
+        // If backend returns explicit failure, pass it through.
+        if (isset($pyData['success']) && !$pyData['success']) {
+            echo json_encode($pyData);
+            break;
+        }
+
+        // Normalize common response shapes to emp_id + confidence.
+        $empId = null;
+        $confidence = null;
+
+        if (isset($pyData['emp_id'])) {
+            $empId = (string)$pyData['emp_id'];
+            if (isset($pyData['confidence'])) $confidence = (float)$pyData['confidence'];
+        } elseif (isset($pyData['employee_id'])) {
+            $empId = (string)$pyData['employee_id'];
+            if (isset($pyData['confidence'])) $confidence = (float)$pyData['confidence'];
+        } elseif (isset($pyData['subject'])) {
+            $empId = (string)$pyData['subject'];
+            if (isset($pyData['similarity'])) $confidence = (float)$pyData['similarity'];
+        } elseif (isset($pyData['result']) && is_array($pyData['result']) && count($pyData['result']) > 0) {
+            // CompreFace-like shape: result[0].subjects[0].{subject,similarity}
+            $first = $pyData['result'][0];
+            if (isset($first['subjects']) && is_array($first['subjects']) && count($first['subjects']) > 0) {
+                $top = $first['subjects'][0];
+                if (isset($top['subject'])) $empId = (string)$top['subject'];
+                if (isset($top['similarity'])) $confidence = (float)$top['similarity'];
+            }
+        } elseif (isset($pyData['best_match']) && is_array($pyData['best_match'])) {
+            $best = $pyData['best_match'];
+            if (isset($best['emp_id'])) $empId = (string)$best['emp_id'];
+            if (isset($best['employee_id'])) $empId = (string)$best['employee_id'];
+            if (isset($best['subject'])) $empId = (string)$best['subject'];
+            if (isset($best['confidence'])) $confidence = (float)$best['confidence'];
+            if (isset($best['similarity'])) $confidence = (float)$best['similarity'];
+        }
+
+        $matched = !empty($empId);
+        if (!$matched && isset($pyData['matched'])) {
+            $matched = (bool)$pyData['matched'];
+        }
+
+        $normalized = [
+            'success' => ($pyCode >= 200 && $pyCode < 300),
+            'matched' => $matched,
+            'emp_id' => $matched ? $empId : null,
+            'confidence' => $confidence,
+            'raw' => $pyData,
+        ];
+
+        echo json_encode($normalized);
         break;
 
     // ============================================================
