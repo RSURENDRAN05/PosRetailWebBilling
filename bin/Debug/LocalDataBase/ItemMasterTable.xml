@@ -63,7 +63,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>88.00</SELL>
-    <LIVESTOCK>-21.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -483,7 +483,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>50.00</SELL>
-    <LIVESTOCK>-1.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -595,7 +595,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>15.00</SELL>
-    <LIVESTOCK>-3.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -805,7 +805,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>40.00</SELL>
-    <LIVESTOCK>-33.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -931,7 +931,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>25.00</SELL>
-    <LIVESTOCK>-1.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -1015,7 +1015,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>35.00</SELL>
-    <LIVESTOCK>-2.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
@@ -1211,7 +1211,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>45.00</SELL>
-    <LIVESTOCK>-1.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>

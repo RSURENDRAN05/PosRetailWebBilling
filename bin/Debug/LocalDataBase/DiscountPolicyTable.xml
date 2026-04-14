@@ -1,0 +1,66 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="DiscountPolicyTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="DiscountPolicyTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:long" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="DiscountName" type="xs:string" minOccurs="0" />
+                <xs:element name="DiscountType" type="xs:string" minOccurs="0" />
+                <xs:element name="DiscountValue" type="xs:string" minOccurs="0" />
+                <xs:element name="MinAmount" type="xs:string" minOccurs="0" />
+                <xs:element name="MaxAmount" type="xs:string" minOccurs="0" />
+                <xs:element name="RequireVoucher" type="xs:long" minOccurs="0" />
+                <xs:element name="ValidDate" type="xs:string" minOccurs="0" />
+                <xs:element name="Active" type="xs:long" minOccurs="0" />
+                <xs:element name="DiscountId" type="xs:long" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <DiscountPolicyTable>
+    <Id>3</Id>
+    <Name>Tier 3 15% Off</Name>
+    <DiscountName>Tier 3 - 15% Off</DiscountName>
+    <DiscountType>percentage</DiscountType>
+    <DiscountValue>15.00</DiscountValue>
+    <MinAmount>400.00</MinAmount>
+    <RequireVoucher>0</RequireVoucher>
+    <ValidDate>2027-12-31 23:59:59</ValidDate>
+    <Active>1</Active>
+    <DiscountId>3</DiscountId>
+  </DiscountPolicyTable>
+  <DiscountPolicyTable>
+    <Id>2</Id>
+    <Name>Tier 2 10% Off</Name>
+    <DiscountName>Tier 2 - 10% Off</DiscountName>
+    <DiscountType>percentage</DiscountType>
+    <DiscountValue>10.00</DiscountValue>
+    <MinAmount>200.00</MinAmount>
+    <MaxAmount>399.99</MaxAmount>
+    <RequireVoucher>0</RequireVoucher>
+    <ValidDate>2027-12-31 23:59:59</ValidDate>
+    <Active>1</Active>
+    <DiscountId>2</DiscountId>
+  </DiscountPolicyTable>
+  <DiscountPolicyTable>
+    <Id>1</Id>
+    <Name>Tier 1 RM10 Cashback</Name>
+    <DiscountName>Tier 1 - RM10 Cashback</DiscountName>
+    <DiscountType>amount</DiscountType>
+    <DiscountValue>10.00</DiscountValue>
+    <MinAmount>50.00</MinAmount>
+    <MaxAmount>199.99</MaxAmount>
+    <RequireVoucher>1</RequireVoucher>
+    <ValidDate>2027-12-31 23:59:59</ValidDate>
+    <Active>1</Active>
+    <DiscountId>1</DiscountId>
+  </DiscountPolicyTable>
+</NewDataSet>

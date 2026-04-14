@@ -4,6 +4,7 @@ Imports System.Drawing
 Imports Newtonsoft.Json
 Imports System.IO
 Imports System.Data.SqlClient
+Imports PosRetailWebBilling.clssalesProperty
 
 ' PosSalesII Form - Enhanced with Grid Layout Management
 ' Features:
@@ -31,6 +32,9 @@ Public Class PosSalesII
     Dim stpole1 As String = M_Details._shopName
     Dim NetAmountGlobal As Decimal = 0.0
     Private _recallHoldBill As Boolean = False
+    Private _pendingVoucherId As Integer = 0
+    Private _pendingVoucherNo As Integer = 0
+   
     Public Sub New()
 
         ' This call is required by the designer.
@@ -725,8 +729,8 @@ Public Class PosSalesII
                     fontSize = GetSafeValue(matchingRow, "font_size", 9.0F)
                     fontName = GetSafeValue(matchingRow, "font_name", "Segoe UI")
                     fontStyleString = GetSafeValue(matchingRow, "font_style", "Regular")
-                    textColor = ParseArgbColor(GetSafeValue(matchingRow, "text_color", ""), Color.Black)
-                    backColor = ParseArgbColor(GetSafeValue(matchingRow, "back_color", ""), Color.LightSteelBlue)
+                    textColor = ParseARGBColor(GetSafeValue(matchingRow, "text_color", ""), Color.Black)
+                    backColor = ParseARGBColor(GetSafeValue(matchingRow, "back_color", ""), Color.LightSteelBlue)
                 End If
 
                 ' Convert font style string to FontStyle enum
@@ -1045,7 +1049,7 @@ Public Class PosSalesII
             Return defaultColor
         End If
 
-        Dim result As Color = ParseARGBColor(argbString)
+        Dim result As Color = ParseArgbColor(argbString)
         If result = Color.Black AndAlso argbString <> "Argb(255,0,0,0)" Then
             Return defaultColor
         End If
@@ -2315,7 +2319,7 @@ Public Class PosSalesII
                 cmbMaterialSearch.Focus()
 
             End If
-            
+
         Catch ex As Exception
             MessageBox.Show("Error starting new bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -3313,7 +3317,7 @@ Public Class PosSalesII
 
         End Try
     End Sub
-  
+
     Private Function BillHoldProcess() As Boolean
         Try
             If BillHoldTokenNo = 0 Then
@@ -3586,9 +3590,170 @@ Public Class PosSalesII
             Return False
         End Try
     End Function
+    Private Function ApplyAutoDiscOfferBeforePayment()
+        Try
+            If _JsonData.DiscountPolicyTable.Rows.Count = 0 Then Exit Try
+            If _JsonData.ItemTouchMasterTable.Rows.Count = 0 Then Exit Try
+            If GridDataTble_Insert.Rows.Count = 0 Then Exit Try
+
+            ' --- Step 1: Build ITEMCODE -> MainId lookup ---
+            Dim itemMainMap As New Dictionary(Of String, String)
+            For Each masterRow As DataRow In _JsonData.ItemTouchMasterTable.Rows
+                Dim idKey As String = masterRow("Id").ToString()
+                If Not itemMainMap.ContainsKey(idKey) Then
+                    itemMainMap.Add(idKey, masterRow("MainId").ToString())
+                End If
+            Next
+
+            ' --- Step 2: Clear existing bill-level discounts on all rows ---
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim r As DataRow = GridDataTble_Insert.Rows(i)
+                r("BILL_DPER") = 0
+                r("BILL_DAMT") = 0
+                r("TOTAL_DAMT") = Convert.ToDecimal(r("ITEM_DAMT"))
+                r("TOTAL_DPER") = Convert.ToDecimal(r("ITEM_DPER"))
+                _RecalculateRowTotals(i)
+            Next
+
+            ' --- Step 3: Calculate TOTAL bill amount (all rows) ---
+            Dim totalBillAmt As Decimal = 0D
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                totalBillAmt += Convert.ToDecimal(GridDataTble_Insert.Rows(i)("TAMOUNT"))
+            Next
+            If totalBillAmt <= 0D Then Exit Try
+
+            ' --- Step 4: Match tier against total bill amount (highest qualifying tier) ---
+            Dim today As Date = Date.Today
+            Dim matchedPolicy As DataRow = Nothing
+            Dim highestMin As Decimal = -1D
+            For Each pol As DataRow In _JsonData.DiscountPolicyTable.Rows
+                If pol("Active").ToString() <> "1" Then Continue For
+                Dim minAmt As Decimal = Convert.ToDecimal(pol("MinAmount"))
+                If totalBillAmt < minAmt Then Continue For
+                Dim maxAmtStr As String = pol("MaxAmount").ToString()
+                If Not String.IsNullOrEmpty(maxAmtStr) Then
+                    Dim maxAmt As Decimal
+                    If Decimal.TryParse(maxAmtStr, maxAmt) AndAlso maxAmt > 0D _
+                       AndAlso totalBillAmt > maxAmt Then Continue For
+                End If
+                Dim validDateStr As String = pol("ValidDate").ToString()
+                If Not String.IsNullOrEmpty(validDateStr) Then
+                    Dim dtValid As Date
+                    If Date.TryParse(validDateStr, dtValid) AndAlso dtValid < today Then Continue For
+                End If
+                If minAmt > highestMin Then
+                    highestMin = minAmt
+                    matchedPolicy = pol
+                End If
+            Next
+            If matchedPolicy Is Nothing Then Exit Try
+
+            ' --- Step 5: Voucher gate if required ---
+            _pendingVoucherId = 0
+            _pendingVoucherNo = 0
+            If matchedPolicy("RequireVoucher").ToString() = "1" Then
+                properClass.R_TextNumKey = ""
+                Dim kb As New xkeyboard
+                kb.Text = "Voucher Code – " & matchedPolicy("Name").ToString()
+                kb.ShowDialog()
+                Dim voucher As String = properClass.R_TextNumKey
+                If String.IsNullOrWhiteSpace(voucher) Then Exit Try
+
+                ' Validate voucher via server (AjaxRequest=91)
+                Try
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                    Dim vResponse As String = New WebClient().DownloadString(
+                        M_Details.LinkAjaxRequest & "AjaxRequest=91&vouchercode=" &
+                        Uri.EscapeDataString(voucher.Trim()))
+                    Dim vObj As JObject = JObject.Parse(vResponse)
+                    If Not vObj("Success").ToObject(Of Boolean)() Then
+                        Dim errMsg As String = If(vObj("Msg") IsNot Nothing,
+                            vObj("Msg").ToString(), "Invalid voucher code.")
+                        DevExpress.XtraEditors.XtraMessageBox.Show(
+                            errMsg, "Voucher Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Try
+                    End If
+                    _pendingVoucherId = vObj("VoucherId").ToObject(Of Integer)()
+                    _pendingVoucherNo = vObj("VoucherNo").ToObject(Of Integer)()
+                Catch exv As Exception
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Voucher validation error: " & exv.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Try
+                End Try
+            End If
+
+            ' --- Step 6: Calculate discount amount based on total bill ---
+            Dim discType As String = matchedPolicy("DiscountType").ToString().ToLower().Trim()
+            Dim discValue As Decimal = Convert.ToDecimal(matchedPolicy("DiscountValue"))
+            Dim discAmt As Decimal = 0D
+            If discType = "percentage" Then
+                discAmt = Math.Round((totalBillAmt * discValue) / 100D, 2)
+            Else
+                discAmt = discValue
+            End If
+            If discAmt <= 0D Then Exit Try
+
+            ' --- Step 7: Collect eligible items (MainGroup AllowDiscount = 1) ---
+            Dim eligibleRows As New List(Of Integer)
+            Dim eligibleTotal As Decimal = 0D
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim r As DataRow = GridDataTble_Insert.Rows(i)
+                Dim code As String = r("ITEMCODE").ToString()
+                If Not itemMainMap.ContainsKey(code) Then Continue For
+                Dim mId As String = itemMainMap(code)
+                If String.IsNullOrEmpty(mId) Then Continue For
+                Dim mainRows() As DataRow = _JsonData.MainGroupTable.Select("MainId = '" & mId & "'")
+                If mainRows.Length = 0 Then Continue For
+                If mainRows(0)("AllowDiscount").ToString() <> "1" Then Continue For
+                eligibleRows.Add(i)
+                eligibleTotal += Convert.ToDecimal(r("TAMOUNT"))
+            Next
+            If eligibleRows.Count = 0 OrElse eligibleTotal <= 0D Then Exit Try
+
+            ' --- Step 8: Distribute discount proportionally across eligible items only ---
+            For Each ri As Integer In eligibleRows
+                Dim br As DataRow = GridDataTble_Insert.Rows(ri)
+                Dim itemAmt As Decimal = Convert.ToDecimal(br("TAMOUNT"))
+                Dim billDiscAmt As Decimal = Math.Round((itemAmt / eligibleTotal) * discAmt, 2)
+                Dim itemDiscAmt As Decimal = Convert.ToDecimal(br("ITEM_DAMT"))
+                br("BILL_DAMT") = billDiscAmt
+                br("BILL_DPER") = If(itemAmt > 0D, Math.Round((billDiscAmt / itemAmt) * 100D, 2), 0D)
+                Dim totalDisc As Decimal = itemDiscAmt + billDiscAmt
+                br("TOTAL_DAMT") = totalDisc
+                br("TOTAL_DPER") = If(itemAmt > 0D, Math.Round((totalDisc / itemAmt) * 100D, 2), 0D)
+                _RecalculateRowTotals(ri)
+            Next
+
+            ' --- Step 9: Refresh grid and totals ---
+            GridDataTble_Insert.AcceptChanges()
+            GridControlSalesData.DataSource = GridDataTble_Insert
+            SalesGrandtotal(False)
+
+            Dim discDisplay As String = If(discType = "percentage",
+                                          discValue.ToString("0.##") & "%",
+                                          "RM " & discValue.ToString("0.00"))
+            DevExpress.XtraEditors.XtraMessageBox.Show(
+                "Auto discount applied: " & matchedPolicy("Name").ToString() & " (" & discDisplay & ")" &
+                vbCrLf & "Bill Total: RM " & totalBillAmt.ToString("0.00") &
+                vbCrLf & "Discount: RM " & discAmt.ToString("0.00"),
+                M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show("Error applying auto discount/offer before payment: " & ex.Message, M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Function
 
     Private Function PaymentProcess() As Boolean
         Try
+            'procesing of auto discount and offer before payment calculation based on discount policy
+            If _globalSetting.AutoDiscountSchemes = True Then
+                If GridDataTble_Insert.Rows.Count > 0 Then
+                    ApplyAutoDiscOfferBeforePayment()
+                End If
+            End If
             If barchkcustomerpole.Checked = True Then
                 If CustomerPoleOpen(Errstr) = True Then
 
@@ -4066,7 +4231,7 @@ Public Class PosSalesII
         Try
             Dim resData As New DataSet
             If GetHoldByBillLocal(Sal_id, resData, "H") = True Then
-                
+
                 modeBillHold = "Edit"
                 _recallHoldBill = True
                 If resData.Tables(0).Rows.Count > 0 Then
@@ -4490,7 +4655,7 @@ Public Class PosSalesII
                     End If
                 End If
             End If
-           
+
         Catch ex As Exception
 
         End Try
@@ -4761,5 +4926,5 @@ Public Class PosSalesII
     End Sub
 #End Region
 
-  
+
 End Class

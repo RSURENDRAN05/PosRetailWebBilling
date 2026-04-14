@@ -41,6 +41,7 @@ Module PosSettingsManager
         Public Shared ItemCancelPrint As Boolean = False
         Public Shared ChangeToCash As Boolean = False
         Public Shared AutoSyncSales As Boolean = True
+        Public Shared AutoDiscountSchemes As Boolean = False
     End Structure
     Public Structure _GlobalSettings
         Public Shared _BillDiscountEnabled_Status As Boolean = False
@@ -164,6 +165,12 @@ Module PosSettingsManager
                                 _globalSetting.QtyChangeActive = False
                             Else
                                 _globalSetting.QtyChangeActive = True
+                            End If
+                        Case "AutoDiscountSchemes"
+                            If _setRow("Status").ToString = "0" Then
+                                _globalSetting.AutoDiscountSchemes = False
+                            Else
+                                _globalSetting.AutoDiscountSchemes = True
                             End If
                     End Select
                 Next

@@ -169,7 +169,7 @@ class funcProcessMgmt
     public function _SelectMainMastrer()
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, `position` FROM `di_main_group` as dmg INNER JOIN `pos_button_properties` as pbp ON dmg.mainid=pbp.item_id WHERE pbp.menu_type='Main';");
+        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color, `id`, `item_id`, `menu_type`, `font_size`, `font_name`, `font_style`, `text_color`, `back_color`, `position`,`allow_discount` as AllowDiscount FROM `di_main_group` as dmg INNER JOIN `pos_button_properties` as pbp ON dmg.mainid=pbp.item_id WHERE pbp.menu_type='Main';");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -177,15 +177,15 @@ class funcProcessMgmt
     public function _SelectMainMastrerById($id)
     {
         $conn = $this->conn;
-        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color FROM `di_main_group` WHERE `mainid`='" . $id . "'");
+        $sqlSelect = ("SELECT `mainid` as MainId, `mainname` as MainName, `mainstatus` as Active,`groupcolor` as Color,`allow_discount` as AllowDiscount FROM `di_main_group` WHERE `mainid`='" . $id . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return mysqli_fetch_assoc($result);
     }
 
-    public function _InsertMainMastrer($mainname, $mainstatus, $groupcolor)
+    public function _InsertMainMastrer($mainname, $mainstatus, $groupcolor, $allowdiscount)
     {
         $conn = $this->conn;
-        $sqlSelect = ("INSERT INTO `di_main_group`(`mainname`, `mainstatus`, `groupcolor`)VALUES ('" . $mainname . "','" . $mainstatus . "','" . $groupcolor . "')");
+        $sqlSelect = ("INSERT INTO `di_main_group`(`mainname`, `mainstatus`, `groupcolor`, `allow_discount`)VALUES ('" . $mainname . "','" . $mainstatus . "','" . $groupcolor . "','" . $allowdiscount . "')");
         $result = mysqli_query($conn, $sqlSelect);
 
         if ($result) {
@@ -195,10 +195,10 @@ class funcProcessMgmt
         }
     }
 
-    public function _UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor)
+    public function _UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor, $allowdiscount)
     {
         $conn = $this->conn;
-        $sqlSelect = ("UPDATE `di_main_group` SET `mainid`='" . $mainid . "',`mainname`='" . $mainname . "',`mainstatus`='" . $mainstatus . "', `groupcolor`='" . $groupcolor . "' WHERE `mainid`='" . $mainid . "'");
+        $sqlSelect = ("UPDATE `di_main_group` SET `mainid`='" . $mainid . "',`mainname`='" . $mainname . "',`mainstatus`='" . $mainstatus . "', `groupcolor`='" . $groupcolor . "', `allow_discount`='" . $allowdiscount . "' WHERE `mainid`='" . $mainid . "'");
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
@@ -5931,5 +5931,311 @@ class funcProcessMgmt
             error_log("DeleteEmployeeTimeProfileAssignment Error: " . $e->getMessage() . " - ID: " . $id);
             throw $e; // Re-throw for better error handling in calling code
         }
+    }
+
+    // ─── Discount Policy ─────────────────────────────────────────────────────
+
+    /** 80 – All active categories for dropdown (dcm_id, dcm_name) */
+    public function _GetAllActiveMainCategory()
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT `mainid` as MId, `mainname` as MainName  FROM `di_main_group` WHERE 1 ORDER BY `mainname` ASC;"
+        );
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    /** 81 – All discount-policy records with joined names */
+    public function _GetAllDiscountPolicy()
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT dp.dp_id, dp.dp_name,
+                    dm.discount_name, dm.discount_type, dm.discount_value,
+                    dp.dp_min_amount, dp.dp_max_amount,
+                    dp.dp_require_voucher, dp.dp_validdate,
+                    dp.dp_active, dp.dp_discount_id
+               FROM `discount_policy` AS dp
+               INNER JOIN `discount_master` AS dm ON dp.dp_discount_id = dm.discount_id
+              ORDER BY dp.dp_id DESC"
+        );
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    /** 82 – Insert new discount policy */
+    public function _InsertDiscountPolicy(
+        $dp_name,
+        $dp_discount_id,
+        $dp_min_amount,
+        $dp_max_amount,
+        $dp_require_voucher,
+        $dp_validdate
+    ) {
+        $conn = $this->conn;
+        $max_val = ($dp_max_amount === null || $dp_max_amount === '' || (float)$dp_max_amount === 0.0)
+            ? null : (float)$dp_max_amount;
+        $stmt = mysqli_prepare(
+            $conn,
+            "INSERT INTO `discount_policy`
+                (`dp_name`,`dp_discount_id`,
+                 `dp_min_amount`,`dp_max_amount`,
+                 `dp_require_voucher`,`dp_validdate`,`dp_active`)
+             VALUES (?, ?, ?, ?, ?, ?, 1)"
+        );
+        $max_bind = $max_val; // nullable
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sidsss",
+            $dp_name,
+            $dp_discount_id,
+            $dp_min_amount,
+            $max_bind,
+            $dp_require_voucher,
+            $dp_validdate
+        );
+        $ok = mysqli_stmt_execute($stmt);
+        $insert_id = mysqli_insert_id($conn);
+        mysqli_stmt_close($stmt);
+        return $ok ? $insert_id : false;
+    }
+
+    /** 83 – Update existing discount policy */
+    public function _UpdateDiscountPolicy(
+        $dp_id,
+        $dp_name,
+        $dp_discount_id,
+        $dp_min_amount,
+        $dp_max_amount,
+        $dp_require_voucher,
+        $dp_validdate,
+        $dp_active
+    ) {
+        $conn = $this->conn;
+        $max_val = ($dp_max_amount === null || $dp_max_amount === '' || (float)$dp_max_amount === 0.0)
+            ? null : (float)$dp_max_amount;
+        $stmt = mysqli_prepare(
+            $conn,
+            "UPDATE `discount_policy`
+                SET `dp_name`=?, `dp_discount_id`=?,
+                    `dp_min_amount`=?, `dp_max_amount`=?,
+                    `dp_require_voucher`=?, `dp_validdate`=?, `dp_active`=?
+              WHERE `dp_id`=?"
+        );
+        $max_bind = $max_val;
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sidsssii",
+            $dp_name,
+            $dp_discount_id,
+            $dp_min_amount,
+            $max_bind,
+            $dp_require_voucher,
+            $dp_validdate,
+            $dp_active,
+            $dp_id
+        );
+        $ok = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $ok;
+    }
+
+    /** 84 – Delete discount policy */
+    public function _DeleteDiscountPolicy($dp_id)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "DELETE FROM `discount_policy` WHERE `dp_id` = ?"
+        );
+        mysqli_stmt_bind_param($stmt, "i", $dp_id);
+        $ok = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $ok;
+    }
+
+    /** 85 – Get single discount policy by id */
+    public function _GetDiscountPolicyById($dp_id)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT dp.dp_id, dp.dp_name, dp.dp_discount_id,
+                    dp.dp_min_amount, dp.dp_max_amount,
+                    dp.dp_require_voucher, dp.dp_validdate, dp.dp_active
+               FROM `discount_policy` AS dp
+              WHERE dp.dp_id = ?"
+        );
+        mysqli_stmt_bind_param($stmt, "i", $dp_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    // ─── Voucher Book ──────────────────────────────────────────────────────────
+
+    /** 86 – Insert voucher master (create a new voucher book) */
+    public function _InsertVoucherMaster($voucher_prefix, $voucher_book_no, $voucher_startno, $voucher_endno)
+    {
+        $voucher_prefix = strtoupper(trim($voucher_prefix));
+        if (strlen($voucher_prefix) === 0 || strlen($voucher_prefix) > 20) {
+            return false;
+        }
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "INSERT INTO `voucher_master`
+                (`voucher_prefix`,`voucher_book_no`,`voucher_startno`,`voucher_endno`,`voucher_active`)
+             VALUES (?, ?, ?, ?, 1)"
+        );
+        mysqli_stmt_bind_param($stmt, "siii", $voucher_prefix, $voucher_book_no, $voucher_startno, $voucher_endno);
+        $ok = mysqli_stmt_execute($stmt);
+        $id = mysqli_insert_id($conn);
+        mysqli_stmt_close($stmt);
+        return $ok ? $id : false;
+    }
+
+    /** 87 – Update voucher master */
+    public function _UpdateVoucherMaster($voucher_id, $voucher_prefix, $voucher_book_no, $voucher_startno, $voucher_endno, $voucher_active)
+    {
+        $voucher_prefix = strtoupper(trim($voucher_prefix));
+        if (strlen($voucher_prefix) === 0 || strlen($voucher_prefix) > 20) {
+            return false;
+        }
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "UPDATE `voucher_master`
+                SET `voucher_prefix`=?, `voucher_book_no`=?,
+                    `voucher_startno`=?, `voucher_endno`=?, `voucher_active`=?
+              WHERE `voucher_id`=?"
+        );
+        mysqli_stmt_bind_param($stmt, "siiiii", $voucher_prefix, $voucher_book_no, $voucher_startno, $voucher_endno, $voucher_active, $voucher_id);
+        $ok = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $ok;
+    }
+
+    /** 88 – Delete voucher master */
+    public function _DeleteVoucherMaster($voucher_id)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare($conn, "DELETE FROM `voucher_master` WHERE `voucher_id` = ?");
+        mysqli_stmt_bind_param($stmt, "i", $voucher_id);
+        $ok = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $ok;
+    }
+
+    /** 89 – Get all voucher masters with used count */
+    public function _GetAllVoucherMaster()
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT vm.voucher_id, vm.voucher_prefix, vm.voucher_book_no,
+                    vm.voucher_startno, vm.voucher_endno, vm.voucher_active,
+                    vm.createddate,
+                    COUNT(vs.vs_id) AS used_count
+               FROM `voucher_master` AS vm
+               LEFT JOIN `voucher_sales` AS vs ON vs.voucher_id = vm.voucher_id
+              GROUP BY vm.voucher_id
+              ORDER BY vm.voucher_id DESC"
+        );
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    /** 90 – Get single voucher master by id */
+    public function _GetVoucherMasterById($voucher_id)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT voucher_id, voucher_prefix, voucher_book_no,
+                    voucher_startno, voucher_endno, voucher_active
+               FROM `voucher_master` WHERE voucher_id = ?"
+        );
+        mysqli_stmt_bind_param($stmt, "i", $voucher_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    /** 91 – Validate voucher code: check range, active, not already used */
+    public function _ValidateVoucherCode($vouchercode)
+    {
+        // Split into prefix (letters) + number (digits), e.g. "ABC0042" → prefix=ABC, no=42
+        preg_match('/^([A-Za-z]*)(\d+)$/', trim($vouchercode), $m);
+        if (count($m) < 3) {
+            return array("valid" => false, "msg" => "Invalid voucher format. Expected prefix+number e.g. ABC0042");
+        }
+        $prefix = strtoupper($m[1]);
+        $vnum   = (int)$m[2];
+        $conn   = $this->conn;
+
+        // Find active master that covers this number
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT voucher_id
+               FROM `voucher_master`
+              WHERE UPPER(voucher_prefix) = ?
+                AND voucher_startno <= ?
+                AND voucher_endno   >= ?
+                AND voucher_active   = 1
+              LIMIT 1"
+        );
+        mysqli_stmt_bind_param($stmt, "sii", $prefix, $vnum, $vnum);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row    = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+
+        if (!$row) {
+            return array("valid" => false, "msg" => "Voucher not found or inactive");
+        }
+        $voucher_id = (int)$row['voucher_id'];
+
+        // Check already used in this bill or any previous sale
+        $stmt2 = mysqli_prepare(
+            $conn,
+            "SELECT vs_id FROM `voucher_sales` WHERE voucher_id = ? AND voucher_no = ? LIMIT 1"
+        );
+        mysqli_stmt_bind_param($stmt2, "ii", $voucher_id, $vnum);
+        mysqli_stmt_execute($stmt2);
+        $result2 = mysqli_stmt_get_result($stmt2);
+        $used    = mysqli_fetch_assoc($result2);
+        mysqli_stmt_close($stmt2);
+
+        if ($used) {
+            return array("valid" => false, "msg" => "Voucher already used");
+        }
+
+        return array("valid" => true, "voucher_id" => $voucher_id, "voucher_no" => $vnum);
+    }
+
+    /** 92 – Record voucher usage after bill is successfully saved */
+    public function _RecordVoucherUsage($voucher_id, $voucher_no, $sal_id)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "INSERT INTO `voucher_sales` (`voucher_id`,`voucher_no`,`sal_id`) VALUES (?, ?, ?)"
+        );
+        mysqli_stmt_bind_param($stmt, "iii", $voucher_id, $voucher_no, $sal_id);
+        $ok = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $ok;
     }
 }

@@ -252,6 +252,12 @@ Module SyncLocalCloudModuel
             Else
                 dialog.Caption = "FingerPrintData Not Received"
             End If
+
+            If getDiscountPolicy() = True Then
+                dialog.Caption = "Loading Discount Policy"
+            Else
+                dialog.Caption = "Discount Policy Not Received"
+            End If
             Return True
         Catch ex As Exception
             dialog.Close()

@@ -116,6 +116,8 @@ Public Class MainMaster
                 barbtnauditgeneratesales.Enabled = False
                 barbtnauditsalesreport.Enabled = False
                 barbtnprintbarcode.Enabled = False
+                barbtndiscountpolicy.Enabled = False
+                barbtnvoucherbook.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -588,6 +590,22 @@ Public Class MainMaster
                             barbtnprintbarcode.Enabled = True
                         Else
                             barbtnprintbarcode.Enabled = False
+                        End If
+                    End If
+                    Dim DiscountPolicy As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "DiscountPolicy"
+                    If DiscountPolicy.Any Then
+                        If DiscountPolicy(0)("menu_active") = "1" Then
+                            barbtndiscountpolicy.Enabled = True
+                        Else
+                            barbtndiscountpolicy.Enabled = False
+                        End If
+                    End If
+                    Dim VoucherBook As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "VoucherBook"
+                    If VoucherBook.Any Then
+                        If VoucherBook(0)("menu_active") = "1" Then
+                            barbtnvoucherbook.Enabled = True
+                        Else
+                            barbtnvoucherbook.Enabled = False
                         End If
                     End If
 
@@ -1186,6 +1204,24 @@ Public Class MainMaster
         Try
             frmBarcodeMateriallabel.MdiParent = Me
             frmBarcodeMateriallabel.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtndiscountpolicy_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtndiscountpolicy.ItemClick
+        Try
+            FrmDiscountPolicy.MdiParent = Me
+            FrmDiscountPolicy.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnvoucherbook_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnvoucherbook.ItemClick
+        Try
+            FrmVoucherMaster.MdiParent = Me
+            FrmVoucherMaster.Show()
         Catch ex As Exception
 
         End Try

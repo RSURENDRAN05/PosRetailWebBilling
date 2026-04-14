@@ -857,6 +857,18 @@
     <Compile Include="Master\FrmDiscountMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Master\FrmDiscountPolicy.Designer.vb">
+      <DependentUpon>FrmDiscountPolicy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmDiscountPolicy.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmVoucherMaster.Designer.vb">
+      <DependentUpon>FrmVoucherMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmVoucherMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ClsModule\SyncLocalCloudModuel.vb" />
     <Compile Include="TaxAuditReport\FrmAudit.Designer.vb">
       <DependentUpon>FrmAudit.vb</DependentUpon>
@@ -1203,6 +1215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmDiscountMaster.resx">
       <DependentUpon>FrmDiscountMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmDiscountPolicy.resx">
+      <DependentUpon>FrmDiscountPolicy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmVoucherMaster.resx">
+      <DependentUpon>FrmVoucherMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaxAuditReport\FrmAudit.resx">
       <DependentUpon>FrmAudit.vb</DependentUpon>

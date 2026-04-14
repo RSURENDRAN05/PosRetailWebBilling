@@ -176,7 +176,8 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $mainname = $row['mainname'];
         $groupcolor = $row['groupcolor'];
         $mainstatus = $row['active'];
-        $RequestInsert = $clsfunreq->_InsertMainMastrer($mainname, $mainstatus, $groupcolor);
+        $allowdiscount = $row['allowdiscount'];
+        $RequestInsert = $clsfunreq->_InsertMainMastrer($mainname, $mainstatus, $groupcolor, $allowdiscount);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true, "Data" => $RequestInsert));
         } else {
@@ -191,7 +192,8 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $mainname = $row['mainname'];
         $groupcolor = $row['groupcolor'];
         $mainstatus = $row['active'];
-        $RequestInsert = $clsfunreq->_UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor);
+        $allowdiscount = $row['allowdiscount'];
+        $RequestInsert = $clsfunreq->_UpdateMainMastrer($mainid, $mainname, $mainstatus, $groupcolor, $allowdiscount);
         if ($RequestInsert) {
             echo json_encode(array("Success" => true));
         } else {
@@ -1488,6 +1490,242 @@ if (isset($_REQUEST['AjaxRequest'])) {
         } else {
             echo json_encode(array("Success" => false, "Msg" => 'No Data Saved'));
         }
+    }
+
+    // ── 80: Get all active main categories for dropdown (M_Id / MainName) ──────
+    if ((int) $_REQUEST['AjaxRequest'] == 80) {
+        $result = $clsfunreq->_GetAllActiveMainCategory();
+        $data = array();
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = array(
+                    "MId"   => $row['MId'],
+                    "MainName" => $row['MainName']
+                );
+            }
+            echo json_encode(array("Success" => true, "Data" => $data));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => array()));
+        }
+    }
+
+    // ── 81: Get all discount_policy records ──────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 81) {
+        $result = $clsfunreq->_GetAllDiscountPolicy();
+        $data = array();
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = array(
+                    "Id"             => $row['dp_id'],
+                    "Name"           => $row['dp_name'],
+                    "DiscountName"   => $row['discount_name'],
+                    "DiscountType"   => $row['discount_type'],
+                    "DiscountValue"  => $row['discount_value'],
+                    "MinAmount"      => $row['dp_min_amount'],
+                    "MaxAmount"      => $row['dp_max_amount'],
+                    "RequireVoucher" => $row['dp_require_voucher'],
+                    "ValidDate"      => $row['dp_validdate'],
+                    "Active"         => $row['dp_active'],
+                    "DiscountId"     => $row['dp_discount_id']
+                );
+            }
+            echo json_encode(array("Success" => true, "Data" => $data));
+        } else {
+            echo json_encode(array("Success" => false, "Data" => array()));
+        }
+    }
+
+    // ── 82: Insert new discount policy ───────────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 82) {
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        if (!$row) {
+            echo json_encode(array("Success" => false, "Msg" => "Invalid JSON"));
+        } else {
+            $result = $clsfunreq->_InsertDiscountPolicy(
+                trim($row['dp_name']),
+                (int)$row['dp_discount_id'],
+                (float)$row['dp_min_amount'],
+                isset($row['dp_max_amount']) ? $row['dp_max_amount'] : null,
+                (int)$row['dp_require_voucher'],
+                $row['dp_validdate']
+            );
+            if ($result) {
+                echo json_encode(array("Success" => true, "InsertId" => $result));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "Insert failed"));
+            }
+        }
+    }
+
+    // ── 83: Update existing discount policy ──────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 83) {
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        if (!$row) {
+            echo json_encode(array("Success" => false, "Msg" => "Invalid JSON"));
+        } else {
+            $result = $clsfunreq->_UpdateDiscountPolicy(
+                (int)$row['dp_id'],
+                trim($row['dp_name']),
+                (int)$row['dp_discount_id'],
+                (float)$row['dp_min_amount'],
+                isset($row['dp_max_amount']) ? $row['dp_max_amount'] : null,
+                (int)$row['dp_require_voucher'],
+                $row['dp_validdate'],
+                (int)$row['dp_active']
+            );
+            if ($result) {
+                echo json_encode(array("Success" => true));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "Update failed"));
+            }
+        }
+    }
+
+    // ── 84: Delete discount policy ───────────────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 84) {
+        $getjson = $_GET['json'];
+        $row = json_decode($getjson, true);
+        if (!$row || !isset($row['dp_id'])) {
+            echo json_encode(array("Success" => false, "Msg" => "Invalid request"));
+        } else {
+            $result = $clsfunreq->_DeleteDiscountPolicy((int)$row['dp_id']);
+            if ($result) {
+                echo json_encode(array("Success" => true));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "Delete failed"));
+            }
+        }
+    }
+
+    // ── 85: Get single discount policy by id ─────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 85) {
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        if ($id <= 0) {
+            echo json_encode(array("Success" => false, "Msg" => "Invalid id"));
+        } else {
+            $result = $clsfunreq->_GetDiscountPolicyById($id);
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                echo json_encode(array(
+                    "Success" => true,
+                    "Data"    => array(
+                        "dp_id"             => $row['dp_id'],
+                        "dp_name"           => $row['dp_name'],
+                        "dp_discount_id"    => $row['dp_discount_id'],
+                        "dp_min_amount"     => $row['dp_min_amount'],
+                        "dp_max_amount"     => $row['dp_max_amount'],
+                        "dp_require_voucher" => $row['dp_require_voucher'],
+                        "dp_validdate"      => $row['dp_validdate'],
+                        "dp_active"         => $row['dp_active']
+                    )
+                ));
+            } else {
+                echo json_encode(array("Success" => false, "Msg" => "Record not found"));
+            }
+        }
+    }
+    // ─── Voucher Book (86-92) ────────────────────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 86) {
+        // Insert voucher master
+        $json = json_decode($_REQUEST['json'], true);
+        $result = $clsfunreq->_InsertVoucherMaster(
+            $json['voucher_prefix'],
+            (int)$json['voucher_book_no'],
+            (int)$json['voucher_startno'],
+            (int)$json['voucher_endno']
+        );
+        if ($result !== false) {
+            echo json_encode(array("Success" => true,  "NewId" => $result));
+        } else {
+            echo json_encode(array("Success" => false, "Msg"   => "Insert failed"));
+        }
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 87) {
+        // Update voucher master
+        $json = json_decode($_REQUEST['json'], true);
+        $ok = $clsfunreq->_UpdateVoucherMaster(
+            (int)$json['voucher_id'],
+            $json['voucher_prefix'],
+            (int)$json['voucher_book_no'],
+            (int)$json['voucher_startno'],
+            (int)$json['voucher_endno'],
+            (int)$json['voucher_active']
+        );
+        echo json_encode(array("Success" => (bool)$ok));
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 88) {
+        // Delete voucher master
+        $vid = (int)$_REQUEST['voucher_id'];
+        $ok  = $clsfunreq->_DeleteVoucherMaster($vid);
+        echo json_encode(array("Success" => (bool)$ok));
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 89) {
+        // Get all voucher masters
+        $result = $clsfunreq->_GetAllVoucherMaster();
+        $rows   = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = array(
+                "Id"          => $row['voucher_id'],
+                "Prefix"      => $row['voucher_prefix'],
+                "BookNo"      => $row['voucher_book_no'],
+                "StartNo"     => $row['voucher_startno'],
+                "EndNo"       => $row['voucher_endno'],
+                "Active"      => $row['voucher_active'],
+                "UsedCount"   => $row['used_count'],
+                "CreatedDate" => $row['createddate']
+            );
+        }
+        echo json_encode($rows);
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 90) {
+        // Get single voucher master by id
+        $vid    = (int)$_REQUEST['id'];
+        $result = $clsfunreq->_GetVoucherMasterById($vid);
+        $row    = mysqli_fetch_assoc($result);
+        if ($row) {
+            echo json_encode(array(
+                "Id"      => $row['voucher_id'],
+                "Prefix"  => $row['voucher_prefix'],
+                "BookNo"  => $row['voucher_book_no'],
+                "StartNo" => $row['voucher_startno'],
+                "EndNo"   => $row['voucher_endno'],
+                "Active"  => $row['voucher_active']
+            ));
+        } else {
+            echo json_encode(null);
+        }
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 91) {
+        // Validate voucher code
+        $vouchercode = $_REQUEST['vouchercode'];
+        $res         = $clsfunreq->_ValidateVoucherCode($vouchercode);
+        if ($res['valid']) {
+            echo json_encode(array(
+                "Success"    => true,
+                "VoucherId"  => $res['voucher_id'],
+                "VoucherNo"  => $res['voucher_no']
+            ));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => $res['msg']));
+        }
+    }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 92) {
+        // Record voucher usage after bill is saved
+        $json = json_decode($_REQUEST['json'], true);
+        $ok   = $clsfunreq->_RecordVoucherUsage(
+            (int)$json['voucher_id'],
+            (int)$json['voucher_no'],
+            (int)$json['sal_id']
+        );
+        echo json_encode(array("Success" => (bool)$ok));
     }
 }
 //Sales
@@ -5309,7 +5547,9 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
         error_log("Stack trace: " . $e->getTraceAsString());
         echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
     }
-} elseif (isset($_REQUEST["DayCloseRequest"])) {
+}
+// DayCloseRequest
+elseif (isset($_REQUEST["DayCloseRequest"])) {
     try {
         if ((int) $_REQUEST['DayCloseRequest'] === 1) {
             // Create New Day
@@ -5527,7 +5767,9 @@ elseif (isset($_REQUEST['ShiftCloseRequest'])) {
         error_log("Stack trace: " . $e->getTraceAsString());
         echo json_encode(array("Success" => false, "Msg" => 'Server error: ' . $e->getMessage()));
     }
-} elseif (isset($_REQUEST["AttRequest"])) {
+}
+// AttRequest
+elseif (isset($_REQUEST["AttRequest"])) {
     /*
      * Employee Fingerprint Management API
      * AttRequest=1: Register/Save new fingerprint template

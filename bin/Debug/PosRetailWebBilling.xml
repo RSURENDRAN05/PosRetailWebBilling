@@ -6,39 +6,7 @@ PosRetailWebBilling
 </name>
 </assembly>
 <members>
-<member name="M:PosRetailWebBilling.frmPaymoreII.ConvertDecimal(System.Object)">
-	<summary>
- Safely convert object to decimal, handling DBNull and empty values
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.ValidateMultiplePaymentTotal">
-	<summary>
- Validate multiple payment total matches balance before proceeding
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.ClearMultiplePaymentFields">
-	<summary>
- Clear multiple payment fields
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.txtmultipletotal_EditValueChanged(System.Object,System.EventArgs)">
-	<summary>
- Handle multiple payment total change
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.GetTotalPaymentAmount">
-	<summary>
- Get total selected payment amount
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.GetSelectedPaymentModes">
-	<summary>
- Get selected payment modes as dictionary for saving
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.IsPaymentComplete">
-	<summary>
- Check if payment is complete
- </summary>
-</member><member name="M:PosRetailWebBilling.frmPaymoreII.GridControlPaymore_DoubleClick(System.Object,System.EventArgs)">
-	<summary>
- Handle double-click on payment detail grid to edit amount
- </summary>
-</member><member name="T:PosRetailWebBilling.managementModule.PosMasterData">
+<member name="T:PosRetailWebBilling.managementModule.PosMasterData">
 	<summary>
  Structure to hold POS Master data
  </summary>
@@ -471,6 +439,38 @@ PosRetailWebBilling
 </member><member name="M:PosRetailWebBilling.FrmFingerRegister.RecreateTemplateInCurrentContext(DPFP.Template)">
 	<summary>
  Recreates a template in the current DPFP context to resolve "Expecting object to be local" errors
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.ConvertDecimal(System.Object)">
+	<summary>
+ Safely convert object to decimal, handling DBNull and empty values
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.ValidateMultiplePaymentTotal">
+	<summary>
+ Validate multiple payment total matches balance before proceeding
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.ClearMultiplePaymentFields">
+	<summary>
+ Clear multiple payment fields
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.txtmultipletotal_EditValueChanged(System.Object,System.EventArgs)">
+	<summary>
+ Handle multiple payment total change
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.GetTotalPaymentAmount">
+	<summary>
+ Get total selected payment amount
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.GetSelectedPaymentModes">
+	<summary>
+ Get selected payment modes as dictionary for saving
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.IsPaymentComplete">
+	<summary>
+ Check if payment is complete
+ </summary>
+</member><member name="M:PosRetailWebBilling.frmPaymoreII.GridControlPaymore_DoubleClick(System.Object,System.EventArgs)">
+	<summary>
+ Handle double-click on payment detail grid to edit amount
  </summary>
 </member><member name="M:PosRetailWebBilling.LoginModule.UpdateShiftInfo(System.Object)">
 	<summary>

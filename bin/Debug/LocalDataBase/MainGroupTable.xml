@@ -20,6 +20,7 @@
                 <xs:element name="text_color" type="xs:string" minOccurs="0" />
                 <xs:element name="back_color" type="xs:string" minOccurs="0" />
                 <xs:element name="position" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowDiscount" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -41,6 +42,7 @@
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,192,128)</back_color>
     <position>0</position>
+    <AllowDiscount>0</AllowDiscount>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>2</MainId>
@@ -56,6 +58,7 @@
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,192,128)</back_color>
     <position>3</position>
+    <AllowDiscount>1</AllowDiscount>
   </MainGroupTable>
   <MainGroupTable>
     <MainId>3</MainId>
@@ -71,5 +74,6 @@
     <text_color>Argb(255,64,0,0)</text_color>
     <back_color>Argb(255,255,192,128)</back_color>
     <position>2</position>
+    <AllowDiscount>1</AllowDiscount>
   </MainGroupTable>
 </NewDataSet>

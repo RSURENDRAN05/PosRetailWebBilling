@@ -90,6 +90,7 @@ Module functionModule
     Public Structure FingerAndFaceAttendance
         Public Shared IsOfflineMode As Boolean = True
     End Structure
+  
     Public Structure ButtonStyleWH
         Public Shared MAINH As String = "50"
         Public Shared MAINW As String = "50"
@@ -259,6 +260,7 @@ Module functionModule
         Public Shared MainGroupPolicyTable As New DataTable
         Public Shared FingerPrintDataTable As New DataTable
         Public Shared PackageDataTable As New DataTable
+        Public Shared DiscountPolicyTable As New DataTable
     End Structure
     Public Structure _discount
         Public Shared DiscountPer As Boolean = False
@@ -427,6 +429,55 @@ Module functionModule
             Return False
         End Try
     End Function
+    Public Function getDiscountPolicy() As Boolean
+        Dim Path As String = filePath & "DiscountPolicyTable.xml"
+        Try
+
+            ' Check if internet is available
+            If CheckForInternetConnection() Then
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                Dim response As String = New WebClient().DownloadString(
+                    M_Details.LinkAjaxRequest & "AjaxRequest=81")
+
+                Dim Userparsejson As JObject = JObject.Parse(response)
+                _JsonData.DiscountPolicyTable = Userparsejson("Data").ToObject(Of DataTable)()
+                If _JsonData.DiscountPolicyTable.Rows.Count > 0 Then
+                    _JsonData.DiscountPolicyTable.TableName = "DiscountPolicyTable"
+                    _JsonData.DiscountPolicyTable.WriteXml(Path, XmlWriteMode.WriteSchema)
+                    Return True
+                End If
+            Else
+                If File.Exists(Path) Then
+                    ' Clear existing data
+                    _JsonData.DiscountPolicyTable.Clear()
+                    ' Read XML file into DataTable
+                    _JsonData.DiscountPolicyTable.ReadXml(Path)
+                    _JsonData.DiscountPolicyTable.TableName = "DiscountPolicyTable"
+
+                    If _JsonData.DiscountPolicyTable.Rows.Count > 0 Then
+                        Return True
+                    End If
+                End If
+            End If
+
+            Return True
+        Catch ex As Exception
+            If File.Exists(Path) Then
+                ' Clear existing data
+                _JsonData.DiscountPolicyTable.Clear()
+                ' Read XML file into DataTable
+                _JsonData.DiscountPolicyTable.ReadXml(Path)
+                _JsonData.DiscountPolicyTable.TableName = "DiscountPolicyTable"
+
+                If _JsonData.DiscountPolicyTable.Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            'XtraMessageBox.Show(ex.Message, "Msg", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+   
     Public Function getFingerPrintData() As Boolean
         Dim Path As String = filePath & "FingerPrintDataTable.xml"
         Try
