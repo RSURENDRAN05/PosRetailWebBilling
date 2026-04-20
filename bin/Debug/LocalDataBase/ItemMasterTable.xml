@@ -581,7 +581,7 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>25.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-1.00</LIVESTOCK>
     <COMID>1</COMID>
     <LOCID>2</LOCID>
     <Remarks>-</Remarks>
