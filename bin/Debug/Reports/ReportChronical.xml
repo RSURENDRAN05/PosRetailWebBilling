@@ -7,24 +7,23 @@
           <xs:element name="SalesData">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="att_id" type="xs:string" minOccurs="0" />
-                <xs:element name="emp_id" type="xs:string" minOccurs="0" />
-                <xs:element name="com_id" type="xs:string" minOccurs="0" />
-                <xs:element name="loc_id" type="xs:string" minOccurs="0" />
-                <xs:element name="pm_id" type="xs:string" minOccurs="0" />
-                <xs:element name="att_date" type="xs:string" minOccurs="0" />
-                <xs:element name="morning_in" type="xs:string" minOccurs="0" />
-                <xs:element name="morning_out" type="xs:string" minOccurs="0" />
-                <xs:element name="break_in" type="xs:string" minOccurs="0" />
-                <xs:element name="evening_out" type="xs:string" minOccurs="0" />
-                <xs:element name="total_morning_hours" type="xs:string" minOccurs="0" />
-                <xs:element name="total_break_hours" type="xs:string" minOccurs="0" />
-                <xs:element name="total_work_hours" type="xs:string" minOccurs="0" />
-                <xs:element name="created_at" type="xs:string" minOccurs="0" />
-                <xs:element name="updated_at" type="xs:string" minOccurs="0" />
-                <xs:element name="emp_printname" type="xs:string" minOccurs="0" />
-                <xs:element name="pcm_name" type="xs:string" minOccurs="0" />
-                <xs:element name="plm_name" type="xs:string" minOccurs="0" />
+                <xs:element name="ID" type="xs:string" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalItems" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalNetAmt" type="xs:string" minOccurs="0" />
+                <xs:element name="AvgPercentage" type="xs:string" minOccurs="0" />
+                <xs:element name="TotalCommission" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="Qty" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="DateFilter">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FromDate" type="xs:string" minOccurs="0" />
+                <xs:element name="ToDate" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -33,23 +32,238 @@
     </xs:element>
   </xs:schema>
   <SalesData>
-    <att_id>27</att_id>
-    <emp_id>1</emp_id>
-    <com_id>1</com_id>
-    <loc_id>2</loc_id>
-    <pm_id>1</pm_id>
-    <att_date>2026-04-04</att_date>
-    <morning_in>2026-04-04 11:24:31</morning_in>
-    <morning_out>2026-04-04 11:24:57</morning_out>
-    <break_in>2026-04-04 11:25:25</break_in>
-    <evening_out>2026-04-04 11:25:40</evening_out>
-    <total_morning_hours>0.00</total_morning_hours>
-    <total_break_hours>0.00</total_break_hours>
-    <total_work_hours>0.02</total_work_hours>
-    <created_at>2026-04-04 11:25:18</created_at>
-    <updated_at>2026-04-04 11:26:26</updated_at>
-    <emp_printname>RAJKUMAR</emp_printname>
-    <pcm_name>MESHAS BARBERSHOP</pcm_name>
-    <plm_name>BRICKFIELDS</plm_name>
+    <ID>17</ID>
+    <Name>YASHU</Name>
+    <TotalItems>109</TotalItems>
+    <TotalNetAmt>4940.00</TotalNetAmt>
+    <AvgPercentage>9.72</AvgPercentage>
+    <TotalCommission>481.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>109.00</Qty>
   </SalesData>
+  <SalesData>
+    <ID>12</ID>
+    <Name>SUKHVEER</Name>
+    <TotalItems>394</TotalItems>
+    <TotalNetAmt>10385.00</TotalNetAmt>
+    <AvgPercentage>2.06</AvgPercentage>
+    <TotalCommission>389.20</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>394.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>13</ID>
+    <Name>PRAKASH</Name>
+    <TotalItems>404</TotalItems>
+    <TotalNetAmt>10014.00</TotalNetAmt>
+    <AvgPercentage>1.93</AvgPercentage>
+    <TotalCommission>335.50</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>404.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>14</ID>
+    <Name>SENTHIL</Name>
+    <TotalItems>297</TotalItems>
+    <TotalNetAmt>7954.00</TotalNetAmt>
+    <AvgPercentage>1.89</AvgPercentage>
+    <TotalCommission>329.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>297.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>15</ID>
+    <Name>PRATHEEP</Name>
+    <TotalItems>328</TotalItems>
+    <TotalNetAmt>8139.00</TotalNetAmt>
+    <AvgPercentage>2.01</AvgPercentage>
+    <TotalCommission>300.80</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>328.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>10</ID>
+    <Name>SUBRA</Name>
+    <TotalItems>494</TotalItems>
+    <TotalNetAmt>10830.00</TotalNetAmt>
+    <AvgPercentage>1.62</AvgPercentage>
+    <TotalCommission>291.30</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>494.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>19</ID>
+    <Name>GURUMOORTHY</Name>
+    <TotalItems>459</TotalItems>
+    <TotalNetAmt>10922.00</TotalNetAmt>
+    <AvgPercentage>1.15</AvgPercentage>
+    <TotalCommission>269.20</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>459.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>11</ID>
+    <Name>CHINNAIYAH</Name>
+    <TotalItems>403</TotalItems>
+    <TotalNetAmt>8888.00</TotalNetAmt>
+    <AvgPercentage>1.34</AvgPercentage>
+    <TotalCommission>204.10</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>403.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>7</ID>
+    <Name>SAJAN</Name>
+    <TotalItems>408</TotalItems>
+    <TotalNetAmt>9184.00</TotalNetAmt>
+    <AvgPercentage>1.20</AvgPercentage>
+    <TotalCommission>193.10</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>408.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>1</ID>
+    <Name>RAJKUMAR</Name>
+    <TotalItems>341</TotalItems>
+    <TotalNetAmt>8284.00</TotalNetAmt>
+    <AvgPercentage>1.11</AvgPercentage>
+    <TotalCommission>160.40</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>341.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>16</ID>
+    <Name>LOVEJEET</Name>
+    <TotalItems>289</TotalItems>
+    <TotalNetAmt>6718.00</TotalNetAmt>
+    <AvgPercentage>1.31</AvgPercentage>
+    <TotalCommission>150.10</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>289.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>22</ID>
+    <Name>PARAMJEET</Name>
+    <TotalItems>48</TotalItems>
+    <TotalNetAmt>1475.00</TotalNetAmt>
+    <AvgPercentage>10.00</AvgPercentage>
+    <TotalCommission>147.50</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>48.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>9</ID>
+    <Name>THARSHAN</Name>
+    <TotalItems>314</TotalItems>
+    <TotalNetAmt>7139.00</TotalNetAmt>
+    <AvgPercentage>0.92</AvgPercentage>
+    <TotalCommission>137.90</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>314.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>6</ID>
+    <Name>SURYA</Name>
+    <TotalItems>444</TotalItems>
+    <TotalNetAmt>9250.00</TotalNetAmt>
+    <AvgPercentage>0.86</AvgPercentage>
+    <TotalCommission>135.30</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>444.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>3</ID>
+    <Name>PRAVEEN</Name>
+    <TotalItems>239</TotalItems>
+    <TotalNetAmt>5312.00</TotalNetAmt>
+    <AvgPercentage>1.51</AvgPercentage>
+    <TotalCommission>133.60</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>239.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>8</ID>
+    <Name>KILI FORN</Name>
+    <TotalItems>367</TotalItems>
+    <TotalNetAmt>7125.00</TotalNetAmt>
+    <AvgPercentage>0.68</AvgPercentage>
+    <TotalCommission>94.30</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>367.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>4</ID>
+    <Name>KANAGARAJ</Name>
+    <TotalItems>383</TotalItems>
+    <TotalNetAmt>7686.00</TotalNetAmt>
+    <AvgPercentage>0.57</AvgPercentage>
+    <TotalCommission>81.30</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>383.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>21</ID>
+    <Name>GOPAL</Name>
+    <TotalItems>184</TotalItems>
+    <TotalNetAmt>4045.00</TotalNetAmt>
+    <AvgPercentage>0.92</AvgPercentage>
+    <TotalCommission>62.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Qty>184.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>20</ID>
+    <Name>JASPREET</Name>
+    <TotalItems>13</TotalItems>
+    <TotalNetAmt>355.00</TotalNetAmt>
+    <AvgPercentage>10.00</AvgPercentage>
+    <TotalCommission>35.50</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Qty>13.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>5</ID>
+    <Name>MOHANRAJ</Name>
+    <TotalItems>155</TotalItems>
+    <TotalNetAmt>3130.00</TotalNetAmt>
+    <AvgPercentage>0.45</AvgPercentage>
+    <TotalCommission>26.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>155.00</Qty>
+  </SalesData>
+  <SalesData>
+    <ID>2</ID>
+    <Name>AMAN</Name>
+    <TotalItems>315</TotalItems>
+    <TotalNetAmt>6040.00</TotalNetAmt>
+    <AvgPercentage>0.25</AvgPercentage>
+    <TotalCommission>24.00</TotalCommission>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>LUCKY GARDEN</LocationName>
+    <Qty>315.00</Qty>
+  </SalesData>
+  <DateFilter>
+    <FromDate>2026-04-01</FromDate>
+    <ToDate>2026-04-29</ToDate>
+  </DateFilter>
 </NewDataSet>
