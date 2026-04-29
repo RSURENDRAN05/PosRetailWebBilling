@@ -426,12 +426,20 @@ class clsfuncsync
         $sql = "
         SELECT `psih_invoice_id`, `psih_invoice_refid`, `psih_invoice_trno`, `psih_invoice_date`, `psih_invoice_prefix`, `psih_invoice_tqty`, `psih_invoice_tamount`, `psih_invoice_titemdisper`, `psih_invoice_titemdisamt`, `psih_invoice_tbilldiscper`, `psih_invoice_tbilldiscamt`, `psih_invoice_totdiscper`, `psih_invoice_totdiscamt`, `psih_invoice_tgrossamt`, `psih_invoice_ttaxamt`, `psih_invoice_sercharge`, `psih_invoice_roundoff`, `psih_invoice_tnetamt`, `psih_invoice_saletype`, `psih_invoice_billtype`, `psih_invoice_billstatus`, `psih_invoice_paymode`, `psih_invoice_customerid`, `psih_invoice_description`, `psih_invoice_countername`, `psih_invoice_userid`, `psih_invoice_comid`, `psih_invoice_locid`, `psih_invoice_pmid`, `psih_invoice_print`, `psih_invoice_billremarks`, `psih_invoice_advamt`, `psih_invoice_outstanding`, `psih_invoice_givenamt`, `psih_invoice_balamt`, `psih_invoice_shiftno`, `psih_invoice_dayno`, `psih_invoice_created`, `psih_invoice_modified`,pm.pcm_name,pl.plm_name FROM `pos_sale_invoicehdr` as ph  INNER JOIN pos_company_mast AS pm ON pm.pcm_id = ph.psih_invoice_comid
         INNER JOIN pos_location_mast AS pl ON pl.plm_id = ph.psih_invoice_locid
-        WHERE psih_invoice_comid = '$comid'
-          AND psih_invoice_locid = '$locid'
-          AND psih_invoice_date >= '$startDate'
+        WHERE psih_invoice_date >= '$startDate'
           AND psih_invoice_date <= '$endDate'
-        ORDER BY psih_invoice_date DESC
-         ";
+        ";
+
+        // Add comid filter if not 'ALL' or '0'
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $sql .= " AND psih_invoice_comid = '$comid'";
+        }
+        // Add locid filter if not 'ALL' or '0'
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $sql .= " AND psih_invoice_locid = '$locid'";
+        }
+
+        $sql .= " ORDER BY psih_invoice_date DESC ";
 
         // Log the query for debugging (remove in production)
         error_log("Sales Report Query: " . $sql);
@@ -451,6 +459,14 @@ class clsfuncsync
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
         // Build query with proper date range and JOINs for detailed information
+        $hdrWhereClause = "WHERE psih_invoice_billstatus = 'Closed'";
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_locid = '$locid'";
+        }
+
         $sql = "
                     SELECT
                 psid.psid_invoice_date,
@@ -484,9 +500,7 @@ class clsfuncsync
            INNER JOIN (
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
-                WHERE psih_invoice_billstatus = 'Closed'
-                AND psih_invoice_comid = '$comid'
-                AND psih_invoice_locid = '$locid'
+                $hdrWhereClause
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -500,12 +514,20 @@ class clsfuncsync
             INNER JOIN pos_location_mast AS pl 
                 ON pl.plm_id = psid.psid_invoice_locid
 
-            WHERE psid.psid_invoice_comid = '$comid'
-            AND psid.psid_invoice_locid = '$locid'
-            AND psid.psid_invoice_date >= '$startDate'
+            WHERE psid.psid_invoice_date >= '$startDate'
             AND psid.psid_invoice_date <= '$endDate'
+            ";
 
-            ORDER BY psid.psid_invoice_date DESC";
+        // Add comid filter if not 'ALL' or '0'
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_comid = '$comid'";
+        }
+        // Add locid filter if not 'ALL' or '0'
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_locid = '$locid'";
+        }
+
+        $sql .= "ORDER BY psid.psid_invoice_date DESC";
 
         // Log the query for debugging (remove in production)
         error_log("Sales Report Details Query: " . $sql);
@@ -526,6 +548,14 @@ class clsfuncsync
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
         // Build detailed commission report query
+        $hdrWhereClause = "WHERE psih_invoice_billstatus = 'Closed'";
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_locid = '$locid'";
+        }
+
         $sql = "
         SELECT
             pe.emp_id AS ID,
@@ -543,9 +573,7 @@ class clsfuncsync
         INNER JOIN (
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
-                WHERE psih_invoice_billstatus = 'Closed'
-                AND psih_invoice_comid = '$comid'
-                AND psih_invoice_locid = '$locid'
+                $hdrWhereClause
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -586,6 +614,15 @@ class clsfuncsync
         $startDate = mysqli_real_escape_string($this->conn, $startDate);
         $endDate   = mysqli_real_escape_string($this->conn, $endDate);
 
+        // Build where clause for subquery with conditional filters
+        $hdrWhereClause = "WHERE psih_invoice_billstatus = 'Closed'";
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_locid = '$locid'";
+        }
+
         // Build summary commission report query (grouped by salesman)
         $sql = "
         SELECT
@@ -602,9 +639,7 @@ class clsfuncsync
         INNER JOIN (
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
-                WHERE psih_invoice_billstatus = 'Closed'
-                AND psih_invoice_comid = '$comid'
-                AND psih_invoice_locid = '$locid'
+                $hdrWhereClause
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
@@ -641,6 +676,15 @@ class clsfuncsync
         $comid     = mysqli_real_escape_string($this->conn, $comid);
         $locid     = mysqli_real_escape_string($this->conn, $locid);
 
+        // Build where clause for subquery with conditional filters
+        $hdrWhereClause = "WHERE psih_invoice_billstatus = 'Closed'";
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_comid = '$comid'";
+        }
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $hdrWhereClause .= " AND psih_invoice_locid = '$locid'";
+        }
+
         // Build query to get all salesman commission data (no date filter)
         $sql = "
         SELECT
@@ -657,17 +701,23 @@ class clsfuncsync
        INNER JOIN (
                 SELECT psih_invoice_trno
                 FROM pos_sale_invoicehdr
-                WHERE psih_invoice_billstatus = 'Closed'
-                AND psih_invoice_comid = '$comid'
-                AND psih_invoice_locid = '$locid'
+                $hdrWhereClause
                 GROUP BY psih_invoice_trno
             ) AS hdr 
             ON hdr.psih_invoice_trno = psid.psid_invoice_trno
         INNER JOIN pos_employeeinfo AS pe
             ON psid.psid_invoice_salesmanid = pe.emp_id
-        WHERE psid.psid_invoice_comid = '$comid'
-          AND psid.psid_invoice_locid = '$locid'
-        ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
+        WHERE 1=1";
+
+        // Add comid filter if not 'ALL' or '0'
+        if (!empty($comid) && $comid != '0' && strtoupper($comid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_comid = '$comid'";
+        }
+        // Add locid filter if not 'ALL' or '0'
+        if (!empty($locid) && $locid != '0' && strtoupper($locid) != 'ALL') {
+            $sql .= " AND psid.psid_invoice_locid = '$locid'";
+        }
+        $sql .= " ORDER BY pe.emp_printname, psid.psid_invoice_date DESC";
 
         // Log the query for debugging (remove in production)
         error_log("Salesman Report All Query: " . $sql);
