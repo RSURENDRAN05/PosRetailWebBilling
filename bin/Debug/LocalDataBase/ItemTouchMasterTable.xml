@@ -2333,7 +2333,7 @@
     <MinPrice>0.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
+    <AllowNegStock>1</AllowNegStock>
     <AllowMultiPrice>1</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
@@ -3197,7 +3197,7 @@
     <MinPrice>149.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
-    <AllowNegStock>0</AllowNegStock>
+    <AllowNegStock>1</AllowNegStock>
     <AllowMultiPrice>1</AllowMultiPrice>
     <OpeningStock>0.00</OpeningStock>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>

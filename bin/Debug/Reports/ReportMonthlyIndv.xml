@@ -4,7 +4,7 @@
     <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
       <xs:complexType>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element name="SalesmanData" msdata:Locale="en-IN">
+          <xs:element name="SalesmanData" msdata:Locale="en-US">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -18,7 +18,7 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="ItemwiseData" msdata:Locale="en-IN">
+          <xs:element name="ItemwiseData" msdata:Locale="en-US">
             <xs:complexType>
               <xs:sequence>
                 <xs:element name="MonYear" type="xs:string" minOccurs="0" />
@@ -68,64 +68,240 @@
     </xs:element>
   </xs:schema>
   <SalesmanData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
-    <NetAmt>350.00</NetAmt>
-    <Commission>35.00</Commission>
-    <Qty>22.00</Qty>
+    <NetAmt>3705.00</NetAmt>
+    <Commission>370.50</Commission>
+    <Qty>128.00</Qty>
   </SalesmanData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>PEDICURE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>790.00</NetAmt>
+    <Commission>79.00</Commission>
+    <Qty>22.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>SPA PEDICURE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>660.00</NetAmt>
+    <Commission>66.00</Commission>
+    <Qty>12.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>MANICURE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>325.00</NetAmt>
+    <Commission>32.50</Commission>
+    <Qty>13.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
     <ItemName>BASIC FACIAL</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
-    <NetAmt>99.00</NetAmt>
-    <Commission>9.90</Commission>
-    <Qty>1.00</Qty>
+    <NetAmt>298.00</NetAmt>
+    <Commission>29.80</Commission>
+    <Qty>2.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>PEDI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>245.00</NetAmt>
+    <Commission>24.50</Commission>
+    <Qty>7.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
     <ItemName>T. EYEBROW</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
-    <NetAmt>90.00</NetAmt>
-    <Commission>9.00</Commission>
-    <Qty>9.00</Qty>
+    <NetAmt>238.00</NetAmt>
+    <Commission>23.80</Commission>
+    <Qty>22.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>SPA MANICURE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>180.00</NetAmt>
+    <Commission>18.00</Commission>
+    <Qty>4.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>FULL HANDS</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>150.00</NetAmt>
+    <Commission>15.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>GEL PEDI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>110.00</NetAmt>
+    <Commission>11.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>T. CHIN</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
     <ItemName>T. UPPER LIP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>80.00</NetAmt>
+    <Commission>8.00</Commission>
+    <Qty>10.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>FULL LEGS</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>70.00</NetAmt>
+    <Commission>7.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>UNDERARM</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>3.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>WASH - BLOW</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>60.00</NetAmt>
+    <Commission>6.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>FACE WASH AND MASSAGE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>59.00</NetAmt>
+    <Commission>5.90</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>GEL MANI</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>45.00</NetAmt>
+    <Commission>4.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>HALF LEGS</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>40.00</NetAmt>
     <Commission>4.00</Commission>
-    <Qty>5.00</Qty>
-  </ItemwiseData>
-  <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
-    <ItemName>PEDI</ItemName>
-    <CompanyName>MESHAS BARBERSHOP</CompanyName>
-    <LocationName>BRICKFIELDS</LocationName>
-    <NetAmt>35.00</NetAmt>
-    <Commission>3.50</Commission>
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
-    <ItemName>MANI</ItemName>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>CALLUS REMOVER TREATMENT</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>T. FULL FACE</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>UPPER LIP</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>30.00</NetAmt>
+    <Commission>3.00</Commission>
+    <Qty>2.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>DRY CUT</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>25.00</NetAmt>
@@ -133,10 +309,10 @@
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
-    <ItemName>MANICURE</ItemName>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>HAIR SETTING</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>25.00</NetAmt>
@@ -144,10 +320,21 @@
     <Qty>1.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
-    <ItemName>HENNA</ItemName>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>HEEL SCRUB</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>25.00</NetAmt>
+    <Commission>2.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>BUFFING SHINE</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
     <NetAmt>20.00</NetAmt>
@@ -155,14 +342,25 @@
     <Qty>2.00</Qty>
   </ItemwiseData>
   <ItemwiseData>
-    <MonYear>Mar-2026</MonYear>
-    <EmpID>20</EmpID>
-    <Salesman>JASPREET</Salesman>
-    <ItemName>T. CHIN</ItemName>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
     <CompanyName>MESHAS BARBERSHOP</CompanyName>
     <LocationName>BRICKFIELDS</LocationName>
-    <NetAmt>16.00</NetAmt>
-    <Commission>1.60</Commission>
-    <Qty>2.00</Qty>
+    <NetAmt>15.00</NetAmt>
+    <Commission>1.50</Commission>
+    <Qty>1.00</Qty>
+  </ItemwiseData>
+  <ItemwiseData>
+    <MonYear>May-2026</MonYear>
+    <EmpID>22</EmpID>
+    <Salesman>PARAMJEET</Salesman>
+    <ItemName>OPI COLOUR ONLY</ItemName>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <NetAmt>15.00</NetAmt>
+    <Commission>1.50</Commission>
+    <Qty>1.00</Qty>
   </ItemwiseData>
 </NewDataSet>
