@@ -1616,7 +1616,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oYA1NsQGito5wMfutTTyGw1E2mgsQMz4K822jrhONlQ=</dsig:DigestValue>
+        <dsig:DigestValue>kQso69LR9C4XIynVpq0UF+vi61aVW5cf1MNsE5JkTxg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
