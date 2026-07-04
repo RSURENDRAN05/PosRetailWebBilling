@@ -199,6 +199,12 @@ PosRetailWebBilling
 	<param name="section">The section of the file to write in</param>
 	<param name="key">The key in the section to write</param>
 	<param name="value">The value to write for the key</param>
+</member><member name="M:PosRetailWebBilling.FrmGenerateTaxReport.UpdateSelectedNetAmtStatus">
+	<summary>
+ Recalculates the selected-rows NetAmt total by reading directly from the GridView
+ cell values (which include the editing buffer for any in-edit row).
+ Called via BeginInvoke so DevExpress has fully committed the value before we read.
+ </summary>
 </member><member name="M:PosRetailWebBilling.frmAppointmentBooking.InitializeForm">
 	<summary>
  Initialize form settings and default values

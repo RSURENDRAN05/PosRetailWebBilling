@@ -1609,14 +1609,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="5295104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PosRetailWebBilling.exe" size="5299712">
       <assemblyIdentity name="PosRetailWebBilling" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kQso69LR9C4XIynVpq0UF+vi61aVW5cf1MNsE5JkTxg=</dsig:DigestValue>
+        <dsig:DigestValue>UXZKHExlxnUnkeH2cs/xrYFtqViuaicy1ATlz9kSQpU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

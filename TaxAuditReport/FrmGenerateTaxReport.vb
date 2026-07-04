@@ -200,6 +200,10 @@ Public Class FrmGenerateTaxReport
             Dim apiMsg As String = String.Empty
             Dim dtHeader As DataTable = ExecuteTaxAuditApi("Header", GetNoOfRowsValue(), 0, apiOk, apiMsg)
             If apiOk AndAlso dtHeader IsNot Nothing AndAlso dtHeader.Rows.Count > 0 Then
+                If Not dtHeader.Columns.Contains("Selected") Then
+                    dtHeader.Columns.Add("Selected", GetType(Boolean))
+                End If
+
                 Dim minRows As Integer = 0
                 Integer.TryParse(txtNoofRow.Text, minRows)
 
@@ -216,6 +220,7 @@ Public Class FrmGenerateTaxReport
 
                 ' Check each row for processing eligibility
                 For Each dr As DataRow In dtHeader.Rows
+                    dr("Selected") = False
                     Dim invoiceNo As String = dr("Trno").ToString().Trim()
                     Dim itemCount As Integer = 0
                     If detailCountByInvoice.ContainsKey(invoiceNo) Then
@@ -349,6 +354,18 @@ Public Class FrmGenerateTaxReport
         Catch ex As Exception
             Return 0
         End Try
+    End Function
+
+    ' Rows the user has ticked via the "Selected" checkbox column, independent of native row highlighting.
+    Private Function GetCheckedRowHandles() As Integer()
+        Dim checkedHandles As New List(Of Integer)
+        For i As Integer = 0 To GridViewHeader.RowCount - 1
+            Dim cellValue As Object = GridViewHeader.GetRowCellValue(i, "Selected")
+            If cellValue IsNot Nothing AndAlso Not Convert.IsDBNull(cellValue) AndAlso Convert.ToBoolean(cellValue) Then
+                checkedHandles.Add(i)
+            End If
+        Next
+        Return checkedHandles.ToArray()
     End Function
 
     Private Function GetHeaderFieldValue(ByVal rowHandle As Integer, ByVal fieldName As String, Optional ByVal defaultValue As String = "") As String
@@ -1047,7 +1064,7 @@ Public Class FrmGenerateTaxReport
 
     Private Sub btnDelSelectedTrno_Click(sender As Object, e As EventArgs) Handles btnDelSelectedTrno.Click
         Try
-            Dim selectedRows() As Integer = GridViewHeader.GetSelectedRows()
+            Dim selectedRows() As Integer = GetCheckedRowHandles()
             If selectedRows Is Nothing OrElse selectedRows.Length = 0 Then
                 MessageBox.Show("Please select one or more bills in the header list.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
@@ -1266,6 +1283,149 @@ Public Class FrmGenerateTaxReport
             End If
 
         Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Fires IMMEDIATELY when the checkbox is clicked — before DevExpress commits the row.
+    ' CellValueChanged fires only on row EXIT (commit), causing the one-step-behind delay.
+    Private Sub chkSelectHeader_EditValueChanged(sender As Object, e As EventArgs) Handles chkSelectHeader.EditValueChanged
+        Try
+            Me.BeginInvoke(New Action(AddressOf UpdateSelectedNetAmtStatus))
+        Catch
+        End Try
+    End Sub
+
+    ' Kept as a backup so programmatic value changes (not via user click) also update the total.
+    Private Sub GridViewHeader_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GridViewHeader.CellValueChanged
+        Try
+            If e.Column IsNot Nothing AndAlso e.Column.FieldName = "Selected" Then
+                Me.BeginInvoke(New Action(AddressOf UpdateSelectedNetAmtStatus))
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Recalculates the selected-rows NetAmt total by reading directly from the GridView
+    ''' cell values (which include the editing buffer for any in-edit row).
+    ''' Called via BeginInvoke so DevExpress has fully committed the value before we read.
+    ''' </summary>
+    Private Sub UpdateSelectedNetAmtStatus()
+        Dim total As Decimal = 0D
+        Dim count As Integer = 0
+        Try
+            For i As Integer = 0 To GridViewHeader.DataRowCount - 1
+                Dim selObj As Object = GridViewHeader.GetRowCellValue(i, "Selected")
+                If selObj IsNot Nothing AndAlso Not Convert.IsDBNull(selObj) AndAlso Convert.ToBoolean(selObj) Then
+                    Dim netObj As Object = GridViewHeader.GetRowCellValue(i, "NetAmt")
+                    Dim rawAmt As String = If(netObj Is Nothing OrElse Convert.IsDBNull(netObj), "0", netObj.ToString())
+                    total += ParseDecimalValue(rawAmt, 0D)
+                    count += 1
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+        If count > 0 Then
+            barSelectedNetAmt.Caption = "Selected: " & count.ToString() & " row(s)  |  RM " & total.ToString("0.00")
+        Else
+            barSelectedNetAmt.Caption = "Selected: RM 0.00"
+        End If
+    End Sub
+
+    Private Sub btnBulkDelete_Click(sender As Object, e As EventArgs) Handles btnBulkDelete.Click
+        Try
+            Dim selectedRows() As Integer = GetCheckedRowHandles()
+            If selectedRows Is Nothing OrElse selectedRows.Length = 0 Then
+                MessageBox.Show("Please check one or more rows in the header list.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim eligibleInvoices As New List(Of String)
+            Dim skippedCardBank As New List(Of String)
+
+            For Each rowHandle As Integer In selectedRows
+                Dim invoiceNo As String = GetHeaderFieldValue(rowHandle, "Trno", "")
+                If String.IsNullOrWhiteSpace(invoiceNo) Then Continue For
+
+                Dim payment As String = GetHeaderFieldValue(rowHandle, "Payment", "")
+                Dim upperPayment As String = payment.ToUpper().Trim()
+
+                If upperPayment.Contains("CARD") OrElse upperPayment.Contains("BANK") Then
+                    skippedCardBank.Add(invoiceNo & " (" & payment & ")")
+                Else
+                    eligibleInvoices.Add(invoiceNo)
+                End If
+            Next
+
+            If eligibleInvoices.Count = 0 Then
+                Dim msg As String = "No eligible invoices to delete."
+                If skippedCardBank.Count > 0 Then
+                    msg &= vbCrLf & vbCrLf & "Skipped (Card/Bank):" & vbCrLf & String.Join(vbCrLf, skippedCardBank.ToArray())
+                End If
+                MessageBox.Show(msg, "Delete Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim confirmMsg As String = "Do you want to delete " & eligibleInvoices.Count.ToString() & " selected invoice(s)?" & vbCrLf & vbCrLf &
+                                       "Bill No(s): " & String.Join(", ", eligibleInvoices.ToArray())
+            If skippedCardBank.Count > 0 Then
+                confirmMsg &= vbCrLf & vbCrLf & "Skipped (Card/Bank): " & skippedCardBank.Count.ToString() & " invoice(s)"
+            End If
+
+            Dim dialogResult As DialogResult = MessageBox.Show(confirmMsg, "Confirm Bulk Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If dialogResult <> DialogResult.Yes Then Exit Sub
+
+            Dim deletedCount As Integer = 0
+            Dim failedCount As Integer = 0
+            Dim errorDetails As New List(Of String)
+
+            Cursor.Current = Cursors.WaitCursor
+            StartProgressDialog("Bulk Deleting Invoices", eligibleInvoices.Count)
+
+            For idx As Integer = 0 To eligibleInvoices.Count - 1
+                Dim inv As String = eligibleInvoices(idx)
+                UpdateProgressDialog(idx + 1, "Deleting " & inv & " (" & (idx + 1).ToString() & "/" & eligibleInvoices.Count.ToString() & ")")
+
+                Dim billNo As Integer = 0
+                Integer.TryParse(inv, billNo)
+
+                Dim apiOk As Boolean = False
+                Dim apiMsg As String = String.Empty
+                ExecuteTaxAuditApi("DelInvoice", 0, billNo, apiOk, apiMsg)
+
+                If apiOk Then
+                    deletedCount += 1
+                Else
+                    failedCount += 1
+                    errorDetails.Add(inv & ": " & If(String.IsNullOrWhiteSpace(apiMsg), "Delete failed", apiMsg))
+                End If
+            Next
+
+            Cursor.Current = Cursors.Default
+            CloseProgressDialog()
+
+            Dim summaryMsg As String = "Bulk Delete Complete!" & vbCrLf & vbCrLf &
+                                       "Deleted: " & deletedCount.ToString() & vbCrLf &
+                                       "Failed: " & failedCount.ToString()
+            If skippedCardBank.Count > 0 Then
+                summaryMsg &= vbCrLf & "Skipped (Card/Bank): " & skippedCardBank.Count.ToString()
+            End If
+            If errorDetails.Count > 0 Then
+                summaryMsg &= vbCrLf & vbCrLf & "Errors:" & vbCrLf & String.Join(vbCrLf, errorDetails.ToArray())
+            End If
+
+            MessageBox.Show(summaryMsg, "Bulk Delete Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            barSelectedNetAmt.Caption = "Selected: RM 0.00"
+            GetHeaderInfo()
+            GetHeaderNetAmt()
+            GetDetailsNetAmt()
+            GridControlItemList.DataSource = Nothing
+
+        Catch ex As Exception
+            Cursor.Current = Cursors.Default
+            CloseProgressDialog()
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
