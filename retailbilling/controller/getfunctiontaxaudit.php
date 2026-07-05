@@ -130,6 +130,26 @@ if (isset($_REQUEST['AjaxRequest'])) {
         echo json_encode($res);
     }
 
+    // AjaxRequest 9: Tax Audit Report (Header / Detail / Paymode)
+    // json params: Mode ('Header'|'Detail'|'Paymode'), FromDate (YYYY-MM-DD), ToDate (YYYY-MM-DD), ComId, LocId
+    if ((int) $_REQUEST['AjaxRequest'] == 9) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $mode     = isset($row['Mode'])     ? $row['Mode']     : 'Header';
+        $fromDate = isset($row['FromDate']) ? $row['FromDate'] : null;
+        $toDate   = isset($row['ToDate'])   ? $row['ToDate']   : null;
+        $comId    = isset($row['ComId'])    ? $row['ComId']    : 0;
+        $locId    = isset($row['LocId'])    ? $row['LocId']    : 0;
+
+        $res = $clsfunreq->TaxAuditReport($mode, $fromDate, $toDate, $comId, $locId);
+        if ($res['Success']) {
+            echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "Data" => $res['Data']));
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => $res['Msg'], "Data" => array()));
+        }
+    }
+
     // AjaxRequest 10: Insert final tax record (delete existing + insert via SP)
     // json params: Date (YYYY-MM-DD), ComId, LocId
     if ((int) $_REQUEST['AjaxRequest'] == 10) {
@@ -139,4 +159,5 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $res = $clsfunreq->InsertPosTaxFinalSP($row['Date'], $row['ComId'], $row['LocId']);
         echo json_encode($res);
     }
+
 }

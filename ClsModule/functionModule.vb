@@ -28,7 +28,7 @@ Module functionModule
     Public _posPrintHeadDesign As DataSet
 
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "Ser-VER26.0.0.8 R18 040726 6PM" '"Web" '"Ser" '"Cli"
+        Public Shared SoftwareVersion As String = "Ser-VER26.0.0.9 R18 050726 1PM" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later

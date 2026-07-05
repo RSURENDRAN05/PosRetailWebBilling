@@ -2,6 +2,7 @@
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports System.Text
+Imports DevExpress.XtraPrinting
 
 Public Class FrmAudit
     Dim rtb As New RichTextBox
@@ -9,6 +10,7 @@ Public Class FrmAudit
         Try
             FromDate.EditValue = Date.Now
             ToDate.EditValue = Date.Now
+            txtrichreport.Font = New System.Drawing.Font("Courier New", 9, System.Drawing.FontStyle.Regular)
         Catch ex As Exception
 
         End Try
@@ -228,7 +230,7 @@ Public Class FrmAudit
             _content.AppendLine(_dotline2)
             _content.AppendLine(_EMPTY)
 
-            _content.AppendLine("**********Groupwise Sales Method *********")
+            _content.AppendLine("**********Groupwise Sales Method *******")
             _content.AppendLine(_dotline2)
             Dim _itemRowList As String = String.Empty
             Dim _sumSalemethod As Decimal = 0D
@@ -267,9 +269,57 @@ Public Class FrmAudit
 
     Private Sub barbtnExport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnExport.ItemClick
         Try
+            If String.IsNullOrWhiteSpace(txtrichreport.Text) Then
+                MessageBox.Show("No report data to export.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            Dim dlg As New SaveFileDialog()
+            dlg.Filter = "PDF Files (*.pdf)|*.pdf"
+            dlg.DefaultExt = "pdf"
+            dlg.FileName = "TaxReport_" & DateTime.Now.ToString("yyyyMMdd_HHmmss")
+
+            If dlg.ShowDialog() <> DialogResult.OK Then Exit Sub
+
+            Dim ps As New PrintingSystem()
+            ps.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4
+            ps.PageSettings.Landscape = False
+            ps.PageSettings.LeftMargin = 30
+            ps.PageSettings.RightMargin = 30
+            ps.PageSettings.TopMargin = 30
+            ps.PageSettings.BottomMargin = 30
+
+            Dim link As New Link(ps)
+
+            Dim reportLines As String() = txtrichreport.Lines
+
+            AddHandler link.CreateDetailArea, Sub(s2 As Object, ev As CreateAreaEventArgs)
+                                                  Dim monoFont As New System.Drawing.Font("Courier New", 8, System.Drawing.FontStyle.Regular)
+                                                  Dim rowHeight As Single = 12.0F
+                                                  Dim colWidth As Single = ev.Graph.ClientPageSize.Width
+                                                  Dim yPos As Single = 0
+
+                                                  For Each line As String In reportLines
+                                                      Dim tb As New TextBrick()
+                                                      tb.Text = If(String.IsNullOrEmpty(line), " ", line)
+                                                      tb.Font = monoFont
+                                                      tb.BackColor = System.Drawing.Color.White
+                                                      tb.ForeColor = System.Drawing.Color.Black
+                                                      tb.Style.BorderWidth = 0
+                                                      tb.Style.Sides = BorderSide.None
+                                                      ev.Graph.DrawBrick(tb, New System.Drawing.RectangleF(0, yPos, colWidth, rowHeight))
+                                                      yPos += rowHeight
+                                                  Next
+                                              End Sub
+
+            link.CreateDocument()
+            ps.ExportToPdf(dlg.FileName)
+
+            MessageBox.Show("Exported successfully:" & vbCrLf & dlg.FileName,
+                            "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
-
+            MessageBox.Show("Export error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

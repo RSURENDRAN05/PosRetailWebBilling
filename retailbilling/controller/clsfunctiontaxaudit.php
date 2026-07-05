@@ -292,4 +292,46 @@ class funcProcessTaxAudit
             "DeletedRows" => $delResult["AffectedRows"]
         );
     }
+
+    // ───────────────────────────────────────────────────────────────
+    //  Calls: CALL sp_tax_auditreport(pMode, pFromDate, pToDate, pComId, pLocId)
+    //  pMode : 'Header' | 'Detail' | 'Paymode'
+    // ───────────────────────────────────────────────────────────────
+    public function TaxAuditReport($pMode, $pFromDate, $pToDate, $pComId, $pLocId)
+    {
+        $conn = $this->conn;
+
+        $mode     = "'" . mysqli_real_escape_string($conn, $pMode)     . "'";
+        $fromDate = $pFromDate !== null ? "'" . mysqli_real_escape_string($conn, $pFromDate) . "'" : "NULL";
+        $toDate   = $pToDate   !== null ? "'" . mysqli_real_escape_string($conn, $pToDate)   . "'" : "NULL";
+        $comId    = (int) $pComId;
+        $locId    = (int) $pLocId;
+
+        $sql = "CALL sp_tax_auditreport("
+            . $mode     . ","
+            . $fromDate . ","
+            . $toDate   . ","
+            . $comId    . ","
+            . $locId    . ")";
+
+        $result = mysqli_query($conn, $sql);
+        if ($result === false) {
+            $msg = mysqli_error($conn);
+            $this->ClearProcResults();
+            return array("Success" => false, "Msg" => $msg, "Data" => array());
+        }
+
+        $rows = array();
+        if ($result instanceof mysqli_result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $rows[] = $row;
+            }
+            mysqli_free_result($result);
+        }
+
+        $this->ClearProcResults();
+
+        return array("Success" => true, "Msg" => "Data loaded successfully.", "Data" => $rows);
+    }
+
 }

@@ -19,6 +19,7 @@ Partial Class MainMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMaster))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.barcompany = New DevExpress.XtraBars.BarButtonItem()
@@ -82,6 +83,7 @@ Partial Class MainMaster
         Me.barbtnmasterauditsalesrep = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnprintbarcode = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtndiscountpolicy = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnvoucherbook = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -109,8 +111,8 @@ Partial Class MainMaster
         Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroupAppearance = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager()
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
+        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
+        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
         Me.cmbCompany = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmbLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -119,7 +121,6 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barbtnvoucherbook = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -631,6 +632,14 @@ Partial Class MainMaster
         Me.barbtndiscountpolicy.LargeGlyph = CType(resources.GetObject("barbtndiscountpolicy.LargeGlyph"), System.Drawing.Image)
         Me.barbtndiscountpolicy.Name = "barbtndiscountpolicy"
         '
+        'barbtnvoucherbook
+        '
+        Me.barbtnvoucherbook.Caption = "Voucher Book"
+        Me.barbtnvoucherbook.Glyph = CType(resources.GetObject("barbtnvoucherbook.Glyph"), System.Drawing.Image)
+        Me.barbtnvoucherbook.Id = 69
+        Me.barbtnvoucherbook.LargeGlyph = CType(resources.GetObject("barbtnvoucherbook.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnvoucherbook.Name = "barbtnvoucherbook"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -734,6 +743,7 @@ Partial Class MainMaster
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnadvancepaymentreport)
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnmonthlysummaryreport)
         Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnattendancereport)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.barbtnauditgeneratesales)
         Me.RibbonPageGroup12.Name = "RibbonPageGroup12"
         Me.RibbonPageGroup12.Text = "Report"
         '
@@ -773,7 +783,6 @@ Partial Class MainMaster
         '
         Me.RibbonPageGroup16.ItemLinks.Add(Me.barbtnmasterauditsalesrep)
         Me.RibbonPageGroup16.ItemLinks.Add(Me.barbtnauditsalesreport)
-        Me.RibbonPageGroup16.ItemLinks.Add(Me.barbtnauditgeneratesales)
         Me.RibbonPageGroup16.Name = "RibbonPageGroup16"
         Me.RibbonPageGroup16.Text = "Sale Tax Audit"
         '
@@ -850,7 +859,7 @@ Partial Class MainMaster
         Me.RibbonStatusBar.ItemLinks.Add(Me.barbtnstatustime)
         Me.RibbonStatusBar.ItemLinks.Add(Me.barcurshiftno)
         Me.RibbonStatusBar.ItemLinks.Add(Me.bardayno)
-        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 835)
+        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 752)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
         Me.RibbonStatusBar.Size = New System.Drawing.Size(1183, 31)
@@ -966,14 +975,6 @@ Partial Class MainMaster
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
         '
-        'barbtnvoucherbook
-        '
-        Me.barbtnvoucherbook.Caption = "Voucher Book"
-        Me.barbtnvoucherbook.Glyph = CType(resources.GetObject("barbtnvoucherbook.Glyph"), System.Drawing.Image)
-        Me.barbtnvoucherbook.Id = 69
-        Me.barbtnvoucherbook.LargeGlyph = CType(resources.GetObject("barbtnvoucherbook.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnvoucherbook.Name = "barbtnvoucherbook"
-        '
         'MainMaster
         '
         Me.AllowMdiBar = True
@@ -981,7 +982,7 @@ Partial Class MainMaster
         Me.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1183, 866)
+        Me.ClientSize = New System.Drawing.Size(1183, 783)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)

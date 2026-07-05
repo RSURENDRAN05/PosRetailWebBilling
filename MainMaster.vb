@@ -1226,4 +1226,13 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnmasterauditsalesrep_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnmasterauditsalesrep.ItemClick
+        Try
+            FrmMasterAuditSalesReport.MdiParent = Me
+            FrmMasterAuditSalesReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
