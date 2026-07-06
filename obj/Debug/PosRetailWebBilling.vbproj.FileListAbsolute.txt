@@ -259,3 +259,4 @@ D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailW
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmVoucherMaster.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.vbprojResolveAssemblyReference.cache
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmMasterAuditSalesReport.resources
+D:\Software Delevop\MyposServerSystem2022V1.0\Retail Project\PosRetailWebBilling\PosRetailWebBilling\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmMasterAuditSalesReport.resources

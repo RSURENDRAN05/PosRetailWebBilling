@@ -150,13 +150,13 @@ if (isset($_REQUEST['AjaxRequest'])) {
         }
     }
 
-    // AjaxRequest 10: Insert final tax record (delete existing + insert via SP)
-    // json params: Date (YYYY-MM-DD), ComId, LocId
+    // AjaxRequest 10: Insert final tax records for a date range (delete existing + insert via SP)
+    // json params: FromDate (YYYY-MM-DD), ToDate (YYYY-MM-DD), ComId, LocId
     if ((int) $_REQUEST['AjaxRequest'] == 10) {
         $getjson = $_REQUEST['json'];
         $row     = json_decode($getjson, true);
 
-        $res = $clsfunreq->InsertPosTaxFinalSP($row['Date'], $row['ComId'], $row['LocId']);
+        $res = $clsfunreq->InsertPosTaxFinalSP($row['FromDate'], $row['ToDate'], $row['ComId'], $row['LocId']);
         echo json_encode($res);
     }
 

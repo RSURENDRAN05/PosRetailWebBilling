@@ -10,7 +10,7 @@ Public Class FrmAudit
         Try
             FromDate.EditValue = Date.Now
             ToDate.EditValue = Date.Now
-            txtrichreport.Font = New System.Drawing.Font("Courier New", 9, System.Drawing.FontStyle.Regular)
+            txtrichreport.Font = New System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold)
         Catch ex As Exception
 
         End Try
@@ -294,7 +294,7 @@ Public Class FrmAudit
             Dim reportLines As String() = txtrichreport.Lines
 
             AddHandler link.CreateDetailArea, Sub(s2 As Object, ev As CreateAreaEventArgs)
-                                                  Dim monoFont As New System.Drawing.Font("Courier New", 8, System.Drawing.FontStyle.Regular)
+                                                  Dim monoFont As New System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Bold)
                                                   Dim rowHeight As Single = 12.0F
                                                   Dim colWidth As Single = ev.Graph.ClientPageSize.Width
                                                   Dim yPos As Single = 0
@@ -325,9 +325,56 @@ Public Class FrmAudit
 
     Private Sub barbtnprint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnprint.ItemClick
         Try
+            If String.IsNullOrWhiteSpace(txtrichreport.Text) Then
+                MessageBox.Show("No report data to print.", "Print", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            Dim printLines() As String = txtrichreport.Lines
+            Dim currentLine As Integer = 0
+
+            Dim pd As New System.Drawing.Printing.PrintDocument()
+            ' Narrow margins suit 80 mm / 58 mm thermal rolls
+            pd.DefaultPageSettings.Margins =
+                New System.Drawing.Printing.Margins(10, 10, 10, 10)
+
+            AddHandler pd.PrintPage,
+                Sub(s2 As Object, ev As System.Drawing.Printing.PrintPageEventArgs)
+                    Dim printFont As New System.Drawing.Font(
+                        "Arial", 9, System.Drawing.FontStyle.Bold)
+                    Dim lineH As Single = printFont.GetHeight(ev.Graphics)
+                    Dim yPos As Single = ev.MarginBounds.Top
+                    Dim xPos As Single = ev.MarginBounds.Left
+
+                    Do While currentLine < printLines.Length
+                        Dim text As String =
+                            If(String.IsNullOrEmpty(printLines(currentLine)), " ", printLines(currentLine))
+                        ev.Graphics.DrawString(text, printFont,
+                                               System.Drawing.Brushes.Black, xPos, yPos)
+                        yPos += lineH
+                        currentLine += 1
+
+                        ' If next line would overflow the page, signal more pages
+                        If yPos + lineH > ev.MarginBounds.Bottom Then
+                            ev.HasMorePages = True
+                            Return
+                        End If
+                    Loop
+
+                    ev.HasMorePages = False
+                End Sub
+
+            Dim dlg As New PrintDialog()
+            dlg.Document = pd
+            dlg.AllowSomePages = False
+            dlg.AllowPrintToFile = False
+
+            If dlg.ShowDialog() = DialogResult.OK Then
+                pd.Print()
+            End If
 
         Catch ex As Exception
-
+            MessageBox.Show("Print error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

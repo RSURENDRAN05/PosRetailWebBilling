@@ -873,10 +873,12 @@ Public Class FrmGenerateTaxReport
             If dialogResults = DialogResult.Yes Then
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
 
-                Dim reportDate As String = FormatApiDate(FromDateEdit.EditValue)
+                Dim fromDate As String = FormatApiDate(FromDateEdit.EditValue)
+                Dim toDate As String = FormatApiDate(ToDateEdit.EditValue)
 
                 Dim payload = New With {
-                    .Date = reportDate,
+                    .FromDate = fromDate,
+                    .ToDate = toDate,
                     .ComId = _companyInfo.ComId,
                     .LocId = _companyInfo.LocId
                 }

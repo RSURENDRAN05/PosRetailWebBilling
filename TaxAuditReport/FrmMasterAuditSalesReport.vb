@@ -77,6 +77,90 @@ Public Class FrmMasterAuditSalesReport
     End Sub
 
     ' ----------------------------------------------------------------
+    '  Group-by-date helpers
+    ' ----------------------------------------------------------------
+
+    ' Returns the first date-like column name found in the GridView
+    Private Function FindDateColumnName(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView) As String
+        Dim candidates As String() = {"Date", "TaxDate", "SaleDate", "BillDate", "InvoiceDate", "Trdate", "ptf_date", "Created"}
+        For Each name As String In candidates
+            If gv.Columns(name) IsNot Nothing Then Return name
+        Next
+        For Each col As DevExpress.XtraGrid.Columns.GridColumn In gv.Columns
+            If col.FieldName.ToLower().Contains("date") Then Return col.FieldName
+        Next
+        Return String.Empty
+    End Function
+
+    ' Groups the grid by its date column and adds per-group subtotals for the supplied amount columns
+    Private Sub ApplyDateGroupBy(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView,
+                                  ByVal ParamArray amtColumns As String())
+        Dim dateColName As String = FindDateColumnName(gv)
+        If String.IsNullOrEmpty(dateColName) Then
+            MessageBox.Show("No date column found in the current grid.", "Group By Date",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        gv.ClearGrouping()
+        gv.GroupSummary.Clear()
+
+        Dim dateCol As DevExpress.XtraGrid.Columns.GridColumn = gv.Columns(dateColName)
+        If dateCol IsNot Nothing Then
+            dateCol.GroupIndex = 0
+            dateCol.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
+        End If
+
+        For Each amtColName As String In amtColumns
+            Dim amtCol As DevExpress.XtraGrid.Columns.GridColumn = gv.Columns(amtColName)
+            If amtCol IsNot Nothing Then
+                ' No ShowInGroupColumnFooter → value appended to group ROW caption,
+                ' visible whether the group is collapsed or expanded
+                Dim gsCaption As New DevExpress.XtraGrid.GridGroupSummaryItem()
+                gsCaption.FieldName = amtColName
+                gsCaption.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                gsCaption.DisplayFormat = "Total: {0:n2}"
+                gv.GroupSummary.Add(gsCaption)
+
+                ' ShowInGroupColumnFooter set → value shown aligned under the amount
+                ' column in the group footer row (only visible when expanded)
+                Dim gsFooter As New DevExpress.XtraGrid.GridGroupSummaryItem()
+                gsFooter.FieldName = amtColName
+                gsFooter.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                gsFooter.DisplayFormat = "{0:n2}"
+                gsFooter.ShowInGroupColumnFooter = amtCol
+                gv.GroupSummary.Add(gsFooter)
+            End If
+        Next
+
+        ' Show a group footer row when expanded so the column-aligned total is visible
+        gv.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleIfExpanded
+        gv.ExpandAllGroups()
+    End Sub
+
+    ' Removes date grouping and all group summaries
+    Private Sub ClearDateGroupBy(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.ClearGrouping()
+        gv.GroupSummary.Clear()
+    End Sub
+
+    ' Toggle button handler
+    Private Sub barbtnGroupByDate_CheckedChanged(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnGroupByDate.CheckedChanged
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = ActiveGridView()
+        If gv Is Nothing Then Return
+
+        If barbtnGroupByDate.Checked Then
+            If XtraTabControl1.SelectedTabPage Is tabPaymode Then
+                ApplyDateGroupBy(gv, "Amount")
+            Else
+                ApplyDateGroupBy(gv, "TotalAmt")
+            End If
+        Else
+            ClearDateGroupBy(gv)
+        End If
+    End Sub
+
+    ' ----------------------------------------------------------------
     '  Add Sum summary to the named amount columns on the given GridView
     ' ----------------------------------------------------------------
     Private Sub ApplyTotalAmtSummary(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -173,6 +257,7 @@ Public Class FrmMasterAuditSalesReport
                 ApplyTotalAmtSummary(GridViewHeader, "TotalAmt")
                 GridViewHeader.BestFitColumns()
                 XtraTabControl1.SelectedTabPage = tabHeader
+                If barbtnGroupByDate.Checked Then ApplyDateGroupBy(GridViewHeader, "TotalAmt")
             End If
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -193,6 +278,7 @@ Public Class FrmMasterAuditSalesReport
                 ApplyTotalAmtSummary(GridViewDetail, "TotalAmt")
                 GridViewDetail.BestFitColumns()
                 XtraTabControl1.SelectedTabPage = tabDetail
+                If barbtnGroupByDate.Checked Then ApplyDateGroupBy(GridViewDetail, "TotalAmt")
             End If
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -213,6 +299,7 @@ Public Class FrmMasterAuditSalesReport
                 ApplyTotalAmtSummary(GridViewPaymode, "Amount")
                 GridViewPaymode.BestFitColumns()
                 XtraTabControl1.SelectedTabPage = tabPaymode
+                If barbtnGroupByDate.Checked Then ApplyDateGroupBy(GridViewPaymode, "Amount")
             End If
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

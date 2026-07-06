@@ -551,7 +551,7 @@ Partial Class FrmGenerateTaxReport
         Me.btnfinalprocess.Name = "btnfinalprocess"
         Me.btnfinalprocess.Size = New System.Drawing.Size(109, 23)
         Me.btnfinalprocess.TabIndex = 11
-        Me.btnfinalprocess.Text = "Final Update"
+        Me.btnfinalprocess.Text = "Final Bulk Update"
         '
         'txtNoofRow
         '

@@ -5,6 +5,10 @@
 -- TRUNCATE TABLE pos_sale_deletelog;
 -- TRUNCATE TABLE pos_payout_dtl;
 -- UPDATE POS_MASTER SET PM_TRANS_NO =0;
+-- TRUNCATE TABLE pos_tax_final;
+-- TRUNCATE TABLE pos_tax_invoicehdr;
+-- TRUNCATE TABLE pos_tax_invoicedtl;
+-- TRUNCATE TABLE pos_tax_paymode;
 select * from pos_sale_invoicehdr;
 select * from pos_sale_invoicedtl;
 select * from pos_sale_paymode;

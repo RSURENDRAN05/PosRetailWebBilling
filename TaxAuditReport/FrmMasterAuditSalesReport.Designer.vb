@@ -29,6 +29,7 @@ Partial Class FrmMasterAuditSalesReport
         Me.barbtnPaymode = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnExport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnPrint = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnGroupByDate = New DevExpress.XtraBars.BarCheckItem()
         Me.Bar2 = New DevExpress.XtraBars.Bar()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -70,8 +71,8 @@ Partial Class FrmMasterAuditSalesReport
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.FromDate, Me.ToDate, Me.barbtnHeader, Me.barbtnDetail, Me.barbtnPaymode, Me.barbtnExport, Me.barbtnPrint})
-        Me.BarManager1.MaxItemId = 7
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.FromDate, Me.ToDate, Me.barbtnHeader, Me.barbtnDetail, Me.barbtnPaymode, Me.barbtnExport, Me.barbtnPrint, Me.barbtnGroupByDate})
+        Me.BarManager1.MaxItemId = 8
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repFromDate, Me.repToDate})
         Me.BarManager1.StatusBar = Me.Bar2
         '
@@ -88,7 +89,8 @@ Partial Class FrmMasterAuditSalesReport
             New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnDetail, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPaymode, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnExport, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrint, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+            New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnPrint, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnGroupByDate, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.MultiLine = True
         Me.Bar1.OptionsBar.UseWholeRow = True
         Me.Bar1.Text = "Tools"
@@ -156,6 +158,12 @@ Partial Class FrmMasterAuditSalesReport
         Me.barbtnPrint.Caption = "Print"
         Me.barbtnPrint.Id = 6
         Me.barbtnPrint.Name = "barbtnPrint"
+        '
+        'barbtnGroupByDate
+        '
+        Me.barbtnGroupByDate.Caption = "Group By Date"
+        Me.barbtnGroupByDate.Id = 7
+        Me.barbtnGroupByDate.Name = "barbtnGroupByDate"
         '
         'Bar2 (status bar)
         '
@@ -333,6 +341,7 @@ Partial Class FrmMasterAuditSalesReport
     Friend WithEvents barbtnPaymode As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnExport As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnPrint As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnGroupByDate As DevExpress.XtraBars.BarCheckItem
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents tabHeader As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridControlHeader As DevExpress.XtraGrid.GridControl

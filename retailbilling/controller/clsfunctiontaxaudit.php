@@ -258,24 +258,21 @@ class funcProcessTaxAudit
         );
     }
 
-    // Insert final tax record via stored procedure (delete existing + insert from pos_tax_invoicehdr)
-    public function InsertPosTaxFinalSP($pDate, $pComId, $pLocId)
+    // Insert final tax records via stored procedure for a date range
+    // SP handles delete + insert internally
+    public function InsertPosTaxFinalSP($pFromDate, $pToDate, $pComId, $pLocId)
     {
         $conn = $this->conn;
 
-        // First delete any existing record for this date
-        $delResult = $this->DeletePosTaxFinalByDate($pDate, $pComId, $pLocId);
-        if (!$delResult["Success"]) {
-            return $delResult;
-        }
-
-        // Call the stored procedure to insert from pos_tax_invoicehdr
-        $stmt = $conn->prepare("CALL sp_pos_tax_final_insert(?, ?, ?)");
+        // Call the bulk SP; it deletes the range then re-inserts from pos_tax_invoicehdr
+        $stmt = $conn->prepare("CALL sp_pos_tax_final_insert_bulk(?, ?, ?, ?)");
         if (!$stmt) {
             return array("Success" => false, "Msg" => mysqli_error($conn));
         }
 
-        $stmt->bind_param("sii", $pDate, $pComId, $pLocId);
+        $comId = (int) $pComId;
+        $locId = (int) $pLocId;
+        $stmt->bind_param("ssii", $pFromDate, $pToDate, $comId, $locId);
 
         if (!$stmt->execute()) {
             $msg = $stmt->error;
@@ -287,9 +284,8 @@ class funcProcessTaxAudit
         $this->ClearProcResults();
 
         return array(
-            "Success"     => true,
-            "Msg"         => "Final record inserted successfully (deleted " . $delResult["AffectedRows"] . " old row(s)).",
-            "DeletedRows" => $delResult["AffectedRows"]
+            "Success" => true,
+            "Msg"     => "Final records inserted successfully for range $pFromDate to $pToDate."
         );
     }
 
