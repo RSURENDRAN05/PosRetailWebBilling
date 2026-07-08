@@ -160,4 +160,41 @@ if (isset($_REQUEST['AjaxRequest'])) {
         echo json_encode($res);
     }
 
+    // ───────────────────────────────────────────────────────────────
+    //  AjaxRequest 11: pos_mismatch_data  – INSERT / UPDATE / SELECT
+    //  json params:
+    //    Mode      (string)  'INSERT' | 'UPDATE' | 'SELECT'
+    //    PmdId     (int)     0 for INSERT; row id for UPDATE/SELECT
+    //    PmdTrno   (string)  invoice / transaction number
+    //    ComId     (int)     company id
+    //    LocId     (int)     location id
+    //    PmdStatus (string)  e.g. 'PENDING', 'RESOLVED', '' for SELECT-all
+    // ───────────────────────────────────────────────────────────────
+    if ((int) $_REQUEST['AjaxRequest'] == 11) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
+
+        $mode      = isset($row['Mode'])      ? $row['Mode']      : 'SELECT';
+        $pmdId     = isset($row['PmdId'])     ? (int) $row['PmdId']     : 0;
+        $pmdTrno   = isset($row['PmdTrno'])   ? $row['PmdTrno']   : null;
+        $comId     = isset($row['ComId'])     ? (int) $row['ComId']     : 0;
+        $locId     = isset($row['LocId'])     ? (int) $row['LocId']     : 0;
+        $pmdStatus = isset($row['PmdStatus']) ? (int) $row['PmdStatus'] : 0;  // BIT column
+
+        $res = $clsfunreq->PosMismatchData($mode, $pmdId, $pmdTrno, $comId, $locId, $pmdStatus);
+
+        $modeUpper = strtoupper(trim($mode));
+        if ($res['Success']) {
+            if ($modeUpper === 'INSERT') {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "pmd_id" => $res['pmd_id']));
+            } elseif ($modeUpper === 'UPDATE') {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "rows_affected" => $res['rows_affected']));
+            } else {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "Data" => $res['Data']));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => $res['Msg'], "Data" => array()));
+        }
+    }
+
 }

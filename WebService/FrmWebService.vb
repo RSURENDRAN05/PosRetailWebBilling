@@ -12,7 +12,7 @@ Public Class FrmUploadSalesAutoSync
 #Region "InitailProcess"
     Private Sub FrmUploadSalesAutoSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Me.Text = "Web Ver 25.0.0.2 300825"
+            Me.Text = "Web Ver 26.0.0.1 080726 2PM"
             Dim clientinfo As New pos_branch_systemstatus
             clientinfo = GetClientSystemStatus()
             If clientinfo.OnSalesActive = 0 Then
@@ -34,6 +34,8 @@ Public Class FrmUploadSalesAutoSync
                     UploadSalesToCloud()
                     Threading.Thread.Sleep(5000)
                     UploadPayoutToCloud()
+                    Threading.Thread.Sleep(5000)
+                    PostMismatchDataReupdate()
                 End If
             End If
         Catch ex As Exception
@@ -594,5 +596,127 @@ Public Class FrmUploadSalesAutoSync
         End Try
         Return False
     End Function
+#End Region
+#Region "PostMismatchData"
+
+    ' Build the AjaxRequest=11 URL for pos_mismatch_data API
+    Private Function BuildMismatchApiUrl(ByVal jsonPayload As String) As String
+        Dim baseUrl As String = M_Details.LinkTaxAuditRequest
+        If String.IsNullOrWhiteSpace(baseUrl) Then
+            baseUrl = M_Details.LinkAjaxRequest
+        End If
+        If String.IsNullOrWhiteSpace(baseUrl) Then Return String.Empty
+
+        If baseUrl.Contains("?") Then
+            If Not baseUrl.EndsWith("?") AndAlso Not baseUrl.EndsWith("&") Then baseUrl &= "&"
+        Else
+            baseUrl &= "?"
+        End If
+        Return baseUrl & "AjaxRequest=11&json=" & Uri.EscapeDataString(jsonPayload)
+    End Function
+
+    ' Fetch unprocessed mismatch records from cloud, reset their local upload flags,
+    ' then mark them as processed so the auto-sync re-uploads them.
+    Public Sub PostMismatchDataReupdate()
+        Try
+            LogTransactionInfo("MismatchReupdate", "Starting mismatch re-upload process...")
+
+            ' ── Step 1: SELECT unprocessed records (pmd_status = 0) ──
+            Dim selPayload = New With {
+                .Mode      = "SELECT",
+                .PmdId     = 0,
+                .PmdTrno   = CObj(Nothing),
+                .ComId     = _companyInfo.ComId,
+                .LocId     = _companyInfo.LocId,
+                .PmdStatus = 0
+            }
+
+            Dim selJson As String = JsonConvert.SerializeObject(selPayload)
+            Dim selUrl  As String = BuildMismatchApiUrl(selJson)
+
+            If String.IsNullOrWhiteSpace(selUrl) Then
+                LogTransactionFailure("MismatchReupdate", "Tax audit URL is not configured.")
+                Return
+            End If
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim selResponse As String  = New WebClient().DownloadString(selUrl)
+            Dim selObj      As JObject = JObject.Parse(selResponse)
+
+            Dim selOk As Boolean = False
+            If selObj("Success") IsNot Nothing Then Boolean.TryParse(selObj("Success").ToString(), selOk)
+
+            If Not selOk OrElse selObj("Data") Is Nothing OrElse selObj("Data").Type <> JTokenType.Array Then
+                LogTransactionInfo("MismatchReupdate", "No unprocessed mismatch records found.")
+                Return
+            End If
+
+            Dim dataArr As JArray = CType(selObj("Data"), JArray)
+            LogTransactionInfo("MismatchReupdate",
+                               "Found " & dataArr.Count.ToString() & " unprocessed mismatch record(s).")
+
+            Dim requeued As Integer = 0
+            Dim failed   As Integer = 0
+
+            ' ── Step 2: For each Trno reset local upload flags ────────
+            For Each item As JObject In dataArr
+                Dim pmdId As Integer = 0
+                If item("pmd_id") IsNot Nothing Then Integer.TryParse(item("pmd_id").ToString(), pmdId)
+
+                Dim trnoStr As String = item("pmd_trno").ToString()
+                If String.IsNullOrWhiteSpace(trnoStr) Then Continue For
+
+                Dim trnoInt As Integer = 0
+                Integer.TryParse(trnoStr, trnoInt)
+
+                LogTransactionProcessing(trnoStr)
+
+                ' Reset psih_invoice_webhost, psid_invoice_webhost and Sal_PayMode.Webhost to 0
+                Dim sqlPar(2) As SqlParameter
+                sqlPar(0) = New SqlParameter("@mode",    "TrnoReupdate")
+                sqlPar(1) = New SqlParameter("@trno",    trnoInt)
+                sqlPar(2) = New SqlParameter("@shiftno", 0)
+
+                If _ExecuteNonQuery("sp_postsalestocloud", sqlPar, errMsg) Then
+                    LogTransactionSuccess(trnoStr, "Upload flags reset — re-queued for sync")
+                    requeued += 1
+
+                    ' ── Step 3: Mark cloud record as processed (pmd_status = 1) ──
+                    Try
+                        Dim updPayload = New With {
+                            .Mode      = "UPDATE",
+                            .PmdId     = pmdId,
+                            .PmdTrno   = trnoStr,
+                            .ComId     = _companyInfo.ComId,
+                            .LocId     = _companyInfo.LocId,
+                            .PmdStatus = 1
+                        }
+                        Dim updJson As String = JsonConvert.SerializeObject(updPayload)
+                        Dim updUrl  As String = BuildMismatchApiUrl(updJson)
+                        Dim updResp As String = New WebClient().DownloadString(updUrl)
+                        Dim updObj  As JObject = JObject.Parse(updResp)
+                        Dim updOk   As Boolean = False
+                        If updObj("Success") IsNot Nothing Then Boolean.TryParse(updObj("Success").ToString(), updOk)
+                        LogTransactionInfo(trnoStr,
+                            If(updOk, "Cloud status updated → Processed (1)",
+                                      "Warning: cloud status update failed"))
+                    Catch updEx As Exception
+                        LogTransactionInfo(trnoStr, "Warning: could not update cloud status — " & updEx.Message)
+                    End Try
+                Else
+                    LogTransactionFailure(trnoStr, "Failed to reset upload flags: " & errMsg)
+                    failed += 1
+                End If
+            Next
+
+            LogTransactionInfo("MismatchReupdate",
+                               "Done. Re-queued: " & requeued & "  |  Failed: " & failed)
+
+        Catch ex As Exception
+            WriteErroLog("PostMismatchDataReupdate Error", ex.Message)
+            LogTransactionFailure("MismatchReupdate", "Error: " & ex.Message)
+        End Try
+    End Sub
+ 
 #End Region
 End Class

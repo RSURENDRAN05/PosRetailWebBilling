@@ -23,7 +23,8 @@
   <LocationTable>
     <plm_id>1</plm_id>
     <plm_name>BANGSAR</plm_name>
-    <plm_address>TEST</plm_address>
+    <plm_address>NO.6, JALAN BANGSAR,
+59200, KUALA LUMPUR</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:40</plm_create>
     <plm_default>1</plm_default>
@@ -31,7 +32,9 @@
   <LocationTable>
     <plm_id>2</plm_id>
     <plm_name>BRICKFIELDS</plm_name>
-    <plm_address>TEST1</plm_address>
+    <plm_address>NO.39, JALAN THAMBIPILLAY, 
+BRICKFIELDS,50470, 
+KUALA LUMPUR</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2024-10-02 20:29:51</plm_create>
     <plm_default>1</plm_default>
@@ -39,7 +42,8 @@
   <LocationTable>
     <plm_id>3</plm_id>
     <plm_name>LUCKY GARDEN</plm_name>
-    <plm_address>TEST2</plm_address>
+    <plm_address>NO.22, LORONG ARA KIRI 2,
+BANGSAR, 59100, KUALA LUMPUR</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2025-09-02 21:18:01</plm_create>
     <plm_default>1</plm_default>

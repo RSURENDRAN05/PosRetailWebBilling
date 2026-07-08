@@ -80,32 +80,36 @@ Partial Class FrmGenerateTaxReport
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl1.SuspendLayout()
-        CType(Me.GridControlItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridViewItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControlHeader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridViewHeader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkSelectHeader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lblstatusgroup, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.lblstatusgroup.SuspendLayout()
-        CType(Me.txtsetlimit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.txtNoofRow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ListBoxControlPayment, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ToDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ToDateEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.FromDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.FromDateEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        Me.btnReupdateMismatchData = New DevExpress.XtraEditors.SimpleButton()
+        Me.RichTextBoxMismatDetails = New System.Windows.Forms.RichTextBox()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        CType(Me.BarManager1,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.LayoutControl1.SuspendLayout
+        CType(Me.GridControlItemList,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.GridViewItemList,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.GridControlHeader,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.GridViewHeader,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.chkSelectHeader,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.lblstatusgroup,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.lblstatusgroup.SuspendLayout
+        CType(Me.txtsetlimit.Properties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.PanelControl1.SuspendLayout
+        CType(Me.txtNoofRow.Properties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ListBoxControlPayment,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ToDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ToDateEdit.Properties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.FromDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.FromDateEdit.Properties,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem5,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.LayoutControlItem6,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'BarManager1
         '
@@ -125,15 +129,15 @@ Partial Class FrmGenerateTaxReport
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem1, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
-        Me.Bar1.OptionsBar.UseWholeRow = True
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem1, true), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, "", true, true, true, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.Bar1.OptionsBar.UseWholeRow = true
         Me.Bar1.Text = "Tools"
         '
         'BarSubItem1
         '
         Me.BarSubItem1.Caption = "Menu"
         Me.BarSubItem1.Id = 1
-        Me.BarSubItem1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnpurgebydate, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnpurgebymonth, True)})
+        Me.BarSubItem1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnpurgebydate, true), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnpurgebymonth, true)})
         Me.BarSubItem1.Name = "BarSubItem1"
         '
         'barbtnpurgebydate
@@ -162,9 +166,9 @@ Partial Class FrmGenerateTaxReport
         Me.Bar3.DockRow = 0
         Me.Bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom
         Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barSelectedNetAmt)})
-        Me.Bar3.OptionsBar.AllowQuickCustomization = False
-        Me.Bar3.OptionsBar.DrawDragBorder = False
-        Me.Bar3.OptionsBar.UseWholeRow = True
+        Me.Bar3.OptionsBar.AllowQuickCustomization = false
+        Me.Bar3.OptionsBar.DrawDragBorder = false
+        Me.Bar3.OptionsBar.UseWholeRow = true
         Me.Bar3.Text = "Status bar"
         '
         'barSelectedNetAmt
@@ -176,34 +180,35 @@ Partial Class FrmGenerateTaxReport
         '
         'barDockControlTop
         '
-        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.CausesValidation = false
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Size = New System.Drawing.Size(1008, 29)
         '
         'barDockControlBottom
         '
-        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.CausesValidation = false
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 704)
         Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 25)
         '
         'barDockControlLeft
         '
-        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.CausesValidation = false
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
         Me.barDockControlLeft.Size = New System.Drawing.Size(0, 675)
         '
         'barDockControlRight
         '
-        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.CausesValidation = false
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1008, 29)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 675)
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.RichTextBoxMismatDetails)
         Me.LayoutControl1.Controls.Add(Me.lblDetailNetAmt)
         Me.LayoutControl1.Controls.Add(Me.GridControlItemList)
         Me.LayoutControl1.Controls.Add(Me.lblHeaderNetAmt)
@@ -219,7 +224,7 @@ Partial Class FrmGenerateTaxReport
         '
         'lblDetailNetAmt
         '
-        Me.lblDetailNetAmt.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.lblDetailNetAmt.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
         Me.lblDetailNetAmt.Location = New System.Drawing.Point(417, 151)
         Me.lblDetailNetAmt.Name = "lblDetailNetAmt"
         Me.lblDetailNetAmt.Size = New System.Drawing.Size(579, 20)
@@ -232,32 +237,32 @@ Partial Class FrmGenerateTaxReport
         Me.GridControlItemList.MainView = Me.GridViewItemList
         Me.GridControlItemList.MenuManager = Me.BarManager1
         Me.GridControlItemList.Name = "GridControlItemList"
-        Me.GridControlItemList.Size = New System.Drawing.Size(579, 472)
+        Me.GridControlItemList.Size = New System.Drawing.Size(579, 234)
         Me.GridControlItemList.TabIndex = 6
         Me.GridControlItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewItemList})
         '
         'GridViewItemList
         '
         Me.GridViewItemList.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewItemList.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridViewItemList.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewItemList.Appearance.HeaderPanel.Options.UseFont = true
+        Me.GridViewItemList.Appearance.HeaderPanel.Options.UseTextOptions = true
         Me.GridViewItemList.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewItemList.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewItemList.Appearance.Row.Options.UseFont = True
-        Me.GridViewItemList.Appearance.Row.Options.UseTextOptions = True
+        Me.GridViewItemList.Appearance.Row.Options.UseFont = true
+        Me.GridViewItemList.Appearance.Row.Options.UseTextOptions = true
         Me.GridViewItemList.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11})
         Me.GridViewItemList.GridControl = Me.GridControlItemList
         Me.GridViewItemList.Name = "GridViewItemList"
-        Me.GridViewItemList.OptionsView.ShowFooter = True
-        Me.GridViewItemList.OptionsView.ShowGroupPanel = False
+        Me.GridViewItemList.OptionsView.ShowFooter = true
+        Me.GridViewItemList.OptionsView.ShowGroupPanel = false
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "RowId"
         Me.GridColumn5.FieldName = "RowId"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
+        Me.GridColumn5.Visible = true
         Me.GridColumn5.VisibleIndex = 0
         Me.GridColumn5.Width = 54
         '
@@ -266,7 +271,7 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn6.Caption = "Trno"
         Me.GridColumn6.FieldName = "Trno"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
+        Me.GridColumn6.Visible = true
         Me.GridColumn6.VisibleIndex = 2
         Me.GridColumn6.Width = 63
         '
@@ -275,7 +280,7 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn7.Caption = "ItemName"
         Me.GridColumn7.FieldName = "ItemName"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
+        Me.GridColumn7.Visible = true
         Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 217
         '
@@ -284,19 +289,19 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn8.Caption = "Qty"
         Me.GridColumn8.FieldName = "Qty"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
+        Me.GridColumn8.Visible = true
         Me.GridColumn8.VisibleIndex = 4
         Me.GridColumn8.Width = 72
         '
         'GridColumn9
         '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = true
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.Caption = "NetAmt"
         Me.GridColumn9.FieldName = "NetAmt"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmt", "{0:n2}")})
-        Me.GridColumn9.Visible = True
+        Me.GridColumn9.Visible = true
         Me.GridColumn9.VisibleIndex = 5
         Me.GridColumn9.Width = 83
         '
@@ -305,13 +310,13 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn11.Caption = "Date"
         Me.GridColumn11.FieldName = "Date"
         Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
+        Me.GridColumn11.Visible = true
         Me.GridColumn11.VisibleIndex = 1
         Me.GridColumn11.Width = 72
         '
         'lblHeaderNetAmt
         '
-        Me.lblHeaderNetAmt.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.lblHeaderNetAmt.Font = New System.Drawing.Font("Tahoma", 15!, System.Drawing.FontStyle.Bold)
         Me.lblHeaderNetAmt.Location = New System.Drawing.Point(12, 151)
         Me.lblHeaderNetAmt.Name = "lblHeaderNetAmt"
         Me.lblHeaderNetAmt.Size = New System.Drawing.Size(401, 20)
@@ -332,20 +337,20 @@ Partial Class FrmGenerateTaxReport
         'GridViewHeader
         '
         Me.GridViewHeader.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewHeader.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridViewHeader.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewHeader.Appearance.HeaderPanel.Options.UseFont = true
+        Me.GridViewHeader.Appearance.HeaderPanel.Options.UseTextOptions = true
         Me.GridViewHeader.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewHeader.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridViewHeader.Appearance.Row.Options.UseFont = True
-        Me.GridViewHeader.Appearance.Row.Options.UseTextOptions = True
+        Me.GridViewHeader.Appearance.Row.Options.UseFont = true
+        Me.GridViewHeader.Appearance.Row.Options.UseTextOptions = true
         Me.GridViewHeader.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewHeader.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelected, Me.GridColumn12, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn13})
         Me.GridViewHeader.GridControl = Me.GridControlHeader
         Me.GridViewHeader.Name = "GridViewHeader"
-        Me.GridViewHeader.OptionsSelection.MultiSelect = True
-        Me.GridViewHeader.OptionsView.ShowAutoFilterRow = True
-        Me.GridViewHeader.OptionsView.ShowFooter = True
-        Me.GridViewHeader.OptionsView.ShowGroupPanel = False
+        Me.GridViewHeader.OptionsSelection.MultiSelect = true
+        Me.GridViewHeader.OptionsView.ShowAutoFilterRow = true
+        Me.GridViewHeader.OptionsView.ShowFooter = true
+        Me.GridViewHeader.OptionsView.ShowGroupPanel = false
         '
         'GridColumnSelected
         '
@@ -353,7 +358,7 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumnSelected.ColumnEdit = Me.chkSelectHeader
         Me.GridColumnSelected.FieldName = "Selected"
         Me.GridColumnSelected.Name = "GridColumnSelected"
-        Me.GridColumnSelected.Visible = True
+        Me.GridColumnSelected.Visible = true
         Me.GridColumnSelected.VisibleIndex = 0
         Me.GridColumnSelected.Width = 40
         '
@@ -367,8 +372,8 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn12.Caption = "YesNo"
         Me.GridColumn12.FieldName = "CanProcess"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.Visible = True
+        Me.GridColumn12.OptionsColumn.AllowEdit = false
+        Me.GridColumn12.Visible = true
         Me.GridColumn12.VisibleIndex = 1
         Me.GridColumn12.Width = 50
         '
@@ -377,8 +382,8 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn1.Caption = "RowId"
         Me.GridColumn1.FieldName = "RowId"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.Visible = True
+        Me.GridColumn1.OptionsColumn.AllowEdit = false
+        Me.GridColumn1.Visible = true
         Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 50
         '
@@ -387,8 +392,8 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn2.Caption = "Trno"
         Me.GridColumn2.FieldName = "Trno"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.Visible = True
+        Me.GridColumn2.OptionsColumn.AllowEdit = false
+        Me.GridColumn2.Visible = true
         Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 50
         '
@@ -397,21 +402,21 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn3.Caption = "Payment"
         Me.GridColumn3.FieldName = "Payment"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.Visible = True
+        Me.GridColumn3.OptionsColumn.AllowEdit = false
+        Me.GridColumn3.Visible = true
         Me.GridColumn3.VisibleIndex = 5
         Me.GridColumn3.Width = 56
         '
         'GridColumn4
         '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = true
         Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn4.Caption = "NetAmt"
         Me.GridColumn4.FieldName = "NetAmt"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowEdit = false
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmt", "{0:n2}")})
-        Me.GridColumn4.Visible = True
+        Me.GridColumn4.Visible = true
         Me.GridColumn4.VisibleIndex = 6
         Me.GridColumn4.Width = 47
         '
@@ -420,8 +425,8 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn10.Caption = "Date"
         Me.GridColumn10.FieldName = "Date"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.Visible = True
+        Me.GridColumn10.OptionsColumn.AllowEdit = false
+        Me.GridColumn10.Visible = true
         Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 50
         '
@@ -430,8 +435,8 @@ Partial Class FrmGenerateTaxReport
         Me.GridColumn13.Caption = "Print"
         Me.GridColumn13.FieldName = "PrintStatus"
         Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.Visible = True
+        Me.GridColumn13.OptionsColumn.AllowEdit = false
+        Me.GridColumn13.Visible = true
         Me.GridColumn13.VisibleIndex = 7
         Me.GridColumn13.Width = 49
         '
@@ -474,7 +479,7 @@ Partial Class FrmGenerateTaxReport
         Me.btnProcessAll.Size = New System.Drawing.Size(109, 23)
         Me.btnProcessAll.TabIndex = 13
         Me.btnProcessAll.Text = "Process All "
-        Me.btnProcessAll.Visible = False
+        Me.btnProcessAll.Visible = false
         '
         'btnProcess
         '
@@ -483,7 +488,7 @@ Partial Class FrmGenerateTaxReport
         Me.btnProcess.Size = New System.Drawing.Size(109, 23)
         Me.btnProcess.TabIndex = 9
         Me.btnProcess.Text = "Process Selected"
-        Me.btnProcess.Visible = False
+        Me.btnProcess.Visible = false
         '
         'btnSelectedItemDelete
         '
@@ -492,17 +497,17 @@ Partial Class FrmGenerateTaxReport
         Me.btnSelectedItemDelete.Size = New System.Drawing.Size(134, 23)
         Me.btnSelectedItemDelete.TabIndex = 15
         Me.btnSelectedItemDelete.Text = "Delete Selected Item Only"
-        Me.btnSelectedItemDelete.Visible = False
+        Me.btnSelectedItemDelete.Visible = false
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(809, 27)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(54, 13)
         Me.Label5.TabIndex = 14
         Me.Label5.Text = "Set Limit :"
-        Me.Label5.Visible = False
+        Me.Label5.Visible = false
         '
         'txtsetlimit
         '
@@ -517,16 +522,17 @@ Partial Class FrmGenerateTaxReport
         Me.txtsetlimit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtsetlimit.Size = New System.Drawing.Size(100, 20)
         Me.txtsetlimit.TabIndex = 13
-        Me.txtsetlimit.Visible = False
+        Me.txtsetlimit.Visible = false
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.btnReupdateMismatchData)
         Me.PanelControl1.Controls.Add(Me.btnBulkDelete)
         Me.PanelControl1.Controls.Add(Me.btnDelSelectedTrno)
         Me.PanelControl1.Controls.Add(Me.btnfinalprocess)
         Me.PanelControl1.Location = New System.Drawing.Point(411, 24)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(119, 85)
+        Me.PanelControl1.Size = New System.Drawing.Size(260, 85)
         Me.PanelControl1.TabIndex = 12
         '
         'btnBulkDelete
@@ -573,11 +579,11 @@ Partial Class FrmGenerateTaxReport
         Me.ListBoxControlPayment.Name = "ListBoxControlPayment"
         Me.ListBoxControlPayment.Size = New System.Drawing.Size(170, 74)
         Me.ListBoxControlPayment.TabIndex = 11
-        Me.ListBoxControlPayment.Visible = False
+        Me.ListBoxControlPayment.Visible = false
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(5, 73)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(100, 13)
@@ -594,17 +600,17 @@ Partial Class FrmGenerateTaxReport
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(228, 27)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(58, 13)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Paymode :"
-        Me.Label3.Visible = False
+        Me.Label3.Visible = false
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(12, 53)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
@@ -613,7 +619,7 @@ Partial Class FrmGenerateTaxReport
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(0, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(64, 13)
@@ -650,13 +656,13 @@ Partial Class FrmGenerateTaxReport
         '
         Me.LayoutControlGroup1.CustomizationFormText = "LayoutControlGroup1"
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.LayoutControlItem4, Me.LayoutControlItem5})
+        Me.LayoutControlGroup1.GroupBordersVisible = false
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1008, 675)
         Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.TextVisible = False
+        Me.LayoutControlGroup1.TextVisible = false
         '
         'LayoutControlItem3
         '
@@ -664,7 +670,7 @@ Partial Class FrmGenerateTaxReport
         Me.LayoutControlItem3.CustomizationFormText = "List Of ItemDetails"
         Me.LayoutControlItem3.Location = New System.Drawing.Point(405, 163)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(583, 492)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(583, 254)
         Me.LayoutControlItem3.Text = "List Of ItemDetails"
         Me.LayoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(104, 13)
@@ -701,7 +707,7 @@ Partial Class FrmGenerateTaxReport
         Me.LayoutControlItem4.Text = "LayoutControlItem4"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextToControlDistance = 0
-        Me.LayoutControlItem4.TextVisible = False
+        Me.LayoutControlItem4.TextVisible = false
         '
         'LayoutControlItem5
         '
@@ -713,11 +719,38 @@ Partial Class FrmGenerateTaxReport
         Me.LayoutControlItem5.Text = "LayoutControlItem5"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextToControlDistance = 0
-        Me.LayoutControlItem5.TextVisible = False
+        Me.LayoutControlItem5.TextVisible = false
+        '
+        'btnReupdateMismatchData
+        '
+        Me.btnReupdateMismatchData.Location = New System.Drawing.Point(117, 5)
+        Me.btnReupdateMismatchData.Name = "btnReupdateMismatchData"
+        Me.btnReupdateMismatchData.Size = New System.Drawing.Size(138, 23)
+        Me.btnReupdateMismatchData.TabIndex = 16
+        Me.btnReupdateMismatchData.Text = "Re-Update Mismatch Data"
+        '
+        'RichTextBoxMismatDetails
+        '
+        Me.RichTextBoxMismatDetails.Location = New System.Drawing.Point(417, 445)
+        Me.RichTextBoxMismatDetails.Name = "RichTextBoxMismatDetails"
+        Me.RichTextBoxMismatDetails.Size = New System.Drawing.Size(579, 218)
+        Me.RichTextBoxMismatDetails.TabIndex = 13
+        Me.RichTextBoxMismatDetails.Text = ""
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.RichTextBoxMismatDetails
+        Me.LayoutControlItem6.CustomizationFormText = "Mismatch Rows"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(405, 417)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(583, 238)
+        Me.LayoutControlItem6.Text = "Mismatch Rows"
+        Me.LayoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(104, 13)
         '
         'FrmGenerateTaxReport
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.LayoutControl1)
@@ -728,35 +761,36 @@ Partial Class FrmGenerateTaxReport
         Me.Name = "FrmGenerateTaxReport"
         Me.Text = "FrmGenerateTaxReport"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.GridControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewItemList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControlHeader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewHeader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkSelectHeader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lblstatusgroup, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.lblstatusgroup.ResumeLayout(False)
-        Me.lblstatusgroup.PerformLayout()
-        CType(Me.txtsetlimit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        CType(Me.txtNoofRow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ListBoxControlPayment, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ToDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ToDateEdit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FromDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FromDateEdit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        CType(Me.BarManager1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.LayoutControl1.ResumeLayout(false)
+        CType(Me.GridControlItemList,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridViewItemList,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridControlHeader,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.GridViewHeader,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.chkSelectHeader,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.lblstatusgroup,System.ComponentModel.ISupportInitialize).EndInit
+        Me.lblstatusgroup.ResumeLayout(false)
+        Me.lblstatusgroup.PerformLayout
+        CType(Me.txtsetlimit.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.PanelControl1.ResumeLayout(false)
+        CType(Me.txtNoofRow.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ListBoxControlPayment,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ToDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ToDateEdit.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.FromDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.FromDateEdit.Properties,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem5,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.LayoutControlItem6,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
     Friend WithEvents Bar3 As DevExpress.XtraBars.Bar
@@ -817,4 +851,7 @@ Partial Class FrmGenerateTaxReport
     Friend WithEvents barbtnpurgebymonth As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btnBulkDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents barSelectedNetAmt As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents btnReupdateMismatchData As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RichTextBoxMismatDetails As System.Windows.Forms.RichTextBox
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
 End Class

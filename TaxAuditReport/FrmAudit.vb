@@ -10,7 +10,7 @@ Public Class FrmAudit
         Try
             FromDate.EditValue = Date.Now
             ToDate.EditValue = Date.Now
-            txtrichreport.Font = New System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold)
+            txtrichreport.Font = New System.Drawing.Font("Courier New", 9, System.Drawing.FontStyle.Regular)
         Catch ex As Exception
 
         End Try
@@ -294,7 +294,7 @@ Public Class FrmAudit
             Dim reportLines As String() = txtrichreport.Lines
 
             AddHandler link.CreateDetailArea, Sub(s2 As Object, ev As CreateAreaEventArgs)
-                                                  Dim monoFont As New System.Drawing.Font("Arial", 8, System.Drawing.FontStyle.Bold)
+                                                  Dim monoFont As New System.Drawing.Font("Courier New", 8, System.Drawing.FontStyle.Regular)
                                                   Dim rowHeight As Single = 12.0F
                                                   Dim colWidth As Single = ev.Graph.ClientPageSize.Width
                                                   Dim yPos As Single = 0
@@ -341,7 +341,7 @@ Public Class FrmAudit
             AddHandler pd.PrintPage,
                 Sub(s2 As Object, ev As System.Drawing.Printing.PrintPageEventArgs)
                     Dim printFont As New System.Drawing.Font(
-                        "Arial", 9, System.Drawing.FontStyle.Bold)
+                        "Courier New", 9, System.Drawing.FontStyle.Regular)
                     Dim lineH As Single = printFont.GetHeight(ev.Graphics)
                     Dim yPos As Single = ev.MarginBounds.Top
                     Dim xPos As Single = ev.MarginBounds.Left

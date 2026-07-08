@@ -9,6 +9,7 @@ Public Class FrmGenerateTaxReport
     Private progressLabel As Label
     Private progressBar As ProgressBar
     Private progressTotal As Integer
+    Private _detailNetAmtMap As Dictionary(Of String, Decimal) = New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
 
     Private Sub StartProgressDialog(ByVal title As String, ByVal total As Integer)
         CloseProgressDialog()
@@ -278,8 +279,11 @@ Public Class FrmGenerateTaxReport
             Dim dtDetails As DataTable = ExecuteTaxAuditApi("Detail", GetNoOfRowsValue(), 0, apiOk, apiMsg)
 
             If Not apiOk OrElse dtDetails Is Nothing OrElse dtDetails.Rows.Count = 0 Then
+                _detailNetAmtMap = New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
                 Return counts
             End If
+
+            Dim netAmtMap As New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
 
             For Each dr As DataRow In dtDetails.Rows
                 Dim invoiceNo As String = dr("Trno").ToString().Trim()
@@ -292,8 +296,22 @@ Public Class FrmGenerateTaxReport
                 Else
                     counts.Add(invoiceNo, 1)
                 End If
+
+                Dim rowNetAmt As Decimal = 0D
+                If dtDetails.Columns.Contains("NetAmt") Then
+                    rowNetAmt = ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                End If
+
+                If netAmtMap.ContainsKey(invoiceNo) Then
+                    netAmtMap(invoiceNo) += rowNetAmt
+                Else
+                    netAmtMap.Add(invoiceNo, rowNetAmt)
+                End If
             Next
+
+            _detailNetAmtMap = netAmtMap
         Catch ex As Exception
+            _detailNetAmtMap = New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
             Return counts
         End Try
 
@@ -312,6 +330,17 @@ Public Class FrmGenerateTaxReport
                     totalNetAmount += ParseDecimalValue(dr("NetAmt").ToString(), 0D)
                 Next
                 lblDetailNetAmt.Text = "Net Amount: " & totalNetAmount.ToString("0.00")
+
+                ' If the API returns a per-Trno breakdown, bulk-populate the mismatch map
+                If dtNet.Columns.Contains("Trno") AndAlso dtNet.Columns.Contains("NetAmt") Then
+                    For Each dr As DataRow In dtNet.Rows
+                        Dim trnoKey As String = dr("Trno").ToString().Trim()
+                        If Not String.IsNullOrWhiteSpace(trnoKey) Then
+                            _detailNetAmtMap(trnoKey) = ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                        End If
+                    Next
+                    GridViewHeader.RefreshData()
+                End If
             Else
                 lblDetailNetAmt.Text = "Net Amount: 0"
             End If
@@ -420,6 +449,22 @@ Public Class FrmGenerateTaxReport
         End Try
     End Function
 
+    Private Function GetCurrentDetailNetAmount() As Decimal
+        Try
+            Dim raw As String = lblDetailNetAmt.Text
+            If String.IsNullOrWhiteSpace(raw) Then
+                Return 0D
+            End If
+            Dim valueText As String = raw
+            If raw.StartsWith("Net Amount:", StringComparison.OrdinalIgnoreCase) Then
+                valueText = raw.Substring("Net Amount:".Length).Trim()
+            End If
+            Return ParseDecimalValue(valueText, 0D)
+        Catch
+            Return 0D
+        End Try
+    End Function
+
     Private Function GetEligibilityFailureReason(ByVal paymentValue As String, ByVal printStatusValue As String, ByVal itemCount As Integer, ByVal minRows As Integer, ByVal netAmount As Decimal, ByVal maxDeleteAmount As Decimal) As String
         Dim normalizedPayment As String = paymentValue.Trim()
 
@@ -513,6 +558,19 @@ Public Class FrmGenerateTaxReport
             If apiOk AndAlso dtDetails IsNot Nothing AndAlso dtDetails.Rows.Count > 0 Then
                 GridControlItemList.DataSource = dtDetails
                 GridViewItemList.BestFitColumns()
+
+                ' Sum detail NetAmt for this invoice and store in mismatch map
+                Dim detailSum As Decimal = 0D
+                If dtDetails.Columns.Contains("NetAmt") Then
+                    For Each dr As DataRow In dtDetails.Rows
+                        detailSum += ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                    Next
+                End If
+
+                If Not String.IsNullOrWhiteSpace(InvoiceNo) Then
+                    _detailNetAmtMap(InvoiceNo) = detailSum
+                    GridControlHeader.Refresh()
+                End If
             Else
                 GridControlItemList.DataSource = Nothing
             End If
@@ -528,6 +586,9 @@ Public Class FrmGenerateTaxReport
         lblHeaderNetAmt.Text = "Net Amount: 0"
         lblDetailNetAmt.Text = "Net Amount: 0"
         txtNoofRow.Text = "2"
+        ' Allow RowStyle colours (red mismatch, etc.) to show even on the focused/selected row
+        GridViewHeader.OptionsSelection.EnableAppearanceFocusedRow = False
+        GridViewHeader.OptionsSelection.EnableAppearanceFocusedCell = False
     End Sub
 
     Private Sub FrmGenerateTaxReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -793,9 +854,23 @@ Public Class FrmGenerateTaxReport
                 Dim payment As String = GetHeaderFieldValue(e.RowHandle, "Payment", "")
                 Dim canProcess As String = GetHeaderFieldValue(e.RowHandle, "CanProcess", "No")
                 Dim printStatus As String = GetHeaderFieldValue(e.RowHandle, "PrintStatus", "No Print")
+                Dim trno As String = GetHeaderFieldValue(e.RowHandle, "Trno", "")
+                Dim headerNetAmt As Decimal = ParseDecimalValue(GetHeaderFieldValue(e.RowHandle, "NetAmt", "0"), 0D)
 
-                ' Red for Printed status (checked first as it takes priority)
-                If printStatus = "Printed" Then
+                ' Check if header NetAmt mismatches sum of detail NetAmt for this invoice
+                Dim isNetAmtMismatch As Boolean = False
+                If Not String.IsNullOrWhiteSpace(trno) AndAlso _detailNetAmtMap IsNot Nothing AndAlso _detailNetAmtMap.ContainsKey(trno) Then
+                    Dim detailSum As Decimal = _detailNetAmtMap(trno)
+                    isNetAmtMismatch = (headerNetAmt <> detailSum)
+                End If
+
+                ' Red for NetAmt mismatch (highest priority)
+                If isNetAmtMismatch Then
+                    e.Appearance.BackColor = Color.Red
+                    e.Appearance.ForeColor = Color.White
+
+                    ' Red for Printed status
+                ElseIf printStatus = "Printed" Then
                     e.Appearance.BackColor = Color.LightCoral ' Light red
                     e.Appearance.ForeColor = Color.DarkRed
 
@@ -844,6 +919,44 @@ Public Class FrmGenerateTaxReport
         End Try
     End Sub
 
+    Private Sub CheckAllMismatchRows()
+        If GridViewHeader.RowCount = 0 Then Exit Sub
+        Try
+            Dim totalRows As Integer = GridViewHeader.RowCount
+            _detailNetAmtMap = New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
+            StartProgressDialog("Checking NetAmt Mismatch...", totalRows)
+
+            For i As Integer = 0 To totalRows - 1
+                Dim trno As String = GetHeaderFieldValue(i, "Trno", "")
+                If String.IsNullOrWhiteSpace(trno) Then
+                    UpdateProgressDialog(i + 1, "Row " & (i + 1).ToString() & "/" & totalRows.ToString())
+                    Continue For
+                End If
+
+                UpdateProgressDialog(i + 1, "Checking Trno " & trno & " (" & (i + 1).ToString() & "/" & totalRows.ToString() & ")")
+
+                Dim billNo As Integer = 0
+                Integer.TryParse(trno, billNo)
+                Dim apiOk As Boolean = False
+                Dim apiMsg As String = String.Empty
+                Dim dtDetails As DataTable = ExecuteTaxAuditApi("Detail", GetNoOfRowsValue(), billNo, apiOk, apiMsg)
+
+                Dim detailSum As Decimal = 0D
+                If apiOk AndAlso dtDetails IsNot Nothing AndAlso dtDetails.Rows.Count > 0 AndAlso dtDetails.Columns.Contains("NetAmt") Then
+                    For Each dr As DataRow In dtDetails.Rows
+                        detailSum += ParseDecimalValue(dr("NetAmt").ToString(), 0D)
+                    Next
+                End If
+                _detailNetAmtMap(trno) = detailSum
+            Next
+
+            CloseProgressDialog()
+            GridControlHeader.Refresh()
+        Catch ex As Exception
+            CloseProgressDialog()
+        End Try
+    End Sub
+
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Try
             GetHeaderInfo(True)
@@ -853,6 +966,12 @@ Public Class FrmGenerateTaxReport
                 Dim firstRowInvoiceNo As String = GetHeaderFieldValue(0, "Trno", "")
                 If Not String.IsNullOrWhiteSpace(firstRowInvoiceNo) Then
                     GetItemList(firstRowInvoiceNo)
+                End If
+                ' Only scan individual rows when the overall totals already show a mismatch
+                Dim headerTotal As Decimal = GetCurrentHeaderNetAmount()
+                Dim detailTotal As Decimal = GetCurrentDetailNetAmount()
+                If headerTotal <> detailTotal Then
+                    CheckAllMismatchRows()
                 End If
             End If
         Catch ex As Exception
@@ -1431,4 +1550,283 @@ Public Class FrmGenerateTaxReport
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    ' ─── AjaxRequest=11 wrapper ──────────────────────────────────────
+    Private Function CallMismatchDataApi(ByVal pMode As String,
+                                         ByVal pPmdId As Integer,
+                                         ByVal pPmdTrno As String,
+                                         ByVal pComId As Integer,
+                                         ByVal pLocId As Integer,
+                                         ByVal pPmdStatus As Integer) As JObject
+        Try
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
+            Dim payload = New With {
+                .Mode = pMode,
+                .PmdId = pPmdId,
+                .PmdTrno = pPmdTrno,
+                .ComId = pComId,
+                .LocId = pLocId,
+                .PmdStatus = pPmdStatus
+            }
+
+            Dim jsonPayload As String = JsonConvert.SerializeObject(payload)
+            Dim url As String = BuildTaxAuditUrl(11, jsonPayload)
+            If String.IsNullOrWhiteSpace(url) Then Return Nothing
+
+            Dim response As String = New WebClient().DownloadString(url)
+            Return JObject.Parse(response)
+        Catch
+            Return Nothing
+        End Try
+    End Function
+
+    ' ─── Open the Mismatch Data form ─────────────────────────────────
+    Private Sub btnReupdateMismatchData_Click(sender As Object, e As EventArgs) Handles btnReupdateMismatchData.Click
+        Try
+            ' Collect mismatched rows from the in-memory map vs header grid
+            Dim mismatchRows As New DataTable()
+            mismatchRows.Columns.Add("Trno", GetType(String))
+            mismatchRows.Columns.Add("Header NetAmt", GetType(String))
+            mismatchRows.Columns.Add("Detail Sum", GetType(String))
+            mismatchRows.Columns.Add("Difference", GetType(String))
+
+            For i As Integer = 0 To GridViewHeader.RowCount - 1
+                Dim trno As String = GetHeaderFieldValue(i, "Trno", "")
+                If String.IsNullOrWhiteSpace(trno) Then Continue For
+
+                Dim headerAmt As Decimal = ParseDecimalValue(GetHeaderFieldValue(i, "NetAmt", "0"), 0D)
+
+                If _detailNetAmtMap.ContainsKey(trno) Then
+                    Dim detailSum As Decimal = _detailNetAmtMap(trno)
+                    If headerAmt <> detailSum Then
+                        mismatchRows.Rows.Add(trno,
+                                              headerAmt.ToString("0.00"),
+                                              detailSum.ToString("0.00"),
+                                              (headerAmt - detailSum).ToString("0.00"))
+                    End If
+                End If
+            Next
+
+            ' ── Write log to RichTextBoxMismatDetails ────────────────
+            RichTextBoxMismatDetails.Clear()
+            Dim sb As New System.Text.StringBuilder()
+            Dim divider As String = New String("="c, 62)
+            Dim dashes As String = New String("-"c, 62)
+
+            sb.AppendLine(divider)
+            sb.AppendLine(" Mismatch Report — " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+            sb.AppendLine(" Detected Mismatches : " & mismatchRows.Rows.Count.ToString())
+            sb.AppendLine(divider)
+
+            If mismatchRows.Rows.Count > 0 Then
+                sb.AppendLine(String.Format(" {0,-10} {1,14} {2,12} {3,12}",
+                                            "Trno", "Header NetAmt", "Detail Sum", "Difference"))
+                sb.AppendLine(dashes)
+
+                Dim totalDiff As Decimal = 0D
+                For Each dr As DataRow In mismatchRows.Rows
+                    Dim diff As Decimal = ParseDecimalValue(dr("Difference").ToString(), 0D)
+                    totalDiff += diff
+                    sb.AppendLine(String.Format(" {0,-10} {1,14} {2,12} {3,12}",
+                                                dr("Trno"),
+                                                dr("Header NetAmt"),
+                                                dr("Detail Sum"),
+                                                dr("Difference")))
+                Next
+
+                sb.AppendLine(dashes)
+                sb.AppendLine(String.Format(" {0,-10} {1,14} {2,12} {3,12}",
+                                            "TOTAL", "", "", totalDiff.ToString("0.00")))
+            Else
+                sb.AppendLine(" No mismatches detected.")
+                sb.AppendLine(" Run Search first so mismatches can be identified.")
+            End If
+
+            sb.AppendLine(divider)
+            RichTextBoxMismatDetails.Font = New System.Drawing.Font("Courier New", 8.5F)
+            RichTextBoxMismatDetails.Text = sb.ToString()
+
+            If mismatchRows.Rows.Count = 0 Then Exit Sub
+
+            ShowMismatchDataForm(mismatchRows)
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ShowMismatchDataForm(ByVal mismatchRows As DataTable)
+        Dim frm As New Form()
+        frm.Text = "Mismatch Data — Save & Review"
+        frm.Size = New Size(960, 640)
+        frm.StartPosition = FormStartPosition.CenterParent
+        frm.MinimizeBox = False
+
+        ' ── Top label ────────────────────────────────────────────────
+        Dim lblTop As New Label()
+        lblTop.Text = "Detected Mismatches: " & mismatchRows.Rows.Count.ToString() &
+                      "   |   Click [Save Mismatch Data] to record them, then [Load Saved Records] to view."
+        lblTop.AutoSize = False
+        lblTop.Dock = DockStyle.Top
+        lblTop.Height = 26
+        lblTop.TextAlign = ContentAlignment.MiddleLeft
+        lblTop.Padding = New Padding(6, 0, 0, 0)
+        lblTop.Font = New Font(lblTop.Font, FontStyle.Bold)
+
+        ' ── Button panel ─────────────────────────────────────────────
+        Dim pnlBtn As New FlowLayoutPanel()
+        pnlBtn.Dock = DockStyle.Top
+        pnlBtn.Height = 44
+        pnlBtn.Padding = New Padding(6, 6, 6, 0)
+        pnlBtn.FlowDirection = FlowDirection.LeftToRight
+
+        Dim btnSave As New Button() With {.Text = "Save Mismatch Data", .Width = 160, .Height = 30,
+                                          .BackColor = Color.DodgerBlue, .ForeColor = Color.White,
+                                          .FlatStyle = FlatStyle.Flat}
+        Dim btnLoadDb As New Button() With {.Text = "Load Saved Records", .Width = 150, .Height = 30}
+        Dim btnClose As New Button() With {.Text = "Close", .Width = 80, .Height = 30}
+        pnlBtn.Controls.AddRange(New Control() {btnSave, btnLoadDb, btnClose})
+
+        ' ── Split: top=current mismatches, bottom=DB records ─────────
+        Dim split As New SplitContainer()
+        split.Dock = DockStyle.Fill
+        split.Orientation = Orientation.Horizontal
+        split.SplitterDistance = 240
+
+        ' Top grid — current detected mismatches
+        Dim lblMismatch As New Label() With {.Text = " Current Detected Mismatches",
+                                             .Dock = DockStyle.Top, .Height = 22,
+                                             .Font = New Font("Segoe UI", 8, FontStyle.Bold),
+                                             .BackColor = Color.LightSalmon}
+        Dim dgvMismatch As New DataGridView()
+        dgvMismatch.Dock = DockStyle.Fill
+        dgvMismatch.ReadOnly = True
+        dgvMismatch.AllowUserToAddRows = False
+        dgvMismatch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvMismatch.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvMismatch.RowHeadersVisible = False
+        dgvMismatch.DataSource = mismatchRows
+
+        ' Colour difference column red
+        AddHandler dgvMismatch.CellFormatting,
+            Sub(s2 As Object, ev As DataGridViewCellFormattingEventArgs)
+                If ev.RowIndex < 0 Then Return
+                If dgvMismatch.Columns(ev.ColumnIndex).Name = "Difference" Then
+                    ev.CellStyle.BackColor = Color.LightCoral
+                    ev.CellStyle.ForeColor = Color.DarkRed
+                End If
+            End Sub
+
+        split.Panel1.Controls.Add(dgvMismatch)
+        split.Panel1.Controls.Add(lblMismatch)
+
+        ' Bottom grid — saved DB records
+        Dim lblSaved As New Label() With {.Text = " Saved Mismatch Records  (Status: 0 = Not Processed | 1 = Processed)",
+                                          .Dock = DockStyle.Top, .Height = 22,
+                                          .Font = New Font("Segoe UI", 8, FontStyle.Bold),
+                                          .BackColor = Color.LightSteelBlue}
+        Dim dgvSaved As New DataGridView()
+        dgvSaved.Dock = DockStyle.Fill
+        dgvSaved.ReadOnly = True
+        dgvSaved.AllowUserToAddRows = False
+        dgvSaved.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvSaved.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvSaved.RowHeadersVisible = False
+
+        split.Panel2.Controls.Add(dgvSaved)
+        split.Panel2.Controls.Add(lblSaved)
+
+        frm.Controls.Add(split)
+        frm.Controls.Add(pnlBtn)
+        frm.Controls.Add(lblTop)
+
+        ' ── Helper: load saved records from DB ───────────────────────
+        Dim loadSavedRecords As Action =
+            Sub()
+                Try
+                    Dim dtDb As New DataTable()
+                    dtDb.Columns.Add("pmd_id", GetType(String))
+                    dtDb.Columns.Add("Trno", GetType(String))
+                    dtDb.Columns.Add("Status", GetType(String))
+                    dtDb.Columns.Add("Status Label", GetType(String))
+                    dtDb.Columns.Add("Created", GetType(String))
+                    dtDb.Columns.Add("Updated", GetType(String))
+
+                    ' Load status=0 (not processed) and status=1 (processed)
+                    For Each statusVal As Integer In New Integer() {0, 1}
+                        Dim res As JObject = CallMismatchDataApi("SELECT", 0, Nothing,
+                                                                 _companyInfo.ComId, _companyInfo.LocId, statusVal)
+                        If res Is Nothing Then Continue For
+                        Dim ok As Boolean = False
+                        Boolean.TryParse(res("Success").ToString(), ok)
+                        If Not ok OrElse res("Data") Is Nothing OrElse res("Data").Type <> JTokenType.Array Then Continue For
+
+                        For Each item As JObject In CType(res("Data"), JArray)
+                            Dim stRaw As String = item("pmd_status").ToString()
+                            Dim stInt As Integer = 0
+                            Integer.TryParse(stRaw, stInt)
+                            Dim stLabel As String = If(stInt = 1, "Processed", "Not Processed")
+                            Dim st As String = stInt.ToString()
+                            dtDb.Rows.Add(
+                                item("pmd_id").ToString(),
+                                item("pmd_trno").ToString(),
+                                st,
+                                stLabel,
+                                item("pmd_created").ToString(),
+                                item("pmd_updated").ToString())
+                        Next
+                    Next
+
+                    dgvSaved.DataSource = dtDb
+
+                    ' Colour by status
+                    For Each row As DataGridViewRow In dgvSaved.Rows
+                        Dim stLbl As String = row.Cells("Status Label").Value.ToString()
+                        If stLbl = "Processed" Then
+                            row.DefaultCellStyle.BackColor = Color.LightGreen
+                            row.DefaultCellStyle.ForeColor = Color.DarkGreen
+                        ElseIf stLbl = "Not Processed" Then
+                            row.DefaultCellStyle.BackColor = Color.LightYellow
+                            row.DefaultCellStyle.ForeColor = Color.DarkOrange
+                        End If
+                    Next
+                Catch ex As Exception
+                    MessageBox.Show("Load error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End Sub
+
+        ' ── Save button ───────────────────────────────────────────────
+        AddHandler btnSave.Click,
+            Sub(s2 As Object, ev As EventArgs)
+                Try
+                    Dim saved As Integer = 0
+                    Dim failed As Integer = 0
+
+                    For Each dr As DataRow In mismatchRows.Rows
+                        Dim trno As String = dr("Trno").ToString()
+                        Dim res As JObject = CallMismatchDataApi("INSERT", 0, trno,
+                                                                 _companyInfo.ComId, _companyInfo.LocId, 0)
+                        Dim ok As Boolean = False
+                        If res IsNot Nothing Then Boolean.TryParse(res("Success").ToString(), ok)
+                        If ok Then saved += 1 Else failed += 1
+                    Next
+
+                    MessageBox.Show("Saved: " & saved & "   Failed: " & failed,
+                                    "Save Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    loadSavedRecords()
+                Catch ex As Exception
+                    MessageBox.Show("Save error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End Sub
+
+        ' ── Load button ───────────────────────────────────────────────
+        AddHandler btnLoadDb.Click, Sub(s2 As Object, ev As EventArgs) loadSavedRecords()
+
+        ' ── Close button ──────────────────────────────────────────────
+        AddHandler btnClose.Click, Sub(s2 As Object, ev As EventArgs) frm.Close()
+
+        frm.ShowDialog(Me)
+    End Sub
+
 End Class
