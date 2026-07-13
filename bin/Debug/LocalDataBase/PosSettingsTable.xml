@@ -21,6 +21,14 @@
     </xs:element>
   </xs:schema>
   <PosSettingsTable>
+    <Id>13</Id>
+    <Name>AutoDiscountSchemes</Name>
+    <Status>0</Status>
+    <Value>0</Value>
+    <Type>0</Type>
+    <Created>2026-04-14 15:13:39</Created>
+  </PosSettingsTable>
+  <PosSettingsTable>
     <Id>8</Id>
     <Name>BillDiscountAcitve</Name>
     <Status>1</Status>
