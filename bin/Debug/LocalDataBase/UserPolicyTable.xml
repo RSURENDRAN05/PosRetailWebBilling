@@ -75,6 +75,18 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>46</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>2</header_menu_id>
+    <sub_menu_id>46</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>BarcodePrint</menu_name>
+    <menu_code>S1006</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>18</menu_id>
     <menu_type>sub</menu_type>
     <header_menu_id>4</header_menu_id>
@@ -154,18 +166,6 @@
     <menu_active>1</menu_active>
     <menu_name>DiscountMaster</menu_name>
     <menu_code>S1031</menu_code>
-    <group_name>Super Admin</group_name>
-  </UserPolicyTable>
-  <UserPolicyTable>
-    <permission_id>0</permission_id>
-    <group_id>1</group_id>
-    <menu_id>46</menu_id>
-    <menu_type>sub</menu_type>
-    <header_menu_id>3</header_menu_id>
-    <sub_menu_id>46</sub_menu_id>
-    <menu_active>1</menu_active>
-    <menu_name>DiscountPolicy</menu_name>
-    <menu_code>S1034</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -673,18 +673,6 @@
     <menu_active>1</menu_active>
     <menu_name>Unitmaster</menu_name>
     <menu_code>S1007</menu_code>
-    <group_name>Super Admin</group_name>
-  </UserPolicyTable>
-  <UserPolicyTable>
-    <permission_id>0</permission_id>
-    <group_id>1</group_id>
-    <menu_id>47</menu_id>
-    <menu_type>sub</menu_type>
-    <header_menu_id>3</header_menu_id>
-    <sub_menu_id>47</sub_menu_id>
-    <menu_active>1</menu_active>
-    <menu_name>VoucherBook</menu_name>
-    <menu_code>S1035</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
 </NewDataSet>

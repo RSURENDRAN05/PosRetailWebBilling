@@ -83,6 +83,7 @@ Public Class MainMaster
                 barmaterial.Enabled = False
                 barsubgroup.Enabled = False
                 barpossales.Enabled = False
+                barbtnsalesweb.Enabled = False
                 barledgerReport.Enabled = False
                 barchequeentry.Enabled = False
                 barledgerentry.Enabled = False
@@ -247,7 +248,15 @@ Public Class MainMaster
                             barpossales.Enabled = False
                         End If
                     End If
-
+                    Dim PosSalesWeb As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PosSalesWeb"
+                    If PosSalesWeb.Any Then
+                        If PosSalesWeb(0)("menu_active") = "1" Then
+                            barbtnsalesweb.Enabled = True
+                        Else
+                            barbtnsalesweb.Enabled = False
+                        End If
+                    End If
+                    barbtnsalesweb.Enabled = False
                     Dim NewCustomer As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "NewCustomer"
                     If NewCustomer.Any Then
                         If PosSales1(0)("menu_active") = "1" Then
@@ -1231,6 +1240,14 @@ Public Class MainMaster
         Try
             FrmMasterAuditSalesReport.MdiParent = Me
             FrmMasterAuditSalesReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub barbtnsalesweb_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnsalesweb.ItemClick
+        Try
+            PosSales.Show()
         Catch ex As Exception
 
         End Try

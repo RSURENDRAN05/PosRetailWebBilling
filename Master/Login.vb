@@ -12,7 +12,9 @@ Public Class Login
             ' Apply the current skin to Login form (don't reload, just apply what's already set)
             SkinManager.LoadSkinSetting()
             If _ReadSyncLocalCloud() Then
-                txtusername.Properties.DataSource = _JsonData.UserTable
+                Dim dvActiveUsers As New DataView(_JsonData.UserTable)
+                dvActiveUsers.RowFilter = "Status = 'Active'"
+                txtusername.Properties.DataSource = dvActiveUsers
                 GridLookUuCompany.Properties.DataSource = _JsonData.CompanyLocationTable
                 GridLookUuCompany.EditValue = _companyInfo.LocId
             End If
