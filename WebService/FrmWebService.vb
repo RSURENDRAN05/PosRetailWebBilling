@@ -203,12 +203,15 @@ Public Class FrmUploadSalesAutoSync
 #Region "PostDataCloud"
     Public Function JsonPostSales(ByVal url As String, ByVal method As String, ByVal data As String, ByRef _results As Boolean, ByRef _msg As String, ByRef _data As String) As Boolean
         Try
-            LogTransactionFailure("Post Sales Url :", url)
-            Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(url)
+            LogTransactionInfo("Post Sales Url :", url)
+            Dim request As HttpWebRequest = CType(System.Net.WebRequest.Create(url), HttpWebRequest)
             request.Method = method
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PosRetailBilling/26.0"
+            request.Accept = "application/json, text/plain, */*"
+            request.Headers.Add("X-Requested-With", "XMLHttpRequest")
             Dim postData = data
             Dim byteArray As Byte() = Encoding.UTF8.GetBytes(postData)
-            request.ContentType = "application/x-www-form-urlencoded" ' "application/json" '
+            request.ContentType = "application/x-www-form-urlencoded"
             request.ContentLength = byteArray.Length
             request.Timeout = 30000 ' 30 seconds timeout
 
@@ -263,7 +266,12 @@ Public Class FrmUploadSalesAutoSync
             Return False
         Catch webEx As WebException
             Dim errorResponse As String = ""
+            Dim httpStatus As String = ""
             If webEx.Response IsNot Nothing Then
+                Dim httpResp As HttpWebResponse = TryCast(webEx.Response, HttpWebResponse)
+                If httpResp IsNot Nothing Then
+                    httpStatus = CInt(httpResp.StatusCode).ToString() & " " & httpResp.StatusCode.ToString()
+                End If
                 Try
                     Using responseStream As System.IO.Stream = webEx.Response.GetResponseStream()
                         Using errorReader As New StreamReader(responseStream)
@@ -274,10 +282,12 @@ Public Class FrmUploadSalesAutoSync
                     ' Ignore error reading response
                 End Try
             End If
-            WriteErroLog("Post Sales Web Error", webEx.Message & " - Response: " & errorResponse)
+            Dim fullDetail As String = "HTTP " & httpStatus & " | " & webEx.Message & " | Body: " & If(String.IsNullOrWhiteSpace(errorResponse), "(empty)", errorResponse)
+            WriteErroLog("Post Sales Web Error", fullDetail)
+            LogTransactionFailure("HTTP Error Detail", fullDetail)
             _results = False
             _msg = "Network error"
-            _data = webEx.Message
+            _data = fullDetail
             Return False
         Catch ex As Exception
             Dim error1 As String = ex.Message
@@ -599,12 +609,9 @@ Public Class FrmUploadSalesAutoSync
 #End Region
 #Region "PostMismatchData"
 
-    ' Build the AjaxRequest=11 URL for pos_mismatch_data API
-    Private Function BuildMismatchApiUrl(ByVal jsonPayload As String) As String
-        Dim baseUrl As String = M_Details.LinkTaxAuditRequest
-        If String.IsNullOrWhiteSpace(baseUrl) Then
-            baseUrl = M_Details.LinkAjaxRequest
-        End If
+    ' Use getsynctocloudlocal.php AjaxRequest=19 (same controller as sales upload — POST already works there)
+    Private Function BuildMismatchApiUrl() As String
+        Dim baseUrl As String = M_Details.LinkAjaxRequestSyncLocalCloud
         If String.IsNullOrWhiteSpace(baseUrl) Then Return String.Empty
 
         If baseUrl.Contains("?") Then
@@ -612,7 +619,7 @@ Public Class FrmUploadSalesAutoSync
         Else
             baseUrl &= "?"
         End If
-        Return baseUrl & "AjaxRequest=11&json=" & Uri.EscapeDataString(jsonPayload)
+        Return baseUrl & "AjaxRequest=19"
     End Function
 
     ' Fetch unprocessed mismatch records from cloud, reset their local upload flags,
@@ -621,42 +628,55 @@ Public Class FrmUploadSalesAutoSync
         Try
             LogTransactionInfo("MismatchReupdate", "Starting mismatch re-upload process...")
 
-            ' ── Step 1: SELECT unprocessed records (pmd_status = 0) ──
-            Dim selPayload = New With {
-                .Mode      = "SELECT",
-                .PmdId     = 0,
-                .PmdTrno   = CObj(Nothing),
-                .ComId     = _companyInfo.ComId,
-                .LocId     = _companyInfo.LocId,
-                .PmdStatus = 0
-            }
-
-            Dim selJson As String = JsonConvert.SerializeObject(selPayload)
-            Dim selUrl  As String = BuildMismatchApiUrl(selJson)
-
-            If String.IsNullOrWhiteSpace(selUrl) Then
+            Dim apiUrl As String = BuildMismatchApiUrl()
+            If String.IsNullOrWhiteSpace(apiUrl) Then
                 LogTransactionFailure("MismatchReupdate", "Tax audit URL is not configured.")
                 Return
             End If
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim selResponse As String  = New WebClient().DownloadString(selUrl)
-            Dim selObj      As JObject = JObject.Parse(selResponse)
 
+            ' ── Step 1: SELECT unprocessed records (pmd_status = 0) via POST ──
+            Dim selPayload = New With {
+                .Mode = "FETCH",
+                .PmdId = 0,
+                .PmdTrno = 0,
+                .ComId = _companyInfo.ComId,
+                .LocId = _companyInfo.LocId,
+                .PmdStatus = 0
+            }
+            Dim selJson As String = JsonConvert.SerializeObject(selPayload)
+            Dim selPostBody As String = "json=" & Uri.EscapeDataString(selJson)
             Dim selOk As Boolean = False
-            If selObj("Success") IsNot Nothing Then Boolean.TryParse(selObj("Success").ToString(), selOk)
+            Dim selMsg As String = ""
+            Dim selData As String = ""
 
-            If Not selOk OrElse selObj("Data") Is Nothing OrElse selObj("Data").Type <> JTokenType.Array Then
+            Dim callOk As Boolean = JsonPostSales(apiUrl, "POST", selPostBody, selOk, selMsg, selData)
+            LogTransactionInfo("MismatchReupdate", "SELECT response — CallOk:" & callOk.ToString() & " | Success:" & selOk.ToString() & " | Msg:" & selMsg & " | Data:" & selData)
+
+            If Not callOk OrElse Not selOk Then
+                LogTransactionFailure("MismatchReupdate", "SELECT call failed — " & selMsg)
+                Return
+            End If
+
+            Dim dataArr As JArray
+            Try
+                dataArr = JArray.Parse(selData)
+            Catch parseEx As Exception
+                LogTransactionFailure("MismatchReupdate", "Cannot parse Data array — " & parseEx.Message)
+                Return
+            End Try
+
+            If dataArr.Count = 0 Then
                 LogTransactionInfo("MismatchReupdate", "No unprocessed mismatch records found.")
                 Return
             End If
 
-            Dim dataArr As JArray = CType(selObj("Data"), JArray)
             LogTransactionInfo("MismatchReupdate",
                                "Found " & dataArr.Count.ToString() & " unprocessed mismatch record(s).")
 
             Dim requeued As Integer = 0
-            Dim failed   As Integer = 0
+            Dim failed As Integer = 0
 
             ' ── Step 2: For each Trno reset local upload flags ────────
             For Each item As JObject In dataArr
@@ -673,33 +693,33 @@ Public Class FrmUploadSalesAutoSync
 
                 ' Reset psih_invoice_webhost, psid_invoice_webhost and Sal_PayMode.Webhost to 0
                 Dim sqlPar(2) As SqlParameter
-                sqlPar(0) = New SqlParameter("@mode",    "TrnoReupdate")
-                sqlPar(1) = New SqlParameter("@trno",    trnoInt)
+                sqlPar(0) = New SqlParameter("@mode", "TrnoReupdate")
+                sqlPar(1) = New SqlParameter("@trno", trnoInt)
                 sqlPar(2) = New SqlParameter("@shiftno", 0)
 
                 If _ExecuteNonQuery("sp_postsalestocloud", sqlPar, errMsg) Then
                     LogTransactionSuccess(trnoStr, "Upload flags reset — re-queued for sync")
                     requeued += 1
 
-                    ' ── Step 3: Mark cloud record as processed (pmd_status = 1) ──
+                    ' ── Step 3: Mark cloud record as processed (pmd_status = 1) via POST ──
                     Try
                         Dim updPayload = New With {
-                            .Mode      = "UPDATE",
-                            .PmdId     = pmdId,
-                            .PmdTrno   = trnoStr,
-                            .ComId     = _companyInfo.ComId,
-                            .LocId     = _companyInfo.LocId,
+                            .Mode = "MARK",
+                            .PmdId = pmdId,
+                            .PmdTrno = trnoStr,
+                            .ComId = _companyInfo.ComId,
+                            .LocId = _companyInfo.LocId,
                             .PmdStatus = 1
                         }
                         Dim updJson As String = JsonConvert.SerializeObject(updPayload)
-                        Dim updUrl  As String = BuildMismatchApiUrl(updJson)
-                        Dim updResp As String = New WebClient().DownloadString(updUrl)
-                        Dim updObj  As JObject = JObject.Parse(updResp)
-                        Dim updOk   As Boolean = False
-                        If updObj("Success") IsNot Nothing Then Boolean.TryParse(updObj("Success").ToString(), updOk)
+                        Dim updPostBody As String = "json=" & Uri.EscapeDataString(updJson)
+                        Dim updOk As Boolean = False
+                        Dim updMsg As String = ""
+                        Dim updData As String = ""
+                        JsonPostSales(apiUrl, "POST", updPostBody, updOk, updMsg, updData)
                         LogTransactionInfo(trnoStr,
                             If(updOk, "Cloud status updated → Processed (1)",
-                                      "Warning: cloud status update failed"))
+                                      "Warning: cloud status update failed — " & updMsg))
                     Catch updEx As Exception
                         LogTransactionInfo(trnoStr, "Warning: could not update cloud status — " & updEx.Message)
                     End Try
@@ -717,6 +737,6 @@ Public Class FrmUploadSalesAutoSync
             LogTransactionFailure("MismatchReupdate", "Error: " & ex.Message)
         End Try
     End Sub
- 
+
 #End Region
 End Class

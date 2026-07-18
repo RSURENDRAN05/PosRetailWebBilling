@@ -736,6 +736,85 @@ if (isset($_REQUEST['AjaxRequest'])) { //POS_MASTER
         }
         exit;
     }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 19) { // pos_mismatch_data SELECT / UPDATE
+        try {
+            // ── diagnostic logging ──────────────────────────────────
+            error_log("=== AjaxRequest=19 START ===");
+            error_log("AjaxRequest=19 | Method : " . $_SERVER['REQUEST_METHOD']);
+            error_log("AjaxRequest=19 | IP     : " . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown'));
+            error_log("AjaxRequest=19 | GET    : " . print_r($_GET,  true));
+            error_log("AjaxRequest=19 | POST   : " . print_r($_POST, true));
+
+            $getjson = isset($_REQUEST['json']) ? $_REQUEST['json'] : '';
+            error_log("AjaxRequest=19 | json param length : " . strlen($getjson));
+            error_log("AjaxRequest=19 | json param value  : " . $getjson);
+
+            $row = json_decode($getjson, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                error_log("AjaxRequest=19 | JSON decode error : " . json_last_error_msg());
+                echo json_encode(array("Success" => false, "Msg" => "JSON decode error: " . json_last_error_msg(), "Data" => array()));
+                exit;
+            }
+            error_log("AjaxRequest=19 | decoded row : " . print_r($row, true));
+
+            $mode      = isset($row['Mode'])      ? strtoupper(trim($row['Mode']))   : 'SELECT';
+            $pmdId     = isset($row['PmdId'])     ? (int) $row['PmdId']              : 0;
+            $pmdTrno   = isset($row['PmdTrno'])   ? (int) $row['PmdTrno']            : 0;
+            $comId     = isset($row['ComId'])     ? (int) $row['ComId']              : 0;
+            $locId     = isset($row['LocId'])     ? (int) $row['LocId']              : 0;
+            $pmdStatus = isset($row['PmdStatus']) ? (int) $row['PmdStatus']          : 0;
+            error_log("AjaxRequest=19 | mode=$mode pmdId=$pmdId pmdTrno=$pmdTrno comId=$comId locId=$locId pmdStatus=$pmdStatus");
+
+            $conn = $clsfunreq->connect();
+            error_log("AjaxRequest=19 | DB connected");
+
+            if ($mode === 'FETCH') {
+                error_log("AjaxRequest=19 | running FETCH (direct SELECT)...");
+                $sql    = "SELECT pmd_id, pmd_trno, pmd_comid, pmd_locid, pmd_status, pmd_created, pmd_updated
+                           FROM pos_mismatch_data
+                           WHERE pmd_comid = $comId AND pmd_locid = $locId AND pmd_status = $pmdStatus
+                           ORDER BY pmd_id DESC";
+                $result = mysqli_query($conn, $sql);
+                if ($result === false) {
+                    error_log("AjaxRequest=19 | FETCH query failed: " . mysqli_error($conn));
+                    echo json_encode(array("Success" => false, "Msg" => "Query failed: " . mysqli_error($conn), "Data" => array()));
+                    exit;
+                }
+                $rows = array();
+                while ($r = mysqli_fetch_assoc($result)) { $rows[] = $r; }
+                mysqli_free_result($result);
+                error_log("AjaxRequest=19 | FETCH returned " . count($rows) . " row(s)");
+                echo json_encode(array("Success" => true, "Msg" => "OK", "Data" => $rows));
+
+            } elseif ($mode === 'MARK') {
+                error_log("AjaxRequest=19 | running MARK (direct UPDATE)...");
+                $sql = "UPDATE pos_mismatch_data
+                        SET pmd_status = $pmdStatus, pmd_updated = NOW()
+                        WHERE pmd_id = $pmdId AND pmd_trno = $pmdTrno
+                          AND pmd_comid = $comId AND pmd_locid = $locId";
+                $result   = mysqli_query($conn, $sql);
+                if ($result === false) {
+                    error_log("AjaxRequest=19 | MARK query failed: " . mysqli_error($conn));
+                    echo json_encode(array("Success" => false, "Msg" => "Query failed: " . mysqli_error($conn), "Data" => array()));
+                    exit;
+                }
+                $affected = mysqli_affected_rows($conn);
+                error_log("AjaxRequest=19 | MARK rows_affected=" . $affected);
+                echo json_encode(array("Success" => true, "Msg" => "Updated", "rows_affected" => $affected, "Data" => array()));
+
+            } else {
+                error_log("AjaxRequest=19 | unknown mode: " . $mode);
+                echo json_encode(array("Success" => false, "Msg" => "Unknown mode: " . $mode, "Data" => array()));
+            }
+            error_log("=== AjaxRequest=19 END ===");
+
+        } catch (Exception $e) {
+            error_log("AjaxRequest=19 | EXCEPTION: " . $e->getMessage() . " | trace: " . $e->getTraceAsString());
+            echo json_encode(array("Success" => false, "Msg" => "Request 19 Error: " . $e->getMessage(), "Data" => array()));
+        }
+        exit;
+    }
 }
 
 // Fallback for invalid requests
