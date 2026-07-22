@@ -10,11 +10,9 @@ class clsfunctionchqModule {
 
 //constructor
     public function __construct() {
-        require_once 'DB_Connect.php';
-//require_once '../config/Config.php';
-//date_default_timezone_set('Asia/Kuala_Lumpur');
-// connecting to database
-        $db = new Db_Connect();
+    require_once __DIR__ . '/dbconnect.php';
+
+    $db = new database();
         $this->conn = $db->connect();
     }
 
