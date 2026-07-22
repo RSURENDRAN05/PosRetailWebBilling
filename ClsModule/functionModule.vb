@@ -47,7 +47,7 @@ Module functionModule
     End Function
 
     Public Structure M_Details
-        Public Shared SoftwareVersion As String = "Web-VER26.0.0.14 R18 180726 1PM" '"Web" '"Ser" '"Cli"
+        Public Shared SoftwareVersion As String = "Cli-VER26.0.0.17 R19 230726 1AM" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
         Public Shared _appPath As String = Application.StartupPath
         Public Shared LinkAjaxRequest As String = "" ' Initialize empty, set later
