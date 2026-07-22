@@ -35,9 +35,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>10.00</SELL>
-    <LIVESTOCK>50.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -49,9 +49,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>149.00</SELL>
-    <LIVESTOCK>5.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -65,7 +65,7 @@
     <SELL>88.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -79,7 +79,7 @@
     <SELL>20.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -93,7 +93,7 @@
     <SELL>99.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -107,7 +107,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -121,7 +121,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -135,7 +135,7 @@
     <SELL>199.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -149,7 +149,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -163,7 +163,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -177,7 +177,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -191,7 +191,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -205,7 +205,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -219,7 +219,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -233,7 +233,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -247,7 +247,7 @@
     <SELL>20.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -261,7 +261,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -275,7 +275,7 @@
     <SELL>20.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -289,7 +289,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -303,7 +303,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -317,7 +317,7 @@
     <SELL>59.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -331,7 +331,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -345,7 +345,7 @@
     <SELL>20.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -359,7 +359,7 @@
     <SELL>88.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -373,7 +373,7 @@
     <SELL>138.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -387,7 +387,7 @@
     <SELL>188.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -401,7 +401,7 @@
     <SELL>3.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -415,7 +415,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -429,7 +429,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -443,7 +443,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -457,7 +457,7 @@
     <SELL>70.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -471,7 +471,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -485,7 +485,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -499,7 +499,7 @@
     <SELL>100.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -513,7 +513,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -527,7 +527,7 @@
     <SELL>80.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -541,7 +541,7 @@
     <SELL>80.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -553,9 +553,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>18.00</SELL>
-    <LIVESTOCK>10.00</LIVESTOCK>
+    <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -569,7 +569,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -581,9 +581,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>25.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-1.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -597,7 +597,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -611,7 +611,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -625,7 +625,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -639,7 +639,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -653,7 +653,7 @@
     <SELL>40.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -667,7 +667,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -681,7 +681,7 @@
     <SELL>150.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -695,7 +695,7 @@
     <SELL>80.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -709,7 +709,7 @@
     <SELL>100.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -723,7 +723,7 @@
     <SELL>5.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -737,7 +737,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -751,7 +751,7 @@
     <SELL>100.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -765,7 +765,7 @@
     <SELL>80.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -779,7 +779,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -793,7 +793,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -807,7 +807,7 @@
     <SELL>40.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -821,7 +821,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -835,7 +835,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -849,7 +849,7 @@
     <SELL>350.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -863,7 +863,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -877,7 +877,7 @@
     <SELL>100.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -891,7 +891,7 @@
     <SELL>100.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -905,7 +905,7 @@
     <SELL>150.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -917,9 +917,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>15.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-2.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -933,7 +933,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -945,9 +945,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>25.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-1.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -961,7 +961,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -975,7 +975,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -989,7 +989,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1003,7 +1003,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1017,7 +1017,7 @@
     <SELL>35.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1031,7 +1031,7 @@
     <SELL>35.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1045,7 +1045,7 @@
     <SELL>150.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1059,7 +1059,7 @@
     <SELL>150.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1073,7 +1073,7 @@
     <SELL>150.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1087,7 +1087,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1101,7 +1101,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1115,7 +1115,7 @@
     <SELL>15.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1129,7 +1129,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1143,7 +1143,7 @@
     <SELL>120.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1157,7 +1157,7 @@
     <SELL>50.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1171,7 +1171,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1185,7 +1185,7 @@
     <SELL>12.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1199,7 +1199,7 @@
     <SELL>35.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1213,7 +1213,7 @@
     <SELL>45.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1227,7 +1227,7 @@
     <SELL>70.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1241,7 +1241,7 @@
     <SELL>140.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1255,7 +1255,7 @@
     <SELL>45.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1269,7 +1269,7 @@
     <SELL>55.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1283,7 +1283,7 @@
     <SELL>80.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1295,9 +1295,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>55.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-2.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1311,7 +1311,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1325,7 +1325,7 @@
     <SELL>8.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1337,9 +1337,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>10.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-1.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1353,7 +1353,7 @@
     <SELL>30.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1367,7 +1367,7 @@
     <SELL>25.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1381,7 +1381,7 @@
     <SELL>8.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1395,7 +1395,7 @@
     <SELL>10.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1409,7 +1409,7 @@
     <SELL>60.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1423,7 +1423,7 @@
     <SELL>120.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1437,7 +1437,7 @@
     <SELL>20.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1449,9 +1449,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>15.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-1.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1463,9 +1463,9 @@
     <TAXVALUE>0</TAXVALUE>
     <COST>0.00</COST>
     <SELL>30.00</SELL>
-    <LIVESTOCK>0.00</LIVESTOCK>
+    <LIVESTOCK>-2.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
   <ItemMasterTable>
@@ -1479,7 +1479,7 @@
     <SELL>55.00</SELL>
     <LIVESTOCK>0.00</LIVESTOCK>
     <COMID>1</COMID>
-    <LOCID>1</LOCID>
+    <LOCID>2</LOCID>
     <Remarks>-</Remarks>
   </ItemMasterTable>
 </NewDataSet>

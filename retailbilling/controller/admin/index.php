@@ -2,6 +2,7 @@
 session_start();
 
 mysqli_report(MYSQLI_REPORT_OFF);
+require_once dirname(__DIR__) . '/config/master.config.php';
 
 /*
 ==================================================
@@ -9,25 +10,6 @@ mysqli_report(MYSQLI_REPORT_OFF);
  Master Database Connection
 ==================================================
 */
-
-define('MASTER_DB_HOST', 'localhost');
-define('MASTER_DB_USER', 'myposqrc_masterapi');
-define('MASTER_DB_PASSWORD', 'Ruthram@1986');
-define('MASTER_DB_NAME', 'myposqrc_master');
-
-
-/*
-==================================================
- Encryption Key
- Generate:
- php -r "echo bin2hex(random_bytes(32));"
-==================================================
-*/
-
-define(
-    'MYPOS_ENC_KEY',
-    'a91c3e7b5d8f2046c8a7e9d1123f5b6c78a90e4d5f6a7b8c9d0e1f23456789ab'
-);
 
 
 /*

@@ -121,7 +121,7 @@ Errors (produced by `dbconnect.php` before any endpoint code runs):
 | SyncId bad format          | 400  | `{"Success":false,"ErrorCode":"INVALID_SYNCID","Msg":"SyncId format is invalid."}` |
 | SyncId not registered      | 404  | `{"Success":false,"ErrorCode":"UNKNOWN_SYNCID","Msg":"SyncId is not registered."}` |
 | Client disabled (Status=0) | 403  | `{"Success":false,"ErrorCode":"CLIENT_DISABLED","Msg":"This client account is disabled."}` |
-| Too many invalid attempts  | 429  | `{"Success":false,"ErrorCode":"RATE_LIMITED","Msg":"Too many invalid requests. Try again later."}` |
+| Too many invalid attempts  | 429  | Only when `RATE_LIMIT_ENABLED` is `true`; disabled by default for unlimited requests. |
 | Master DB down             | 500  | `{"Success":false,"ErrorCode":"MASTER_DB_ERROR","Msg":"Service temporarily unavailable."}` |
 | Client DB unreachable      | 500  | `{"Success":false,"ErrorCode":"TENANT_DB_ERROR","Msg":"Unable to connect to the client database."}` |
 
@@ -133,8 +133,8 @@ Errors (produced by `dbconnect.php` before any endpoint code runs):
   kept in `master.config.php`; plain values still work for migration.
 - **Logging** — every invalid attempt (missing / malformed / unknown /
   disabled) is stored in `api_access_log` with IP and URI.
-- **Rate limiting** — an IP with ≥ 10 invalid attempts in 5 minutes
-  (configurable) receives HTTP 429 with `Retry-After`.
+- **Rate limiting** — disabled by default (`RATE_LIMIT_ENABLED=false`) for
+  unlimited requests. Set it to `true` to enforce the configured threshold.
 - **JSON-only errors** — no HTML, no stack traces; internals go to the
   PHP error log only.
 - **Least privilege** — the master API user only needs `SELECT` on

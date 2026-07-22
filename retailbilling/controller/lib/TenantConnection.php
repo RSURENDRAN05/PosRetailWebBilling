@@ -103,6 +103,11 @@ final class TenantConnection
         $this->enforceRateLimit();
         $this->client = $this->fetchClient($this->syncId);
         $this->tenantConn = $this->connectTenant($this->client);
+        self::writeLog('INFO', 'TENANT_CONNECTED', array(
+            'syncId' => $this->syncId,
+            'clientId' => (string) $this->client['ClientID'],
+            'database' => (string) $this->client['DBName'],
+        ));
     }
 
     /**
@@ -147,7 +152,9 @@ final class TenantConnection
         $conn = @mysqli_connect(MASTER_DB_HOST, MASTER_DB_USER, MASTER_DB_PASSWORD, MASTER_DB_NAME);
 
         if (!$conn) {
-            error_log('[TenantConnection] Master DB connection failed: ' . mysqli_connect_error());
+            self::writeLog('ERROR', 'MASTER_DB_CONNECTION_FAILED', array(
+                'error' => mysqli_connect_error(),
+            ));
             if ($soft) {
                 return;
             }
@@ -163,6 +170,10 @@ final class TenantConnection
      */
     private function enforceRateLimit(): void
     {
+        if (!defined('RATE_LIMIT_ENABLED') || RATE_LIMIT_ENABLED !== true) {
+            return;
+        }
+
         if (!$this->masterConn) {
             return; // best effort - do not block valid traffic on log outage
         }
@@ -204,7 +215,10 @@ final class TenantConnection
               LIMIT 1'
         );
         if (!$stmt) {
-            error_log('[TenantConnection] Prepare failed: ' . mysqli_error($this->masterConn));
+            self::writeLog('ERROR', 'MASTER_DB_PREPARE_FAILED', array(
+                'syncId' => $syncId,
+                'error' => mysqli_error($this->masterConn),
+            ));
             self::fail(500, 'MASTER_DB_ERROR', 'Service temporarily unavailable.');
         }
 
@@ -245,11 +259,13 @@ final class TenantConnection
         );
 
         if (!$conn) {
-            error_log(sprintf(
-                '[TenantConnection] Tenant DB connection failed (SyncId=%s, DB=%s): %s',
-                $client['SyncId'],
-                $client['DBName'],
-                mysqli_connect_error()
+            self::writeLog('ERROR', 'TENANT_DB_CONNECTION_FAILED', array(
+                'syncId' => (string) $client['SyncId'],
+                'clientId' => (string) $client['ClientID'],
+                'host' => (string) $client['DBHost'],
+                'user' => (string) $client['DBUser'],
+                'database' => (string) $client['DBName'],
+                'error' => mysqli_connect_error(),
             ));
             self::fail(500, 'TENANT_DB_ERROR', 'Unable to connect to the client database.');
         }
@@ -298,8 +314,24 @@ final class TenantConnection
         $cipher = substr($blob, 28);
 
         $plain = openssl_decrypt($cipher, self::ENC_CIPHER, self::encryptionKey(), OPENSSL_RAW_DATA, $iv, $tag);
+
+        // Backward compatibility for values encrypted by older versions,
+        // which hashed the configured hex text instead of decoding it.
+        if ($plain === false && self::hasHexEncryptionKey()) {
+            $plain = openssl_decrypt(
+                $cipher,
+                self::ENC_CIPHER,
+                hash('sha256', MYPOS_ENC_KEY, true),
+                OPENSSL_RAW_DATA,
+                $iv,
+                $tag
+            );
+        }
+
         if ($plain === false) {
-            error_log('[TenantConnection] Password decryption failed (wrong MYPOS_ENC_KEY?)');
+            self::writeLog('ERROR', 'PASSWORD_DECRYPTION_FAILED', array(
+                'error' => 'Stored password could not be decrypted; verify MYPOS_ENC_KEY.',
+            ));
             self::fail(500, 'CREDENTIAL_ERROR', 'Unable to read client credentials.');
         }
         return $plain;
@@ -307,8 +339,17 @@ final class TenantConnection
 
     private static function encryptionKey(): string
     {
-        // Derive a fixed 32-byte key from the configured secret.
+        if (self::hasHexEncryptionKey()) {
+            return hex2bin(MYPOS_ENC_KEY);
+        }
+
+        // Support non-hex passphrases while always producing 32 bytes.
         return hash('sha256', MYPOS_ENC_KEY, true);
+    }
+
+    private static function hasHexEncryptionKey(): bool
+    {
+        return strlen(MYPOS_ENC_KEY) === 64 && ctype_xdigit(MYPOS_ENC_KEY);
     }
 
     // -----------------------------------------------------------------
@@ -317,8 +358,11 @@ final class TenantConnection
 
     private function logInvalidAttempt(?string $syncId, string $reason): void
     {
+        self::writeLog('WARNING', $reason, array(
+            'syncId' => $syncId,
+        ));
+
         if (!$this->masterConn) {
-            error_log(sprintf('[TenantConnection] %s (SyncId=%s, IP=%s)', $reason, (string) $syncId, self::clientIp()));
             return;
         }
 
@@ -327,6 +371,9 @@ final class TenantConnection
             'INSERT INTO api_access_log (SyncId, IPAddress, RequestUri, Reason) VALUES (?, ?, ?, ?)'
         );
         if (!$stmt) {
+            self::writeLog('ERROR', 'ACCESS_LOG_PREPARE_FAILED', array(
+                'error' => mysqli_error($this->masterConn),
+            ));
             return;
         }
 
@@ -335,8 +382,49 @@ final class TenantConnection
         $uri = isset($_SERVER['REQUEST_URI']) ? substr((string) $_SERVER['REQUEST_URI'], 0, 255) : null;
 
         mysqli_stmt_bind_param($stmt, 'ssss', $syncIdTrunc, $ip, $uri, $reason);
-        mysqli_stmt_execute($stmt);
+        if (!mysqli_stmt_execute($stmt)) {
+            self::writeLog('ERROR', 'ACCESS_LOG_INSERT_FAILED', array(
+                'error' => mysqli_stmt_error($stmt),
+            ));
+        }
         mysqli_stmt_close($stmt);
+    }
+
+    /**
+     * Write one JSON line to the dedicated tenant log. Passwords and
+     * query-string values are intentionally never included.
+     *
+     * @param array<string,mixed> $context
+     */
+    private static function writeLog(string $level, string $event, array $context = array()): void
+    {
+        if (defined('TENANT_LOG_ENABLED') && TENANT_LOG_ENABLED !== true) {
+            return;
+        }
+
+        $entry = array_merge(array(
+            'time' => date('Y-m-d H:i:s'),
+            'level' => $level,
+            'event' => $event,
+            'ip' => self::clientIp(),
+            'method' => isset($_SERVER['REQUEST_METHOD']) ? (string) $_SERVER['REQUEST_METHOD'] : 'CLI',
+            'script' => isset($_SERVER['SCRIPT_NAME']) ? (string) $_SERVER['SCRIPT_NAME'] : '',
+        ), $context);
+
+        $line = json_encode($entry, JSON_UNESCAPED_SLASHES) . PHP_EOL;
+        $logFile = defined('TENANT_LOG_FILE') ? TENANT_LOG_FILE : dirname(__DIR__) . '/logs/tenant_connection.log';
+        $logDirectory = dirname($logFile);
+
+        if (!is_dir($logDirectory) && !@mkdir($logDirectory, 0750, true) && !is_dir($logDirectory)) {
+            error_log('[TenantConnection] Cannot create log directory: ' . $logDirectory);
+            error_log(trim($line));
+            return;
+        }
+
+        if (@file_put_contents($logFile, $line, FILE_APPEND | LOCK_EX) === false) {
+            error_log('[TenantConnection] Cannot write dedicated log: ' . $logFile);
+            error_log(trim($line));
+        }
     }
 
     private static function clientIp(): string
@@ -350,6 +438,12 @@ final class TenantConnection
      */
     public static function fail(int $httpCode, string $errorCode, string $message): void
     {
+        self::writeLog('ERROR', 'API_ERROR_RESPONSE', array(
+            'httpCode' => $httpCode,
+            'errorCode' => $errorCode,
+            'message' => $message,
+        ));
+
         if (!headers_sent()) {
             http_response_code($httpCode);
             header('Content-Type: application/json; charset=utf-8');

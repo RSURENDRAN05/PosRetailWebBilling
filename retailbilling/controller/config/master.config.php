@@ -32,8 +32,12 @@ define('MYPOS_ENC_KEY', 'a91c3e7b5d8f2046c8a7e9d1123f5b6c78a90e4d5f6a7b8c9d0e1f2
 define('SYNCID_MAX_LENGTH', 32);                     // matches client_connection.SyncId VARCHAR(32)
 
 // ---- Rate limiting of INVALID requests (per client IP) ----
+// false = unlimited requests; invalid attempts are still logged.
+define('RATE_LIMIT_ENABLED', false);
 define('RATE_LIMIT_MAX_ATTEMPTS', 10);               // max invalid attempts ...
 define('RATE_LIMIT_WINDOW_SECONDS', 300);            // ... within this window (seconds)
 
 // ---- Misc ----
 define('MYPOS_TIMEZONE', 'Asia/Kuala_Lumpur');
+define('TENANT_LOG_ENABLED', true);
+define('TENANT_LOG_FILE', dirname(__DIR__) . '/logs/tenant_connection.log');

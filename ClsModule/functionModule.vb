@@ -27,6 +27,25 @@ Module functionModule
     Public _PRINTDS, _SETTINGS As New DataSet
     Public _posPrintHeadDesign As DataSet
 
+    Public Function NormalizeApiBaseUrl(value As String, Optional syncId As String = "") As String
+        Dim baseUrl As String = If(value, String.Empty).Trim()
+
+        If baseUrl = String.Empty Then
+            Return baseUrl
+        End If
+
+        If Not baseUrl.EndsWith("?") AndAlso Not baseUrl.EndsWith("&") Then
+            baseUrl &= If(baseUrl.Contains("?"), "&", "?")
+        End If
+
+        syncId = If(syncId, String.Empty).Trim()
+        If syncId <> String.Empty Then
+            baseUrl &= "SyncId=" & syncId & "&"
+        End If
+
+        Return baseUrl
+    End Function
+
     Public Structure M_Details
         Public Shared SoftwareVersion As String = "Web-VER26.0.0.14 R18 180726 1PM" '"Web" '"Ser" '"Cli"
         Public Shared AppPathDirectory As String = AppDomain.CurrentDomain.BaseDirectory
@@ -65,7 +84,7 @@ Module functionModule
         Public Shared _systemLock As String = ""
         Public Shared _popMessage As String = ""
     End Structure
-   
+
     Public Structure _saleSetting
         Public Shared _modeSales As String = ""
         Public Shared _modeDefalueSales As String = "XA"
@@ -90,7 +109,7 @@ Module functionModule
     Public Structure FingerAndFaceAttendance
         Public Shared IsOfflineMode As Boolean = True
     End Structure
-  
+
     Public Structure ButtonStyleWH
         Public Shared MAINH As String = "50"
         Public Shared MAINW As String = "50"
@@ -193,12 +212,13 @@ Module functionModule
             If ini Is Nothing Then
                 ini = New IniFile(M_Details._appPath & "\Settings\" & "Settings.ini")
                 ' Now safely read the settings
-                M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
+                Dim syncId As String = ini.ReadValue("Profile", "SyncId")
+                M_Details.LinkAjaxRequest = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLink"), syncId)
                 If String.IsNullOrEmpty(M_Details.LinkAjaxRequest) Then
                     M_Details.LinkAjaxRequest = "http://localhost/api/" ' Default fallback
                 End If
 
-                M_Details.LinkTaxAuditRequest = ini.ReadValue("Profile", "UrlLinkTaxAudit")
+                M_Details.LinkTaxAuditRequest = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLinkTaxAudit"), syncId)
                 If String.IsNullOrEmpty(M_Details.LinkTaxAuditRequest) Then
                     M_Details.LinkTaxAuditRequest = M_Details.LinkAjaxRequest
                 End If
@@ -477,7 +497,7 @@ Module functionModule
             Return False
         End Try
     End Function
-   
+
     Public Function getFingerPrintData() As Boolean
         Dim Path As String = filePath & "FingerPrintDataTable.xml"
         Try
@@ -881,7 +901,7 @@ Module functionModule
                     Return True
                 End If
             Else
-                
+
             End If
 
             Return True

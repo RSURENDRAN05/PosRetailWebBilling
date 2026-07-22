@@ -12,10 +12,11 @@ Module SyncLocalCloudModuel
    Public Function _ReadSyncLocalCloud(Optional callLocalData As Boolean = True, Optional callWebCheck As Boolean = True) As Boolean
         Try
             ' --- Read INI / configuration values ---
-            M_Details.LinkAjaxRequest = ini.ReadValue("Profile", "UrlLink")
-            M_Details.LinkAjaxRequestCheque = ini.ReadValue("Profile", "UrlLinkCheque")
-            M_Details.LinkAjaxRequestSyncLocalCloud = ini.ReadValue("Profile", "UrlLinkSyncLocalCloud")
-            M_Details.LinkTaxAuditRequest = ini.ReadValue("Profile", "UrlLinkTaxAudit")
+            Dim syncId As String = ini.ReadValue("Profile", "SyncId")
+            M_Details.LinkAjaxRequest = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLink"), syncId)
+            M_Details.LinkAjaxRequestCheque = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLinkCheque"), syncId)
+            M_Details.LinkAjaxRequestSyncLocalCloud = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLinkSyncLocalCloud"), syncId)
+            M_Details.LinkTaxAuditRequest = NormalizeApiBaseUrl(ini.ReadValue("Profile", "UrlLinkTaxAudit"), syncId)
             M_Details.licenceServerCleint = ini.ReadValue("Profile", "ServerClient")
             M_Details.LocationId = ini.ReadValue("Bank", "LocationId")
             M_Details.CompanyId = ini.ReadValue("Bank", "CompanyId")
