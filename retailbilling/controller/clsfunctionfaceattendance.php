@@ -477,17 +477,17 @@ class FaceAttendanceFunc
         return mysqli_query($conn, $sql);
     }
 
-    public function GetComapanyLocation()
+    public function getAllLocations()
     {
         $conn = $this->conn;
-        $sqlSelect = "SELECT pcm.pcm_id AS COID,
+        $sqlSelect = "SELECT pcm.pcm_id AS ComId,
                              pcm.pcm_name AS CompanyName,
-                             plm.plm_id AS LID,
+                             plm.plm_id AS LocId,
                              plm.plm_name AS LocationName,
                              pcm.pcm_active AS Active
                       FROM pos_company_mast pcm
                       INNER JOIN pos_location_mast plm
-                          ON plm.plm_compid = pcm.pcm_id";
+                          ON plm.plm_default = pcm.pcm_id";
         $result = mysqli_query($conn, $sqlSelect);
         return $result;
     }
