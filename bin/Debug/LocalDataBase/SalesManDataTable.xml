@@ -28,11 +28,6 @@
     <Position>2</Position>
   </SalesManDataTable>
   <SalesManDataTable>
-    <Id>4</Id>
-    <SalesMan>KANAGARAJ</SalesMan>
-    <Position>2</Position>
-  </SalesManDataTable>
-  <SalesManDataTable>
     <Id>6</Id>
     <SalesMan>SURYA</SalesMan>
     <Position>1</Position>
