@@ -35,7 +35,7 @@ $currentDomain = $_SERVER['HTTP_HOST'] ?? '';
 // ---------- API Key validation ----------
 define('FACE_API_KEY', 'face_attendance_secret_2024');
 define('ENABLE_SERVER_ERROR_LOG', true);
-define('DIRECT_RECOGNITION_SERVICE_URL', 'http://121.122.31.13:5000');
+define('DIRECT_RECOGNITION_SERVICE_URL', 'http://203.106.243.87:5000/');
 if (strpos($currentDomain, 'myposqr.com') !== false) {
     // Running ON myposqr.com — call Python directly
     define('RECOGNITION_SERVICE_URL',     DIRECT_RECOGNITION_SERVICE_URL);

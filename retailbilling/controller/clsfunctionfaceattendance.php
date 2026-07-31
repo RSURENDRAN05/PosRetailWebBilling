@@ -317,12 +317,22 @@ class FaceAttendanceFunc
         // Get today's attendance from employee_attendance
         $row = mysqli_fetch_assoc(mysqli_query(
             $conn,
-            "SELECT att_id, morning_in FROM employee_attendance
+            "SELECT att_id, morning_in, evening_out, total_work_hours FROM employee_attendance
              WHERE emp_id=$eid AND att_date='$today' AND morning_in IS NOT NULL LIMIT 1"
         ));
 
         if (!$row) {
             return ['success' => false, 'message' => 'No check-in found for today'];
+        }
+
+        if ($row['evening_out'] !== null) {
+            // Already checked out via any method — return existing time
+            return [
+                'already_out' => true,
+                'evening_out' => $row['evening_out'],
+                'work_hours' => $row['total_work_hours'],
+                'att_id' => $row['att_id']
+            ];
         }
 
         $att_id     = $row['att_id'];

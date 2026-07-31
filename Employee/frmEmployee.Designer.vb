@@ -323,17 +323,17 @@ Partial Class frmEmployee
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(510, 0, 270, 356)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1377, 767)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1370, 697)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'GridControl1
         '
         Me.GridControl1.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.GridControl1.Location = New System.Drawing.Point(221, 430)
+        Me.GridControl1.Location = New System.Drawing.Point(221, 359)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1135, 336)
+        Me.GridControl1.Size = New System.Drawing.Size(1128, 336)
         Me.GridControl1.TabIndex = 42
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -489,19 +489,19 @@ Partial Class frmEmployee
         'txtnextpermit
         '
         Me.txtnextpermit.EditValue = "-"
-        Me.txtnextpermit.Location = New System.Drawing.Point(624, 210)
+        Me.txtnextpermit.Location = New System.Drawing.Point(624, 139)
         Me.txtnextpermit.Name = "txtnextpermit"
         Me.txtnextpermit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtnextpermit.Properties.Appearance.Options.UseFont = True
         Me.txtnextpermit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.txtnextpermit.Size = New System.Drawing.Size(229, 28)
+        Me.txtnextpermit.Size = New System.Drawing.Size(225, 28)
         Me.txtnextpermit.StyleController = Me.LayoutControl1
         Me.txtnextpermit.TabIndex = 41
         '
         'txtcurrentpermit
         '
         Me.txtcurrentpermit.EditValue = "-"
-        Me.txtcurrentpermit.Location = New System.Drawing.Point(418, 210)
+        Me.txtcurrentpermit.Location = New System.Drawing.Point(418, 139)
         Me.txtcurrentpermit.Name = "txtcurrentpermit"
         Me.txtcurrentpermit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcurrentpermit.Properties.Appearance.Options.UseFont = True
@@ -513,7 +513,7 @@ Partial Class frmEmployee
         'txtmonthexpire
         '
         Me.txtmonthexpire.EditValue = "-"
-        Me.txtmonthexpire.Location = New System.Drawing.Point(212, 210)
+        Me.txtmonthexpire.Location = New System.Drawing.Point(212, 139)
         Me.txtmonthexpire.Name = "txtmonthexpire"
         Me.txtmonthexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtmonthexpire.Properties.Appearance.Options.UseFont = True
@@ -525,7 +525,7 @@ Partial Class frmEmployee
         'txtdob
         '
         Me.txtdob.EditValue = Nothing
-        Me.txtdob.Location = New System.Drawing.Point(418, 110)
+        Me.txtdob.Location = New System.Drawing.Point(418, 39)
         Me.txtdob.Name = "txtdob"
         Me.txtdob.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtdob.Properties.Appearance.Options.UseFont = True
@@ -543,7 +543,7 @@ Partial Class frmEmployee
         'txtsocso
         '
         Me.txtsocso.EditValue = "0.00"
-        Me.txtsocso.Location = New System.Drawing.Point(6, 730)
+        Me.txtsocso.Location = New System.Drawing.Point(6, 659)
         Me.txtsocso.Name = "txtsocso"
         Me.txtsocso.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtsocso.Properties.Appearance.Options.UseFont = True
@@ -562,7 +562,7 @@ Partial Class frmEmployee
         'txtepf
         '
         Me.txtepf.EditValue = "0.00"
-        Me.txtepf.Location = New System.Drawing.Point(6, 682)
+        Me.txtepf.Location = New System.Drawing.Point(6, 611)
         Me.txtepf.Name = "txtepf"
         Me.txtepf.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtepf.Properties.Appearance.Options.UseFont = True
@@ -591,9 +591,9 @@ Partial Class frmEmployee
         Me.PanelControl1.Controls.Add(Me.btnaddnew)
         Me.PanelControl1.Controls.Add(Me.btnsave)
         Me.PanelControl1.Controls.Add(Me.popupcondownloadlist)
-        Me.PanelControl1.Location = New System.Drawing.Point(857, 4)
+        Me.PanelControl1.Location = New System.Drawing.Point(853, -67)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(499, 406)
+        Me.PanelControl1.Size = New System.Drawing.Size(496, 406)
         Me.PanelControl1.TabIndex = 32
         '
         'Label1
@@ -749,7 +749,7 @@ Partial Class frmEmployee
         '
         'chkactive
         '
-        Me.chkactive.Location = New System.Drawing.Point(422, 4)
+        Me.chkactive.Location = New System.Drawing.Point(421, -67)
         Me.chkactive.Name = "chkactive"
         Me.chkactive.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.chkactive.Properties.Appearance.Options.UseFont = True
@@ -757,14 +757,14 @@ Partial Class frmEmployee
         Me.chkactive.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.chkactive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.chkactive.Properties.Caption = "Active"
-        Me.chkactive.Size = New System.Drawing.Size(86, 28)
+        Me.chkactive.Size = New System.Drawing.Size(85, 28)
         Me.chkactive.StyleController = Me.LayoutControl1
         Me.chkactive.TabIndex = 30
         '
         'txtallowance
         '
         Me.txtallowance.EditValue = "0.00"
-        Me.txtallowance.Location = New System.Drawing.Point(6, 632)
+        Me.txtallowance.Location = New System.Drawing.Point(6, 561)
         Me.txtallowance.Name = "txtallowance"
         Me.txtallowance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtallowance.Properties.Appearance.Options.UseFont = True
@@ -783,7 +783,7 @@ Partial Class frmEmployee
         'txtotperhrsrate
         '
         Me.txtotperhrsrate.EditValue = "0.00"
-        Me.txtotperhrsrate.Location = New System.Drawing.Point(6, 582)
+        Me.txtotperhrsrate.Location = New System.Drawing.Point(6, 511)
         Me.txtotperhrsrate.Name = "txtotperhrsrate"
         Me.txtotperhrsrate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtotperhrsrate.Properties.Appearance.Options.UseFont = True
@@ -802,7 +802,7 @@ Partial Class frmEmployee
         'txtotperdayrate
         '
         Me.txtotperdayrate.EditValue = "0.00"
-        Me.txtotperdayrate.Location = New System.Drawing.Point(6, 482)
+        Me.txtotperdayrate.Location = New System.Drawing.Point(6, 411)
         Me.txtotperdayrate.Name = "txtotperdayrate"
         Me.txtotperdayrate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtotperdayrate.Properties.Appearance.Options.UseFont = True
@@ -821,7 +821,7 @@ Partial Class frmEmployee
         'txtperday
         '
         Me.txtperday.EditValue = "0.00"
-        Me.txtperday.Location = New System.Drawing.Point(6, 532)
+        Me.txtperday.Location = New System.Drawing.Point(6, 461)
         Me.txtperday.Name = "txtperday"
         Me.txtperday.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtperday.Properties.Appearance.Options.UseFont = True
@@ -840,7 +840,7 @@ Partial Class frmEmployee
         'txtbasicsalary
         '
         Me.txtbasicsalary.EditValue = "0.00"
-        Me.txtbasicsalary.Location = New System.Drawing.Point(6, 432)
+        Me.txtbasicsalary.Location = New System.Drawing.Point(6, 361)
         Me.txtbasicsalary.Name = "txtbasicsalary"
         Me.txtbasicsalary.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtbasicsalary.Properties.Appearance.Options.UseFont = True
@@ -859,19 +859,19 @@ Partial Class frmEmployee
         'txtaccountno
         '
         Me.txtaccountno.EditValue = "0"
-        Me.txtaccountno.Location = New System.Drawing.Point(623, 335)
+        Me.txtaccountno.Location = New System.Drawing.Point(622, 264)
         Me.txtaccountno.Name = "txtaccountno"
         Me.txtaccountno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtaccountno.Properties.Appearance.Options.UseFont = True
         Me.txtaccountno.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.txtaccountno.Size = New System.Drawing.Size(230, 28)
+        Me.txtaccountno.Size = New System.Drawing.Size(227, 28)
         Me.txtaccountno.StyleController = Me.LayoutControl1
         Me.txtaccountno.TabIndex = 19
         '
         'txtbankname
         '
         Me.txtbankname.EditValue = "-"
-        Me.txtbankname.Location = New System.Drawing.Point(417, 335)
+        Me.txtbankname.Location = New System.Drawing.Point(416, 264)
         Me.txtbankname.Name = "txtbankname"
         Me.txtbankname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtbankname.Properties.Appearance.Options.UseFont = True
@@ -884,7 +884,7 @@ Partial Class frmEmployee
         'txtaccountname
         '
         Me.txtaccountname.EditValue = "-"
-        Me.txtaccountname.Location = New System.Drawing.Point(209, 335)
+        Me.txtaccountname.Location = New System.Drawing.Point(208, 264)
         Me.txtaccountname.Name = "txtaccountname"
         Me.txtaccountname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtaccountname.Properties.Appearance.Options.UseFont = True
@@ -897,19 +897,19 @@ Partial Class frmEmployee
         'txtemergencyno
         '
         Me.txtemergencyno.EditValue = "-"
-        Me.txtemergencyno.Location = New System.Drawing.Point(623, 285)
+        Me.txtemergencyno.Location = New System.Drawing.Point(622, 214)
         Me.txtemergencyno.Name = "txtemergencyno"
         Me.txtemergencyno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtemergencyno.Properties.Appearance.Options.UseFont = True
         Me.txtemergencyno.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.txtemergencyno.Size = New System.Drawing.Size(230, 28)
+        Me.txtemergencyno.Size = New System.Drawing.Size(227, 28)
         Me.txtemergencyno.StyleController = Me.LayoutControl1
         Me.txtemergencyno.TabIndex = 16
         '
         'txtcontactname
         '
         Me.txtcontactname.EditValue = "-"
-        Me.txtcontactname.Location = New System.Drawing.Point(417, 285)
+        Me.txtcontactname.Location = New System.Drawing.Point(416, 214)
         Me.txtcontactname.Name = "txtcontactname"
         Me.txtcontactname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcontactname.Properties.Appearance.Options.UseFont = True
@@ -922,7 +922,7 @@ Partial Class frmEmployee
         'txtphoneno
         '
         Me.txtphoneno.EditValue = "-"
-        Me.txtphoneno.Location = New System.Drawing.Point(209, 285)
+        Me.txtphoneno.Location = New System.Drawing.Point(208, 214)
         Me.txtphoneno.Name = "txtphoneno"
         Me.txtphoneno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtphoneno.Properties.Appearance.Options.UseFont = True
@@ -933,7 +933,7 @@ Partial Class frmEmployee
         '
         'txtpassport
         '
-        Me.txtpassport.Location = New System.Drawing.Point(212, 110)
+        Me.txtpassport.Location = New System.Drawing.Point(212, 39)
         Me.txtpassport.Name = "txtpassport"
         Me.txtpassport.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtpassport.Properties.Appearance.Options.UseFont = True
@@ -945,7 +945,7 @@ Partial Class frmEmployee
         '
         'txtprintname
         '
-        Me.txtprintname.Location = New System.Drawing.Point(418, 60)
+        Me.txtprintname.Location = New System.Drawing.Point(418, -11)
         Me.txtprintname.Name = "txtprintname"
         Me.txtprintname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtprintname.Properties.Appearance.Options.UseFont = True
@@ -957,7 +957,7 @@ Partial Class frmEmployee
         '
         'txtlastname
         '
-        Me.txtlastname.Location = New System.Drawing.Point(212, 60)
+        Me.txtlastname.Location = New System.Drawing.Point(212, -11)
         Me.txtlastname.Name = "txtlastname"
         Me.txtlastname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtlastname.Properties.Appearance.Options.UseFont = True
@@ -969,7 +969,7 @@ Partial Class frmEmployee
         '
         'txtfirstname
         '
-        Me.txtfirstname.Location = New System.Drawing.Point(6, 60)
+        Me.txtfirstname.Location = New System.Drawing.Point(6, -11)
         Me.txtfirstname.Name = "txtfirstname"
         Me.txtfirstname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtfirstname.Properties.Appearance.Options.UseFont = True
@@ -981,20 +981,20 @@ Partial Class frmEmployee
         '
         'txtid
         '
-        Me.txtid.Location = New System.Drawing.Point(305, 7)
+        Me.txtid.Location = New System.Drawing.Point(305, -64)
         Me.txtid.Name = "txtid"
         Me.txtid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtid.Properties.Appearance.Options.UseFont = True
         Me.txtid.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.txtid.Properties.ReadOnly = True
-        Me.txtid.Size = New System.Drawing.Size(110, 28)
+        Me.txtid.Size = New System.Drawing.Size(109, 28)
         Me.txtid.StyleController = Me.LayoutControl1
         Me.txtid.TabIndex = 4
         '
         'cmbidtype
         '
         Me.cmbidtype.EditValue = "NRIC"
-        Me.cmbidtype.Location = New System.Drawing.Point(6, 110)
+        Me.cmbidtype.Location = New System.Drawing.Point(6, 39)
         Me.cmbidtype.Name = "cmbidtype"
         Me.cmbidtype.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.cmbidtype.Properties.Appearance.Options.UseFont = True
@@ -1008,7 +1008,7 @@ Partial Class frmEmployee
         'txtdesignation
         '
         Me.txtdesignation.EditValue = "ACCOUNTANT"
-        Me.txtdesignation.Location = New System.Drawing.Point(6, 210)
+        Me.txtdesignation.Location = New System.Drawing.Point(6, 139)
         Me.txtdesignation.Name = "txtdesignation"
         Me.txtdesignation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtdesignation.Properties.Appearance.Options.UseFont = True
@@ -1022,21 +1022,21 @@ Partial Class frmEmployee
         'txtnationality
         '
         Me.txtnationality.EditValue = "MALAYSIA"
-        Me.txtnationality.Location = New System.Drawing.Point(624, 110)
+        Me.txtnationality.Location = New System.Drawing.Point(624, 39)
         Me.txtnationality.Name = "txtnationality"
         Me.txtnationality.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtnationality.Properties.Appearance.Options.UseFont = True
         Me.txtnationality.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.txtnationality.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtnationality.Properties.Items.AddRange(New Object() {"MALAYSIA", "INDIA", "BANGALADESH", "INDONESIHA", "THAILAND", "SRI LANKA"})
-        Me.txtnationality.Size = New System.Drawing.Size(229, 28)
+        Me.txtnationality.Size = New System.Drawing.Size(225, 28)
         Me.txtnationality.StyleController = Me.LayoutControl1
         Me.txtnationality.TabIndex = 11
         '
         'txtpassportexpire
         '
         Me.txtpassportexpire.EditValue = Nothing
-        Me.txtpassportexpire.Location = New System.Drawing.Point(6, 160)
+        Me.txtpassportexpire.Location = New System.Drawing.Point(6, 89)
         Me.txtpassportexpire.Name = "txtpassportexpire"
         Me.txtpassportexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtpassportexpire.Properties.Appearance.Options.UseFont = True
@@ -1054,7 +1054,7 @@ Partial Class frmEmployee
         'txtvisaexpire
         '
         Me.txtvisaexpire.EditValue = Nothing
-        Me.txtvisaexpire.Location = New System.Drawing.Point(212, 160)
+        Me.txtvisaexpire.Location = New System.Drawing.Point(212, 89)
         Me.txtvisaexpire.Name = "txtvisaexpire"
         Me.txtvisaexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtvisaexpire.Properties.Appearance.Options.UseFont = True
@@ -1072,7 +1072,7 @@ Partial Class frmEmployee
         'txtjoindate
         '
         Me.txtjoindate.EditValue = Nothing
-        Me.txtjoindate.Location = New System.Drawing.Point(418, 160)
+        Me.txtjoindate.Location = New System.Drawing.Point(418, 89)
         Me.txtjoindate.Name = "txtjoindate"
         Me.txtjoindate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtjoindate.Properties.Appearance.Options.UseFont = True
@@ -1090,7 +1090,7 @@ Partial Class frmEmployee
         'txtresigndate
         '
         Me.txtresigndate.EditValue = Nothing
-        Me.txtresigndate.Location = New System.Drawing.Point(624, 160)
+        Me.txtresigndate.Location = New System.Drawing.Point(624, 89)
         Me.txtresigndate.Name = "txtresigndate"
         Me.txtresigndate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtresigndate.Properties.Appearance.Options.UseFont = True
@@ -1101,26 +1101,26 @@ Partial Class frmEmployee
         Me.txtresigndate.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.[Default]
         Me.txtresigndate.Properties.Mask.EditMask = ""
         Me.txtresigndate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.txtresigndate.Size = New System.Drawing.Size(229, 28)
+        Me.txtresigndate.Size = New System.Drawing.Size(225, 28)
         Me.txtresigndate.StyleController = Me.LayoutControl1
         Me.txtresigndate.TabIndex = 24
         '
         'txtcurrentstatus
         '
         Me.txtcurrentstatus.EditValue = "Working"
-        Me.txtcurrentstatus.Location = New System.Drawing.Point(624, 60)
+        Me.txtcurrentstatus.Location = New System.Drawing.Point(624, -11)
         Me.txtcurrentstatus.Name = "txtcurrentstatus"
         Me.txtcurrentstatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcurrentstatus.Properties.Appearance.Options.UseFont = True
         Me.txtcurrentstatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtcurrentstatus.Properties.Items.AddRange(New Object() {"Working", "OnLeave", "WaitingList", "InActive"})
-        Me.txtcurrentstatus.Size = New System.Drawing.Size(229, 26)
+        Me.txtcurrentstatus.Size = New System.Drawing.Size(225, 26)
         Me.txtcurrentstatus.StyleController = Me.LayoutControl1
         Me.txtcurrentstatus.TabIndex = 33
         '
         'txtcompany
         '
-        Me.txtcompany.Location = New System.Drawing.Point(351, 372)
+        Me.txtcompany.Location = New System.Drawing.Point(349, 301)
         Me.txtcompany.Name = "txtcompany"
         Me.txtcompany.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcompany.Properties.Appearance.Options.UseFont = True
@@ -1132,13 +1132,13 @@ Partial Class frmEmployee
         Me.txtcompany.Properties.PopupSizeable = False
         Me.txtcompany.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.txtcompany.Properties.ValueMember = "COID"
-        Me.txtcompany.Size = New System.Drawing.Size(202, 28)
+        Me.txtcompany.Size = New System.Drawing.Size(201, 28)
         Me.txtcompany.StyleController = Me.LayoutControl1
         Me.txtcompany.TabIndex = 21
         '
         'txtlocation
         '
-        Me.txtlocation.Location = New System.Drawing.Point(622, 372)
+        Me.txtlocation.Location = New System.Drawing.Point(619, 301)
         Me.txtlocation.Name = "txtlocation"
         Me.txtlocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtlocation.Properties.Appearance.Options.UseFont = True
@@ -1150,18 +1150,18 @@ Partial Class frmEmployee
         Me.txtlocation.Properties.PopupSizeable = False
         Me.txtlocation.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.txtlocation.Properties.ValueMember = "plm_id"
-        Me.txtlocation.Size = New System.Drawing.Size(228, 28)
+        Me.txtlocation.Size = New System.Drawing.Size(227, 28)
         Me.txtlocation.StyleController = Me.LayoutControl1
         Me.txtlocation.TabIndex = 22
         '
         'txtremarks
         '
         Me.txtremarks.EditValue = "-"
-        Me.txtremarks.Location = New System.Drawing.Point(6, 287)
+        Me.txtremarks.Location = New System.Drawing.Point(6, 216)
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtremarks.Properties.Appearance.Options.UseFont = True
-        Me.txtremarks.Size = New System.Drawing.Size(197, 76)
+        Me.txtremarks.Size = New System.Drawing.Size(196, 76)
         Me.txtremarks.StyleController = Me.LayoutControl1
         Me.txtremarks.TabIndex = 35
         '
@@ -1172,9 +1172,9 @@ Partial Class frmEmployee
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[False]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.SimpleLabelItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.SimpleLabelItem3, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem20, Me.LayoutControlItem5, Me.SimpleSeparator1, Me.SimpleSeparator2, Me.SimpleSeparator3, Me.SimpleSeparator5, Me.SimpleSeparator7, Me.SimpleSeparator8, Me.SimpleSeparator9, Me.SimpleSeparator11, Me.SimpleSeparator15, Me.SimpleSeparator16, Me.SimpleSeparator17, Me.SimpleSeparator21, Me.SimpleSeparator23, Me.SimpleSeparator26, Me.LayoutControlItem34, Me.LayoutControlItem31, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem35, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.SimpleSeparator24, Me.SimpleSeparator25, Me.SimpleLabelItem2, Me.LayoutControlItem17, Me.LayoutControlItem29, Me.LayoutControlItem1, Me.LayoutControlItem26, Me.EmptySpaceItem1, Me.LayoutControlItem28, Me.LayoutControlItem39, Me.LayoutControlItem23, Me.LayoutControlItem21, Me.EmptySpaceItem5, Me.LayoutControlItem22, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem27, Me.LayoutControlItem32, Me.SimpleLabelItem4})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, -71)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1360, 768)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1353, 768)
         Me.LayoutControlGroup1.Text = "Root"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -1266,7 +1266,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem8.CustomizationFormText = "Nationality :"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(622, 92)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(233, 48)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(229, 48)
         Me.LayoutControlItem8.Text = "Nationality :"
         Me.LayoutControlItem8.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(202, 13)
@@ -1278,7 +1278,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem11.BestFitWeight = 0
         Me.LayoutControlItem11.Control = Me.txtphoneno
         Me.LayoutControlItem11.CustomizationFormText = "LayoutControlItem11"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(207, 267)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(206, 267)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(206, 48)
         Me.LayoutControlItem11.Text = "Phone No :"
@@ -1291,7 +1291,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem12.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem12.Control = Me.txtcontactname
         Me.LayoutControlItem12.CustomizationFormText = "LayoutControlItem12"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(415, 267)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(414, 267)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(206, 48)
         Me.LayoutControlItem12.Text = "Contact Name :"
@@ -1304,9 +1304,9 @@ Partial Class frmEmployee
         Me.LayoutControlItem13.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem13.Control = Me.txtemergencyno
         Me.LayoutControlItem13.CustomizationFormText = "LayoutControlItem13"
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(621, 267)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(620, 267)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(234, 48)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(231, 48)
         Me.LayoutControlItem13.Text = "Emergency No :"
         Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(202, 13)
@@ -1317,7 +1317,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem14.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem14.Control = Me.txtaccountname
         Me.LayoutControlItem14.CustomizationFormText = "LayoutControlItem14"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(207, 317)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(206, 317)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(206, 48)
         Me.LayoutControlItem14.Text = "Account Name :"
@@ -1330,7 +1330,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem15.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem15.Control = Me.txtbankname
         Me.LayoutControlItem15.CustomizationFormText = "LayoutControlItem15"
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(415, 317)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(414, 317)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
         Me.LayoutControlItem15.Size = New System.Drawing.Size(206, 48)
         Me.LayoutControlItem15.Text = "Bank Name :"
@@ -1343,9 +1343,9 @@ Partial Class frmEmployee
         Me.LayoutControlItem16.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem16.Control = Me.txtaccountno
         Me.LayoutControlItem16.CustomizationFormText = "LayoutControlItem16"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(621, 317)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(620, 317)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(234, 48)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(231, 48)
         Me.LayoutControlItem16.Text = "Account No :"
         Me.LayoutControlItem16.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(202, 13)
@@ -1358,7 +1358,7 @@ Partial Class frmEmployee
         Me.SimpleLabelItem3.CustomizationFormText = "LabelSimpleLabelItem3"
         Me.SimpleLabelItem3.Location = New System.Drawing.Point(4, 367)
         Me.SimpleLabelItem3.Name = "SimpleLabelItem3"
-        Me.SimpleLabelItem3.Size = New System.Drawing.Size(278, 23)
+        Me.SimpleLabelItem3.Size = New System.Drawing.Size(276, 23)
         Me.SimpleLabelItem3.Text = "Company And Location : "
         Me.SimpleLabelItem3.TextSize = New System.Drawing.Size(202, 19)
         '
@@ -1409,7 +1409,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
         Me.LayoutControlItem5.Location = New System.Drawing.Point(622, 142)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(233, 48)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(229, 48)
         Me.LayoutControlItem5.Text = "Resign Date :"
         Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(202, 13)
@@ -1420,7 +1420,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator1.CustomizationFormText = "SimpleSeparator1"
         Me.SimpleSeparator1.Location = New System.Drawing.Point(4, 40)
         Me.SimpleSeparator1.Name = "SimpleSeparator1"
-        Me.SimpleSeparator1.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator1.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator1.Text = "SimpleSeparator1"
         '
         'SimpleSeparator2
@@ -1429,7 +1429,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator2.CustomizationFormText = "SimpleSeparator2"
         Me.SimpleSeparator2.Location = New System.Drawing.Point(4, 240)
         Me.SimpleSeparator2.Name = "SimpleSeparator2"
-        Me.SimpleSeparator2.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator2.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator2.Text = "SimpleSeparator2"
         '
         'SimpleSeparator3
@@ -1438,7 +1438,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator3.CustomizationFormText = "SimpleSeparator3"
         Me.SimpleSeparator3.Location = New System.Drawing.Point(4, 265)
         Me.SimpleSeparator3.Name = "SimpleSeparator3"
-        Me.SimpleSeparator3.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator3.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator3.Text = "SimpleSeparator3"
         '
         'SimpleSeparator5
@@ -1447,7 +1447,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator5.CustomizationFormText = "SimpleSeparator5"
         Me.SimpleSeparator5.Location = New System.Drawing.Point(4, 410)
         Me.SimpleSeparator5.Name = "SimpleSeparator5"
-        Me.SimpleSeparator5.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator5.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator5.Text = "SimpleSeparator5"
         '
         'SimpleSeparator7
@@ -1463,7 +1463,7 @@ Partial Class frmEmployee
         '
         Me.SimpleSeparator8.AllowHotTrack = False
         Me.SimpleSeparator8.CustomizationFormText = "SimpleSeparator8"
-        Me.SimpleSeparator8.Location = New System.Drawing.Point(1358, 2)
+        Me.SimpleSeparator8.Location = New System.Drawing.Point(1351, 2)
         Me.SimpleSeparator8.Name = "SimpleSeparator8"
         Me.SimpleSeparator8.Size = New System.Drawing.Size(2, 766)
         Me.SimpleSeparator8.Text = "SimpleSeparator8"
@@ -1474,7 +1474,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator9.CustomizationFormText = "SimpleSeparator9"
         Me.SimpleSeparator9.Location = New System.Drawing.Point(0, 0)
         Me.SimpleSeparator9.Name = "SimpleSeparator9"
-        Me.SimpleSeparator9.Size = New System.Drawing.Size(1360, 2)
+        Me.SimpleSeparator9.Size = New System.Drawing.Size(1353, 2)
         Me.SimpleSeparator9.Text = "SimpleSeparator9"
         '
         'SimpleSeparator11
@@ -1483,7 +1483,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator11.CustomizationFormText = "SimpleSeparator11"
         Me.SimpleSeparator11.Location = New System.Drawing.Point(4, 365)
         Me.SimpleSeparator11.Name = "SimpleSeparator11"
-        Me.SimpleSeparator11.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator11.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator11.Text = "SimpleSeparator11"
         '
         'SimpleSeparator15
@@ -1492,7 +1492,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator15.CustomizationFormText = "SimpleSeparator15"
         Me.SimpleSeparator15.Location = New System.Drawing.Point(4, 140)
         Me.SimpleSeparator15.Name = "SimpleSeparator15"
-        Me.SimpleSeparator15.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator15.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator15.Text = "SimpleSeparator15"
         '
         'SimpleSeparator16
@@ -1501,14 +1501,14 @@ Partial Class frmEmployee
         Me.SimpleSeparator16.CustomizationFormText = "SimpleSeparator16"
         Me.SimpleSeparator16.Location = New System.Drawing.Point(4, 90)
         Me.SimpleSeparator16.Name = "SimpleSeparator16"
-        Me.SimpleSeparator16.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator16.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator16.Text = "SimpleSeparator16"
         '
         'SimpleSeparator17
         '
         Me.SimpleSeparator17.AllowHotTrack = False
         Me.SimpleSeparator17.CustomizationFormText = "SimpleSeparator17"
-        Me.SimpleSeparator17.Location = New System.Drawing.Point(413, 267)
+        Me.SimpleSeparator17.Location = New System.Drawing.Point(412, 267)
         Me.SimpleSeparator17.Name = "SimpleSeparator17"
         Me.SimpleSeparator17.Size = New System.Drawing.Size(2, 98)
         Me.SimpleSeparator17.Text = "SimpleSeparator17"
@@ -1517,16 +1517,16 @@ Partial Class frmEmployee
         '
         Me.SimpleSeparator21.AllowHotTrack = False
         Me.SimpleSeparator21.CustomizationFormText = "SimpleSeparator21"
-        Me.SimpleSeparator21.Location = New System.Drawing.Point(415, 315)
+        Me.SimpleSeparator21.Location = New System.Drawing.Point(414, 315)
         Me.SimpleSeparator21.Name = "SimpleSeparator21"
-        Me.SimpleSeparator21.Size = New System.Drawing.Size(440, 2)
+        Me.SimpleSeparator21.Size = New System.Drawing.Size(437, 2)
         Me.SimpleSeparator21.Text = "SimpleSeparator21"
         '
         'SimpleSeparator23
         '
         Me.SimpleSeparator23.AllowHotTrack = False
         Me.SimpleSeparator23.CustomizationFormText = "SimpleSeparator23"
-        Me.SimpleSeparator23.Location = New System.Drawing.Point(207, 315)
+        Me.SimpleSeparator23.Location = New System.Drawing.Point(206, 315)
         Me.SimpleSeparator23.Name = "SimpleSeparator23"
         Me.SimpleSeparator23.Size = New System.Drawing.Size(206, 2)
         Me.SimpleSeparator23.Text = "SimpleSeparator23"
@@ -1561,7 +1561,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem31.CustomizationFormText = "Remarks :"
         Me.LayoutControlItem31.Location = New System.Drawing.Point(4, 267)
         Me.LayoutControlItem31.Name = "LayoutControlItem31"
-        Me.LayoutControlItem31.Size = New System.Drawing.Size(201, 98)
+        Me.LayoutControlItem31.Size = New System.Drawing.Size(200, 98)
         Me.LayoutControlItem31.Text = "Remarks :"
         Me.LayoutControlItem31.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem31.TextLocation = DevExpress.Utils.Locations.Top
@@ -1574,10 +1574,10 @@ Partial Class frmEmployee
         Me.LayoutControlItem18.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem18.Control = Me.txtcompany
         Me.LayoutControlItem18.CustomizationFormText = "LayoutControlItem18"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(282, 367)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(280, 367)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
         Me.LayoutControlItem18.Padding = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(276, 43)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(275, 43)
         Me.LayoutControlItem18.Text = "Comapny :"
         Me.LayoutControlItem18.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(59, 13)
@@ -1589,10 +1589,10 @@ Partial Class frmEmployee
         Me.LayoutControlItem19.AppearanceItemCaption.Options.UseFont = True
         Me.LayoutControlItem19.Control = Me.txtlocation
         Me.LayoutControlItem19.CustomizationFormText = "LayoutControlItem19"
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(558, 367)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(555, 367)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
         Me.LayoutControlItem19.Padding = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(297, 43)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(296, 43)
         Me.LayoutControlItem19.Text = "Location :"
         Me.LayoutControlItem19.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(54, 13)
@@ -1632,7 +1632,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem38.CustomizationFormText = "Next Permit No :"
         Me.LayoutControlItem38.Location = New System.Drawing.Point(622, 192)
         Me.LayoutControlItem38.Name = "LayoutControlItem38"
-        Me.LayoutControlItem38.Size = New System.Drawing.Size(233, 48)
+        Me.LayoutControlItem38.Size = New System.Drawing.Size(229, 48)
         Me.LayoutControlItem38.Text = "Next Permit No :"
         Me.LayoutControlItem38.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem38.TextSize = New System.Drawing.Size(202, 13)
@@ -1641,7 +1641,7 @@ Partial Class frmEmployee
         '
         Me.SimpleSeparator24.AllowHotTrack = False
         Me.SimpleSeparator24.CustomizationFormText = "SimpleSeparator24"
-        Me.SimpleSeparator24.Location = New System.Drawing.Point(205, 267)
+        Me.SimpleSeparator24.Location = New System.Drawing.Point(204, 267)
         Me.SimpleSeparator24.Name = "SimpleSeparator24"
         Me.SimpleSeparator24.Size = New System.Drawing.Size(2, 98)
         Me.SimpleSeparator24.Text = "SimpleSeparator24"
@@ -1652,7 +1652,7 @@ Partial Class frmEmployee
         Me.SimpleSeparator25.CustomizationFormText = "SimpleSeparator25"
         Me.SimpleSeparator25.Location = New System.Drawing.Point(4, 190)
         Me.SimpleSeparator25.Name = "SimpleSeparator25"
-        Me.SimpleSeparator25.Size = New System.Drawing.Size(851, 2)
+        Me.SimpleSeparator25.Size = New System.Drawing.Size(847, 2)
         Me.SimpleSeparator25.Text = "SimpleSeparator25"
         '
         'SimpleLabelItem2
@@ -1663,7 +1663,7 @@ Partial Class frmEmployee
         Me.SimpleLabelItem2.CustomizationFormText = "LabelSimpleLabelItem2"
         Me.SimpleLabelItem2.Location = New System.Drawing.Point(4, 242)
         Me.SimpleLabelItem2.Name = "SimpleLabelItem2"
-        Me.SimpleLabelItem2.Size = New System.Drawing.Size(851, 23)
+        Me.SimpleLabelItem2.Size = New System.Drawing.Size(847, 23)
         Me.SimpleLabelItem2.Text = "Other Information :"
         Me.SimpleLabelItem2.TextSize = New System.Drawing.Size(202, 19)
         '
@@ -1688,7 +1688,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem29.CustomizationFormText = "Current Status :"
         Me.LayoutControlItem29.Location = New System.Drawing.Point(622, 42)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(233, 48)
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(229, 48)
         Me.LayoutControlItem29.Text = "Current Status :"
         Me.LayoutControlItem29.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem29.TextSize = New System.Drawing.Size(202, 13)
@@ -1703,7 +1703,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem1.Location = New System.Drawing.Point(219, 2)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Padding = New DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5)
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(201, 38)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(200, 38)
         Me.LayoutControlItem1.Text = "Employee Id :"
         Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(76, 13)
@@ -1713,9 +1713,9 @@ Partial Class frmEmployee
         '
         Me.LayoutControlItem26.Control = Me.chkactive
         Me.LayoutControlItem26.CustomizationFormText = "LayoutControlItem26"
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(420, 2)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(419, 2)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(90, 38)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(89, 38)
         Me.LayoutControlItem26.Text = "LayoutControlItem26"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem26.TextToControlDistance = 0
@@ -1725,9 +1725,9 @@ Partial Class frmEmployee
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(510, 2)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(508, 2)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(345, 38)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(343, 38)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -1735,9 +1735,9 @@ Partial Class frmEmployee
         '
         Me.LayoutControlItem28.Control = Me.PanelControl1
         Me.LayoutControlItem28.CustomizationFormText = "LayoutControlItem28"
-        Me.LayoutControlItem28.Location = New System.Drawing.Point(855, 2)
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(851, 2)
         Me.LayoutControlItem28.Name = "LayoutControlItem28"
-        Me.LayoutControlItem28.Size = New System.Drawing.Size(503, 410)
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(500, 410)
         Me.LayoutControlItem28.Text = "LayoutControlItem28"
         Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem28.TextToControlDistance = 0
@@ -1749,7 +1749,7 @@ Partial Class frmEmployee
         Me.LayoutControlItem39.CustomizationFormText = "LayoutControlItem39"
         Me.LayoutControlItem39.Location = New System.Drawing.Point(219, 412)
         Me.LayoutControlItem39.Name = "LayoutControlItem39"
-        Me.LayoutControlItem39.Size = New System.Drawing.Size(1139, 356)
+        Me.LayoutControlItem39.Size = New System.Drawing.Size(1132, 356)
         Me.LayoutControlItem39.Text = "Details"
         Me.LayoutControlItem39.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem39.TextSize = New System.Drawing.Size(202, 13)
@@ -1884,7 +1884,7 @@ Partial Class frmEmployee
         Me.SimpleLabelItem4.CustomizationFormText = "LabelSimpleLabelItem4"
         Me.SimpleLabelItem4.Location = New System.Drawing.Point(4, 390)
         Me.SimpleLabelItem4.Name = "SimpleLabelItem4"
-        Me.SimpleLabelItem4.Size = New System.Drawing.Size(278, 20)
+        Me.SimpleLabelItem4.Size = New System.Drawing.Size(276, 20)
         Me.SimpleLabelItem4.Text = "Basic Salary Information :"
         Me.SimpleLabelItem4.TextSize = New System.Drawing.Size(202, 16)
         '
@@ -1989,34 +1989,34 @@ Partial Class frmEmployee
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1377, 29)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1370, 29)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 796)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1377, 23)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 726)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1370, 23)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 767)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 697)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1377, 29)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 767)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1370, 29)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 697)
         '
         'frmEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1377, 819)
+        Me.ClientSize = New System.Drawing.Size(1370, 749)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
