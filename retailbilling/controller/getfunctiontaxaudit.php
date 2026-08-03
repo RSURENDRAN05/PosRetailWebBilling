@@ -159,6 +159,31 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $res = $clsfunreq->InsertPosTaxFinalSP($row['FromDate'], $row['ToDate'], $row['ComId'], $row['LocId']);
         echo json_encode($res);
     }
+ if ((int) $_REQUEST['AjaxRequest'] == 11) {
+        $getjson = $_REQUEST['json'];
+        $row     = json_decode($getjson, true);
 
+        $mode      = isset($row['Mode'])      ? $row['Mode']      : 'SELECT';
+        $pmdId     = isset($row['PmdId'])     ? (int) $row['PmdId']     : 0;
+        $pmdTrno   = isset($row['PmdTrno'])   ? $row['PmdTrno']   : null;
+        $comId     = isset($row['ComId'])     ? (int) $row['ComId']     : 0;
+        $locId     = isset($row['LocId'])     ? (int) $row['LocId']     : 0;
+        $pmdStatus = isset($row['PmdStatus']) ? (int) $row['PmdStatus'] : 0;  // BIT column
+
+        $res = $clsfunreq->PosMismatchData($mode, $pmdId, $pmdTrno, $comId, $locId, $pmdStatus);
+
+        $modeUpper = strtoupper(trim($mode));
+        if ($res['Success']) {
+            if ($modeUpper === 'INSERT') {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "pmd_id" => $res['pmd_id']));
+            } elseif ($modeUpper === 'UPDATE') {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "rows_affected" => $res['rows_affected']));
+            } else {
+                echo json_encode(array("Success" => true, "Msg" => $res['Msg'], "Data" => $res['Data']));
+            }
+        } else {
+            echo json_encode(array("Success" => false, "Msg" => $res['Msg'], "Data" => array()));
+        }
+    }
     
 }

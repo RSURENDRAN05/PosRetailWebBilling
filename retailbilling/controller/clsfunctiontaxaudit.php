@@ -330,5 +330,55 @@ class funcProcessTaxAudit
         return array("Success" => true, "Msg" => "Data loaded successfully.", "Data" => $rows);
     }
 
-   
+    public function PosMismatchData($pMode, $pPmdId, $pPmdTrno, $pPmdComId, $pPmdLocId, $pPmdStatus)
+    {
+        $conn = $this->conn;
+
+        $mode      = "'" . mysqli_real_escape_string($conn, $pMode)      . "'";
+        $pmdId     = (int) $pPmdId;
+        $pmdTrno   = $pPmdTrno !== null ? "'" . mysqli_real_escape_string($conn, $pPmdTrno) . "'" : "NULL";
+        $pmdComId  = (int) $pPmdComId;
+        $pmdLocId  = (int) $pPmdLocId;
+        $pmdStatus = (int) $pPmdStatus;  // BIT column — pass as integer, no quotes
+
+        $sql = "CALL sp_pos_mismatch_data("
+            . $mode      . ","
+            . $pmdId     . ","
+            . $pmdTrno   . ","
+            . $pmdComId  . ","
+            . $pmdLocId  . ","
+            . $pmdStatus . ")";
+
+        $result = mysqli_query($conn, $sql);
+        if ($result === false) {
+            $msg = mysqli_error($conn);
+            $this->ClearProcResults();
+            return array("Success" => false, "Msg" => $msg, "Data" => array());
+        }
+
+        $rows = array();
+        if ($result instanceof mysqli_result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $rows[] = $row;
+            }
+            mysqli_free_result($result);
+        }
+
+        $this->ClearProcResults();
+
+        $modeUpper = strtoupper(trim($pMode));
+
+        if ($modeUpper === 'INSERT') {
+            $newId = isset($rows[0]['pmd_id']) ? (int) $rows[0]['pmd_id'] : 0;
+            return array("Success" => true, "Msg" => "Record inserted.", "pmd_id" => $newId);
+        }
+
+        if ($modeUpper === 'UPDATE') {
+            $affected = isset($rows[0]['rows_affected']) ? (int) $rows[0]['rows_affected'] : 0;
+            return array("Success" => true, "Msg" => "Record updated.", "rows_affected" => $affected);
+        }
+
+        // SELECT
+        return array("Success" => true, "Msg" => "Data loaded successfully.", "Data" => $rows);
+    }
 }
