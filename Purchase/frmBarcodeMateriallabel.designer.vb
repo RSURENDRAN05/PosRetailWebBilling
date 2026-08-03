@@ -19,6 +19,7 @@ Partial Class frmBarcodeMateriallabel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBarcodeMateriallabel))
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,15 +93,15 @@ Partial Class frmBarcodeMateriallabel
         Me.GridColumnSalesRate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWholesale = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barbtnsearchbybarcode = New DevExpress.XtraBars.BarCheckItem()
+        Me.barbtnlabelsettings = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.barbtnlabelsettings = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RepositoryItemCheckEditItemCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit_Pack, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit_Pack.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,7 +278,7 @@ Partial Class frmBarcodeMateriallabel
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1248, 720)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1248, 697)
         Me.LayoutControlGroup1.Text = "LayoutControlGroup1"
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -287,7 +288,7 @@ Partial Class frmBarcodeMateriallabel
         Me.LayoutControlItem1.CustomizationFormText = "LayoutControlItem1"
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1228, 626)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1228, 603)
         Me.LayoutControlItem1.Text = "LayoutControlItem1"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextToControlDistance = 0
@@ -303,7 +304,7 @@ Partial Class frmBarcodeMateriallabel
         Me.GridControlGRN.MainView = Me.GridView1
         Me.GridControlGRN.Name = "GridControlGRN"
         Me.GridControlGRN.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEditItemCheck, Me.RepositoryItemDateEdit_Pack, Me.RepositoryItemExpireDate})
-        Me.GridControlGRN.Size = New System.Drawing.Size(1224, 622)
+        Me.GridControlGRN.Size = New System.Drawing.Size(1224, 599)
         Me.GridControlGRN.TabIndex = 3
         Me.GridControlGRN.UseEmbeddedNavigator = True
         Me.GridControlGRN.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -348,7 +349,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.LayoutControlItem5.Control = Me.btnBarcodeprint
         Me.LayoutControlItem5.CustomizationFormText = "LayoutControlItem5"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(1149, 674)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(1149, 651)
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(79, 26)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(79, 26)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
@@ -361,7 +362,7 @@ Partial Class frmBarcodeMateriallabel
         '
         'btnBarcodeprint
         '
-        Me.btnBarcodeprint.Location = New System.Drawing.Point(1161, 686)
+        Me.btnBarcodeprint.Location = New System.Drawing.Point(1161, 663)
         Me.btnBarcodeprint.Name = "btnBarcodeprint"
         Me.btnBarcodeprint.Size = New System.Drawing.Size(75, 22)
         Me.btnBarcodeprint.StyleController = Me.LayoutControl1
@@ -384,13 +385,13 @@ Partial Class frmBarcodeMateriallabel
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 29)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1248, 720)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1248, 697)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'SimpleButton2
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(837, 686)
+        Me.SimpleButton2.Location = New System.Drawing.Point(837, 663)
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(79, 22)
         Me.SimpleButton2.StyleController = Me.LayoutControl1
@@ -399,7 +400,7 @@ Partial Class frmBarcodeMateriallabel
         '
         'btnReloadData
         '
-        Me.btnReloadData.Location = New System.Drawing.Point(920, 686)
+        Me.btnReloadData.Location = New System.Drawing.Point(920, 663)
         Me.btnReloadData.Name = "btnReloadData"
         Me.btnReloadData.Size = New System.Drawing.Size(70, 22)
         Me.btnReloadData.StyleController = Me.LayoutControl1
@@ -409,7 +410,7 @@ Partial Class frmBarcodeMateriallabel
         'btnSaveData
         '
         Me.btnSaveData.Image = CType(resources.GetObject("btnSaveData.Image"), System.Drawing.Image)
-        Me.btnSaveData.Location = New System.Drawing.Point(994, 686)
+        Me.btnSaveData.Location = New System.Drawing.Point(994, 663)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(80, 22)
         Me.btnSaveData.StyleController = Me.LayoutControl1
@@ -624,7 +625,7 @@ Partial Class frmBarcodeMateriallabel
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(1078, 686)
+        Me.SimpleButton1.Location = New System.Drawing.Point(1078, 663)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(79, 22)
         Me.SimpleButton1.StyleController = Me.LayoutControl1
@@ -635,7 +636,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 674)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 651)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(825, 26)
         Me.EmptySpaceItem1.Text = "EmptySpaceItem1"
@@ -645,7 +646,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.LayoutControlItem6.Control = Me.SimpleButton1
         Me.LayoutControlItem6.CustomizationFormText = "LayoutControlItem6"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(1066, 674)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(1066, 651)
         Me.LayoutControlItem6.MaxSize = New System.Drawing.Size(83, 26)
         Me.LayoutControlItem6.MinSize = New System.Drawing.Size(83, 26)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
@@ -692,7 +693,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.LayoutControlItem9.Control = Me.btnSaveData
         Me.LayoutControlItem9.CustomizationFormText = "LayoutControlItem9"
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(982, 674)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(982, 651)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(84, 26)
         Me.LayoutControlItem9.Text = "LayoutControlItem9"
@@ -704,7 +705,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.LayoutControlItem10.Control = Me.btnReloadData
         Me.LayoutControlItem10.CustomizationFormText = "LayoutControlItem10"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(908, 674)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(908, 651)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(74, 26)
         Me.LayoutControlItem10.Text = "LayoutControlItem10"
@@ -716,7 +717,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.LayoutControlItem11.Control = Me.SimpleButton2
         Me.LayoutControlItem11.CustomizationFormText = "LayoutControlItem11"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(825, 674)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(825, 651)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(83, 26)
         Me.LayoutControlItem11.Text = "LayoutControlItem11"
@@ -868,6 +869,12 @@ Partial Class frmBarcodeMateriallabel
         Me.barbtnsearchbybarcode.Id = 0
         Me.barbtnsearchbybarcode.Name = "barbtnsearchbybarcode"
         '
+        'barbtnlabelsettings
+        '
+        Me.barbtnlabelsettings.Caption = "Label Settings"
+        Me.barbtnlabelsettings.Id = 1
+        Me.barbtnlabelsettings.Name = "barbtnlabelsettings"
+        '
         'Bar3
         '
         Me.Bar3.BarName = "Status bar"
@@ -891,7 +898,7 @@ Partial Class frmBarcodeMateriallabel
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 749)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 726)
         Me.barDockControlBottom.Size = New System.Drawing.Size(1248, 23)
         '
         'barDockControlLeft
@@ -899,26 +906,20 @@ Partial Class frmBarcodeMateriallabel
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 720)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 697)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1248, 29)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 720)
-        '
-        'barbtnlabelsettings
-        '
-        Me.barbtnlabelsettings.Caption = "Label Settings"
-        Me.barbtnlabelsettings.Id = 1
-        Me.barbtnlabelsettings.Name = "barbtnlabelsettings"
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 697)
         '
         'frmBarcodeMateriallabel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1248, 772)
+        Me.ClientSize = New System.Drawing.Size(1248, 749)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)

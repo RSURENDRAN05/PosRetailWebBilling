@@ -119,6 +119,7 @@ Public Class MainMaster
                 barbtnprintbarcode.Enabled = False
                 barbtndiscountpolicy.Enabled = False
                 barbtnvoucherbook.Enabled = False
+                barbtnposmaterid.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -617,7 +618,14 @@ Public Class MainMaster
                             barbtnvoucherbook.Enabled = False
                         End If
                     End If
-
+                    Dim PosMasterID As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "PosMasterID"
+                    If PosMasterID.Any Then
+                        If PosMasterID(0)("menu_active") = "1" Then
+                            barbtnposmaterid.Enabled = True
+                        Else
+                            barbtnposmaterid.Enabled = False
+                        End If
+                    End If
                 End If
             End If
         Catch ex As Exception
