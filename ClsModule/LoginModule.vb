@@ -27,7 +27,7 @@ Module LoginModule
                     ' Successfully created POS Master data - now get the PM_ID
                     dialog.Caption = "Retrieving POS Master ID..."
                     Try
-                        Dim posRecords = managementModule.GetPosMasterRecords(_companyInfo.ComId, _companyInfo.LocId)
+                        Dim posRecords = managementModule.GetPosMasterRecords(_companyInfo.ComId, _companyInfo.LocId, _companyInfo.CompanyPMID)
                         If posRecords IsNot Nothing AndAlso posRecords.Rows.Count > 0 Then
                             ' Get the PM_ID from the first record (most recently created)
                             _companyInfo.CompanyPMId = Convert.ToInt32(posRecords.Rows(0)("PM_ID"))
@@ -52,7 +52,7 @@ Module LoginModule
                 ' POS Master data already exists - get the PM_ID only
                 dialog.Caption = "Loading existing POS Master data..."
                 Try
-                    Dim posRecords = managementModule.GetPosMasterRecords(_companyInfo.ComId, _companyInfo.LocId)
+                    Dim posRecords = managementModule.GetPosMasterRecords(_companyInfo.ComId, _companyInfo.LocId, _companyInfo.CompanyPMID)
                     If posRecords IsNot Nothing AndAlso posRecords.Rows.Count > 0 Then
                         ' Get only the PM_ID from the first record
                         ' Note: ShiftNo and DayNo will be set by shift validation process

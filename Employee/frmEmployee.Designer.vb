@@ -330,7 +330,7 @@ Partial Class frmEmployee
         'GridControl1
         '
         Me.GridControl1.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.GridControl1.Location = New System.Drawing.Point(221, 359)
+        Me.GridControl1.Location = New System.Drawing.Point(221, 430)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(1128, 336)
@@ -489,7 +489,7 @@ Partial Class frmEmployee
         'txtnextpermit
         '
         Me.txtnextpermit.EditValue = "-"
-        Me.txtnextpermit.Location = New System.Drawing.Point(624, 139)
+        Me.txtnextpermit.Location = New System.Drawing.Point(624, 210)
         Me.txtnextpermit.Name = "txtnextpermit"
         Me.txtnextpermit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtnextpermit.Properties.Appearance.Options.UseFont = True
@@ -501,7 +501,7 @@ Partial Class frmEmployee
         'txtcurrentpermit
         '
         Me.txtcurrentpermit.EditValue = "-"
-        Me.txtcurrentpermit.Location = New System.Drawing.Point(418, 139)
+        Me.txtcurrentpermit.Location = New System.Drawing.Point(418, 210)
         Me.txtcurrentpermit.Name = "txtcurrentpermit"
         Me.txtcurrentpermit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcurrentpermit.Properties.Appearance.Options.UseFont = True
@@ -513,7 +513,7 @@ Partial Class frmEmployee
         'txtmonthexpire
         '
         Me.txtmonthexpire.EditValue = "-"
-        Me.txtmonthexpire.Location = New System.Drawing.Point(212, 139)
+        Me.txtmonthexpire.Location = New System.Drawing.Point(212, 210)
         Me.txtmonthexpire.Name = "txtmonthexpire"
         Me.txtmonthexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtmonthexpire.Properties.Appearance.Options.UseFont = True
@@ -525,7 +525,7 @@ Partial Class frmEmployee
         'txtdob
         '
         Me.txtdob.EditValue = Nothing
-        Me.txtdob.Location = New System.Drawing.Point(418, 39)
+        Me.txtdob.Location = New System.Drawing.Point(418, 110)
         Me.txtdob.Name = "txtdob"
         Me.txtdob.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtdob.Properties.Appearance.Options.UseFont = True
@@ -543,7 +543,7 @@ Partial Class frmEmployee
         'txtsocso
         '
         Me.txtsocso.EditValue = "0.00"
-        Me.txtsocso.Location = New System.Drawing.Point(6, 659)
+        Me.txtsocso.Location = New System.Drawing.Point(6, 730)
         Me.txtsocso.Name = "txtsocso"
         Me.txtsocso.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtsocso.Properties.Appearance.Options.UseFont = True
@@ -562,7 +562,7 @@ Partial Class frmEmployee
         'txtepf
         '
         Me.txtepf.EditValue = "0.00"
-        Me.txtepf.Location = New System.Drawing.Point(6, 611)
+        Me.txtepf.Location = New System.Drawing.Point(6, 682)
         Me.txtepf.Name = "txtepf"
         Me.txtepf.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtepf.Properties.Appearance.Options.UseFont = True
@@ -591,7 +591,7 @@ Partial Class frmEmployee
         Me.PanelControl1.Controls.Add(Me.btnaddnew)
         Me.PanelControl1.Controls.Add(Me.btnsave)
         Me.PanelControl1.Controls.Add(Me.popupcondownloadlist)
-        Me.PanelControl1.Location = New System.Drawing.Point(853, -67)
+        Me.PanelControl1.Location = New System.Drawing.Point(853, 4)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(496, 406)
         Me.PanelControl1.TabIndex = 32
@@ -749,7 +749,7 @@ Partial Class frmEmployee
         '
         'chkactive
         '
-        Me.chkactive.Location = New System.Drawing.Point(421, -67)
+        Me.chkactive.Location = New System.Drawing.Point(421, 4)
         Me.chkactive.Name = "chkactive"
         Me.chkactive.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.chkactive.Properties.Appearance.Options.UseFont = True
@@ -764,7 +764,7 @@ Partial Class frmEmployee
         'txtallowance
         '
         Me.txtallowance.EditValue = "0.00"
-        Me.txtallowance.Location = New System.Drawing.Point(6, 561)
+        Me.txtallowance.Location = New System.Drawing.Point(6, 632)
         Me.txtallowance.Name = "txtallowance"
         Me.txtallowance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtallowance.Properties.Appearance.Options.UseFont = True
@@ -783,7 +783,7 @@ Partial Class frmEmployee
         'txtotperhrsrate
         '
         Me.txtotperhrsrate.EditValue = "0.00"
-        Me.txtotperhrsrate.Location = New System.Drawing.Point(6, 511)
+        Me.txtotperhrsrate.Location = New System.Drawing.Point(6, 582)
         Me.txtotperhrsrate.Name = "txtotperhrsrate"
         Me.txtotperhrsrate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtotperhrsrate.Properties.Appearance.Options.UseFont = True
@@ -802,7 +802,7 @@ Partial Class frmEmployee
         'txtotperdayrate
         '
         Me.txtotperdayrate.EditValue = "0.00"
-        Me.txtotperdayrate.Location = New System.Drawing.Point(6, 411)
+        Me.txtotperdayrate.Location = New System.Drawing.Point(6, 482)
         Me.txtotperdayrate.Name = "txtotperdayrate"
         Me.txtotperdayrate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtotperdayrate.Properties.Appearance.Options.UseFont = True
@@ -821,7 +821,7 @@ Partial Class frmEmployee
         'txtperday
         '
         Me.txtperday.EditValue = "0.00"
-        Me.txtperday.Location = New System.Drawing.Point(6, 461)
+        Me.txtperday.Location = New System.Drawing.Point(6, 532)
         Me.txtperday.Name = "txtperday"
         Me.txtperday.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtperday.Properties.Appearance.Options.UseFont = True
@@ -840,7 +840,7 @@ Partial Class frmEmployee
         'txtbasicsalary
         '
         Me.txtbasicsalary.EditValue = "0.00"
-        Me.txtbasicsalary.Location = New System.Drawing.Point(6, 361)
+        Me.txtbasicsalary.Location = New System.Drawing.Point(6, 432)
         Me.txtbasicsalary.Name = "txtbasicsalary"
         Me.txtbasicsalary.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtbasicsalary.Properties.Appearance.Options.UseFont = True
@@ -859,7 +859,7 @@ Partial Class frmEmployee
         'txtaccountno
         '
         Me.txtaccountno.EditValue = "0"
-        Me.txtaccountno.Location = New System.Drawing.Point(622, 264)
+        Me.txtaccountno.Location = New System.Drawing.Point(622, 335)
         Me.txtaccountno.Name = "txtaccountno"
         Me.txtaccountno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtaccountno.Properties.Appearance.Options.UseFont = True
@@ -871,7 +871,7 @@ Partial Class frmEmployee
         'txtbankname
         '
         Me.txtbankname.EditValue = "-"
-        Me.txtbankname.Location = New System.Drawing.Point(416, 264)
+        Me.txtbankname.Location = New System.Drawing.Point(416, 335)
         Me.txtbankname.Name = "txtbankname"
         Me.txtbankname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtbankname.Properties.Appearance.Options.UseFont = True
@@ -884,7 +884,7 @@ Partial Class frmEmployee
         'txtaccountname
         '
         Me.txtaccountname.EditValue = "-"
-        Me.txtaccountname.Location = New System.Drawing.Point(208, 264)
+        Me.txtaccountname.Location = New System.Drawing.Point(208, 335)
         Me.txtaccountname.Name = "txtaccountname"
         Me.txtaccountname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtaccountname.Properties.Appearance.Options.UseFont = True
@@ -897,7 +897,7 @@ Partial Class frmEmployee
         'txtemergencyno
         '
         Me.txtemergencyno.EditValue = "-"
-        Me.txtemergencyno.Location = New System.Drawing.Point(622, 214)
+        Me.txtemergencyno.Location = New System.Drawing.Point(622, 285)
         Me.txtemergencyno.Name = "txtemergencyno"
         Me.txtemergencyno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtemergencyno.Properties.Appearance.Options.UseFont = True
@@ -909,7 +909,7 @@ Partial Class frmEmployee
         'txtcontactname
         '
         Me.txtcontactname.EditValue = "-"
-        Me.txtcontactname.Location = New System.Drawing.Point(416, 214)
+        Me.txtcontactname.Location = New System.Drawing.Point(416, 285)
         Me.txtcontactname.Name = "txtcontactname"
         Me.txtcontactname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcontactname.Properties.Appearance.Options.UseFont = True
@@ -922,7 +922,7 @@ Partial Class frmEmployee
         'txtphoneno
         '
         Me.txtphoneno.EditValue = "-"
-        Me.txtphoneno.Location = New System.Drawing.Point(208, 214)
+        Me.txtphoneno.Location = New System.Drawing.Point(208, 285)
         Me.txtphoneno.Name = "txtphoneno"
         Me.txtphoneno.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtphoneno.Properties.Appearance.Options.UseFont = True
@@ -933,7 +933,7 @@ Partial Class frmEmployee
         '
         'txtpassport
         '
-        Me.txtpassport.Location = New System.Drawing.Point(212, 39)
+        Me.txtpassport.Location = New System.Drawing.Point(212, 110)
         Me.txtpassport.Name = "txtpassport"
         Me.txtpassport.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtpassport.Properties.Appearance.Options.UseFont = True
@@ -945,7 +945,7 @@ Partial Class frmEmployee
         '
         'txtprintname
         '
-        Me.txtprintname.Location = New System.Drawing.Point(418, -11)
+        Me.txtprintname.Location = New System.Drawing.Point(418, 60)
         Me.txtprintname.Name = "txtprintname"
         Me.txtprintname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtprintname.Properties.Appearance.Options.UseFont = True
@@ -957,7 +957,7 @@ Partial Class frmEmployee
         '
         'txtlastname
         '
-        Me.txtlastname.Location = New System.Drawing.Point(212, -11)
+        Me.txtlastname.Location = New System.Drawing.Point(212, 60)
         Me.txtlastname.Name = "txtlastname"
         Me.txtlastname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtlastname.Properties.Appearance.Options.UseFont = True
@@ -969,7 +969,7 @@ Partial Class frmEmployee
         '
         'txtfirstname
         '
-        Me.txtfirstname.Location = New System.Drawing.Point(6, -11)
+        Me.txtfirstname.Location = New System.Drawing.Point(6, 60)
         Me.txtfirstname.Name = "txtfirstname"
         Me.txtfirstname.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtfirstname.Properties.Appearance.Options.UseFont = True
@@ -981,7 +981,7 @@ Partial Class frmEmployee
         '
         'txtid
         '
-        Me.txtid.Location = New System.Drawing.Point(305, -64)
+        Me.txtid.Location = New System.Drawing.Point(305, 7)
         Me.txtid.Name = "txtid"
         Me.txtid.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtid.Properties.Appearance.Options.UseFont = True
@@ -994,7 +994,7 @@ Partial Class frmEmployee
         'cmbidtype
         '
         Me.cmbidtype.EditValue = "NRIC"
-        Me.cmbidtype.Location = New System.Drawing.Point(6, 39)
+        Me.cmbidtype.Location = New System.Drawing.Point(6, 110)
         Me.cmbidtype.Name = "cmbidtype"
         Me.cmbidtype.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.cmbidtype.Properties.Appearance.Options.UseFont = True
@@ -1008,13 +1008,13 @@ Partial Class frmEmployee
         'txtdesignation
         '
         Me.txtdesignation.EditValue = "ACCOUNTANT"
-        Me.txtdesignation.Location = New System.Drawing.Point(6, 139)
+        Me.txtdesignation.Location = New System.Drawing.Point(6, 210)
         Me.txtdesignation.Name = "txtdesignation"
         Me.txtdesignation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtdesignation.Properties.Appearance.Options.UseFont = True
         Me.txtdesignation.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.txtdesignation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtdesignation.Properties.Items.AddRange(New Object() {"ACCOUNTANT", "ADMIN", "MANAGER", "OPERATION", "CHIEF", "CASHIER", "WAITER", "DRIVER", "SWEET MAKER"})
+        Me.txtdesignation.Properties.Items.AddRange(New Object() {"ACCOUNTANT", "ADMIN", "MANAGER", "OPERATION", "CHEF", "CASHIER", "WAITER", "DRIVER", "SWEET MAKER"})
         Me.txtdesignation.Size = New System.Drawing.Size(202, 28)
         Me.txtdesignation.StyleController = Me.LayoutControl1
         Me.txtdesignation.TabIndex = 20
@@ -1022,7 +1022,7 @@ Partial Class frmEmployee
         'txtnationality
         '
         Me.txtnationality.EditValue = "MALAYSIA"
-        Me.txtnationality.Location = New System.Drawing.Point(624, 39)
+        Me.txtnationality.Location = New System.Drawing.Point(624, 110)
         Me.txtnationality.Name = "txtnationality"
         Me.txtnationality.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtnationality.Properties.Appearance.Options.UseFont = True
@@ -1036,7 +1036,7 @@ Partial Class frmEmployee
         'txtpassportexpire
         '
         Me.txtpassportexpire.EditValue = Nothing
-        Me.txtpassportexpire.Location = New System.Drawing.Point(6, 89)
+        Me.txtpassportexpire.Location = New System.Drawing.Point(6, 160)
         Me.txtpassportexpire.Name = "txtpassportexpire"
         Me.txtpassportexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtpassportexpire.Properties.Appearance.Options.UseFont = True
@@ -1054,7 +1054,7 @@ Partial Class frmEmployee
         'txtvisaexpire
         '
         Me.txtvisaexpire.EditValue = Nothing
-        Me.txtvisaexpire.Location = New System.Drawing.Point(212, 89)
+        Me.txtvisaexpire.Location = New System.Drawing.Point(212, 160)
         Me.txtvisaexpire.Name = "txtvisaexpire"
         Me.txtvisaexpire.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtvisaexpire.Properties.Appearance.Options.UseFont = True
@@ -1072,7 +1072,7 @@ Partial Class frmEmployee
         'txtjoindate
         '
         Me.txtjoindate.EditValue = Nothing
-        Me.txtjoindate.Location = New System.Drawing.Point(418, 89)
+        Me.txtjoindate.Location = New System.Drawing.Point(418, 160)
         Me.txtjoindate.Name = "txtjoindate"
         Me.txtjoindate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtjoindate.Properties.Appearance.Options.UseFont = True
@@ -1090,7 +1090,7 @@ Partial Class frmEmployee
         'txtresigndate
         '
         Me.txtresigndate.EditValue = Nothing
-        Me.txtresigndate.Location = New System.Drawing.Point(624, 89)
+        Me.txtresigndate.Location = New System.Drawing.Point(624, 160)
         Me.txtresigndate.Name = "txtresigndate"
         Me.txtresigndate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtresigndate.Properties.Appearance.Options.UseFont = True
@@ -1108,19 +1108,19 @@ Partial Class frmEmployee
         'txtcurrentstatus
         '
         Me.txtcurrentstatus.EditValue = "Working"
-        Me.txtcurrentstatus.Location = New System.Drawing.Point(624, -11)
+        Me.txtcurrentstatus.Location = New System.Drawing.Point(624, 60)
         Me.txtcurrentstatus.Name = "txtcurrentstatus"
         Me.txtcurrentstatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcurrentstatus.Properties.Appearance.Options.UseFont = True
         Me.txtcurrentstatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtcurrentstatus.Properties.Items.AddRange(New Object() {"Working", "OnLeave", "WaitingList", "InActive"})
+        Me.txtcurrentstatus.Properties.Items.AddRange(New Object() {"Working", "OnLeave", "WaitingList", "InActive", "Tempoary Staff"})
         Me.txtcurrentstatus.Size = New System.Drawing.Size(225, 26)
         Me.txtcurrentstatus.StyleController = Me.LayoutControl1
         Me.txtcurrentstatus.TabIndex = 33
         '
         'txtcompany
         '
-        Me.txtcompany.Location = New System.Drawing.Point(349, 301)
+        Me.txtcompany.Location = New System.Drawing.Point(349, 372)
         Me.txtcompany.Name = "txtcompany"
         Me.txtcompany.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtcompany.Properties.Appearance.Options.UseFont = True
@@ -1138,7 +1138,7 @@ Partial Class frmEmployee
         '
         'txtlocation
         '
-        Me.txtlocation.Location = New System.Drawing.Point(619, 301)
+        Me.txtlocation.Location = New System.Drawing.Point(619, 372)
         Me.txtlocation.Name = "txtlocation"
         Me.txtlocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtlocation.Properties.Appearance.Options.UseFont = True
@@ -1157,7 +1157,7 @@ Partial Class frmEmployee
         'txtremarks
         '
         Me.txtremarks.EditValue = "-"
-        Me.txtremarks.Location = New System.Drawing.Point(6, 216)
+        Me.txtremarks.Location = New System.Drawing.Point(6, 287)
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtremarks.Properties.Appearance.Options.UseFont = True
@@ -1172,7 +1172,7 @@ Partial Class frmEmployee
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[False]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.SimpleLabelItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.SimpleLabelItem3, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem20, Me.LayoutControlItem5, Me.SimpleSeparator1, Me.SimpleSeparator2, Me.SimpleSeparator3, Me.SimpleSeparator5, Me.SimpleSeparator7, Me.SimpleSeparator8, Me.SimpleSeparator9, Me.SimpleSeparator11, Me.SimpleSeparator15, Me.SimpleSeparator16, Me.SimpleSeparator17, Me.SimpleSeparator21, Me.SimpleSeparator23, Me.SimpleSeparator26, Me.LayoutControlItem34, Me.LayoutControlItem31, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem35, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.SimpleSeparator24, Me.SimpleSeparator25, Me.SimpleLabelItem2, Me.LayoutControlItem17, Me.LayoutControlItem29, Me.LayoutControlItem1, Me.LayoutControlItem26, Me.EmptySpaceItem1, Me.LayoutControlItem28, Me.LayoutControlItem39, Me.LayoutControlItem23, Me.LayoutControlItem21, Me.EmptySpaceItem5, Me.LayoutControlItem22, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem27, Me.LayoutControlItem32, Me.SimpleLabelItem4})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, -71)
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1353, 768)
         Me.LayoutControlGroup1.Text = "Root"

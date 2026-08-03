@@ -365,7 +365,7 @@ PosRetailWebBilling
 	<param name="comId">Company ID</param>
 	<param name="locId">Location ID</param>
 	<returns>Success status and message</returns>
-</member><member name="M:PosRetailWebBilling.managementModule.GetPosMasterRecords(System.Int32,System.Int32)">
+</member><member name="M:PosRetailWebBilling.managementModule.GetPosMasterRecords(System.Int32,System.Int32,System.Int32)">
 	<summary>
  Get POS Master records by company and location ID
  </summary>

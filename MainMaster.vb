@@ -1252,4 +1252,12 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub barbtnposmaterid_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnposmaterid.ItemClick
+        Try
+            ValidationProcess()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

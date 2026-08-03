@@ -141,14 +141,14 @@ Module managementModule
     ''' <param name="comId">Company ID</param>
     ''' <param name="locId">Location ID</param>
     ''' <returns>DataTable with POS Master records</returns>
-    Public Function GetPosMasterRecords(comId As Integer, locId As Integer) As DataTable
+    Public Function GetPosMasterRecords(comId As Integer, locId As Integer, pmId As Integer) As DataTable
         Try
             Dim url As String = functionModule.M_Details.LinkAjaxRequest
 
             ' Prepare POST data
             Dim postData As String = String.Format(
-                "MgmtRequest=1&Action=POS_MASTER&Operation=GET&Comid={0}&Locid={1}",
-                comId, locId
+                "MgmtRequest=1&Action=POS_MASTER&Operation=GET&Comid={0}&Locid={1}&PmId={2}",
+                comId, locId, pmId
             )
 
             ' Send POST request

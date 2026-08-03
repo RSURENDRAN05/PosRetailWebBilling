@@ -84,6 +84,7 @@ Partial Class MainMaster
         Me.barbtnprintbarcode = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtndiscountpolicy = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnvoucherbook = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnsalesweb = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageMaster = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPagePurchase = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -121,7 +122,7 @@ Partial Class MainMaster
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.barbtnsalesweb = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnposmaterid = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,9 +142,9 @@ Partial Class MainMaster
         '
         Me.RibbonControl.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll, Me.barbtnfingerscanner, Me.barbtnfingerregister, Me.barbtnattendancereport, Me.barbtnmastersalesreport, Me.barbtntimeProfile, Me.barbtnstockreport, Me.barbtnauditsalesreport, Me.barbtnauditgeneratesales, Me.barbtnmasterauditsalesrep, Me.barbtnprintbarcode, Me.barbtndiscountpolicy, Me.barbtnvoucherbook, Me.barbtnsalesweb})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.barcompany, Me.barlocation, Me.barstatustrial, Me.baruserStatus, Me.barStatus, Me.barstatuscompany, Me.barbtnstatustime, Me.bartaxmaster, Me.barmaingroup, Me.barsubgroup, Me.barunitmaster, Me.barmaterial, Me.barnewclient, Me.BarButtonItem2, Me.BarButtonItem3, Me.barnewsupplier, Me.barnewpurchase, Me.barmasterpurchasereport, Me.barpossales, Me.barsalessummaryreport, Me.barcreategroup, Me.barparentgroup, Me.barnewledger, Me.barledgerentry, Me.barchequeentry, Me.barnewuser, Me.barbtnPrintProfile, Me.barsystemsettings, Me.barbtnprintdesign, Me.barbtnemployeeinfo, Me.barbtnpayslipprint, Me.barledgerReport, Me.barnewcustomer, Me.barbtncreatemonth, Me.barbtngeneratemonth, Me.barbtnGenerateSalary, Me.baruserpolicy, Me.barmenuheader, Me.skinRibbonGalleryBarItem, Me.barnewdiscountmaster, Me.barSalesCommission, Me.barcurshiftno, Me.bardayno, Me.barsalesdetailsreport, Me.barbtnchronicalreport, Me.barbtnadvancepaymentreport, Me.barbtnmonthlysummaryreport, Me.barbtnmaingrouppolicy, Me.barbtnMenuDesign1, Me.barbtnRefreshAll, Me.barbtnfingerscanner, Me.barbtnfingerregister, Me.barbtnattendancereport, Me.barbtnmastersalesreport, Me.barbtntimeProfile, Me.barbtnstockreport, Me.barbtnauditsalesreport, Me.barbtnauditgeneratesales, Me.barbtnmasterauditsalesrep, Me.barbtnprintbarcode, Me.barbtndiscountpolicy, Me.barbtnvoucherbook, Me.barbtnsalesweb, Me.barbtnposmaterid})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 71
+        Me.RibbonControl.MaxItemId = 72
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.PageHeaderItemLinks.Add(Me.barbtnRefreshAll)
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPageMaster, Me.RibbonPagePurchase, Me.RibbonPageSales, Me.RibbonReports, Me.RibbonPageAccounts, Me.RibbonPageAuditReport, Me.RibbonPageUser, Me.RibbonPageEmployee, Me.RibbonPageSettings})
@@ -641,6 +642,13 @@ Partial Class MainMaster
         Me.barbtnvoucherbook.LargeGlyph = CType(resources.GetObject("barbtnvoucherbook.LargeGlyph"), System.Drawing.Image)
         Me.barbtnvoucherbook.Name = "barbtnvoucherbook"
         '
+        'barbtnsalesweb
+        '
+        Me.barbtnsalesweb.Caption = "Pos Sales Web"
+        Me.barbtnsalesweb.Id = 70
+        Me.barbtnsalesweb.LargeGlyph = CType(resources.GetObject("barbtnsalesweb.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnsalesweb.Name = "barbtnsalesweb"
+        '
         'RibbonPageMaster
         '
         Me.RibbonPageMaster.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -654,6 +662,7 @@ Partial Class MainMaster
         Me.RibbonPageGroup1.Glyph = CType(resources.GetObject("RibbonPageGroup1.Glyph"), System.Drawing.Image)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.barcompany)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.barlocation)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.barbtnposmaterid)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.ShowCaptionButton = False
         Me.RibbonPageGroup1.Text = "Company Master"
@@ -977,12 +986,13 @@ Partial Class MainMaster
         Me.PanelControl1.Size = New System.Drawing.Size(1183, 37)
         Me.PanelControl1.TabIndex = 7
         '
-        'barbtnsalesweb
+        'barbtnposmaterid
         '
-        Me.barbtnsalesweb.Caption = "Pos Sales Web"
-        Me.barbtnsalesweb.Id = 70
-        Me.barbtnsalesweb.LargeGlyph = CType(resources.GetObject("barbtnsalesweb.LargeGlyph"), System.Drawing.Image)
-        Me.barbtnsalesweb.Name = "barbtnsalesweb"
+        Me.barbtnposmaterid.Caption = "Pos Master"
+        Me.barbtnposmaterid.Glyph = CType(resources.GetObject("barbtnposmaterid.Glyph"), System.Drawing.Image)
+        Me.barbtnposmaterid.Id = 71
+        Me.barbtnposmaterid.LargeGlyph = CType(resources.GetObject("barbtnposmaterid.LargeGlyph"), System.Drawing.Image)
+        Me.barbtnposmaterid.Name = "barbtnposmaterid"
         '
         'MainMaster
         '
@@ -1120,6 +1130,7 @@ Partial Class MainMaster
     Friend WithEvents barbtndiscountpolicy As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnvoucherbook As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents barbtnsalesweb As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnposmaterid As DevExpress.XtraBars.BarButtonItem
 
 
 End Class

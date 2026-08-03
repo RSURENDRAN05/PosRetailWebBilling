@@ -402,7 +402,7 @@ if (isset($_REQUEST['AjaxRequest'])) {
     }
     if ((int) $_REQUEST['AjaxRequest'] == 25) {
         $id = $_POST['txtitemid'];
-        $ResulQuery = $RptQuery->_SelectProductMasterByID($id);
+        $ResulQuery=''; //= $clsfunreq->_SelectProductMasterById($id);
         if ($ResulQuery) {
             print_r(json_encode($ResulQuery));
         } else {
@@ -3554,7 +3554,7 @@ elseif (isset($_REQUEST['EmployeeReq'])) {
         foreach ($files as $file) {
             $filePath = $dirPath . '/' . $file;
             if (is_file($filePath)) {
-                $strPass = $SuppCode . '/' . $TrId . '/' . $file;
+                $strPass = $EmployeeId . '/' . $file;
                 $GetPurRes[] = $strPass;
             }
         }
