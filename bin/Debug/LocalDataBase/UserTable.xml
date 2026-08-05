@@ -42,8 +42,8 @@
   </UserTable>
   <UserTable>
     <Id>2</Id>
-    <UserName>MOHAN</UserName>
-    <Password>22722a343513ed45f14905eb07621686</Password>
+    <UserName>Siva</UserName>
+    <Password>202cb962ac59075b964b07152d234b70</Password>
     <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
@@ -70,12 +70,12 @@
   </UserTable>
   <UserTable>
     <Id>4</Id>
-    <UserName>GHUGAN</UserName>
-    <Password>22722a343513ed45f14905eb07621686</Password>
+    <UserName>kavitha</UserName>
+    <Password>81dc9bdb52d04dc20036dbd8313ed055</Password>
     <GroupName>Super Admin</GroupName>
     <Status>Active</Status>
     <ComId>1</ComId>
-    <LocId>2</LocId>
+    <LocId>1</LocId>
     <GroupId>1</GroupId>
     <Created>2025-09-17 17:06:17</Created>
     <GroupDescription>Full system access with all permissions</GroupDescription>

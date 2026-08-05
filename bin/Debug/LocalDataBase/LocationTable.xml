@@ -22,7 +22,7 @@
   </xs:schema>
   <LocationTable>
     <plm_id>1</plm_id>
-    <plm_name>BANGSAR</plm_name>
+    <plm_name>A2B MASJID INDIA</plm_name>
     <plm_address>NO.6, JALAN BANGSAR,
 59200, KUALA LUMPUR</plm_address>
     <plm_active>1</plm_active>
@@ -31,7 +31,7 @@
   </LocationTable>
   <LocationTable>
     <plm_id>2</plm_id>
-    <plm_name>BRICKFIELDS</plm_name>
+    <plm_name>A2B BRICKFIELDS</plm_name>
     <plm_address>NO.39, JALAN THAMBIPILLAY, 
 BRICKFIELDS,50470, 
 KUALA LUMPUR</plm_address>
@@ -41,11 +41,27 @@ KUALA LUMPUR</plm_address>
   </LocationTable>
   <LocationTable>
     <plm_id>3</plm_id>
-    <plm_name>LUCKY GARDEN</plm_name>
+    <plm_name>A2B PUDU LAMA</plm_name>
     <plm_address>NO.22, LORONG ARA KIRI 2,
 BANGSAR, 59100, KUALA LUMPUR</plm_address>
     <plm_active>1</plm_active>
     <plm_create>2025-09-02 21:18:01</plm_create>
+    <plm_default>1</plm_default>
+  </LocationTable>
+  <LocationTable>
+    <plm_id>4</plm_id>
+    <plm_name>A2B KLANG</plm_name>
+    <plm_address />
+    <plm_active>1</plm_active>
+    <plm_create>2026-07-23 01:15:44</plm_create>
+    <plm_default>1</plm_default>
+  </LocationTable>
+  <LocationTable>
+    <plm_id>5</plm_id>
+    <plm_name>A2B PENANG</plm_name>
+    <plm_address />
+    <plm_active>1</plm_active>
+    <plm_create>2026-07-23 01:15:54</plm_create>
     <plm_default>1</plm_default>
   </LocationTable>
 </NewDataSet>
