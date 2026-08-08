@@ -67,8 +67,8 @@ Partial Class FrmGenerateTaxReport
         Me.btnBulkDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.btnDelSelectedTrno = New DevExpress.XtraEditors.SimpleButton()
         Me.btnfinalprocess = New DevExpress.XtraEditors.SimpleButton()
-        Me.txtNoofRow = New DevExpress.XtraEditors.TextEdit()
         Me.ListBoxControlPayment = New DevExpress.XtraEditors.ListBoxControl()
+        Me.txtNoofRow = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -95,8 +95,8 @@ Partial Class FrmGenerateTaxReport
         CType(Me.txtsetlimit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.txtNoofRow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ListBoxControlPayment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNoofRow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ToDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ToDateEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FromDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -361,13 +361,13 @@ Partial Class FrmGenerateTaxReport
         '
         'GridColumnSelected
         '
-        Me.GridColumnSelected.Caption = "Select"
+        Me.GridColumnSelected.Caption = "Select All"
         Me.GridColumnSelected.ColumnEdit = Me.chkSelectHeader
         Me.GridColumnSelected.FieldName = "Selected"
         Me.GridColumnSelected.Name = "GridColumnSelected"
         Me.GridColumnSelected.Visible = True
         Me.GridColumnSelected.VisibleIndex = 0
-        Me.GridColumnSelected.Width = 40
+        Me.GridColumnSelected.Width = 65
         '
         'chkSelectHeader
         '
@@ -573,6 +573,14 @@ Partial Class FrmGenerateTaxReport
         Me.btnfinalprocess.TabIndex = 11
         Me.btnfinalprocess.Text = "Final Bulk Update"
         '
+        'ListBoxControlPayment
+        '
+        Me.ListBoxControlPayment.Location = New System.Drawing.Point(120, 29)
+        Me.ListBoxControlPayment.Name = "ListBoxControlPayment"
+        Me.ListBoxControlPayment.Size = New System.Drawing.Size(135, 52)
+        Me.ListBoxControlPayment.TabIndex = 11
+        Me.ListBoxControlPayment.Visible = False
+        '
         'txtNoofRow
         '
         Me.txtNoofRow.EditValue = "2"
@@ -586,14 +594,6 @@ Partial Class FrmGenerateTaxReport
         Me.txtNoofRow.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtNoofRow.Size = New System.Drawing.Size(55, 20)
         Me.txtNoofRow.TabIndex = 3
-        '
-        'ListBoxControlPayment
-        '
-        Me.ListBoxControlPayment.Location = New System.Drawing.Point(120, 29)
-        Me.ListBoxControlPayment.Name = "ListBoxControlPayment"
-        Me.ListBoxControlPayment.Size = New System.Drawing.Size(135, 52)
-        Me.ListBoxControlPayment.TabIndex = 11
-        Me.ListBoxControlPayment.Visible = False
         '
         'Label4
         '
@@ -738,7 +738,7 @@ Partial Class FrmGenerateTaxReport
         '
         'FrmGenerateTaxReport
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.LayoutControl1)
@@ -749,36 +749,36 @@ Partial Class FrmGenerateTaxReport
         Me.Name = "FrmGenerateTaxReport"
         Me.Text = "FrmGenerateTaxReport"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.BarManager1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.LayoutControl1.ResumeLayout(false)
-        CType(Me.GridControlItemList,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridViewItemList,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridControlHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridViewHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.chkSelectHeader,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.lblstatusgroup,System.ComponentModel.ISupportInitialize).EndInit
-        Me.lblstatusgroup.ResumeLayout(false)
-        Me.lblstatusgroup.PerformLayout
-        CType(Me.txtsetlimit.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.PanelControl1.ResumeLayout(false)
-        CType(Me.txtNoofRow.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ListBoxControlPayment,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ToDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.ToDateEdit.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.FromDateEdit.Properties.CalendarTimeProperties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.FromDateEdit.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlGroup1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem3,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem4,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem5,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.LayoutControlItem6,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GridControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControlHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkSelectHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lblstatusgroup, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.lblstatusgroup.ResumeLayout(False)
+        Me.lblstatusgroup.PerformLayout()
+        CType(Me.txtsetlimit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.ListBoxControlPayment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNoofRow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ToDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ToDateEdit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FromDateEdit.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FromDateEdit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
     Friend WithEvents Bar3 As DevExpress.XtraBars.Bar

@@ -589,6 +589,8 @@ Public Class FrmGenerateTaxReport
         ' Allow RowStyle colours (red mismatch, etc.) to show even on the focused/selected row
         GridViewHeader.OptionsSelection.EnableAppearanceFocusedRow = False
         GridViewHeader.OptionsSelection.EnableAppearanceFocusedCell = False
+        GridColumnSelected.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+        GridColumnSelected.Caption = "Select All"
     End Sub
 
     Private Sub FrmGenerateTaxReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1427,6 +1429,38 @@ Public Class FrmGenerateTaxReport
         End Try
     End Sub
 
+    Private Sub GridViewHeader_MouseDown(sender As Object, e As MouseEventArgs) Handles GridViewHeader.MouseDown
+        If e.Button <> MouseButtons.Left Then Exit Sub
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = GridViewHeader.CalcHitInfo(e.Location)
+        If Not hitInfo.InColumnPanel OrElse hitInfo.Column Is Nothing OrElse hitInfo.Column.FieldName <> "Selected" Then Exit Sub
+
+        Try
+            GridViewHeader.CloseEditor()
+            GridViewHeader.UpdateCurrentRow()
+
+            Dim selectAll As Boolean = False
+            For i As Integer = 0 To GridViewHeader.DataRowCount - 1
+                Dim selectedValue As Object = GridViewHeader.GetRowCellValue(i, "Selected")
+                If selectedValue Is Nothing OrElse Convert.IsDBNull(selectedValue) OrElse Not Convert.ToBoolean(selectedValue) Then
+                    selectAll = True
+                    Exit For
+                End If
+            Next
+
+            GridViewHeader.BeginDataUpdate()
+            Try
+                For i As Integer = 0 To GridViewHeader.DataRowCount - 1
+                    GridViewHeader.SetRowCellValue(i, "Selected", selectAll)
+                Next
+            Finally
+                GridViewHeader.EndDataUpdate()
+            End Try
+
+            UpdateSelectedNetAmtStatus()
+        Catch ex As Exception
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Recalculates the selected-rows NetAmt total by reading directly from the GridView
     ''' cell values (which include the editing buffer for any in-edit row).
@@ -1435,8 +1469,9 @@ Public Class FrmGenerateTaxReport
     Private Sub UpdateSelectedNetAmtStatus()
         Dim total As Decimal = 0D
         Dim count As Integer = 0
+        Dim rowCount As Integer = GridViewHeader.DataRowCount
         Try
-            For i As Integer = 0 To GridViewHeader.DataRowCount - 1
+            For i As Integer = 0 To rowCount - 1
                 Dim selObj As Object = GridViewHeader.GetRowCellValue(i, "Selected")
                 If selObj IsNot Nothing AndAlso Not Convert.IsDBNull(selObj) AndAlso Convert.ToBoolean(selObj) Then
                     Dim netObj As Object = GridViewHeader.GetRowCellValue(i, "NetAmt")
@@ -1452,6 +1487,7 @@ Public Class FrmGenerateTaxReport
         Else
             barSelectedNetAmt.Caption = "Selected: RM 0.00"
         End If
+        GridColumnSelected.Caption = If(rowCount > 0 AndAlso count = rowCount, "Clear All", "Select All")
     End Sub
 
     Private Sub btnBulkDelete_Click(sender As Object, e As EventArgs) Handles btnBulkDelete.Click

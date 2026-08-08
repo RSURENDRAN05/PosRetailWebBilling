@@ -27,19 +27,19 @@
   </xs:schema>
   <DiscountPolicyTable>
     <Id>3</Id>
-    <Name>Tier 3 15% Off</Name>
+    <Name>TIER 3 15% OFF</Name>
     <DiscountName>Tier 3 - 15% Off</DiscountName>
     <DiscountType>percentage</DiscountType>
     <DiscountValue>15.00</DiscountValue>
     <MinAmount>400.00</MinAmount>
     <RequireVoucher>0</RequireVoucher>
     <ValidDate>2027-12-31 23:59:59</ValidDate>
-    <Active>1</Active>
+    <Active>0</Active>
     <DiscountId>3</DiscountId>
   </DiscountPolicyTable>
   <DiscountPolicyTable>
     <Id>2</Id>
-    <Name>Tier 2 10% Off</Name>
+    <Name>TIER 2 10% OFF</Name>
     <DiscountName>Tier 2 - 10% Off</DiscountName>
     <DiscountType>percentage</DiscountType>
     <DiscountValue>10.00</DiscountValue>
@@ -47,17 +47,17 @@
     <MaxAmount>399.99</MaxAmount>
     <RequireVoucher>0</RequireVoucher>
     <ValidDate>2027-12-31 23:59:59</ValidDate>
-    <Active>1</Active>
+    <Active>0</Active>
     <DiscountId>2</DiscountId>
   </DiscountPolicyTable>
   <DiscountPolicyTable>
     <Id>1</Id>
-    <Name>Tier 1 RM10 Cashback</Name>
+    <Name>TIER 1 RM10 CASHBACK</Name>
     <DiscountName>Tier 1 - RM10 Cashback</DiscountName>
     <DiscountType>amount</DiscountType>
     <DiscountValue>10.00</DiscountValue>
     <MinAmount>50.00</MinAmount>
-    <MaxAmount>199.99</MaxAmount>
+    <MaxAmount>10000.00</MaxAmount>
     <RequireVoucher>1</RequireVoucher>
     <ValidDate>2027-12-31 23:59:59</ValidDate>
     <Active>1</Active>
