@@ -93,7 +93,8 @@ Public Class frmPaymoreII
 
     Private Sub GridControl3_Click(sender As Object, e As EventArgs) Handles GridControl3.Click
         Try
-            'btnpopClear_Click(Nothing, Nothing)
+            If GridView3.FocusedRowHandle < 0 Then Return
+
             lblbtnpayment.Enabled = True
             If lblbtnpayment.Enabled = False Then
                 lblbtnpayment.BackColor = Color.Silver   ' or Color.White
@@ -103,14 +104,20 @@ Public Class frmPaymoreII
             Dim balanceamt As Decimal = 0.0
             Dim paidamt As Decimal = 0.0
             paidamt = GetTotalPaymentAmount()
-            If paidamt = ConvertDecimal(txtPopBillamt.EditValue) Then
-                txtpopbalamt.EditValue = 0
-                Return
-            End If
+
             _PaymentDtl.paymentId = GridView3.GetFocusedRowCellValue("pmode_id")
             _PaymentDtl.paymentModeSelection = GridView3.GetFocusedRowCellValue("pmode_name")
             _PaymentDtl.paymentMode = GridView3.GetFocusedRowCellValue("pmode_type")
             lblpaymode.Text = _PaymentDtl.paymentModeSelection
+
+            If boolMultiplePayment = False Then
+                PaymentDetailTable.Rows.Clear()
+                paidamt = 0D
+            ElseIf paidamt = ConvertDecimal(txtPopBillamt.EditValue) Then
+                txtpopbalamt.EditValue = 0
+                Return
+            End If
+
             If _PaymentDtl.paymentMode = "credit" Then
                 txtadvanceamt.Enabled = True
                 txtclientname.Enabled = True
@@ -478,6 +485,7 @@ Public Class frmPaymoreII
     Private Sub btnmultipayment_Click(sender As Object, e As EventArgs) Handles btnmultipayment.Click
         Try
             If boolMultiplePayment = False Then
+                btnpopClear_Click(Nothing, EventArgs.Empty)
                 boolMultiplePayment = True
                 Label2.Text = "MultiplePayment-Yes"
                 txtentermultipleamount.Enabled = True

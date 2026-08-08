@@ -21,6 +21,7 @@ Partial Class FrmSalesCommission
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSalesCommission))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnreupdateonsales = New DevExpress.XtraEditors.SimpleButton()
         Me.btnbulkdeletebysalesmanid = New DevExpress.XtraEditors.SimpleButton()
         Me.btnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.btnFilter = New DevExpress.XtraEditors.SimpleButton()
@@ -101,9 +102,10 @@ Partial Class FrmSalesCommission
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.SimpleSeparator1 = New DevExpress.XtraLayout.SimpleSeparator()
-        Me.btnreupdateonsales = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.SimpleSeparator1 = New DevExpress.XtraLayout.SimpleSeparator()
+        Me.btnbulkcopy = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cmbFilterSalesman.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,12 +163,14 @@ Partial Class FrmSalesCommission
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.btnbulkcopy)
         Me.LayoutControl1.Controls.Add(Me.btnreupdateonsales)
         Me.LayoutControl1.Controls.Add(Me.btnbulkdeletebysalesmanid)
         Me.LayoutControl1.Controls.Add(Me.btnRefresh)
@@ -202,6 +206,16 @@ Partial Class FrmSalesCommission
         Me.LayoutControl1.Size = New System.Drawing.Size(1200, 700)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'btnreupdateonsales
+        '
+        Me.btnreupdateonsales.Image = CType(resources.GetObject("btnreupdateonsales.Image"), System.Drawing.Image)
+        Me.btnreupdateonsales.Location = New System.Drawing.Point(949, 569)
+        Me.btnreupdateonsales.Name = "btnreupdateonsales"
+        Me.btnreupdateonsales.Size = New System.Drawing.Size(227, 38)
+        Me.btnreupdateonsales.StyleController = Me.LayoutControl1
+        Me.btnreupdateonsales.TabIndex = 31
+        Me.btnreupdateonsales.Text = "ReUpdate Commission On Sales"
         '
         'btnbulkdeletebysalesmanid
         '
@@ -878,7 +892,7 @@ Partial Class FrmSalesCommission
         'LayoutControlGroup4
         '
         Me.LayoutControlGroup4.CustomizationFormText = "Bulk Commission Update"
-        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.EmptySpaceItem3, Me.LayoutControlItem27})
+        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.EmptySpaceItem3, Me.LayoutControlItem27, Me.LayoutControlItem28})
         Me.LayoutControlGroup4.Location = New System.Drawing.Point(0, 341)
         Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
         Me.LayoutControlGroup4.Size = New System.Drawing.Size(1180, 270)
@@ -995,30 +1009,11 @@ Partial Class FrmSalesCommission
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
         Me.EmptySpaceItem3.CustomizationFormText = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(266, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(363, 0)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(890, 42)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(793, 42)
         Me.EmptySpaceItem3.Text = "EmptySpaceItem3"
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'SimpleSeparator1
-        '
-        Me.SimpleSeparator1.AllowHotTrack = False
-        Me.SimpleSeparator1.CustomizationFormText = "SimpleSeparator1"
-        Me.SimpleSeparator1.Location = New System.Drawing.Point(0, 339)
-        Me.SimpleSeparator1.Name = "SimpleSeparator1"
-        Me.SimpleSeparator1.Size = New System.Drawing.Size(1180, 2)
-        Me.SimpleSeparator1.Text = "SimpleSeparator1"
-        '
-        'btnreupdateonsales
-        '
-        Me.btnreupdateonsales.Image = CType(resources.GetObject("btnreupdateonsales.Image"), System.Drawing.Image)
-        Me.btnreupdateonsales.Location = New System.Drawing.Point(949, 569)
-        Me.btnreupdateonsales.Name = "btnreupdateonsales"
-        Me.btnreupdateonsales.Size = New System.Drawing.Size(227, 38)
-        Me.btnreupdateonsales.StyleController = Me.LayoutControl1
-        Me.btnreupdateonsales.TabIndex = 31
-        Me.btnreupdateonsales.Text = "ReUpdate Commission On Sales"
         '
         'LayoutControlItem27
         '
@@ -1031,6 +1026,37 @@ Partial Class FrmSalesCommission
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem27.TextToControlDistance = 0
         Me.LayoutControlItem27.TextVisible = False
+        '
+        'SimpleSeparator1
+        '
+        Me.SimpleSeparator1.AllowHotTrack = False
+        Me.SimpleSeparator1.CustomizationFormText = "SimpleSeparator1"
+        Me.SimpleSeparator1.Location = New System.Drawing.Point(0, 339)
+        Me.SimpleSeparator1.Name = "SimpleSeparator1"
+        Me.SimpleSeparator1.Size = New System.Drawing.Size(1180, 2)
+        Me.SimpleSeparator1.Text = "SimpleSeparator1"
+        '
+        'btnbulkcopy
+        '
+        Me.btnbulkcopy.Image = CType(resources.GetObject("btnbulkcopy.Image"), System.Drawing.Image)
+        Me.btnbulkcopy.Location = New System.Drawing.Point(290, 384)
+        Me.btnbulkcopy.Name = "btnbulkcopy"
+        Me.btnbulkcopy.Size = New System.Drawing.Size(93, 38)
+        Me.btnbulkcopy.StyleController = Me.LayoutControl1
+        Me.btnbulkcopy.TabIndex = 32
+        Me.btnbulkcopy.Text = "Bulk Copy"
+        '
+        'LayoutControlItem28
+        '
+        Me.LayoutControlItem28.Control = Me.btnbulkcopy
+        Me.LayoutControlItem28.CustomizationFormText = "LayoutControlItem28"
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(266, 0)
+        Me.LayoutControlItem28.Name = "LayoutControlItem28"
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(97, 42)
+        Me.LayoutControlItem28.Text = "LayoutControlItem28"
+        Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem28.TextToControlDistance = 0
+        Me.LayoutControlItem28.TextVisible = False
         '
         'FrmSalesCommission
         '
@@ -1098,8 +1124,9 @@ Partial Class FrmSalesCommission
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SimpleSeparator1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1189,4 +1216,6 @@ Partial Class FrmSalesCommission
     Friend WithEvents SimpleSeparator1 As DevExpress.XtraLayout.SimpleSeparator
     Friend WithEvents btnreupdateonsales As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnbulkcopy As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem28 As DevExpress.XtraLayout.LayoutControlItem
 End Class

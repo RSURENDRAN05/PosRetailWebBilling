@@ -3590,6 +3590,61 @@ Public Class PosSalesII
             Return False
         End Try
     End Function
+    Private Function IsAutoDiscountAllowed(ByVal value As Object) As Boolean
+        If value Is Nothing OrElse Convert.IsDBNull(value) Then Return False
+
+        Dim normalizedValue As String = value.ToString().Trim()
+        Return normalizedValue = "1" OrElse normalizedValue.Equals("true", StringComparison.OrdinalIgnoreCase)
+    End Function
+
+    Private Function CanApplyAutoDiscountForCurrentBill(Optional ByVal followMainGroupOnly As Boolean = False) As Boolean
+        Try
+            If _JsonData.ItemTouchMasterTable.Rows.Count = 0 OrElse _JsonData.MainGroupTable.Rows.Count = 0 Then
+                Return False
+            End If
+            If Not _JsonData.MainGroupTable.Columns.Contains("AllowDiscount") Then
+                Return False
+            End If
+            If Not followMainGroupOnly AndAlso Not _JsonData.ItemTouchMasterTable.Columns.Contains("AllowDiscount") Then
+                Return False
+            End If
+
+            Dim itemMap As New Dictionary(Of String, DataRow)
+            For Each masterRow As DataRow In _JsonData.ItemTouchMasterTable.Rows
+                Dim itemCode As String = masterRow("Id").ToString()
+                If Not itemMap.ContainsKey(itemCode) Then
+                    itemMap.Add(itemCode, masterRow)
+                End If
+            Next
+
+            For Each salesRow As DataRow In GridDataTble_Insert.Rows
+                Dim itemCode As String = salesRow("ITEMCODE").ToString()
+                If Not itemMap.ContainsKey(itemCode) Then Continue For
+
+                Dim itemMasterRow As DataRow = itemMap(itemCode)
+                If Not followMainGroupOnly AndAlso Not IsAutoDiscountAllowed(itemMasterRow("AllowDiscount")) Then Continue For
+
+                Dim mainId As String = itemMasterRow("MainId").ToString()
+                If String.IsNullOrEmpty(mainId) Then Continue For
+
+                Dim mainRows() As DataRow = _JsonData.MainGroupTable.Select("MainId = '" & mainId.Replace("'", "''") & "'")
+                If mainRows.Length = 0 Then Continue For
+                Dim mainGroupAllowsDiscount As Boolean = True
+                For Each mainRow As DataRow In mainRows
+                    If Not IsAutoDiscountAllowed(mainRow("AllowDiscount")) Then
+                        mainGroupAllowsDiscount = False
+                        Exit For
+                    End If
+                Next
+                If mainGroupAllowsDiscount Then Return True
+            Next
+
+            Return False
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
     Private Function ApplyAutoDiscOfferBeforePayment()
         Try
             If _JsonData.DiscountPolicyTable.Rows.Count = 0 Then Exit Try
@@ -3660,6 +3715,7 @@ Public Class PosSalesII
                 If String.IsNullOrWhiteSpace(voucher) Then Exit Try
 
                 ' Validate voucher via server (AjaxRequest=91)
+                Dim voucherIsValid As Boolean = False
                 Try
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                     Dim vResponse As String = New WebClient().DownloadString(
@@ -3676,12 +3732,14 @@ Public Class PosSalesII
                     End If
                     _pendingVoucherId = vObj("VoucherId").ToObject(Of Integer)()
                     _pendingVoucherNo = vObj("VoucherNo").ToObject(Of Integer)()
+                    voucherIsValid = True
                 Catch exv As Exception
                     DevExpress.XtraEditors.XtraMessageBox.Show(
                         "Voucher validation error: " & exv.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Try
                 End Try
+                If Not voucherIsValid Then Exit Try
             End If
 
             ' --- Step 6: Calculate discount amount based on total bill ---
@@ -3695,7 +3753,7 @@ Public Class PosSalesII
             End If
             If discAmt <= 0D Then Exit Try
 
-            ' --- Step 7: Collect eligible items (MainGroup AllowDiscount = 1) ---
+            ' --- Step 7: Collect rows whose MainGroup allows discounts ---
             Dim eligibleRows As New List(Of Integer)
             Dim eligibleTotal As Decimal = 0D
             For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
@@ -3706,7 +3764,14 @@ Public Class PosSalesII
                 If String.IsNullOrEmpty(mId) Then Continue For
                 Dim mainRows() As DataRow = _JsonData.MainGroupTable.Select("MainId = '" & mId & "'")
                 If mainRows.Length = 0 Then Continue For
-                If mainRows(0)("AllowDiscount").ToString() <> "1" Then Continue For
+                Dim mainGroupAllowsDiscount As Boolean = True
+                For Each mainRow As DataRow In mainRows
+                    If Not IsAutoDiscountAllowed(mainRow("AllowDiscount")) Then
+                        mainGroupAllowsDiscount = False
+                        Exit For
+                    End If
+                Next
+                If Not mainGroupAllowsDiscount Then Continue For
                 eligibleRows.Add(i)
                 eligibleTotal += Convert.ToDecimal(r("TAMOUNT"))
             Next
@@ -3749,8 +3814,9 @@ Public Class PosSalesII
     Private Function PaymentProcess() As Boolean
         Try
             'procesing of auto discount and offer before payment calculation based on discount policy
-            If _globalSetting.AutoDiscountSchemes = True Then
-                If GridDataTble_Insert.Rows.Count > 0 Then
+            If _globalSetting.AutoDiscountSchemes = False Then
+                Dim followMainGroupOnly As Boolean = True
+                If GridDataTble_Insert.Rows.Count > 0 AndAlso CanApplyAutoDiscountForCurrentBill(followMainGroupOnly) Then
                     ApplyAutoDiscOfferBeforePayment()
                 End If
             End If

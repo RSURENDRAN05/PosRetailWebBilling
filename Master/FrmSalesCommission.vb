@@ -1599,4 +1599,112 @@ Public Class FrmSalesCommission
             MessageBox.Show("Error Updating Commission On Sales: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub btnbulkcopy_Click(sender As Object, e As EventArgs) Handles btnbulkcopy.Click
+        Try
+
+            If cmbFilterSalesman.EditValue Is Nothing OrElse IsDBNull(cmbFilterSalesman.EditValue) Then
+                MessageBox.Show("Select the old employee in 'Filter by Salesman' first.", "Source Employee Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            UpdateSelectedSalesmenFromComboBox()
+            If selectedSalesmenIds.Count = 0 Then
+                MessageBox.Show("Select the new employee in the bulk Salesman list.", "Target Employee Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim sourceEmpId As Integer = Convert.ToInt32(cmbFilterSalesman.EditValue)
+            Dim sourceEmpName As String = cmbFilterSalesman.Text
+            Dim targetEmployeeIds As List(Of Integer) = selectedSalesmenIds.Where(Function(empId) empId <> sourceEmpId).Distinct().ToList()
+
+            If targetEmployeeIds.Count = 0 Then
+                MessageBox.Show("The source and target employee cannot be the same.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            LoadCommissionsBySalesman(sourceEmpId)
+            Dim sourceCommissions As DataTable = commissionsTable.Copy()
+            If sourceCommissions.Rows.Count = 0 Then
+                MessageBox.Show("The selected old employee has no commission profile to copy.", "No Commission Profile", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            Dim targetNames As New List(Of String)
+            For Each targetEmpId As Integer In targetEmployeeIds
+                targetNames.Add(GetEmployeeNameById(targetEmpId))
+            Next
+
+            Dim totalOperations As Integer = sourceCommissions.Rows.Count * targetEmployeeIds.Count
+            Dim confirmMessage As String = "Copy commission profile from:" & vbCrLf &
+                                           sourceEmpName & vbCrLf & vbCrLf &
+                                           "To:" & vbCrLf & String.Join(", ", targetNames.ToArray()) & vbCrLf & vbCrLf &
+                                           "Commission rows: " & sourceCommissions.Rows.Count.ToString() & vbCrLf &
+                                           "Total copies: " & totalOperations.ToString() & vbCrLf & vbCrLf &
+                                           "Existing commissions will be skipped. Continue?"
+            If MessageBox.Show(confirmMessage, "Confirm Bulk Copy", MessageBoxButtons.YesNo, MessageBoxIcon.Question) <> DialogResult.Yes Then
+                Exit Sub
+            End If
+
+            Dim successCount As Integer = 0
+            Dim skippedCount As Integer = 0
+            Dim errorCount As Integer = 0
+            Dim errorDetails As New List(Of String)
+
+            Cursor.Current = Cursors.WaitCursor
+            btnbulkcopy.Enabled = False
+
+            For Each targetEmpId As Integer In targetEmployeeIds
+                For Each sourceRow As DataRow In sourceCommissions.Rows
+                    Try
+                        Dim commissionData As New Dictionary(Of String, Object)
+                        commissionData("emp_id") = targetEmpId
+                        commissionData("item_id") = Convert.ToInt32(sourceRow("item_id"))
+                        commissionData("sub_group_id") = Convert.ToInt32(sourceRow("sub_group_id"))
+                        commissionData("commission_percentage") = Convert.ToDecimal(sourceRow("commission_percentage"))
+                        commissionData("commission_type") = sourceRow("commission_type").ToString()
+                        commissionData("fixed_amount") = Convert.ToDecimal(sourceRow("fixed_amount"))
+                        commissionData("status") = If(Convert.ToBoolean(sourceRow("status")), 1, 0)
+
+                        Dim jsonString As String = JsonConvert.SerializeObject(commissionData)
+                        Dim url As String = M_Details.LinkAjaxRequest & "SalesManCommission=4&json=" & Uri.EscapeDataString(jsonString)
+                        Dim response As String = New WebClient().DownloadString(url)
+                        Dim parsedJson As JObject = JObject.Parse(response)
+                        Dim isSuccess As Boolean = parsedJson("Success") IsNot Nothing AndAlso Convert.ToBoolean(parsedJson("Success").ToString())
+                        Dim responseMessage As String = If(parsedJson("Msg") Is Nothing, String.Empty, parsedJson("Msg").ToString())
+
+                        If isSuccess Then
+                            successCount += 1
+                        ElseIf responseMessage.IndexOf("already exists", StringComparison.OrdinalIgnoreCase) >= 0 Then
+                            skippedCount += 1
+                        Else
+                            errorCount += 1
+                            errorDetails.Add(GetEmployeeNameById(targetEmpId) & " / Item " & sourceRow("item_id").ToString() & ": " & responseMessage)
+                        End If
+                    Catch rowEx As Exception
+                        errorCount += 1
+                        errorDetails.Add(GetEmployeeNameById(targetEmpId) & " / Item " & sourceRow("item_id").ToString() & ": " & rowEx.Message)
+                    End Try
+                Next
+            Next
+
+            LoadAllCommissions()
+
+            Dim resultMessage As String = "Bulk copy completed." & vbCrLf & vbCrLf &
+                                          "Created: " & successCount.ToString() & vbCrLf &
+                                          "Skipped existing: " & skippedCount.ToString() & vbCrLf &
+                                          "Errors: " & errorCount.ToString()
+            If errorDetails.Count > 0 Then
+                resultMessage &= vbCrLf & vbCrLf & "First errors:" & vbCrLf & String.Join(vbCrLf, errorDetails.Take(5).ToArray())
+            End If
+
+            MessageBox.Show(resultMessage, "Bulk Copy Results", MessageBoxButtons.OK,
+                            If(errorCount = 0, MessageBoxIcon.Information, MessageBoxIcon.Warning))
+        Catch ex As Exception
+            MessageBox.Show("Error copying commission profile: " & ex.Message, "Bulk Copy Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            btnbulkcopy.Enabled = True
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
 End Class
