@@ -3814,7 +3814,7 @@ Public Class PosSalesII
     Private Function PaymentProcess() As Boolean
         Try
             'procesing of auto discount and offer before payment calculation based on discount policy
-            If _globalSetting.AutoDiscountSchemes = False Then
+            If _globalSetting.AutoDiscountSchemes = True Then
                 Dim followMainGroupOnly As Boolean = True
                 If GridDataTble_Insert.Rows.Count > 0 AndAlso CanApplyAutoDiscountForCurrentBill(followMainGroupOnly) Then
                     ApplyAutoDiscOfferBeforePayment()
