@@ -279,6 +279,7 @@
     <Compile Include="ClsModule\mySqlConnection.vb" />
     <Compile Include="ClsModule\M_CONNECT.vb" />
     <Compile Include="ClsModule\SalesDBHelper.vb" />
+    <Compile Include="ClsModule\VoucherUsageDBHelper.vb" />
     <Compile Include="ClsModule\shiftclosecheck.vb" />
     <Compile Include="Controller\frmMsgBoxOkOnly.designer.vb">
       <DependentUpon>frmMsgBoxOkOnly.vb</DependentUpon>

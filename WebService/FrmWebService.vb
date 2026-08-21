@@ -35,6 +35,8 @@ Public Class FrmUploadSalesAutoSync
                     Threading.Thread.Sleep(5000)
                     UploadPayoutToCloud()
                     Threading.Thread.Sleep(5000)
+                    UploadVoucherUsageToCloud()
+                    Threading.Thread.Sleep(5000)
                     PostMismatchDataReupdate()
                 End If
             End If
@@ -606,6 +608,55 @@ Public Class FrmUploadSalesAutoSync
         End Try
         Return False
     End Function
+#End Region
+#Region "UploadVoucherUsageData"
+    ''' <summary>
+    ''' Safety net for voucher redemptions that PosSalesII could not confirm immediately
+    ''' (POS was offline right after payment). Retries pos_voucher_usage rows still marked
+    ''' vu_pushstatus = 0 against AjaxRequest=92, then marks them pushed on success.
+    ''' </summary>
+    Private Sub UploadVoucherUsageToCloud()
+        Try
+            Dim usageHelper As New VoucherUsageDBHelper(M_Details._Conn)
+            Dim pending As DataTable = usageHelper.GetPendingVoucherUsage()
+            If pending Is Nothing OrElse pending.Rows.Count = 0 Then Exit Sub
+
+            LogTransactionInfo("VoucherUsageSync", "Found " & pending.Rows.Count.ToString() & " pending voucher usage record(s).")
+
+            For Each row As DataRow In pending.Rows
+                Dim usageId As Integer = Convert.ToInt32(row("vu_id"))
+                Try
+                    Dim usagePayload = New With {
+                        .voucher_id = Convert.ToInt32(row("vu_voucherid")),
+                        .voucher_no = Convert.ToInt32(row("vu_voucherno")),
+                        .vouchercode = row("vu_vouchercode").ToString(),
+                        .sal_id = row("vu_billno").ToString(),
+                        .comid = Convert.ToInt32(row("vu_comid")),
+                        .locid = Convert.ToInt32(row("vu_locid")),
+                        .shiftno = Convert.ToInt32(row("vu_shiftno")),
+                        .dayno = Convert.ToInt32(row("vu_dayno")),
+                        .billamount = Convert.ToDecimal(row("vu_billamount"))
+                    }
+                    Dim usageJson As String = JsonConvert.SerializeObject(usagePayload)
+                    Dim postData As String = "json=" & Uri.EscapeDataString(usageJson)
+
+                    Dim _results As Boolean
+                    Dim _msg As String = ""
+                    Dim _data As String = ""
+                    If JsonPostSales(M_Details.LinkAjaxRequest & "AjaxRequest=92", "POST", postData, _results, _msg, _data) = True Then
+                        usageHelper.MarkVoucherUsagePushed(usageId)
+                        LogTransactionSuccess("VoucherUsage:" & usageId.ToString(), "Confirmed to cloud - voucher_no " & row("vu_voucherno").ToString())
+                    Else
+                        LogTransactionFailure("VoucherUsage:" & usageId.ToString(), "Confirm failed - " & _msg)
+                    End If
+                Catch exRow As Exception
+                    LogTransactionFailure("VoucherUsage:" & usageId.ToString(), "Error - " & exRow.Message)
+                End Try
+            Next
+        Catch ex As Exception
+            LogTransactionFailure("UploadVoucherUsageToCloud Error", ex.Message)
+        End Try
+    End Sub
 #End Region
 #Region "PostMismatchData"
 

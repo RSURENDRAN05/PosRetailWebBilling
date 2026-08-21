@@ -38,4 +38,30 @@
     <back_color>Argb(255,255,192,128)</back_color>
     <Position>0</Position>
   </MainGroupPolicyTable>
+  <MainGroupPolicyTable>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <id>3</id>
+    <item_id>3</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>25.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,192,128)</back_color>
+    <Position>2</Position>
+  </MainGroupPolicyTable>
+  <MainGroupPolicyTable>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <id>2</id>
+    <item_id>2</item_id>
+    <menu_type>Main</menu_type>
+    <font_size>25.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,192,128)</back_color>
+    <Position>3</Position>
+  </MainGroupPolicyTable>
 </NewDataSet>

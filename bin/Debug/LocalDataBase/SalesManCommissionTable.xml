@@ -3649,13 +3649,13 @@
     <Updated>2025-10-16 18:03:50</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>483</CommissionId>
+    <CommissionId>484</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>102</ItemId>
-    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
-    <Barcode>101</Barcode>
+    <ItemId>101</ItemId>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <Barcode>100</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
@@ -3667,13 +3667,13 @@
     <Updated>2025-10-16 18:03:51</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
-    <CommissionId>484</CommissionId>
+    <CommissionId>483</CommissionId>
     <EmpId>18</EmpId>
     <SalesmanName>KHUSHI</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
-    <ItemId>101</ItemId>
-    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
-    <Barcode>100</Barcode>
+    <ItemId>102</ItemId>
+    <ItemName>SPA MANI-PEDI [GEL COLOUR]</ItemName>
+    <Barcode>101</Barcode>
     <SubGroupId>8</SubGroupId>
     <SubGroupName>ADMIN ONLY</SubGroupName>
     <MainGroupName>NAILS</MainGroupName>
@@ -5429,6 +5429,438 @@
     <Status>1</Status>
     <Created>2025-10-07 20:38:45</Created>
     <Updated>2025-10-07 20:38:45</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>798</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>25</ItemId>
+    <ItemName>FACE WAX    [Full]</ItemName>
+    <Barcode>24</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:27</Created>
+    <Updated>2026-08-13 22:15:27</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>799</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>19</ItemId>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <Barcode>19</Barcode>
+    <SubGroupId>6</SubGroupId>
+    <SubGroupName>FACE WAX</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:28</Created>
+    <Updated>2026-08-13 22:15:28</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>800</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>12</ItemId>
+    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <Barcode>12</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:29</Created>
+    <Updated>2026-08-13 22:15:29</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>801</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>35</ItemId>
+    <ItemName>FACE MASK</ItemName>
+    <Barcode>34</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:30</Created>
+    <Updated>2026-08-13 22:15:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>802</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>20</ItemId>
+    <ItemName>FACE MASSAGE</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:30</Created>
+    <Updated>2026-08-13 22:15:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>803</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>10</ItemId>
+    <ItemName>FACE WASH</ItemName>
+    <Barcode>10</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:30</Created>
+    <Updated>2026-08-13 22:15:30</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>804</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>13</ItemId>
+    <ItemName>FACIAL     [Classic]</ItemName>
+    <Barcode>13</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:31</Created>
+    <Updated>2026-08-13 22:15:31</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>805</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>14</ItemId>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
+    <Barcode>14</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:32</Created>
+    <Updated>2026-08-13 22:15:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>806</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>31</ItemId>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
+    <Barcode>30</Barcode>
+    <SubGroupId>3</SubGroupId>
+    <SubGroupName>FACIAL</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:32</Created>
+    <Updated>2026-08-13 22:15:32</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>807</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>29</ItemId>
+    <ItemName>BEARD          TOUCH UP</ItemName>
+    <Barcode>28</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:33</Created>
+    <Updated>2026-08-13 22:15:33</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>808</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>9</ItemId>
+    <ItemName>HAIR COLOURING</ItemName>
+    <Barcode>9</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:34</Created>
+    <Updated>2026-08-13 22:15:34</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>809</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>8</ItemId>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <Barcode>8</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:34</Created>
+    <Updated>2026-08-13 22:15:34</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>810</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>7</ItemId>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <Barcode>7</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:35</Created>
+    <Updated>2026-08-13 22:15:35</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>811</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>30</ItemId>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <Barcode>29</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:35</Created>
+    <Updated>2026-08-13 22:15:35</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>812</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>28</ItemId>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <Barcode>27</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:36</Created>
+    <Updated>2026-08-13 22:15:36</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>813</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>27</ItemId>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <Barcode>26</Barcode>
+    <SubGroupId>2</SubGroupId>
+    <SubGroupName>HAIR DYE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:38</Created>
+    <Updated>2026-08-13 22:15:38</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>814</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>32</ItemId>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <Barcode>31</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:39</Created>
+    <Updated>2026-08-13 22:15:39</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>815</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>17</ItemId>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <Barcode>17</Barcode>
+    <SubGroupId>5</SubGroupId>
+    <SubGroupName>HAIR TREATMENT</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:39</Created>
+    <Updated>2026-08-13 22:15:39</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>816</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>16</ItemId>
+    <ItemName>OIL MASSAGE</ItemName>
+    <Barcode>16</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:40</Created>
+    <Updated>2026-08-13 22:15:40</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>817</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>15</ItemId>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <Barcode>15</Barcode>
+    <SubGroupId>4</SubGroupId>
+    <SubGroupName>OIL MASSAGE</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:40</Created>
+    <Updated>2026-08-13 22:15:40</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>818</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>34</ItemId>
+    <ItemName>HAIR PERMING</ItemName>
+    <Barcode>33</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:41</Created>
+    <Updated>2026-08-13 22:15:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>819</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>18</ItemId>
+    <ItemName>HAIR SETTING</ItemName>
+    <Barcode>18</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>0.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:41</Created>
+    <Updated>2026-08-13 22:15:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>820</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>21</ItemId>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
+    <Barcode>20</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:41</Created>
+    <Updated>2026-08-13 22:15:41</Updated>
+  </SalesManCommissionTable>
+  <SalesManCommissionTable>
+    <CommissionId>821</CommissionId>
+    <EmpId>23</EmpId>
+    <SalesmanName>LALLU</SalesmanName>
+    <Designation>ACCOUNTANT</Designation>
+    <ItemId>33</ItemId>
+    <ItemName>THREADING</ItemName>
+    <Barcode>32</Barcode>
+    <SubGroupId>7</SubGroupId>
+    <SubGroupName>OTHERS</SubGroupName>
+    <MainGroupName>BARBER</MainGroupName>
+    <CommissionPercentage>10.00</CommissionPercentage>
+    <CommissionType>PERCENTAGE</CommissionType>
+    <FixedAmount>0.00</FixedAmount>
+    <Status>1</Status>
+    <Created>2026-08-13 22:15:42</Created>
+    <Updated>2026-08-13 22:15:42</Updated>
   </SalesManCommissionTable>
   <SalesManCommissionTable>
     <CommissionId>226</CommissionId>

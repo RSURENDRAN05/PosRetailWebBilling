@@ -1723,7 +1723,13 @@ if (isset($_REQUEST['AjaxRequest'])) {
         $ok   = $clsfunreq->_RecordVoucherUsage(
             (int)$json['voucher_id'],
             (int)$json['voucher_no'],
-            (int)$json['sal_id']
+            (int)$json['sal_id'],
+            isset($json['comid']) ? (int)$json['comid'] : 0,
+            isset($json['locid']) ? (int)$json['locid'] : 0,
+            isset($json['shiftno']) ? (int)$json['shiftno'] : 0,
+            isset($json['dayno']) ? (int)$json['dayno'] : 0,
+            isset($json['billamount']) ? (float)$json['billamount'] : 0,
+            isset($json['vouchercode']) ? $json['vouchercode'] : ''
         );
         echo json_encode(array("Success" => (bool)$ok));
     }

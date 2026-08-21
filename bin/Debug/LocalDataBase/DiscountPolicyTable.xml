@@ -52,8 +52,8 @@
   </DiscountPolicyTable>
   <DiscountPolicyTable>
     <Id>1</Id>
-    <Name>TIER 1 RM10 CASHBACK</Name>
-    <DiscountName>Tier 1 - RM10 Cashback</DiscountName>
+    <Name>HOTEL RM10 CASHBACK</Name>
+    <DiscountName>HOTEL - RM10 Cashback</DiscountName>
     <DiscountType>amount</DiscountType>
     <DiscountValue>10.00</DiscountValue>
     <MinAmount>50.00</MinAmount>

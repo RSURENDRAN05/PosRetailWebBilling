@@ -6226,14 +6226,16 @@ class funcProcessMgmt
     }
 
     /** 92 – Record voucher usage after bill is successfully saved */
-    public function _RecordVoucherUsage($voucher_id, $voucher_no, $sal_id)
+    public function _RecordVoucherUsage($voucher_id, $voucher_no, $sal_id, $comid = 0, $locid = 0, $shiftno = 0, $dayno = 0, $billamount = 0, $vouchercode = '')
     {
         $conn = $this->conn;
         $stmt = mysqli_prepare(
             $conn,
-            "INSERT INTO `voucher_sales` (`voucher_id`,`voucher_no`,`sal_id`) VALUES (?, ?, ?)"
+            "INSERT INTO `voucher_sales`
+                (`voucher_id`,`voucher_no`,`vs_vouchercode`,`sal_id`,`vs_comid`,`vs_locid`,`vs_shiftno`,`vs_dayno`,`vs_billamount`)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
-        mysqli_stmt_bind_param($stmt, "iii", $voucher_id, $voucher_no, $sal_id);
+        mysqli_stmt_bind_param($stmt, "iisiiiiid", $voucher_id, $voucher_no, $vouchercode, $sal_id, $comid, $locid, $shiftno, $dayno, $billamount);
         $ok = mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         return $ok;

@@ -28,13 +28,15 @@ Public Class PosSalesII
     Private _CashDraw As New RawPrinter
     Dim salesHelper As New SalesDBHelper(M_Details._Conn)
     Dim billHoldHelper As New BillHoldDBHelper(M_Details._Conn)
+    Dim voucherUsageHelper As New VoucherUsageDBHelper(M_Details._Conn)
     Private _isSelectionMode As Boolean = False
     Dim stpole1 As String = M_Details._shopName
     Dim NetAmountGlobal As Decimal = 0.0
     Private _recallHoldBill As Boolean = False
     Private _pendingVoucherId As Integer = 0
     Private _pendingVoucherNo As Integer = 0
-   
+    Private _pendingVoucherCode As String = ""
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -3670,26 +3672,52 @@ Public Class PosSalesII
                 _RecalculateRowTotals(i)
             Next
 
-            ' --- Step 3: Calculate TOTAL bill amount (all rows) ---
+            ' --- Step 3: Calculate TOTAL bill amount (all rows, for display only) ---
             Dim totalBillAmt As Decimal = 0D
             For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
                 totalBillAmt += Convert.ToDecimal(GridDataTble_Insert.Rows(i)("TAMOUNT"))
             Next
             If totalBillAmt <= 0D Then Exit Try
 
-            ' --- Step 4: Match tier against total bill amount (highest qualifying tier) ---
+            ' --- Step 3b: Calculate ELIGIBLE amount (only rows whose Main Group allows discount) ---
+            ' Voucher/tier eligibility must be based on this amount, never on the overall bill total,
+            ' since items belonging to non-discountable groups must be excluded entirely.
+            Dim eligibleRows As New List(Of Integer)
+            Dim eligibleTotal As Decimal = 0D
+            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
+                Dim r As DataRow = GridDataTble_Insert.Rows(i)
+                Dim code As String = r("ITEMCODE").ToString()
+                If Not itemMainMap.ContainsKey(code) Then Continue For
+                Dim mId As String = itemMainMap(code)
+                If String.IsNullOrEmpty(mId) Then Continue For
+                Dim mainRows() As DataRow = _JsonData.MainGroupTable.Select("MainId = '" & mId.Replace("'", "''") & "'")
+                If mainRows.Length = 0 Then Continue For
+                Dim mainGroupAllowsDiscount As Boolean = True
+                For Each mainRow As DataRow In mainRows
+                    If Not IsAutoDiscountAllowed(mainRow("AllowDiscount")) Then
+                        mainGroupAllowsDiscount = False
+                        Exit For
+                    End If
+                Next
+                If Not mainGroupAllowsDiscount Then Continue For
+                eligibleRows.Add(i)
+                eligibleTotal += Convert.ToDecimal(r("TAMOUNT"))
+            Next
+            If eligibleRows.Count = 0 OrElse eligibleTotal <= 0D Then Exit Try
+
+            ' --- Step 4: Match tier against the ELIGIBLE amount (highest qualifying tier) ---
             Dim today As Date = Date.Today
             Dim matchedPolicy As DataRow = Nothing
             Dim highestMin As Decimal = -1D
             For Each pol As DataRow In _JsonData.DiscountPolicyTable.Rows
                 If pol("Active").ToString() <> "1" Then Continue For
                 Dim minAmt As Decimal = Convert.ToDecimal(pol("MinAmount"))
-                If totalBillAmt < minAmt Then Continue For
+                If eligibleTotal < minAmt Then Continue For
                 Dim maxAmtStr As String = pol("MaxAmount").ToString()
                 If Not String.IsNullOrEmpty(maxAmtStr) Then
                     Dim maxAmt As Decimal
                     If Decimal.TryParse(maxAmtStr, maxAmt) AndAlso maxAmt > 0D _
-                       AndAlso totalBillAmt > maxAmt Then Continue For
+                       AndAlso eligibleTotal > maxAmt Then Continue For
                 End If
                 Dim validDateStr As String = pol("ValidDate").ToString()
                 If Not String.IsNullOrEmpty(validDateStr) Then
@@ -3706,6 +3734,7 @@ Public Class PosSalesII
             ' --- Step 5: Voucher gate if required ---
             _pendingVoucherId = 0
             _pendingVoucherNo = 0
+            _pendingVoucherCode = ""
             If matchedPolicy("RequireVoucher").ToString() = "1" Then
                 properClass.R_TextNumKey = ""
                 Dim kb As New xkeyboard
@@ -3732,6 +3761,7 @@ Public Class PosSalesII
                     End If
                     _pendingVoucherId = vObj("VoucherId").ToObject(Of Integer)()
                     _pendingVoucherNo = vObj("VoucherNo").ToObject(Of Integer)()
+                    _pendingVoucherCode = voucher.Trim().ToUpper()
                     voucherIsValid = True
                 Catch exv As Exception
                     DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -3742,40 +3772,18 @@ Public Class PosSalesII
                 If Not voucherIsValid Then Exit Try
             End If
 
-            ' --- Step 6: Calculate discount amount based on total bill ---
+            ' --- Step 6: Calculate discount amount based on the ELIGIBLE amount only ---
             Dim discType As String = matchedPolicy("DiscountType").ToString().ToLower().Trim()
             Dim discValue As Decimal = Convert.ToDecimal(matchedPolicy("DiscountValue"))
             Dim discAmt As Decimal = 0D
             If discType = "percentage" Then
-                discAmt = Math.Round((totalBillAmt * discValue) / 100D, 2)
+                discAmt = Math.Round((eligibleTotal * discValue) / 100D, 2)
             Else
                 discAmt = discValue
             End If
             If discAmt <= 0D Then Exit Try
 
-            ' --- Step 7: Collect rows whose MainGroup allows discounts ---
-            Dim eligibleRows As New List(Of Integer)
-            Dim eligibleTotal As Decimal = 0D
-            For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
-                Dim r As DataRow = GridDataTble_Insert.Rows(i)
-                Dim code As String = r("ITEMCODE").ToString()
-                If Not itemMainMap.ContainsKey(code) Then Continue For
-                Dim mId As String = itemMainMap(code)
-                If String.IsNullOrEmpty(mId) Then Continue For
-                Dim mainRows() As DataRow = _JsonData.MainGroupTable.Select("MainId = '" & mId & "'")
-                If mainRows.Length = 0 Then Continue For
-                Dim mainGroupAllowsDiscount As Boolean = True
-                For Each mainRow As DataRow In mainRows
-                    If Not IsAutoDiscountAllowed(mainRow("AllowDiscount")) Then
-                        mainGroupAllowsDiscount = False
-                        Exit For
-                    End If
-                Next
-                If Not mainGroupAllowsDiscount Then Continue For
-                eligibleRows.Add(i)
-                eligibleTotal += Convert.ToDecimal(r("TAMOUNT"))
-            Next
-            If eligibleRows.Count = 0 OrElse eligibleTotal <= 0D Then Exit Try
+            ' --- Step 7: eligibleRows/eligibleTotal already computed in Step 3b ---
 
             ' --- Step 8: Distribute discount proportionally across eligible items only ---
             For Each ri As Integer In eligibleRows
@@ -3802,6 +3810,7 @@ Public Class PosSalesII
             DevExpress.XtraEditors.XtraMessageBox.Show(
                 "Auto discount applied: " & matchedPolicy("Name").ToString() & " (" & discDisplay & ")" &
                 vbCrLf & "Bill Total: RM " & totalBillAmt.ToString("0.00") &
+                vbCrLf & "Eligible Total: RM " & eligibleTotal.ToString("0.00") &
                 vbCrLf & "Discount: RM " & discAmt.ToString("0.00"),
                 M_Details.SoftwareVersion, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -3811,10 +3820,60 @@ Public Class PosSalesII
 
     End Function
 
+    ''' <summary>
+    ''' Records a voucher redemption after the bill has been saved successfully.
+    ''' 1) Always writes a local MSSQL audit row (pos_voucher_usage) - billno/billamount/comid/locid/shiftno/dayno.
+    ''' 2) Best-effort immediately confirms it to the cloud (AjaxRequest=92 -> voucher_sales) so the
+    '''    voucher_no can never be validated/reused again. If offline, the row is left pending
+    '''    (vu_pushstatus = 0) and TimerAutoSyncSales_Tick's UploadVoucherUsageToCloud retries it later.
+    ''' No-op if no voucher was applied to this bill.
+    ''' </summary>
+    Private Sub RecordVoucherUsageAfterPayment(billNo As String, billAmount As Decimal, shiftNo As Integer, dayNo As Integer)
+        If _pendingVoucherId <= 0 Then Exit Sub
+        Try
+            Dim vErr As String = ""
+            Dim newUsageId As Integer = 0
+
+            If voucherUsageHelper.SaveVoucherUsage(_pendingVoucherId, _pendingVoucherNo, _pendingVoucherCode, billNo, billAmount,
+                                                    _companyInfo.ComId, _companyInfo.LocId, shiftNo, dayNo,
+                                                    vErr, newUsageId) Then
+                Try
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                    Dim usageJson As String = New JObject() From {
+                        {"voucher_id", _pendingVoucherId},
+                        {"voucher_no", _pendingVoucherNo},
+                        {"vouchercode", _pendingVoucherCode},
+                        {"sal_id", billNo},
+                        {"comid", _companyInfo.ComId},
+                        {"locid", _companyInfo.LocId},
+                        {"shiftno", shiftNo},
+                        {"dayno", dayNo},
+                        {"billamount", billAmount}
+                    }.ToString(Newtonsoft.Json.Formatting.None)
+                    Dim confirmUrl As String = M_Details.LinkAjaxRequest & "AjaxRequest=92&json=" & Uri.EscapeDataString(usageJson)
+                    Dim vResp As String = New WebClient().DownloadString(confirmUrl)
+                    Dim vObj As JObject = JObject.Parse(vResp)
+                    If vObj("Success") IsNot Nothing AndAlso vObj("Success").ToObject(Of Boolean)() Then
+                        voucherUsageHelper.MarkVoucherUsagePushed(newUsageId)
+                    End If
+                Catch
+                    ' Offline or server error - background sync (UploadVoucherUsageToCloud) will retry.
+                End Try
+            End If
+        Catch ex As Exception
+            ' Never block a completed sale on voucher bookkeeping - the bill is already paid and saved.
+            System.Diagnostics.Debug.WriteLine("RecordVoucherUsageAfterPayment Error: " & ex.Message)
+        Finally
+            _pendingVoucherId = 0
+            _pendingVoucherNo = 0
+            _pendingVoucherCode = ""
+        End Try
+    End Sub
+
     Private Function PaymentProcess() As Boolean
         Try
             'procesing of auto discount and offer before payment calculation based on discount policy
-            If _globalSetting.AutoDiscountSchemes = True Then
+            If _globalSetting.AutoDiscountSchemes = False Then
                 Dim followMainGroupOnly As Boolean = True
                 If GridDataTble_Insert.Rows.Count > 0 AndAlso CanApplyAutoDiscountForCurrentBill(followMainGroupOnly) Then
                     ApplyAutoDiscOfferBeforePayment()
@@ -4009,6 +4068,15 @@ Public Class PosSalesII
                             If BillHoldTokenNo > 0 And BillHoldTrno > 0 Then
                                 billHoldHelper.UpdateHoldBillStatus(BillHoldTokenNo, BillHoldTrno)
                             End If
+
+                            ' Voucher was used on this bill - record it now that payment is confirmed,
+                            ' so it can never be applied to another bill (billno = reference number).
+                            Dim voucherShiftNo As Integer = 0
+                            Dim voucherDayNo As Integer = 0
+                            Integer.TryParse(_saleData.psih_invoice_shiftno, voucherShiftNo)
+                            Integer.TryParse(_saleData.psih_invoice_dayno, voucherDayNo)
+                            RecordVoucherUsageAfterPayment(ReturnBill, Convert.ToDecimal(_saleData.psih_invoice_tnetamt), voucherShiftNo, voucherDayNo)
+
                             Dim frmMsgBox As New frmMsgBoxOkOnly
                             Dim msgData = "Total Bill Amount : " & lblnetamt.Text & " Bill Saved - " & ReturnBill
                             ClearNewBill()

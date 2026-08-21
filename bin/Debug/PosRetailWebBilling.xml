@@ -115,6 +115,12 @@ PosRetailWebBilling
 	<summary>
  Log sync process completion
  </summary>
+</member><member name="M:PosRetailWebBilling.FrmUploadSalesAutoSync.UploadVoucherUsageToCloud">
+	<summary>
+ Safety net for voucher redemptions that PosSalesII could not confirm immediately
+ (POS was offline right after payment). Retries pos_voucher_usage rows still marked
+ vu_pushstatus = 0 against AjaxRequest=92, then marks them pushed on success.
+ </summary>
 </member><member name="M:PosRetailWebBilling.SalesDBHelper.SafeToInt32(System.Object,System.Int32)">
 	<summary>
  Safe conversion helper to handle DBNull and empty strings for Integer values
@@ -270,6 +276,15 @@ PosRetailWebBilling
 	<summary>
  Data class to store appointment information
  </summary>
+</member><member name="M:PosRetailWebBilling.PosSalesII.RecordVoucherUsageAfterPayment(System.String,System.Decimal,System.Int32,System.Int32)">
+	<summary>
+ Records a voucher redemption after the bill has been saved successfully.
+ 1) Always writes a local MSSQL audit row (pos_voucher_usage) - billno/billamount/comid/locid/shiftno/dayno.
+ 2) Best-effort immediately confirms it to the cloud (AjaxRequest=92 -&gt; voucher_sales) so the
+    voucher_no can never be validated/reused again. If offline, the row is left pending
+    (vu_pushstatus = 0) and TimerAutoSyncSales_Tick's UploadVoucherUsageToCloud retries it later.
+ No-op if no voucher was applied to this bill.
+ </summary>
 </member><member name="M:PosRetailWebBilling.PosSalesII.GetPaymentModesDictionary">
 	<summary>
  Convert PaymentDetailTable to Dictionary for database operations
@@ -306,6 +321,27 @@ PosRetailWebBilling
 	<summary>
  Database Helper class for Appointment Booking operations
  Uses sp_AppointmentBooking stored procedure
+ </summary>
+</member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.SaveVoucherUsage(System.Int32,System.Int32,System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Int32,System.Int32,System.String@,System.Int32@)">
+	<summary>
+ Insert a local voucher usage record right after the bill is saved successfully.
+ Returns True and the new local row id (vu_id) via newUsageId.
+ </summary>
+</member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.GetPendingVoucherUsage">
+	<summary>
+ Rows not yet confirmed to the cloud (vu_pushstatus = 0), for the auto-sync timer to retry.
+ </summary>
+</member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.MarkVoucherUsagePushed(System.Int32)">
+	<summary>
+ Marks a local usage row as pushed/confirmed once AjaxRequest=92 succeeds.
+ </summary>
+</member><member name="T:PosRetailWebBilling.VoucherUsageDBHelper">
+	<summary>
+ Records voucher redemptions locally (MSSQL) and tracks whether each record has
+ been pushed/confirmed to the cloud (MySQL voucher_sales via AjaxRequest=92).
+ One row is written per voucher applied to a successfully-paid bill:
+ BillNo, BillAmount (net, after discount), ComId, LocId, ShiftNo, DayNo, Created.
+ The BillNo doubles as the reference number for the redemption.
  </summary>
 </member><member name="M:PosRetailWebBilling.BillHoldDBHelper.SafeToInt32(System.Object,System.Int32)">
 	<summary>
