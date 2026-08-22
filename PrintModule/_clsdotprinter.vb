@@ -91,6 +91,7 @@ Public Class _clsdotprinter
             _dsshiftClose.Tables(3).TableName = "SalPaymode"
             _dsshiftClose.Tables(4).TableName = "PayOuts"
             _dsshiftClose.Tables(5).TableName = "PrintNotes"
+            _dsshiftClose.Tables(6).TableName = "VocuherUsage"
             If _dsshiftClose.Tables(0).Rows.Count > 0 Then
                 Dim _content As New StringBuilder
                 Dim _ItemList As New StringBuilder
@@ -603,6 +604,24 @@ Public Class _clsdotprinter
                         _content.AppendLine("Total Note         :" & _sumOfPrintNote.ToString("0.00").PadLeft(10))
                         _content.AppendLine("Tot Cash Sales (-) :" & CashSales.ToString("0.00").PadLeft(10))
                         _content.AppendLine("Balance In Hand    :" & (_sumOfPrintNote - _sumNetSales).ToString("0.00").PadLeft(10))
+                        _content.AppendLine(_dot4)
+                    End If
+                End If
+                _content.AppendLine(_EMPTY)
+                '------------------------------Voucher Usage--------------------------------
+                If _checkPrintOption("S015", Mode) = True Then
+                    _content.AppendLine("       Voucher Usage")
+                    _content.AppendLine(_dot4)
+                    Dim _RowsVoucherlist As String = ""
+                    Dim _sumVoucherAmt As Double = 0
+                    If _dsshiftClose.Tables("VocuherUsage").Rows.Count > 0 Then
+                        For Each _rowVoucher As DataRow In _dsshiftClose.Tables("VocuherUsage").Rows
+                            _RowsVoucherlist = _rowVoucher("vu_vouchercode").ToString.PadRight(10) & _rowVoucher("vu_billno").ToString.PadLeft(6) & "  " & Format(_rowVoucher("vu_billamt"), "###0.00").ToString.PadLeft(8) & "  " & Format(_rowVoucher("vu_created"), "dd-MM-yy")
+                            _content.AppendLine(_RowsVoucherlist.ToString)
+                            _sumVoucherAmt += _rowVoucher("vu_billamt")
+                        Next
+                        _content.AppendLine(_dot4)
+                        _content.AppendLine("Total Voucher Amt  :   " & _sumVoucherAmt.ToString("0.00"))
                         _content.AppendLine(_dot4)
                     End If
                 End If

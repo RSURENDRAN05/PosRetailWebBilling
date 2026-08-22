@@ -211,6 +211,18 @@ PosRetailWebBilling
  cell values (which include the editing buffer for any in-edit row).
  Called via BeginInvoke so DevExpress has fully committed the value before we read.
  </summary>
+</member><member name="M:PosRetailWebBilling.frmVoucherUsageReport.GetVoucherUsageFromCloud(System.DateTime,System.DateTime,System.Int32,System.Int32)">
+	<summary>
+ AjaxRequest=93 - voucher_sales rows for the given date range + company/location.
+ </summary>
+</member><member name="T:PosRetailWebBilling.frmVoucherUsageReport">
+	<summary>
+ Voucher Usage report - tracks voucher redemptions against sales (bill no, bill amount,
+ shift/day, company/location) for a selectable date range. Pulls from the cloud
+ voucher_sales table via AjaxRequest=93 (getfunctionmgmt.php / clsfunctionmgmt.php,
+ _GetVoucherUsageReport), filtered by From/To date for the logged-in company/location
+ (ComId/LocId come from _companyInfo, same as frmSalesMasterReport - no manual entry).
+ </summary>
 </member><member name="M:PosRetailWebBilling.frmAppointmentBooking.InitializeForm">
 	<summary>
  Initialize form settings and default values
@@ -330,6 +342,11 @@ PosRetailWebBilling
 </member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.GetPendingVoucherUsage">
 	<summary>
  Rows not yet confirmed to the cloud (vu_pushstatus = 0), for the auto-sync timer to retry.
+ </summary>
+</member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.GetVoucherUsageReport(System.DateTime,System.DateTime)">
+	<summary>
+ All voucher usage rows created between fromDate and toDate (inclusive), newest first.
+ Used by frmVoucherUsageReport to track voucher sales/usage over a date range.
  </summary>
 </member><member name="M:PosRetailWebBilling.VoucherUsageDBHelper.MarkVoucherUsagePushed(System.Int32)">
 	<summary>

@@ -72,7 +72,7 @@
     <SalesmanName>AMAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -126,7 +126,7 @@
     <SalesmanName>AMAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -486,7 +486,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -558,7 +558,7 @@
     <SalesmanName>CHINNAIYAH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -918,7 +918,7 @@
     <SalesmanName>GOPAL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -990,7 +990,7 @@
     <SalesmanName>GOPAL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1530,7 +1530,7 @@
     <SalesmanName>GURUMOORTHY</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -1602,7 +1602,7 @@
     <SalesmanName>GURUMOORTHY</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3204,7 +3204,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -3276,7 +3276,7 @@
     <SalesmanName>KANAGARAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5040,7 +5040,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5112,7 +5112,7 @@
     <SalesmanName>KILI FORN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5472,7 +5472,7 @@
     <SalesmanName>LALLU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5544,7 +5544,7 @@
     <SalesmanName>LALLU</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5904,7 +5904,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -5976,7 +5976,7 @@
     <SalesmanName>LOVEJEET</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6336,7 +6336,7 @@
     <SalesmanName>MOHANRAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -6408,7 +6408,7 @@
     <SalesmanName>MOHANRAJ</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8028,7 +8028,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8100,7 +8100,7 @@
     <SalesmanName>PRAKASH</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8460,7 +8460,7 @@
     <SalesmanName>PRATHEEP</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8532,7 +8532,7 @@
     <SalesmanName>PRATHEEP</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8892,7 +8892,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -8946,7 +8946,7 @@
     <SalesmanName>PRAVEEN</SalesmanName>
     <Designation>OPERATION</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -9306,7 +9306,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -9360,7 +9360,7 @@
     <SalesmanName>RAJKUMAR</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -9720,7 +9720,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -9792,7 +9792,7 @@
     <SalesmanName>SAJAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -10152,7 +10152,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -10224,7 +10224,7 @@
     <SalesmanName>SENTHIL</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -10584,7 +10584,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -10656,7 +10656,7 @@
     <SalesmanName>SUBRA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11016,7 +11016,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11088,7 +11088,7 @@
     <SalesmanName>SUKHVEER</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11448,7 +11448,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11520,7 +11520,7 @@
     <SalesmanName>SURYA</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11880,7 +11880,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>12</ItemId>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <Barcode>12</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>
@@ -11952,7 +11952,7 @@
     <SalesmanName>THARSHAN</SalesmanName>
     <Designation>ACCOUNTANT</Designation>
     <ItemId>13</ItemId>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <Barcode>13</Barcode>
     <SubGroupId>3</SubGroupId>
     <SubGroupName>FACIAL</SubGroupName>

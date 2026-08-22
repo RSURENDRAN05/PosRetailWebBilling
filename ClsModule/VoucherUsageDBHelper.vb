@@ -75,6 +75,30 @@ Public Class VoucherUsageDBHelper
     End Function
 
     ''' <summary>
+    ''' All voucher usage rows created between fromDate and toDate (inclusive), newest first.
+    ''' Used by frmVoucherUsageReport to track voucher sales/usage over a date range.
+    ''' </summary>
+    Public Function GetVoucherUsageReport(fromDate As DateTime, toDate As DateTime) As DataTable
+        Dim dt As New DataTable
+        Try
+            Using connection As New SqlConnection(_connectionString)
+                Using command As New SqlCommand("sp_voucherusage", connection)
+                    command.CommandType = CommandType.StoredProcedure
+                    command.Parameters.AddWithValue("@mode", "R")
+                    command.Parameters.AddWithValue("@vu_fromdate", fromDate.Date)
+                    command.Parameters.AddWithValue("@vu_todate", toDate.Date)
+                    Using adapter As New SqlDataAdapter(command)
+                        adapter.Fill(dt)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("GetVoucherUsageReport Error: " & ex.Message)
+        End Try
+        Return dt
+    End Function
+
+    ''' <summary>
     ''' Marks a local usage row as pushed/confirmed once AjaxRequest=92 succeeds.
     ''' </summary>
     Public Function MarkVoucherUsagePushed(usageId As Integer) As Boolean

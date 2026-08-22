@@ -51,6 +51,8 @@ GO
 -- @mode = 'I' Insert a new local usage record (called right after a bill saves OK)
 -- @mode = 'S' Select rows still pending push to the cloud (used by the auto-sync timer)
 -- @mode = 'U' Mark a row as pushed/confirmed after AjaxRequest=92 succeeds
+-- @mode = 'R' Report - all usage rows between @vu_fromdate and @vu_todate (used by
+--             frmVoucherUsageReport, the "Voucher Usage" screen under Voucher Usage report)
 -- =============================================
 CREATE PROCEDURE [dbo].[sp_voucherusage]
     @mode          VARCHAR(10),
@@ -63,7 +65,9 @@ CREATE PROCEDURE [dbo].[sp_voucherusage]
     @vu_comid      INT = 0,
     @vu_locid      INT = 0,
     @vu_shiftno    INT = 0,
-    @vu_dayno      INT = 0
+    @vu_dayno      INT = 0,
+    @vu_fromdate   DATE = NULL,
+    @vu_todate     DATE = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -91,6 +95,15 @@ BEGIN
         SET    vu_pushstatus = 1,
                vu_pushed = GETDATE()
         WHERE  vu_id = @vu_id
+    END
+    ELSE IF @mode = 'R'
+    BEGIN
+        SELECT vu_id, vu_voucherid, vu_voucherno, vu_vouchercode, vu_billno, vu_billamount,
+               vu_comid, vu_locid, vu_shiftno, vu_dayno, vu_pushstatus, vu_created
+        FROM   [dbo].[pos_voucher_usage]
+        WHERE  (@vu_fromdate IS NULL OR vu_created >= @vu_fromdate)
+          AND  (@vu_todate   IS NULL OR vu_created <  DATEADD(DAY, 1, @vu_todate))
+        ORDER BY vu_created DESC
     END
 END
 GO

@@ -1268,4 +1268,13 @@ Public Class MainMaster
 
         End Try
     End Sub
+
+    Private Sub BarBtnVoucherUsage_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarBtnVoucherUsage.ItemClick
+        Try
+            frmVoucherUsageReport.MdiParent = Me
+            frmVoucherUsageReport.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

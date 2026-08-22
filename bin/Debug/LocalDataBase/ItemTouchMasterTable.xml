@@ -386,7 +386,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>30.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>20.00</MinPrice>
+    <MinPrice>30.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -406,12 +406,12 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>3</Position>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>12</Id>
     <BarCode>12</BarCode>
-    <ItemName>FACE BLEACH [D-Tan]</ItemName>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -422,7 +422,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>60.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>50.00</MinPrice>
+    <MinPrice>60.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -447,7 +447,7 @@
   <ItemTouchMasterTable>
     <Id>13</Id>
     <BarCode>13</BarCode>
-    <ItemName>FACIAL     [Classic]</ItemName>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
     <BusinessType>70</BusinessType>
     <Remarks>-</Remarks>
     <TaxValue>0</TaxValue>
@@ -458,7 +458,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>88.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>80.00</MinPrice>
+    <MinPrice>88.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -478,7 +478,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>2</Position>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>14</Id>
@@ -514,7 +514,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>4</Position>
+    <Position>6</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>15</Id>
@@ -528,9 +528,9 @@
     <CateId>4</CateId>
     <CateName>OIL MASSAGE</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>50.00</SellPrice>
+    <SellPrice>58.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>50.00</MinPrice>
+    <MinPrice>58.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -622,7 +622,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>2</Position>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>18</Id>
@@ -710,7 +710,7 @@
     <TaxName>Tax 0%</TaxName>
     <SellPrice>50.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>40.00</MinPrice>
+    <MinPrice>50.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -741,8 +741,8 @@
     <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
-    <CateId>7</CateId>
-    <CateName>OTHERS</CateName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>100.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -766,7 +766,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>1</Position>
+    <Position>4</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>22</Id>
@@ -1126,7 +1126,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>6</Position>
+    <Position>8</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>32</Id>
@@ -1162,7 +1162,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>1</Position>
+    <Position>2</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>33</Id>
@@ -1209,8 +1209,8 @@
     <TaxValue>0</TaxValue>
     <MainId>1</MainId>
     <MainName>BARBER</MainName>
-    <CateId>7</CateId>
-    <CateName>OTHERS</CateName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
     <TaxName>Tax 0%</TaxName>
     <SellPrice>100.00</SellPrice>
     <CostPrice>0.00</CostPrice>
@@ -1234,7 +1234,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>2</Position>
+    <Position>5</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>35</Id>
@@ -1248,9 +1248,9 @@
     <CateId>3</CateId>
     <CateName>FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>20.00</SellPrice>
+    <SellPrice>40.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>20.00</MinPrice>
+    <MinPrice>40.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -1270,7 +1270,7 @@
     <font_style>Bold</font_style>
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
-    <Position>1</Position>
+    <Position>3</Position>
   </ItemTouchMasterTable>
   <ItemTouchMasterTable>
     <Id>36</Id>
@@ -3084,9 +3084,9 @@
     <CateId>15</CateId>
     <CateName>L. FACIAL</CateName>
     <TaxName>Tax 0%</TaxName>
-    <SellPrice>30.00</SellPrice>
+    <SellPrice>20.00</SellPrice>
     <CostPrice>0.00</CostPrice>
-    <MinPrice>30.00</MinPrice>
+    <MinPrice>20.00</MinPrice>
     <MaxPrice>0.00</MaxPrice>
     <AllowDiscount>0</AllowDiscount>
     <AllowNegStock>1</AllowNegStock>
@@ -3791,5 +3791,77 @@
     <text_color>Argb(255,255,128,0)</text_color>
     <back_color>Argb(255,64,0,0)</back_color>
     <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>110</Id>
+    <BarCode>105</BarCode>
+    <ItemName>UNDER EYE TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>134</LnkId>
+    <item_id>110</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>111</Id>
+    <BarCode>106</BarCode>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>135</LnkId>
+    <item_id>111</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
   </ItemTouchMasterTable>
 </NewDataSet>

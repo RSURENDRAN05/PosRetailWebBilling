@@ -6240,4 +6240,29 @@ class funcProcessMgmt
         mysqli_stmt_close($stmt);
         return $ok;
     }
+
+    /** 93 – Voucher usage/sales report: filter by date range + company/location */
+    public function _GetVoucherUsageReport($fromdate, $todate, $comid, $locid)
+    {
+        $conn = $this->conn;
+        $stmt = mysqli_prepare(
+            $conn,
+            "SELECT vs.vs_id, vs.voucher_id, vs.voucher_no, vs.vs_vouchercode, vs.sal_id,
+                    vs.vs_comid, vs.vs_locid, vs.vs_shiftno, vs.vs_dayno, vs.vs_billamount, vs.vs_created,
+                    pcm.pcm_name AS CompanyName, plm.plm_name AS LocationName
+               FROM `voucher_sales` AS vs
+               LEFT JOIN `pos_company_mast`  AS pcm ON pcm.pcm_id = vs.vs_comid
+               LEFT JOIN `pos_location_mast` AS plm ON plm.plm_id = vs.vs_locid
+              WHERE vs.vs_created >= ?
+                AND vs.vs_created <  DATE_ADD(?, INTERVAL 1 DAY)
+                AND vs.vs_comid = ?
+                AND vs.vs_locid = ?
+              ORDER BY vs.vs_created DESC"
+        );
+        mysqli_stmt_bind_param($stmt, "ssii", $fromdate, $todate, $comid, $locid);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
 }

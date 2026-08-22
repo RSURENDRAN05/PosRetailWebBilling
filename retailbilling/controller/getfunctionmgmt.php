@@ -1733,6 +1733,35 @@ if (isset($_REQUEST['AjaxRequest'])) {
         );
         echo json_encode(array("Success" => (bool)$ok));
     }
+
+    if ((int) $_REQUEST['AjaxRequest'] == 93) {
+        // Voucher usage report - filter by date range + company/location (frmVoucherUsageReport)
+        $fromdate = isset($_REQUEST['fromdate']) ? $_REQUEST['fromdate'] : date('Y-m-d');
+        $todate   = isset($_REQUEST['todate'])   ? $_REQUEST['todate']   : date('Y-m-d');
+        $comid    = isset($_REQUEST['comid']) ? (int)$_REQUEST['comid'] : 0;
+        $locid    = isset($_REQUEST['locid']) ? (int)$_REQUEST['locid'] : 0;
+
+        $result = $clsfunreq->_GetVoucherUsageReport($fromdate, $todate, $comid, $locid);
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = array(
+                "Id"          => (int)$row['vs_id'],
+                "VoucherId"   => (int)$row['voucher_id'],
+                "VoucherNo"   => (int)$row['voucher_no'],
+                "VoucherCode" => $row['vs_vouchercode'],
+                "BillNo"      => $row['sal_id'],
+                "ComId"       => (int)$row['vs_comid'],
+                "LocId"       => (int)$row['vs_locid'],
+                "ShiftNo"     => (int)$row['vs_shiftno'],
+                "DayNo"       => (int)$row['vs_dayno'],
+                "BillAmount"  => (float)$row['vs_billamount'],
+                "Created"     => $row['vs_created'],
+                "CompanyName" => $row['CompanyName'],
+                "LocationName" => $row['LocationName']
+            );
+        }
+        echo json_encode(array("Success" => true, "Data" => $rows));
+    }
 }
 //Sales
 elseif (isset($_REQUEST['SalesRequest'])) {
