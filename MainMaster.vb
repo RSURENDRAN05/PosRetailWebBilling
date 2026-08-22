@@ -120,6 +120,7 @@ Public Class MainMaster
                 barbtndiscountpolicy.Enabled = False
                 barbtnvoucherbook.Enabled = False
                 barbtnposmaterid.Enabled = False
+                BarBtnVoucherUsage.Enabled = False
                 If _JsonData.UserPolicyTable.Rows.Count > 0 Then
                     'Master
                     Dim MenuMaster As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "MenuMaster"
@@ -624,6 +625,14 @@ Public Class MainMaster
                             barbtnposmaterid.Enabled = True
                         Else
                             barbtnposmaterid.Enabled = False
+                        End If
+                    End If
+                    Dim VoucherUsageReport As EnumerableRowCollection(Of DataRow) = From dtrow As DataRow In _JsonData.UserPolicyTable Where dtrow("menu_name") = "VoucherUsageReport"
+                    If VoucherUsageReport.Any Then
+                        If VoucherUsageReport(0)("menu_active") = "1" Then
+                            BarBtnVoucherUsage.Enabled = True
+                        Else
+                            BarBtnVoucherUsage.Enabled = False
                         End If
                     End If
                 End If

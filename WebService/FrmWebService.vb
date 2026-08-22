@@ -12,7 +12,7 @@ Public Class FrmUploadSalesAutoSync
 #Region "InitailProcess"
     Private Sub FrmUploadSalesAutoSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Me.Text = "Web Ver 26.0.0.1 080726 2PM"
+            Me.Text = M_Details.SoftwareVersion
             Dim clientinfo As New pos_branch_systemstatus
             clientinfo = GetClientSystemStatus()
             If clientinfo.OnSalesActive = 0 Then

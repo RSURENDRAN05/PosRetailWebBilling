@@ -374,6 +374,17 @@
   <UserPolicyTable>
     <permission_id>0</permission_id>
     <group_id>1</group_id>
+    <menu_id>9</menu_id>
+    <menu_type>header</menu_type>
+    <header_menu_id>9</header_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>MenuAuditReport</menu_name>
+    <menu_code>M1009</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
     <menu_id>45</menu_id>
     <menu_type>sub</menu_type>
     <header_menu_id>9</header_menu_id>
@@ -381,17 +392,6 @@
     <menu_active>1</menu_active>
     <menu_name>MenuAuditReport</menu_name>
     <menu_code>A003</menu_code>
-    <group_name>Super Admin</group_name>
-  </UserPolicyTable>
-  <UserPolicyTable>
-    <permission_id>0</permission_id>
-    <group_id>1</group_id>
-    <menu_id>9</menu_id>
-    <menu_type>header</menu_type>
-    <header_menu_id>9</header_menu_id>
-    <menu_active>1</menu_active>
-    <menu_name>MenuAuditReport</menu_name>
-    <menu_code>M1009</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
   <UserPolicyTable>
@@ -697,6 +697,18 @@
     <menu_active>1</menu_active>
     <menu_name>VoucherBook</menu_name>
     <menu_code>S1035</menu_code>
+    <group_name>Super Admin</group_name>
+  </UserPolicyTable>
+  <UserPolicyTable>
+    <permission_id>0</permission_id>
+    <group_id>1</group_id>
+    <menu_id>49</menu_id>
+    <menu_type>sub</menu_type>
+    <header_menu_id>8</header_menu_id>
+    <sub_menu_id>49</sub_menu_id>
+    <menu_active>1</menu_active>
+    <menu_name>VoucherUsageReport</menu_name>
+    <menu_code>S2002</menu_code>
     <group_name>Super Admin</group_name>
   </UserPolicyTable>
 </NewDataSet>
