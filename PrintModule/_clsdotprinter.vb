@@ -616,9 +616,9 @@ Public Class _clsdotprinter
                     Dim _sumVoucherAmt As Double = 0
                     If _dsshiftClose.Tables("VocuherUsage").Rows.Count > 0 Then
                         For Each _rowVoucher As DataRow In _dsshiftClose.Tables("VocuherUsage").Rows
-                            _RowsVoucherlist = _rowVoucher("vu_vouchercode").ToString.PadRight(10) & _rowVoucher("vu_billno").ToString.PadLeft(6) & "  " & Format(_rowVoucher("vu_billamt"), "###0.00").ToString.PadLeft(8) & "  " & Format(_rowVoucher("vu_created"), "dd-MM-yy")
+                            _RowsVoucherlist = _rowVoucher("vu_vouchercode").ToString.PadRight(10) & _rowVoucher("vu_billno").ToString.PadLeft(6) & "  " & Format(_rowVoucher("vu_billamount"), "###0.00").ToString.PadLeft(8) & "  " & Format(_rowVoucher("vu_created"), "dd-MM-yy")
                             _content.AppendLine(_RowsVoucherlist.ToString)
-                            _sumVoucherAmt += _rowVoucher("vu_billamt")
+                            _sumVoucherAmt += _rowVoucher("vu_billamount")
                         Next
                         _content.AppendLine(_dot4)
                         _content.AppendLine("Total Voucher Amt  :   " & _sumVoucherAmt.ToString("0.00"))

@@ -7,38 +7,38 @@ THANJAVUR
 GST:000000000000000
 **************************************
 
-Shift Open  :02-09-2025 20:05:56
-Shift Close :29-11-2025 11:26:01
-Print Date  :29-11-2025 12:26:24
+Shift Open  :21-08-2026 1:08:39 PM
+Shift Close :22-08-2026 1:06:20 PM
+Print Date  :22-08-2026 1:20:58 PM
 ======================================
-Shift No :1
-CurDate  :02-09-2025 00:00:00
-Sales                :      1475.00
+Shift No :217
+CurDate  :22-08-2026 12:00:00 AM
+Sales                :      3004.00
 Discount         (-) :         0.00
                      ----------------------
-TotalGrossAmt    (=) :      1475.00
+TotalGrossAmt    (=) :      3004.00
 Tax Sales        (+) :         0.00
 Service Charge   (+) :         0.00
 --------------------------------------
-Total Sales          :      1475.00
+Total Sales          :      3004.00
 ======================================
-Total Cash Sales     :      1084.00
+Total Cash Sales     :      1189.00
 Payout Amount    (-) :         0.00
-Net Cash Sales       :      1084.00
+Net Cash Sales       :      1189.00
 ======================================
 
        ------Details----
-Total BillCount      :        32.00
-Average Bill         :        46.09
-Cash On Hand         :      1084.00
+Total BillCount      :        94.00
+Average Bill         :        31.85
+Cash On Hand         :      1189.00
 
        Sales Method
 ======================================
-RM                   :       582.00
-QR PAY               :       628.00
-DEBIT/CREDIT PAY     :       247.00
+RM                   :      1189.00
+QR PAY               :       849.00
+DEBIT/CREDIT PAY     :       956.00
 ======================================
-Total Sales  :             1457.00
+Total Sales  :             2994.00
 ======================================
 
        Payout Details
@@ -46,47 +46,70 @@ Total Sales  :             1457.00
 
        Main Group
 ======================================
-NAILS                  69.00    0.00
-BARBER               1256.00    0.00
-LADIES                150.00    0.00
+BARBER               2431.00    0.00
+LADIES                173.00    0.00
+NAILS                 390.00    0.00
 ======================================
-Total Amount  :       1475.00  0.00
+Total Amount  :       2994.00  0.00
 ======================================
 
        Sub Group
 ======================================
-MEN                    30.00    0.00
-LADIES                 39.00    0.00
-FACE WAX               80.00    0.00
-HAIR CUT             1176.00    0.00
-L. THREADING           10.00    0.00
-LADIES HAIR CUT       140.00    0.00
+HAIR CUT             2005.00    0.00
+HAIR DYE              150.00    0.00
+LADIES HAIR CUT       155.00    0.00
+FACIAL                 30.00    0.00
+FACE WAX               40.00    0.00
+LADIES                220.00    0.00
+OTHERS                 15.00    0.00
+OIL MASSAGE           191.00    0.00
+MEN                   170.00    0.00
+L. THREADING           18.00    0.00
 ======================================
-Total Amount  :       1475.00  0.00
+Total Amount  :       2994.00  0.00
 ======================================
 
        Itemwise Sales
 ======================================
-CLASSIC MANI [Withou   1       30.00
-t Colour]
-CLASSIC PEDI [Withou   1       39.00
-t Colour]
-FACE WAX    [Full]     1       60.00
-FACE WAX [Partial]     1       20.00
-HAIR CUT              19      348.00
-[Adult]
-HAIR CUT   [Adult]     6      108.00
-HAIR CUT -  SHAVE /    6      180.00
-TRIM
-HAIR CUT - SHAVE / T   9      300.00
+BALDING                4       80.00
+BEARD          TOUCH   1       30.00
+ UP
+BEARD TRIMMING        10      150.00
+DRY CUT                3       90.45
+FACE WASH              1       30.00
+FACE WAX [Partial]     1       40.00
+GEL MANI               1       60.00
+HAIR CUT              30      552.00
+[ADULT]
+HAIR CUT - SHAVE / T  32      958.00
 RIM
-HAIR CUT [Children]    4      195.00
+HAIR CUT - SHAVE / T   1       25.00
+RIM [F]
+HAIR CUT [Children]    3       45.00
 HAIR CUT [F]           3       45.00
-L. THREADING           1       10.00
-WASH - BLOW            1       30.00
-WASH - CUT - BLOW      2      110.00
+HAIR DYE [Powder]      1       40.00
+HAIR SETTING           2       10.00
+HAIR SETTING           1       24.55
+HAIR-BEARD DYE [Crea   1       80.00
+m]
+OIL MASSAGE            3       75.00
+OIL MASSAGE STEAMING   2      116.00
+ WASH
+PEDICURE               2       70.00
+SHAMPOO                2       20.00
+SHAVING               11      130.00
+SPA MANI         [Ge   1       75.00
+l Colour]
+SPA MANICURE           1       45.00
+SPA PEDI         [Ge   1       85.00
+l Colour]
+SPA PEDICURE           1       55.00
+T. EYEBROW             1       10.00
+T. UPPER LIP           1        8.00
+THREADING              1        5.00
+WASH - BLOW            1       40.00
 ======================================
-Total Sales     :     55.00 1475.00
+Total Sales     :     123.00 2994.00
 ++++++++++++++++++++++++++++++++++++++
 
 
@@ -95,8 +118,15 @@ Total Sales     :     55.00 1475.00
 |Coins| * |         0 =       0.00 |
 ======================================
 Total Note         :      0.00
-Tot Cash Sales (-) :   1084.00
-Balance In Hand    :  -1084.00
+Tot Cash Sales (-) :   1189.00
+Balance In Hand    :  -1189.00
+======================================
+
+       Voucher Usage
+======================================
+A1         23571     60.00  22-08-26
+======================================
+Total Voucher Amt  :   60.00
 ======================================
 
 

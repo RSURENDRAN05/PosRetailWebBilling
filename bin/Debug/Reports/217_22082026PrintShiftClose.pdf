@@ -1,0 +1,259 @@
+%PDF-1.4
+%”ÙÃ·
+% PDFsharp Version 1.0.898.0 (verbose mode)
+% Creation date: 22-08-2026 1:21:01 PM           
+% Creation time: 0.086 seconds                   
+% File size: 9734 bytes                          
+% Pages: 1                                       
+% Objects: 9                                     
+%--------------------------------------------------------------------------------------------------
+1 0 obj   % PdfSharp.Pdf.PdfDocumentInformation
+<<
+  /CreationDate (D:20260822132101+08'00')
+  /Creator (PDFsharp 1.0.898 \(www.pdfsharp.com\))
+  /Producer (PDFsharp 1.0.898 \(www.pdfsharp.com\))
+  /Title (PrintShiftClose)
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+2 0 obj   % PdfSharp.Pdf.Advanced.PdfCatalog
+<<
+  /Pages 3 0 R
+  /Type /Catalog
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+3 0 obj   % PdfSharp.Pdf.PdfPages
+<<
+  /Count 1
+  /Kids [4 0 R]
+  /Type /Pages
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+4 0 obj   % PdfSharp.Pdf.PdfPage
+<<
+  /Contents 5 0 R
+  /Group
+  <<
+    /CS /DeviceRGB
+    /S /Transparency
+  >>
+  /MediaBox [0 0 400 9999]
+  /Parent 3 0 R
+  /Resources 6 0 R
+  /Type /Page
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+5 0 obj   % PdfSharp.Pdf.Advanced.PdfContent
+<<
+  /Length 5618
+>>
+stream
+q
+1 0 0 -1 0 9999 cm -100 Tz
+q
+BT
+/GS0 gs
+/F0 -11 Tf
+30 10.119 Td (**************************************) Tj
+0 10 Td (Shift Close Report            ) Tj
+0 10 Td (RESTORAN1 ALIFF BISTRO) Tj
+0 10 Td (INDRA NAGAR) Tj
+0 10 Td (PERAVURANI) Tj
+0 10 Td (THANJAVUR) Tj
+0 10 Td (GST:000000000000000) Tj
+0 10 Td (**************************************) Tj
+0 20 Td (Shift Open  :21-08-2026 1:08:39 PM) Tj
+0 10 Td (Shift Close :22-08-2026 1:06:20 PM) Tj
+0 10 Td (Print Date  :22-08-2026 1:20:58 PM) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Shift No :217) Tj
+0 10 Td (CurDate  :22-08-2026 12:00:00 AM) Tj
+0 10 Td (Sales                :      3004.00) Tj
+0 10 Td (Discount         \(-\) :         0.00) Tj
+0 10 Td (                     ----------------------) Tj
+0 10 Td (TotalGrossAmt    \(=\) :      3004.00) Tj
+0 10 Td (Tax Sales        \(+\) :         0.00) Tj
+0 10 Td (Service Charge   \(+\) :         0.00) Tj
+0 10 Td (--------------------------------------) Tj
+0 10 Td (Total Sales          :      3004.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Cash Sales     :      1189.00) Tj
+0 10 Td (Payout Amount    \(-\) :         0.00) Tj
+0 10 Td (Net Cash Sales       :      1189.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       ------Details----) Tj
+0 10 Td (Total BillCount      :        94.00) Tj
+0 10 Td (Average Bill         :        31.85) Tj
+0 10 Td (Cash On Hand         :      1189.00) Tj
+0 20 Td (       Sales Method) Tj
+0 10 Td (======================================) Tj
+0 10 Td (RM                   :      1189.00) Tj
+0 10 Td (QR PAY               :       849.00) Tj
+0 10 Td (DEBIT/CREDIT PAY     :       956.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Sales  :             2994.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Payout Details) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Main Group) Tj
+0 10 Td (======================================) Tj
+0 10 Td (BARBER               2431.00    0.00) Tj
+0 10 Td (LADIES                173.00    0.00) Tj
+0 10 Td (NAILS                 390.00    0.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Amount  :       2994.00  0.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Sub Group) Tj
+0 10 Td (======================================) Tj
+0 10 Td (HAIR CUT             2005.00    0.00) Tj
+0 10 Td (HAIR DYE              150.00    0.00) Tj
+0 10 Td (LADIES HAIR CUT       155.00    0.00) Tj
+0 10 Td (FACIAL                 30.00    0.00) Tj
+0 10 Td (FACE WAX               40.00    0.00) Tj
+0 10 Td (LADIES                220.00    0.00) Tj
+0 10 Td (OTHERS                 15.00    0.00) Tj
+0 10 Td (OIL MASSAGE           191.00    0.00) Tj
+0 10 Td (MEN                   170.00    0.00) Tj
+0 10 Td (L. THREADING           18.00    0.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Amount  :       2994.00  0.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Itemwise Sales) Tj
+0 10 Td (======================================) Tj
+0 10 Td (BALDING                4       80.00) Tj
+0 10 Td (BEARD          TOUCH   1       30.00) Tj
+0 10 Td ( UP) Tj
+0 10 Td (BEARD TRIMMING        10      150.00) Tj
+0 10 Td (DRY CUT                3       90.45) Tj
+0 10 Td (FACE WASH              1       30.00) Tj
+0 10 Td (FACE WAX [Partial]     1       40.00) Tj
+0 10 Td (GEL MANI               1       60.00) Tj
+0 10 Td (HAIR CUT              30      552.00) Tj
+0 10 Td ([ADULT]) Tj
+0 10 Td (HAIR CUT - SHAVE / T  32      958.00) Tj
+0 10 Td (RIM) Tj
+0 10 Td (HAIR CUT - SHAVE / T   1       25.00) Tj
+0 10 Td (RIM [F]) Tj
+0 10 Td (HAIR CUT [Children]    3       45.00) Tj
+0 10 Td (HAIR CUT [F]           3       45.00) Tj
+0 10 Td (HAIR DYE [Powder]      1       40.00) Tj
+0 10 Td (HAIR SETTING           2       10.00) Tj
+0 10 Td (HAIR SETTING           1       24.55) Tj
+0 10 Td (HAIR-BEARD DYE [Crea   1       80.00) Tj
+0 10 Td (m]) Tj
+0 10 Td (OIL MASSAGE            3       75.00) Tj
+0 10 Td (OIL MASSAGE STEAMING   2      116.00) Tj
+0 10 Td ( WASH) Tj
+0 10 Td (PEDICURE               2       70.00) Tj
+0 10 Td (SHAMPOO                2       20.00) Tj
+0 10 Td (SHAVING               11      130.00) Tj
+0 10 Td (SPA MANI         [Ge   1       75.00) Tj
+0 10 Td (l Colour]) Tj
+0 10 Td (SPA MANICURE           1       45.00) Tj
+0 10 Td (SPA PEDI         [Ge   1       85.00) Tj
+0 10 Td (l Colour]) Tj
+0 10 Td (SPA PEDICURE           1       55.00) Tj
+0 10 Td (T. EYEBROW             1       10.00) Tj
+0 10 Td (T. UPPER LIP           1        8.00) Tj
+0 10 Td (THREADING              1        5.00) Tj
+0 10 Td (WASH - BLOW            1       40.00) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Sales     :     123.00 2994.00) Tj
+0 10 Td (++++++++++++++++++++++++++++++++++++++) Tj
+0 30 Td (       PrintNotes Details) Tj
+0 10 Td (======================================) Tj
+0 10 Td (|Coins| * |         0 =       0.00 |) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Note         :      0.00) Tj
+0 10 Td (Tot Cash Sales \(-\) :   1189.00) Tj
+0 10 Td (Balance In Hand    :  -1189.00) Tj
+0 10 Td (======================================) Tj
+0 20 Td (       Voucher Usage) Tj
+0 10 Td (======================================) Tj
+0 10 Td (A1         23571     60.00  22-08-26) Tj
+0 10 Td (======================================) Tj
+0 10 Td (Total Voucher Amt  :   60.00) Tj
+0 10 Td (======================================) Tj
+0 30 Td (.) Tj
+0 10 Td (.) Tj
+0 20 Td (.) Tj
+ET
+Q
+Q
+endstream
+endobj
+%--------------------------------------------------------------------------------------------------
+6 0 obj   % PdfSharp.Pdf.Advanced.PdfResources
+<<
+  /ExtGState
+  <<
+    /GS0 7 0 R
+  >>
+  /Font
+  <<
+    /F0 9 0 R
+  >>
+  /ProcSet [/PDF/Text/ImageB/ImageC/ImageI]
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+7 0 obj   % PdfSharp.Pdf.Advanced.PdfExtGState
+<<
+  /ca 1
+  /Type /ExtGState
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+8 0 obj   % PdfSharp.Pdf.Advanced.PdfFontDescriptor
+<<
+  /Ascent 743
+  /CapHeight 638
+  /Descent -257
+  /Flags 32
+  /FontBBox [-432 -302 677 1011]
+  /FontName /Consolas
+  /ItalicAngle 0
+  /StemV 0
+  /Type /FontDescriptor
+  /XHeight 490
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+9 0 obj   % PdfSharp.Pdf.Advanced.PdfTrueTypeFont
+<<
+  /BaseFont /Consolas
+  /Encoding /WinAnsiEncoding
+  /FirstChar 0
+  /FontDescriptor 8 0 R
+  /LastChar 255
+  /Subtype /TrueType
+  /Type /Font
+  /Widths [549 549 549 549 549 549 549 549 549 549 549 549 549 0 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549 549]
+>>
+endobj
+%--------------------------------------------------------------------------------------------------
+xref
+0 10
+0000000000 65535 f 
+0000000409 00000 n 
+0000000742 00000 n 
+0000000932 00000 n 
+0000001121 00000 n 
+0000001420 00000 n 
+0000007228 00000 n 
+0000007502 00000 n 
+0000007689 00000 n 
+0000008035 00000 n 
+trailer
+<<
+  /ID [<D38B2E4B7287964A9944C4AB209E6404><D38B2E4B7287964A9944C4AB209E6404>]
+  /Info 1 0 R
+  /Root 2 0 R
+  /Size 10
+>>
+startxref
+9373
+%%EOF
