@@ -578,6 +578,16 @@ Public Class PosSales
     End Sub
     Private Sub barbtndiscountclear_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtndiscountclear.ItemClick
         Try
+            ResetAllDiscounts()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    ' Reset item and bill discounts back to zero and recalculate totals.
+    ' Shared by the Clear Discount toolbar action and the payment popup's Home/Cancel action.
+    Public Sub ResetAllDiscounts()
+        Try
             Dim count As Integer = GridDataTble_Insert.Rows.Count
             For i As Integer = 0 To count - 1
                 GridDataTble_Insert.Rows(i)("TAMOUNT") = GridDataTble_Insert.Rows(i)("RATE") * GridDataTble_Insert.Rows(i)("QTY")
@@ -596,6 +606,8 @@ Public Class PosSales
             GridDataTble_Insert.AcceptChanges()
             GridDataTble_Insert.EndInit()
             SalesGrandtotal(Errstr)
+            _discount.DiscountPer = False
+            _discount.discountValue = 0
         Catch ex As Exception
 
         End Try

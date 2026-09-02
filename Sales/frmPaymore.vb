@@ -74,6 +74,8 @@
     End Sub
     Private Sub btnpopHome_Click(sender As Object, e As EventArgs) Handles btnpopHome.Click
         Try
+            ' Going back to Home cancels the payment; clear any discount applied on the bill.
+            PosSales.ResetAllDiscounts()
             Me.DialogResult = Windows.Forms.DialogResult.Cancel
         Catch ex As Exception
 

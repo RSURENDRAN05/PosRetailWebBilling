@@ -196,6 +196,7 @@ D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailW
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmInputBox.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.StockUpdate.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmSalesMasterReport.resources
+D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmVoucherUsageReport.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmAttendanceReport.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmCustomerSalesHis.resources
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.FrmMultiplePriceSelection.resources
@@ -260,4 +261,3 @@ D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailW
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.exe
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.xml
 D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.pdb
-D:\Software Development\Retail Projects\PosRetailWebBilling\obj\Debug\PosRetailWebBilling.frmVoucherUsageReport.resources

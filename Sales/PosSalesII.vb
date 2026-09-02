@@ -2208,7 +2208,7 @@ Public Class PosSalesII
     End Function
 
     ' Clear all discounts (both item and bill)
-    Public Sub ClearAllDiscounts()
+    Public Sub ClearAllDiscounts(Optional showConfirmation As Boolean = True)
         Try
             For i As Integer = 0 To GridDataTble_Insert.Rows.Count - 1
                 ' Clear item discounts in DataTable
@@ -2234,7 +2234,9 @@ Public Class PosSalesII
             ' Update grand totals
             SalesGrandtotal(False)
 
-            MessageBox.Show("All discounts cleared successfully.", "Discounts Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If showConfirmation Then
+                MessageBox.Show("All discounts cleared successfully.", "Discounts Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
 
         Catch ex As Exception
             MessageBox.Show("Error clearing discounts: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
