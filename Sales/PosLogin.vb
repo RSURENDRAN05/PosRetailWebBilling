@@ -107,6 +107,12 @@ Public Class PosLogin
                 Else
                     RegistrationDetails._paymentPopupActive = True
                 End If
+                ' Licensing: not activated / suspended / expired -> activation screen, otherwise the app closes.
+                If Not LicenseGuard.Enforce(RegistrationDetails._serverClient) Then
+                    Application.Exit()
+                    Return
+                End If
+                LicenseGuard.AddTopButton(Me, RegistrationDetails._serverClient)
                 If timer_trick() = True Then
                     Me.BeginInvoke(Sub() _processStart())
 

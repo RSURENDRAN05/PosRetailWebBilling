@@ -26,6 +26,15 @@ Public Class Login
 
 
     End Sub
+    Private Sub Login_LicenseCheck(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Licensing (product RetailServer): not activated / suspended / expired -> activation screen, otherwise the app closes.
+        If Not LicenseGuard.Enforce("RETAILSERVER") Then
+            Application.Exit()
+            Return
+        End If
+        LicenseGuard.AddTopButton(Me, "RETAILSERVER")
+    End Sub
+
     Private Sub btncancel_Click(sender As Object, e As EventArgs) Handles btncancel.Click
         Try
             Application.Exit()
