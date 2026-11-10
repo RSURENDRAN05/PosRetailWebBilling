@@ -1,0 +1,3867 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="ItemTouchMasterTable" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="ItemTouchMasterTable">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:string" minOccurs="0" />
+                <xs:element name="BarCode" type="xs:string" minOccurs="0" />
+                <xs:element name="ItemName" type="xs:string" minOccurs="0" />
+                <xs:element name="BusinessType" type="xs:string" minOccurs="0" />
+                <xs:element name="Remarks" type="xs:string" minOccurs="0" />
+                <xs:element name="TaxValue" type="xs:string" minOccurs="0" />
+                <xs:element name="MainId" type="xs:string" minOccurs="0" />
+                <xs:element name="MainName" type="xs:string" minOccurs="0" />
+                <xs:element name="CateId" type="xs:string" minOccurs="0" />
+                <xs:element name="CateName" type="xs:string" minOccurs="0" />
+                <xs:element name="TaxName" type="xs:string" minOccurs="0" />
+                <xs:element name="SellPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="CostPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="MinPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="MaxPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowDiscount" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowNegStock" type="xs:string" minOccurs="0" />
+                <xs:element name="AllowMultiPrice" type="xs:string" minOccurs="0" />
+                <xs:element name="OpeningStock" type="xs:string" minOccurs="0" />
+                <xs:element name="CompanyName" type="xs:string" minOccurs="0" />
+                <xs:element name="LocationName" type="xs:string" minOccurs="0" />
+                <xs:element name="Active" type="xs:string" minOccurs="0" />
+                <xs:element name="ComId" type="xs:string" minOccurs="0" />
+                <xs:element name="LocId" type="xs:string" minOccurs="0" />
+                <xs:element name="Color" type="xs:string" minOccurs="0" />
+                <xs:element name="LnkId" type="xs:string" minOccurs="0" />
+                <xs:element name="item_id" type="xs:string" minOccurs="0" />
+                <xs:element name="menu_type" type="xs:string" minOccurs="0" />
+                <xs:element name="font_size" type="xs:string" minOccurs="0" />
+                <xs:element name="font_name" type="xs:string" minOccurs="0" />
+                <xs:element name="font_style" type="xs:string" minOccurs="0" />
+                <xs:element name="text_color" type="xs:string" minOccurs="0" />
+                <xs:element name="back_color" type="xs:string" minOccurs="0" />
+                <xs:element name="Position" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <ItemTouchMasterTable>
+    <Id>1</Id>
+    <BarCode>0</BarCode>
+    <ItemName>HAIR CUT            [ADULT]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>18.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Gold</Color>
+    <LnkId>11</LnkId>
+    <item_id>1</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>2</Id>
+    <BarCode>2</BarCode>
+    <ItemName>HAIR CUT - SHAVE / TRIM</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>28.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>12</LnkId>
+    <item_id>2</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>3</Id>
+    <BarCode>3</BarCode>
+    <ItemName>HAIR CUT [Children]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>12.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>GreenYellow</Color>
+    <LnkId>13</LnkId>
+    <item_id>3</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>4</Id>
+    <BarCode>4</BarCode>
+    <ItemName>SHAMPOO</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>14</LnkId>
+    <item_id>4</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>9</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>5</Id>
+    <BarCode>5</BarCode>
+    <ItemName>BALDING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>15</LnkId>
+    <item_id>5</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>6</Id>
+    <BarCode>6</BarCode>
+    <ItemName>SHAVING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>12.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Cyan</Color>
+    <LnkId>16</LnkId>
+    <item_id>6</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>7</Id>
+    <BarCode>7</BarCode>
+    <ItemName>HAIR DYE [Powder]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Blue</Color>
+    <LnkId>17</LnkId>
+    <item_id>7</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>8</Id>
+    <BarCode>8</BarCode>
+    <ItemName>HAIR DYE [Cream]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>RoyalBlue</Color>
+    <LnkId>18</LnkId>
+    <item_id>8</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>9</Id>
+    <BarCode>9</BarCode>
+    <ItemName>HAIR COLOURING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>OrangeRed</Color>
+    <LnkId>19</LnkId>
+    <item_id>9</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>10</Id>
+    <BarCode>10</BarCode>
+    <ItemName>FACE WASH</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Brown</Color>
+    <LnkId>20</LnkId>
+    <item_id>10</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>12</Id>
+    <BarCode>12</BarCode>
+    <ItemName>FACE BLEACH [D-TAN]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightYellow</Color>
+    <LnkId>22</LnkId>
+    <item_id>12</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>13</Id>
+    <BarCode>13</BarCode>
+    <ItemName>FACIAL     [CLASSIC]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>88.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>88.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Ivory</Color>
+    <LnkId>23</LnkId>
+    <item_id>13</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>14</Id>
+    <BarCode>14</BarCode>
+    <ItemName>FACIAL    [ADVANCE]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>138.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>138.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>SandyBrown</Color>
+    <LnkId>24</LnkId>
+    <item_id>14</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>15</Id>
+    <BarCode>15</BarCode>
+    <ItemName>OIL MASSAGE STEAMING WASH</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>4</CateId>
+    <CateName>OIL MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>58.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>58.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Lime</Color>
+    <LnkId>25</LnkId>
+    <item_id>15</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>16</Id>
+    <BarCode>16</BarCode>
+    <ItemName>OIL MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>4</CateId>
+    <CateName>OIL MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Pink</Color>
+    <LnkId>26</LnkId>
+    <item_id>16</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>17</Id>
+    <BarCode>17</BarCode>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>100.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Turquoise</Color>
+    <LnkId>27</LnkId>
+    <item_id>17</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>18</Id>
+    <BarCode>18</BarCode>
+    <ItemName>HAIR SETTING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>7</CateId>
+    <CateName>OTHERS</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>5.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>2.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>28</LnkId>
+    <item_id>18</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>19</Id>
+    <BarCode>19</BarCode>
+    <ItemName>FACE WAX [Partial]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>6</CateId>
+    <CateName>FACE WAX</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>Fuchsia</Color>
+    <LnkId>29</LnkId>
+    <item_id>19</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>20</Id>
+    <BarCode>20</BarCode>
+    <ItemName>FACE MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>RoyalBlue</Color>
+    <LnkId>30</LnkId>
+    <item_id>20</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>21</Id>
+    <BarCode>20</BarCode>
+    <ItemName>HAIR STRAIGHTENING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>31</LnkId>
+    <item_id>21</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>22</Id>
+    <BarCode>21</BarCode>
+    <ItemName>BEARD TRIMMING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>12.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>33</LnkId>
+    <item_id>22</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>23</Id>
+    <BarCode>22</BarCode>
+    <ItemName>HAIR CUT [F]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>13.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>34</LnkId>
+    <item_id>23</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>24</Id>
+    <BarCode>23</BarCode>
+    <ItemName>HAIR CUT - SHAVE / TRIM [F]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>22.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>35</LnkId>
+    <item_id>24</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>25</Id>
+    <BarCode>24</BarCode>
+    <ItemName>FACE WAX    [Full]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>6</CateId>
+    <CateName>FACE WAX</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>36</LnkId>
+    <item_id>25</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>26</Id>
+    <BarCode>25</BarCode>
+    <ItemName>HAIR DESIGN</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>1</CateId>
+    <CateName>HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>5.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>37</LnkId>
+    <item_id>26</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>10</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>27</Id>
+    <BarCode>26</BarCode>
+    <ItemName>HAIR-BEARD DYE [Powder]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>38</LnkId>
+    <item_id>27</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>28</Id>
+    <BarCode>27</BarCode>
+    <ItemName>HAIR-BEARD DYE [Cream]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>70.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>39</LnkId>
+    <item_id>28</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>29</Id>
+    <BarCode>28</BarCode>
+    <ItemName>BEARD          TOUCH UP</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>40</LnkId>
+    <item_id>29</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>30</Id>
+    <BarCode>29</BarCode>
+    <ItemName>HAIR DYE [Service Only]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>2</CateId>
+    <CateName>HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>41</LnkId>
+    <item_id>30</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>31</Id>
+    <BarCode>30</BarCode>
+    <ItemName>FACIAL [BRIDEGROOM]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>188.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>188.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>42</LnkId>
+    <item_id>31</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>32</Id>
+    <BarCode>31</BarCode>
+    <ItemName>ANTI-DANDRUFF TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>88.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>88.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>43</LnkId>
+    <item_id>32</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>33</Id>
+    <BarCode>32</BarCode>
+    <ItemName>THREADING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>7</CateId>
+    <CateName>OTHERS</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>5.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>44</LnkId>
+    <item_id>33</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>34</Id>
+    <BarCode>33</BarCode>
+    <ItemName>HAIR PERMING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>45</LnkId>
+    <item_id>34</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>35</Id>
+    <BarCode>34</BarCode>
+    <ItemName>FACE MASK</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>40.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>46</LnkId>
+    <item_id>35</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>36</Id>
+    <BarCode>35</BarCode>
+    <ItemName>FULL LEGS</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>70.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>70.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>1</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>59</LnkId>
+    <item_id>36</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>37</Id>
+    <BarCode>36</BarCode>
+    <ItemName>HALF LEGS</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>40.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>40.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>60</LnkId>
+    <item_id>37</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>38</Id>
+    <BarCode>37</BarCode>
+    <ItemName>FULL HANDS</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>61</LnkId>
+    <item_id>38</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>39</Id>
+    <BarCode>38</BarCode>
+    <ItemName>HALF HANDS</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>62</LnkId>
+    <item_id>39</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>40</Id>
+    <BarCode>39</BarCode>
+    <ItemName>FULL FACE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>63</LnkId>
+    <item_id>40</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>41</Id>
+    <BarCode>40</BarCode>
+    <ItemName>SIDE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>35.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>35.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>64</LnkId>
+    <item_id>41</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>12</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>42</Id>
+    <BarCode>41</BarCode>
+    <ItemName>EYEBROW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>65</LnkId>
+    <item_id>42</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>9</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>43</Id>
+    <BarCode>42</BarCode>
+    <ItemName>UPPER LIP</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>66</LnkId>
+    <item_id>43</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>10</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>44</Id>
+    <BarCode>43</BarCode>
+    <ItemName>CHIN</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>67</LnkId>
+    <item_id>44</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>11</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>45</Id>
+    <BarCode>44</BarCode>
+    <ItemName>UNDERARM</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>68</LnkId>
+    <item_id>45</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>46</Id>
+    <BarCode>45</BarCode>
+    <ItemName>COLOUR ART DESIGN [Per Nail]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>11</CateId>
+    <CateName>NAIL ART</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>3.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>69</LnkId>
+    <item_id>46</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>47</Id>
+    <BarCode>46</BarCode>
+    <ItemName>STONE ART DESIGN [Per Nail]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>11</CateId>
+    <CateName>NAIL ART</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>1.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>70</LnkId>
+    <item_id>47</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>48</Id>
+    <BarCode>47</BarCode>
+    <ItemName>REMOVE TIP EXTENSION</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>71</LnkId>
+    <item_id>48</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>10</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>49</Id>
+    <BarCode>48</BarCode>
+    <ItemName>CALLUS REMOVER TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>72</LnkId>
+    <item_id>49</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>50</Id>
+    <BarCode>49</BarCode>
+    <ItemName>HEEL SCRUB</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>73</LnkId>
+    <item_id>50</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>51</Id>
+    <BarCode>50</BarCode>
+    <ItemName>OPI COLOUR ONLY</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>74</LnkId>
+    <item_id>51</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>52</Id>
+    <BarCode>51</BarCode>
+    <ItemName>GEL COLOUR ONLY</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>75</LnkId>
+    <item_id>52</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>53</Id>
+    <BarCode>52</BarCode>
+    <ItemName>BUFFING SHINE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>76</LnkId>
+    <item_id>53</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>54</Id>
+    <BarCode>53</BarCode>
+    <ItemName>FRENCH NAIL WITH OPI / GEL COLOUR</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>77</LnkId>
+    <item_id>54</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>55</Id>
+    <BarCode>54</BarCode>
+    <ItemName>REMOVER GEL</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>78</LnkId>
+    <item_id>55</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>56</Id>
+    <BarCode>55</BarCode>
+    <ItemName>FRENCH NAIL OPI/GEL COLOUR [Per Nail]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>3.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>3.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>79</LnkId>
+    <item_id>56</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>57</Id>
+    <BarCode>56</BarCode>
+    <ItemName>REMOVER ARCYLIC</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>12</CateId>
+    <CateName>OTHERS [NAILS]</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>80</LnkId>
+    <item_id>57</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>9</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>58</Id>
+    <BarCode>57</BarCode>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>81</LnkId>
+    <item_id>58</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>59</Id>
+    <BarCode>58</BarCode>
+    <ItemName>SPA MANI         [Gel Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>70.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>70.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>82</LnkId>
+    <item_id>59</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>7</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>60</Id>
+    <BarCode>59</BarCode>
+    <ItemName>SCALP TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>83</LnkId>
+    <item_id>60</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>61</Id>
+    <BarCode>60</BarCode>
+    <ItemName>KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>150.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>84</LnkId>
+    <item_id>61</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>62</Id>
+    <BarCode>61</BarCode>
+    <ItemName>PERMING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>150.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>85</LnkId>
+    <item_id>62</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>63</Id>
+    <BarCode>62</BarCode>
+    <ItemName>RELAXING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>150.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>86</LnkId>
+    <item_id>63</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>64</Id>
+    <BarCode>63</BarCode>
+    <ItemName>REBONDING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>150.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>87</LnkId>
+    <item_id>64</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>65</Id>
+    <BarCode>64</BarCode>
+    <ItemName>ADMIN ONLY</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>8</CateId>
+    <CateName>ADMIN ONLY</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>0.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>88</LnkId>
+    <item_id>65</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>66</Id>
+    <BarCode>65</BarCode>
+    <ItemName>WASH - BLOW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>89</LnkId>
+    <item_id>66</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>67</Id>
+    <BarCode>66</BarCode>
+    <ItemName>DRY CUT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>90</LnkId>
+    <item_id>67</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>68</Id>
+    <BarCode>67</BarCode>
+    <ItemName>WASH - CUT - BLOW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>55.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>55.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>91</LnkId>
+    <item_id>68</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>69</Id>
+    <BarCode>68</BarCode>
+    <ItemName>HAIR HIGHLIGHTING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>150.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>150.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>92</LnkId>
+    <item_id>69</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>70</Id>
+    <BarCode>69</BarCode>
+    <ItemName>HAIR COLOURING [Full Hair]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>93</LnkId>
+    <item_id>70</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>71</Id>
+    <BarCode>70</BarCode>
+    <ItemName>ROOT TOUCH UP </ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>94</LnkId>
+    <item_id>71</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>72</Id>
+    <BarCode>71</BarCode>
+    <ItemName>HOT OIL MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>16</CateId>
+    <CateName>L. OIL MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>95</LnkId>
+    <item_id>72</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>73</Id>
+    <BarCode>72</BarCode>
+    <ItemName>HOT OIL MASSAGE STEAMING WASH</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>16</CateId>
+    <CateName>L. OIL MASSAGE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>100.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>96</LnkId>
+    <item_id>73</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>74</Id>
+    <BarCode>73</BarCode>
+    <ItemName>HAIR SETTING</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>97</LnkId>
+    <item_id>74</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>75</Id>
+    <BarCode>74</BarCode>
+    <ItemName>MANICURE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MEN</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>98</LnkId>
+    <item_id>75</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>76</Id>
+    <BarCode>75</BarCode>
+    <ItemName>PEDICURE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MEN</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>35.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>35.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>99</LnkId>
+    <item_id>76</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>77</Id>
+    <BarCode>76</BarCode>
+    <ItemName>TIP EXTENSION [2 Hands]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>10</CateId>
+    <CateName>NAIL EXTENSION</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>120.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>100</LnkId>
+    <item_id>77</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>78</Id>
+    <BarCode>77</BarCode>
+    <ItemName>GEL MANI-PEDI</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>100.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>100.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>101</LnkId>
+    <item_id>78</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,255,255)</back_color>
+    <Position>9</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>79</Id>
+    <BarCode>78</BarCode>
+    <ItemName>SPA MANICURE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MEN</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>45.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>45.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>102</LnkId>
+    <item_id>79</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>80</Id>
+    <BarCode>79</BarCode>
+    <ItemName>SPA PEDICURE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>9</CateId>
+    <CateName>MEN</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>55.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>55.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>103</LnkId>
+    <item_id>80</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>83</Id>
+    <BarCode>82</BarCode>
+    <ItemName>COLOUR PROTECTOR     [For Allergy Scalp]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>14</CateId>
+    <CateName>L. HAIR DYE</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>106</LnkId>
+    <item_id>83</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>84</Id>
+    <BarCode>83</BarCode>
+    <ItemName>HERBAL KERATIN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>350.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>350.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>107</LnkId>
+    <item_id>84</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>85</Id>
+    <BarCode>84</BarCode>
+    <ItemName>SCALP - HAIR MOISTURISER TREATMENT </ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>17</CateId>
+    <CateName>L. HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>120.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>120.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>108</LnkId>
+    <item_id>85</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,255,255)</back_color>
+    <Position>8</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>86</Id>
+    <BarCode>85</BarCode>
+    <ItemName>NECK</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>18</CateId>
+    <CateName>L. WAXING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>109</LnkId>
+    <item_id>86</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>87</Id>
+    <BarCode>86</BarCode>
+    <ItemName>HENNA</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>110</LnkId>
+    <item_id>87</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>88</Id>
+    <BarCode>87</BarCode>
+    <ItemName>EYE COLLAGEN TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>111</LnkId>
+    <item_id>88</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>89</Id>
+    <BarCode>88</BarCode>
+    <ItemName>FACE WASH AND MASSAGE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>59.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>59.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>112</LnkId>
+    <item_id>89</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>90</Id>
+    <BarCode>89</BarCode>
+    <ItemName>BASIC FACIAL</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>99.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>99.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>113</LnkId>
+    <item_id>90</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>91</Id>
+    <BarCode>90</BarCode>
+    <ItemName>ADVANCE FACIAL</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>149.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>149.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>114</LnkId>
+    <item_id>91</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>92</Id>
+    <BarCode>91</BarCode>
+    <ItemName>MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>116</LnkId>
+    <item_id>92</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>93</Id>
+    <BarCode>92</BarCode>
+    <ItemName>PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>35.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>35.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>117</LnkId>
+    <item_id>93</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>94</Id>
+    <BarCode>93</BarCode>
+    <ItemName>SPA MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>45.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>45.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>118</LnkId>
+    <item_id>94</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>95</Id>
+    <BarCode>94</BarCode>
+    <ItemName>SPA PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>55.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>55.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>119</LnkId>
+    <item_id>95</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>96</Id>
+    <BarCode>95</BarCode>
+    <ItemName>GEL MANI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>50.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>50.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>120</LnkId>
+    <item_id>96</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>97</Id>
+    <BarCode>96</BarCode>
+    <ItemName>GEL PEDI</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>121</LnkId>
+    <item_id>97</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>6</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>98</Id>
+    <BarCode>97</BarCode>
+    <ItemName>TIP EXTENSION [1 Hand]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>10</CateId>
+    <CateName>NAIL EXTENSION</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>122</LnkId>
+    <item_id>98</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>100</Id>
+    <BarCode>99</BarCode>
+    <ItemName>SPA PEDI         [Gel Colour]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>80.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>80.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>124</LnkId>
+    <item_id>100</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>8</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>101</Id>
+    <BarCode>100</BarCode>
+    <ItemName>SPA MANI-PEDI [Gel Colour]</ItemName>
+    <BusinessType>71</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>2</MainId>
+    <MainName>NAILS</MainName>
+    <CateId>20</CateId>
+    <CateName>LADIES</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>140.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>140.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BRICKFIELDS</LocationName>
+    <Active>1</Active>
+    <ComId>2</ComId>
+    <LocId>2</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>125</LnkId>
+    <item_id>101</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,64,0,0)</text_color>
+    <back_color>Argb(255,255,255,255)</back_color>
+    <Position>10</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>103</Id>
+    <BarCode>102</BarCode>
+    <ItemName>T. FULL FACE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>30.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>30.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>127</LnkId>
+    <item_id>103</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>104</Id>
+    <BarCode>103</BarCode>
+    <ItemName>BRIDAL FACIAL</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>15</CateId>
+    <CateName>L. FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>199.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>199.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>128</LnkId>
+    <item_id>104</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>105</Id>
+    <BarCode>104</BarCode>
+    <ItemName>T. EYEBROW</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>10.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>10.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>129</LnkId>
+    <item_id>105</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>2</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>106</Id>
+    <BarCode>105</BarCode>
+    <ItemName>T. UPPER LIP</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>8.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>8.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>130</LnkId>
+    <item_id>106</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>3</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>107</Id>
+    <BarCode>106</BarCode>
+    <ItemName>T. CHIN</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>8.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>8.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>131</LnkId>
+    <item_id>107</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>108</Id>
+    <BarCode>107</BarCode>
+    <ItemName>T. SIDE</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>19</CateId>
+    <CateName>L. THREADING</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>25.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>25.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>132</LnkId>
+    <item_id>108</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>5</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>109</Id>
+    <BarCode>104</BarCode>
+    <ItemName>L. HAIR CUT [Children]</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>3</MainId>
+    <MainName>LADIES</MainName>
+    <CateId>13</CateId>
+    <CateName>LADIES HAIR CUT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>15.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>15.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>133</LnkId>
+    <item_id>109</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>4</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>110</Id>
+    <BarCode>105</BarCode>
+    <ItemName>UNDER EYE TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>3</CateId>
+    <CateName>FACIAL</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>20.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>20.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>134</LnkId>
+    <item_id>110</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+  <ItemTouchMasterTable>
+    <Id>111</Id>
+    <BarCode>106</BarCode>
+    <ItemName>HAIR MOISTURISER TREATMENT</ItemName>
+    <BusinessType>70</BusinessType>
+    <Remarks>-</Remarks>
+    <TaxValue>0</TaxValue>
+    <MainId>1</MainId>
+    <MainName>BARBER</MainName>
+    <CateId>5</CateId>
+    <CateName>HAIR TREATMENT</CateName>
+    <TaxName>Tax 0%</TaxName>
+    <SellPrice>60.00</SellPrice>
+    <CostPrice>0.00</CostPrice>
+    <MinPrice>60.00</MinPrice>
+    <MaxPrice>0.00</MaxPrice>
+    <AllowDiscount>0</AllowDiscount>
+    <AllowNegStock>1</AllowNegStock>
+    <AllowMultiPrice>1</AllowMultiPrice>
+    <OpeningStock>0.00</OpeningStock>
+    <CompanyName>MESHAS BARBERSHOP</CompanyName>
+    <LocationName>BANGSAR</LocationName>
+    <Active>1</Active>
+    <ComId>1</ComId>
+    <LocId>1</LocId>
+    <Color>LightBlue</Color>
+    <LnkId>135</LnkId>
+    <item_id>111</item_id>
+    <menu_type>Item</menu_type>
+    <font_size>15.0</font_size>
+    <font_name>Maiandra GD</font_name>
+    <font_style>Bold</font_style>
+    <text_color>Argb(255,255,128,0)</text_color>
+    <back_color>Argb(255,64,0,0)</back_color>
+    <Position>1</Position>
+  </ItemTouchMasterTable>
+</NewDataSet>

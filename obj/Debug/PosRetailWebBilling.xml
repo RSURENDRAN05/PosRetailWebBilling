@@ -751,6 +751,50 @@ PosRetailWebBilling
 	<summary>
  Apply skin to DevExpress controls recursively
  </summary>
+</member><member name="P:PosRetailWebBilling.LicenseResult.AllowsFullUse">
+	<summary>The app may run normally (a warning may still be shown).</summary>
+</member><member name="T:PosRetailWebBilling.LicenseResult">
+	<summary>Outcome of checking a license token.</summary>
+</member><member name="F:PosRetailWebBilling.ClsLicense.PublicKeys">
+	<summary>Public keys by key id (kid). Add a new entry when the signing key is rotated.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.ProductForRole(System.String)">
+	<summary>PosLogin (billing) is the RetailClient product; the back-office Login form passes "RETAILSERVER" for RetailServer.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.Fingerprint">
+	<summary>16 hex chars: SHA-256 of the Windows MachineGuid (salted). Same scheme as the Flutter apps.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.RequestCode(System.String)">
+	<summary>Code for offline activation: the owner pastes it into the CRM (Licenses - Issue file / code).</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.Verify(System.String,System.String,System.String,System.Nullable{System.DateTime})">
+	<summary>Checks the signature, device, dates and product. Never throws.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.BlockedName(System.String)">
+	<summary>The blocked flag is kept per product: two apps on one PC (e.g. MainServer and ClientPOS) must not block each other.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.ActivateOnline(System.String,System.String)">
+	<summary>Online activation with the license key from the owner. Returns "" on success, else a message.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.ApplyCode(System.String,System.String)">
+	<summary>Offline activation with a pasted code / license.lic text. Returns "" on success, else a message.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.TryRefresh(System.String)">
+	<summary>Quietly asks the server for a fresh token (a renewal arrives this way). Network trouble changes nothing.</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.CheckStored(System.String)">
+	<summary>Verifies the saved license (no network).</summary>
+</member><member name="M:PosRetailWebBilling.ClsLicense.Startup(System.String)">
+	<summary>At start: refresh from the server if possible, then verify.</summary>
+</member><member name="T:PosRetailWebBilling.ClsLicense">
+	<summary>
+ MyPos signed license (Ed25519): MYPOS1.[payload].[signature]. Same token and rules as the Flutter apps.
+ The token is kept on this PC and re-verified on every start; online, it is refreshed from the server.
+ </summary>
+</member><member name="M:PosRetailWebBilling.LicenseGuard.Enforce(System.String)">
+	<summary>True = go on. False = the app must close. [role] is SERVER / CLIENT / ORDER from SerSettings.xml.</summary>
+</member><member name="M:PosRetailWebBilling.LicenseGuard.AddTopButton(System.Windows.Forms.Form,System.String)">
+	<summary>Adds a coloured "License" button at the top of [parent]; click opens the license details. Also starts the hourly re-check.</summary>
+</member><member name="M:PosRetailWebBilling.LicenseGuard.StartMonitor">
+	<summary>Every hour: ask the server (renewals arrive by themselves), then warn once a day. It never closes the app
+ in the middle of service; an expired or blocked license is enforced the next time the app starts.</summary>
+</member><member name="T:PosRetailWebBilling.LicenseGuard">
+	<summary>Start-up gate: activation screen unless the license allows the app to run.</summary>
+</member><member name="T:PosRetailWebBilling.frmLicense">
+	<summary>Activation screen: license key (online) or request / activation code (offline). Built in code, no designer.</summary>
+</member><member name="T:PosRetailWebBilling.frmLicenseInfo">
+	<summary>License details: client, plan, dates, products, key and device. Built in code, no designer.</summary>
 </member><member name="T:PosRetailWebBilling.BooleanConverter">
 	<summary>
  Custom JSON converter for handling integer values (0/1) as booleans
